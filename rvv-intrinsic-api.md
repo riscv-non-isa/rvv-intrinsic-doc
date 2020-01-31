@@ -468,14 +468,20 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 
 #### [Intrinsic functions list](./rvv_intrinsic_funcs.md#vector-widening-integer-multiply-add-functions)
 
-### 12.14. Vector Integer Merge Operations
+### 12.14. Vector Quad-Widening Integer Multiply-Add Operations (Extension Zvqmac)
+#### Instructions
+TODO
+
+#### [Intrinsic functions list](./rvv_intrinsic_funcs.md#vector-quad-widening-integer-multiply-add-functions)
+
+
+### 12.15. Vector Integer Merge Operations
 #### Instructions [SEW supported]
 - vmerge.{vvm,vxm,vim}	[8,16,32]
 
-
 #### [Intrinsic functions list](./rvv_intrinsic_funcs.md#vector-integer-merge-functions)
 
-### 12.15. Vector Integer Move Operations
+### 12.16. Vector Integer Move Operations
 #### Instructions [SEW supported]
 - vmv.v.v	[8,16,32]
 - vmv.v.x	[8,16,32]
