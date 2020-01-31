@@ -893,6 +893,6 @@ TODO
 
 
 ## 20. RVV Intrinsic Examples
-- [sgemm](https://github.com/sifive/rvv-intrinsics/blob/master/examples/sgemm.c)
-- [saxpy](https://github.com/sifive/rvv-intrinsics/blob/master/examples/rvv_saxpy.c)
+- [sgemm](sgemm.c)
+- [saxpy](rvv_saxpy.c)
 
