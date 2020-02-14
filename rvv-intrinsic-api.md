@@ -14,15 +14,15 @@ Support implicit intrinsic functions of simple operations for more clearly and f
 
 **Example:**
 ``` C
-void vadd(size_t n, const float32_t* a, const float32_t *x, float32_t *y) {
+void vadd(size_t n, const float32_t *z, const float32_t *x, float32_t *y) {
   size_t l;
   vfloat32m8_t vx, vy, vz;
 
   for (; (l = vsetvl_32m8(n)) > 0; n -= l) {
-    vx = *(vf32m8_t*)(x); // explicit: vx = vload_f32m8(x);
-    vy = *(vf32m8_t*)(y); // explicit: vu = vload_f32m8(x);
-    vz = vx + vy;         // explicit: vz = vadd_f32m8(vx,vy);
-    *(vf32m8_t*)z = vz;   // explicit: vstore_f32m8(z, vz);
+    vx = *(vfloat32m8_t*)(x); // explicit: vx = vload_f32m8(x);
+    vy = *(vfloat32m8_t*)(y); // explicit: vu = vload_f32m8(x);
+    vz = vx + vy;             // explicit: vz = vadd_f32m8(vx,vy);
+    *(vfloat32m8_t*)z = vz;   // explicit: vstore_f32m8(z, vz);
     x += l;
     y += l;
     z += l;
