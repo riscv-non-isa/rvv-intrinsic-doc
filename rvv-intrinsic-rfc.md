@@ -15,7 +15,7 @@
   * [Merge Instructions](#merge-instructions)
   * [`vpopc.m` and `vfirst.m`](#vpopc-and-vfirst)
   * [Permutation Instructions](#permutation-instructions)
-  * [Semantic Intrinsics](#semantic-intrinsics)
+- [Semantic Intrinsics](#semantic-intrinsics)
 
 ## Introduction
 
@@ -242,7 +242,7 @@ int8_t vmv_x_s_i8m4_i8 (vint8m4_t vs2);
 int8_t vmv_x_s_i8m8_i8 (vint8m8_t vs2);
 ```
 
-### Semantic Intrinsics
+## Semantic Intrinsics
 
 This section lists all intrinsics with higher semantic naming. It is usually an alias of a vector instruction or a combination of vector instructions.
 
