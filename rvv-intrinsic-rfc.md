@@ -248,7 +248,7 @@ This section lists all intrinsics with higher semantic naming. It is usually an 
 
 ```
 vmv.v.v vd, vs1:
-vint8m1_t vcopy_i8m1(vint8m1_t vd, vint8m1_t vs1);
+vint8m1_t vcopy_i8m1(vint8m1_t vs1);
 
 vmv.v.x vd, rs1:
 vint8m1_t vsplat_i8m1(int8_t rs1);
