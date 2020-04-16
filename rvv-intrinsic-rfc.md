@@ -161,7 +161,7 @@ vsb.v vs3, (rs1):
 void vsb_v_i8m1(int8_t *rs1, vint8m1_t vs3);
 ```
 
-There is no `maskedoff` parameter for store operations. The value of `maskedoff` already exists in memory.
+There is no `maskedoff` argument for store operations. The value of `maskedoff` already exists in memory.
 
 ```
 Example:
@@ -196,7 +196,7 @@ vint8m1_t vredsum_vs_i8m4_i8m1(vint8m4_t vs2, vint8m1_t vs1)
 vint8m1_t vredsum_vs_i8m8_i8m1(vint8m8_t vs2, vint8m1_t vs1)
 ```
 
-There is no `maskedoff` parameter for reduction operations. 
+There is no `maskedoff` argument for reduction operations.
 
 ```
 Example:
