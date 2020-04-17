@@ -19,6 +19,7 @@
 - [Semantic Intrinsics](#semantic-intrinsics)
 - [Utility Functions](#utility-functions)
   * [Bump pointers Through Opaque `vl`](#bump-pointers)
+- [C11 Generic Interface](#c11-generic-interface)
 
 ## Introduction<a name="introduction"></a>
 
@@ -302,4 +303,20 @@ char *a;
 
 _VL_T vl = vsetvl_i8m1(avl);
 a += vl_extract(vl);
+```
+
+## C11 Generic Interface<a name="c11-generic-interface"></a>
+
+Use C11 `_Generic` keyword to choose one of these intrinsics at compile time, based on the types of input arguments.
+
+```
+Example:
+
+vint8m1_t vadd(vint8m1_t op1, vint8m1_t op2);
+// The compiler will choose the following intrinsic
+vint8m1_t vadd_vv_i8m1(vint8m1_t op1, vint8m1_t op2);
+
+vint8m2_t vadd(vint8m2_t op1, vint8m2_t op2);
+// The compiler will choose the following intrinsic
+vint8m2_t vadd_vv_i8m2(vint8m2_t op1, vint8m2_t op2);
 ```
