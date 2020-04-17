@@ -22,6 +22,7 @@
 - [Utility Functions](#utility-functions)
   * [Bump pointers Through Opaque `vl`](#bump-pointers)
   * [Vector Initialization](#vector-init)
+  * [Reinterpret](#reinterpret)
 - [C11 Generic Interface](#c11-generic-interface)
 
 ## Introduction<a name="introduction"></a>
@@ -370,7 +371,16 @@ vint8m1_t vzero_i8m1()
 vint8m1_t vundefined_i8m1()
 ```
 
-[TODO] Reinterpret intrinsics.
+### Reinterpret<a name="reinterpret"></a>
+
+These utility functions help users to convert types between floating point and integer types, between unsigned and signed types.
+
+```
+Example:
+
+vuint8m1_t vreinterpret_u8m1(vint8m1_t src)
+vint64m1_t vreinterpret_f64m1(vfloat64m1_t src)
+```
 
 ## C11 Generic Interface<a name="c11-generic-interface"></a>
 
