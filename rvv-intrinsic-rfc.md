@@ -4,10 +4,11 @@
 - [Type System](#type-system)
   * [Data Types](#data-types)
   * [Mask Types](#mask-types)
+- [Configuration-Setting](#configuration-setting)
 - [Naming Rules](#naming-rules)
 - [Mask in Intrinsics](#mask-in-intrinsics)
-- [With or Without the VL Argument](#with-or-without-the-vl-argument)
-- [Configuration-Setting](#configuration-setting)
+- [With or Without the VL Argument](#vl-argument)
+- [SEW and LMUL of Intrinsics](#sew-and-lmul-of-intrinsics)
 - [Exceptions](#exceptions)
   * [Vector Stores](#vector-stores)
   * [Comparison Instructions](#comparison-instructions)
@@ -16,14 +17,16 @@
   * [`vpopc.m` and `vfirst.m`](#vpopc-and-vfirst)
   * [Permutation Instructions](#permutation-instructions)
 - [Semantic Intrinsics](#semantic-intrinsics)
+- [Utility Functions](#utility-functions)
+  * [Bump pointers Through Opaque `vl`](#bump-pointers)
 
-## Introduction
+## Introduction<a name="introduction"></a>
 
 [TODO]
 
-## Type System
+## Type System<a name="type-system"></a>
 
-### Data Types
+### Data Types<a name="data-types"></a>
 
 Encode SEW and LMUL into data types. There are the following data types for `SEW` &#8804; 64. 
 
@@ -38,7 +41,7 @@ Encode SEW and LMUL into data types. There are the following data types for `SEW
 | **int8_t**   | vint8m1_t   | vint8m2_t   | vint8m4_t   | vint8m8_t
 | **uint8_t**  | vuint8m1_t  | vuint8m2_t  | vuint8m4_t  | vuint8m8_t
 
-### Mask Types
+### Mask Types<a name="mask-types"></a>
 
 Encode `MLEN` into the mask types. There are the following mask types for `SEW` &#8804; 64.
 
@@ -46,7 +49,25 @@ Encode `MLEN` into the mask types. There are the following mask types for `SEW` 
 | ----- | -------- | -------- | -------- | -------- | --------- | --------- | ---------
 | bool  | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t
 
-## Naming Rules
+## Configuration-Setting<a name="configuration-setting"></a>
+
+SEW and LMUL are a part of the naming. They are static information for the intrinsics.
+There are two variants of configuration setting intrinsics. `vsetvl` is used to set `vl` according to the given AVL. `vsetvlmax` is used to set `vl` to VLMAX.
+
+```
+Example:
+
+size_t vsetvl_i8m1 (size_t avl);
+size_t vsetvl_i8m2 (size_t avl);
+size_t vsetvl_i8m4 (size_t avl);
+size_t vsetvl_i8m8 (size_t avl);
+size_t vsetvlmax_i8m1 ();
+size_t vsetvlmax_i8m2 ();
+size_t vsetvlmax_i8m4 ();
+size_t vsetvlmax_i8m8 ();
+```
+
+## Naming Rules<a name="naming-rules"></a>
 
 Intrinsics is the interface to the low level assembly in high level programming language. The intrinsic API has the goal to make all the V-ext instructions accessible from C/C++. The intrinsic names are as close as the assembly mnemonics. Besides the basic intrinsics corresponding to assembly mnemonics, there are intrinsics close to semantic naming.
 
@@ -72,7 +93,7 @@ vwaddu.vv vd, vs2, vs1:
 vint16m2_t vwaddu_vv_i16m2(vint8m1_t vs2, vint8m1_t vs1)
 ```
 
-## Mask in Intrinsics
+## Mask in Intrinsics<a name="mask-in-intrinsics"></a>
 
 RISC-V "V" extension only has "merge in output" semantic. Intrinsics with mask has two additional arguments, `mask` and `maskedoff`.
 
@@ -95,7 +116,7 @@ vadd.vv vd, vs2, vs1, v0.t:
 vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vint8m1_t maskedoff, vint8m1_t vs2, vint8m1_t vs1)
 ```
 
-## With or Without the VL Argument
+## With or Without the VL Argument<a name="vl-argument"></a>
 
 There are two variants of intrinsics regarding to `vl`.
 
@@ -104,19 +125,19 @@ There are two variants of intrinsics regarding to `vl`.
 
 The semantics between these two variants are the same.
 
+The naming rule is
+
+```
+INTRINSIC_WITH_VL ::= INTRINSIC '_vl'
+INTRINSIC_WITH_MASK_AND_VL ::= INTRINSIC_WITH_MASK '_vl'
+```
+
 To avoid users to manipulate `vl` argument in explicit vl intrinsic, there is an opaque type for `vl`.
 
 ```
 typedef struct {
   unsigned long _vl;
 } _VL_T;
-```
-
-The naming rule is
-
-```
-INTRINSIC_WITH_VL ::= INTRINSIC '_vl'
-INTRINSIC_WITH_MASK_AND_VL ::= INTRINSIC_WITH_MASK '_vl'
 ```
 
 ```
@@ -131,26 +152,36 @@ vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vint8m1_t maskedoff, vint8m1_t vs2, vint
 vint8m1_t vadd_vv_i8m1_m_vl(vbool8_t mask, vint8m1_t maskedoff, vint8m1_t vs2, vint8m1_t vs1, _VL_T vl)
 ```
 
-## Configuration-Setting
+## SEW and LMUL of Intrinsics<a name="sew-and-lmul-of-intrinsics"></a>
 
-SEW and LMUL is a part of the naming. It is consistent with the other intrinsics.
+SEW and LMUL are the static information for the intrinsics. The compiler will generate vsetvli when vtype is changed between operations.
 
 ```
 Example:
 
-size_t vsetvl_i8m1 (size_t avl);
-size_t vsetvl_i8m2 (size_t avl);
-size_t vsetvl_i8m4 (size_t avl);
-size_t vsetvl_i8m8 (size_t avl);
-size_t vsetvlmax_i8m1 ();
-size_t vsetvlmax_i8m2 ();
-size_t vsetvlmax_i8m4 ();
-size_t vsetvlmax_i8m8 ();
+vint8m1_t a, b, c, d;
+vint16m2_t a2, b2, c2;
+...
+a2 = vwadd_vv_i16m2(a, b);
+b2 = vwadd_vv_i16m2(c, d);
+c2 = vadd_vv_i16m2(a2, b2);
 ```
 
-## Exceptions
+It will generate the following instructions.
 
-### Vector Stores
+```
+vsetvli x0, x0, e8,m1
+vwadd.vv a2, a, b
+vwadd.vv b2, c, d
+vsetvli x0, x0, e16,m2
+vadd.vv c2, a2, b2
+```
+
+Be aware that when the ratio of LMUL/SEW is changed, users need to ensure the `vl` is correct for the following operations.
+
+## Exceptions<a name="exceptions"></a>
+
+### Vector Stores<a name="vector-stores"></a>
 
 It does not encode return type into vector store. There is no return data for store operations. Instead, use the type of store data to name the intrinsics.
 
@@ -170,7 +201,7 @@ vsb.v vs3, (rs1), v0.t:
 void vsb_v_i8m1_m(vbool8_t mask, int8_t *rs1, vint8m1_t vs3);
 ```
 
-### Comparison Instructions
+### Comparison Instructions<a name="comparison-instructions"></a>
 
 The result of comparison instructions is mask types. Becuase we use MLEN to name the mask types and multiple (SEW, LMUL) pairs map to the same MLEN, in addition to use the return type to name the intrinsics, we also encode the input types to distinguish these intrinsics.
 
@@ -182,7 +213,7 @@ vbool8_t vmseq_vv_i8m1_b8(vint8m1_t vs2, vint8m1_t vs1);
 vbool8_t vmseq_vv_i16m2_b8(vint16m2_t vs2, vint16m2_t vs1);
 ```
 
-### Reduction Instructions
+### Reduction Instructions<a name="reduction-instructions"></a>
 
 The scalar input and output operands are held in element 0 of a single vector register. Use LMUL = 1 in the return type. To distinguish different intrinsics with different input types, encode the input type and the result type in the name.
 
@@ -205,7 +236,7 @@ vredsum.vs vd, vs2, vs1, v0.t:
 vint8m1_t vredsum_vs_i8m2_i8m1_m(vbool4_t mask, vint8m2_t vs2, vint8m1_t vs1)
 ```
 
-### Merge Instructions
+### Merge Instructions<a name="merge-instructions"></a>
 
 Merge instructions have no `maskedoff` argument.
 
@@ -228,7 +259,7 @@ unsigned long vpopc_m_b1(vbool1_t vs2);
 unsigned long vpopc_m_b2(vbool2_t vs2);
 ```
 
-### Permutation Instructions
+### Permutation Instructions<a name="permutation-instructions"></a>
 
 To move the element 0 of a vector to a scalar, encode the input vector type and the output scalar type.
 
@@ -242,7 +273,7 @@ int8_t vmv_x_s_i8m4_i8 (vint8m4_t vs2);
 int8_t vmv_x_s_i8m8_i8 (vint8m8_t vs2);
 ```
 
-## Semantic Intrinsics
+## Semantic Intrinsics<a name="semantic-intrinsics"></a>
 
 This section lists all intrinsics with higher semantic naming. It is usually an alias of a vector instruction or a combination of vector instructions.
 
@@ -252,4 +283,23 @@ vint8m1_t vcopy_i8m1(vint8m1_t vs1);
 
 vmv.v.x vd, rs1:
 vint8m1_t vsplat_i8m1(int8_t rs1);
+```
+
+## Utility Functions<a name="utility-functions"></a>
+
+This section lists all utility functions to help users program in V intrinsics easier.
+
+### Bump pointers Through Opaque `vl`<a name="bump-pointers"></a>
+
+In order to bump pointers from the opaque `vl` value, we define an utility function to extract the value of `vl` from the opaque type.
+
+```
+unsigned vl_extract(_VL_T vl);
+
+Example:
+
+char *a;
+
+_VL_T vl = vsetvl_i8m1(avl);
+a += vl_extract(vl);
 ```
