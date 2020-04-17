@@ -31,7 +31,7 @@
 
 ### Data Types<a name="data-types"></a>
 
-Encode SEW and LMUL into data types. There are the following data types for `SEW` &#8804; 64. 
+Encode `SEW` and `LMUL` into data types. There are the following data types for `SEW` &#8804; 64. 
 
 | Types        | LMUL = 1    | LMUL = 2    | LMUL = 4    | LMUL = 8
 | ------------ | ----------- | ----------- | ----------- | -----------
@@ -54,7 +54,7 @@ Encode `MLEN` into the mask types. There are the following mask types for `SEW` 
 
 ## Configuration-Setting<a name="configuration-setting"></a>
 
-SEW and LMUL are a part of the naming. They are static information for the intrinsics.
+`SEW` and `LMUL` are a part of the naming. They are static information for the intrinsics.
 There are two variants of configuration setting intrinsics. `vsetvl` is used to set `vl` according to the given AVL. `vsetvlmax` is used to set `vl` to VLMAX.
 
 ```
@@ -186,7 +186,7 @@ vint8m1_t vadd_vv_i8m1_vl(vint8m1_t vs2, vint8m1_t vs1, _VL_T vl) {
 
 ## SEW and LMUL of Intrinsics<a name="sew-and-lmul-of-intrinsics"></a>
 
-SEW and LMUL are the static information for the intrinsics. The compiler will generate vsetvli when vtype is changed between operations.
+`SEW` and `LMUL` are the static information for the intrinsics. The compiler will generate vsetvli when vtype is changed between operations.
 
 ```
 Example:
@@ -209,7 +209,7 @@ vsetvli x0, x0, e16,m2
 vadd.vv c2, a2, b2
 ```
 
-Be aware that when the ratio of LMUL/SEW is changed, users need to ensure the `vl` is correct for the following operations if using *implicit vl intrinsics*.
+Be aware that when the ratio of `LMUL/SEW` is changed, users need to ensure the `vl` is correct for the following operations if using *implicit vl intrinsics*.
 
 ## Exceptions<a name="exceptions"></a>
 
@@ -235,7 +235,7 @@ void vsb_v_i8m1_m(vbool8_t mask, int8_t *rs1, vint8m1_t vs3);
 
 ### Comparison Instructions<a name="comparison-instructions"></a>
 
-The result of comparison instructions is mask types. Becuase we use MLEN to name the mask types and multiple (SEW, LMUL) pairs map to the same MLEN, in addition to use the return type to name the intrinsics, we also encode the input types to distinguish these intrinsics.
+The result of comparison instructions is mask types. Becuase we use `MLEN` to name the mask types and multiple (`SEW`, `LMUL`) pairs map to the same `MLEN`, in addition to use the return type to name the intrinsics, we also encode the input types to distinguish these intrinsics.
 
 ```
 Example:
