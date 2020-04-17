@@ -35,16 +35,19 @@
 
 Encode `SEW` and `LMUL` into data types. There are the following data types for `SEW` &#8804; 64. 
 
-| Types        | LMUL = 1    | LMUL = 2    | LMUL = 4    | LMUL = 8
-| ------------ | ----------- | ----------- | ----------- | -----------
-| **int64_t**  | vint64m1_t  | vint64m2_t  | vint64m4_t  | vint64m8_t
-| **uint64_t** | vuint64m1_t | vuint64m2_t | vuint64m4_t | vuint64m8_t
-| **int32_t**  | vint32m1_t  | vint32m2_t  | vint32m4_t  | vint32m8_t
-| **uint32_t** | vuint32m1_t | vuint32m2_t | vuint32m4_t | vuint32m8_t
-| **int16_t**  | vint16m1_t  | vint16m2_t  | vint16m4_t  | vint16m8_t
-| **uint16_t** | vuint16m1_t | vuint16m2_t | vuint16m4_t | vuint16m8_t
-| **int8_t**   | vint8m1_t   | vint8m2_t   | vint8m4_t   | vint8m8_t
-| **uint8_t**  | vuint8m1_t  | vuint8m2_t  | vuint8m4_t  | vuint8m8_t
+| Types        | LMUL = 1     | LMUL = 2     | LMUL = 4     | LMUL = 8
+| ------------ | ------------ | ------------ | ------------ | -----------
+| **int64_t**  | vint64m1_t   | vint64m2_t   | vint64m4_t   | vint64m8_t
+| **uint64_t** | vuint64m1_t  | vuint64m2_t  | vuint64m4_t  | vuint64m8_t
+| **int32_t**  | vint32m1_t   | vint32m2_t   | vint32m4_t   | vint32m8_t
+| **uint32_t** | vuint32m1_t  | vuint32m2_t  | vuint32m4_t  | vuint32m8_t
+| **int16_t**  | vint16m1_t   | vint16m2_t   | vint16m4_t   | vint16m8_t
+| **uint16_t** | vuint16m1_t  | vuint16m2_t  | vuint16m4_t  | vuint16m8_t
+| **int8_t**   | vint8m1_t    | vint8m2_t    | vint8m4_t    | vint8m8_t
+| **uint8_t**  | vuint8m1_t   | vuint8m2_t   | vuint8m4_t   | vuint8m8_t
+| **vfloat64** | vfloat64m1_t | vfloat64m2_t | vfloat64m4_t | vfloat64m8_t
+| **vfloat32** | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t
+| **vfloat16** | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t
 
 ### Mask Types<a name="mask-types"></a>
 
