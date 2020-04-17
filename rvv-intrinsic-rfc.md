@@ -209,7 +209,7 @@ vsetvli x0, x0, e16,m2
 vadd.vv c2, a2, b2
 ```
 
-Be aware that when the ratio of LMUL/SEW is changed, users need to ensure the `vl` is correct for the following operations.
+Be aware that when the ratio of LMUL/SEW is changed, users need to ensure the `vl` is correct for the following operations if using *implicit vl intrinsics*.
 
 ## Exceptions<a name="exceptions"></a>
 
