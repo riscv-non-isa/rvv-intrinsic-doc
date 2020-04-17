@@ -359,7 +359,7 @@ _VL_T vl = vsetvl_i8m1(avl);
 a += vl_extract(vl);
 ```
 
-### Vector Initialization<a name="vecotr-init"></a>
+### Vector Initialization<a name="vector-init"></a>
 
 These utility functions are used to initialize vector values. They could be used in masking intrinsics with *zero in output* and *don't care in output* semantics.
 
