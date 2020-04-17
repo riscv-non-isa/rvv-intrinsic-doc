@@ -17,6 +17,8 @@
   * [`vpopc.m` and `vfirst.m`](#vpopc-and-vfirst)
   * [Permutation Instructions](#permutation-instructions)
 - [Semantic Intrinsics](#semantic-intrinsics)
+  * [Vector Copy](#vector-copy)
+  * [Splat](#splat)
 - [Utility Functions](#utility-functions)
   * [Bump pointers Through Opaque `vl`](#bump-pointers)
 - [C11 Generic Interface](#c11-generic-interface)
@@ -307,10 +309,20 @@ int8_t vmv_x_s_i8m8_i8 (vint8m8_t vs2);
 
 This section lists all intrinsics with higher semantic naming. It is usually an alias of a vector instruction or a combination of vector instructions.
 
+### Vector Copy<a name="vector-copy"></a>
+
+It is an alias of the `vmv.v.v` instruction.
+
 ```
 vmv.v.v vd, vs1:
 vint8m1_t vcopy_i8m1(vint8m1_t vs1);
+```
 
+### Splat<a name="splat"></a>
+
+It is an alias of the `vmv.v.x` instruction.
+
+```
 vmv.v.x vd, rs1:
 vint8m1_t vsplat_i8m1(int8_t rs1);
 ```
