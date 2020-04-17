@@ -72,7 +72,7 @@ size_t vsetvlmax_i8m8 ();
 
 Intrinsics is the interface to the low level assembly in high level programming language. The intrinsic API has the goal to make all the V-ext instructions accessible from C/C++. The intrinsic names are as close as the assembly mnemonics. Besides the basic intrinsics corresponding to assembly mnemonics, there are intrinsics close to semantic naming.
 
-The intrinsic names will encode return type if it is appropriate. It is easier to know the output type of the intrinsics from the name. If there is no return value, the intrinsics will encode the input value types.
+The intrinsic names will encode return type if it is appropriate. It is easier to know the output type of the intrinsics from the name. In addition, if the intrinsic call is used as the operand. having the return type is more immediate. If there is no return value, the intrinsics will encode the input value types. If the return type is the same, use exceptional rules to differentiate them. See [Exceptions](#exceptions).
 
 In general, the naming rule of intrinsics is
 
