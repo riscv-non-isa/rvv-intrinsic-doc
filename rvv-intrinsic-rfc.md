@@ -21,6 +21,7 @@
   * [Splat](#splat)
 - [Utility Functions](#utility-functions)
   * [Bump pointers Through Opaque `vl`](#bump-pointers)
+  * [Vector Initialization](#vector-init)
 - [C11 Generic Interface](#c11-generic-interface)
 
 ## Introduction<a name="introduction"></a>
@@ -117,6 +118,18 @@ Example:
 
 vadd.vv vd, vs2, vs1, v0.t:
 vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vint8m1_t maskedoff, vint8m1_t vs2, vint8m1_t vs1)
+```
+
+There are two additional masking semantics: *zero in output* semantic and *don't care in output* semantic. Users could leverage *merge in output* intrinsics to simulate these two additional masking semantics.
+
+```
+Example:
+
+// Zero in output semantic
+vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vzero_i8m1(), vint8m1_t vs2, vint8m1_t vs1)
+
+// Don't care in output semantic
+vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vundefined_i8m1(), vint8m1_t vs2, vint8m1_t vs1)
 ```
 
 ## With or Without the VL Argument<a name="vl-argument"></a>
@@ -345,6 +358,19 @@ char *a;
 _VL_T vl = vsetvl_i8m1(avl);
 a += vl_extract(vl);
 ```
+
+### Vector Initialization<a name="vecotr-init"></a>
+
+These utility functions are used to initialize vector values. They could be used in masking intrinsics with *zero in output* and *don't care in output* semantics.
+
+```
+Example:
+
+vint8m1_t vzero_i8m1()
+vint8m1_t vundefined_i8m1()
+```
+
+[TODO] Reinterpret intrinsics.
 
 ## C11 Generic Interface<a name="c11-generic-interface"></a>
 
