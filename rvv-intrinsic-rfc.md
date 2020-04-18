@@ -332,7 +332,7 @@ It is an alias of the `vmv.v.v` instruction.
 
 ```
 vmv.v.v vd, vs1:
-vint8m1_t vcopy_i8m1(vint8m1_t vs1);
+vint8m1_t vcopy_v_i8m1(vint8m1_t vs1);
 ```
 
 ### Splat<a name="splat"></a>
@@ -341,8 +341,10 @@ It is an alias of the `vmv.v.x` instruction.
 
 ```
 vmv.v.x vd, rs1:
-vint8m1_t vsplat_i8m1(int8_t rs1);
+vint8m1_t vsplat_x_i8m1(int8_t rs1);
 ```
+
+[TODO] FMA
 
 ## Utility Functions<a name="utility-functions"></a>
 
@@ -376,13 +378,17 @@ vint8m1_t vundefined_i8m1()
 
 ### Reinterpret<a name="reinterpret"></a>
 
-These utility functions help users to convert types between floating point and integer types, between unsigned and signed types.
+These utility functions help users to convert types between floating point and integer types and between unsigned and signed types.
 
 ```
 Example:
 
-vuint8m1_t vreinterpret_u8m1(vint8m1_t src)
-vint64m1_t vreinterpret_f64m1(vfloat64m1_t src)
+// Convert signed to unsigned types.
+vuint8m1_t vreinterpret_v_i8m1_u8m1(vint8m1_t src)
+// Convert floating point to signed integer types.
+vint64m1_t vreinterpret_v_f64m1_i64m1(vfloat64m1_t src)
+// Convert floating point to unsigned integer types.
+vuint64m1_t vreinterpret_v_f64m1_u64m1(vfloat64m1_t src);
 ```
 
 ## C11 Generic Interface<a name="c11-generic-interface"></a>
