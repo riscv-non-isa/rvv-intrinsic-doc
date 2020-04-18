@@ -337,11 +337,13 @@ vint8m1_t vcopy_v_i8m1(vint8m1_t vs1);
 
 ### Splat<a name="splat"></a>
 
-It is an alias of the `vmv.v.x` instruction.
+It is an alias of the `vmv.v.x` or `vfmv.v.f` instruction. Use 's' to represent scalar argument, regardless integer or floating point types.
 
 ```
 vmv.v.x vd, rs1:
-vint8m1_t vsplat_x_i8m1(int8_t rs1);
+vint8m1_t vsplat_s_i8m1(int8_t rs1);
+vfmv.v.f vd, fs1:
+vfloat32m1_t vsplat_s_f32m1(float32_t fs1);
 ```
 
 [TODO] FMA
