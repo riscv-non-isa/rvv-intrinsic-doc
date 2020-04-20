@@ -60,24 +60,6 @@ Encode `MLEN` into the mask types. There are the following mask types for `SEW` 
 | ----- | -------- | -------- | -------- | -------- | --------- | --------- | ---------
 | bool  | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t
 
-## Configuration-Setting<a name="configuration-setting"></a>
-
-`SEW` and `LMUL` are a part of the naming. They are static information for the intrinsics.
-There are two variants of configuration setting intrinsics. `vsetvl` is used to set `vl` according to the given AVL. `vsetvlmax` is used to set `vl` to VLMAX.
-
-```
-Example:
-
-size_t vsetvl_i8m1 (size_t avl);
-size_t vsetvl_i8m2 (size_t avl);
-size_t vsetvl_i8m4 (size_t avl);
-size_t vsetvl_i8m8 (size_t avl);
-size_t vsetvlmax_i8m1 ();
-size_t vsetvlmax_i8m2 ();
-size_t vsetvlmax_i8m4 ();
-size_t vsetvlmax_i8m8 ();
-```
-
 ### Types for Segment Load/Store<a name="segment-load-store-types"></a>
 
 Under the constraint `LMUL` * `NR` &#8804; 8.
@@ -96,6 +78,24 @@ Example:
 
 vint32m1x4_t
 vfloat32m2x2_t
+```
+
+## Configuration-Setting<a name="configuration-setting"></a>
+
+`SEW` and `LMUL` are a part of the naming. They are static information for the intrinsics.
+There are two variants of configuration setting intrinsics. `vsetvl` is used to set `vl` according to the given AVL. `vsetvlmax` is used to set `vl` to VLMAX.
+
+```
+Example:
+
+size_t vsetvl_i8m1 (size_t avl);
+size_t vsetvl_i8m2 (size_t avl);
+size_t vsetvl_i8m4 (size_t avl);
+size_t vsetvl_i8m8 (size_t avl);
+size_t vsetvlmax_i8m1 ();
+size_t vsetvlmax_i8m2 ();
+size_t vsetvlmax_i8m4 ();
+size_t vsetvlmax_i8m8 ();
 ```
 
 ## Naming Rules<a name="naming-rules"></a>
