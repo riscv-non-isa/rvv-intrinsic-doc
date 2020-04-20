@@ -4,6 +4,7 @@
 - [Type System](#type-system)
   * [Data Types](#data-types)
   * [Mask Types](#mask-types)
+  * [Types for Segment Load/Store](#segment-load-store-types)
 - [Configuration-Setting](#configuration-setting)
 - [Naming Rules](#naming-rules)
 - [Mask in Intrinsics](#mask-in-intrinsics)
@@ -24,6 +25,7 @@
   * [Bump pointers Through Opaque `vl`](#bump-pointers)
   * [Vector Initialization](#vector-init)
   * [Reinterpret](#reinterpret)
+  * [Utility Functions for Segment Load/Store Types](#utils-segment-types)
 - [C11 Generic Interface](#c11-generic-interface)
 
 ## Introduction<a name="introduction"></a>
@@ -74,6 +76,26 @@ size_t vsetvlmax_i8m1 ();
 size_t vsetvlmax_i8m2 ();
 size_t vsetvlmax_i8m4 ();
 size_t vsetvlmax_i8m8 ();
+```
+
+### Types for Segment Load/Store<a name="segment-load-store-types"></a>
+
+Under the constraint `LMUL` * `NR` &#8804; 8.
+
+```
+SEGMENT_TYPE ::= 'v' TYPE LMUL 'x' NR '_t'
+TYPE ::= ( 'int8' | 'int16' | 'int32' | 'int64' |
+           'uint8' | 'uint16' | 'uint32' | 'uint64' |
+           'float16' | 'float32' | 'float64' )
+LMUL ::= ( m1 | m2 | m4 | m8 )
+NR ::= ( 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 )
+```
+
+```
+Example:
+
+vint32m1x4_t
+vfloat32m2x2_t
 ```
 
 ## Naming Rules<a name="naming-rules"></a>
@@ -399,6 +421,25 @@ vuint8m1_t vreinterpret_v_i8m1_u8m1(vint8m1_t src)
 vint64m1_t vreinterpret_v_f64m1_i64m1(vfloat64m1_t src)
 // Convert floating point to unsigned integer types.
 vuint64m1_t vreinterpret_v_f64m1_u64m1(vfloat64m1_t src);
+```
+
+### Utility Functions for Segment Load/Store Types<a name="utils-segment-types"></a>
+
+These utility functions help users to create segment load/store types and insert/extract elements to/from segment load/store types.
+
+```
+Example:
+
+// Create segment load/store types.
+vint32m2x2_t vcreate_i32m2x2(vint32m2_t val1, vint32m2_t val2)
+vint32m2x3_t vcreate_i32m2x3(vint32m2_t val1, vint32m2_t val2, vint32m2_t val3)
+
+// Insert an element to segment load/store types.
+vint32m2x2_t vset_i32m2x2(vint32m2x2_t tuple, size_t index, vint32m2_t value)
+
+// Extract an element from segment load/store types.
+vint32m2_t vget_i32m2x2_i32m2(vint32m2x2_t tuple, size_t index)
+vint32m2_t vget_i32m2x3_i32m2(vint32m2x3_t tuple, size_t index)
 ```
 
 ## C11 Generic Interface<a name="c11-generic-interface"></a>
