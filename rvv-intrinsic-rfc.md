@@ -19,6 +19,7 @@
 - [Semantic Intrinsics](#semantic-intrinsics)
   * [Vector Copy](#vector-copy)
   * [Splat](#splat)
+  * [Multiply-Add](#fma)
 - [Utility Functions](#utility-functions)
   * [Bump pointers Through Opaque `vl`](#bump-pointers)
   * [Vector Initialization](#vector-init)
@@ -346,7 +347,14 @@ vfmv.v.f vd, fs1:
 vfloat32m1_t vsplat_s_f32m1(float32_t fs1);
 ```
 
-[TODO] FMA
+### Multiply-Add<a name="fma"></a>
+
+`vmacc` and `vmadd` are semantically equivalent operations. Provide `vma` intrinsics so the compiler has freedom to choose the best instruction. Same as `vfmacc` and `vfmadd`.
+
+```
+vint32m1_t vma_vv_i32m1(vint32m1_t acc, vint32m1_t op1, vint32m1_t op2)
+vfloat32m1_t vfma_vv_f32m1(vfloat32m1_t acc, vfloat32m1_t op1, vfloat32m1_t op2)
+```
 
 ## Utility Functions<a name="utility-functions"></a>
 
