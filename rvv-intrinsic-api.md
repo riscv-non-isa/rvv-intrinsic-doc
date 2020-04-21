@@ -1,43 +1,12 @@
 # RISC-V Vector Extension Intrinsic API Reference Manual
 
 ## 1. Preface
-These builtins targets on rvv [0.8](https://raw.githubusercontent.com/riscv/riscv-v-spec/0.8/v-spec.adoc) and trying to document rvv_intrinsics programming model.
+These builtins targets on rvv [0.9-draft-20200221](https://github.com/riscv/riscv-v-spec/blob/03512578f62d5f3792a1cc194353db040e5a2b2f/v-spec.adoc) and trying to document rvv_intrinsics programming model.
 
 
-## 2. Design Decisions
-### 2.1 invisible `vl` (implicit VL parameter)
-Based on [this](https://github.com/riscv/riscv-v-spec/issues/264#issuecomment-515594056) discussion, spec 0.8 supports `setvl` with setting `rd=x0` and `rs1=x0` to switching SEW/LMUL with `vl` unchanged, so it is needless for user to pass `AVL` as another argument to the intrinsic.
+## 2. Design Decisions and philosophy
 
-### 2.2 Support scalable vector type C operator
-Operators operate on vl elements. It has the same meaning as intrinsics function interface. (implicit VL parameter)
-
-**Example:**
-``` C
-void vadd(size_t n, const float32_t* z, const float32_t *x, float32_t *y) {
-  size_t l;
-  vfloat32m8_t vx, vy, vz;
-
-  for (; (l = vsetvl_32m8(n)) > 0; n -= l) {
-    vx = *(vfloat32m8_t*)(x); // vx = vload_f32m8(x);
-    vy = *(vfloat32m8_t*)(y); // vu = vload_f32m8(x);
-    vz = vx + vy;             // vz = vadd_f32m8(vx,vy);
-    *(vfloat32m8_t*)z = vz;   // vstore_f32m8(z, vz);
-    x += l;
-    y += l;
-    z += l;
-  }
-}
-```
-
-### 2.3 Design philosophy
-In general, each vector instruction and assembly pseudo instruction has corresponding one intrinsic function. But in some cases, support additional interfaces for correctness or user friendly.
-
-
-### 2.4 Support polymorphic intrinsic functions
-In order to provide more clearly and friendly programming interface for explicit intrinsic function, we use C C11 `_Generic` expression to support polymorphic intrinsic functions
-
-[document](rvv_c11_intrinsic_funcs.md)
-
+Please see [rvv-intrinsic-rfc.md](rvv-intrinsic-rfc.md)
 
 ## 3. Known Issues
 #### 3.1 `ELEN` [should be known](https://github.com/riscv/riscv-v-spec/issues/302) in compiler time.
@@ -73,53 +42,16 @@ vint64m1_t vsplat_i64m1(unsigned long b); // It's illegal
 
 The main prolbem is rvv only provides the sign-extended for scalar, but if the input scalar is unsigned, we can not support it. (XLEN is 32, but SEW is 64 so 32-bit unsigned scalar need to sign-extended)
 
-#### 3.4. Support pseudo intrinsic functions for interface consistency is not well handled now
 
-- There is only `vwmaccus` does not support `vv` instruction of Widening Integer Multiply-Add Instructions category.
+TBD: [issue](https://github.com/sifive/rvv-intrinsic-doc/issues/9)
 
 
 ## 4. None
 Keep this chapter none to aligned to riscv-v-spec chapters
 
 ## 5. General Naming Rules
-### 5.1 Vector types
-- Syntax: `v{{TYPE}}{{SEW}}m{{LMUL}}_t`
-    - TYPE = ['int', 'uint', 'float']
-    - SEW = [8, 16, 32, 64]
-    - LMUL = [1, 2, 4, 8]
 
-- [List of all vector types](rvv_intrinsic_funcs.md#rvv-c-extension-types)
-
-
-### 5.2 Mask types
-- Syntax: `vbool{{MLEN}}_t`
-  - MLEN is `SEW/LUML`, it can be 1, 2, 4, 8, 16, 32, 64.
-    - `vbool1_t`
-    - `vbool2_t`
-    - `vbool4_t`
-    - `vbool8_t`
-    - `vbool16_t`
-    - `vbool32_t`
-    - `vbool64_t`
-  - Need 11 types if we support SEW = 1024
-    - Support `vbool<SEW>m<LMUL>_t` as alias types
-
-- [List of all vector mask types](rvv_intrinsic_funcs.md#rvv-c-extension-mask-types)
-
-### 5.3 Intrinsic functions
-- Syntax: `v{{TYPE}}{{SEW}}m{{LMUL}}_t v{{OP}}_{{SV}}_{{TYPE}}{{SEW}}m{{LMUL}}[_mask]`
-    - OP = ['add', 'sub', ...]
-    - SV = ['VS', 'VV', 'WV', 'WS']
-        - S for scalar
-        - V for vector
-        - W for 2*SEW
-    - TYPE = [u, i, f]
-    - SEW = [8, 16, 32, 64]
-    - LMUL = [1, 2, 4, 8]
-- Generally, the suffix `{{SEW}}m{{LMUL}}` of intrinsic fucntion is eqauil to first non-mask input operand's `{{SEW}}m{{LMUL}}`.
-- Widening and narrowing intrinsic functions are exceptions, the suffix decided by corresponding meaningful `{{SEW}}m{{LMUL}}`.
-    - widening: `vint16m2_t vwadd_wv_i8m1(...)` // i8m1 result is i16m2
-    - narrowing: `vuint8m1_t vnsrl_wv_u16m2(...)` // u16m2 result is uint8
+Please see [rvv-intrinsic-rfc.md](https://github.com/sifive/rvv-intrinsic-doc/blob/master/rvv-intrinsic-rfc.md#naming-rules)
 
 ## 6. Configuration-Setting and Utility Functions
 #### Instructions
@@ -140,6 +72,24 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 Reinterpret the contents of a data as a different type, without changing any bits and generating any RVV instructions.
 
 #### [Intrinsic functions list](rvv_intrinsic_funcs.md#reinterpret-cast-conversion-functions)
+
+### Vector Initialization Functions
+
+#### [Intrinsic functions list](rvv_intrinsic_funcs.md#vector-initialization-functions)
+
+### Read/Write URW vector CSRs
+
+```
+enum RVV_CSR {
+  RVV_VSTART = 0,
+  RVV_VXSAT,
+  RVV_VXRM,
+  RVV_VCSR,
+};
+
+unsigned long vread_csr(enum RVV_CSR csr);
+void vwrite_csr(enum RVV_CSR csr, unsigned long value);
+```
 
 ## 7. Vector Loads and Stores
 ### 7.4. Vector Unit-Stride Operations
@@ -235,9 +185,21 @@ TODO
 
 ## 8. Vector AMO Operations (Zvamo)
 - Vector AMOs
+- If `SEW` is greater than `XLEN`, an illegal instruction exception is raised.
 
-#### Intrinsic functions list
-TODO
+#### Instructions
+- vamoswap{w,e}.v
+- vamoadd{w,e}.v
+- vamoxor{w,e}.v
+- vamoand{w,e}.v
+- vamoor{w,e}.v
+- vamomin{w,e}.v
+- vamomax{w,e}.v
+- vamominu{w,e}.v
+- vamomaxu{w,e}.v
+- vamomaxu{w,e}.v
+
+#### [Intrinsic functions list](rvv_intrinsic_funcs.md#vector-amo-operations-functions)
 
 ## 9. None
 Keep this chapter none to aligned to riscv-v-spec chapters
@@ -391,14 +353,24 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 
 #### [Intrinsic functions list](rvv_intrinsic_funcs.md#vector-widening-integer-multiply-add-functions)
 
-### 12.14. Vector Integer Merge Operations
+### 12.14. Vector Quad-Widening Integer Multiply-Add Operations (Extension Zvqmac)
+#### Instuctions
+- vqmaccu.{vv,vx}
+- vqmacc.{vv,vx}
+- vqmaccsu.{vv,vx}
+- vqmaccus.vx
+
+#### [Intrinsic functions list](rvv_intrinsic_funcs.md#vector-quad-widening-integer-multiply-add-functions)
+
+
+### 12.15. Vector Integer Merge Operations
 #### Instructions
 - vmerge.{vvm,vxm,vim}
 
 
 #### [Intrinsic functions list](rvv_intrinsic_funcs.md#vector-integer-merge-functions)
 
-### 12.15. Vector Integer Move Operations
+### 12.16. Vector Integer Move Operations
 #### Instructions
 - vmv.v.v
 - vmv.v.x
@@ -481,7 +453,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 #### [Intrinsic functions list](rvv_intrinsic_funcs.md#vector-single-width-floating-point-multiplydivide-functions)
 
 
-### 14.5. Vector Widening Floating-Point Multiply
+### 14.5. Vector Widening Floating-Point Multiply Operations
 #### Instructions
 - vfwmul.{vv,vf}
 

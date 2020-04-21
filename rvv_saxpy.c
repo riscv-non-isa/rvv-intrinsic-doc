@@ -4,7 +4,6 @@
 #include <math.h>
 
 #define N 31
-__asm__(".global __stack_size\n.set __stack_size,0x4000");
 
 float input[N] = {-0.4325648115282207, -1.6655843782380970, 0.1253323064748307,
                   0.2876764203585489,  -1.1464713506814637, 1.1909154656429988,
@@ -55,13 +54,12 @@ void saxpy_vec(size_t n, const float a, const float *x, float *y) {
 
   vfloat32m8_t vx, vy;
 
-  for (; (l = vsetvl_32m8(n)) > 0; n -= l) {
-    vx = vload_f32m8(x);
+  for (; (l = vl_extract(vsetvl_e32m8(n))) > 0; n -= l) {
+    vx = vle_v_f32m8(x);
     x += l;
-    vy = vload_f32m8(y);
-    // vfmacc
-    vy = vmacc_sv_f32m8(vy, a, vx);
-    vstore_f32m8(y, vy);
+    vy = vle_v_f32m8(y);
+    vy = vfmacc_vf_f32m8(vy, a, vx);
+    vse_v_f32m8 (y, vy);
     y += l;
   }
 }

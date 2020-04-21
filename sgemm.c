@@ -5,7 +5,6 @@
 #include <math.h>
 
 #define N 32
-__asm__(".global __stack_size\n.set __stack_size,0x4000");
 
 #define MAX_BLOCKSIZE 32
 #define MLEN 4
@@ -71,12 +70,12 @@ void sgemm_vec(size_t size_m, size_t size_n, size_t size_k,
     j = size_n;
     const float *bnp = b;
     float *cnp = c;
-    for (; vl = vsetvl_32m1(j); j -= vl) {
+    for (; vl = vl_extract(vsetvl_e32m1(j)); j -= vl) {
       const float *akp = a;
       const float *bkp = bnp;
       vec_c = *(vfloat32m1_t *)cnp;
       for (k = 0; k < size_k; ++k) {
-        vec_c = vmacc_sv_f32m1(vec_c, *akp, *(vfloat32m1_t *)bkp);
+        vec_c = vfmacc_vf_f32m1(vec_c, *akp, *(vfloat32m1_t *)bkp);
         bkp += ldb;
         akp++;
       }
