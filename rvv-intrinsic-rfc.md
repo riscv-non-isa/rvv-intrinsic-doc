@@ -88,14 +88,14 @@ There are two variants of configuration setting intrinsics. `vsetvl` is used to 
 ```
 Example:
 
-size_t vsetvl_i8m1 (size_t avl);
-size_t vsetvl_i8m2 (size_t avl);
-size_t vsetvl_i8m4 (size_t avl);
-size_t vsetvl_i8m8 (size_t avl);
-size_t vsetvlmax_i8m1 ();
-size_t vsetvlmax_i8m2 ();
-size_t vsetvlmax_i8m4 ();
-size_t vsetvlmax_i8m8 ();
+size_t vsetvl_e8m1 (size_t avl);
+size_t vsetvl_e8m2 (size_t avl);
+size_t vsetvl_e8m4 (size_t avl);
+size_t vsetvl_e8m8 (size_t avl);
+size_t vsetvlmax_e8m1 ();
+size_t vsetvlmax_e8m2 ();
+size_t vsetvlmax_e8m4 ();
+size_t vsetvlmax_e8m8 ();
 ```
 
 ## Naming Rules<a name="naming-rules"></a>
