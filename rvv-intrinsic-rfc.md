@@ -342,7 +342,7 @@ Merge instructions have no `maskedoff` argument.
 Example:
 
 vmerge.vvm vd, vs2, vs1, v0:
-vint8m1_t vmerge_vvm_i8m1(vbool8_t mask, vint8m1_t vs2, vint8m1_t vs1);
+vint8m1_t vmerge_vvm_i8m1_m(vbool8_t mask, vint8m1_t vs2, vint8m1_t vs1);
 ```
 
 ### `vpopc.m` and `vfirst.m`<a name="vpopc-and-vfirst"></a>
