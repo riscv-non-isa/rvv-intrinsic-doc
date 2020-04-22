@@ -7,6 +7,7 @@
   * [Types for Segment Load/Store](#segment-load-store-types)
 - [Configuration-Setting](#configuration-setting)
 - [Naming Rules](#naming-rules)
+- [Scalar in Vector Operations](#scalar-in-vector-operations)
 - [Mask in Intrinsics](#mask-in-intrinsics)
 - [With or Without the VL Argument](#vl-argument)
 - [SEW and LMUL of Intrinsics](#sew-and-lmul-of-intrinsics)
@@ -122,6 +123,31 @@ vint8m1_t vadd_vv_i8m1(vint8m1_t vs2, vint8m1_t vs1)
 
 vwaddu.vv vd, vs2, vs1:
 vint16m2_t vwaddu_vv_i16m2(vint8m1_t vs2, vint8m1_t vs1)
+```
+
+## Scalar in Vector Arithmetic Intrinsics<a name="scalar-in-vector-operations"></a>
+
+In V specification, it defines operations between vector and scalar types. If `XLEN` > `SEW`, the least-significant SEW bits of the scalar register are used. If `XLEN` < `SEW`, the value from the scalar register is sign-extended to SEW bits.
+
+We define arithmetic intrinsics with scalar with SEW types.
+
+```
+Example:
+
+vuint8m1_t vadd_vx_u8m1(vuint8m1_t op1, uint8_t op2);
+vuint64m1_t vadd_vx_u64m1(vuint64m1_t op1, uint64_t op2);
+```
+
+The compiler may generate multiple instructions for the intrinsics. For example, it is a little complicated to support `uint64_t` operations under `XLEN` = 32.
+
+It breaks the one-to-one mapping between intrinsics and assembly mnemonics in some hardware configurations. However, it makes more sense for users to use the scalar types consistent with the vector types.
+
+There is the same issue for `vmv.x.s`, `vmv.s.x`, `vfmv.f.s`, `vfmv.s.f`, `vslide1up.vx`, `vfslide1up.vf`, `vslide1down.vx`, and `vfslide1down.vx`. We use `SEW` to encode the scalar type.
+
+```
+Example:
+
+vuint8m1_t vslide1up_vx_u8m1(vuint8m1_t op1, vuint8m1_t op2, uint8_1 scalar);
 ```
 
 ## Mask in Intrinsics<a name="mask-in-intrinsics"></a>
