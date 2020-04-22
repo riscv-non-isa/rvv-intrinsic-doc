@@ -129,12 +129,14 @@ vint16m2_t vwaddu_vv_i16m2(vint8m1_t vs2, vint8m1_t vs1)
 
 In V specification, it defines operations between vector and scalar types. If `XLEN` > `SEW`, the least-significant SEW bits of the scalar register are used. If `XLEN` < `SEW`, the value from the scalar register is sign-extended to SEW bits.
 
-We define arithmetic intrinsics with scalar with SEW types.
+We define arithmetic intrinsics with scalar using SEW types.
 
 ```
 Example:
 
+// Use uint8_t for op2.
 vuint8m1_t vadd_vx_u8m1(vuint8m1_t op1, uint8_t op2);
+// Use uint64_t for op2.
 vuint64m1_t vadd_vx_u64m1(vuint64m1_t op1, uint64_t op2);
 ```
 
@@ -142,12 +144,13 @@ The compiler may generate multiple instructions for the intrinsics. For example,
 
 It breaks the one-to-one mapping between intrinsics and assembly mnemonics in some hardware configurations. However, it makes more sense for users to use the scalar types consistent with the `SEW` of vector types.
 
-There is the same issue for `vmv.x.s`, `vmv.s.x`, `vfmv.f.s`, `vfmv.s.f`, `vslide1up.vx`, `vfslide1up.vf`, `vslide1down.vx`, and `vfslide1down.vx`. We use `SEW` to encode the scalar type.
+There is the same issue for `vmv.x.s`, `vmv.s.x`, `vfmv.f.s`, `vfmv.s.f`, `vslide1up.vx`, `vfslide1up.vf`, `vslide1down.vx`, and `vfslide1down.vx`. Use `SEW` to encode the scalar type.
 
 ```
 Example:
 
-vuint8m1_t vslide1up_vx_u8m1(vuint8m1_t op1, vuint8m1_t op2, uint8_1 scalar);
+// Use uint8_t for op2.
+vuint8m1_t vslide1up_vx_u8m1(vuint8m1_t op1, uint8_1 op2);
 ```
 
 ## Mask in Intrinsics<a name="mask-in-intrinsics"></a>
