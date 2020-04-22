@@ -125,7 +125,7 @@ vwaddu.vv vd, vs2, vs1:
 vint16m2_t vwaddu_vv_i16m2(vint8m1_t vs2, vint8m1_t vs1)
 ```
 
-## Scalar in Vector Arithmetic Intrinsics<a name="scalar-in-vector-operations"></a>
+## Scalar in Vector Operations<a name="scalar-in-vector-operations"></a>
 
 In V specification, it defines operations between vector and scalar types. If `XLEN` > `SEW`, the least-significant SEW bits of the scalar register are used. If `XLEN` < `SEW`, the value from the scalar register is sign-extended to SEW bits.
 
