@@ -138,9 +138,9 @@ vuint8m1_t vadd_vx_u8m1(vuint8m1_t op1, uint8_t op2);
 vuint64m1_t vadd_vx_u64m1(vuint64m1_t op1, uint64_t op2);
 ```
 
-The compiler may generate multiple instructions for the intrinsics. For example, it is a little complicated to support `uint64_t` operations under `XLEN` = 32.
+The compiler may generate multiple instructions for the intrinsics. For example, it is a little bit complicated to support `uint64_t` operations under `XLEN` = 32.
 
-It breaks the one-to-one mapping between intrinsics and assembly mnemonics in some hardware configurations. However, it makes more sense for users to use the scalar types consistent with the vector types.
+It breaks the one-to-one mapping between intrinsics and assembly mnemonics in some hardware configurations. However, it makes more sense for users to use the scalar types consistent with the `SEW` of vector types.
 
 There is the same issue for `vmv.x.s`, `vmv.s.x`, `vfmv.f.s`, `vfmv.s.f`, `vslide1up.vx`, `vfslide1up.vf`, `vslide1down.vx`, and `vfslide1down.vx`. We use `SEW` to encode the scalar type.
 
