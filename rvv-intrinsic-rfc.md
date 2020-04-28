@@ -31,7 +31,7 @@
 
 ## Introduction<a name="introduction"></a>
 
-[TODO]
+This document introduces the intrinsics for RISC-V vector programming, including the design decision we take, the type system, the general naming rules for intrinsics, and facilities for vector users. It does not list all available intrinsics for vector programming. The full set of intrinsics will be written in another document.
 
 ## Type System<a name="type-system"></a>
 
