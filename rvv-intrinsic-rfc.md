@@ -25,7 +25,9 @@
 - [Utility Functions](#utility-functions)
   * [Bump pointers Through Opaque `vl`](#bump-pointers)
   * [Vector Initialization](#vector-init)
-  * [Reinterpret](#reinterpret)
+  * [Reinterpret between floating point and integer types](#reinterpret-float)
+  * [Reinterpret between signed and unsigned types](#reinterpret-sign)
+  * [Reinterpret between different SEWs under the same LMUL](#reinterpret-sew)
   * [Utility Functions for Segment Load/Store Types](#utils-segment-types)
 - [C11 Generic Interface](#c11-generic-interface)
 
@@ -437,19 +439,51 @@ vint8m1_t vzero_i8m1()
 vint8m1_t vundefined_i8m1()
 ```
 
-### Reinterpret<a name="reinterpret"></a>
+### Reinterpret between floating point and integer types<a name="reinterpret-float"></a>
 
-These utility functions help users to convert types between floating point and integer types and between unsigned and signed types.
+These utility functions help users to convert types between floating point and integer types.
+
+```
+Example:
+
+// Convert floating point to signed integer types.
+vint64m1_t vreinterpret_v_f64m1_i64m1(vfloat64m1_t src)
+// Convert floating point to unsigned integer types.
+vuint64m1_t vreinterpret_v_f64m1_u64m1(vfloat64m1_t src);
+```
+
+### Reinterpret between signed and unsigned types<a name="reinterpret-sign"></a>
+
+These utility functions help users to convert types between signed and unsigned types.
 
 ```
 Example:
 
 // Convert signed to unsigned types.
 vuint8m1_t vreinterpret_v_i8m1_u8m1(vint8m1_t src)
-// Convert floating point to signed integer types.
-vint64m1_t vreinterpret_v_f64m1_i64m1(vfloat64m1_t src)
-// Convert floating point to unsigned integer types.
-vuint64m1_t vreinterpret_v_f64m1_u64m1(vfloat64m1_t src);
+```
+
+### Reinterpret between different SEW under the same LMUL<a name="reinterpret-sew"></a>
+
+These utility functions help users to convert types between `SEW`s under the same `LMUL`, e.g., convert vint32m1_t to vint64m1_t.
+
+Users need to be aware that these reinterpretation functions are not portable when `LMUL` > 1 and `SEW` > `SLEN`. For example, if users write data using SEW = 32-bits under the following hardware configurations, users will get the following order of data arrangement. If users convert the type to SEW = 64-bits to read out under the same LMUL, the data will be in different order. The data users get will be (4, 0), (5, 1), (6, 2), (7, 3), ..., (F, B) under SEW = 64-bits.
+
+```
+VLEN=128b, SLEN=32b, SEW=32b, LMUL=4
+
+Byte          F E D C B A 9 8 7 6 5 4 3 2 1 0
+v4*n                C       8       4       0   32b elements
+v4*n+1              D       9       5       1
+v4*n+2              E       A       6       2
+v4*n+3              F       B       7       3
+```
+
+```
+Example:
+
+// Convert SEW under the same LMUL.
+vint64m1_t vreinterpret_v_i32m1_i64m1(vint32m1_t src)
 ```
 
 ### Utility Functions for Segment Load/Store Types<a name="utils-segment-types"></a>
