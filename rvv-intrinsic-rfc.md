@@ -11,6 +11,7 @@
 - [Mask in Intrinsics](#mask-in-intrinsics)
 - [With or Without the VL Argument](#vl-argument)
 - [SEW and LMUL of Intrinsics](#sew-and-lmul-of-intrinsics)
+- [C Operators on RISC-V Vector Types](#c-operators)
 - [Exceptions in Naming](#exceptions)
   * [Vector Stores](#vector-stores)
   * [Comparison Instructions](#comparison-instructions)
@@ -283,6 +284,8 @@ vadd.vv c2, a2, b2
 ```
 
 Be aware that when the ratio of `LMUL/SEW` is changed, users need to ensure the `vl` is correct for the following operations if using *implicit vl intrinsics*.
+
+## C Operators on RISC-V Vector Types<a name="c-operators"></a>
 
 ## Exceptions in Naming<a name="exceptions"></a>
 
