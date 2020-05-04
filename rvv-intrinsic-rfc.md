@@ -7,18 +7,21 @@
   * [Types for Segment Load/Store](#segment-load-store-types)
 - [Configuration-Setting](#configuration-setting)
 - [Naming Rules](#naming-rules)
-- [Scalar in Vector Operations](#scalar-in-vector-operations)
-- [Mask in Intrinsics](#mask-in-intrinsics)
-- [With or Without the VL Argument](#vl-argument)
-- [SEW and LMUL of Intrinsics](#sew-and-lmul-of-intrinsics)
-- [C Operators on RISC-V Vector Types](#c-operators)
 - [Exceptions in Naming](#exceptions)
   * [Vector Stores](#vector-stores)
   * [Comparison Instructions](#comparison-instructions)
   * [Reduction Instructions](#reduction-instructions)
-  * [Merge Instructions](#merge-instructions)
   * [`vpopc.m` and `vfirst.m`](#vpopc-and-vfirst)
   * [Permutation Instructions](#permutation-instructions)
+- [Scalar in Vector Operations](#scalar-in-vector-operations)
+- [Mask in Intrinsics](#mask-in-intrinsics)
+- [Masked Intrinsics Without MaskedOff](#no-maskedoff)
+  * [Vector Stores](#no-maskedoff-stores)
+  * [Reduction Instructions](#no-maskedoff-reduction)
+  * [Merge Instructions](#no-maskedoff-merge)
+- [With or Without the VL Argument](#vl-argument)
+- [SEW and LMUL of Intrinsics](#sew-and-lmul-of-intrinsics)
+- [C Operators on RISC-V Vector Types](#c-operators)
 - [Semantic Intrinsics](#semantic-intrinsics)
   * [Vector Copy](#vector-copy)
   * [Splat](#splat)
@@ -130,6 +133,75 @@ vwaddu.vv vd, vs2, vs1:
 vint16m2_t vwaddu_vv_i16m2(vint8m1_t vs2, vint8m1_t vs1)
 ```
 
+## Exceptions in Naming<a name="exceptions"></a>
+
+If intrinsics have the same return type under different input types, we could not use general naming rules directly on these intrinsics. It will cause the same intrinsic names for different input types.
+
+This section lists all exceptional cases for intrinsic naming.
+
+### Vector Stores<a name="vector-stores"></a>
+
+It does not encode return type into vector store. There is no return data for store operations. Instead, use the type of store data to name the intrinsics.
+
+```
+Example:
+
+vsb.v vs3, (rs1):
+void vsb_v_i8m1(int8_t *rs1, vint8m1_t vs3);
+```
+
+### Comparison Instructions<a name="comparison-instructions"></a>
+
+The result of comparison instructions is mask types. Becuase we use `MLEN` to name the mask types and multiple (`SEW`, `LMUL`) pairs map to the same `MLEN`, in addition to use the return type to name the intrinsics, we also encode the input types to distinguish these intrinsics.
+
+```
+Example:
+
+vmseq.vv vd, vs2, vs1:
+vbool8_t vmseq_vv_i8m1_b8(vint8m1_t vs2, vint8m1_t vs1);
+vbool8_t vmseq_vv_i16m2_b8(vint16m2_t vs2, vint16m2_t vs1);
+```
+
+### Reduction Instructions<a name="reduction-instructions"></a>
+
+The scalar input and output operands are held in element 0 of a single vector register. Use LMUL = 1 in the return type. To distinguish different intrinsics with different input types, encode the input type and the result type in the name.
+
+```
+Example:
+
+vredsum.vs vd, vs2, vs1:
+vint8m1_t vredsum_vs_i8m1_i8m1(vint8m1_t vs2, vint8m1_t vs1)
+vint8m1_t vredsum_vs_i8m2_i8m1(vint8m2_t vs2, vint8m1_t vs1)
+vint8m1_t vredsum_vs_i8m4_i8m1(vint8m4_t vs2, vint8m1_t vs1)
+vint8m1_t vredsum_vs_i8m8_i8m1(vint8m8_t vs2, vint8m1_t vs1)
+```
+
+### `vpopc.m` and `vfirst.m`<a name="vpopc-and-vfirst"></a>
+
+The return type of `vpopc.m` and `vfirst.m` is apparently an integer. Do not encode the return type into it. Instead, encode the input type to it.
+
+```
+Example:
+
+vpopc.m rd, vs2:
+unsigned long vpopc_m_b1(vbool1_t vs2);
+unsigned long vpopc_m_b2(vbool2_t vs2);
+```
+
+### Permutation Instructions<a name="permutation-instructions"></a>
+
+To move the element 0 of a vector to a scalar, encode the input vector type and the output scalar type.
+
+```
+Example:
+
+vmv.x.s rd, vs2:
+int8_t vmv_x_s_i8m1_i8 (vint8m1_t vs2);
+int8_t vmv_x_s_i8m2_i8 (vint8m2_t vs2);
+int8_t vmv_x_s_i8m4_i8 (vint8m4_t vs2);
+int8_t vmv_x_s_i8m8_i8 (vint8m8_t vs2);
+```
+
 ## Scalar in Vector Operations<a name="scalar-in-vector-operations"></a>
 
 In V specification, it defines operations between vector and scalar types. If `XLEN` > `SEW`, the least-significant SEW bits of the scalar register are used. If `XLEN` < `SEW`, the value from the scalar register is sign-extended to SEW bits.
@@ -191,6 +263,41 @@ vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vzero_i8m1(), vint8m1_t vs2, vint8m1_t v
 
 // Don't care in output semantic
 vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vundefined_i8m1(), vint8m1_t vs2, vint8m1_t vs1)
+```
+
+## Masked Intrinsics Without MaskedOff<a name="no-maskedoff"></a>
+
+### Vector Stores<a name="no-maskedoff-stores"></a>
+
+There is no `maskedoff` argument for store operations. The value of `maskedoff` already exists in memory.
+
+```
+Example:
+
+vsb.v vs3, (rs1), v0.t:
+void vsb_v_i8m1_m(vbool8_t mask, int8_t *rs1, vint8m1_t vs3);
+```
+
+### Reduction Instructions<a name="no-maskedoff-reduction"></a>
+
+The result of reductions is put in element 0 of the output vector. There is no `maskedoff` argument for reduction operations.
+
+```
+Example:
+
+vredsum.vs vd, vs2, vs1, v0.t:
+vint8m1_t vredsum_vs_i8m2_i8m1_m(vbool4_t mask, vint8m2_t vs2, vint8m1_t vs1)
+```
+
+### Merge Instructions<a name="no-maskedoff-merge"></a>
+
+The result of merge operations comes from their two source operands. Merge intrinsics have no `maskedoff` argument.
+
+```
+Example:
+
+vmerge.vvm vd, vs2, vs1, v0:
+vint8m1_t vmerge_vvm_i8m1_m(vbool8_t mask, vint8m1_t vs2, vint8m1_t vs1);
 ```
 
 ## With or Without the VL Argument<a name="vl-argument"></a>
@@ -286,104 +393,6 @@ vadd.vv c2, a2, b2
 Be aware that when the ratio of `LMUL/SEW` is changed, users need to ensure the `vl` is correct for the following operations if using *implicit vl intrinsics*.
 
 ## C Operators on RISC-V Vector Types<a name="c-operators"></a>
-
-## Exceptions in Naming<a name="exceptions"></a>
-
-If intrinsics have the same return type under different input types, we could not use general naming rules directly on these intrinsics. It will cause the same intrinsic names for different input types.
-
-This section lists all exceptional cases for intrinsic naming.
-
-### Vector Stores<a name="vector-stores"></a>
-
-It does not encode return type into vector store. There is no return data for store operations. Instead, use the type of store data to name the intrinsics.
-
-```
-Example:
-
-vsb.v vs3, (rs1):
-void vsb_v_i8m1(int8_t *rs1, vint8m1_t vs3);
-```
-
-There is no `maskedoff` argument for store operations. The value of `maskedoff` already exists in memory.
-
-```
-Example:
-
-vsb.v vs3, (rs1), v0.t:
-void vsb_v_i8m1_m(vbool8_t mask, int8_t *rs1, vint8m1_t vs3);
-```
-
-### Comparison Instructions<a name="comparison-instructions"></a>
-
-The result of comparison instructions is mask types. Becuase we use `MLEN` to name the mask types and multiple (`SEW`, `LMUL`) pairs map to the same `MLEN`, in addition to use the return type to name the intrinsics, we also encode the input types to distinguish these intrinsics.
-
-```
-Example:
-
-vmseq.vv vd, vs2, vs1:
-vbool8_t vmseq_vv_i8m1_b8(vint8m1_t vs2, vint8m1_t vs1);
-vbool8_t vmseq_vv_i16m2_b8(vint16m2_t vs2, vint16m2_t vs1);
-```
-
-### Reduction Instructions<a name="reduction-instructions"></a>
-
-The scalar input and output operands are held in element 0 of a single vector register. Use LMUL = 1 in the return type. To distinguish different intrinsics with different input types, encode the input type and the result type in the name.
-
-```
-Example:
-
-vredsum.vs vd, vs2, vs1:
-vint8m1_t vredsum_vs_i8m1_i8m1(vint8m1_t vs2, vint8m1_t vs1)
-vint8m1_t vredsum_vs_i8m2_i8m1(vint8m2_t vs2, vint8m1_t vs1)
-vint8m1_t vredsum_vs_i8m4_i8m1(vint8m4_t vs2, vint8m1_t vs1)
-vint8m1_t vredsum_vs_i8m8_i8m1(vint8m8_t vs2, vint8m1_t vs1)
-```
-
-There is no `maskedoff` argument for reduction operations.
-
-```
-Example:
-
-vredsum.vs vd, vs2, vs1, v0.t:
-vint8m1_t vredsum_vs_i8m2_i8m1_m(vbool4_t mask, vint8m2_t vs2, vint8m1_t vs1)
-```
-
-### Merge Instructions<a name="merge-instructions"></a>
-
-Merge instructions have no `maskedoff` argument.
-
-```
-Example:
-
-vmerge.vvm vd, vs2, vs1, v0:
-vint8m1_t vmerge_vvm_i8m1_m(vbool8_t mask, vint8m1_t vs2, vint8m1_t vs1);
-```
-
-### `vpopc.m` and `vfirst.m`<a name="vpopc-and-vfirst"></a>
-
-The return type of `vpopc.m` and `vfirst.m` is apparently an integer. Do not encode the return type into it. Instead, encode the input type to it.
-
-```
-Example:
-
-vpopc.m rd, vs2:
-unsigned long vpopc_m_b1(vbool1_t vs2);
-unsigned long vpopc_m_b2(vbool2_t vs2);
-```
-
-### Permutation Instructions<a name="permutation-instructions"></a>
-
-To move the element 0 of a vector to a scalar, encode the input vector type and the output scalar type.
-
-```
-Example:
-
-vmv.x.s rd, vs2:
-int8_t vmv_x_s_i8m1_i8 (vint8m1_t vs2);
-int8_t vmv_x_s_i8m2_i8 (vint8m2_t vs2);
-int8_t vmv_x_s_i8m4_i8 (vint8m4_t vs2);
-int8_t vmv_x_s_i8m8_i8 (vint8m8_t vs2);
-```
 
 ## Semantic Intrinsics<a name="semantic-intrinsics"></a>
 
