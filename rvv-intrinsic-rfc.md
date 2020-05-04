@@ -11,7 +11,7 @@
 - [Mask in Intrinsics](#mask-in-intrinsics)
 - [With or Without the VL Argument](#vl-argument)
 - [SEW and LMUL of Intrinsics](#sew-and-lmul-of-intrinsics)
-- [Exceptions](#exceptions)
+- [Exceptions in Naming](#exceptions)
   * [Vector Stores](#vector-stores)
   * [Comparison Instructions](#comparison-instructions)
   * [Reduction Instructions](#reduction-instructions)
@@ -284,7 +284,11 @@ vadd.vv c2, a2, b2
 
 Be aware that when the ratio of `LMUL/SEW` is changed, users need to ensure the `vl` is correct for the following operations if using *implicit vl intrinsics*.
 
-## Exceptions<a name="exceptions"></a>
+## Exceptions in Naming<a name="exceptions"></a>
+
+If intrinsics have the same return type under different input types, we could not use general naming rules directly on these intrinsics. It will cause the same intrinsic names for different input types.
+
+This section lists all exceptional cases for intrinsic naming.
 
 ### Vector Stores<a name="vector-stores"></a>
 
