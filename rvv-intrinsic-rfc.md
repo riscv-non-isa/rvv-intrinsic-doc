@@ -394,6 +394,8 @@ Be aware that when the ratio of `LMUL/SEW` is changed, users need to ensure the 
 
 ## C Operators on RISC-V Vector Types<a name="c-operators"></a>
 
+[TBD]
+
 ## Semantic Intrinsics<a name="semantic-intrinsics"></a>
 
 This section lists all intrinsics with higher semantic naming. It is usually an alias of a vector instruction or a combination of vector instructions.
