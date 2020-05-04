@@ -119,7 +119,7 @@ In general, the naming rule of intrinsics is
 INTRINSIC ::= MNEMONIC '_' RET_TYPE
 MNEMONIC ::= Instruction name in v-ext specification. Replace '.' with '_'.
 RET_TYPE ::= SEW LMUL
-SEW ::= ( i8 | i16 | i32 | i64 | u8 | u16 | u32 | u64 )
+SEW ::= ( i8 | i16 | i32 | i64 | u8 | u16 | u32 | u64 | f16 | f32 | f64 )
 LMUL ::= ( m1 | m2 | m4 | m8 )
 ```
 
