@@ -467,7 +467,7 @@ vuint8m1_t vreinterpret_v_i8m1_u8m1(vint8m1_t src)
 
 These utility functions help users to convert types between `SEW`s under the same `LMUL`, e.g., convert vint32m1_t to vint64m1_t.
 
-Users need to be aware that these reinterpretation functions are not portable when `LMUL` > 1 and `SEW` > `SLEN`. The compiler should show a warning message for users. For example, if users write data using SEW = 32-bits under the following hardware configurations, users will get the following order of data arrangement. If users convert the type to SEW = 64-bits to read out under the same LMUL, the data will be in different order. The data users get will be (4, 0), (5, 1), (6, 2), (7, 3), ..., (F, B) under SEW = 64-bits.
+Users need to be aware that these reinterpretation functions are not portable when `LMUL` > 1 and `SEW` > `SLEN`, where `SEW` denotes the larger of the two `SEW`s in the conversion. The compiler should show a warning message for users. For example, if users write data using SEW = 32-bits under the following hardware configurations, users will get the following order of data arrangement. If users convert the type to SEW = 64-bits to read out under the same LMUL, the data will be in different order. The data users get will be (4, 0), (5, 1), (6, 2), (7, 3), ..., (F, B) under SEW = 64-bits.
 
 ```
 VLEN=128b, SLEN=32b, SEW=32b, LMUL=4
