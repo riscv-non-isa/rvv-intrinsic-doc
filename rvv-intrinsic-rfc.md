@@ -394,7 +394,7 @@ Be aware that when the ratio of `LMUL/SEW` is changed, users need to ensure the 
 
 ## C Operators on RISC-V Vector Types<a name="c-operators"></a>
 
-Assignment on scalable vector data in C will operate on `VLMAX` elements. Other C builtin operators on scalable vector data are undefined.
+The semantic of C builtin operators, other than simple assignment, hasn't been decided yet. Simple assignment keeps the usual C semantics of storing the value on the right operand into the variable of the left operand.
 
 ## Semantic Intrinsics<a name="semantic-intrinsics"></a>
 
