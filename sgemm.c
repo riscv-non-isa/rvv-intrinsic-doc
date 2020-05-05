@@ -98,7 +98,7 @@ int fp_eq(float reference, float actual, float relErr)
 int main() {
   // golden
   memcpy(golden_array, b_array, OUTPUT_LEN * sizeof(float));
-  sgemm_vec(MLEN, NLEN, KLEN, a_array, KLEN, b_array, NLEN, golden_array, NLEN);
+  sgemm_golden(MLEN, NLEN, KLEN, a_array, KLEN, b_array, NLEN, golden_array, NLEN);
   // vector
   memcpy(c_array, b_array, OUTPUT_LEN * sizeof(float));
   sgemm_vec(MLEN, NLEN, KLEN, a_array, KLEN, b_array, NLEN, c_array, NLEN);
