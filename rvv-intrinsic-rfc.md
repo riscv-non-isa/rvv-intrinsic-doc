@@ -394,7 +394,7 @@ Be aware that when the ratio of `LMUL/SEW` is changed, users need to ensure the 
 
 ## C Operators on RISC-V Vector Types<a name="c-operators"></a>
 
-[TBD]
+Assignment on scalable vector data in C will operate on `VLMAX` elements. Other C builtin operators on scalable vector data are undefined.
 
 ## Semantic Intrinsics<a name="semantic-intrinsics"></a>
 
