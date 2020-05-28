@@ -9,6 +9,7 @@
 - [Naming Rules](#naming-rules)
 - [Exceptions in Naming](#exceptions)
   * [Vector Stores](#vector-stores)
+  * [Vector Integer Add-with-Carry / Subtract-with-Borrow Instructions](#add-with-carry)
   * [Comparison Instructions](#comparison-instructions)
   * [Reduction Instructions](#reduction-instructions)
   * [`vpopc.m` and `vfirst.m`](#vpopc-and-vfirst)
@@ -148,6 +149,17 @@ Example:
 
 vsb.v vs3, (rs1):
 void vsb_v_i8m1(int8_t *rs1, vint8m1_t vs3);
+```
+
+### Vector Integer Add-with-Carry / Subtract-with-Borrow Instructions<a name="add-with-carry"></a>
+
+The result of `vmadc` and `vmsbc` is mask types. Becuase we use `MLEN` to name the mask types and multiple (`SEW`, `LMUL`) pairs map to the same `MLEN`, in addition to use the return type to name the intrinsics, we also encode the input types to distinguish these intrinsics.
+
+```
+Example:
+
+vmseq.vv vd, vs2, vs1:
+vbool8_t vmadc_vv_i8m1_b8(vint8m1_t vs2, vint8m1_t vs1);
 ```
 
 ### Comparison Instructions<a name="comparison-instructions"></a>
