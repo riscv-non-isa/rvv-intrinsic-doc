@@ -40,27 +40,25 @@
 
 This document introduces the intrinsics for RISC-V vector programming, including the design decision we take, the type system, the general naming rules for intrinsics, and facilities for vector users. It does not list all available intrinsics for vector programming. The full set of intrinsics will be written in another document.
 
-This RFC is based on RISC-V "V" Vector Extension specification version 0.8.
-
 ## Type System<a name="type-system"></a>
 
 ### Data Types<a name="data-types"></a>
 
 Encode `SEW` and `LMUL` into data types. There are the following data types for `SEW` &#8804; 64. 
 
-| Types        | LMUL = 1     | LMUL = 2     | LMUL = 4     | LMUL = 8
-| ------------ | ------------ | ------------ | ------------ | -----------
-| **int64_t**  | vint64m1_t   | vint64m2_t   | vint64m4_t   | vint64m8_t
-| **uint64_t** | vuint64m1_t  | vuint64m2_t  | vuint64m4_t  | vuint64m8_t
-| **int32_t**  | vint32m1_t   | vint32m2_t   | vint32m4_t   | vint32m8_t
-| **uint32_t** | vuint32m1_t  | vuint32m2_t  | vuint32m4_t  | vuint32m8_t
-| **int16_t**  | vint16m1_t   | vint16m2_t   | vint16m4_t   | vint16m8_t
-| **uint16_t** | vuint16m1_t  | vuint16m2_t  | vuint16m4_t  | vuint16m8_t
-| **int8_t**   | vint8m1_t    | vint8m2_t    | vint8m4_t    | vint8m8_t
-| **uint8_t**  | vuint8m1_t   | vuint8m2_t   | vuint8m4_t   | vuint8m8_t
-| **vfloat64** | vfloat64m1_t | vfloat64m2_t | vfloat64m4_t | vfloat64m8_t
-| **vfloat32** | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t
-| **vfloat16** | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t
+| Types        | LMUL = 1     | LMUL = 2     | LMUL = 4     | LMUL = 8     | LMUL = 1/2    | LMUL = 1/4    | LMUL = 1/8
+| ------------ | ------------ | ------------ | ------------ | -----------  | ------------- | ------------- | --------------
+| **int64_t**  | vint64m1_t   | vint64m2_t   | vint64m4_t   | vint64m8_t   | vint64mf2_t   | vint64mf4_t   | vint64mf8_t
+| **uint64_t** | vuint64m1_t  | vuint64m2_t  | vuint64m4_t  | vuint64m8_t  | vuint64mf2_t  | vuint64mf4_t  | vuint64mf8_t
+| **int32_t**  | vint32m1_t   | vint32m2_t   | vint32m4_t   | vint32m8_t   | vint32mf2_t   | vint32mf4_t   | vint32mf8_t
+| **uint32_t** | vuint32m1_t  | vuint32m2_t  | vuint32m4_t  | vuint32m8_t  | vuint32mf2_t  | vuint32mf4_t  | vuint32mf8_t
+| **int16_t**  | vint16m1_t   | vint16m2_t   | vint16m4_t   | vint16m8_t   | vint16mf2_t   | vint16mf4_t   | vint16mf8_t
+| **uint16_t** | vuint16m1_t  | vuint16m2_t  | vuint16m4_t  | vuint16m8_t  | vuint16mf2_t  | vuint16mf4_t  | vuint16mf8_t
+| **int8_t**   | vint8m1_t    | vint8m2_t    | vint8m4_t    | vint8m8_t    | vint8mf2_t    | vint8mf4_t    | vint8mf8_t
+| **uint8_t**  | vuint8m1_t   | vuint8m2_t   | vuint8m4_t   | vuint8m8_t   | vuint8mf2_t   | vuint8mf4_t   | vuint8mf8_t
+| **vfloat64** | vfloat64m1_t | vfloat64m2_t | vfloat64m4_t | vfloat64m8_t | vfloat64mf2_t | vfloat64mf4_t | vfloat64mf8_t
+| **vfloat32** | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t | vfloat32mf2_t | vfloat32mf4_t | vfloat32mf8_t
+| **vfloat16** | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t | vfloat16mf2_t | vfloat16mf4_t | vfloat16mf8_t
 
 ### Mask Types<a name="mask-types"></a>
 
@@ -79,7 +77,7 @@ SEGMENT_TYPE ::= 'v' TYPE LMUL 'x' NR '_t'
 TYPE ::= ( 'int8' | 'int16' | 'int32' | 'int64' |
            'uint8' | 'uint16' | 'uint32' | 'uint64' |
            'float16' | 'float32' | 'float64' )
-LMUL ::= ( m1 | m2 | m4 | m8 )
+LMUL ::= ( m1 | m2 | m4 | m8 | mf2 | mf4 | mf8 )
 NR ::= ( 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 )
 ```
 
@@ -121,7 +119,7 @@ INTRINSIC ::= MNEMONIC '_' RET_TYPE
 MNEMONIC ::= Instruction name in v-ext specification. Replace '.' with '_'.
 RET_TYPE ::= SEW LMUL
 SEW ::= ( i8 | i16 | i32 | i64 | u8 | u16 | u32 | u64 | f16 | f32 | f64 )
-LMUL ::= ( m1 | m2 | m4 | m8 )
+LMUL ::= ( m1 | m2 | m4 | m8 | mf2 | mf4 | mf8 )
 ```
 
 ```
