@@ -550,3 +550,4 @@ vint8m2_t vadd(vint8m2_t op1, vint8m2_t op2);
 // The compiler will choose the following intrinsic
 vint8m2_t vadd_vv_i8m2(vint8m2_t op1, vint8m2_t op2);
 ```
+
