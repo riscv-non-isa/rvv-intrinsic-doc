@@ -28,7 +28,6 @@
   * [Splat](#splat)
   * [Multiply-Add](#fma)
 - [Utility Functions](#utility-functions)
-  * [Bump pointers Through Opaque `vl`](#bump-pointers)
   * [Vector Initialization](#vector-init)
   * [Reinterpret between floating point and integer types](#reinterpret-float)
   * [Reinterpret between signed and unsigned types](#reinterpret-sign)
@@ -345,36 +344,16 @@ INTRINSIC_WITH_VL ::= INTRINSIC '_vl'
 INTRINSIC_WITH_MASK_AND_VL ::= INTRINSIC_WITH_MASK '_vl'
 ```
 
-To avoid users to manipulate `vl` argument in explicit vl intrinsic, there is an opaque type for `vl`.
-
-```
-// A possible implementation but it is implementation-defined and opaque to the user.
-typedef struct {
-  size_t _vl;
-} _VL_T;
-```
-
 ```
 Example:
 
 vadd.vv vd, vs2, vs1:
 vint8m1_t vadd_vv_i8m1(vint8m1_t vs2, vint8m1_t vs1)
-vint8m1_t vadd_vv_i8m1_vl(vint8m1_t vs2, vint8m1_t vs1, _VL_T vl)
+vint8m1_t vadd_vv_i8m1_vl(vint8m1_t vs2, vint8m1_t vs1, size_t vl)
 
 vadd.vv vd, vs2, vs1, v0.t:
 vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vint8m1_t maskedoff, vint8m1_t vs2, vint8m1_t vs1)
-vint8m1_t vadd_vv_i8m1_m_vl(vbool8_t mask, vint8m1_t maskedoff, vint8m1_t vs2, vint8m1_t vs1, _VL_T vl)
-```
-
-In the implementation point of view, we could treat explicit vl intrinsics as wrappers of implicit vl intrinsics.
-
-```
-Example:
-
-vint8m1_t vadd_vv_i8m1_vl(vint8m1_t vs2, vint8m1_t vs1, _VL_T vl) {
-  vsetvl_i8m1(vl_extract(vl));
-  return vadd_vv_i8m1(vs2, vs1);
-}
+vint8m1_t vadd_vv_i8m1_m_vl(vbool8_t mask, vint8m1_t maskedoff, vint8m1_t vs2, vint8m1_t vs1, size_t vl)
 ```
 
 ## SEW and LMUL of Intrinsics<a name="sew-and-lmul-of-intrinsics"></a>
@@ -444,21 +423,6 @@ vfloat32m1_t vfma_vv_f32m1(vfloat32m1_t acc, vfloat32m1_t op1, vfloat32m1_t op2)
 ## Utility Functions<a name="utility-functions"></a>
 
 This section lists all utility functions to help users program in V intrinsics easier.
-
-### Bump pointers Through Opaque `vl`<a name="bump-pointers"></a>
-
-In order to bump pointers from the opaque `vl` value, we define an utility function to extract the value of `vl` from the opaque type.
-
-```
-size_t vl_extract(_VL_T vl);
-
-Example:
-
-char *a;
-
-_VL_T vl = vsetvl_i8m1(avl);
-a += vl_extract(vl);
-```
 
 ### Vector Initialization<a name="vector-init"></a>
 
