@@ -63,9 +63,9 @@ Encode `SEW` and `LMUL` into data types. There are the following data types for 
 
 Encode `MLEN` into the mask types. There are the following mask types for `SEW` &#8804; 64.
 
-| Types | MLEN = 1 | MLEN = 2 | MLEN = 4 | MLEN = 8 | MLEN = 16 | MLEN = 32 | MLEN = 64
-| ----- | -------- | -------- | -------- | -------- | --------- | --------- | ---------
-| bool  | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t
+| Types | MLEN = 1 | MLEN = 2 | MLEN = 4 | MLEN = 8 | MLEN = 16 | MLEN = 32 | MLEN = 64 | MLEN = 128 | MLEN = 256 | MLEN = 512
+| ----- | -------- | -------- | -------- | -------- | --------- | --------- | --------- | ---------- | ---------- | ----------
+| bool  | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t | vbool128_t | vbool256_t | vbool512_t
 
 ### Types for Segment Load/Store<a name="segment-load-store-types"></a>
 
