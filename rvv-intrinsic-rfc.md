@@ -503,10 +503,11 @@ vint32m2_t vget_i32m2x3_i32m2(vint32m2x3_t tuple, size_t index)
 
 ## C11 Generic Interface<a name="c11-generic-interface"></a>
 
-Use C11 `_Generic` keyword to choose one of these intrinsics at compile time, based on the types of input arguments.
+Use C11 `_Generic` keyword to choose one of these intrinsics at compile time, based on the types of input arguments. In general, if we could choose the intrinsic according to the types of arguments, we define C11 generic interface for it.
 
 ```
 Example:
+vadd.vv, vadd.vx, vadd.vi will have an unified interface vadd() for them.
 
 vint8m1_t vadd(vint8m1_t op1, vint8m1_t op2);
 // The compiler will choose the following intrinsic
@@ -515,4 +516,50 @@ vint8m1_t vadd_vv_i8m1(vint8m1_t op1, vint8m1_t op2);
 vint8m2_t vadd(vint8m2_t op1, vint8m2_t op2);
 // The compiler will choose the following intrinsic
 vint8m2_t vadd_vv_i8m2(vint8m2_t op1, vint8m2_t op2);
+
+vint8m1_t vadd(vint8m1_t op1, int8_t op2);
+// The compiler will choose the following intrinsic
+vint8m1_t vadd_vx_i8m1(vint8m1_t op1, int8_t op2);
+```
+
+There are some special cases in C11 generic interface. Describe them in the following subsections.
+
+### Vector Load/Store
+
+We could not use C11 generic for vector unit-stride load. We do not provide the unified interface for vector load/store for consistency.
+
+### `vmadc` and `vmsbc`
+
+They have different number of arguments but the same kind of types in the first two arguments. We keep the appendix of these instructions, i.e., `vvm`, `vxm`, `vv` and `vx`.
+
+```
+vbool8_t vmadc_vvm(vint8m1_t op1, vint8m1_t op2, vbool8_t carryin);
+vbool8_t vmadc_vxm(vint8m1_t op1, int8_t op2, vbool8_t carryin);
+vbool8_t vmadc_vv(vint8m1_t op1, vint8m1_t op2);
+vbool8_t vmadc_vx(vint8m1_t op1, int8_t op2);
+```
+
+### `vmv.v.v`, `vmv.x.s`, `vmv.s.x`, `vfmv.f.s` and `vfmv.s.f`
+
+With C11 generic interface. Use the full mnemonic names for the function names, e.g., `vmv.v.v` uses vmv_v_v() as the function name.
+
+### `vmv.v.x`, `vfmv.v.f`, and `viota.m`
+
+The same input may produce different types of output value. No C11 generic interface.
+
+### `vmclr.m`, `vmset.m`, `vid.v`, `vundefined`, and `vzero`
+
+There is no input argument. No C11 generic interface.
+
+### Reinterpret and Convert
+
+Keep the output type in the function names.
+
+```
+Example:
+
+// u8 for uint8
+vuint8m1_t vreinterpret_u8 (vint8m1_t src);
+// x for scalar, xu for unsigned scalar, and f for float.
+vint16m1_t vfcvt_x (vfloat16m1_t src);
 ```
