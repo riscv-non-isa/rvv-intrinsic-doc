@@ -54,7 +54,7 @@ void saxpy_vec(size_t n, const float a, const float *x, float *y) {
 
   vfloat32m8_t vx, vy;
 
-  for (; (l = vl_extract(vsetvl_e32m8(n))) > 0; n -= l) {
+  for (; (l = vsetvl_e32m8(n)) > 0; n -= l) {
     vx = vle_v_f32m8(x);
     x += l;
     vy = vle_v_f32m8(y);

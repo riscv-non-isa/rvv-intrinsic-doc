@@ -70,7 +70,7 @@ void sgemm_vec(size_t size_m, size_t size_n, size_t size_k,
     j = size_n;
     const float *bnp = b;
     float *cnp = c;
-    for (; vl = vl_extract(vsetvl_e32m1(j)); j -= vl) {
+    for (; vl = vsetvl_e32m1(j); j -= vl) {
       const float *akp = a;
       const float *bkp = bnp;
       vec_c = *(vfloat32m1_t *)cnp;
