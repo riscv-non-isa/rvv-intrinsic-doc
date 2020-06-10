@@ -105,6 +105,8 @@ size_t vsetvlmax_e8m4 ();
 size_t vsetvlmax_e8m8 ();
 ```
 
+There is no need to specify the behavior of tail and masked-off elements being undisturbed or agnostic. The default setting is tail agnostic and masked-off undisturbed. If users do not want to keep the values in masked-off elements, they could pass vundefined() as the `maskedoff` value.
+
 ## Naming Rules<a name="naming-rules"></a>
 
 Intrinsics is the interface to the low level assembly in high level programming language. The intrinsic API has the goal to make all the V-ext instructions accessible from C/C++. The intrinsic names are as close as the assembly mnemonics. Besides the basic intrinsics corresponding to assembly mnemonics, there are intrinsics close to semantic naming.
