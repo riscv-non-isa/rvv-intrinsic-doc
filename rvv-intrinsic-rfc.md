@@ -61,9 +61,11 @@ Encode `SEW` and `LMUL` into data types. There are the following data types for 
 
 ### Mask Types<a name="mask-types"></a>
 
-Encode `MLEN` into the mask types. There are the following mask types for `SEW` &#8804; 64.
+Encode the ratio of `SEW`/`LMUL` into the mask types. There are the following mask types.
 
-| Types | MLEN = 1 | MLEN = 2 | MLEN = 4 | MLEN = 8 | MLEN = 16 | MLEN = 32 | MLEN = 64 | MLEN = 128 | MLEN = 256 | MLEN = 512
+<n> = `SEW`/`LMUL`
+
+| Types | <n> = 1  | <n> = 2  | <n> = 4  | <n> = 8  | <n> = 16  | <n> = 32  | <n> = 64  | <n> = 128  | <n> = 256  | <n> = 512
 | ----- | -------- | -------- | -------- | -------- | --------- | --------- | --------- | ---------- | ---------- | ----------
 | bool  | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t | vbool128_t | vbool256_t | vbool512_t
 
@@ -152,7 +154,7 @@ void vsb_v_i8m1(int8_t *rs1, vint8m1_t vs3);
 
 ### Vector Integer Add-with-Carry / Subtract-with-Borrow Instructions<a name="add-with-carry"></a>
 
-The result of `vmadc` and `vmsbc` is mask types. Becuase we use `MLEN` to name the mask types and multiple (`SEW`, `LMUL`) pairs map to the same `MLEN`, in addition to use the return type to name the intrinsics, we also encode the input types to distinguish these intrinsics.
+The result of `vmadc` and `vmsbc` is mask types. Becuase we use the ratio `SEW`/`LMUL` to name the mask types and multiple (`SEW`, `LMUL`) pairs map to the same ratio, in addition to use the return type to name the intrinsics, we also encode the input types to distinguish these intrinsics.
 
 ```
 Example:
@@ -163,7 +165,7 @@ vbool8_t vmadc_vv_i8m1_b8(vint8m1_t vs2, vint8m1_t vs1);
 
 ### Comparison Instructions<a name="comparison-instructions"></a>
 
-The result of comparison instructions is mask types. Becuase we use `MLEN` to name the mask types and multiple (`SEW`, `LMUL`) pairs map to the same `MLEN`, in addition to use the return type to name the intrinsics, we also encode the input types to distinguish these intrinsics.
+The result of comparison instructions is mask types. Becuase we use the ratio `SEW`/`LMUL` to name the mask types and multiple (`SEW`, `LMUL`) pairs map to the same ratio, in addition to use the return type to name the intrinsics, we also encode the input types to distinguish these intrinsics.
 
 ```
 Example:
