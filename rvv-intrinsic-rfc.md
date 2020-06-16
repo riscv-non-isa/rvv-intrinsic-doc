@@ -63,9 +63,9 @@ Encode `SEW` and `LMUL` into data types. There are the following data types for 
 
 Encode the ratio of `SEW`/`LMUL` into the mask types. There are the following mask types.
 
-<n> = `SEW`/`LMUL`
+n = `SEW`/`LMUL`
 
-| Types | <n> = 1  | <n> = 2  | <n> = 4  | <n> = 8  | <n> = 16  | <n> = 32  | <n> = 64  | <n> = 128  | <n> = 256  | <n> = 512
+| Types | n = 1    | n = 2    | n = 4    | n = 8    | n = 16    | n = 32    | n = 64    | n = 128    | n = 256    | n = 512
 | ----- | -------- | -------- | -------- | -------- | --------- | --------- | --------- | ---------- | ---------- | ----------
 | bool  | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t | vbool128_t | vbool256_t | vbool512_t
 
