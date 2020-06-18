@@ -43,21 +43,34 @@ This document introduces the intrinsics for RISC-V vector programming, including
 
 ### Data Types<a name="data-types"></a>
 
-Encode `SEW` and `LMUL` into data types. There are the following data types for `SEW` &#8804; 64. 
+Encode `SEW` and `LMUL` into data types. We enforce the constraint `LMUL ≥ SEW/ELEN` in the implementation. There are the following data types for `ELEN` = 64.
 
 | Types        | LMUL = 1     | LMUL = 2     | LMUL = 4     | LMUL = 8     | LMUL = 1/2    | LMUL = 1/4    | LMUL = 1/8
 | ------------ | ------------ | ------------ | ------------ | -----------  | ------------- | ------------- | --------------
-| **int64_t**  | vint64m1_t   | vint64m2_t   | vint64m4_t   | vint64m8_t   | vint64mf2_t   | vint64mf4_t   | vint64mf8_t
-| **uint64_t** | vuint64m1_t  | vuint64m2_t  | vuint64m4_t  | vuint64m8_t  | vuint64mf2_t  | vuint64mf4_t  | vuint64mf8_t
-| **int32_t**  | vint32m1_t   | vint32m2_t   | vint32m4_t   | vint32m8_t   | vint32mf2_t   | vint32mf4_t   | vint32mf8_t
-| **uint32_t** | vuint32m1_t  | vuint32m2_t  | vuint32m4_t  | vuint32m8_t  | vuint32mf2_t  | vuint32mf4_t  | vuint32mf8_t
-| **int16_t**  | vint16m1_t   | vint16m2_t   | vint16m4_t   | vint16m8_t   | vint16mf2_t   | vint16mf4_t   | vint16mf8_t
-| **uint16_t** | vuint16m1_t  | vuint16m2_t  | vuint16m4_t  | vuint16m8_t  | vuint16mf2_t  | vuint16mf4_t  | vuint16mf8_t
+| **int64_t**  | vint64m1_t   | vint64m2_t   | vint64m4_t   | vint64m8_t   | N/A           | N/A           | N/A
+| **uint64_t** | vuint64m1_t  | vuint64m2_t  | vuint64m4_t  | vuint64m8_t  | N/A           | N/A           | N/A
+| **int32_t**  | vint32m1_t   | vint32m2_t   | vint32m4_t   | vint32m8_t   | vint32mf2_t   | N/A           | N/A
+| **uint32_t** | vuint32m1_t  | vuint32m2_t  | vuint32m4_t  | vuint32m8_t  | vuint32mf2_t  | N/A           | N/A
+| **int16_t**  | vint16m1_t   | vint16m2_t   | vint16m4_t   | vint16m8_t   | vint16mf2_t   | vint16mf4_t   | N/A
+| **uint16_t** | vuint16m1_t  | vuint16m2_t  | vuint16m4_t  | vuint16m8_t  | vuint16mf2_t  | vuint16mf4_t  | N/A
 | **int8_t**   | vint8m1_t    | vint8m2_t    | vint8m4_t    | vint8m8_t    | vint8mf2_t    | vint8mf4_t    | vint8mf8_t
 | **uint8_t**  | vuint8m1_t   | vuint8m2_t   | vuint8m4_t   | vuint8m8_t   | vuint8mf2_t   | vuint8mf4_t   | vuint8mf8_t
-| **vfloat64** | vfloat64m1_t | vfloat64m2_t | vfloat64m4_t | vfloat64m8_t | vfloat64mf2_t | vfloat64mf4_t | vfloat64mf8_t
-| **vfloat32** | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t | vfloat32mf2_t | vfloat32mf4_t | vfloat32mf8_t
-| **vfloat16** | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t | vfloat16mf2_t | vfloat16mf4_t | vfloat16mf8_t
+| **vfloat64** | vfloat64m1_t | vfloat64m2_t | vfloat64m4_t | vfloat64m8_t | N/A           | N/A           | N/A
+| **vfloat32** | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t | vfloat32mf2_t | N/A           | N/A
+| **vfloat16** | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t | vfloat16mf2_t | vfloat16mf4_t | N/A
+
+There are the following data types for `ELEN` = 32.
+
+| Types        | LMUL = 1     | LMUL = 2     | LMUL = 4     | LMUL = 8     | LMUL = 1/2    | LMUL = 1/4    | LMUL = 1/8
+| ------------ | ------------ | ------------ | ------------ | -----------  | ------------- | ------------- | --------------
+| **int32_t**  | vint32m1_t   | vint32m2_t   | vint32m4_t   | vint32m8_t   | vint32mf2_t   | N/A           | N/A
+| **uint32_t** | vuint32m1_t  | vuint32m2_t  | vuint32m4_t  | vuint32m8_t  | vuint32mf2_t  | N/A           | N/A
+| **int16_t**  | vint16m1_t   | vint16m2_t   | vint16m4_t   | vint16m8_t   | vint16mf2_t   | vint16mf4_t   | N/A
+| **uint16_t** | vuint16m1_t  | vuint16m2_t  | vuint16m4_t  | vuint16m8_t  | vuint16mf2_t  | vuint16mf4_t  | N/A
+| **int8_t**   | vint8m1_t    | vint8m2_t    | vint8m4_t    | vint8m8_t    | vint8mf2_t    | vint8mf4_t    | vint8mf8_t
+| **uint8_t**  | vuint8m1_t   | vuint8m2_t   | vuint8m4_t   | vuint8m8_t   | vuint8mf2_t   | vuint8mf4_t   | vuint8mf8_t
+| **vfloat32** | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t | vfloat32mf2_t | N/A           | N/A
+| **vfloat16** | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t | vfloat16mf2_t | vfloat16mf4_t | N/A
 
 ### Mask Types<a name="mask-types"></a>
 
@@ -65,9 +78,9 @@ Encode the ratio of `SEW`/`LMUL` into the mask types. There are the following ma
 
 n = `SEW`/`LMUL`
 
-| Types | n = 1    | n = 2    | n = 4    | n = 8    | n = 16    | n = 32    | n = 64    | n = 128    | n = 256    | n = 512
-| ----- | -------- | -------- | -------- | -------- | --------- | --------- | --------- | ---------- | ---------- | ----------
-| bool  | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t | vbool128_t | vbool256_t | vbool512_t
+| Types | n = 1    | n = 2    | n = 4    | n = 8    | n = 16    | n = 32    | n = 64
+| ----- | -------- | -------- | -------- | -------- | --------- | --------- | ---------
+| bool  | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t
 
 We also provide the alias names for the mask types.
 
@@ -78,7 +91,7 @@ We also provide the alias names for the mask types.
 | **16**  | vbool16m1_t  | vbool16m2_t  | vbool16m4_t  | vbool16m8_t  | vbool16mf2_t  | vbool16mf4_t  | vbool16mf8_t
 | **8**   | vbool8m1_t   | vbool8m2_t   | vbool8m4_t   | vbool8m8_t   | vbool8mf2_t   | vbool8mf4_t   | vbool8mf8_t
 
-For example, vbool64m1_t is vbool64_t and vbool64mf8_t is vbool512_t.
+For example, vbool64m1_t is vbool64_t and vbool32m2_t is vbool16_t.
 
 ### Types for Segment Load/Store<a name="segment-load-store-types"></a>
 
