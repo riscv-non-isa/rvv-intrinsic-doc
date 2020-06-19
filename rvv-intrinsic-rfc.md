@@ -82,17 +82,6 @@ n = `SEW`/`LMUL`
 | ----- | -------- | -------- | -------- | -------- | --------- | --------- | ---------
 | bool  | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t
 
-We also provide the alias names for the mask types.
-
-| SEW     | LMUL = 1     | LMUL = 2     | LMUL = 4     | LMUL = 8     | LMUL = 1/2    | LMUL = 1/4    | LMUL = 1/8
-| ------- | ------------ | ------------ | ------------ | -----------  | ------------- | ------------- | --------------
-| **64**  | vbool64m1_t  | vbool64m2_t  | vbool64m4_t  | vbool64m8_t  | vbool64mf2_t  | vbool64mf4_t  | vbool64mf8_t
-| **32**  | vbool32m1_t  | vbool32m2_t  | vbool32m4_t  | vbool32m8_t  | vbool32mf2_t  | vbool32mf4_t  | vbool32mf8_t
-| **16**  | vbool16m1_t  | vbool16m2_t  | vbool16m4_t  | vbool16m8_t  | vbool16mf2_t  | vbool16mf4_t  | vbool16mf8_t
-| **8**   | vbool8m1_t   | vbool8m2_t   | vbool8m4_t   | vbool8m8_t   | vbool8mf2_t   | vbool8mf4_t   | vbool8mf8_t
-
-For example, vbool64m1_t is vbool64_t and vbool32m2_t is vbool16_t.
-
 ### Types for Segment Load/Store<a name="segment-load-store-types"></a>
 
 Under the constraint `LMUL` * `NR` &#8804; 8.
