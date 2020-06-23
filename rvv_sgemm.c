@@ -53,9 +53,13 @@ void sgemm_golden() {
   for (size_t i = 0; i < MLEN; ++i)
     for (size_t j = 0; j < NLEN; ++j)
       for (size_t k = 0; k < KLEN; ++k)
-        c_array[i * NLEN + j] += a_array[i * KLEN + k] * b_array[j + k * NLEN];
+        golden_array[i * NLEN + j] += a_array[i * KLEN + k] * b_array[j + k * NLEN];
 }
 
+
+// reference https://github.com/riscv/riscv-v-spec/blob/master/example/sgemm.S
+// c += a*b (alpha=1, no transpose on input matrices)
+// matrices stored in C row-major order
 void sgemm_vec(size_t size_m, size_t size_n, size_t size_k,
                const float *a, // m * k matrix
                size_t lda,
@@ -63,25 +67,23 @@ void sgemm_vec(size_t size_m, size_t size_n, size_t size_k,
                size_t ldb,
                float *c, // m * n matrix
                size_t ldc) {
-  int i, j, k;
   size_t vl;
-  vfloat32m1_t vec_c;
-  for (int i = 0; i < size_m; ++i) {
-    j = size_n;
-    const float *bnp = b;
-    float *cnp = c;
-    for (; vl = vsetvl_e32m1(j); j -= vl) {
-      const float *akp = a;
-      const float *bkp = bnp;
-      vec_c = *(vfloat32m1_t *)cnp;
-      for (k = 0; k < size_k; ++k) {
-        vec_c = vfmacc_vf_f32m1(vec_c, *akp, *(vfloat32m1_t *)bkp);
-        bkp += ldb;
-        akp++;
+  for (int m = 0; m < size_m; ++m) {
+    const float *b_n_ptr = b;
+    float *c_n_ptr = c;
+    for (int c_n_count = size_n; (vl = vsetvl_e32m1(c_n_count )); c_n_count -= vl) {
+      const float *a_k_ptr = a;
+      const float *b_k_ptr = b_n_ptr;
+      vfloat32m1_t acc = vle32_v_f32m1(c_n_ptr);
+      for (size_t k = 0; k < size_k; ++k) {
+        vfloat32m1_t b_n_data = vle32_v_f32m1(b_k_ptr);
+        acc = vfmacc_vf_f32m1(acc, *a_k_ptr, b_n_data);
+        b_k_ptr += ldb;
+        a_k_ptr++;
       }
-      *(vfloat32m1_t *)cnp = vec_c;
-      cnp += vl;
-      bnp += vl;
+      vse32_v_f32m1(c_n_ptr, acc);
+      c_n_ptr += vl;
+      b_n_ptr += vl;
     }
     a += lda;
     c += ldc;
@@ -98,18 +100,17 @@ int fp_eq(float reference, float actual, float relErr)
 int main() {
   // golden
   memcpy(golden_array, b_array, OUTPUT_LEN * sizeof(float));
-  sgemm_golden(MLEN, NLEN, KLEN, a_array, KLEN, b_array, NLEN, golden_array, NLEN);
+  sgemm_golden();
   // vector
   memcpy(c_array, b_array, OUTPUT_LEN * sizeof(float));
   sgemm_vec(MLEN, NLEN, KLEN, a_array, KLEN, b_array, NLEN, c_array, NLEN);
 
   int pass = 1;
   for (int i = 0; i < OUTPUT_LEN; i++) {
-    if (!fp_eq(golden_array[i], c_array[i], 1e-6)) {
-      printf("failed, %f=!%f\n", golden_array[i], c_array[i]);
+    if (!fp_eq(golden_array[i], c_array[i], 1e-5)) {
+      printf("index %d failed, %f=!%f\n", i, golden_array[i], c_array[i]);
       pass = 0;
     }
-    printf("%f,%f\n",golden_array[i], c_array[i]);
   }
   if (pass)
     printf("passed\n");

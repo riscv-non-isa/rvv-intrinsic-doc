@@ -44,7 +44,7 @@ float output[N] = {
     0.2484350696132857};
 
 void saxpy_golden(size_t n, const float a, const float *x, float *y) {
-  for (size_t i; i < n; ++i) {
+  for (size_t i = 0; i < n; ++i) {
     y[i] = a * x[i] + y[i];
   }
 }
@@ -55,11 +55,11 @@ void saxpy_vec(size_t n, const float a, const float *x, float *y) {
   vfloat32m8_t vx, vy;
 
   for (; (l = vsetvl_e32m8(n)) > 0; n -= l) {
-    vx = vle_v_f32m8(x);
+    vx = vle32_v_f32m8(x);
     x += l;
-    vy = vle_v_f32m8(y);
+    vy = vle32_v_f32m8(y);
     vy = vfmacc_vf_f32m8(vy, a, vx);
-    vse_v_f32m8 (y, vy);
+    vse32_v_f32m8 (y, vy);
     y += l;
   }
 }
