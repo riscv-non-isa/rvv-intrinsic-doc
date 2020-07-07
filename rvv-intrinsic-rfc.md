@@ -20,6 +20,7 @@
   * [Vector Stores](#no-maskedoff-stores)
   * [Reduction Instructions](#no-maskedoff-reduction)
   * [Merge Instructions](#no-maskedoff-merge)
+- [Keep the Original Values of the Destination Vector](#dest-operand)
 - [With or Without the VL Argument](#vl-argument)
 - [SEW and LMUL of Intrinsics](#sew-and-lmul-of-intrinsics)
 - [C Operators on RISC-V Vector Types](#c-operators)
@@ -196,10 +197,10 @@ The scalar input and output operands are held in element 0 of a single vector re
 Example:
 
 vredsum.vs vd, vs2, vs1:
-vint8m1_t vredsum_vs_i8m1_i8m1(vint8m1_t vs2, vint8m1_t vs1)
-vint8m1_t vredsum_vs_i8m2_i8m1(vint8m2_t vs2, vint8m1_t vs1)
-vint8m1_t vredsum_vs_i8m4_i8m1(vint8m4_t vs2, vint8m1_t vs1)
-vint8m1_t vredsum_vs_i8m8_i8m1(vint8m8_t vs2, vint8m1_t vs1)
+vint8m1_t vredsum_vs_i8m1_i8m1(vint8m1_t dest, vint8m1_t vs2, vint8m1_t vs1)
+vint8m1_t vredsum_vs_i8m2_i8m1(vint8m1_t dest, vint8m2_t vs2, vint8m1_t vs1)
+vint8m1_t vredsum_vs_i8m4_i8m1(vint8m1_t dest, vint8m4_t vs2, vint8m1_t vs1)
+vint8m1_t vredsum_vs_i8m8_i8m1(vint8m1_t dest, vint8m8_t vs2, vint8m1_t vs1)
 ```
 
 ### `vpopc.m` and `vfirst.m`<a name="vpopc-and-vfirst"></a>
@@ -312,7 +313,7 @@ The result of reductions is put in element 0 of the output vector. There is no `
 Example:
 
 vredsum.vs vd, vs2, vs1, v0.t:
-vint8m1_t vredsum_vs_i8m2_i8m1_m(vbool4_t mask, vint8m2_t vs2, vint8m1_t vs1)
+vint8m1_t vredsum_vs_i8m2_i8m1_m(vbool4_t mask, vint8m1_t dest, vint8m2_t vs2, vint8m1_t vs1)
 ```
 
 ### Merge Instructions<a name="no-maskedoff-merge"></a>
@@ -324,6 +325,19 @@ Example:
 
 vmerge.vvm vd, vs2, vs1, v0:
 vint8m1_t vmerge_vvm_i8m1_m(vbool8_t mask, vint8m1_t vs2, vint8m1_t vs1);
+```
+
+## Keep the Original Values of the Destination Vector<a name="dest-operand"></a>
+
+`vmv.s.x` and reduction operations will only modify the first element of the destination vector. Users could keep the original values of the remaining elements in the destination vector through `dest` argument in these intrinsics.
+
+```
+Example:
+
+vint8m1_t vmv_s_x_i8m1(vint8m1_t dest, int8_t src);
+vint8m1_t vredsum_vs_i8m1_i8m1(vint8m1_t dest, vint8m1_t vs2, vint8m1_t vs1)
+vint8m1_t vredsum_vs_i8m2_i8m1_m(vbool4_t mask, vint8m1_t dest, vint8m2_t vs2, vint8m1_t vs1)
+
 ```
 
 ## With or Without the VL Argument<a name="vl-argument"></a>
