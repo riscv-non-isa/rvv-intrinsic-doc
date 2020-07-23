@@ -267,7 +267,7 @@ vd[i] = maskedoff[i], if mask[i] == 0
 vd[i] = vop(arg1[i], arg2[2]), if mask[i] == 1
 ```
 
-In general, the naming rule of intrinsic with mask is
+In general, the naming rule of intrinsic with mask v0.t is
 
 ```
 INTRINSIC_WITH_MASK ::= INTRINSIC '_m'
@@ -278,6 +278,18 @@ Example:
 
 vadd.vv vd, vs2, vs1, v0.t:
 vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vint8m1_t maskedoff, vint8m1_t vs2, vint8m1_t vs1)
+```
+
+If the intrinsics are always masked, there is no need to append `_m` to the intrinsic. For example, the `vmerge` instructions are always masked.
+
+```
+Example:
+
+vmerge.vvm vd, vs2, vs1, v0:
+vint8m1_t vmerge_vvm_i8m1(vbool8_t mask, vint8m1_t vs2, vint8m1_t vs1)
+
+vcompress.vm vd, vs2, vs1:
+vint8m1_t vcompress_vm_i8m1(vbool8_t vs1, vint8m1_t maskedoff, vint8m1_t vs2)
 ```
 
 There are two additional masking semantics: *zero in output* semantic and *don't care in output* semantic. Users could leverage *merge in output* intrinsics to simulate these two additional masking semantics.
