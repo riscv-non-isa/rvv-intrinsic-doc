@@ -1896,36 +1896,36 @@ vuint64m8_t vfclass_m (vbool8_t mask, vuint64m8_t maskedoff, vfloat64m8_t op1);
 
 **Prototypes:**
 ``` C
-vfloat16mf4_t vmerge_m (vbool64_t mask, vfloat16mf4_t op1, vfloat16mf4_t op2);
-vfloat16mf4_t vfmerge_m (vbool64_t mask, vfloat16mf4_t op1, float16_t op2);
-vfloat16mf2_t vmerge_m (vbool32_t mask, vfloat16mf2_t op1, vfloat16mf2_t op2);
-vfloat16mf2_t vfmerge_m (vbool32_t mask, vfloat16mf2_t op1, float16_t op2);
-vfloat16m1_t vmerge_m (vbool16_t mask, vfloat16m1_t op1, vfloat16m1_t op2);
-vfloat16m1_t vfmerge_m (vbool16_t mask, vfloat16m1_t op1, float16_t op2);
-vfloat16m2_t vmerge_m (vbool8_t mask, vfloat16m2_t op1, vfloat16m2_t op2);
-vfloat16m2_t vfmerge_m (vbool8_t mask, vfloat16m2_t op1, float16_t op2);
-vfloat16m4_t vmerge_m (vbool4_t mask, vfloat16m4_t op1, vfloat16m4_t op2);
-vfloat16m4_t vfmerge_m (vbool4_t mask, vfloat16m4_t op1, float16_t op2);
-vfloat16m8_t vmerge_m (vbool2_t mask, vfloat16m8_t op1, vfloat16m8_t op2);
-vfloat16m8_t vfmerge_m (vbool2_t mask, vfloat16m8_t op1, float16_t op2);
-vfloat32mf2_t vmerge_m (vbool64_t mask, vfloat32mf2_t op1, vfloat32mf2_t op2);
-vfloat32mf2_t vfmerge_m (vbool64_t mask, vfloat32mf2_t op1, float32_t op2);
-vfloat32m1_t vmerge_m (vbool32_t mask, vfloat32m1_t op1, vfloat32m1_t op2);
-vfloat32m1_t vfmerge_m (vbool32_t mask, vfloat32m1_t op1, float32_t op2);
-vfloat32m2_t vmerge_m (vbool16_t mask, vfloat32m2_t op1, vfloat32m2_t op2);
-vfloat32m2_t vfmerge_m (vbool16_t mask, vfloat32m2_t op1, float32_t op2);
-vfloat32m4_t vmerge_m (vbool8_t mask, vfloat32m4_t op1, vfloat32m4_t op2);
-vfloat32m4_t vfmerge_m (vbool8_t mask, vfloat32m4_t op1, float32_t op2);
-vfloat32m8_t vmerge_m (vbool4_t mask, vfloat32m8_t op1, vfloat32m8_t op2);
-vfloat32m8_t vfmerge_m (vbool4_t mask, vfloat32m8_t op1, float32_t op2);
-vfloat64m1_t vmerge_m (vbool64_t mask, vfloat64m1_t op1, vfloat64m1_t op2);
-vfloat64m1_t vfmerge_m (vbool64_t mask, vfloat64m1_t op1, float64_t op2);
-vfloat64m2_t vmerge_m (vbool32_t mask, vfloat64m2_t op1, vfloat64m2_t op2);
-vfloat64m2_t vfmerge_m (vbool32_t mask, vfloat64m2_t op1, float64_t op2);
-vfloat64m4_t vmerge_m (vbool16_t mask, vfloat64m4_t op1, vfloat64m4_t op2);
-vfloat64m4_t vfmerge_m (vbool16_t mask, vfloat64m4_t op1, float64_t op2);
-vfloat64m8_t vmerge_m (vbool8_t mask, vfloat64m8_t op1, vfloat64m8_t op2);
-vfloat64m8_t vfmerge_m (vbool8_t mask, vfloat64m8_t op1, float64_t op2);
+vfloat16mf4_t vmerge (vbool64_t mask, vfloat16mf4_t op1, vfloat16mf4_t op2);
+vfloat16mf4_t vfmerge (vbool64_t mask, vfloat16mf4_t op1, float16_t op2);
+vfloat16mf2_t vmerge (vbool32_t mask, vfloat16mf2_t op1, vfloat16mf2_t op2);
+vfloat16mf2_t vfmerge (vbool32_t mask, vfloat16mf2_t op1, float16_t op2);
+vfloat16m1_t vmerge (vbool16_t mask, vfloat16m1_t op1, vfloat16m1_t op2);
+vfloat16m1_t vfmerge (vbool16_t mask, vfloat16m1_t op1, float16_t op2);
+vfloat16m2_t vmerge (vbool8_t mask, vfloat16m2_t op1, vfloat16m2_t op2);
+vfloat16m2_t vfmerge (vbool8_t mask, vfloat16m2_t op1, float16_t op2);
+vfloat16m4_t vmerge (vbool4_t mask, vfloat16m4_t op1, vfloat16m4_t op2);
+vfloat16m4_t vfmerge (vbool4_t mask, vfloat16m4_t op1, float16_t op2);
+vfloat16m8_t vmerge (vbool2_t mask, vfloat16m8_t op1, vfloat16m8_t op2);
+vfloat16m8_t vfmerge (vbool2_t mask, vfloat16m8_t op1, float16_t op2);
+vfloat32mf2_t vmerge (vbool64_t mask, vfloat32mf2_t op1, vfloat32mf2_t op2);
+vfloat32mf2_t vfmerge (vbool64_t mask, vfloat32mf2_t op1, float32_t op2);
+vfloat32m1_t vmerge (vbool32_t mask, vfloat32m1_t op1, vfloat32m1_t op2);
+vfloat32m1_t vfmerge (vbool32_t mask, vfloat32m1_t op1, float32_t op2);
+vfloat32m2_t vmerge (vbool16_t mask, vfloat32m2_t op1, vfloat32m2_t op2);
+vfloat32m2_t vfmerge (vbool16_t mask, vfloat32m2_t op1, float32_t op2);
+vfloat32m4_t vmerge (vbool8_t mask, vfloat32m4_t op1, vfloat32m4_t op2);
+vfloat32m4_t vfmerge (vbool8_t mask, vfloat32m4_t op1, float32_t op2);
+vfloat32m8_t vmerge (vbool4_t mask, vfloat32m8_t op1, vfloat32m8_t op2);
+vfloat32m8_t vfmerge (vbool4_t mask, vfloat32m8_t op1, float32_t op2);
+vfloat64m1_t vmerge (vbool64_t mask, vfloat64m1_t op1, vfloat64m1_t op2);
+vfloat64m1_t vfmerge (vbool64_t mask, vfloat64m1_t op1, float64_t op2);
+vfloat64m2_t vmerge (vbool32_t mask, vfloat64m2_t op1, vfloat64m2_t op2);
+vfloat64m2_t vfmerge (vbool32_t mask, vfloat64m2_t op1, float64_t op2);
+vfloat64m4_t vmerge (vbool16_t mask, vfloat64m4_t op1, vfloat64m4_t op2);
+vfloat64m4_t vfmerge (vbool16_t mask, vfloat64m4_t op1, float64_t op2);
+vfloat64m8_t vmerge (vbool8_t mask, vfloat64m8_t op1, vfloat64m8_t op2);
+vfloat64m8_t vfmerge (vbool8_t mask, vfloat64m8_t op1, float64_t op2);
 ```
 ### [Vector Floating-Point Move Functions](../rvv-intrinsic-api.md#1414-vector-floating-point-move-operations):
 
