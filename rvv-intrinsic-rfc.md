@@ -254,7 +254,7 @@ There is the same issue for `vmv.x.s`, `vmv.s.x`, `vfmv.f.s`, `vfmv.s.f`, `vslid
 Example:
 
 // Use uint8_t for op2.
-vuint8m1_t vslide1up_vx_u8m1(vuint8m1_t op1, uint8_1 op2);
+vuint8m1_t vslide1up_vx_u8m1(vuint8m1_t dest, vuint8m1_t op1, uint8_1 op2);
 ```
 
 ## Mask in Intrinsics<a name="mask-in-intrinsics"></a>
@@ -345,12 +345,15 @@ vint8m1_t vmerge_vvm_i8m1_m(vbool8_t mask, vint8m1_t vs2, vint8m1_t vs1);
 
 `vmv.s.x` and reduction operations will only modify the first element of the destination vector. Users could keep the original values of the remaining elements in the destination vector through `dest` argument in these intrinsics.
 
+Vector slide instructions also have unchanged parts in the destination register group. Users could keep the original values of the unchanged parts in the destination vector group through `dest` argument in the intrinsics.
+
 ```
 Example:
 
 vint8m1_t vmv_s_x_i8m1(vint8m1_t dest, int8_t src);
 vint8m1_t vredsum_vs_i8m1_i8m1(vint8m1_t dest, vint8m1_t vs2, vint8m1_t vs1)
 vint8m1_t vredsum_vs_i8m2_i8m1_m(vbool4_t mask, vint8m1_t dest, vint8m2_t vs2, vint8m1_t vs1)
+vuint8m1_t vslide1up_vx_u8m1(vuint8m1_t dest, vuint8m1_t op1, uint8_1 op2);
 
 ```
 
