@@ -121,7 +121,7 @@ size_t vsetvlmax_e8m4 ();
 size_t vsetvlmax_e8m8 ();
 ```
 
-There is no need to specify the behavior of tail and masked-off elements being undisturbed or agnostic. The default setting is tail agnostic and masked-off undisturbed. If users do not want to keep the values in masked-off elements, they could pass vundefined() as the `maskedoff` value.
+There is no need to specify the behavior of tail and masked-off elements being undisturbed or agnostic. The default setting is tail agnostic and masked-off undisturbed. If users do not want to keep the values in masked-off elements, they could pass `vundefined()` as the `maskedoff` value.
 
 ## Naming Rules<a name="naming-rules"></a>
 
@@ -571,7 +571,7 @@ vbool8_t vmadc_vx(vint8m1_t op1, int8_t op2);
 
 ### `vmv.v.v`, `vmv.x.s`, `vmv.s.x`, `vfmv.f.s` and `vfmv.s.f`
 
-With C11 generic interface. Use the full mnemonic names for the function names, e.g., `vmv.v.v` uses vmv_v_v() as the function name.
+With C11 generic interface. Use the full mnemonic names for the function names, e.g., `vmv.v.v` uses `vmv_v_v()` as the function name.
 
 ### `vmv.v.x`, `vfmv.v.f`, and `viota.m`
 
