@@ -294,13 +294,10 @@ vint8m1_t vcompress_vm_i8m1(vbool8_t vs1, vint8m1_t maskedoff, vint8m1_t vs2)
 
 There are two additional masking semantics: *zero in output* semantic and *don't care in output* semantic. Users could leverage *merge in output* intrinsics to simulate these two additional masking semantics.
 
-`vzero` and `vundefined` will operate on `VLMAX` elements.
+`vundefined` will operate on `vl` elements.
 
 ```
 Example:
-
-// Zero in output semantic
-vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vzero_i8m1(), vint8m1_t vs2, vint8m1_t vs1)
 
 // Don't care in output semantic
 vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vundefined_i8m1(), vint8m1_t vs2, vint8m1_t vs1)
@@ -477,7 +474,6 @@ These utility functions are used to initialize vector values. They could be used
 ```
 Example:
 
-vint8m1_t vzero_i8m1()
 vint8m1_t vundefined_i8m1()
 ```
 
@@ -581,7 +577,7 @@ With C11 generic interface. Use the full mnemonic names for the function names, 
 
 The same input may produce different types of output value. No C11 generic interface.
 
-### `vmclr.m`, `vmset.m`, `vid.v`, `vundefined`, and `vzero`
+### `vmclr.m`, `vmset.m`, `vid.v`, `vundefined`
 
 There is no input argument. No C11 generic interface.
 
