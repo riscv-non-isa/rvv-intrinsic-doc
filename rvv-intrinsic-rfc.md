@@ -362,21 +362,29 @@ There are two variants of intrinsics regarding to `vl`.
 
 1. Explicit vl intrinsics:
 
-    Pass `vl` as an argument to the intrinsics. The `vl` argument helps users to track `vl` values from previous `vsetvl`.  It is strict about using `vl` only coming from an earlier `vsetvl` or `vsetvlmax` intrinsics. It inhibits to do arithmetic on `vl` argument.
+    All the intrinsics receive an explicit `vl` argument, by value, which is used by the vector operation. Only calls to `vsetvl` or `vsetvlmax` intrinsics can be used to generate values that are permissible as the explicit `vl` argument.
 
-    The design philosophy of explicit vl intrinsics is
-     - Operations could be entirely defined by the operands.
+    Pros:
+     - Operations are entirely defined by the vector operands and the explicit vector length.
      - In C programmers' point of view, there is no side-effect of intrinsics with `vl` argument.
+     - Some instructions do not use `vl`, so the explicit interface makes this obvious.
+
+    Cons:
+     - It is less consistent with the C operator syntax. The GCC vector extension cannot be implemented, because of lack of the `vl` operand, or it must be given whole vector register semantics.
+     - It is more verbose, as many vector codes may not use different `vl` values at the same time.
+     - An additional operand means additional programming error opportunities.
 
 2. Implicit vl intrinsics:
 
-    No `vl` argument. Users need to know where the `vl` comes by the program execution flow. Users need to take care by themselves if they want to mix multiple `vl` operations.
+    Intrinsics do not receive a `vl` argument. Instead the `vl` used by the vector operations is the one set by the last call to `vsetvl` or `vsetvlmax` intrinsics that the program has done at runtime.
 
-    The design philosophy of implicit vl intrinsics is
-     - The user is responsible for setting the `vl`.
-     - It is more faithful to the underlying assembly code.
-     - It seems to open the possibility for additional programming errors through additional vl argument.
-     - It is more consistent with C operator syntax.
+    Pros:
+     - It is more faithful to the underlying instructions which allows the user finer control on the instructions emitted.
+     - It is more consistent with C operator syntax as vector operations naturally involve the implicit `vl` argument.
+
+    Cons:
+     - A vector operation is not fully defined by its operands.
+     - The implicit `vl` operand might open the possibility for unobvious programming errors.
 
 The semantics between these two variants are the same.
 
