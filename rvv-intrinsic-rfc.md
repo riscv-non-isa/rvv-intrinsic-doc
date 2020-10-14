@@ -162,8 +162,8 @@ It does not encode return type into vector store. There is no return data for st
 ```
 Example:
 
-vsb.v vs3, (rs1):
-void vsb_v_i8m1(int8_t *rs1, vint8m1_t vs3);
+vse8.v vs3, (rs1):
+void vse8_v_i8m1(int8_t *rs1, vint8m1_t vs3);
 ```
 
 ### Vector Integer Add-with-Carry / Subtract-with-Borrow Instructions<a name="add-with-carry"></a>
@@ -312,8 +312,8 @@ There is no `maskedoff` argument for store operations. The value of `maskedoff` 
 ```
 Example:
 
-vsb.v vs3, (rs1), v0.t:
-void vsb_v_i8m1_m(vbool8_t mask, int8_t *rs1, vint8m1_t vs3);
+vse8.v vs3, (rs1), v0.t:
+void vse8_v_i8m1_m(vbool8_t mask, int8_t *rs1, vint8m1_t vs3);
 ```
 
 ### Reduction Instructions<a name="no-maskedoff-reduction"></a>
