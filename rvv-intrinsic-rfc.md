@@ -173,7 +173,7 @@ The result of `vmadc` and `vmsbc` is mask types. Becuase we use the ratio `SEW`/
 ```
 Example:
 
-vmseq.vv vd, vs2, vs1:
+vmadc.vv vd, vs2, vs1:
 vbool8_t vmadc_vv_i8m1_b8(vint8m1_t vs2, vint8m1_t vs1);
 ```
 
