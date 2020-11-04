@@ -29,6 +29,7 @@
   * [Splat](#splat)
   * [Multiply-Add](#fma)
 - [Utility Functions](#utility-functions)
+  * [Read/Write csr](#read-write-csr)
   * [Vector Initialization](#vector-init)
   * [Reinterpret between floating point and integer types](#reinterpret-float)
   * [Reinterpret between signed and unsigned types](#reinterpret-sign)
@@ -474,6 +475,32 @@ vfloat32m1_t vfma_vv_f32m1(vfloat32m1_t acc, vfloat32m1_t op1, vfloat32m1_t op2)
 ## Utility Functions<a name="utility-functions"></a>
 
 This section lists all utility functions to help users program in V intrinsics easier.
+
+### Read/Write csr<a name="read-write-csr"></a>
+
+These utility functions are used to control csr.
+
+```
+Example:
+
+#define VE_TONEARESTUP   /*implementation defined*/
+#define VE_TONEARESTEVEN /*implementation defined*/
+#define VE_DOWNWARD      /*implementation defined*/
+#define VE_TOODD         /*implementation defined*/
+// Each of these macro constants expands to a nonnegative integer constant expression.
+
+// return 0 on success, non-zero otherwise.
+int vesetxround(int round)
+
+// return the current rounding macro, negative value if the rounding mode cannot be determined.
+int vegetxround(void)
+
+// return 0 on success, non-zero otherwise.
+int vesetxsat(int sat)
+
+// return 1 if vxsat is set, 0 otherwise.
+int vegetxsat(void)
+```
 
 ### Vector Initialization<a name="vector-init"></a>
 

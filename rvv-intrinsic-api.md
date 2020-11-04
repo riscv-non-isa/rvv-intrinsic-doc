@@ -44,17 +44,7 @@ Reinterpret the contents of a data as a different type, without changing any bit
 
 ### Read/Write URW vector CSRs
 
-```
-enum RVV_CSR {
-  RVV_VSTART = 0,
-  RVV_VXSAT,
-  RVV_VXRM,
-  RVV_VCSR,
-};
-
-unsigned long vread_csr(enum RVV_CSR csr);
-void vwrite_csr(enum RVV_CSR csr, unsigned long value);
-```
+Please see [rvv-intrinsic-rfc.md](rvv-intrinsic-rfc.md#read-write-csr)
 
 ## 7. Vector Loads and Stores
 ### 7.4. Vector Unit-Stride Operations
