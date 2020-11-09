@@ -96,12 +96,137 @@ LMUL ::= ( m1 | m2 | m4 | m8 | mf2 | mf4 | mf8 )
 NR ::= ( 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 )
 ```
 
-```
-Example:
+int8_t:
 
-vint32m1x4_t
-vfloat32m2x2_t
-```
+|  NF \ LMUL   | LMUL = 1/8   | LMUL = 1/4   | LMUL = 1/2   | LMUL = 1     | LMUL = 2      | LMUL = 4      | LMUL = 8
+| ------------ | ------------ | ------------ | ------------ | -----------  | ------------- | ------------- | --------------
+| **2**        | vint8mf8x2_t | vint8mf4x2_t | vint8mf2x2_t | vint8m1x2_t  | vint8m2x2_t   | vint8m4x2_t   | N/A
+| **3**        | vint8mf8x3_t | vint8mf4x3_t | vint8mf2x3_t | vint8m1x3_t  | vint8m2x3_t   | N/A           | N/A
+| **4**        | vint8mf8x4_t | vint8mf4x4_t | vint8mf2x4_t | vint8m1x4_t  | vint8m2x4_t   | N/A           | N/A
+| **5**        | vint8mf8x5_t | vint8mf4x5_t | vint8mf2x5_t | vint8m1x5_t  | N/A           | N/A           | N/A
+| **6**        | vint8mf8x6_t | vint8mf4x6_t | vint8mf2x6_t | vint8m1x6_t  | N/A           | N/A           | N/A
+| **7**        | vint8mf8x7_t | vint8mf4x7_t | vint8mf2x7_t | vint8m1x7_t  | N/A           | N/A           | N/A
+| **8**        | vint8mf8x8_t | vint8mf4x8_t | vint8mf2x8_t | vint8m1x8_t  | N/A           | N/A           | N/A
+
+uint8_t:
+
+|  NF \ LMUL   | LMUL = 1/8    | LMUL = 1/4    | LMUL = 1/2    | LMUL = 1      | LMUL = 2      | LMUL = 4      | LMUL = 8
+| ------------ | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | --------------
+| **2**        | vuint8mf8x2_t | vuint8mf4x2_t | vuint8mf2x2_t | vuint8m1x2_t  | vuint8m2x2_t  | vuint8m4x2_t  | N/A
+| **3**        | vuint8mf8x3_t | vuint8mf4x3_t | vuint8mf2x3_t | vuint8m1x3_t  | vuint8m2x3_t  | N/A           | N/A
+| **4**        | vuint8mf8x4_t | vuint8mf4x4_t | vuint8mf2x4_t | vuint8m1x4_t  | vuint8m2x4_t  | N/A           | N/A
+| **5**        | vuint8mf8x5_t | vuint8mf4x5_t | vuint8mf2x5_t | vuint8m1x5_t  | N/A           | N/A           | N/A
+| **6**        | vuint8mf8x6_t | vuint8mf4x6_t | vuint8mf2x6_t | vuint8m1x6_t  | N/A           | N/A           | N/A
+| **7**        | vuint8mf8x7_t | vuint8mf4x7_t | vuint8mf2x7_t | vuint8m1x7_t  | N/A           | N/A           | N/A
+| **8**        | vuint8mf8x8_t | vuint8mf4x8_t | vuint8mf2x8_t | vuint8m1x8_t  | N/A           | N/A           | N/A
+
+int16_t:
+
+|  NF \ LMUL   | LMUL = 1/8  | LMUL = 1/4    | LMUL = 1/2    | LMUL = 1     | LMUL = 2      | LMUL = 4      | LMUL = 8
+| ------------ | ----------- | ------------- | ------------- | ------------ | ------------- | ------------- | --------------
+| **2**        | N/A         | vint16mf4x2_t | vint16mf2x2_t | vint16m1x2_t | vint16m2x2_t  | vint16m4x2_t  | N/A
+| **3**        | N/A         | vint16mf4x3_t | vint16mf2x3_t | vint16m1x3_t | vint16m2x3_t  | N/A           | N/A
+| **4**        | N/A         | vint16mf4x4_t | vint16mf2x4_t | vint16m1x4_t | vint16m2x4_t  | N/A           | N/A
+| **5**        | N/A         | vint16mf4x5_t | vint16mf2x5_t | vint16m1x5_t | N/A           | N/A           | N/A
+| **6**        | N/A         | vint16mf4x6_t | vint16mf2x6_t | vint16m1x6_t | N/A           | N/A           | N/A
+| **7**        | N/A         | vint16mf4x7_t | vint16mf2x7_t | vint16m1x7_t | N/A           | N/A           | N/A
+| **8**        | N/A         | vint16mf4x8_t | vint16mf2x8_t | vint16m1x8_t | N/A           | N/A           | N/A
+
+uint16_t:
+
+|  NF \ LMUL   | LMUL = 1/8  | LMUL = 1/4     | LMUL = 1/2     | LMUL = 1      | LMUL = 2      | LMUL = 4      | LMUL = 8
+| ------------ | ----------- | -------------- | -------------- | ------------- | ------------- | ------------- | --------------
+| **2**        | N/A         | vuint16mf4x2_t | vuint16mf2x2_t | vuint16m1x2_t | vuint16m2x2_t | vuint16m4x2_t | N/A
+| **3**        | N/A         | vuint16mf4x3_t | vuint16mf2x3_t | vuint16m1x3_t | vuint16m2x3_t | N/A           | N/A
+| **4**        | N/A         | vuint16mf4x4_t | vuint16mf2x4_t | vuint16m1x4_t | vuint16m2x4_t | N/A           | N/A
+| **5**        | N/A         | vuint16mf4x5_t | vuint16mf2x5_t | vuint16m1x5_t | N/A           | N/A           | N/A
+| **6**        | N/A         | vuint16mf4x6_t | vuint16mf2x6_t | vuint16m1x6_t | N/A           | N/A           | N/A
+| **7**        | N/A         | vuint16mf4x7_t | vuint16mf2x7_t | vuint16m1x7_t | N/A           | N/A           | N/A
+| **8**        | N/A         | vuint16mf4x8_t | vuint16mf2x8_t | vuint16m1x8_t | N/A           | N/A           | N/A
+
+int32_t:
+
+|  NF \ LMUL   | LMUL = 1/8  | LMUL = 1/4    | LMUL = 1/2    | LMUL = 1     | LMUL = 2      | LMUL = 4      | LMUL = 8
+| ------------ | ----------- | ------------- | ------------- | ------------ | ------------- | ------------- | --------------
+| **2**        | N/A         | N/A           | vint32mf2x2_t | vint32m1x2_t | vint32m2x2_t  | vint32m4x2_t  | N/A
+| **3**        | N/A         | N/A           | vint32mf2x3_t | vint32m1x3_t | vint32m2x3_t  | N/A           | N/A
+| **4**        | N/A         | N/A           | vint32mf2x4_t | vint32m1x4_t | vint32m2x4_t  | N/A           | N/A
+| **5**        | N/A         | N/A           | vint32mf2x5_t | vint32m1x5_t | N/A           | N/A           | N/A
+| **6**        | N/A         | N/A           | vint32mf2x6_t | vint32m1x6_t | N/A           | N/A           | N/A
+| **7**        | N/A         | N/A           | vint32mf2x7_t | vint32m1x7_t | N/A           | N/A           | N/A
+| **8**        | N/A         | N/A           | vint32mf2x8_t | vint32m1x8_t | N/A           | N/A           | N/A
+
+uint32_t:
+
+|  NF \ LMUL   | LMUL = 1/8  | LMUL = 1/4    | LMUL = 1/2     | LMUL = 1      | LMUL = 2      | LMUL = 4      | LMUL = 8
+| ------------ | ----------- | ------------- | -------------- | ------------- | ------------- | ------------- | --------------
+| **2**        | N/A         | N/A           | vuint32mf2x2_t | vuint32m1x2_t | vuint32m2x2_t | vuint32m4x2_t | N/A
+| **3**        | N/A         | N/A           | vuint32mf2x3_t | vuint32m1x3_t | vuint32m2x3_t | N/A           | N/A
+| **4**        | N/A         | N/A           | vuint32mf2x4_t | vuint32m1x4_t | vuint32m2x4_t | N/A           | N/A
+| **5**        | N/A         | N/A           | vuint32mf2x5_t | vuint32m1x5_t | N/A           | N/A           | N/A
+| **6**        | N/A         | N/A           | vuint32mf2x6_t | vuint32m1x6_t | N/A           | N/A           | N/A
+| **7**        | N/A         | N/A           | vuint32mf2x7_t | vuint32m1x7_t | N/A           | N/A           | N/A
+| **8**        | N/A         | N/A           | vuint32mf2x8_t | vuint32m1x8_t | N/A           | N/A           | N/A
+
+int64_t:
+
+|  NF \ LMUL   | LMUL = 1/8  | LMUL = 1/4    | LMUL = 1/2    | LMUL = 1     | LMUL = 2      | LMUL = 4      | LMUL = 8
+| ------------ | ----------- | ------------- | ------------- | ------------ | ------------- | ------------- | --------------
+| **2**        | N/A         | N/A           | N/A           | vint64m1x2_t | vint64m2x2_t  | vint64m4x2_t  | N/A
+| **3**        | N/A         | N/A           | N/A           | vint64m1x3_t | vint64m2x3_t  | N/A           | N/A
+| **4**        | N/A         | N/A           | N/A           | vint64m1x4_t | vint64m2x4_t  | N/A           | N/A
+| **5**        | N/A         | N/A           | N/A           | vint64m1x5_t | N/A           | N/A           | N/A
+| **6**        | N/A         | N/A           | N/A           | vint64m1x6_t | N/A           | N/A           | N/A
+| **7**        | N/A         | N/A           | N/A           | vint64m1x7_t | N/A           | N/A           | N/A
+| **8**        | N/A         | N/A           | N/A           | vint64m1x8_t | N/A           | N/A           | N/A
+
+uint64_t:
+
+|  NF \ LMUL   | LMUL = 1/8  | LMUL = 1/4    | LMUL = 1/2    | LMUL = 1      | LMUL = 2      | LMUL = 4      | LMUL = 8
+| ------------ | ----------- | ------------- | ------------- | ------------- | ------------- | ------------- | --------------
+| **2**        | N/A         | N/A           | N/A           | vuint64m1x2_t | vuint64m2x2_t | vuint64m4x2_t | N/A
+| **3**        | N/A         | N/A           | N/A           | vuint64m1x3_t | vuint64m2x3_t | N/A           | N/A
+| **4**        | N/A         | N/A           | N/A           | vuint64m1x4_t | vuint64m2x4_t | N/A           | N/A
+| **5**        | N/A         | N/A           | N/A           | vuint64m1x5_t | N/A           | N/A           | N/A
+| **6**        | N/A         | N/A           | N/A           | vuint64m1x6_t | N/A           | N/A           | N/A
+| **7**        | N/A         | N/A           | N/A           | vuint64m1x7_t | N/A           | N/A           | N/A
+| **8**        | N/A         | N/A           | N/A           | vuint64m1x8_t | N/A           | N/A           | N/A
+
+float16:
+
+|  NF \ LMUL   | LMUL = 1/8  | LMUL = 1/4      | LMUL = 1/2      | LMUL = 1       | LMUL = 2       | LMUL = 4       | LMUL = 8
+| ------------ | ----------- | --------------- | --------------- | -------------- | -------------- | -------------- | --------------
+| **2**        | N/A         | vfloat16mf4x2_t | vfloat16mf2x2_t | vfloat16m1x2_t | vfloat16m2x2_t | vfloat16m4x2_t | N/A
+| **3**        | N/A         | vfloat16mf4x3_t | vfloat16mf2x3_t | vfloat16m1x3_t | vfloat16m2x3_t | N/A            | N/A
+| **4**        | N/A         | vfloat16mf4x4_t | vfloat16mf2x4_t | vfloat16m1x4_t | vfloat16m2x4_t | N/A            | N/A
+| **5**        | N/A         | vfloat16mf4x5_t | vfloat16mf2x5_t | vfloat16m1x5_t | N/A            | N/A            | N/A
+| **6**        | N/A         | vfloat16mf4x6_t | vfloat16mf2x6_t | vfloat16m1x6_t | N/A            | N/A            | N/A
+| **7**        | N/A         | vfloat16mf4x7_t | vfloat16mf2x7_t | vfloat16m1x7_t | N/A            | N/A            | N/A
+| **8**        | N/A         | vfloat16mf4x8_t | vfloat16mf2x8_t | vfloat16m1x8_t | N/A            | N/A            | N/A
+
+float32:
+
+|  NF \ LMUL   | LMUL = 1/8  | LMUL = 1/4      | LMUL = 1/2      | LMUL = 1       | LMUL = 2       | LMUL = 4       | LMUL = 8
+| ------------ | ----------- | --------------- | --------------- | -------------- | -------------- | -------------- | --------------
+| **2**        | N/A         | N/A             | vfloat32mf2x2_t | vfloat32m1x2_t | vfloat32m2x2_t | vfloat32m4x2_t | N/A
+| **3**        | N/A         | N/A             | vfloat32mf2x3_t | vfloat32m1x3_t | vfloat32m2x3_t | N/A            | N/A
+| **4**        | N/A         | N/A             | vfloat32mf2x4_t | vfloat32m1x4_t | vfloat32m2x4_t | N/A            | N/A
+| **5**        | N/A         | N/A             | vfloat32mf2x5_t | vfloat32m1x5_t | N/A            | N/A            | N/A
+| **6**        | N/A         | N/A             | vfloat32mf2x6_t | vfloat32m1x6_t | N/A            | N/A            | N/A
+| **7**        | N/A         | N/A             | vfloat32mf2x7_t | vfloat32m1x7_t | N/A            | N/A            | N/A
+| **8**        | N/A         | N/A             | vfloat32mf2x8_t | vfloat32m1x8_t | N/A            | N/A            | N/A
+
+float64:
+
+|  NF \ LMUL   | LMUL = 1/8  | LMUL = 1/4      | LMUL = 1/2      | LMUL = 1       | LMUL = 2       | LMUL = 4       | LMUL = 8
+| ------------ | ----------- | --------------- | --------------- | -------------- | -------------- | -------------- | --------------
+| **2**        | N/A         | N/A             | N/A             | vfloat64m1x2_t | vfloat64m2x2_t | vfloat64m4x2_t | N/A
+| **3**        | N/A         | N/A             | N/A             | vfloat64m1x3_t | vfloat64m2x3_t | N/A            | N/A
+| **4**        | N/A         | N/A             | N/A             | vfloat64m1x4_t | vfloat64m2x4_t | N/A            | N/A
+| **5**        | N/A         | N/A             | N/A             | vfloat64m1x5_t | N/A            | N/A            | N/A
+| **6**        | N/A         | N/A             | N/A             | vfloat64m1x6_t | N/A            | N/A            | N/A
+| **7**        | N/A         | N/A             | N/A             | vfloat64m1x7_t | N/A            | N/A            | N/A
+| **8**        | N/A         | N/A             | N/A             | vfloat64m1x8_t | N/A            | N/A            | N/A
 
 ## Configuration-Setting<a name="configuration-setting"></a>
 
