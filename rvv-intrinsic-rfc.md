@@ -572,6 +572,12 @@ Example:
 vint8m1_t vundefined_i8m1()
 ```
 
+Note: Any operation with `vundefined_* ()` are undefined and unpredictable,
+the only recommended usage is used as maskedoff operand; an additional note is
+any operation with `vundefined_* ()` will got unpredictable result, e.g.
+`vxor(vundefined (), vundefined ())` will not guarantee result vector with
+zeros.
+
 ### Reinterpret between floating point and integer types<a name="reinterpret-float"></a>
 
 These utility functions help users to convert types between floating point and integer types. The reinterpreter intrinsics only change the types of underlying contents. It is a nop operation.
