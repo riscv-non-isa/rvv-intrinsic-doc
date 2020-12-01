@@ -416,8 +416,6 @@ vint8m1_t vcompress_vm_i8m1(vbool8_t vs1, vint8m1_t maskedoff, vint8m1_t vs2)
 
 There are two additional masking semantics: *zero in output* semantic and *don't care in output* semantic. Users could leverage *merge in output* intrinsics to simulate these two additional masking semantics.
 
-`vundefined` will operate on `vl` elements.
-
 ```
 Example:
 
