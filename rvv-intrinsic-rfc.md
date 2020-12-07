@@ -35,6 +35,7 @@
   * [Reinterpret between different SEWs under the same LMUL](#reinterpret-sew)
   * [Utility Functions for Segment Load/Store Types](#utils-segment-types)
 - [C11 Generic Interface](#c11-generic-interface)
+- [Switching Vtype and Keep same VL in a Loop](#switching-vtype)
 
 ## Introduction<a name="introduction"></a>
 
@@ -726,3 +727,33 @@ vuint8m1_t vreinterpret_u8 (vint8m1_t src);
 // x for scalar, xu for unsigned scalar, and f for float.
 vint16m1_t vfcvt_x (vfloat16m1_t src);
 ```
+
+## Switching Vtype and Keep same VL after vsetvl instruction<a name="switching-vtype"></a>
+
+Compiler should guarantee the correctness of vtype setting after vsetvl instruction. For example considering the widening multiply example as below.
+
+```
+vl = vsetvl_e16m4(n);
+vfloat16m4_t vx = vle16_v_f16m4(ptr_x);
+// vsetvl_e32m8(vl); // No need to keep the same vl and change vtype manually
+vfloat32m8_t vy = vle32_v_f32m8(ptr_y);
+// vsetvl_e16m4(vl); // No need to keep the same vl and change vtype manually
+vfwmacc_vf_f32m8(vy, 2.0, vx);
+// vsetvl_e32m8(vl); // No need to keep the same vl and change vtype manually
+vse32_v_f32m8(ptr_y, vy);
+```
+
+```
+vl = vsetvl_e16m4(n);
+vfloat16m4_t vx = vle16_v_f16m4(ptr_x, vl);
+// vsetvl_e32m8(vl); // No need to change vtype manually
+vfloat32m8_t vy = vle32_v_f32m8(ptr_y, vl);
+// vsetvl_e16m4(vl); // No need to change vtype manually
+vfwmacc_vf_f32m8(vy, 2.0, vx, vl);
+// vsetvl_e32m8(vl); // No need to change vtype manually
+vse32_v_f32m8(ptr_y, vy, vl);
+```
+
+This example has a `vl` computed from `vsetvl_e16m4`, and changing the type to `vfloat32m8_t` in the middle.
+With compiler's helping, users don't need to change vtype manually because `vfloat16m4_t` and `vfloat32m8_t` have the exact same number of elements (same `SEW`/`LMUL` ratio).
+Noted that when using the different vtype intrinsic functions with a new `SEW`/`LMUL` ratio after vsetvl instruction, the result will raise an illegal-instruction exception.
