@@ -24,9 +24,6 @@
 - [With or Without the VL Argument](#vl-argument)
 - [SEW and LMUL of Intrinsics](#sew-and-lmul-of-intrinsics)
 - [C Operators on RISC-V Vector Types](#c-operators)
-- [Semantic Intrinsics](#semantic-intrinsics)
-  * [Vector Copy](#vector-copy)
-  * [Multiply-Add](#fma)
 - [Utility Functions](#utility-functions)
   * [Vector Initialization](#vector-init)
   * [Reinterpret between floating point and integer types](#reinterpret-float)
@@ -562,28 +559,6 @@ Be aware that when the ratio of `LMUL/SEW` is changed, users need to ensure the 
 ## C Operators on RISC-V Vector Types<a name="c-operators"></a>
 
 The semantic of C builtin operators, other than simple assignment, hasn't been decided yet. Simple assignment keeps the usual C semantics of storing the value on the right operand into the variable of the left operand.
-
-## Semantic Intrinsics<a name="semantic-intrinsics"></a>
-
-This section lists all intrinsics with higher semantic naming. It is usually an alias of a vector instruction or a combination of vector instructions.
-
-### Vector Copy<a name="vector-copy"></a>
-
-It is an alias of the `vmv.v.v` instruction.
-
-```
-vmv.v.v vd, vs1:
-vint8m1_t vcopy_v_i8m1(vint8m1_t vs1);
-```
-
-### Multiply-Add<a name="fma"></a>
-
-`vmacc` and `vmadd` are semantically equivalent operations. Provide `vma` intrinsics so the compiler has freedom to choose the best instruction. Same as `vfmacc` and `vfmadd`.
-
-```
-vint32m1_t vma_vv_i32m1(vint32m1_t acc, vint32m1_t op1, vint32m1_t op2)
-vfloat32m1_t vfma_vv_f32m1(vfloat32m1_t acc, vfloat32m1_t op1, vfloat32m1_t op2)
-```
 
 ## Utility Functions<a name="utility-functions"></a>
 
