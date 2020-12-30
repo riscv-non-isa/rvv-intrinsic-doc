@@ -226,6 +226,28 @@ vuint64m1_t vrsub_vx_u64m1_vl (vuint64m1_t op1, uint64_t op2, size_t vl);
 vuint64m2_t vrsub_vx_u64m2_vl (vuint64m2_t op1, uint64_t op2, size_t vl);
 vuint64m4_t vrsub_vx_u64m4_vl (vuint64m4_t op1, uint64_t op2, size_t vl);
 vuint64m8_t vrsub_vx_u64m8_vl (vuint64m8_t op1, uint64_t op2, size_t vl);
+vint8mf8_t vneg_v_i8mf8_vl (vint8mf8_t op1, size_t vl);
+vint8mf4_t vneg_v_i8mf4_vl (vint8mf4_t op1, size_t vl);
+vint8mf2_t vneg_v_i8mf2_vl (vint8mf2_t op1, size_t vl);
+vint8m1_t vneg_v_i8m1_vl (vint8m1_t op1, size_t vl);
+vint8m2_t vneg_v_i8m2_vl (vint8m2_t op1, size_t vl);
+vint8m4_t vneg_v_i8m4_vl (vint8m4_t op1, size_t vl);
+vint8m8_t vneg_v_i8m8_vl (vint8m8_t op1, size_t vl);
+vint16mf4_t vneg_v_i16mf4_vl (vint16mf4_t op1, size_t vl);
+vint16mf2_t vneg_v_i16mf2_vl (vint16mf2_t op1, size_t vl);
+vint16m1_t vneg_v_i16m1_vl (vint16m1_t op1, size_t vl);
+vint16m2_t vneg_v_i16m2_vl (vint16m2_t op1, size_t vl);
+vint16m4_t vneg_v_i16m4_vl (vint16m4_t op1, size_t vl);
+vint16m8_t vneg_v_i16m8_vl (vint16m8_t op1, size_t vl);
+vint32mf2_t vneg_v_i32mf2_vl (vint32mf2_t op1, size_t vl);
+vint32m1_t vneg_v_i32m1_vl (vint32m1_t op1, size_t vl);
+vint32m2_t vneg_v_i32m2_vl (vint32m2_t op1, size_t vl);
+vint32m4_t vneg_v_i32m4_vl (vint32m4_t op1, size_t vl);
+vint32m8_t vneg_v_i32m8_vl (vint32m8_t op1, size_t vl);
+vint64m1_t vneg_v_i64m1_vl (vint64m1_t op1, size_t vl);
+vint64m2_t vneg_v_i64m2_vl (vint64m2_t op1, size_t vl);
+vint64m4_t vneg_v_i64m4_vl (vint64m4_t op1, size_t vl);
+vint64m8_t vneg_v_i64m8_vl (vint64m8_t op1, size_t vl);
 // masked functions
 vint8mf8_t vadd_vv_i8mf8_m_vl (vbool64_t mask, vint8mf8_t maskedoff, vint8mf8_t op1, vint8mf8_t op2, size_t vl);
 vint8mf8_t vadd_vx_i8mf8_m_vl (vbool64_t mask, vint8mf8_t maskedoff, vint8mf8_t op1, int8_t op2, size_t vl);
@@ -447,6 +469,28 @@ vuint64m1_t vrsub_vx_u64m1_m_vl (vbool64_t mask, vuint64m1_t maskedoff, vuint64m
 vuint64m2_t vrsub_vx_u64m2_m_vl (vbool32_t mask, vuint64m2_t maskedoff, vuint64m2_t op1, uint64_t op2, size_t vl);
 vuint64m4_t vrsub_vx_u64m4_m_vl (vbool16_t mask, vuint64m4_t maskedoff, vuint64m4_t op1, uint64_t op2, size_t vl);
 vuint64m8_t vrsub_vx_u64m8_m_vl (vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t op1, uint64_t op2, size_t vl);
+vint8mf8_t vneg_v_i8mf8_m_vl (vbool64_t mask, vint8mf8_t maskedoff, vint8mf8_t op1, size_t vl);
+vint8mf4_t vneg_v_i8mf4_m_vl (vbool32_t mask, vint8mf4_t maskedoff, vint8mf4_t op1, size_t vl);
+vint8mf2_t vneg_v_i8mf2_m_vl (vbool16_t mask, vint8mf2_t maskedoff, vint8mf2_t op1, size_t vl);
+vint8m1_t vneg_v_i8m1_m_vl (vbool8_t mask, vint8m1_t maskedoff, vint8m1_t op1, size_t vl);
+vint8m2_t vneg_v_i8m2_m_vl (vbool4_t mask, vint8m2_t maskedoff, vint8m2_t op1, size_t vl);
+vint8m4_t vneg_v_i8m4_m_vl (vbool2_t mask, vint8m4_t maskedoff, vint8m4_t op1, size_t vl);
+vint8m8_t vneg_v_i8m8_m_vl (vbool1_t mask, vint8m8_t maskedoff, vint8m8_t op1, size_t vl);
+vint16mf4_t vneg_v_i16mf4_m_vl (vbool64_t mask, vint16mf4_t maskedoff, vint16mf4_t op1, size_t vl);
+vint16mf2_t vneg_v_i16mf2_m_vl (vbool32_t mask, vint16mf2_t maskedoff, vint16mf2_t op1, size_t vl);
+vint16m1_t vneg_v_i16m1_m_vl (vbool16_t mask, vint16m1_t maskedoff, vint16m1_t op1, size_t vl);
+vint16m2_t vneg_v_i16m2_m_vl (vbool8_t mask, vint16m2_t maskedoff, vint16m2_t op1, size_t vl);
+vint16m4_t vneg_v_i16m4_m_vl (vbool4_t mask, vint16m4_t maskedoff, vint16m4_t op1, size_t vl);
+vint16m8_t vneg_v_i16m8_m_vl (vbool2_t mask, vint16m8_t maskedoff, vint16m8_t op1, size_t vl);
+vint32mf2_t vneg_v_i32mf2_m_vl (vbool64_t mask, vint32mf2_t maskedoff, vint32mf2_t op1, size_t vl);
+vint32m1_t vneg_v_i32m1_m_vl (vbool32_t mask, vint32m1_t maskedoff, vint32m1_t op1, size_t vl);
+vint32m2_t vneg_v_i32m2_m_vl (vbool16_t mask, vint32m2_t maskedoff, vint32m2_t op1, size_t vl);
+vint32m4_t vneg_v_i32m4_m_vl (vbool8_t mask, vint32m4_t maskedoff, vint32m4_t op1, size_t vl);
+vint32m8_t vneg_v_i32m8_m_vl (vbool4_t mask, vint32m8_t maskedoff, vint32m8_t op1, size_t vl);
+vint64m1_t vneg_v_i64m1_m_vl (vbool64_t mask, vint64m1_t maskedoff, vint64m1_t op1, size_t vl);
+vint64m2_t vneg_v_i64m2_m_vl (vbool32_t mask, vint64m2_t maskedoff, vint64m2_t op1, size_t vl);
+vint64m4_t vneg_v_i64m4_m_vl (vbool16_t mask, vint64m4_t maskedoff, vint64m4_t op1, size_t vl);
+vint64m8_t vneg_v_i64m8_m_vl (vbool8_t mask, vint64m8_t maskedoff, vint64m8_t op1, size_t vl);
 ```
 ### [Vector Widening Integer Add/Subtract Functions](../rvv-intrinsic-api.md#122-vector-widening-integer-addsubtract-operations):
 

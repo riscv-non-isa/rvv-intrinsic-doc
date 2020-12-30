@@ -81,6 +81,21 @@ vfloat64m1_t vfrsub (vfloat64m1_t op1, float64_t op2);
 vfloat64m2_t vfrsub (vfloat64m2_t op1, float64_t op2);
 vfloat64m4_t vfrsub (vfloat64m4_t op1, float64_t op2);
 vfloat64m8_t vfrsub (vfloat64m8_t op1, float64_t op2);
+vfloat16mf4_t vfneg (vfloat16mf4_t op1);
+vfloat16mf2_t vfneg (vfloat16mf2_t op1);
+vfloat16m1_t vfneg (vfloat16m1_t op1);
+vfloat16m2_t vfneg (vfloat16m2_t op1);
+vfloat16m4_t vfneg (vfloat16m4_t op1);
+vfloat16m8_t vfneg (vfloat16m8_t op1);
+vfloat32mf2_t vfneg (vfloat32mf2_t op1);
+vfloat32m1_t vfneg (vfloat32m1_t op1);
+vfloat32m2_t vfneg (vfloat32m2_t op1);
+vfloat32m4_t vfneg (vfloat32m4_t op1);
+vfloat32m8_t vfneg (vfloat32m8_t op1);
+vfloat64m1_t vfneg (vfloat64m1_t op1);
+vfloat64m2_t vfneg (vfloat64m2_t op1);
+vfloat64m4_t vfneg (vfloat64m4_t op1);
+vfloat64m8_t vfneg (vfloat64m8_t op1);
 // masked functions
 vfloat16mf4_t vfadd_m (vbool64_t mask, vfloat16mf4_t maskedoff, vfloat16mf4_t op1, vfloat16mf4_t op2);
 vfloat16mf4_t vfadd_m (vbool64_t mask, vfloat16mf4_t maskedoff, vfloat16mf4_t op1, float16_t op2);
@@ -157,156 +172,171 @@ vfloat64m1_t vfrsub_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1,
 vfloat64m2_t vfrsub_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, float64_t op2);
 vfloat64m4_t vfrsub_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, float64_t op2);
 vfloat64m8_t vfrsub_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, float64_t op2);
+vfloat16mf4_t vfneg_m (vbool64_t mask, vfloat16mf4_t maskedoff, vfloat16mf4_t op1);
+vfloat16mf2_t vfneg_m (vbool32_t mask, vfloat16mf2_t maskedoff, vfloat16mf2_t op1);
+vfloat16m1_t vfneg_m (vbool16_t mask, vfloat16m1_t maskedoff, vfloat16m1_t op1);
+vfloat16m2_t vfneg_m (vbool8_t mask, vfloat16m2_t maskedoff, vfloat16m2_t op1);
+vfloat16m4_t vfneg_m (vbool4_t mask, vfloat16m4_t maskedoff, vfloat16m4_t op1);
+vfloat16m8_t vfneg_m (vbool2_t mask, vfloat16m8_t maskedoff, vfloat16m8_t op1);
+vfloat32mf2_t vfneg_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1);
+vfloat32m1_t vfneg_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1);
+vfloat32m2_t vfneg_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1);
+vfloat32m4_t vfneg_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1);
+vfloat32m8_t vfneg_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1);
+vfloat64m1_t vfneg_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1);
+vfloat64m2_t vfneg_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1);
+vfloat64m4_t vfneg_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1);
+vfloat64m8_t vfneg_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1);
 ```
 ### [Vector Widening Floating-Point Add/Subtract Functions](../rvv-intrinsic-api.md#143-vector-widening-floating-point-addsubtract-operations):
 
 **Prototypes:**
 ``` C
-vfloat32mf2_t vfwadd (vfloat16mf4_t op1, vfloat16mf4_t op2);
-vfloat32mf2_t vfwadd (vfloat16mf4_t op1, float16_t op2);
-vfloat32mf2_t vfwadd (vfloat32mf2_t op1, vfloat16mf4_t op2);
-vfloat32mf2_t vfwadd (vfloat32mf2_t op1, float16_t op2);
-vfloat32m1_t vfwadd (vfloat16mf2_t op1, vfloat16mf2_t op2);
-vfloat32m1_t vfwadd (vfloat16mf2_t op1, float16_t op2);
-vfloat32m1_t vfwadd (vfloat32m1_t op1, vfloat16mf2_t op2);
-vfloat32m1_t vfwadd (vfloat32m1_t op1, float16_t op2);
-vfloat32m2_t vfwadd (vfloat16m1_t op1, vfloat16m1_t op2);
-vfloat32m2_t vfwadd (vfloat16m1_t op1, float16_t op2);
-vfloat32m2_t vfwadd (vfloat32m2_t op1, vfloat16m1_t op2);
-vfloat32m2_t vfwadd (vfloat32m2_t op1, float16_t op2);
-vfloat32m4_t vfwadd (vfloat16m2_t op1, vfloat16m2_t op2);
-vfloat32m4_t vfwadd (vfloat16m2_t op1, float16_t op2);
-vfloat32m4_t vfwadd (vfloat32m4_t op1, vfloat16m2_t op2);
-vfloat32m4_t vfwadd (vfloat32m4_t op1, float16_t op2);
-vfloat32m8_t vfwadd (vfloat16m4_t op1, vfloat16m4_t op2);
-vfloat32m8_t vfwadd (vfloat16m4_t op1, float16_t op2);
-vfloat32m8_t vfwadd (vfloat32m8_t op1, vfloat16m4_t op2);
-vfloat32m8_t vfwadd (vfloat32m8_t op1, float16_t op2);
-vfloat64m1_t vfwadd (vfloat32mf2_t op1, vfloat32mf2_t op2);
-vfloat64m1_t vfwadd (vfloat32mf2_t op1, float32_t op2);
-vfloat64m1_t vfwadd (vfloat64m1_t op1, vfloat32mf2_t op2);
-vfloat64m1_t vfwadd (vfloat64m1_t op1, float32_t op2);
-vfloat64m2_t vfwadd (vfloat32m1_t op1, vfloat32m1_t op2);
-vfloat64m2_t vfwadd (vfloat32m1_t op1, float32_t op2);
-vfloat64m2_t vfwadd (vfloat64m2_t op1, vfloat32m1_t op2);
-vfloat64m2_t vfwadd (vfloat64m2_t op1, float32_t op2);
-vfloat64m4_t vfwadd (vfloat32m2_t op1, vfloat32m2_t op2);
-vfloat64m4_t vfwadd (vfloat32m2_t op1, float32_t op2);
-vfloat64m4_t vfwadd (vfloat64m4_t op1, vfloat32m2_t op2);
-vfloat64m4_t vfwadd (vfloat64m4_t op1, float32_t op2);
-vfloat64m8_t vfwadd (vfloat32m4_t op1, vfloat32m4_t op2);
-vfloat64m8_t vfwadd (vfloat32m4_t op1, float32_t op2);
-vfloat64m8_t vfwadd (vfloat64m8_t op1, vfloat32m4_t op2);
-vfloat64m8_t vfwadd (vfloat64m8_t op1, float32_t op2);
-vfloat32mf2_t vfwsub (vfloat16mf4_t op1, vfloat16mf4_t op2);
-vfloat32mf2_t vfwsub (vfloat16mf4_t op1, float16_t op2);
-vfloat32mf2_t vfwsub (vfloat32mf2_t op1, vfloat16mf4_t op2);
-vfloat32mf2_t vfwsub (vfloat32mf2_t op1, float16_t op2);
-vfloat32m1_t vfwsub (vfloat16mf2_t op1, vfloat16mf2_t op2);
-vfloat32m1_t vfwsub (vfloat16mf2_t op1, float16_t op2);
-vfloat32m1_t vfwsub (vfloat32m1_t op1, vfloat16mf2_t op2);
-vfloat32m1_t vfwsub (vfloat32m1_t op1, float16_t op2);
-vfloat32m2_t vfwsub (vfloat16m1_t op1, vfloat16m1_t op2);
-vfloat32m2_t vfwsub (vfloat16m1_t op1, float16_t op2);
-vfloat32m2_t vfwsub (vfloat32m2_t op1, vfloat16m1_t op2);
-vfloat32m2_t vfwsub (vfloat32m2_t op1, float16_t op2);
-vfloat32m4_t vfwsub (vfloat16m2_t op1, vfloat16m2_t op2);
-vfloat32m4_t vfwsub (vfloat16m2_t op1, float16_t op2);
-vfloat32m4_t vfwsub (vfloat32m4_t op1, vfloat16m2_t op2);
-vfloat32m4_t vfwsub (vfloat32m4_t op1, float16_t op2);
-vfloat32m8_t vfwsub (vfloat16m4_t op1, vfloat16m4_t op2);
-vfloat32m8_t vfwsub (vfloat16m4_t op1, float16_t op2);
-vfloat32m8_t vfwsub (vfloat32m8_t op1, vfloat16m4_t op2);
-vfloat32m8_t vfwsub (vfloat32m8_t op1, float16_t op2);
-vfloat64m1_t vfwsub (vfloat32mf2_t op1, vfloat32mf2_t op2);
-vfloat64m1_t vfwsub (vfloat32mf2_t op1, float32_t op2);
-vfloat64m1_t vfwsub (vfloat64m1_t op1, vfloat32mf2_t op2);
-vfloat64m1_t vfwsub (vfloat64m1_t op1, float32_t op2);
-vfloat64m2_t vfwsub (vfloat32m1_t op1, vfloat32m1_t op2);
-vfloat64m2_t vfwsub (vfloat32m1_t op1, float32_t op2);
-vfloat64m2_t vfwsub (vfloat64m2_t op1, vfloat32m1_t op2);
-vfloat64m2_t vfwsub (vfloat64m2_t op1, float32_t op2);
-vfloat64m4_t vfwsub (vfloat32m2_t op1, vfloat32m2_t op2);
-vfloat64m4_t vfwsub (vfloat32m2_t op1, float32_t op2);
-vfloat64m4_t vfwsub (vfloat64m4_t op1, vfloat32m2_t op2);
-vfloat64m4_t vfwsub (vfloat64m4_t op1, float32_t op2);
-vfloat64m8_t vfwsub (vfloat32m4_t op1, vfloat32m4_t op2);
-vfloat64m8_t vfwsub (vfloat32m4_t op1, float32_t op2);
-vfloat64m8_t vfwsub (vfloat64m8_t op1, vfloat32m4_t op2);
-vfloat64m8_t vfwsub (vfloat64m8_t op1, float32_t op2);
+vfloat32mf2_t vfwadd_vv (vfloat16mf4_t op1, vfloat16mf4_t op2);
+vfloat32mf2_t vfwadd_vf (vfloat16mf4_t op1, float16_t op2);
+vfloat32mf2_t vfwadd_wv (vfloat32mf2_t op1, vfloat16mf4_t op2);
+vfloat32mf2_t vfwadd_wf (vfloat32mf2_t op1, float16_t op2);
+vfloat32m1_t vfwadd_vv (vfloat16mf2_t op1, vfloat16mf2_t op2);
+vfloat32m1_t vfwadd_vf (vfloat16mf2_t op1, float16_t op2);
+vfloat32m1_t vfwadd_wv (vfloat32m1_t op1, vfloat16mf2_t op2);
+vfloat32m1_t vfwadd_wf (vfloat32m1_t op1, float16_t op2);
+vfloat32m2_t vfwadd_vv (vfloat16m1_t op1, vfloat16m1_t op2);
+vfloat32m2_t vfwadd_vf (vfloat16m1_t op1, float16_t op2);
+vfloat32m2_t vfwadd_wv (vfloat32m2_t op1, vfloat16m1_t op2);
+vfloat32m2_t vfwadd_wf (vfloat32m2_t op1, float16_t op2);
+vfloat32m4_t vfwadd_vv (vfloat16m2_t op1, vfloat16m2_t op2);
+vfloat32m4_t vfwadd_vf (vfloat16m2_t op1, float16_t op2);
+vfloat32m4_t vfwadd_wv (vfloat32m4_t op1, vfloat16m2_t op2);
+vfloat32m4_t vfwadd_wf (vfloat32m4_t op1, float16_t op2);
+vfloat32m8_t vfwadd_vv (vfloat16m4_t op1, vfloat16m4_t op2);
+vfloat32m8_t vfwadd_vf (vfloat16m4_t op1, float16_t op2);
+vfloat32m8_t vfwadd_wv (vfloat32m8_t op1, vfloat16m4_t op2);
+vfloat32m8_t vfwadd_wf (vfloat32m8_t op1, float16_t op2);
+vfloat64m1_t vfwadd_vv (vfloat32mf2_t op1, vfloat32mf2_t op2);
+vfloat64m1_t vfwadd_vf (vfloat32mf2_t op1, float32_t op2);
+vfloat64m1_t vfwadd_wv (vfloat64m1_t op1, vfloat32mf2_t op2);
+vfloat64m1_t vfwadd_wf (vfloat64m1_t op1, float32_t op2);
+vfloat64m2_t vfwadd_vv (vfloat32m1_t op1, vfloat32m1_t op2);
+vfloat64m2_t vfwadd_vf (vfloat32m1_t op1, float32_t op2);
+vfloat64m2_t vfwadd_wv (vfloat64m2_t op1, vfloat32m1_t op2);
+vfloat64m2_t vfwadd_wf (vfloat64m2_t op1, float32_t op2);
+vfloat64m4_t vfwadd_vv (vfloat32m2_t op1, vfloat32m2_t op2);
+vfloat64m4_t vfwadd_vf (vfloat32m2_t op1, float32_t op2);
+vfloat64m4_t vfwadd_wv (vfloat64m4_t op1, vfloat32m2_t op2);
+vfloat64m4_t vfwadd_wf (vfloat64m4_t op1, float32_t op2);
+vfloat64m8_t vfwadd_vv (vfloat32m4_t op1, vfloat32m4_t op2);
+vfloat64m8_t vfwadd_vf (vfloat32m4_t op1, float32_t op2);
+vfloat64m8_t vfwadd_wv (vfloat64m8_t op1, vfloat32m4_t op2);
+vfloat64m8_t vfwadd_wf (vfloat64m8_t op1, float32_t op2);
+vfloat32mf2_t vfwsub_vv (vfloat16mf4_t op1, vfloat16mf4_t op2);
+vfloat32mf2_t vfwsub_vf (vfloat16mf4_t op1, float16_t op2);
+vfloat32mf2_t vfwsub_wv (vfloat32mf2_t op1, vfloat16mf4_t op2);
+vfloat32mf2_t vfwsub_wf (vfloat32mf2_t op1, float16_t op2);
+vfloat32m1_t vfwsub_vv (vfloat16mf2_t op1, vfloat16mf2_t op2);
+vfloat32m1_t vfwsub_vf (vfloat16mf2_t op1, float16_t op2);
+vfloat32m1_t vfwsub_wv (vfloat32m1_t op1, vfloat16mf2_t op2);
+vfloat32m1_t vfwsub_wf (vfloat32m1_t op1, float16_t op2);
+vfloat32m2_t vfwsub_vv (vfloat16m1_t op1, vfloat16m1_t op2);
+vfloat32m2_t vfwsub_vf (vfloat16m1_t op1, float16_t op2);
+vfloat32m2_t vfwsub_wv (vfloat32m2_t op1, vfloat16m1_t op2);
+vfloat32m2_t vfwsub_wf (vfloat32m2_t op1, float16_t op2);
+vfloat32m4_t vfwsub_vv (vfloat16m2_t op1, vfloat16m2_t op2);
+vfloat32m4_t vfwsub_vf (vfloat16m2_t op1, float16_t op2);
+vfloat32m4_t vfwsub_wv (vfloat32m4_t op1, vfloat16m2_t op2);
+vfloat32m4_t vfwsub_wf (vfloat32m4_t op1, float16_t op2);
+vfloat32m8_t vfwsub_vv (vfloat16m4_t op1, vfloat16m4_t op2);
+vfloat32m8_t vfwsub_vf (vfloat16m4_t op1, float16_t op2);
+vfloat32m8_t vfwsub_wv (vfloat32m8_t op1, vfloat16m4_t op2);
+vfloat32m8_t vfwsub_wf (vfloat32m8_t op1, float16_t op2);
+vfloat64m1_t vfwsub_vv (vfloat32mf2_t op1, vfloat32mf2_t op2);
+vfloat64m1_t vfwsub_vf (vfloat32mf2_t op1, float32_t op2);
+vfloat64m1_t vfwsub_wv (vfloat64m1_t op1, vfloat32mf2_t op2);
+vfloat64m1_t vfwsub_wf (vfloat64m1_t op1, float32_t op2);
+vfloat64m2_t vfwsub_vv (vfloat32m1_t op1, vfloat32m1_t op2);
+vfloat64m2_t vfwsub_vf (vfloat32m1_t op1, float32_t op2);
+vfloat64m2_t vfwsub_wv (vfloat64m2_t op1, vfloat32m1_t op2);
+vfloat64m2_t vfwsub_wf (vfloat64m2_t op1, float32_t op2);
+vfloat64m4_t vfwsub_vv (vfloat32m2_t op1, vfloat32m2_t op2);
+vfloat64m4_t vfwsub_vf (vfloat32m2_t op1, float32_t op2);
+vfloat64m4_t vfwsub_wv (vfloat64m4_t op1, vfloat32m2_t op2);
+vfloat64m4_t vfwsub_wf (vfloat64m4_t op1, float32_t op2);
+vfloat64m8_t vfwsub_vv (vfloat32m4_t op1, vfloat32m4_t op2);
+vfloat64m8_t vfwsub_vf (vfloat32m4_t op1, float32_t op2);
+vfloat64m8_t vfwsub_wv (vfloat64m8_t op1, vfloat32m4_t op2);
+vfloat64m8_t vfwsub_wf (vfloat64m8_t op1, float32_t op2);
 // masked functions
-vfloat32mf2_t vfwadd_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat16mf4_t op1, vfloat16mf4_t op2);
-vfloat32mf2_t vfwadd_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat16mf4_t op1, float16_t op2);
-vfloat32mf2_t vfwadd_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1, vfloat16mf4_t op2);
-vfloat32mf2_t vfwadd_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1, float16_t op2);
-vfloat32m1_t vfwadd_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat16mf2_t op1, vfloat16mf2_t op2);
-vfloat32m1_t vfwadd_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat16mf2_t op1, float16_t op2);
-vfloat32m1_t vfwadd_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1, vfloat16mf2_t op2);
-vfloat32m1_t vfwadd_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1, float16_t op2);
-vfloat32m2_t vfwadd_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat16m1_t op1, vfloat16m1_t op2);
-vfloat32m2_t vfwadd_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat16m1_t op1, float16_t op2);
-vfloat32m2_t vfwadd_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1, vfloat16m1_t op2);
-vfloat32m2_t vfwadd_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1, float16_t op2);
-vfloat32m4_t vfwadd_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat16m2_t op1, vfloat16m2_t op2);
-vfloat32m4_t vfwadd_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat16m2_t op1, float16_t op2);
-vfloat32m4_t vfwadd_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1, vfloat16m2_t op2);
-vfloat32m4_t vfwadd_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1, float16_t op2);
-vfloat32m8_t vfwadd_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat16m4_t op1, vfloat16m4_t op2);
-vfloat32m8_t vfwadd_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat16m4_t op1, float16_t op2);
-vfloat32m8_t vfwadd_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1, vfloat16m4_t op2);
-vfloat32m8_t vfwadd_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1, float16_t op2);
-vfloat64m1_t vfwadd_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat32mf2_t op1, vfloat32mf2_t op2);
-vfloat64m1_t vfwadd_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat32mf2_t op1, float32_t op2);
-vfloat64m1_t vfwadd_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1, vfloat32mf2_t op2);
-vfloat64m1_t vfwadd_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1, float32_t op2);
-vfloat64m2_t vfwadd_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat32m1_t op1, vfloat32m1_t op2);
-vfloat64m2_t vfwadd_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat32m1_t op1, float32_t op2);
-vfloat64m2_t vfwadd_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, vfloat32m1_t op2);
-vfloat64m2_t vfwadd_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, float32_t op2);
-vfloat64m4_t vfwadd_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat32m2_t op1, vfloat32m2_t op2);
-vfloat64m4_t vfwadd_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat32m2_t op1, float32_t op2);
-vfloat64m4_t vfwadd_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, vfloat32m2_t op2);
-vfloat64m4_t vfwadd_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, float32_t op2);
-vfloat64m8_t vfwadd_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat32m4_t op1, vfloat32m4_t op2);
-vfloat64m8_t vfwadd_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat32m4_t op1, float32_t op2);
-vfloat64m8_t vfwadd_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, vfloat32m4_t op2);
-vfloat64m8_t vfwadd_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, float32_t op2);
-vfloat32mf2_t vfwsub_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat16mf4_t op1, vfloat16mf4_t op2);
-vfloat32mf2_t vfwsub_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat16mf4_t op1, float16_t op2);
-vfloat32mf2_t vfwsub_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1, vfloat16mf4_t op2);
-vfloat32mf2_t vfwsub_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1, float16_t op2);
-vfloat32m1_t vfwsub_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat16mf2_t op1, vfloat16mf2_t op2);
-vfloat32m1_t vfwsub_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat16mf2_t op1, float16_t op2);
-vfloat32m1_t vfwsub_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1, vfloat16mf2_t op2);
-vfloat32m1_t vfwsub_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1, float16_t op2);
-vfloat32m2_t vfwsub_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat16m1_t op1, vfloat16m1_t op2);
-vfloat32m2_t vfwsub_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat16m1_t op1, float16_t op2);
-vfloat32m2_t vfwsub_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1, vfloat16m1_t op2);
-vfloat32m2_t vfwsub_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1, float16_t op2);
-vfloat32m4_t vfwsub_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat16m2_t op1, vfloat16m2_t op2);
-vfloat32m4_t vfwsub_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat16m2_t op1, float16_t op2);
-vfloat32m4_t vfwsub_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1, vfloat16m2_t op2);
-vfloat32m4_t vfwsub_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1, float16_t op2);
-vfloat32m8_t vfwsub_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat16m4_t op1, vfloat16m4_t op2);
-vfloat32m8_t vfwsub_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat16m4_t op1, float16_t op2);
-vfloat32m8_t vfwsub_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1, vfloat16m4_t op2);
-vfloat32m8_t vfwsub_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1, float16_t op2);
-vfloat64m1_t vfwsub_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat32mf2_t op1, vfloat32mf2_t op2);
-vfloat64m1_t vfwsub_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat32mf2_t op1, float32_t op2);
-vfloat64m1_t vfwsub_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1, vfloat32mf2_t op2);
-vfloat64m1_t vfwsub_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1, float32_t op2);
-vfloat64m2_t vfwsub_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat32m1_t op1, vfloat32m1_t op2);
-vfloat64m2_t vfwsub_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat32m1_t op1, float32_t op2);
-vfloat64m2_t vfwsub_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, vfloat32m1_t op2);
-vfloat64m2_t vfwsub_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, float32_t op2);
-vfloat64m4_t vfwsub_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat32m2_t op1, vfloat32m2_t op2);
-vfloat64m4_t vfwsub_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat32m2_t op1, float32_t op2);
-vfloat64m4_t vfwsub_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, vfloat32m2_t op2);
-vfloat64m4_t vfwsub_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, float32_t op2);
-vfloat64m8_t vfwsub_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat32m4_t op1, vfloat32m4_t op2);
-vfloat64m8_t vfwsub_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat32m4_t op1, float32_t op2);
-vfloat64m8_t vfwsub_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, vfloat32m4_t op2);
-vfloat64m8_t vfwsub_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, float32_t op2);
+vfloat32mf2_t vfwadd_vv_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat16mf4_t op1, vfloat16mf4_t op2);
+vfloat32mf2_t vfwadd_vf_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat16mf4_t op1, float16_t op2);
+vfloat32mf2_t vfwadd_wv_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1, vfloat16mf4_t op2);
+vfloat32mf2_t vfwadd_wf_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1, float16_t op2);
+vfloat32m1_t vfwadd_vv_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat16mf2_t op1, vfloat16mf2_t op2);
+vfloat32m1_t vfwadd_vf_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat16mf2_t op1, float16_t op2);
+vfloat32m1_t vfwadd_wv_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1, vfloat16mf2_t op2);
+vfloat32m1_t vfwadd_wf_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1, float16_t op2);
+vfloat32m2_t vfwadd_vv_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat16m1_t op1, vfloat16m1_t op2);
+vfloat32m2_t vfwadd_vf_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat16m1_t op1, float16_t op2);
+vfloat32m2_t vfwadd_wv_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1, vfloat16m1_t op2);
+vfloat32m2_t vfwadd_wf_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1, float16_t op2);
+vfloat32m4_t vfwadd_vv_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat16m2_t op1, vfloat16m2_t op2);
+vfloat32m4_t vfwadd_vf_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat16m2_t op1, float16_t op2);
+vfloat32m4_t vfwadd_wv_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1, vfloat16m2_t op2);
+vfloat32m4_t vfwadd_wf_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1, float16_t op2);
+vfloat32m8_t vfwadd_vv_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat16m4_t op1, vfloat16m4_t op2);
+vfloat32m8_t vfwadd_vf_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat16m4_t op1, float16_t op2);
+vfloat32m8_t vfwadd_wv_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1, vfloat16m4_t op2);
+vfloat32m8_t vfwadd_wf_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1, float16_t op2);
+vfloat64m1_t vfwadd_vv_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat32mf2_t op1, vfloat32mf2_t op2);
+vfloat64m1_t vfwadd_vf_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat32mf2_t op1, float32_t op2);
+vfloat64m1_t vfwadd_wv_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1, vfloat32mf2_t op2);
+vfloat64m1_t vfwadd_wf_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1, float32_t op2);
+vfloat64m2_t vfwadd_vv_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat32m1_t op1, vfloat32m1_t op2);
+vfloat64m2_t vfwadd_vf_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat32m1_t op1, float32_t op2);
+vfloat64m2_t vfwadd_wv_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, vfloat32m1_t op2);
+vfloat64m2_t vfwadd_wf_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, float32_t op2);
+vfloat64m4_t vfwadd_vv_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat32m2_t op1, vfloat32m2_t op2);
+vfloat64m4_t vfwadd_vf_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat32m2_t op1, float32_t op2);
+vfloat64m4_t vfwadd_wv_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, vfloat32m2_t op2);
+vfloat64m4_t vfwadd_wf_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, float32_t op2);
+vfloat64m8_t vfwadd_vv_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat32m4_t op1, vfloat32m4_t op2);
+vfloat64m8_t vfwadd_vf_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat32m4_t op1, float32_t op2);
+vfloat64m8_t vfwadd_wv_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, vfloat32m4_t op2);
+vfloat64m8_t vfwadd_wf_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, float32_t op2);
+vfloat32mf2_t vfwsub_vv_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat16mf4_t op1, vfloat16mf4_t op2);
+vfloat32mf2_t vfwsub_vf_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat16mf4_t op1, float16_t op2);
+vfloat32mf2_t vfwsub_wv_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1, vfloat16mf4_t op2);
+vfloat32mf2_t vfwsub_wf_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1, float16_t op2);
+vfloat32m1_t vfwsub_vv_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat16mf2_t op1, vfloat16mf2_t op2);
+vfloat32m1_t vfwsub_vf_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat16mf2_t op1, float16_t op2);
+vfloat32m1_t vfwsub_wv_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1, vfloat16mf2_t op2);
+vfloat32m1_t vfwsub_wf_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1, float16_t op2);
+vfloat32m2_t vfwsub_vv_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat16m1_t op1, vfloat16m1_t op2);
+vfloat32m2_t vfwsub_vf_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat16m1_t op1, float16_t op2);
+vfloat32m2_t vfwsub_wv_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1, vfloat16m1_t op2);
+vfloat32m2_t vfwsub_wf_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1, float16_t op2);
+vfloat32m4_t vfwsub_vv_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat16m2_t op1, vfloat16m2_t op2);
+vfloat32m4_t vfwsub_vf_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat16m2_t op1, float16_t op2);
+vfloat32m4_t vfwsub_wv_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1, vfloat16m2_t op2);
+vfloat32m4_t vfwsub_wf_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1, float16_t op2);
+vfloat32m8_t vfwsub_vv_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat16m4_t op1, vfloat16m4_t op2);
+vfloat32m8_t vfwsub_vf_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat16m4_t op1, float16_t op2);
+vfloat32m8_t vfwsub_wv_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1, vfloat16m4_t op2);
+vfloat32m8_t vfwsub_wf_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1, float16_t op2);
+vfloat64m1_t vfwsub_vv_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat32mf2_t op1, vfloat32mf2_t op2);
+vfloat64m1_t vfwsub_vf_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat32mf2_t op1, float32_t op2);
+vfloat64m1_t vfwsub_wv_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1, vfloat32mf2_t op2);
+vfloat64m1_t vfwsub_wf_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1, float32_t op2);
+vfloat64m2_t vfwsub_vv_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat32m1_t op1, vfloat32m1_t op2);
+vfloat64m2_t vfwsub_vf_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat32m1_t op1, float32_t op2);
+vfloat64m2_t vfwsub_wv_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, vfloat32m1_t op2);
+vfloat64m2_t vfwsub_wf_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, float32_t op2);
+vfloat64m4_t vfwsub_vv_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat32m2_t op1, vfloat32m2_t op2);
+vfloat64m4_t vfwsub_vf_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat32m2_t op1, float32_t op2);
+vfloat64m4_t vfwsub_wv_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, vfloat32m2_t op2);
+vfloat64m4_t vfwsub_wf_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, float32_t op2);
+vfloat64m8_t vfwsub_vv_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat32m4_t op1, vfloat32m4_t op2);
+vfloat64m8_t vfwsub_vf_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat32m4_t op1, float32_t op2);
+vfloat64m8_t vfwsub_wv_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, vfloat32m4_t op2);
+vfloat64m8_t vfwsub_wf_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, float32_t op2);
 ```
 ### [Vector Single-Width Floating-Point Multiply/Divide Functions](../rvv-intrinsic-api.md#144-vector-single-width-floating-point-multiplydivide-operations):
 
@@ -1178,7 +1208,79 @@ vfloat64m2_t vfsqrt_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1)
 vfloat64m4_t vfsqrt_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1);
 vfloat64m8_t vfsqrt_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1);
 ```
-### [Vector Floating-Point MIN/MAX Functions](../rvv-intrinsic-api.md#149-vector-floating-point-minmax-operations):
+### [Vector Floating-Point Reciprocal Square-Root Estimate Functions](../rvv-intrinsic-api.md#149-vector-floating-point-reciprocal-square-root-estimate-operations):
+
+**Prototypes:**
+``` C
+vfloat16mf4_t vfrsqrte7 (vfloat16mf4_t op1);
+vfloat16mf2_t vfrsqrte7 (vfloat16mf2_t op1);
+vfloat16m1_t vfrsqrte7 (vfloat16m1_t op1);
+vfloat16m2_t vfrsqrte7 (vfloat16m2_t op1);
+vfloat16m4_t vfrsqrte7 (vfloat16m4_t op1);
+vfloat16m8_t vfrsqrte7 (vfloat16m8_t op1);
+vfloat32mf2_t vfrsqrte7 (vfloat32mf2_t op1);
+vfloat32m1_t vfrsqrte7 (vfloat32m1_t op1);
+vfloat32m2_t vfrsqrte7 (vfloat32m2_t op1);
+vfloat32m4_t vfrsqrte7 (vfloat32m4_t op1);
+vfloat32m8_t vfrsqrte7 (vfloat32m8_t op1);
+vfloat64m1_t vfrsqrte7 (vfloat64m1_t op1);
+vfloat64m2_t vfrsqrte7 (vfloat64m2_t op1);
+vfloat64m4_t vfrsqrte7 (vfloat64m4_t op1);
+vfloat64m8_t vfrsqrte7 (vfloat64m8_t op1);
+// masked functions
+vfloat16mf4_t vfrsqrte7_m (vbool64_t mask, vfloat16mf4_t maskedoff, vfloat16mf4_t op1);
+vfloat16mf2_t vfrsqrte7_m (vbool32_t mask, vfloat16mf2_t maskedoff, vfloat16mf2_t op1);
+vfloat16m1_t vfrsqrte7_m (vbool16_t mask, vfloat16m1_t maskedoff, vfloat16m1_t op1);
+vfloat16m2_t vfrsqrte7_m (vbool8_t mask, vfloat16m2_t maskedoff, vfloat16m2_t op1);
+vfloat16m4_t vfrsqrte7_m (vbool4_t mask, vfloat16m4_t maskedoff, vfloat16m4_t op1);
+vfloat16m8_t vfrsqrte7_m (vbool2_t mask, vfloat16m8_t maskedoff, vfloat16m8_t op1);
+vfloat32mf2_t vfrsqrte7_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1);
+vfloat32m1_t vfrsqrte7_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1);
+vfloat32m2_t vfrsqrte7_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1);
+vfloat32m4_t vfrsqrte7_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1);
+vfloat32m8_t vfrsqrte7_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1);
+vfloat64m1_t vfrsqrte7_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1);
+vfloat64m2_t vfrsqrte7_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1);
+vfloat64m4_t vfrsqrte7_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1);
+vfloat64m8_t vfrsqrte7_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1);
+```
+### [Vector Floating-Point Reciprocal Estimate Functions](../rvv-intrinsic-api.md#1410-vector-floating-point-reciprocal-estimate-operations):
+
+**Prototypes:**
+``` C
+vfloat16mf4_t vfrece7 (vfloat16mf4_t op1);
+vfloat16mf2_t vfrece7 (vfloat16mf2_t op1);
+vfloat16m1_t vfrece7 (vfloat16m1_t op1);
+vfloat16m2_t vfrece7 (vfloat16m2_t op1);
+vfloat16m4_t vfrece7 (vfloat16m4_t op1);
+vfloat16m8_t vfrece7 (vfloat16m8_t op1);
+vfloat32mf2_t vfrece7 (vfloat32mf2_t op1);
+vfloat32m1_t vfrece7 (vfloat32m1_t op1);
+vfloat32m2_t vfrece7 (vfloat32m2_t op1);
+vfloat32m4_t vfrece7 (vfloat32m4_t op1);
+vfloat32m8_t vfrece7 (vfloat32m8_t op1);
+vfloat64m1_t vfrece7 (vfloat64m1_t op1);
+vfloat64m2_t vfrece7 (vfloat64m2_t op1);
+vfloat64m4_t vfrece7 (vfloat64m4_t op1);
+vfloat64m8_t vfrece7 (vfloat64m8_t op1);
+// masked functions
+vfloat16mf4_t vfrece7_m (vbool64_t mask, vfloat16mf4_t maskedoff, vfloat16mf4_t op1);
+vfloat16mf2_t vfrece7_m (vbool32_t mask, vfloat16mf2_t maskedoff, vfloat16mf2_t op1);
+vfloat16m1_t vfrece7_m (vbool16_t mask, vfloat16m1_t maskedoff, vfloat16m1_t op1);
+vfloat16m2_t vfrece7_m (vbool8_t mask, vfloat16m2_t maskedoff, vfloat16m2_t op1);
+vfloat16m4_t vfrece7_m (vbool4_t mask, vfloat16m4_t maskedoff, vfloat16m4_t op1);
+vfloat16m8_t vfrece7_m (vbool2_t mask, vfloat16m8_t maskedoff, vfloat16m8_t op1);
+vfloat32mf2_t vfrece7_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1);
+vfloat32m1_t vfrece7_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1);
+vfloat32m2_t vfrece7_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1);
+vfloat32m4_t vfrece7_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1);
+vfloat32m8_t vfrece7_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1);
+vfloat64m1_t vfrece7_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1);
+vfloat64m2_t vfrece7_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1);
+vfloat64m4_t vfrece7_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1);
+vfloat64m8_t vfrece7_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1);
+```
+### [Vector Floating-Point MIN/MAX Functions](../rvv-intrinsic-api.md#1411-vector-floating-point-minmax-operations):
 
 **Prototypes:**
 ``` C
@@ -1304,7 +1406,7 @@ vfloat64m4_t vfmax_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, 
 vfloat64m8_t vfmax_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, vfloat64m8_t op2);
 vfloat64m8_t vfmax_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, float64_t op2);
 ```
-### [Vector Floating-Point Sign-Injection Functions](../rvv-intrinsic-api.md#1410-vector-floating-point-sign-injection-operations):
+### [Vector Floating-Point Sign-Injection Functions](../rvv-intrinsic-api.md#1412-vector-floating-point-sign-injection-operations):
 
 **Prototypes:**
 ``` C
@@ -1490,7 +1592,7 @@ vfloat64m4_t vfsgnjx_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1
 vfloat64m8_t vfsgnjx_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, vfloat64m8_t op2);
 vfloat64m8_t vfsgnjx_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, float64_t op2);
 ```
-### [Vector Floating-Point Compare Functions](../rvv-intrinsic-api.md#1411-vector-floating-point-compare-operations):
+### [Vector Floating-Point Compare Functions](../rvv-intrinsic-api.md#1413-vector-floating-point-compare-operations):
 
 **Prototypes:**
 ``` C
@@ -1856,7 +1958,7 @@ vbool16_t vmfge_m (vbool16_t mask, vbool16_t maskedoff, vfloat64m4_t op1, float6
 vbool8_t vmfge_m (vbool8_t mask, vbool8_t maskedoff, vfloat64m8_t op1, vfloat64m8_t op2);
 vbool8_t vmfge_m (vbool8_t mask, vbool8_t maskedoff, vfloat64m8_t op1, float64_t op2);
 ```
-### [Vector Floating-Point Classify Functions](../rvv-intrinsic-api.md#1412-vector-floating-point-classify-operations):
+### [Vector Floating-Point Classify Functions](../rvv-intrinsic-api.md#1414-vector-floating-point-classify-operations):
 
 **Prototypes:**
 ``` C
@@ -1892,7 +1994,7 @@ vuint64m2_t vfclass_m (vbool32_t mask, vuint64m2_t maskedoff, vfloat64m2_t op1);
 vuint64m4_t vfclass_m (vbool16_t mask, vuint64m4_t maskedoff, vfloat64m4_t op1);
 vuint64m8_t vfclass_m (vbool8_t mask, vuint64m8_t maskedoff, vfloat64m8_t op1);
 ```
-### [Vector Floating-Point Merge Functions](../rvv-intrinsic-api.md#1413-vector-floating-point-merge-operations):
+### [Vector Floating-Point Merge Functions](../rvv-intrinsic-api.md#1415-vector-floating-point-merge-operations):
 
 **Prototypes:**
 ``` C
@@ -1927,7 +2029,7 @@ vfloat64m4_t vfmerge (vbool16_t mask, vfloat64m4_t op1, float64_t op2);
 vfloat64m8_t vmerge (vbool8_t mask, vfloat64m8_t op1, vfloat64m8_t op2);
 vfloat64m8_t vfmerge (vbool8_t mask, vfloat64m8_t op1, float64_t op2);
 ```
-### [Vector Floating-Point Move Functions](../rvv-intrinsic-api.md#1414-vector-floating-point-move-operations):
+### [Vector Floating-Point Move Functions](../rvv-intrinsic-api.md#1416-vector-floating-point-move-operations):
 
 **Prototypes:**
 ``` C
@@ -1962,7 +2064,7 @@ vfloat64m4_t vfmv_v_f_f64m4 (float64_t src);
 vfloat64m8_t vmv_v_v (vfloat64m8_t src);
 vfloat64m8_t vfmv_v_f_f64m8 (float64_t src);
 ```
-### [Single-Width Floating-Point/Integer Type-Convert Functions](../rvv-intrinsic-api.md#1415-single-width-floating-pointinteger-type-convert-operations):
+### [Single-Width Floating-Point/Integer Type-Convert Functions](../rvv-intrinsic-api.md#1417-single-width-floating-pointinteger-type-convert-operations):
 
 **Prototypes:**
 ``` C
@@ -2148,7 +2250,7 @@ vfloat64m2_t vfcvt_f_m (vbool32_t mask, vfloat64m2_t maskedoff, vuint64m2_t src)
 vfloat64m4_t vfcvt_f_m (vbool16_t mask, vfloat64m4_t maskedoff, vuint64m4_t src);
 vfloat64m8_t vfcvt_f_m (vbool8_t mask, vfloat64m8_t maskedoff, vuint64m8_t src);
 ```
-### [Widening Floating-Point/Integer Type-Convert Functions](../rvv-intrinsic-api.md#1416-widening-floating-pointinteger-type-convert-operations):
+### [Widening Floating-Point/Integer Type-Convert Functions](../rvv-intrinsic-api.md#1418-widening-floating-pointinteger-type-convert-operations):
 
 **Prototypes:**
 ``` C
@@ -2340,10 +2442,46 @@ vfloat64m2_t vfwcvt_f_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat32m1_t sr
 vfloat64m4_t vfwcvt_f_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat32m2_t src);
 vfloat64m8_t vfwcvt_f_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat32m4_t src);
 ```
-### [Narrowing Floating-Point/Integer Type-Convert Functions](../rvv-intrinsic-api.md#1417-narrowing-floating-pointinteger-type-convert-operations):
+### [Narrowing Floating-Point/Integer Type-Convert Functions](../rvv-intrinsic-api.md#1419-narrowing-floating-pointinteger-type-convert-operations):
 
 **Prototypes:**
 ``` C
+vint8mf8_t vfncvt_x (vfloat16mf4_t src);
+vint8mf8_t vfncvt_rtz_x (vfloat16mf4_t src);
+vint8mf4_t vfncvt_x (vfloat16mf2_t src);
+vint8mf4_t vfncvt_rtz_x (vfloat16mf2_t src);
+vint8mf2_t vfncvt_x (vfloat16m1_t src);
+vint8mf2_t vfncvt_rtz_x (vfloat16m1_t src);
+vint8m1_t vfncvt_x (vfloat16m2_t src);
+vint8m1_t vfncvt_rtz_x (vfloat16m2_t src);
+vint8m2_t vfncvt_x (vfloat16m4_t src);
+vint8m2_t vfncvt_rtz_x (vfloat16m4_t src);
+vint8m4_t vfncvt_x (vfloat16m8_t src);
+vint8m4_t vfncvt_rtz_x (vfloat16m8_t src);
+vint8mf8_t vncvt_x (vint16mf4_t src);
+vint8mf4_t vncvt_x (vint16mf2_t src);
+vint8mf2_t vncvt_x (vint16m1_t src);
+vint8m1_t vncvt_x (vint16m2_t src);
+vint8m2_t vncvt_x (vint16m4_t src);
+vint8m4_t vncvt_x (vint16m8_t src);
+vuint8mf8_t vncvt_x (vuint16mf4_t src);
+vuint8mf4_t vncvt_x (vuint16mf2_t src);
+vuint8mf2_t vncvt_x (vuint16m1_t src);
+vuint8m1_t vncvt_x (vuint16m2_t src);
+vuint8m2_t vncvt_x (vuint16m4_t src);
+vuint8m4_t vncvt_x (vuint16m8_t src);
+vuint8mf8_t vfncvt_xu (vfloat16mf4_t src);
+vuint8mf8_t vfncvt_rtz_xu (vfloat16mf4_t src);
+vuint8mf4_t vfncvt_xu (vfloat16mf2_t src);
+vuint8mf4_t vfncvt_rtz_xu (vfloat16mf2_t src);
+vuint8mf2_t vfncvt_xu (vfloat16m1_t src);
+vuint8mf2_t vfncvt_rtz_xu (vfloat16m1_t src);
+vuint8m1_t vfncvt_xu (vfloat16m2_t src);
+vuint8m1_t vfncvt_rtz_xu (vfloat16m2_t src);
+vuint8m2_t vfncvt_xu (vfloat16m4_t src);
+vuint8m2_t vfncvt_rtz_xu (vfloat16m4_t src);
+vuint8m4_t vfncvt_xu (vfloat16m8_t src);
+vuint8m4_t vfncvt_rtz_xu (vfloat16m8_t src);
 vint16mf4_t vfncvt_x (vfloat32mf2_t src);
 vint16mf4_t vfncvt_rtz_x (vfloat32mf2_t src);
 vint16mf2_t vfncvt_x (vfloat32m1_t src);
@@ -2354,6 +2492,16 @@ vint16m2_t vfncvt_x (vfloat32m4_t src);
 vint16m2_t vfncvt_rtz_x (vfloat32m4_t src);
 vint16m4_t vfncvt_x (vfloat32m8_t src);
 vint16m4_t vfncvt_rtz_x (vfloat32m8_t src);
+vint16mf4_t vncvt_x (vint32mf2_t src);
+vint16mf2_t vncvt_x (vint32m1_t src);
+vint16m1_t vncvt_x (vint32m2_t src);
+vint16m2_t vncvt_x (vint32m4_t src);
+vint16m4_t vncvt_x (vint32m8_t src);
+vuint16mf4_t vncvt_x (vuint32mf2_t src);
+vuint16mf2_t vncvt_x (vuint32m1_t src);
+vuint16m1_t vncvt_x (vuint32m2_t src);
+vuint16m2_t vncvt_x (vuint32m4_t src);
+vuint16m4_t vncvt_x (vuint32m8_t src);
 vuint16mf4_t vfncvt_xu (vfloat32mf2_t src);
 vuint16mf4_t vfncvt_rtz_xu (vfloat32mf2_t src);
 vuint16mf2_t vfncvt_xu (vfloat32m1_t src);
@@ -2392,6 +2540,14 @@ vint32m2_t vfncvt_x (vfloat64m4_t src);
 vint32m2_t vfncvt_rtz_x (vfloat64m4_t src);
 vint32m4_t vfncvt_x (vfloat64m8_t src);
 vint32m4_t vfncvt_rtz_x (vfloat64m8_t src);
+vint32mf2_t vncvt_x (vint64m1_t src);
+vint32m1_t vncvt_x (vint64m2_t src);
+vint32m2_t vncvt_x (vint64m4_t src);
+vint32m4_t vncvt_x (vint64m8_t src);
+vuint32mf2_t vncvt_x (vuint64m1_t src);
+vuint32m1_t vncvt_x (vuint64m2_t src);
+vuint32m2_t vncvt_x (vuint64m4_t src);
+vuint32m4_t vncvt_x (vuint64m8_t src);
 vuint32mf2_t vfncvt_xu (vfloat64m1_t src);
 vuint32mf2_t vfncvt_rtz_xu (vfloat64m1_t src);
 vuint32m1_t vfncvt_xu (vfloat64m2_t src);
@@ -2417,6 +2573,42 @@ vfloat32m2_t vfncvt_rod_f (vfloat64m4_t src);
 vfloat32m4_t vfncvt_f (vfloat64m8_t src);
 vfloat32m4_t vfncvt_rod_f (vfloat64m8_t src);
 // masked functions
+vint8mf8_t vfncvt_x_m (vbool64_t mask, vint8mf8_t maskedoff, vfloat16mf4_t src);
+vint8mf8_t vfncvt_rtz_x_m (vbool64_t mask, vint8mf8_t maskedoff, vfloat16mf4_t src);
+vint8mf4_t vfncvt_x_m (vbool32_t mask, vint8mf4_t maskedoff, vfloat16mf2_t src);
+vint8mf4_t vfncvt_rtz_x_m (vbool32_t mask, vint8mf4_t maskedoff, vfloat16mf2_t src);
+vint8mf2_t vfncvt_x_m (vbool16_t mask, vint8mf2_t maskedoff, vfloat16m1_t src);
+vint8mf2_t vfncvt_rtz_x_m (vbool16_t mask, vint8mf2_t maskedoff, vfloat16m1_t src);
+vint8m1_t vfncvt_x_m (vbool8_t mask, vint8m1_t maskedoff, vfloat16m2_t src);
+vint8m1_t vfncvt_rtz_x_m (vbool8_t mask, vint8m1_t maskedoff, vfloat16m2_t src);
+vint8m2_t vfncvt_x_m (vbool4_t mask, vint8m2_t maskedoff, vfloat16m4_t src);
+vint8m2_t vfncvt_rtz_x_m (vbool4_t mask, vint8m2_t maskedoff, vfloat16m4_t src);
+vint8m4_t vfncvt_x_m (vbool2_t mask, vint8m4_t maskedoff, vfloat16m8_t src);
+vint8m4_t vfncvt_rtz_x_m (vbool2_t mask, vint8m4_t maskedoff, vfloat16m8_t src);
+vint8mf8_t vncvt_x_m (vbool64_t mask, vint8mf8_t maskedoff, vint16mf4_t src);
+vint8mf4_t vncvt_x_m (vbool32_t mask, vint8mf4_t maskedoff, vint16mf2_t src);
+vint8mf2_t vncvt_x_m (vbool16_t mask, vint8mf2_t maskedoff, vint16m1_t src);
+vint8m1_t vncvt_x_m (vbool8_t mask, vint8m1_t maskedoff, vint16m2_t src);
+vint8m2_t vncvt_x_m (vbool4_t mask, vint8m2_t maskedoff, vint16m4_t src);
+vint8m4_t vncvt_x_m (vbool2_t mask, vint8m4_t maskedoff, vint16m8_t src);
+vuint8mf8_t vncvt_x_m (vbool64_t mask, vuint8mf8_t maskedoff, vuint16mf4_t src);
+vuint8mf4_t vncvt_x_m (vbool32_t mask, vuint8mf4_t maskedoff, vuint16mf2_t src);
+vuint8mf2_t vncvt_x_m (vbool16_t mask, vuint8mf2_t maskedoff, vuint16m1_t src);
+vuint8m1_t vncvt_x_m (vbool8_t mask, vuint8m1_t maskedoff, vuint16m2_t src);
+vuint8m2_t vncvt_x_m (vbool4_t mask, vuint8m2_t maskedoff, vuint16m4_t src);
+vuint8m4_t vncvt_x_m (vbool2_t mask, vuint8m4_t maskedoff, vuint16m8_t src);
+vuint8mf8_t vfncvt_xu_m (vbool64_t mask, vuint8mf8_t maskedoff, vfloat16mf4_t src);
+vuint8mf8_t vfncvt_rtz_xu_m (vbool64_t mask, vuint8mf8_t maskedoff, vfloat16mf4_t src);
+vuint8mf4_t vfncvt_xu_m (vbool32_t mask, vuint8mf4_t maskedoff, vfloat16mf2_t src);
+vuint8mf4_t vfncvt_rtz_xu_m (vbool32_t mask, vuint8mf4_t maskedoff, vfloat16mf2_t src);
+vuint8mf2_t vfncvt_xu_m (vbool16_t mask, vuint8mf2_t maskedoff, vfloat16m1_t src);
+vuint8mf2_t vfncvt_rtz_xu_m (vbool16_t mask, vuint8mf2_t maskedoff, vfloat16m1_t src);
+vuint8m1_t vfncvt_xu_m (vbool8_t mask, vuint8m1_t maskedoff, vfloat16m2_t src);
+vuint8m1_t vfncvt_rtz_xu_m (vbool8_t mask, vuint8m1_t maskedoff, vfloat16m2_t src);
+vuint8m2_t vfncvt_xu_m (vbool4_t mask, vuint8m2_t maskedoff, vfloat16m4_t src);
+vuint8m2_t vfncvt_rtz_xu_m (vbool4_t mask, vuint8m2_t maskedoff, vfloat16m4_t src);
+vuint8m4_t vfncvt_xu_m (vbool2_t mask, vuint8m4_t maskedoff, vfloat16m8_t src);
+vuint8m4_t vfncvt_rtz_xu_m (vbool2_t mask, vuint8m4_t maskedoff, vfloat16m8_t src);
 vint16mf4_t vfncvt_x_m (vbool64_t mask, vint16mf4_t maskedoff, vfloat32mf2_t src);
 vint16mf4_t vfncvt_rtz_x_m (vbool64_t mask, vint16mf4_t maskedoff, vfloat32mf2_t src);
 vint16mf2_t vfncvt_x_m (vbool32_t mask, vint16mf2_t maskedoff, vfloat32m1_t src);
@@ -2427,6 +2619,16 @@ vint16m2_t vfncvt_x_m (vbool8_t mask, vint16m2_t maskedoff, vfloat32m4_t src);
 vint16m2_t vfncvt_rtz_x_m (vbool8_t mask, vint16m2_t maskedoff, vfloat32m4_t src);
 vint16m4_t vfncvt_x_m (vbool4_t mask, vint16m4_t maskedoff, vfloat32m8_t src);
 vint16m4_t vfncvt_rtz_x_m (vbool4_t mask, vint16m4_t maskedoff, vfloat32m8_t src);
+vint16mf4_t vncvt_x_m (vbool64_t mask, vint16mf4_t maskedoff, vint32mf2_t src);
+vint16mf2_t vncvt_x_m (vbool32_t mask, vint16mf2_t maskedoff, vint32m1_t src);
+vint16m1_t vncvt_x_m (vbool16_t mask, vint16m1_t maskedoff, vint32m2_t src);
+vint16m2_t vncvt_x_m (vbool8_t mask, vint16m2_t maskedoff, vint32m4_t src);
+vint16m4_t vncvt_x_m (vbool4_t mask, vint16m4_t maskedoff, vint32m8_t src);
+vuint16mf4_t vncvt_x_m (vbool64_t mask, vuint16mf4_t maskedoff, vuint32mf2_t src);
+vuint16mf2_t vncvt_x_m (vbool32_t mask, vuint16mf2_t maskedoff, vuint32m1_t src);
+vuint16m1_t vncvt_x_m (vbool16_t mask, vuint16m1_t maskedoff, vuint32m2_t src);
+vuint16m2_t vncvt_x_m (vbool8_t mask, vuint16m2_t maskedoff, vuint32m4_t src);
+vuint16m4_t vncvt_x_m (vbool4_t mask, vuint16m4_t maskedoff, vuint32m8_t src);
 vuint16mf4_t vfncvt_xu_m (vbool64_t mask, vuint16mf4_t maskedoff, vfloat32mf2_t src);
 vuint16mf4_t vfncvt_rtz_xu_m (vbool64_t mask, vuint16mf4_t maskedoff, vfloat32mf2_t src);
 vuint16mf2_t vfncvt_xu_m (vbool32_t mask, vuint16mf2_t maskedoff, vfloat32m1_t src);
@@ -2465,6 +2667,14 @@ vint32m2_t vfncvt_x_m (vbool16_t mask, vint32m2_t maskedoff, vfloat64m4_t src);
 vint32m2_t vfncvt_rtz_x_m (vbool16_t mask, vint32m2_t maskedoff, vfloat64m4_t src);
 vint32m4_t vfncvt_x_m (vbool8_t mask, vint32m4_t maskedoff, vfloat64m8_t src);
 vint32m4_t vfncvt_rtz_x_m (vbool8_t mask, vint32m4_t maskedoff, vfloat64m8_t src);
+vint32mf2_t vncvt_x_m (vbool64_t mask, vint32mf2_t maskedoff, vint64m1_t src);
+vint32m1_t vncvt_x_m (vbool32_t mask, vint32m1_t maskedoff, vint64m2_t src);
+vint32m2_t vncvt_x_m (vbool16_t mask, vint32m2_t maskedoff, vint64m4_t src);
+vint32m4_t vncvt_x_m (vbool8_t mask, vint32m4_t maskedoff, vint64m8_t src);
+vuint32mf2_t vncvt_x_m (vbool64_t mask, vuint32mf2_t maskedoff, vuint64m1_t src);
+vuint32m1_t vncvt_x_m (vbool32_t mask, vuint32m1_t maskedoff, vuint64m2_t src);
+vuint32m2_t vncvt_x_m (vbool16_t mask, vuint32m2_t maskedoff, vuint64m4_t src);
+vuint32m4_t vncvt_x_m (vbool8_t mask, vuint32m4_t maskedoff, vuint64m8_t src);
 vuint32mf2_t vfncvt_xu_m (vbool64_t mask, vuint32mf2_t maskedoff, vfloat64m1_t src);
 vuint32mf2_t vfncvt_rtz_xu_m (vbool64_t mask, vuint32mf2_t maskedoff, vfloat64m1_t src);
 vuint32m1_t vfncvt_xu_m (vbool32_t mask, vuint32m1_t maskedoff, vfloat64m2_t src);
