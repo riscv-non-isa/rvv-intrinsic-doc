@@ -29,6 +29,7 @@
   * [Reinterpret between floating point and integer types](#reinterpret-float)
   * [Reinterpret between signed and unsigned types](#reinterpret-sign)
   * [Reinterpret between different SEWs under the same LMUL](#reinterpret-sew)
+  * [LMUL truncation and LMUL extension functions](#lmul-trunc)
   * [Utility Functions for Segment Load/Store Types](#utils-segment-types)
 - [C11 Generic Interface](#c11-generic-interface)
 - [Switching Vtype and Keep same VL in a Loop](#switching-vtype)
@@ -612,6 +613,27 @@ Example:
 // Convert SEW under the same LMUL.
 vint64m1_t vreinterpret_v_i32m1_i64m1(vint32m1_t src)
 ```
+
+### LMUL truncation and LMUL extension functions<a name="lmul-trunc)"></a>
+
+These utility functions help users to truncate or extent current LMUL under same SEW regardless of vl (it won't change content of vl register)
+
+The LMUL extension result of extension part are undefined value.
+
+```
+Example:
+
+// LMUL Truncation, vlmul_trunc_v_<src_lmul>_<target_lmul>
+vint64m1_t vlmul_trunc_v_i64m2_i64m1 (vint64m2_t op1);
+vint64m1_t vlmul_trunc_v_i64m4_i64m1 (vint64m4_t op1);
+vint64m2_t vlmul_trunc_v_i64m4_i64m2 (vint64m4_t op1);
+
+// LMUL Extension, vlmul_ext_v_<src_lmul>_<target_lmul>
+vint64m2_t vlmul_ext_v_i64m1_i64m2 (vint64m1_t op1);
+vint64m4_t vlmul_ext_v_i64m1_i64m4 (vint64m1_t op1);
+vint64m8_t vlmul_ext_v_i64m1_i64m8 (vint64m1_t op1);
+```
+
 
 ### Utility Functions for Segment Load/Store Types<a name="utils-segment-types"></a>
 
