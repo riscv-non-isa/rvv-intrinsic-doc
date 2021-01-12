@@ -1,7 +1,7 @@
 # RISC-V Vector Extension Intrinsic API Reference Manual
 
 ## 1. Preface
-These builtins targets on rvv [0.9](https://github.com/riscv/riscv-v-spec/tree/0.9) and trying to document rvv_intrinsics programming model.
+These builtins targets on rvv [1.0-draft](https://github.com/riscv/riscv-v-spec/tree/master) and trying to document rvv_intrinsics programming model.
 
 
 ## 2. Design Decisions and philosophy
