@@ -266,10 +266,10 @@ LMUL ::= ( m1 | m2 | m4 | m8 | mf2 | mf4 | mf8 )
 Example:
 
 vadd.vv vd, vs2, vs1:
-vint8m1_t vadd_vv_i8m1(vint8m1_t vs2, vint8m1_t vs1)
+vint8m1_t vadd_vv_i8m1(vint8m1_t vs2, vint8m1_t vs1, size_t vl);
 
 vwaddu.vv vd, vs2, vs1:
-vint16m2_t vwaddu_vv_i16m2(vint8m1_t vs2, vint8m1_t vs1)
+vint16m2_t vwaddu_vv_i16m2(vint8m1_t vs2, vint8m1_t vs1, size_t vl);
 ```
 
 ## Exceptions in Naming<a name="exceptions"></a>
@@ -286,7 +286,7 @@ It does not encode return type into vector store. There is no return data for st
 Example:
 
 vse8.v vs3, (rs1):
-void vse8_v_i8m1(int8_t *rs1, vint8m1_t vs3);
+void vse8_v_i8m1(int8_t *rs1, vint8m1_t vs3, size_t vl);
 ```
 
 ### Vector Integer Add-with-Carry / Subtract-with-Borrow Instructions<a name="add-with-carry"></a>
@@ -297,7 +297,7 @@ The result of `vmadc` and `vmsbc` is mask types. Becuase we use the ratio `SEW`/
 Example:
 
 vmadc.vv vd, vs2, vs1:
-vbool8_t vmadc_vv_i8m1_b8(vint8m1_t vs2, vint8m1_t vs1);
+vbool8_t vmadc_vv_i8m1_b8(vint8m1_t vs2, vint8m1_t vs1, size_t vl);
 ```
 
 ### Comparison Instructions<a name="comparison-instructions"></a>
@@ -308,8 +308,8 @@ The result of comparison instructions is mask types. Becuase we use the ratio `S
 Example:
 
 vmseq.vv vd, vs2, vs1:
-vbool8_t vmseq_vv_i8m1_b8(vint8m1_t vs2, vint8m1_t vs1);
-vbool8_t vmseq_vv_i16m2_b8(vint16m2_t vs2, vint16m2_t vs1);
+vbool8_t vmseq_vv_i8m1_b8(vint8m1_t vs2, vint8m1_t vs1, size_t vl);
+vbool8_t vmseq_vv_i16m2_b8(vint16m2_t vs2, vint16m2_t vs1, size_t vl);
 ```
 
 ### Reduction Instructions<a name="reduction-instructions"></a>
@@ -320,10 +320,10 @@ The scalar input and output operands are held in element 0 of a single vector re
 Example:
 
 vredsum.vs vd, vs2, vs1:
-vint8m1_t vredsum_vs_i8m1_i8m1(vint8m1_t dest, vint8m1_t vs2, vint8m1_t vs1)
-vint8m1_t vredsum_vs_i8m2_i8m1(vint8m1_t dest, vint8m2_t vs2, vint8m1_t vs1)
-vint8m1_t vredsum_vs_i8m4_i8m1(vint8m1_t dest, vint8m4_t vs2, vint8m1_t vs1)
-vint8m1_t vredsum_vs_i8m8_i8m1(vint8m1_t dest, vint8m8_t vs2, vint8m1_t vs1)
+vint8m1_t vredsum_vs_i8m1_i8m1(vint8m1_t dest, vint8m1_t vs2, vint8m1_t vs1, size_t vl);
+vint8m1_t vredsum_vs_i8m2_i8m1(vint8m1_t dest, vint8m2_t vs2, vint8m1_t vs1, size_t vl);
+vint8m1_t vredsum_vs_i8m4_i8m1(vint8m1_t dest, vint8m4_t vs2, vint8m1_t vs1, size_t vl);
+vint8m1_t vredsum_vs_i8m8_i8m1(vint8m1_t dest, vint8m8_t vs2, vint8m1_t vs1, size_t vl);
 ```
 
 ### `vpopc.m` and `vfirst.m`<a name="vpopc-and-vfirst"></a>
@@ -334,8 +334,8 @@ The return type of `vpopc.m` and `vfirst.m` is apparently an integer. Do not enc
 Example:
 
 vpopc.m rd, vs2:
-unsigned long vpopc_m_b1(vbool1_t vs2);
-unsigned long vpopc_m_b2(vbool2_t vs2);
+unsigned long vpopc_m_b1(vbool1_t vs2, size_t vl);
+unsigned long vpopc_m_b2(vbool2_t vs2, size_t vl);
 ```
 
 ### Permutation Instructions<a name="permutation-instructions"></a>
@@ -346,10 +346,10 @@ To move the element 0 of a vector to a scalar, encode the input vector type and 
 Example:
 
 vmv.x.s rd, vs2:
-int8_t vmv_x_s_i8m1_i8 (vint8m1_t vs2);
-int8_t vmv_x_s_i8m2_i8 (vint8m2_t vs2);
-int8_t vmv_x_s_i8m4_i8 (vint8m4_t vs2);
-int8_t vmv_x_s_i8m8_i8 (vint8m8_t vs2);
+int8_t vmv_x_s_i8m1_i8 (vint8m1_t vs2, size_t vl);
+int8_t vmv_x_s_i8m2_i8 (vint8m2_t vs2, size_t vl);
+int8_t vmv_x_s_i8m4_i8 (vint8m4_t vs2, size_t vl);
+int8_t vmv_x_s_i8m8_i8 (vint8m8_t vs2, size_t vl);
 ```
 
 ## Scalar in Vector Operations<a name="scalar-in-vector-operations"></a>
@@ -362,9 +362,9 @@ We define arithmetic intrinsics with scalar using SEW types.
 Example:
 
 // Use uint8_t for op2.
-vuint8m1_t vadd_vx_u8m1(vuint8m1_t op1, uint8_t op2);
+vuint8m1_t vadd_vx_u8m1(vuint8m1_t op1, uint8_t op2, size_t vl);
 // Use uint64_t for op2.
-vuint64m1_t vadd_vx_u64m1(vuint64m1_t op1, uint64_t op2);
+vuint64m1_t vadd_vx_u64m1(vuint64m1_t op1, uint64_t op2, size_t vl);
 ```
 
 The compiler may generate multiple instructions for the intrinsics. For example, it is a little bit complicated to support `uint64_t` operations under `XLEN` = 32.
@@ -400,7 +400,7 @@ INTRINSIC_WITH_MASK ::= INTRINSIC '_m'
 Example:
 
 vadd.vv vd, vs2, vs1, v0.t:
-vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vint8m1_t maskedoff, vint8m1_t vs2, vint8m1_t vs1)
+vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vint8m1_t maskedoff, vint8m1_t vs2, vint8m1_t vs1, size_t vl);
 ```
 
 If the intrinsics are always masked, there is no need to append `_m` to the intrinsic. For example, the `vmerge` instructions are always masked.
@@ -409,10 +409,10 @@ If the intrinsics are always masked, there is no need to append `_m` to the intr
 Example:
 
 vmerge.vvm vd, vs2, vs1, v0:
-vint8m1_t vmerge_vvm_i8m1(vbool8_t mask, vint8m1_t vs2, vint8m1_t vs1)
+vint8m1_t vmerge_vvm_i8m1(vbool8_t mask, vint8m1_t vs2, vint8m1_t vs1, size_t vl);
 
 vcompress.vm vd, vs2, vs1:
-vint8m1_t vcompress_vm_i8m1(vbool8_t vs1, vint8m1_t maskedoff, vint8m1_t vs2)
+vint8m1_t vcompress_vm_i8m1(vbool8_t vs1, vint8m1_t maskedoff, vint8m1_t vs2, size_t vl);
 ```
 
 There are two additional masking semantics: *zero in output* semantic and *don't care in output* semantic. Users could leverage *merge in output* intrinsics to simulate these two additional masking semantics.
@@ -421,7 +421,7 @@ There are two additional masking semantics: *zero in output* semantic and *don't
 Example:
 
 // Don't care in output semantic
-vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vundefined_i8m1(), vint8m1_t vs2, vint8m1_t vs1)
+vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vundefined_i8m1(), vint8m1_t vs2, vint8m1_t vs1, size_t vl);
 ```
 
 ## Masked Intrinsics Without MaskedOff<a name="no-maskedoff"></a>
@@ -434,7 +434,7 @@ There is no `maskedoff` argument for store operations. The value of `maskedoff` 
 Example:
 
 vse8.v vs3, (rs1), v0.t:
-void vse8_v_i8m1_m(vbool8_t mask, int8_t *rs1, vint8m1_t vs3);
+void vse8_v_i8m1_m(vbool8_t mask, int8_t *rs1, vint8m1_t vs3, size_t vl);
 ```
 
 ### Reduction Instructions<a name="no-maskedoff-reduction"></a>
@@ -445,7 +445,7 @@ The result of reductions is put in element 0 of the output vector. There is no `
 Example:
 
 vredsum.vs vd, vs2, vs1, v0.t:
-vint8m1_t vredsum_vs_i8m2_i8m1_m(vbool4_t mask, vint8m1_t dest, vint8m2_t vs2, vint8m1_t vs1)
+vint8m1_t vredsum_vs_i8m2_i8m1_m(vbool4_t mask, vint8m1_t dest, vint8m2_t vs2, vint8m1_t vs1, size_t vl);
 ```
 
 ### Merge Instructions<a name="no-maskedoff-merge"></a>
@@ -456,7 +456,7 @@ The result of merge operations comes from their two source operands. Merge intri
 Example:
 
 vmerge.vvm vd, vs2, vs1, v0:
-vint8m1_t vmerge_vvm_i8m1_m(vbool8_t mask, vint8m1_t vs2, vint8m1_t vs1);
+vint8m1_t vmerge_vvm_i8m1_m(vbool8_t mask, vint8m1_t vs2, vint8m1_t vs1, size_t vl);
 ```
 
 ## Keep the Original Values of the Destination Vector<a name="dest-operand"></a>
@@ -468,10 +468,10 @@ Vector slide instructions also have unchanged parts in the destination register 
 ```
 Example:
 
-vint8m1_t vmv_s_x_i8m1(vint8m1_t dest, int8_t src);
-vint8m1_t vredsum_vs_i8m1_i8m1(vint8m1_t dest, vint8m1_t vs2, vint8m1_t vs1)
-vint8m1_t vredsum_vs_i8m2_i8m1_m(vbool4_t mask, vint8m1_t dest, vint8m2_t vs2, vint8m1_t vs1)
-vuint8m1_t vslide1up_vx_u8m1(vuint8m1_t dest, vuint8m1_t op1, uint8_1 op2);
+vint8m1_t vmv_s_x_i8m1(vint8m1_t dest, int8_t src, size_t vl);
+vint8m1_t vredsum_vs_i8m1_i8m1(vint8m1_t dest, vint8m1_t vs2, vint8m1_t vs1, size_t vl);
+vint8m1_t vredsum_vs_i8m2_i8m1_m(vbool4_t mask, vint8m1_t dest, vint8m2_t vs2, vint8m1_t vs1, size_t vl);
+vuint8m1_t vslide1up_vx_u8m1(vuint8m1_t dest, vuint8m1_t op1, uint8_1 op2, size_t vl);
 
 ```
 
@@ -538,18 +538,18 @@ Example:
 vint8m1_t a, b, c, d;
 vint16m2_t a2, b2, c2;
 ...
-a2 = vwadd_vv_i16m2(a, b);
-b2 = vwadd_vv_i16m2(c, d);
-c2 = vadd_vv_i16m2(a2, b2);
+a2 = vwadd_vv_i16m2(a, b, vl);
+b2 = vwadd_vv_i16m2(c, d, vl);
+c2 = vadd_vv_i16m2(a2, b2, vl);
 ```
 
 It will generate the following instructions.
 
 ```
-vsetvli x0, x0, e8,m1
+vsetvli x0, vl, e8,m1
 vwadd.vv a2, a, b
 vwadd.vv b2, c, d
-vsetvli x0, x0, e16,m2
+vsetvli x0, vl, e16,m2
 vadd.vv c2, a2, b2
 ```
 
@@ -662,17 +662,17 @@ Use C11 `_Generic` keyword to choose one of these intrinsics at compile time, ba
 Example:
 vadd.vv, vadd.vx, vadd.vi will have an unified interface vadd() for them.
 
-vint8m1_t vadd(vint8m1_t op1, vint8m1_t op2);
+vint8m1_t vadd(vint8m1_t op1, vint8m1_t op2, size_t vl);
 // The compiler will choose the following intrinsic
-vint8m1_t vadd_vv_i8m1(vint8m1_t op1, vint8m1_t op2);
+vint8m1_t vadd_vv_i8m1(vint8m1_t op1, vint8m1_t op2, size_t vl);
 
-vint8m2_t vadd(vint8m2_t op1, vint8m2_t op2);
+vint8m2_t vadd(vint8m2_t op1, vint8m2_t op2, size_t vl);
 // The compiler will choose the following intrinsic
-vint8m2_t vadd_vv_i8m2(vint8m2_t op1, vint8m2_t op2);
+vint8m2_t vadd_vv_i8m2(vint8m2_t op1, vint8m2_t op2, size_t vl);
 
-vint8m1_t vadd(vint8m1_t op1, int8_t op2);
+vint8m1_t vadd(vint8m1_t op1, int8_t op2, size_t vl);
 // The compiler will choose the following intrinsic
-vint8m1_t vadd_vx_i8m1(vint8m1_t op1, int8_t op2);
+vint8m1_t vadd_vx_i8m1(vint8m1_t op1, int8_t op2, size_t vl);
 ```
 
 There are some special cases in C11 generic interface. Describe them in the following subsections.
@@ -686,10 +686,10 @@ We could not use C11 generic for vector unit-stride load. We do not provide the 
 They have different number of arguments but the same kind of types in the first two arguments. We keep the appendix of these instructions, i.e., `vvm`, `vxm`, `vv` and `vx`.
 
 ```
-vbool8_t vmadc_vvm(vint8m1_t op1, vint8m1_t op2, vbool8_t carryin);
-vbool8_t vmadc_vxm(vint8m1_t op1, int8_t op2, vbool8_t carryin);
-vbool8_t vmadc_vv(vint8m1_t op1, vint8m1_t op2);
-vbool8_t vmadc_vx(vint8m1_t op1, int8_t op2);
+vbool8_t vmadc_vvm(vint8m1_t op1, vint8m1_t op2, vbool8_t carryin, size_t vl);
+vbool8_t vmadc_vxm(vint8m1_t op1, int8_t op2, vbool8_t carryin, size_t vl);
+vbool8_t vmadc_vv(vint8m1_t op1, vint8m1_t op2, size_t vl);
+vbool8_t vmadc_vx(vint8m1_t op1, int8_t op2, size_t vl);
 ```
 
 ### `vmv.v.v`, `vmv.x.s`, `vmv.s.x`, `vfmv.f.s` and `vfmv.s.f`
@@ -714,7 +714,7 @@ Example:
 // u8 for uint8
 vuint8m1_t vreinterpret_u8 (vint8m1_t src);
 // x for scalar, xu for unsigned scalar, and f for float.
-vint16m1_t vfcvt_x (vfloat16m1_t src);
+vint16m1_t vfcvt_x (vfloat16m1_t src, size_t vl);
 ```
 
 ## Switching Vtype and Keep same VL after vsetvl instruction<a name="switching-vtype"></a>
@@ -723,23 +723,12 @@ Compiler should guarantee the correctness of vtype setting after vsetvl instruct
 
 ```
 vl = vsetvl_e16m4(n);
-vfloat16m4_t vx = vle16_v_f16m4(ptr_x);
-// vsetvl_e32m8(vl); // No need to keep the same vl and change vtype manually
-vfloat32m8_t vy = vle32_v_f32m8(ptr_y);
-// vsetvl_e16m4(vl); // No need to keep the same vl and change vtype manually
-vfwmacc_vf_f32m8(vy, 2.0, vx);
-// vsetvl_e32m8(vl); // No need to keep the same vl and change vtype manually
-vse32_v_f32m8(ptr_y, vy);
-```
-
-```
-vl = vsetvl_e16m4(n);
 vfloat16m4_t vx = vle16_v_f16m4(ptr_x, vl);
-// vsetvl_e32m8(vl); // No need to change vtype manually
+// vsetvl_e32m8(vl); // No need to keep the same vl and change vtype manually
 vfloat32m8_t vy = vle32_v_f32m8(ptr_y, vl);
-// vsetvl_e16m4(vl); // No need to change vtype manually
+// vsetvl_e16m4(vl); // No need to keep the same vl and change vtype manually
 vfwmacc_vf_f32m8(vy, 2.0, vx, vl);
-// vsetvl_e32m8(vl); // No need to change vtype manually
+// vsetvl_e32m8(vl); // No need to keep the same vl and change vtype manually
 vse32_v_f32m8(ptr_y, vy, vl);
 ```
 

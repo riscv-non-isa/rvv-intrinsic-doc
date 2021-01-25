@@ -74,14 +74,14 @@ void sgemm_vec(size_t size_m, size_t size_n, size_t size_k,
     for (int c_n_count = size_n; (vl = vsetvl_e32m1(c_n_count )); c_n_count -= vl) {
       const float *a_k_ptr = a;
       const float *b_k_ptr = b_n_ptr;
-      vfloat32m1_t acc = vle32_v_f32m1(c_n_ptr);
+      vfloat32m1_t acc = vle32_v_f32m1(c_n_ptr, vl);
       for (size_t k = 0; k < size_k; ++k) {
-        vfloat32m1_t b_n_data = vle32_v_f32m1(b_k_ptr);
-        acc = vfmacc_vf_f32m1(acc, *a_k_ptr, b_n_data);
+        vfloat32m1_t b_n_data = vle32_v_f32m1(b_k_ptr, vl);
+        acc = vfmacc_vf_f32m1(acc, *a_k_ptr, b_n_data, vl);
         b_k_ptr += ldb;
         a_k_ptr++;
       }
-      vse32_v_f32m1(c_n_ptr, acc);
+      vse32_v_f32m1(c_n_ptr, acc, vl);
       c_n_ptr += vl;
       b_n_ptr += vl;
     }
