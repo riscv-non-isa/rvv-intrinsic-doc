@@ -91,7 +91,7 @@ TYPE ::= ( 'int8' | 'int16' | 'int32' | 'int64' |
            'uint8' | 'uint16' | 'uint32' | 'uint64' |
            'float16' | 'float32' | 'float64' )
 LMUL ::= ( m1 | m2 | m4 | m8 | mf2 | mf4 | mf8 )
-NR ::= ( 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 )
+NR ::= ( 2 | 3 | 4 | 5 | 6 | 7 | 8 )
 ```
 
 int8_t:
