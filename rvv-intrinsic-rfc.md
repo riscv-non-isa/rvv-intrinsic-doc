@@ -254,7 +254,8 @@ intrinsics.
 
 All of the intrinsic function having a `vl` argument to specify the active
 vector length, except few functions are work with fixed length, e.g. `vmv.x.s`,
-`vfmv.f.s` and whole register move/load/store.
+`vfmv.f.s`, `vundefined`, `vreinterpret`, `vlmul_ext`, `vlmul_trunc`, `vget`,
+`vset` and `vcreate`.
 
 The intrinsic function will only operate at most `VLMAX` element if `vl`
 argument are larger than `VLMAX`.
