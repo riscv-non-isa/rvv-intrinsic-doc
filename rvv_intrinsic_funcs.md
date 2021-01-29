@@ -363,12 +363,6 @@ size_t vsetvlmax_e64m2 ();
 size_t vsetvlmax_e64m4 ();
 size_t vsetvlmax_e64m8 ();
 ```
-### [Read the vl](../rvv-intrinsic-api.md#read-vl-value):
-
-**Prototypes:**
-``` C
-size_t vreadvl ();
-```
 ## Vector Loads and Stores Functions:
 
 ### [Vector Unit-Stride Load Functions](../rvv-intrinsic-api.md#74-vector-unit-stride-operations):
