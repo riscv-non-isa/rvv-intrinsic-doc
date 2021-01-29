@@ -5,7 +5,7 @@
   * [Data Types](#data-types)
   * [Mask Types](#mask-types)
   * [Types for Segment Load/Store](#segment-load-store-types)
-- [Configuration-Setting](#configuration-setting)
+- [Configuration-Setting and `vl` Argument](#configuration-setting)
 - [Naming Rules](#naming-rules)
 - [Exceptions in Naming](#exceptions)
   * [Vector Stores](#vector-stores)
@@ -21,7 +21,6 @@
   * [Reduction Instructions](#no-maskedoff-reduction)
   * [Merge Instructions](#no-maskedoff-merge)
 - [Keep the Original Values of the Destination Vector](#dest-operand)
-- [With or Without the VL Argument](#vl-argument)
 - [SEW and LMUL of Intrinsics](#sew-and-lmul-of-intrinsics)
 - [C Operators on RISC-V Vector Types](#c-operators)
 - [Utility Functions](#utility-functions)
@@ -226,14 +225,18 @@ float64:
 | **7**        | N/A         | N/A             | N/A             | vfloat64m1x7_t | N/A            | N/A            | N/A
 | **8**        | N/A         | N/A             | N/A             | vfloat64m1x8_t | N/A            | N/A            | N/A
 
-## Configuration-Setting<a name="configuration-setting"></a>
+## Configuration-Setting and `vl` Argument<a name="configuration-setting"></a>
 
-`SEW` and `LMUL` are a part of the naming. They are static information for the intrinsics.
-There are two variants of configuration setting intrinsics. `vsetvl` is used to set `vl` according to the given AVL. `vsetvlmax` is used to set `vl` to VLMAX.
+There are two variants of configuration setting intrinsics. `vsetvl` is used to
+get the active vector length (`vl`) according to the given application vector
+length (`AVL`), `vsetvlmax` is used to get the maximal active vector length
+(`vl`) according the `SEW` and `LMUL`.
 
-```
-Example:
+`vl` register status is not expose to C language level, so in theory you can
+treat `vsetvl` and `vsetvlmax` functions are return the min value for `avl` and
+`VLMAX`.
 
+```c
 size_t vsetvl_e8m1 (size_t avl);
 size_t vsetvl_e8m2 (size_t avl);
 size_t vsetvl_e8m4 (size_t avl);
@@ -245,6 +248,30 @@ size_t vsetvlmax_e8m8 ();
 ```
 
 There is no need to specify the behavior of tail and masked-off elements being undisturbed or agnostic. The default setting is tail agnostic and masked-off undisturbed. If users do not want to keep the values in masked-off elements, they could pass `vundefined()` as the `maskedoff` value.
+
+`SEW` and `LMUL` are a part of the naming. They are static information for the
+intrinsics.
+
+All of the intrinsic function having a `vl` argument to specify the active
+vector length, except few functions are work with fixed length, e.g. `vmv.x.s`,
+`vfmv.f.s` and whole register move/load/store.
+
+The intrinsic function will only operate at most `VLMAX` element if `vl`
+argument are larger than `VLMAX`.
+
+The behavior is equivalence for following code, but we strongly suggesting the
+former form.
+
+```c
+size_t vl = vsetvl_e8m1 (avl);
+vint8m1_t va, vb, vc;
+va = vadd_vv_i8m1(vb, vc, vl);
+```
+
+```c
+vint8m1_t va, vb, vc;
+va = vadd_vv_i8m1(vb, vc, avl);
+```
 
 ## Naming Rules<a name="naming-rules"></a>
 
@@ -473,59 +500,6 @@ vint8m1_t vredsum_vs_i8m1_i8m1(vint8m1_t dest, vint8m1_t vs2, vint8m1_t vs1, siz
 vint8m1_t vredsum_vs_i8m2_i8m1_m(vbool4_t mask, vint8m1_t dest, vint8m2_t vs2, vint8m1_t vs1, size_t vl);
 vuint8m1_t vslide1up_vx_u8m1(vuint8m1_t dest, vuint8m1_t op1, uint8_1 op2, size_t vl);
 
-```
-
-## With or Without the VL Argument<a name="vl-argument"></a>
-
-(This design decision is still under dispute. We have no final decision about which one is better for users. This RFC includes both version of intrinsics for users.)
-
-There are two variants of intrinsics regarding to `vl`.
-
-1. Explicit vl intrinsics:
-
-    All the intrinsics receive an explicit `vl` argument, by value, which is used by the vector operation. Only calls to `vsetvl` or `vsetvlmax` intrinsics can be used to generate values that are permissible as the explicit `vl` argument.
-
-    Pros:
-     - Operations are entirely defined by the vector operands and the explicit vector length.
-     - In C programmers' point of view, there is no side-effect of intrinsics with `vl` argument.
-     - Some instructions do not use `vl`, so the explicit interface makes this obvious.
-
-    Cons:
-     - It is less consistent with the C operator syntax. The GCC vector extension cannot be implemented, because of lack of the `vl` operand, or it must be given whole vector register semantics.
-     - It is more verbose, as many vector codes may not use different `vl` values at the same time.
-     - An additional operand means additional programming error opportunities.
-
-2. Implicit vl intrinsics:
-
-    Intrinsics do not receive a `vl` argument. Instead the `vl` used by the vector operations is the one set by the last call to `vsetvl` or `vsetvlmax` intrinsics that the program has done at runtime.
-
-    Pros:
-     - It is more faithful to the underlying instructions which allows the user finer control on the instructions emitted.
-     - It is more consistent with C operator syntax as vector operations naturally involve the implicit `vl` argument.
-
-    Cons:
-     - A vector operation is not fully defined by its operands.
-     - The implicit `vl` operand might open the possibility for unobvious programming errors.
-
-The semantics between these two variants are the same.
-
-The naming rule is
-
-```
-INTRINSIC_WITH_VL ::= INTRINSIC '_vl'
-INTRINSIC_WITH_MASK_AND_VL ::= INTRINSIC_WITH_MASK '_vl'
-```
-
-```
-Example:
-
-vadd.vv vd, vs2, vs1:
-vint8m1_t vadd_vv_i8m1(vint8m1_t vs2, vint8m1_t vs1)
-vint8m1_t vadd_vv_i8m1_vl(vint8m1_t vs2, vint8m1_t vs1, size_t vl)
-
-vadd.vv vd, vs2, vs1, v0.t:
-vint8m1_t vadd_vv_i8m1_m(vbool8_t mask, vint8m1_t maskedoff, vint8m1_t vs2, vint8m1_t vs1)
-vint8m1_t vadd_vv_i8m1_m_vl(vbool8_t mask, vint8m1_t maskedoff, vint8m1_t vs2, vint8m1_t vs1, size_t vl)
 ```
 
 ## SEW and LMUL of Intrinsics<a name="sew-and-lmul-of-intrinsics"></a>
