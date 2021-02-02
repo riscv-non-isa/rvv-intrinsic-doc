@@ -229,8 +229,7 @@ float64:
 
 There are two variants of configuration setting intrinsics. `vsetvl` is used to
 get the active vector length (`vl`) according to the given application vector
-length (`AVL`), `vsetvlmax` is used to get the maximal active vector length
-(`vl`) according the `SEW` and `LMUL`.
+length(`AVL`), `SEW` and `LMUL`.
 
 `vl` register status is not expose to C language level, so in theory you can
 treat `vsetvl` and `vsetvlmax` functions are return the min value for `avl` and
@@ -252,16 +251,16 @@ There is no need to specify the behavior of tail and masked-off elements being u
 `SEW` and `LMUL` are a part of the naming. They are static information for the
 intrinsics.
 
-All of the intrinsic function having a `vl` argument to specify the active
-vector length, except few functions are work with fixed length, e.g. `vmv.x.s`,
+All of the intrinsic functions have a `vl` argument to specify the active
+vector length, except a few functions operate regardless of `vl`. e.g. `vmv.x.s`,
 `vfmv.f.s`, `vundefined`, `vreinterpret`, `vlmul_ext`, `vlmul_trunc`, `vget`,
 `vset` and `vcreate`.
 
-The intrinsic function will only operate at most `VLMAX` element if `vl`
+The intrinsic functions will only operate at most `VLMAX` element if the `vl`
 argument are larger than `VLMAX`.
 
-The behavior is equivalence for following code, but we strongly suggesting the
-former form.
+The semantics of following two snippets are equivalent. We strongly suggest
+the first form.
 
 ```c
 size_t vl = vsetvl_e8m1 (avl);
