@@ -10,12 +10,19 @@
 The RISC-V Vector Extension Intrinsic Document is
 
  &copy; 2021 Hsiangkai Wang <kai.wang@sifive.com>
+
  &copy; 2021 Zakk Chen <zakk.chen@sifive.com>
+
  &copy; 2021 Kito Cheng <kito.cheng@sifive.com>
+
  &copy; 2021 Yi-Hsiu, Hsu <yihsiu.hsu@sifive.com>
+
  &copy; 2021 Roger Ferrer Ibanez <roger.ferrer@bsc.es>
+
  &copy; 2021 Nick Knight <nick.knight@sifive.com>
+
  &copy; 2021 Mingjie Xing <mingjie@iscas.ac.cn>
+
 
 In general:
 - code is licensed under the BSD 3-clause license (SPDX license identifier `BSD-3-Clause`); while
