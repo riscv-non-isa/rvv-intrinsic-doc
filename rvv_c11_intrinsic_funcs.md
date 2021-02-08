@@ -16366,7 +16366,7 @@ vuint64m2_t vnot_m (vbool32_t mask, vuint64m2_t maskedoff, vuint64m2_t op1);
 vuint64m4_t vnot_m (vbool16_t mask, vuint64m4_t maskedoff, vuint64m4_t op1);
 vuint64m8_t vnot_m (vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t op1);
 ```
-### [Vector Single-Width Bit Shift Functioans](../rvv-intrinsic-api.md#126-vector-single-width-bit-shift-operations):
+### [Vector Single-Width Bit Shift Functions](../rvv-intrinsic-api.md#126-vector-single-width-bit-shift-operations):
 
 **Prototypes:**
 ``` C
