@@ -1212,73 +1212,73 @@ vfloat64m8_t vfsqrt_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, 
 
 **Prototypes:**
 ``` C
-vfloat16mf4_t vfrsqrte7 (vfloat16mf4_t op1, size_t vl);
-vfloat16mf2_t vfrsqrte7 (vfloat16mf2_t op1, size_t vl);
-vfloat16m1_t vfrsqrte7 (vfloat16m1_t op1, size_t vl);
-vfloat16m2_t vfrsqrte7 (vfloat16m2_t op1, size_t vl);
-vfloat16m4_t vfrsqrte7 (vfloat16m4_t op1, size_t vl);
-vfloat16m8_t vfrsqrte7 (vfloat16m8_t op1, size_t vl);
-vfloat32mf2_t vfrsqrte7 (vfloat32mf2_t op1, size_t vl);
-vfloat32m1_t vfrsqrte7 (vfloat32m1_t op1, size_t vl);
-vfloat32m2_t vfrsqrte7 (vfloat32m2_t op1, size_t vl);
-vfloat32m4_t vfrsqrte7 (vfloat32m4_t op1, size_t vl);
-vfloat32m8_t vfrsqrte7 (vfloat32m8_t op1, size_t vl);
-vfloat64m1_t vfrsqrte7 (vfloat64m1_t op1, size_t vl);
-vfloat64m2_t vfrsqrte7 (vfloat64m2_t op1, size_t vl);
-vfloat64m4_t vfrsqrte7 (vfloat64m4_t op1, size_t vl);
-vfloat64m8_t vfrsqrte7 (vfloat64m8_t op1, size_t vl);
+vfloat16mf4_t vfrsqrt7 (vfloat16mf4_t op1, size_t vl);
+vfloat16mf2_t vfrsqrt7 (vfloat16mf2_t op1, size_t vl);
+vfloat16m1_t vfrsqrt7 (vfloat16m1_t op1, size_t vl);
+vfloat16m2_t vfrsqrt7 (vfloat16m2_t op1, size_t vl);
+vfloat16m4_t vfrsqrt7 (vfloat16m4_t op1, size_t vl);
+vfloat16m8_t vfrsqrt7 (vfloat16m8_t op1, size_t vl);
+vfloat32mf2_t vfrsqrt7 (vfloat32mf2_t op1, size_t vl);
+vfloat32m1_t vfrsqrt7 (vfloat32m1_t op1, size_t vl);
+vfloat32m2_t vfrsqrt7 (vfloat32m2_t op1, size_t vl);
+vfloat32m4_t vfrsqrt7 (vfloat32m4_t op1, size_t vl);
+vfloat32m8_t vfrsqrt7 (vfloat32m8_t op1, size_t vl);
+vfloat64m1_t vfrsqrt7 (vfloat64m1_t op1, size_t vl);
+vfloat64m2_t vfrsqrt7 (vfloat64m2_t op1, size_t vl);
+vfloat64m4_t vfrsqrt7 (vfloat64m4_t op1, size_t vl);
+vfloat64m8_t vfrsqrt7 (vfloat64m8_t op1, size_t vl);
 // masked functions
-vfloat16mf4_t vfrsqrte7_m (vbool64_t mask, vfloat16mf4_t maskedoff, vfloat16mf4_t op1, size_t vl);
-vfloat16mf2_t vfrsqrte7_m (vbool32_t mask, vfloat16mf2_t maskedoff, vfloat16mf2_t op1, size_t vl);
-vfloat16m1_t vfrsqrte7_m (vbool16_t mask, vfloat16m1_t maskedoff, vfloat16m1_t op1, size_t vl);
-vfloat16m2_t vfrsqrte7_m (vbool8_t mask, vfloat16m2_t maskedoff, vfloat16m2_t op1, size_t vl);
-vfloat16m4_t vfrsqrte7_m (vbool4_t mask, vfloat16m4_t maskedoff, vfloat16m4_t op1, size_t vl);
-vfloat16m8_t vfrsqrte7_m (vbool2_t mask, vfloat16m8_t maskedoff, vfloat16m8_t op1, size_t vl);
-vfloat32mf2_t vfrsqrte7_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1, size_t vl);
-vfloat32m1_t vfrsqrte7_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1, size_t vl);
-vfloat32m2_t vfrsqrte7_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1, size_t vl);
-vfloat32m4_t vfrsqrte7_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1, size_t vl);
-vfloat32m8_t vfrsqrte7_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1, size_t vl);
-vfloat64m1_t vfrsqrte7_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1, size_t vl);
-vfloat64m2_t vfrsqrte7_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, size_t vl);
-vfloat64m4_t vfrsqrte7_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, size_t vl);
-vfloat64m8_t vfrsqrte7_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, size_t vl);
+vfloat16mf4_t vfrsqrt7_m (vbool64_t mask, vfloat16mf4_t maskedoff, vfloat16mf4_t op1, size_t vl);
+vfloat16mf2_t vfrsqrt7_m (vbool32_t mask, vfloat16mf2_t maskedoff, vfloat16mf2_t op1, size_t vl);
+vfloat16m1_t vfrsqrt7_m (vbool16_t mask, vfloat16m1_t maskedoff, vfloat16m1_t op1, size_t vl);
+vfloat16m2_t vfrsqrt7_m (vbool8_t mask, vfloat16m2_t maskedoff, vfloat16m2_t op1, size_t vl);
+vfloat16m4_t vfrsqrt7_m (vbool4_t mask, vfloat16m4_t maskedoff, vfloat16m4_t op1, size_t vl);
+vfloat16m8_t vfrsqrt7_m (vbool2_t mask, vfloat16m8_t maskedoff, vfloat16m8_t op1, size_t vl);
+vfloat32mf2_t vfrsqrt7_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1, size_t vl);
+vfloat32m1_t vfrsqrt7_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1, size_t vl);
+vfloat32m2_t vfrsqrt7_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1, size_t vl);
+vfloat32m4_t vfrsqrt7_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1, size_t vl);
+vfloat32m8_t vfrsqrt7_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1, size_t vl);
+vfloat64m1_t vfrsqrt7_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1, size_t vl);
+vfloat64m2_t vfrsqrt7_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, size_t vl);
+vfloat64m4_t vfrsqrt7_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, size_t vl);
+vfloat64m8_t vfrsqrt7_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, size_t vl);
 ```
 ### [Vector Floating-Point Reciprocal Estimate Functions](../rvv-intrinsic-api.md#1410-vector-floating-point-reciprocal-estimate-operations):
 
 **Prototypes:**
 ``` C
-vfloat16mf4_t vfrece7 (vfloat16mf4_t op1, size_t vl);
-vfloat16mf2_t vfrece7 (vfloat16mf2_t op1, size_t vl);
-vfloat16m1_t vfrece7 (vfloat16m1_t op1, size_t vl);
-vfloat16m2_t vfrece7 (vfloat16m2_t op1, size_t vl);
-vfloat16m4_t vfrece7 (vfloat16m4_t op1, size_t vl);
-vfloat16m8_t vfrece7 (vfloat16m8_t op1, size_t vl);
-vfloat32mf2_t vfrece7 (vfloat32mf2_t op1, size_t vl);
-vfloat32m1_t vfrece7 (vfloat32m1_t op1, size_t vl);
-vfloat32m2_t vfrece7 (vfloat32m2_t op1, size_t vl);
-vfloat32m4_t vfrece7 (vfloat32m4_t op1, size_t vl);
-vfloat32m8_t vfrece7 (vfloat32m8_t op1, size_t vl);
-vfloat64m1_t vfrece7 (vfloat64m1_t op1, size_t vl);
-vfloat64m2_t vfrece7 (vfloat64m2_t op1, size_t vl);
-vfloat64m4_t vfrece7 (vfloat64m4_t op1, size_t vl);
-vfloat64m8_t vfrece7 (vfloat64m8_t op1, size_t vl);
+vfloat16mf4_t vfrec7 (vfloat16mf4_t op1, size_t vl);
+vfloat16mf2_t vfrec7 (vfloat16mf2_t op1, size_t vl);
+vfloat16m1_t vfrec7 (vfloat16m1_t op1, size_t vl);
+vfloat16m2_t vfrec7 (vfloat16m2_t op1, size_t vl);
+vfloat16m4_t vfrec7 (vfloat16m4_t op1, size_t vl);
+vfloat16m8_t vfrec7 (vfloat16m8_t op1, size_t vl);
+vfloat32mf2_t vfrec7 (vfloat32mf2_t op1, size_t vl);
+vfloat32m1_t vfrec7 (vfloat32m1_t op1, size_t vl);
+vfloat32m2_t vfrec7 (vfloat32m2_t op1, size_t vl);
+vfloat32m4_t vfrec7 (vfloat32m4_t op1, size_t vl);
+vfloat32m8_t vfrec7 (vfloat32m8_t op1, size_t vl);
+vfloat64m1_t vfrec7 (vfloat64m1_t op1, size_t vl);
+vfloat64m2_t vfrec7 (vfloat64m2_t op1, size_t vl);
+vfloat64m4_t vfrec7 (vfloat64m4_t op1, size_t vl);
+vfloat64m8_t vfrec7 (vfloat64m8_t op1, size_t vl);
 // masked functions
-vfloat16mf4_t vfrece7_m (vbool64_t mask, vfloat16mf4_t maskedoff, vfloat16mf4_t op1, size_t vl);
-vfloat16mf2_t vfrece7_m (vbool32_t mask, vfloat16mf2_t maskedoff, vfloat16mf2_t op1, size_t vl);
-vfloat16m1_t vfrece7_m (vbool16_t mask, vfloat16m1_t maskedoff, vfloat16m1_t op1, size_t vl);
-vfloat16m2_t vfrece7_m (vbool8_t mask, vfloat16m2_t maskedoff, vfloat16m2_t op1, size_t vl);
-vfloat16m4_t vfrece7_m (vbool4_t mask, vfloat16m4_t maskedoff, vfloat16m4_t op1, size_t vl);
-vfloat16m8_t vfrece7_m (vbool2_t mask, vfloat16m8_t maskedoff, vfloat16m8_t op1, size_t vl);
-vfloat32mf2_t vfrece7_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1, size_t vl);
-vfloat32m1_t vfrece7_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1, size_t vl);
-vfloat32m2_t vfrece7_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1, size_t vl);
-vfloat32m4_t vfrece7_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1, size_t vl);
-vfloat32m8_t vfrece7_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1, size_t vl);
-vfloat64m1_t vfrece7_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1, size_t vl);
-vfloat64m2_t vfrece7_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, size_t vl);
-vfloat64m4_t vfrece7_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, size_t vl);
-vfloat64m8_t vfrece7_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, size_t vl);
+vfloat16mf4_t vfrec7_m (vbool64_t mask, vfloat16mf4_t maskedoff, vfloat16mf4_t op1, size_t vl);
+vfloat16mf2_t vfrec7_m (vbool32_t mask, vfloat16mf2_t maskedoff, vfloat16mf2_t op1, size_t vl);
+vfloat16m1_t vfrec7_m (vbool16_t mask, vfloat16m1_t maskedoff, vfloat16m1_t op1, size_t vl);
+vfloat16m2_t vfrec7_m (vbool8_t mask, vfloat16m2_t maskedoff, vfloat16m2_t op1, size_t vl);
+vfloat16m4_t vfrec7_m (vbool4_t mask, vfloat16m4_t maskedoff, vfloat16m4_t op1, size_t vl);
+vfloat16m8_t vfrec7_m (vbool2_t mask, vfloat16m8_t maskedoff, vfloat16m8_t op1, size_t vl);
+vfloat32mf2_t vfrec7_m (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1, size_t vl);
+vfloat32m1_t vfrec7_m (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1, size_t vl);
+vfloat32m2_t vfrec7_m (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1, size_t vl);
+vfloat32m4_t vfrec7_m (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1, size_t vl);
+vfloat32m8_t vfrec7_m (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1, size_t vl);
+vfloat64m1_t vfrec7_m (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1, size_t vl);
+vfloat64m2_t vfrec7_m (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, size_t vl);
+vfloat64m4_t vfrec7_m (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, size_t vl);
+vfloat64m8_t vfrec7_m (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, size_t vl);
 ```
 ### [Vector Floating-Point MIN/MAX Functions](../rvv-intrinsic-api.md#1411-vector-floating-point-minmax-operations):
 
