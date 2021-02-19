@@ -30,7 +30,7 @@
   * [Reinterpret between different SEWs under the same LMUL](#reinterpret-sew)
   * [LMUL truncation and LMUL extension functions](#lmul-trunc)
   * [Utility Functions for Segment Load/Store Types](#utils-segment-types)
-- [C11 Generic Interface](#c11-generic-interface)
+- [Overloaded Interface](#overloaded-interface)
 - [Switching Vtype and Keep same VL in a Loop](#switching-vtype)
 
 ## Introduction<a name="introduction"></a>
@@ -628,9 +628,13 @@ vint32m2_t vget_i32m2x2_i32m2(vint32m2x2_t tuple, size_t index)
 vint32m2_t vget_i32m2x3_i32m2(vint32m2x3_t tuple, size_t index)
 ```
 
-## C11 Generic Interface<a name="c11-generic-interface"></a>
+## Overloaded Interface<a name="overloaded-interface"></a>
 
-Use C11 `_Generic` keyword to choose one of these intrinsics at compile time, based on the types of input arguments. In general, if we could choose the intrinsic according to the types of arguments, we define C11 generic interface for it.
+Overloaded Interface have shorter function name and support less number of intrinsic functions.
+
+Overloaded interface are always keep full funciton name with removing the suffix.
+
+Compiler could support overloaded interface optionally. Preprocessor macro `__riscv_v_intrinsic_overloading` is defined when overloaded interface is available.
 
 ```
 Example:
@@ -647,38 +651,31 @@ vint8m2_t vadd_vv_i8m2(vint8m2_t op1, vint8m2_t op2, size_t vl);
 vint8m1_t vadd(vint8m1_t op1, int8_t op2, size_t vl);
 // The compiler will choose the following intrinsic
 vint8m1_t vadd_vx_i8m1(vint8m1_t op1, int8_t op2, size_t vl);
+
+vint8m1_t vadd(vbool64_t mask, vint8mf8_t maskedoff, vint8mf8_t op1, vint8mf8_t op2, size_t vl);
+// The compiler will choose the following intrinsic
+vint8m1_t vadd_vv_i8m1_m (vbool8_t mask, vint8m1_t maskedoff, vint8m1_t op1, vint8m1_t op2, size_t vl);
 ```
 
-There are some special cases in C11 generic interface. Describe them in the following subsections.
+### The unsupported overloading functions
 
-### Vector Load/Store
+The unsupported overloading functions are based on the types of input/return arguments:
 
-We could not use C11 generic for vector unit-stride load. We do not provide the unified interface for vector load/store for consistency.
+1. Input arguments are scalar type alone. (non-masked vle/vlse, etc.)
+2. Input argument is empty. (vmclr.m/vmset.m/vid.v)
+3. Input boolean vector argument with return type of a non boolean vector. (viota)
 
-### `vmadc` and `vmsbc`
+#### Non-masked `vle`, `vleff` and `vlseg`
 
-They have different number of arguments but the same kind of types in the first two arguments. We keep the appendix of these instructions, i.e., `vvm`, `vxm`, `vv` and `vx`.
+#### Non-masked `viota.m`
 
-```
-vbool8_t vmadc_vvm(vint8m1_t op1, vint8m1_t op2, vbool8_t carryin, size_t vl);
-vbool8_t vmadc_vxm(vint8m1_t op1, int8_t op2, vbool8_t carryin, size_t vl);
-vbool8_t vmadc_vv(vint8m1_t op1, vint8m1_t op2, size_t vl);
-vbool8_t vmadc_vx(vint8m1_t op1, int8_t op2, size_t vl);
-```
+#### `vmv.v.x` and `vfmv.v.f`
 
-### `vmv.v.v`, `vmv.x.s`, `vmv.s.x`, `vfmv.f.s` and `vfmv.s.f`
+#### `vmclr.m`, `vmset.m`, `vid.v`, `vundefined`
 
-With C11 generic interface. Use the full mnemonic names for the function names, e.g., `vmv.v.v` uses `vmv_v_v()` as the function name.
+### Specail naming rule for some overloaded interfaces.
 
-### `vmv.v.x`, `vfmv.v.f`, and `viota.m`
-
-The same input may produce different types of output value. No C11 generic interface.
-
-### `vmclr.m`, `vmset.m`, `vid.v`, `vundefined`
-
-There is no input argument. No C11 generic interface.
-
-### Reinterpret and Convert
+#### Reinterpret and Convert
 
 Keep the output type in the function names.
 
@@ -689,6 +686,17 @@ Example:
 vuint8m1_t vreinterpret_u8 (vint8m1_t src);
 // x for scalar, xu for unsigned scalar, and f for float.
 vint16m1_t vfcvt_x (vfloat16m1_t src, size_t vl);
+```
+
+#### Widening Vector-Scalar Arithmetic Instructions.
+
+The scalar type promotions is not obvious when argument is a constant value, so append vx/wx/vf/wf suffix in the function names.
+(ex. `vwadd[u].vx`/`vwadd[u].wx`, `vwsub[u].vx`/`vwsub[u].wx`, `vfwadd_vf`/`vfwadd_wf` and `vfwsub_vf`/`vfwsub_wf`)
+
+```
+// Example: callers need to specfic explicit type for op2
+vuint32mf2_t vwaddu_wx(vuint32mf2_t op1, uint16_t op2, size_t vl);
+vuint64m1_t  vwaddu_vx(vuint32mf2_t op1, uint32_t op2, size_t vl);
 ```
 
 ## Switching Vtype and Keep same VL after vsetvl instruction<a name="switching-vtype"></a>
