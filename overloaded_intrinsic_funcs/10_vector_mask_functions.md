@@ -13,13 +13,13 @@ vbool8_t vle1_v_b8 (const uint8_t *base, size_t vl);
 vbool16_t vle1_v_b16 (const uint8_t *base, size_t vl);
 vbool32_t vle1_v_b32 (const uint8_t *base, size_t vl);
 vbool64_t vle1_v_b64 (const uint8_t *base, size_t vl);
-void vse1_v_b1 (const uint8_t *base, vbool1_t value, size_t vl);
-void vse1_v_b2 (const uint8_t *base, vbool2_t value, size_t vl);
-void vse1_v_b4 (const uint8_t *base, vbool4_t value, size_t vl);
-void vse1_v_b8 (const uint8_t *base, vbool8_t value, size_t vl);
-void vse1_v_b16 (const uint8_t *base, vbool16_t value, size_t vl);
-void vse1_v_b32 (const uint8_t *base, vbool32_t value, size_t vl);
-void vse1_v_b64 (const uint8_t *base, vbool64_t value, size_t vl);
+void vse1 (const uint8_t *base, vbool1_t value, size_t vl);
+void vse1 (const uint8_t *base, vbool2_t value, size_t vl);
+void vse1 (const uint8_t *base, vbool4_t value, size_t vl);
+void vse1 (const uint8_t *base, vbool8_t value, size_t vl);
+void vse1 (const uint8_t *base, vbool16_t value, size_t vl);
+void vse1 (const uint8_t *base, vbool32_t value, size_t vl);
+void vse1 (const uint8_t *base, vbool64_t value, size_t vl);
 ```
 ### [Vector Mask-Register Logical Functions](../rvv-intrinsic-api.md#161-vector-mask-register-logical-operations):
 
@@ -122,13 +122,13 @@ unsigned long vpopc (vbool16_t op1, size_t vl);
 unsigned long vpopc (vbool32_t op1, size_t vl);
 unsigned long vpopc (vbool64_t op1, size_t vl);
 // masked functions
-unsigned long vpopc_m (vbool1_t mask, vbool1_t op1, size_t vl);
-unsigned long vpopc_m (vbool2_t mask, vbool2_t op1, size_t vl);
-unsigned long vpopc_m (vbool4_t mask, vbool4_t op1, size_t vl);
-unsigned long vpopc_m (vbool8_t mask, vbool8_t op1, size_t vl);
-unsigned long vpopc_m (vbool16_t mask, vbool16_t op1, size_t vl);
-unsigned long vpopc_m (vbool32_t mask, vbool32_t op1, size_t vl);
-unsigned long vpopc_m (vbool64_t mask, vbool64_t op1, size_t vl);
+unsigned long vpopc (vbool1_t mask, vbool1_t op1, size_t vl);
+unsigned long vpopc (vbool2_t mask, vbool2_t op1, size_t vl);
+unsigned long vpopc (vbool4_t mask, vbool4_t op1, size_t vl);
+unsigned long vpopc (vbool8_t mask, vbool8_t op1, size_t vl);
+unsigned long vpopc (vbool16_t mask, vbool16_t op1, size_t vl);
+unsigned long vpopc (vbool32_t mask, vbool32_t op1, size_t vl);
+unsigned long vpopc (vbool64_t mask, vbool64_t op1, size_t vl);
 ```
 ### [Find-first-set mask bit Functions](../rvv-intrinsic-api.md#163-vfirst-find-first-set-mask-bit):
 
@@ -142,13 +142,13 @@ long vfirst (vbool16_t op1, size_t vl);
 long vfirst (vbool32_t op1, size_t vl);
 long vfirst (vbool64_t op1, size_t vl);
 // masked functions
-long vfirst_m (vbool1_t mask, vbool1_t op1, size_t vl);
-long vfirst_m (vbool2_t mask, vbool2_t op1, size_t vl);
-long vfirst_m (vbool4_t mask, vbool4_t op1, size_t vl);
-long vfirst_m (vbool8_t mask, vbool8_t op1, size_t vl);
-long vfirst_m (vbool16_t mask, vbool16_t op1, size_t vl);
-long vfirst_m (vbool32_t mask, vbool32_t op1, size_t vl);
-long vfirst_m (vbool64_t mask, vbool64_t op1, size_t vl);
+long vfirst (vbool1_t mask, vbool1_t op1, size_t vl);
+long vfirst (vbool2_t mask, vbool2_t op1, size_t vl);
+long vfirst (vbool4_t mask, vbool4_t op1, size_t vl);
+long vfirst (vbool8_t mask, vbool8_t op1, size_t vl);
+long vfirst (vbool16_t mask, vbool16_t op1, size_t vl);
+long vfirst (vbool32_t mask, vbool32_t op1, size_t vl);
+long vfirst (vbool64_t mask, vbool64_t op1, size_t vl);
 ```
 ### [Set-before-first mask bit Functions](../rvv-intrinsic-api.md#164-vmsbfm-set-before-first-mask-bit):
 
@@ -162,13 +162,13 @@ vbool16_t vmsbf (vbool16_t op1, size_t vl);
 vbool32_t vmsbf (vbool32_t op1, size_t vl);
 vbool64_t vmsbf (vbool64_t op1, size_t vl);
 // masked functions
-vbool1_t vmsbf_m (vbool1_t mask, vbool1_t maskedoff, vbool1_t op1, size_t vl);
-vbool2_t vmsbf_m (vbool2_t mask, vbool2_t maskedoff, vbool2_t op1, size_t vl);
-vbool4_t vmsbf_m (vbool4_t mask, vbool4_t maskedoff, vbool4_t op1, size_t vl);
-vbool8_t vmsbf_m (vbool8_t mask, vbool8_t maskedoff, vbool8_t op1, size_t vl);
-vbool16_t vmsbf_m (vbool16_t mask, vbool16_t maskedoff, vbool16_t op1, size_t vl);
-vbool32_t vmsbf_m (vbool32_t mask, vbool32_t maskedoff, vbool32_t op1, size_t vl);
-vbool64_t vmsbf_m (vbool64_t mask, vbool64_t maskedoff, vbool64_t op1, size_t vl);
+vbool1_t vmsbf (vbool1_t mask, vbool1_t maskedoff, vbool1_t op1, size_t vl);
+vbool2_t vmsbf (vbool2_t mask, vbool2_t maskedoff, vbool2_t op1, size_t vl);
+vbool4_t vmsbf (vbool4_t mask, vbool4_t maskedoff, vbool4_t op1, size_t vl);
+vbool8_t vmsbf (vbool8_t mask, vbool8_t maskedoff, vbool8_t op1, size_t vl);
+vbool16_t vmsbf (vbool16_t mask, vbool16_t maskedoff, vbool16_t op1, size_t vl);
+vbool32_t vmsbf (vbool32_t mask, vbool32_t maskedoff, vbool32_t op1, size_t vl);
+vbool64_t vmsbf (vbool64_t mask, vbool64_t maskedoff, vbool64_t op1, size_t vl);
 ```
 ### [Set-including-first mask bit Functions](../rvv-intrinsic-api.md#165-vmsifm-set-including-first-mask-bit):
 
@@ -182,13 +182,13 @@ vbool16_t vmsif (vbool16_t op1, size_t vl);
 vbool32_t vmsif (vbool32_t op1, size_t vl);
 vbool64_t vmsif (vbool64_t op1, size_t vl);
 // masked functions
-vbool1_t vmsif_m (vbool1_t mask, vbool1_t maskedoff, vbool1_t op1, size_t vl);
-vbool2_t vmsif_m (vbool2_t mask, vbool2_t maskedoff, vbool2_t op1, size_t vl);
-vbool4_t vmsif_m (vbool4_t mask, vbool4_t maskedoff, vbool4_t op1, size_t vl);
-vbool8_t vmsif_m (vbool8_t mask, vbool8_t maskedoff, vbool8_t op1, size_t vl);
-vbool16_t vmsif_m (vbool16_t mask, vbool16_t maskedoff, vbool16_t op1, size_t vl);
-vbool32_t vmsif_m (vbool32_t mask, vbool32_t maskedoff, vbool32_t op1, size_t vl);
-vbool64_t vmsif_m (vbool64_t mask, vbool64_t maskedoff, vbool64_t op1, size_t vl);
+vbool1_t vmsif (vbool1_t mask, vbool1_t maskedoff, vbool1_t op1, size_t vl);
+vbool2_t vmsif (vbool2_t mask, vbool2_t maskedoff, vbool2_t op1, size_t vl);
+vbool4_t vmsif (vbool4_t mask, vbool4_t maskedoff, vbool4_t op1, size_t vl);
+vbool8_t vmsif (vbool8_t mask, vbool8_t maskedoff, vbool8_t op1, size_t vl);
+vbool16_t vmsif (vbool16_t mask, vbool16_t maskedoff, vbool16_t op1, size_t vl);
+vbool32_t vmsif (vbool32_t mask, vbool32_t maskedoff, vbool32_t op1, size_t vl);
+vbool64_t vmsif (vbool64_t mask, vbool64_t maskedoff, vbool64_t op1, size_t vl);
 ```
 ### [Set-only-first mask bit Functions](../rvv-intrinsic-api.md#166-vmsofm-set-only-first-mask-bit):
 
@@ -202,13 +202,13 @@ vbool16_t vmsof (vbool16_t op1, size_t vl);
 vbool32_t vmsof (vbool32_t op1, size_t vl);
 vbool64_t vmsof (vbool64_t op1, size_t vl);
 // masked functions
-vbool1_t vmsof_m (vbool1_t mask, vbool1_t maskedoff, vbool1_t op1, size_t vl);
-vbool2_t vmsof_m (vbool2_t mask, vbool2_t maskedoff, vbool2_t op1, size_t vl);
-vbool4_t vmsof_m (vbool4_t mask, vbool4_t maskedoff, vbool4_t op1, size_t vl);
-vbool8_t vmsof_m (vbool8_t mask, vbool8_t maskedoff, vbool8_t op1, size_t vl);
-vbool16_t vmsof_m (vbool16_t mask, vbool16_t maskedoff, vbool16_t op1, size_t vl);
-vbool32_t vmsof_m (vbool32_t mask, vbool32_t maskedoff, vbool32_t op1, size_t vl);
-vbool64_t vmsof_m (vbool64_t mask, vbool64_t maskedoff, vbool64_t op1, size_t vl);
+vbool1_t vmsof (vbool1_t mask, vbool1_t maskedoff, vbool1_t op1, size_t vl);
+vbool2_t vmsof (vbool2_t mask, vbool2_t maskedoff, vbool2_t op1, size_t vl);
+vbool4_t vmsof (vbool4_t mask, vbool4_t maskedoff, vbool4_t op1, size_t vl);
+vbool8_t vmsof (vbool8_t mask, vbool8_t maskedoff, vbool8_t op1, size_t vl);
+vbool16_t vmsof (vbool16_t mask, vbool16_t maskedoff, vbool16_t op1, size_t vl);
+vbool32_t vmsof (vbool32_t mask, vbool32_t maskedoff, vbool32_t op1, size_t vl);
+vbool64_t vmsof (vbool64_t mask, vbool64_t maskedoff, vbool64_t op1, size_t vl);
 ```
 ### [Vector Iota Functions](../rvv-intrinsic-api.md#168-vector-iota-operations):
 
@@ -237,28 +237,28 @@ vuint64m2_t viota_m_u64m2 (vbool32_t op1, size_t vl);
 vuint64m4_t viota_m_u64m4 (vbool16_t op1, size_t vl);
 vuint64m8_t viota_m_u64m8 (vbool8_t op1, size_t vl);
 // masked functions
-vuint8mf8_t viota_m_u8mf8_m (vbool64_t mask, vuint8mf8_t maskedoff, vbool64_t op1, size_t vl);
-vuint8mf4_t viota_m_u8mf4_m (vbool32_t mask, vuint8mf4_t maskedoff, vbool32_t op1, size_t vl);
-vuint8mf2_t viota_m_u8mf2_m (vbool16_t mask, vuint8mf2_t maskedoff, vbool16_t op1, size_t vl);
-vuint8m1_t viota_m_u8m1_m (vbool8_t mask, vuint8m1_t maskedoff, vbool8_t op1, size_t vl);
-vuint8m2_t viota_m_u8m2_m (vbool4_t mask, vuint8m2_t maskedoff, vbool4_t op1, size_t vl);
-vuint8m4_t viota_m_u8m4_m (vbool2_t mask, vuint8m4_t maskedoff, vbool2_t op1, size_t vl);
-vuint8m8_t viota_m_u8m8_m (vbool1_t mask, vuint8m8_t maskedoff, vbool1_t op1, size_t vl);
-vuint16mf4_t viota_m_u16mf4_m (vbool64_t mask, vuint16mf4_t maskedoff, vbool64_t op1, size_t vl);
-vuint16mf2_t viota_m_u16mf2_m (vbool32_t mask, vuint16mf2_t maskedoff, vbool32_t op1, size_t vl);
-vuint16m1_t viota_m_u16m1_m (vbool16_t mask, vuint16m1_t maskedoff, vbool16_t op1, size_t vl);
-vuint16m2_t viota_m_u16m2_m (vbool8_t mask, vuint16m2_t maskedoff, vbool8_t op1, size_t vl);
-vuint16m4_t viota_m_u16m4_m (vbool4_t mask, vuint16m4_t maskedoff, vbool4_t op1, size_t vl);
-vuint16m8_t viota_m_u16m8_m (vbool2_t mask, vuint16m8_t maskedoff, vbool2_t op1, size_t vl);
-vuint32mf2_t viota_m_u32mf2_m (vbool64_t mask, vuint32mf2_t maskedoff, vbool64_t op1, size_t vl);
-vuint32m1_t viota_m_u32m1_m (vbool32_t mask, vuint32m1_t maskedoff, vbool32_t op1, size_t vl);
-vuint32m2_t viota_m_u32m2_m (vbool16_t mask, vuint32m2_t maskedoff, vbool16_t op1, size_t vl);
-vuint32m4_t viota_m_u32m4_m (vbool8_t mask, vuint32m4_t maskedoff, vbool8_t op1, size_t vl);
-vuint32m8_t viota_m_u32m8_m (vbool4_t mask, vuint32m8_t maskedoff, vbool4_t op1, size_t vl);
-vuint64m1_t viota_m_u64m1_m (vbool64_t mask, vuint64m1_t maskedoff, vbool64_t op1, size_t vl);
-vuint64m2_t viota_m_u64m2_m (vbool32_t mask, vuint64m2_t maskedoff, vbool32_t op1, size_t vl);
-vuint64m4_t viota_m_u64m4_m (vbool16_t mask, vuint64m4_t maskedoff, vbool16_t op1, size_t vl);
-vuint64m8_t viota_m_u64m8_m (vbool8_t mask, vuint64m8_t maskedoff, vbool8_t op1, size_t vl);
+vuint8mf8_t viota (vbool64_t mask, vuint8mf8_t maskedoff, vbool64_t op1, size_t vl);
+vuint8mf4_t viota (vbool32_t mask, vuint8mf4_t maskedoff, vbool32_t op1, size_t vl);
+vuint8mf2_t viota (vbool16_t mask, vuint8mf2_t maskedoff, vbool16_t op1, size_t vl);
+vuint8m1_t viota (vbool8_t mask, vuint8m1_t maskedoff, vbool8_t op1, size_t vl);
+vuint8m2_t viota (vbool4_t mask, vuint8m2_t maskedoff, vbool4_t op1, size_t vl);
+vuint8m4_t viota (vbool2_t mask, vuint8m4_t maskedoff, vbool2_t op1, size_t vl);
+vuint8m8_t viota (vbool1_t mask, vuint8m8_t maskedoff, vbool1_t op1, size_t vl);
+vuint16mf4_t viota (vbool64_t mask, vuint16mf4_t maskedoff, vbool64_t op1, size_t vl);
+vuint16mf2_t viota (vbool32_t mask, vuint16mf2_t maskedoff, vbool32_t op1, size_t vl);
+vuint16m1_t viota (vbool16_t mask, vuint16m1_t maskedoff, vbool16_t op1, size_t vl);
+vuint16m2_t viota (vbool8_t mask, vuint16m2_t maskedoff, vbool8_t op1, size_t vl);
+vuint16m4_t viota (vbool4_t mask, vuint16m4_t maskedoff, vbool4_t op1, size_t vl);
+vuint16m8_t viota (vbool2_t mask, vuint16m8_t maskedoff, vbool2_t op1, size_t vl);
+vuint32mf2_t viota (vbool64_t mask, vuint32mf2_t maskedoff, vbool64_t op1, size_t vl);
+vuint32m1_t viota (vbool32_t mask, vuint32m1_t maskedoff, vbool32_t op1, size_t vl);
+vuint32m2_t viota (vbool16_t mask, vuint32m2_t maskedoff, vbool16_t op1, size_t vl);
+vuint32m4_t viota (vbool8_t mask, vuint32m4_t maskedoff, vbool8_t op1, size_t vl);
+vuint32m8_t viota (vbool4_t mask, vuint32m8_t maskedoff, vbool4_t op1, size_t vl);
+vuint64m1_t viota (vbool64_t mask, vuint64m1_t maskedoff, vbool64_t op1, size_t vl);
+vuint64m2_t viota (vbool32_t mask, vuint64m2_t maskedoff, vbool32_t op1, size_t vl);
+vuint64m4_t viota (vbool16_t mask, vuint64m4_t maskedoff, vbool16_t op1, size_t vl);
+vuint64m8_t viota (vbool8_t mask, vuint64m8_t maskedoff, vbool8_t op1, size_t vl);
 ```
 ### [Vector Element Index Functions](../rvv-intrinsic-api.md#169-vector-element-index-operations):
 
@@ -287,26 +287,26 @@ vuint64m2_t vid_v_u64m2 (size_t vl);
 vuint64m4_t vid_v_u64m4 (size_t vl);
 vuint64m8_t vid_v_u64m8 (size_t vl);
 // masked functions
-vuint8mf8_t vid_v_u8mf8_m (vbool64_t mask, vuint8mf8_t maskedoff, size_t vl);
-vuint8mf4_t vid_v_u8mf4_m (vbool32_t mask, vuint8mf4_t maskedoff, size_t vl);
-vuint8mf2_t vid_v_u8mf2_m (vbool16_t mask, vuint8mf2_t maskedoff, size_t vl);
-vuint8m1_t vid_v_u8m1_m (vbool8_t mask, vuint8m1_t maskedoff, size_t vl);
-vuint8m2_t vid_v_u8m2_m (vbool4_t mask, vuint8m2_t maskedoff, size_t vl);
-vuint8m4_t vid_v_u8m4_m (vbool2_t mask, vuint8m4_t maskedoff, size_t vl);
-vuint8m8_t vid_v_u8m8_m (vbool1_t mask, vuint8m8_t maskedoff, size_t vl);
-vuint16mf4_t vid_v_u16mf4_m (vbool64_t mask, vuint16mf4_t maskedoff, size_t vl);
-vuint16mf2_t vid_v_u16mf2_m (vbool32_t mask, vuint16mf2_t maskedoff, size_t vl);
-vuint16m1_t vid_v_u16m1_m (vbool16_t mask, vuint16m1_t maskedoff, size_t vl);
-vuint16m2_t vid_v_u16m2_m (vbool8_t mask, vuint16m2_t maskedoff, size_t vl);
-vuint16m4_t vid_v_u16m4_m (vbool4_t mask, vuint16m4_t maskedoff, size_t vl);
-vuint16m8_t vid_v_u16m8_m (vbool2_t mask, vuint16m8_t maskedoff, size_t vl);
-vuint32mf2_t vid_v_u32mf2_m (vbool64_t mask, vuint32mf2_t maskedoff, size_t vl);
-vuint32m1_t vid_v_u32m1_m (vbool32_t mask, vuint32m1_t maskedoff, size_t vl);
-vuint32m2_t vid_v_u32m2_m (vbool16_t mask, vuint32m2_t maskedoff, size_t vl);
-vuint32m4_t vid_v_u32m4_m (vbool8_t mask, vuint32m4_t maskedoff, size_t vl);
-vuint32m8_t vid_v_u32m8_m (vbool4_t mask, vuint32m8_t maskedoff, size_t vl);
-vuint64m1_t vid_v_u64m1_m (vbool64_t mask, vuint64m1_t maskedoff, size_t vl);
-vuint64m2_t vid_v_u64m2_m (vbool32_t mask, vuint64m2_t maskedoff, size_t vl);
-vuint64m4_t vid_v_u64m4_m (vbool16_t mask, vuint64m4_t maskedoff, size_t vl);
-vuint64m8_t vid_v_u64m8_m (vbool8_t mask, vuint64m8_t maskedoff, size_t vl);
+vuint8mf8_t vid (vbool64_t mask, vuint8mf8_t maskedoff, size_t vl);
+vuint8mf4_t vid (vbool32_t mask, vuint8mf4_t maskedoff, size_t vl);
+vuint8mf2_t vid (vbool16_t mask, vuint8mf2_t maskedoff, size_t vl);
+vuint8m1_t vid (vbool8_t mask, vuint8m1_t maskedoff, size_t vl);
+vuint8m2_t vid (vbool4_t mask, vuint8m2_t maskedoff, size_t vl);
+vuint8m4_t vid (vbool2_t mask, vuint8m4_t maskedoff, size_t vl);
+vuint8m8_t vid (vbool1_t mask, vuint8m8_t maskedoff, size_t vl);
+vuint16mf4_t vid (vbool64_t mask, vuint16mf4_t maskedoff, size_t vl);
+vuint16mf2_t vid (vbool32_t mask, vuint16mf2_t maskedoff, size_t vl);
+vuint16m1_t vid (vbool16_t mask, vuint16m1_t maskedoff, size_t vl);
+vuint16m2_t vid (vbool8_t mask, vuint16m2_t maskedoff, size_t vl);
+vuint16m4_t vid (vbool4_t mask, vuint16m4_t maskedoff, size_t vl);
+vuint16m8_t vid (vbool2_t mask, vuint16m8_t maskedoff, size_t vl);
+vuint32mf2_t vid (vbool64_t mask, vuint32mf2_t maskedoff, size_t vl);
+vuint32m1_t vid (vbool32_t mask, vuint32m1_t maskedoff, size_t vl);
+vuint32m2_t vid (vbool16_t mask, vuint32m2_t maskedoff, size_t vl);
+vuint32m4_t vid (vbool8_t mask, vuint32m4_t maskedoff, size_t vl);
+vuint32m8_t vid (vbool4_t mask, vuint32m8_t maskedoff, size_t vl);
+vuint64m1_t vid (vbool64_t mask, vuint64m1_t maskedoff, size_t vl);
+vuint64m2_t vid (vbool32_t mask, vuint64m2_t maskedoff, size_t vl);
+vuint64m4_t vid (vbool16_t mask, vuint64m4_t maskedoff, size_t vl);
+vuint64m8_t vid (vbool8_t mask, vuint64m8_t maskedoff, size_t vl);
 ```
