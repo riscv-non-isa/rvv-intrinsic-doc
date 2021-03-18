@@ -13,13 +13,13 @@ vbool8_t vle1_v_b8 (const uint8_t *base, size_t vl);
 vbool16_t vle1_v_b16 (const uint8_t *base, size_t vl);
 vbool32_t vle1_v_b32 (const uint8_t *base, size_t vl);
 vbool64_t vle1_v_b64 (const uint8_t *base, size_t vl);
-void vse1 (const uint8_t *base, vbool1_t value, size_t vl);
-void vse1 (const uint8_t *base, vbool2_t value, size_t vl);
-void vse1 (const uint8_t *base, vbool4_t value, size_t vl);
-void vse1 (const uint8_t *base, vbool8_t value, size_t vl);
-void vse1 (const uint8_t *base, vbool16_t value, size_t vl);
-void vse1 (const uint8_t *base, vbool32_t value, size_t vl);
-void vse1 (const uint8_t *base, vbool64_t value, size_t vl);
+void vse1 (uint8_t *base, vbool1_t value, size_t vl);
+void vse1 (uint8_t *base, vbool2_t value, size_t vl);
+void vse1 (uint8_t *base, vbool4_t value, size_t vl);
+void vse1 (uint8_t *base, vbool8_t value, size_t vl);
+void vse1 (uint8_t *base, vbool16_t value, size_t vl);
+void vse1 (uint8_t *base, vbool32_t value, size_t vl);
+void vse1 (uint8_t *base, vbool64_t value, size_t vl);
 ```
 ### [Vector Mask-Register Logical Functions](../rvv-intrinsic-api.md#161-vector-mask-register-logical-operations):
 
