@@ -632,7 +632,7 @@ vint32m2_t vget_i32m2x3_i32m2(vint32m2x3_t tuple, size_t index)
 
 Overloaded Interface have shorter function name and support less number of intrinsic functions.
 
-Overloaded interface are always keep full funciton name with removing the suffix.
+Overloaded interface are always keep full function name with removing the suffix.
 
 Compiler could support overloaded interface optionally. Preprocessor macro `__riscv_v_intrinsic_overloading` is defined when overloaded interface is available.
 
@@ -673,7 +673,7 @@ The unsupported overloading functions are based on the types of input/return arg
 
 #### `vmclr.m`, `vmset.m`, `vid.v`, `vundefined`
 
-### Specail naming rule for some overloaded interfaces.
+### Special naming rule for some overloaded interfaces.
 
 #### Reinterpret and Convert
 
