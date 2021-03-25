@@ -23210,6 +23210,42 @@ vfloat64m4_t vfsgnjx (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, 
 vfloat64m8_t vfsgnjx (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, vfloat64m8_t op2, size_t vl);
 vfloat64m8_t vfsgnjx (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, float64_t op2, size_t vl);
 ```
+### [Vector Floating-Point Absolute Value Functions](../rvv-intrinsic-api.md#1412-vector-floating-point-sign-injection-operations):
+
+**Prototypes:**
+``` C
+vfloat16mf4_t vfabs (vfloat16mf4_t op1, size_t vl);
+vfloat16mf2_t vfabs (vfloat16mf2_t op1, size_t vl);
+vfloat16m1_t vfabs (vfloat16m1_t op1, size_t vl);
+vfloat16m2_t vfabs (vfloat16m2_t op1, size_t vl);
+vfloat16m4_t vfabs (vfloat16m4_t op1, size_t vl);
+vfloat16m8_t vfabs (vfloat16m8_t op1, size_t vl);
+vfloat32mf2_t vfabs (vfloat32mf2_t op1, size_t vl);
+vfloat32m1_t vfabs (vfloat32m1_t op1, size_t vl);
+vfloat32m2_t vfabs (vfloat32m2_t op1, size_t vl);
+vfloat32m4_t vfabs (vfloat32m4_t op1, size_t vl);
+vfloat32m8_t vfabs (vfloat32m8_t op1, size_t vl);
+vfloat64m1_t vfabs (vfloat64m1_t op1, size_t vl);
+vfloat64m2_t vfabs (vfloat64m2_t op1, size_t vl);
+vfloat64m4_t vfabs (vfloat64m4_t op1, size_t vl);
+vfloat64m8_t vfabs (vfloat64m8_t op1, size_t vl);
+// masked functions
+vfloat16mf4_t vfabs (vbool64_t mask, vfloat16mf4_t maskedoff, vfloat16mf4_t op1, size_t vl);
+vfloat16mf2_t vfabs (vbool32_t mask, vfloat16mf2_t maskedoff, vfloat16mf2_t op1, size_t vl);
+vfloat16m1_t vfabs (vbool16_t mask, vfloat16m1_t maskedoff, vfloat16m1_t op1, size_t vl);
+vfloat16m2_t vfabs (vbool8_t mask, vfloat16m2_t maskedoff, vfloat16m2_t op1, size_t vl);
+vfloat16m4_t vfabs (vbool4_t mask, vfloat16m4_t maskedoff, vfloat16m4_t op1, size_t vl);
+vfloat16m8_t vfabs (vbool2_t mask, vfloat16m8_t maskedoff, vfloat16m8_t op1, size_t vl);
+vfloat32mf2_t vfabs (vbool64_t mask, vfloat32mf2_t maskedoff, vfloat32mf2_t op1, size_t vl);
+vfloat32m1_t vfabs (vbool32_t mask, vfloat32m1_t maskedoff, vfloat32m1_t op1, size_t vl);
+vfloat32m2_t vfabs (vbool16_t mask, vfloat32m2_t maskedoff, vfloat32m2_t op1, size_t vl);
+vfloat32m4_t vfabs (vbool8_t mask, vfloat32m4_t maskedoff, vfloat32m4_t op1, size_t vl);
+vfloat32m8_t vfabs (vbool4_t mask, vfloat32m8_t maskedoff, vfloat32m8_t op1, size_t vl);
+vfloat64m1_t vfabs (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m1_t op1, size_t vl);
+vfloat64m2_t vfabs (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, size_t vl);
+vfloat64m4_t vfabs (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, size_t vl);
+vfloat64m8_t vfabs (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, size_t vl);
+```
 ### [Vector Floating-Point Compare Functions](../rvv-intrinsic-api.md#1413-vector-floating-point-compare-operations):
 
 **Prototypes:**
@@ -25145,13 +25181,13 @@ vbool8_t vle1_v_b8 (const uint8_t *base, size_t vl);
 vbool16_t vle1_v_b16 (const uint8_t *base, size_t vl);
 vbool32_t vle1_v_b32 (const uint8_t *base, size_t vl);
 vbool64_t vle1_v_b64 (const uint8_t *base, size_t vl);
-void vse1 (const uint8_t *base, vbool1_t value, size_t vl);
-void vse1 (const uint8_t *base, vbool2_t value, size_t vl);
-void vse1 (const uint8_t *base, vbool4_t value, size_t vl);
-void vse1 (const uint8_t *base, vbool8_t value, size_t vl);
-void vse1 (const uint8_t *base, vbool16_t value, size_t vl);
-void vse1 (const uint8_t *base, vbool32_t value, size_t vl);
-void vse1 (const uint8_t *base, vbool64_t value, size_t vl);
+void vse1 (uint8_t *base, vbool1_t value, size_t vl);
+void vse1 (uint8_t *base, vbool2_t value, size_t vl);
+void vse1 (uint8_t *base, vbool4_t value, size_t vl);
+void vse1 (uint8_t *base, vbool8_t value, size_t vl);
+void vse1 (uint8_t *base, vbool16_t value, size_t vl);
+void vse1 (uint8_t *base, vbool32_t value, size_t vl);
+void vse1 (uint8_t *base, vbool64_t value, size_t vl);
 ```
 ### [Vector Mask-Register Logical Functions](../rvv-intrinsic-api.md#161-vector-mask-register-logical-operations):
 
