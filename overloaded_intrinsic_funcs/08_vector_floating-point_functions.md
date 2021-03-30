@@ -2069,35 +2069,35 @@ vfloat64m8_t vfmerge (vbool8_t mask, vfloat64m8_t op1, float64_t op2, size_t vl)
 
 **Prototypes:**
 ``` C
-vfloat16mf4_t vmv (vfloat16mf4_t src, size_t vl);
+vfloat16mf4_t vmv_v (vfloat16mf4_t src, size_t vl);
 vfloat16mf4_t vfmv_v_f_f16mf4 (float16_t src, size_t vl);
-vfloat16mf2_t vmv (vfloat16mf2_t src, size_t vl);
+vfloat16mf2_t vmv_v (vfloat16mf2_t src, size_t vl);
 vfloat16mf2_t vfmv_v_f_f16mf2 (float16_t src, size_t vl);
-vfloat16m1_t vmv (vfloat16m1_t src, size_t vl);
+vfloat16m1_t vmv_v (vfloat16m1_t src, size_t vl);
 vfloat16m1_t vfmv_v_f_f16m1 (float16_t src, size_t vl);
-vfloat16m2_t vmv (vfloat16m2_t src, size_t vl);
+vfloat16m2_t vmv_v (vfloat16m2_t src, size_t vl);
 vfloat16m2_t vfmv_v_f_f16m2 (float16_t src, size_t vl);
-vfloat16m4_t vmv (vfloat16m4_t src, size_t vl);
+vfloat16m4_t vmv_v (vfloat16m4_t src, size_t vl);
 vfloat16m4_t vfmv_v_f_f16m4 (float16_t src, size_t vl);
-vfloat16m8_t vmv (vfloat16m8_t src, size_t vl);
+vfloat16m8_t vmv_v (vfloat16m8_t src, size_t vl);
 vfloat16m8_t vfmv_v_f_f16m8 (float16_t src, size_t vl);
-vfloat32mf2_t vmv (vfloat32mf2_t src, size_t vl);
+vfloat32mf2_t vmv_v (vfloat32mf2_t src, size_t vl);
 vfloat32mf2_t vfmv_v_f_f32mf2 (float32_t src, size_t vl);
-vfloat32m1_t vmv (vfloat32m1_t src, size_t vl);
+vfloat32m1_t vmv_v (vfloat32m1_t src, size_t vl);
 vfloat32m1_t vfmv_v_f_f32m1 (float32_t src, size_t vl);
-vfloat32m2_t vmv (vfloat32m2_t src, size_t vl);
+vfloat32m2_t vmv_v (vfloat32m2_t src, size_t vl);
 vfloat32m2_t vfmv_v_f_f32m2 (float32_t src, size_t vl);
-vfloat32m4_t vmv (vfloat32m4_t src, size_t vl);
+vfloat32m4_t vmv_v (vfloat32m4_t src, size_t vl);
 vfloat32m4_t vfmv_v_f_f32m4 (float32_t src, size_t vl);
-vfloat32m8_t vmv (vfloat32m8_t src, size_t vl);
+vfloat32m8_t vmv_v (vfloat32m8_t src, size_t vl);
 vfloat32m8_t vfmv_v_f_f32m8 (float32_t src, size_t vl);
-vfloat64m1_t vmv (vfloat64m1_t src, size_t vl);
+vfloat64m1_t vmv_v (vfloat64m1_t src, size_t vl);
 vfloat64m1_t vfmv_v_f_f64m1 (float64_t src, size_t vl);
-vfloat64m2_t vmv (vfloat64m2_t src, size_t vl);
+vfloat64m2_t vmv_v (vfloat64m2_t src, size_t vl);
 vfloat64m2_t vfmv_v_f_f64m2 (float64_t src, size_t vl);
-vfloat64m4_t vmv (vfloat64m4_t src, size_t vl);
+vfloat64m4_t vmv_v (vfloat64m4_t src, size_t vl);
 vfloat64m4_t vfmv_v_f_f64m4 (float64_t src, size_t vl);
-vfloat64m8_t vmv (vfloat64m8_t src, size_t vl);
+vfloat64m8_t vmv_v (vfloat64m8_t src, size_t vl);
 vfloat64m8_t vfmv_v_f_f64m8 (float64_t src, size_t vl);
 ```
 ### [Single-Width Floating-Point/Integer Type-Convert Functions](../rvv-intrinsic-api.md#1417-single-width-floating-pointinteger-type-convert-operations):
