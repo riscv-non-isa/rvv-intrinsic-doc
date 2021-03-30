@@ -700,6 +700,28 @@ vuint32mf2_t vwaddu_wx(vuint32mf2_t op1, uint16_t op2, size_t vl);
 vuint64m1_t  vwaddu_vx(vuint32mf2_t op1, uint32_t op2, size_t vl);
 ```
 
+#### Vector Move Instructions.
+
+Original overloading name are confusing. Append one more suffix for readability. For example:
+
+```
+// Old.
+vint8m1_t vmv (vint8m1_t src, size_t vl); // vmv.v.v
+int8_t vmv (vint8m1_t src); // vmv.x.s
+vint8m1_t vmv (vint8m1_t dst, int8_t src, size_t vl); // vmv.s.x
+float16_t vfmv (vfloat16m1_t src); // vfmv.f.s
+vfloat16m1_t vfmv (vfloat16m1_t dst, float16_t src, size_t vl); // vfmv.s.f
+```
+
+```
+// New.
+vint8m1_t vmv_v (vint8m1_t src, size_t vl); // vmv.v.v
+int8_t vmv_x (vint8m1_t src); // vmv.x.s
+vint8m1_t vmv_s (vint8m1_t dst, int8_t src, size_t vl); // vmv.s.x
+float16_t vfmv_f (vfloat16m1_t src); // vfmv.f.s
+vfloat16m1_t vfmv_s (vfloat16m1_t dst, float16_t src, size_t vl); // vfmv.s.f
+```
+
 ## Switching Vtype and Keep same VL after vsetvl instruction<a name="switching-vtype"></a>
 
 Compiler should guarantee the correctness of vtype setting after vsetvl instruction. For example considering the widening multiply example as below.
