@@ -690,8 +690,9 @@ vint16m1_t vfcvt_x (vfloat16m1_t src, size_t vl);
 
 #### Widening Vector-Scalar Arithmetic Instructions.
 
-The scalar type promotions is not obvious when argument is a constant value, so append vx/wx/vf/wf suffix in the function names.
-(ex. `vwadd[u].vx`/`vwadd[u].wx`, `vwsub[u].vx`/`vwsub[u].wx`, `vfwadd_vf`/`vfwadd_wf` and `vfwsub_vf`/`vfwsub_wf`)
+The scalar type promotions is not obvious when argument is a constant value, so append a vx/wx/vf/wf suffix in the function names.
+(ex. `vwadd[u].vx`/`vwadd[u].wx`, `vwsub[u].vx`/`vwsub[u].wx`, `vfwadd_vf`/`vfwadd_wf` and `vfwsub_vf`/`vfwsub_wf`).
+In order to consistent, vector-vector operations also append a suffix in the function name.
 
 ```
 // Example: callers need to specfic explicit type for op2
