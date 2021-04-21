@@ -32,6 +32,8 @@
   * [Utility Functions for Segment Load/Store Types](#utils-segment-types)
 - [Overloaded Interface](#overloaded-interface)
 - [Switching Vtype and Keep same VL in a Loop](#switching-vtype)
+- [Programming Note](#programming-notes)
+  * [Strided load/store with stride of 0](#stride-with-zero)
 
 ## Introduction<a name="introduction"></a>
 
@@ -298,6 +300,7 @@ vint8m1_t vadd_vv_i8m1(vint8m1_t vs2, vint8m1_t vs1, size_t vl);
 vwaddu.vv vd, vs2, vs1:
 vint16m2_t vwaddu_vv_i16m2(vint8m1_t vs2, vint8m1_t vs1, size_t vl);
 ```
+
 
 ## Exceptions in Naming<a name="exceptions"></a>
 
@@ -740,3 +743,11 @@ vse32_v_f32m8(ptr_y, vy, vl);
 This example has a `vl` computed from `vsetvl_e16m4`, and changing the type to `vfloat32m8_t` in the middle.
 With compiler's helping, users don't need to change vtype manually because `vfloat16m4_t` and `vfloat32m8_t` have the exact same number of elements (same `SEW`/`LMUL` ratio).
 Noted that when using the different vtype intrinsic functions with a new `SEW`/`LMUL` ratio after vsetvl instruction, the result will raise an illegal-instruction exception.
+
+
+## Programming Note<a name="programming-notes"></a>
+
+### Strided load/store with stride of 0 <a name="stride-with-zero"></a>
+
+The V extension spec [mentions](https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#75-vector-strided-instructions) that the strided load/store instruction with stride of 0 could have different instruction to perform all memory accesses or fewer memory operations. Since needing all memory accesses isn't likely to be common, the compiler implementation is allowed to generate fewer memory operations with strided load/store intrinsics.
+In other words, compiler does not guarantee generating the all memory accesses instruction in strided load/store intrinsics with stride of 0. If the user needs all memory accesses to be performed, they should use an indexed load/store intrinsics with all zero indices.
