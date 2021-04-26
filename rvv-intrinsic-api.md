@@ -96,7 +96,7 @@ void vwrite_csr(enum RVV_CSR csr, unsigned long value);
 #### [Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#unit-stride-fault-only-first-loads-functions)
 
 #### Notes
--  The instruction traps if the first element to be loaded is at an invalid address, for example it is a null pointer or it points to a page you don't have read access to. If the address of the first element is valid, but some other element being loaded is not valid, VL will be changed to the number of elements that were able to be loaded without a trap. It is up to the user to look for 0s or another terminator value(s) in the data returned up to the new vl value.
+- The unit-stride fault-only-first load instruction is used to vectorize loops with data-dependent exit conditions (while loops). These instructions execute as a regular load except that they will only take a trap on element 0. If an element > 0 raises an exception, that element and all following elements in the destination vector register are not modified, and the vector length vl is reduced to the number of elements processed without a trap.
 
 ### 7.8. Vector Load/Store Segment Operations (Zvlsseg)
 
