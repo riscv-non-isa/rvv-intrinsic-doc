@@ -96,7 +96,7 @@ void vwrite_csr(enum RVV_CSR csr, unsigned long value);
 #### [Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#unit-stride-fault-only-first-loads-functions)
 
 #### Notes
-- Execute a regular load and stop load operation if there is 0 value of element, and then set vl equals the index of last non-zero value.
+- The unit-stride fault-only-first load instruction is used to vectorize loops with data-dependent exit conditions (while loops). These instructions execute as a regular load except that they will only take a trap on element 0. If an element > 0 raises an exception, that element and all following elements in the destination vector register are not modified, and the vector length vl is reduced to the number of elements processed without a trap.
 
 ### 7.8. Vector Load/Store Segment Operations (Zvlsseg)
 
