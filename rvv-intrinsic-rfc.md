@@ -655,9 +655,9 @@ vint8m1_t vadd(vint8m1_t op1, int8_t op2, size_t vl);
 // The compiler will choose the following intrinsic
 vint8m1_t vadd_vx_i8m1(vint8m1_t op1, int8_t op2, size_t vl);
 
-vint8m1_t vadd(vbool64_t mask, vint8mf8_t maskedoff, vint8mf8_t op1, vint8mf8_t op2, size_t vl);
+vint8mf8_t vadd(vbool64_t mask, vint8mf8_t maskedoff, vint8mf8_t op1, vint8mf8_t op2, size_t vl);
 // The compiler will choose the following intrinsic
-vint8m1_t vadd_vv_i8m1_m (vbool8_t mask, vint8m1_t maskedoff, vint8m1_t op1, vint8m1_t op2, size_t vl);
+vint8mf8_t vadd_vv_i8mf8_m (vbool64_t mask, vint8mf8_t maskedoff, vint8mf8_t op1, vint8mf8_t op2, size_t vl);
 ```
 
 ### The unsupported overloading functions
