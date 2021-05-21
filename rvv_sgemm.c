@@ -68,10 +68,11 @@ void sgemm_vec(size_t size_m, size_t size_n, size_t size_k,
                float *c, // m * n matrix
                size_t ldc) {
   size_t vl;
-  for (int m = 0; m < size_m; ++m) {
+  for (size_t m = 0; m < size_m; ++m) {
     const float *b_n_ptr = b;
     float *c_n_ptr = c;
-    for (int c_n_count = size_n; (vl = vsetvl_e32m1(c_n_count )); c_n_count -= vl) {
+    for (size_t c_n_count = size_n; c_n_count; c_n_count -= vl) {
+      vl = vsetvl_e32m1(c_n_count );
       const float *a_k_ptr = a;
       const float *b_k_ptr = b_n_ptr;
       vfloat32m1_t acc = vle32_v_f32m1(c_n_ptr, vl);
