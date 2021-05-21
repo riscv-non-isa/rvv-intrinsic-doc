@@ -710,14 +710,15 @@ vuint8m1_t vreinterpret_u8 (vint8m1_t src);
 vint16m1_t vfcvt_x (vfloat16m1_t src, size_t vl);
 ```
 
-#### Widening Vector-Scalar Arithmetic Instructions.
+#### Widening Vector-Scalar Arithmetic Instructions for vx/wx and vf/wf cases.
 
-The scalar type promotions is not obvious when argument is a constant value, so append a vx/wx/vf/wf suffix in the function names.
+The scalar type promotions is not obvious if instruction supports source vector type is 2*SEW and SEW, so append
+the vx/wx/vf/wf suffix in the function names.
 (ex. `vwadd[u].vx`/`vwadd[u].wx`, `vwsub[u].vx`/`vwsub[u].wx`, `vfwadd_vf`/`vfwadd_wf` and `vfwsub_vf`/`vfwsub_wf`).
 In order to consistent, vector-vector operations also append a suffix in the function name.
 
 ```
-// Example: callers need to specfic explicit type for op2
+// Example: users need to specific explicit type for op2 if below functions have the same name.
 vuint32mf2_t vwaddu_wx(vuint32mf2_t op1, uint16_t op2, size_t vl);
 vuint64m1_t  vwaddu_vx(vuint32mf2_t op1, uint32_t op2, size_t vl);
 ```
