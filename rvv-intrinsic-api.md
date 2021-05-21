@@ -662,6 +662,9 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 
 #### [Intrinsic functions list](intrinsic_funcs/11_vector_permutation_functions.md#vector-slideup-and-slidedown-functions)
 
+#### Notes
+- Unmasked vslideup and vslidedown intrinsics will generate code using tail
+  undisturbed policy unless vundefined() is passed to the dst argument.
 
 ### 17.4. Vector Register Gather Operations
 #### Instructions
@@ -675,6 +678,10 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vcompress.vm
 
 #### [Intrinsic functions list](intrinsic_funcs/11_vector_permutation_functions.md#vector-compress-instruction)
+
+#### Notes
+- vcompress intrinsics will generate code using tail undisturbed policy unless
+  vundefined() is passed to the dest argument.
 
 ## 18. None
 Keep this chapter none to aligned to riscv-v-spec chapters
