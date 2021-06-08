@@ -539,6 +539,10 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 
 #### [Intrinsic functions list](intrinsic_funcs/09_vector_reduction_functions.md#vector-single-width-integer-reduction-functions)
 
+#### Notes
+- Reduction intrinsics will generate code using tail undisturbed policy unless
+  vundefined() is passed to the dest argument.
+
 
 ### 15.2. Vector Widening Integer Reduction Operations
 #### Instructions
@@ -546,6 +550,10 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vwredsum.vs
 
 #### [Intrinsic functions list](intrinsic_funcs/09_vector_reduction_functions.md#vector-widening-integer-reduction-functions)
+
+#### Notes
+- Reduction intrinsics will generate code using tail undisturbed policy unless
+  vundefined() is passed to the dest argument.
 
 
 ### 15.3. Vector Single-Width Floating-Point Reduction Operations
@@ -557,6 +565,10 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 
 #### [Intrinsic functions list](intrinsic_funcs/09_vector_reduction_functions.md#vector-single-width-floating-point-reduction-functions)
 
+#### Notes
+- Reduction intrinsics will generate code using tail undisturbed policy unless
+  vundefined() is passed to the dest argument.
+
 
 ### 15.4. Vector Widening Floating-Point Reduction Operations
 #### Instructions
@@ -564,6 +576,10 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vfwredsum.vs
 
 #### [Intrinsic functions list](intrinsic_funcs/09_vector_reduction_functions.md#vector-widening-floating-point-reduction-functions)
+
+#### Notes
+- Reduction intrinsics will generate code using tail undisturbed policy unless
+  vundefined() is passed to the dest argument.
 
 
 ## 16. Vector Mask Instructions
@@ -642,6 +658,10 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 
 #### [Intrinsic functions list](intrinsic_funcs/11_vector_permutation_functions.md#integer-and-floating-point-scalar-move-functions)
 
+#### Notes
+- vmv.s.x intrinsic will generate code using tail undisturbed policy unless
+  vundefined() is passed to the dest argument.
+
 
 ### 17.2. Floating-Point Scalar Move Operations
 #### Instructions
@@ -649,6 +669,10 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vfmv.s.f
 
 #### [Intrinsic functions list](intrinsic_funcs/11_vector_permutation_functions.md#integer-and-floating-point-scalar-move-functions)
+
+#### Notes
+- vfmv.s.f intrinsic will generate code using tail undisturbed policy unless
+  vundefined() is passed to the dest argument.
 
 
 ### 17.3. Vector Slide Operations
