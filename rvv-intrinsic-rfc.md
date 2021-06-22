@@ -29,6 +29,7 @@
   * [Reinterpret between signed and unsigned types](#reinterpret-sign)
   * [Reinterpret between different SEWs under the same LMUL](#reinterpret-sew)
   * [LMUL truncation and LMUL extension functions](#lmul-trunc)
+  * [Vector Insertion and Extraction functions](#insert-extract)
   * [Utility Functions for Segment Load/Store Types](#utils-segment-types)
 - [Overloaded Interface](#overloaded-interface)
 - [Switching Vtype and Keep same VL in a Loop](#switching-vtype)
@@ -609,6 +610,24 @@ vint64m2_t vlmul_trunc_v_i64m4_i64m2 (vint64m4_t op1);
 vint64m2_t vlmul_ext_v_i64m1_i64m2 (vint64m1_t op1);
 vint64m4_t vlmul_ext_v_i64m1_i64m4 (vint64m1_t op1);
 vint64m8_t vlmul_ext_v_i64m1_i64m8 (vint64m1_t op1);
+```
+
+### Vector Insertion and Extraction functions<a name="insert-extract)"></a>
+
+These utility functions help users to insert or extract smaller LMUL under same SEW.
+
+```
+Example:
+
+// Insert an smaller LMUL, vset_v_<src_lmul>_<target_lmul>
+vint32m2_t vset_v_i32m1_i32m2 (vint32m2_t dest, size_t index, vint32m1_t val);
+vint32m4_t vset_v_i32m1_i32m4 (vint32m4_t dest, size_t index, vint32m1_t val);
+vint32m4_t vset_v_i32m2_i32m4 (vint32m4_t dest, size_t index, vint32m2_t val);
+
+// Extract an smaller LMUL, vget_v_<src_lmul>_<target_lmul>
+vint32m1_t vget_v_i32m2_i32m1 (vint32m2_t src, size_t index);
+vint32m1_t vget_v_i32m4_i32m1 (vint32m4_t src, size_t index);
+vint32m2_t vget_v_i32m4_i32m2 (vint32m4_t src, size_t index);
 ```
 
 
