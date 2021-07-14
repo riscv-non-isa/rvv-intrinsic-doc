@@ -697,17 +697,39 @@ The unsupported overloading functions are based on the types of input/return arg
 
 ### Special naming rule for some overloaded interfaces.
 
-#### Reinterpret and Convert
+#### Convert Instructions.
 
-Keep the output type in the function names.
+Append one more suffix from mnemonic in the function names to distinct the different operation.
 
 ```
 Example:
 
-// u8 for uint8
-vuint8m1_t vreinterpret_u8 (vint8m1_t src);
-// x for scalar, xu for unsigned scalar, and f for float.
+// vint16m1_t vfcvt_x_f_v_i16m1 (vfloat16m1_t src, size_t vl);
 vint16m1_t vfcvt_x (vfloat16m1_t src, size_t vl);
+```
+
+#### Reinterpret, LMUL truncation, LMUL extension and vector extraction functions.
+
+Append output type in the function names to avoid different operations have the same type of argument.
+
+```
+Example:
+
+// vuint8mf4_t vreinterpret_v_u16mf4_u8mf4(vuint16mf4_t src)
+vuint8mf4_t vreinterpret_u8mf4(vuint16mf4_t src)
+// vfloat16mf4_t vreinterpret_v_u16mf4_f16mf4(vuint16mf4_t src)
+vfloat16mf4_t vreinterpret_f16mf4(vuint16mf4_t src)
+
+// vuint8mf8_t vlmul_trunc_v_u8m1_u8mf8(vuint8m1_t op1);
+vuint8mf8_t vlmul_trunc_u8mf8(vuint8m1_t op1);
+// vuint8mf4_t vlmul_trunc_v_u8m1_u8mf4(vuint8m1_t op1);
+vuint8mf4_t vlmul_trunc_u8mf4(vuint8m1_t op1);
+
+// vint8m2_t vget_v_i8m8_i8m2(vint8m8_t src, size_t index);
+vint8m2_t vget_i8m2(vint8m8_t src, size_t index);
+// vint8m4_t vget_v_i8m8_i8m4(vint8m8_t src, size_t index);
+vint8m4_t vgeti8m4(vint8m8_t src, size_t index);
+
 ```
 
 #### Widening Vector-Scalar Arithmetic Instructions for vx/wx and vf/wf cases.
