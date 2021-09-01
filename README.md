@@ -2,8 +2,13 @@
 - [RISC-V Vector Extension Intrinsic API Reference Manual](rvv-intrinsic-api.md)
 - [RISC-V Vector Extension Intrinsic Functions List](intrinsic_funcs.md)
 - RISC-V Vector Extension Intrinsic Examples
-  - [sgemm](rvv_sgemm.c)
-  - [saxpy](rvv_saxpy.c)
+  - [sgemm](examples/rvv_sgemm.c)
+  - [saxpy](examples/rvv_saxpy.c)
+  - [memcpy](examples/rvv_memcpy.c)
+  - [strcmp](examples/rvv_strcmp.c)
+  - [strcpy](examples/rvv_strcpy.c)
+  - [strlen](examples/rvv_strlen.c)
+  - [strncpy](examples/rvv_strncpy.c)
 
 # Copyright and License Information
 
