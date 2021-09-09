@@ -49,6 +49,7 @@ void saxpy_golden(size_t n, const float a, const float *x, float *y) {
   }
 }
 
+// reference https://github.com/riscv/riscv-v-spec/blob/master/example/saxpy.s
 void saxpy_vec(size_t n, const float a, const float *x, float *y) {
   size_t l;
 
