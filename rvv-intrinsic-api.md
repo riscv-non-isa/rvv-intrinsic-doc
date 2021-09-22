@@ -559,7 +559,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 ### 15.3. Vector Single-Width Floating-Point Reduction Operations
 #### Instructions
 - vfredosum.vs
-- vfredsum.vs
+- vfredusum.vs
 - vfredmax.vs
 - vfredmin.vs
 
@@ -573,7 +573,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 ### 15.4. Vector Widening Floating-Point Reduction Operations
 #### Instructions
 - vfwredosum.vs
-- vfwredsum.vs
+- vfwredusum.vs
 
 #### [Intrinsic functions list](intrinsic_funcs/08_vector_reduction_functions.md#154-vector-widening-floating-point-reduction-operations)
 
