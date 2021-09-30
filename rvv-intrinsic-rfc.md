@@ -375,27 +375,27 @@ Define two constants for tail policy. Users could use these two constants for `t
 For intrinsics with `maskedoff` and `ta` argument:
 | Masked? | Needs tail preserved | Needs maskedoff preserved | Intrinsic
 | ------- | -------------------- | ------------------------- | ------------------------------------------------------------------------
-| No      | No                   | N/A                       | vadd_vv_<ty>(vs2, vs1, vl)
-| No      | Yes                  | N/A                       | vadd_vv_<ty>_mt(maskedoff, all-ones, vs2, vs1, vl, VE_TAIL_UNDISTURBED)
-| Yes     | No                   | No                        | vadd_vv_<ty>_mt(vundefined(), mask, vs2, vs1, vl, VE_TAIL_AGNOSTIC)
-| Yes     | No                   | Yes                       | vadd_vv_<ty>_mt(maskedoff, mask, vs2, vs1, vl, VE_TAIL_AGNOSTIC)
-| Yes     | Yes                  | Yes                       | vadd_vv_<ty>_mt(maskedoff, mask, vs2, vs1, vl, VE_TAIL_UNDISTURBED)
+| No      | No                   | N/A                       | `vadd_vv_<ty>(vs2, vs1, vl)`
+| No      | Yes                  | N/A                       | `vadd_vv_<ty>_mt(maskedoff, all-ones, vs2, vs1, vl, VE_TAIL_UNDISTURBED)`
+| Yes     | No                   | No                        | `vadd_vv_<ty>_mt(vundefined(), mask, vs2, vs1, vl, VE_TAIL_AGNOSTIC)`
+| Yes     | No                   | Yes                       | `vadd_vv_<ty>_mt(maskedoff, mask, vs2, vs1, vl, VE_TAIL_AGNOSTIC)`
+| Yes     | Yes                  | Yes                       | `vadd_vv_<ty>_mt(maskedoff, mask, vs2, vs1, vl, VE_TAIL_UNDISTURBED)`
 | Yes     | Yes                  | No                        | No support. Tail undisturbed and maskedoff agnostic is likely rare.
 
 For intrinsics without mask and with an additional `dest` argument:
 | Masked? | Needs tail preserved | Needs maskedoff preserved | Intrinsic
 | ------- | -------------------- | ------------------------- | ---------------------------------------
-| No      | No                   | N/A                       | vmv_v_x_<ty>(src, vl)
-| No      | Yes                  | N/A                       | vmv_v_x_<ty>_t(dest, src, vl)
+| No      | No                   | N/A                       | `vmv_v_x_<ty>(src, vl)`
+| No      | Yes                  | N/A                       | `vmv_v_x_<ty>_t(dest, src, vl)`
 
 For multiply-add intrinsics:
 | Masked? | Needs tail preserved | Needs maskedoff preserved | Intrinsic
 | ------- | -------------------- | ------------------------- | -------------------------------------------------------------------
-| No      | No                   | N/A                       | vmacc_vv_<ty>(vd, vs1, vs2, vl)
-| No      | Yes                  | N/A                       | vmacc_vv_<ty>_mt(all-ones, vd, vs1, vs2, vl, VE_TAIL_UNDISTURBED)
+| No      | No                   | N/A                       | `vmacc_vv_<ty>(vd, vs1, vs2, vl)`
+| No      | Yes                  | N/A                       | `vmacc_vv_<ty>_mt(all-ones, vd, vs1, vs2, vl, VE_TAIL_UNDISTURBED)`
 | Yes     | No                   | No                        | No support.
-| Yes     | No                   | Yes                       | vmacc_vv_<ty>_mt(mask, vd, vs1, vs2, vl, VE_TAIL_AGNOSTIC)
-| Yes     | Yes                  | Yes                       | vmacc_vv_<ty>_mt(mask, vd, vs1, vs2, vl, VE_TAIL_UNDISTURBED)
+| Yes     | No                   | Yes                       | `vmacc_vv_<ty>_mt(mask, vd, vs1, vs2, vl, VE_TAIL_AGNOSTIC)`
+| Yes     | Yes                  | Yes                       | `vmacc_vv_<ty>_mt(mask, vd, vs1, vs2, vl, VE_TAIL_UNDISTURBED)`
 | Yes     | Yes                  | No                        | No support. Tail undisturbed and maskedoff agnostic is likely rare.
 
 If the type of the destination is mask type or scalar type, it is always tail-agnostic. The intrinsics are
