@@ -88,8 +88,8 @@ There are two variants of configuration setting intrinsics. `vsetvl` is used to
 get the active vector length (`vl`) according to the given application vector
 length(`AVL`), `SEW` and `LMUL`.
 
-`vl` register status is not expose to C language level, so in theory you can
-treat `vsetvl` and `vsetvlmax` functions are return the min value for `avl` and
+`vl` register status is not exposed to C language level, so in theory you can
+treat `vsetvl` and `vsetvlmax` as functions which return the min value between `avl` and
 `VLMAX`.
 
 ```c
