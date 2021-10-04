@@ -89,8 +89,7 @@ get the active vector length (`vl`) according to the given application vector
 length(`AVL`), `SEW` and `LMUL`.
 
 `vl` register status is not exposed to C language level, so in theory you can
-treat `vsetvl` and `vsetvlmax` as functions which return the min value between `avl` and
-`VLMAX`.
+treat `vsetvl` as a function which returns the min value between `avl` and `VLMAX` and `vsetvlmax` as returning `VLMAX`.
 
 ```c
 size_t vsetvl_e8m1 (size_t avl);
