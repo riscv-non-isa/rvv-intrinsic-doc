@@ -107,12 +107,12 @@ size_t vsetvlmax_e8m8 ();
 intrinsics.
 
 All of the intrinsic functions have a `vl` argument to specify the active
-vector length, except a few functions operate regardless of `vl`. e.g. `vmv.x.s`,
+vector length, except a few functions which operate regardless of `vl`. e.g. `vmv.x.s`,
 `vfmv.f.s`, `vundefined`, `vreinterpret`, `vlmul_ext`, `vlmul_trunc`, `vget`,
 `vset` and `vcreate`.
 
-The intrinsic functions will only operate at most `VLMAX` element if the `vl`
-argument are larger than `VLMAX`.
+The intrinsic functions will only operate at most `VLMAX` elements if the `vl`
+arguments are larger than `VLMAX`.
 
 The semantics of following two snippets are equivalent. We strongly suggest
 the first form.
@@ -174,7 +174,7 @@ void vse8_v_i8m1(int8_t *rs1, vint8m1_t vs3, size_t vl);
 
 ### Vector Integer Add-with-Carry / Subtract-with-Borrow Instructions<a name="add-with-carry"></a>
 
-The result of `vmadc` and `vmsbc` is mask types. Becuase we use the ratio `SEW`/`LMUL` to name the mask types and multiple (`SEW`, `LMUL`) pairs map to the same ratio, in addition to use the return type to name the intrinsics, we also encode the input types to distinguish these intrinsics.
+The result of `vmadc` and `vmsbc` is mask types. Because we use the ratio `SEW`/`LMUL` to name the mask types and multiple (`SEW`, `LMUL`) pairs map to the same ratio, in addition to use the return type to name the intrinsics, we also encode the input types to distinguish these intrinsics.
 
 ```
 Example:
