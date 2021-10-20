@@ -349,7 +349,7 @@ The naming rule of intrinsics with tail policy is
 
 ```
 INTRINSIC_WITH_MASK_AND_TAIL_POLICY ::= INTRINSIC '_mt'
-INTRINSIC_WITH_ADDITIONAL_DEST ::= INTRINSIC '_t'
+INTRINSIC_WITH_ADDITIONAL_DEST ::= INTRINSIC '_tu'
 ```
 
 ```
@@ -362,7 +362,7 @@ vint8m1_t vadd_vv_i8m1_mt(vbool8_t mask, vint8m1_t maskedoff, vint8m1_t vs2, vin
 
 // Add an additional `dest` argument to control tail undisturbed/agnostic.
 // `dest` == vundefined(), tail agnostic.
-vint8m1_t vmv_v_x_i8m1_t(vint8m1_t dest, int8_t src, size_t vl);
+vint8m1_t vmv_v_x_i8m1_tu(vint8m1_t dest, int8_t src, size_t vl);
 ```
 
 Define two constants for tail policy. Users could use these two constants for `ta` argument.
@@ -375,7 +375,7 @@ For intrinsics with `maskedoff` and `ta` argument:
 | Masked? | Needs tail preserved | Needs maskedoff preserved | Intrinsic
 | ------- | -------------------- | ------------------------- | ------------------------------------------------------------------------
 | No      | No                   | N/A                       | `vadd_vv_<ty>(vs2, vs1, vl)`
-| No      | Yes                  | N/A                       | `vadd_vv_<ty>_mt(maskedoff, all-ones, vs2, vs1, vl, VE_TAIL_UNDISTURBED)`
+| No      | Yes                  | N/A                       | `vadd_vv_<ty>_tu(dest, vs2, vs1, vl)`
 | Yes     | No                   | No                        | `vadd_vv_<ty>_mt(vundefined(), mask, vs2, vs1, vl, VE_TAIL_AGNOSTIC)`
 | Yes     | No                   | Yes                       | `vadd_vv_<ty>_mt(maskedoff, mask, vs2, vs1, vl, VE_TAIL_AGNOSTIC)`
 | Yes     | Yes                  | Yes                       | `vadd_vv_<ty>_mt(maskedoff, mask, vs2, vs1, vl, VE_TAIL_UNDISTURBED)`
@@ -385,13 +385,13 @@ For intrinsics without mask and with an additional `dest` argument:
 | Masked? | Needs tail preserved | Needs maskedoff preserved | Intrinsic
 | ------- | -------------------- | ------------------------- | ---------------------------------------
 | No      | No                   | N/A                       | `vmv_v_x_<ty>(src, vl)`
-| No      | Yes                  | N/A                       | `vmv_v_x_<ty>_t(dest, src, vl)`
+| No      | Yes                  | N/A                       | `vmv_v_x_<ty>_tu(dest, src, vl)`
 
 For multiply-add intrinsics:
 | Masked? | Needs tail preserved | Needs maskedoff preserved | Intrinsic
 | ------- | -------------------- | ------------------------- | -------------------------------------------------------------------
 | No      | No                   | N/A                       | `vmacc_vv_<ty>(vd, vs1, vs2, vl)`
-| No      | Yes                  | N/A                       | `vmacc_vv_<ty>_mt(all-ones, vd, vs1, vs2, vl, VE_TAIL_UNDISTURBED)`
+| No      | Yes                  | N/A                       | `vmacc_vv_<ty>_tu(vd, vs1, vs2, vl)`
 | Yes     | No                   | No                        | No support.
 | Yes     | No                   | Yes                       | `vmacc_vv_<ty>_mt(mask, vd, vs1, vs2, vl, VE_TAIL_AGNOSTIC)`
 | Yes     | Yes                  | Yes                       | `vmacc_vv_<ty>_mt(mask, vd, vs1, vs2, vl, VE_TAIL_UNDISTURBED)`
