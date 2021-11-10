@@ -39,13 +39,13 @@ vbool8_t vmnand (vbool8_t op1, vbool8_t op2, size_t vl);
 vbool16_t vmnand (vbool16_t op1, vbool16_t op2, size_t vl);
 vbool32_t vmnand (vbool32_t op1, vbool32_t op2, size_t vl);
 vbool64_t vmnand (vbool64_t op1, vbool64_t op2, size_t vl);
-vbool1_t vmandnot (vbool1_t op1, vbool1_t op2, size_t vl);
-vbool2_t vmandnot (vbool2_t op1, vbool2_t op2, size_t vl);
-vbool4_t vmandnot (vbool4_t op1, vbool4_t op2, size_t vl);
-vbool8_t vmandnot (vbool8_t op1, vbool8_t op2, size_t vl);
-vbool16_t vmandnot (vbool16_t op1, vbool16_t op2, size_t vl);
-vbool32_t vmandnot (vbool32_t op1, vbool32_t op2, size_t vl);
-vbool64_t vmandnot (vbool64_t op1, vbool64_t op2, size_t vl);
+vbool1_t vmandn (vbool1_t op1, vbool1_t op2, size_t vl);
+vbool2_t vmandn (vbool2_t op1, vbool2_t op2, size_t vl);
+vbool4_t vmandn (vbool4_t op1, vbool4_t op2, size_t vl);
+vbool8_t vmandn (vbool8_t op1, vbool8_t op2, size_t vl);
+vbool16_t vmandn (vbool16_t op1, vbool16_t op2, size_t vl);
+vbool32_t vmandn (vbool32_t op1, vbool32_t op2, size_t vl);
+vbool64_t vmandn (vbool64_t op1, vbool64_t op2, size_t vl);
 vbool1_t vmxor (vbool1_t op1, vbool1_t op2, size_t vl);
 vbool2_t vmxor (vbool2_t op1, vbool2_t op2, size_t vl);
 vbool4_t vmxor (vbool4_t op1, vbool4_t op2, size_t vl);
@@ -67,13 +67,13 @@ vbool8_t vmnor (vbool8_t op1, vbool8_t op2, size_t vl);
 vbool16_t vmnor (vbool16_t op1, vbool16_t op2, size_t vl);
 vbool32_t vmnor (vbool32_t op1, vbool32_t op2, size_t vl);
 vbool64_t vmnor (vbool64_t op1, vbool64_t op2, size_t vl);
-vbool1_t vmornot (vbool1_t op1, vbool1_t op2, size_t vl);
-vbool2_t vmornot (vbool2_t op1, vbool2_t op2, size_t vl);
-vbool4_t vmornot (vbool4_t op1, vbool4_t op2, size_t vl);
-vbool8_t vmornot (vbool8_t op1, vbool8_t op2, size_t vl);
-vbool16_t vmornot (vbool16_t op1, vbool16_t op2, size_t vl);
-vbool32_t vmornot (vbool32_t op1, vbool32_t op2, size_t vl);
-vbool64_t vmornot (vbool64_t op1, vbool64_t op2, size_t vl);
+vbool1_t vmorn (vbool1_t op1, vbool1_t op2, size_t vl);
+vbool2_t vmorn (vbool2_t op1, vbool2_t op2, size_t vl);
+vbool4_t vmorn (vbool4_t op1, vbool4_t op2, size_t vl);
+vbool8_t vmorn (vbool8_t op1, vbool8_t op2, size_t vl);
+vbool16_t vmorn (vbool16_t op1, vbool16_t op2, size_t vl);
+vbool32_t vmorn (vbool32_t op1, vbool32_t op2, size_t vl);
+vbool64_t vmorn (vbool64_t op1, vbool64_t op2, size_t vl);
 vbool1_t vmxnor (vbool1_t op1, vbool1_t op2, size_t vl);
 vbool2_t vmxnor (vbool2_t op1, vbool2_t op2, size_t vl);
 vbool4_t vmxnor (vbool4_t op1, vbool4_t op2, size_t vl);
@@ -110,25 +110,25 @@ vbool16_t vmnot (vbool16_t op1, size_t vl);
 vbool32_t vmnot (vbool32_t op1, size_t vl);
 vbool64_t vmnot (vbool64_t op1, size_t vl);
 ```
-### [Vector mask population count Functions](../rvv-intrinsic-api.md#162-vector-mask-population-count-vpopc):
+### [Vector count population in mask Functions](../rvv-intrinsic-api.md#162-vector-count-population-in-mask-vcpopm):
 
 **Prototypes:**
 ``` C
-unsigned long vpopc (vbool1_t op1, size_t vl);
-unsigned long vpopc (vbool2_t op1, size_t vl);
-unsigned long vpopc (vbool4_t op1, size_t vl);
-unsigned long vpopc (vbool8_t op1, size_t vl);
-unsigned long vpopc (vbool16_t op1, size_t vl);
-unsigned long vpopc (vbool32_t op1, size_t vl);
-unsigned long vpopc (vbool64_t op1, size_t vl);
+unsigned long vcpop (vbool1_t op1, size_t vl);
+unsigned long vcpop (vbool2_t op1, size_t vl);
+unsigned long vcpop (vbool4_t op1, size_t vl);
+unsigned long vcpop (vbool8_t op1, size_t vl);
+unsigned long vcpop (vbool16_t op1, size_t vl);
+unsigned long vcpop (vbool32_t op1, size_t vl);
+unsigned long vcpop (vbool64_t op1, size_t vl);
 // masked functions
-unsigned long vpopc (vbool1_t mask, vbool1_t op1, size_t vl);
-unsigned long vpopc (vbool2_t mask, vbool2_t op1, size_t vl);
-unsigned long vpopc (vbool4_t mask, vbool4_t op1, size_t vl);
-unsigned long vpopc (vbool8_t mask, vbool8_t op1, size_t vl);
-unsigned long vpopc (vbool16_t mask, vbool16_t op1, size_t vl);
-unsigned long vpopc (vbool32_t mask, vbool32_t op1, size_t vl);
-unsigned long vpopc (vbool64_t mask, vbool64_t op1, size_t vl);
+unsigned long vcpop (vbool1_t mask, vbool1_t op1, size_t vl);
+unsigned long vcpop (vbool2_t mask, vbool2_t op1, size_t vl);
+unsigned long vcpop (vbool4_t mask, vbool4_t op1, size_t vl);
+unsigned long vcpop (vbool8_t mask, vbool8_t op1, size_t vl);
+unsigned long vcpop (vbool16_t mask, vbool16_t op1, size_t vl);
+unsigned long vcpop (vbool32_t mask, vbool32_t op1, size_t vl);
+unsigned long vcpop (vbool64_t mask, vbool64_t op1, size_t vl);
 ```
 ### [Find-first-set mask bit Functions](../rvv-intrinsic-api.md#163-vfirst-find-first-set-mask-bit):
 

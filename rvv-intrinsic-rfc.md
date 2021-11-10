@@ -11,7 +11,7 @@
   * [Vector Integer Add-with-Carry / Subtract-with-Borrow Instructions](#add-with-carry)
   * [Comparison Instructions](#comparison-instructions)
   * [Reduction Instructions](#reduction-instructions)
-  * [`vpopc.m` and `vfirst.m`](#vpopc-and-vfirst)
+  * [`vcpop.m` and `vfirst.m`](#vcpop-and-vfirst)
   * [Permutation Instructions](#permutation-instructions)
 - [Scalar in Vector Operations](#scalar-in-vector-operations)
 - [Mask in Intrinsics](#mask-in-intrinsics)
@@ -208,16 +208,16 @@ vint8m1_t vredsum_vs_i8m4_i8m1(vint8m1_t dest, vint8m4_t vs2, vint8m1_t vs1, siz
 vint8m1_t vredsum_vs_i8m8_i8m1(vint8m1_t dest, vint8m8_t vs2, vint8m1_t vs1, size_t vl);
 ```
 
-### `vpopc.m` and `vfirst.m`<a name="vpopc-and-vfirst"></a>
+### `vcpop.m` and `vfirst.m`<a name="vcpop-and-vfirst"></a>
 
-The return type of `vpopc.m` and `vfirst.m` is apparently an integer. Do not encode the return type into it. Instead, encode the input type to it.
+The return type of `vcpop.m` and `vfirst.m` is apparently an integer. Do not encode the return type into it. Instead, encode the input type to it.
 
 ```
 Example:
 
-vpopc.m rd, vs2:
-unsigned long vpopc_m_b1(vbool1_t vs2, size_t vl);
-unsigned long vpopc_m_b2(vbool2_t vs2, size_t vl);
+vcpop.m rd, vs2:
+unsigned long vcpop_m_b1(vbool1_t vs2, size_t vl);
+unsigned long vcpop_m_b2(vbool2_t vs2, size_t vl);
 ```
 
 ### Permutation Instructions<a name="permutation-instructions"></a>
@@ -408,7 +408,7 @@ If the type of the destination is mask type or scalar type, it is always tail-ag
 * vmsbf.m
 * vmsif.m
 * vmsof.m
-* vpopc.m
+* vcpop.m
 * vmv.x.s
 * vfmv.f.s
 

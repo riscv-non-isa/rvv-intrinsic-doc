@@ -587,11 +587,11 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 #### Instructions
 - vmand.mm
 - vmnand.mm
-- vmandnot.mm
+- vmandn.mm
 - vmxor.mm
 - vmor.mm
 - vmnor.mm
-- vmornot.mm
+- vmorn.mm
 - vmxnor.mm
 - vmmv.m
 - vmclr.m
@@ -601,11 +601,11 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 #### [Intrinsic functions list](intrinsic_funcs/09_vector_mask_functions.md#161-vector-mask-register-logical-operations)
 
 
-### 16.2. Vector mask population count vpopc
+### 16.2. Vector count population in mask vcpop.m
 #### Instructions
-- vpopc.m
+- vcpop.m
 
-#### [Intrinsic functions list](intrinsic_funcs/09_vector_mask_functions.md#162-vector-mask-population-count-operations)
+#### [Intrinsic functions list](intrinsic_funcs/09_vector_mask_functions.md#vector-count-population-in-mask-functions)
 
 
 ### 16.3. vfirst find-first-set mask bit
