@@ -376,9 +376,9 @@ For intrinsics with `maskedoff` and `ta` argument:
 | ------- | -------------------- | ------------------------- | ------------------------------------------------------------------------
 | No      | No                   | N/A                       | `vadd_vv_<ty>(vs2, vs1, vl)`
 | No      | Yes                  | N/A                       | `vadd_vv_<ty>_tu(dest, vs2, vs1, vl)`
-| Yes     | No                   | No                        | `vadd_vv_<ty>_mt(vundefined(), mask, vs2, vs1, vl, VE_TAIL_AGNOSTIC)`
-| Yes     | No                   | Yes                       | `vadd_vv_<ty>_mt(maskedoff, mask, vs2, vs1, vl, VE_TAIL_AGNOSTIC)`
-| Yes     | Yes                  | Yes                       | `vadd_vv_<ty>_mt(maskedoff, mask, vs2, vs1, vl, VE_TAIL_UNDISTURBED)`
+| Yes     | No                   | No                        | `vadd_vv_<ty>_mt(mask, vundefined(), vs2, vs1, vl, VE_TAIL_AGNOSTIC)`
+| Yes     | No                   | Yes                       | `vadd_vv_<ty>_mt(mask, maskedoff, vs2, vs1, vl, VE_TAIL_AGNOSTIC)`
+| Yes     | Yes                  | Yes                       | `vadd_vv_<ty>_mt(mask, maskedoff, vs2, vs1, vl, VE_TAIL_UNDISTURBED)`
 | Yes     | Yes                  | No                        | No support. Tail undisturbed and maskedoff agnostic is likely rare.
 
 For intrinsics without mask and with an additional `dest` argument:
