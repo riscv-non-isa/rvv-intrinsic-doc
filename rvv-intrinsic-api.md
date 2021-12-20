@@ -281,10 +281,10 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 
 ### 12.13. Vector Single-Width Integer Multiply-Add Operations
 #### Instructions
-- vmacc_{vv,vx}
-- vnmsac_{vv,vx}
-- vmadd_{vv,vx}
-- vnmsub_{vv,vx}
+- vmacc.{vv,vx}
+- vnmsac.{vv,vx}
+- vmadd.{vv,vx}
+- vnmsub.{vv,vx}
 
 #### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#1213-vector-single-width-integer-multiply-add-operations)
 
