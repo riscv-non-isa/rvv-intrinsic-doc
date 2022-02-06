@@ -39,6 +39,11 @@
 
 This document introduces the intrinsics for RISC-V vector programming, including the design decision we take, the type system, the general naming rules for intrinsics, and facilities for vector users. It does not list all available intrinsics for vector programming. The full set of intrinsics will be written in another document.
 
+## Availability<a name="availability"></a>
+
+In order to access the intrinsics for RISC-V vector programming, it is necessary to include the header file `riscv_vector.h`.
+Further, individual intrinsic functions depend on the availability of the corresponding vector instructions (as part of the effective `-march` string).
+
 ## Type System<a name="type-system"></a>
 
 ### Data Types<a name="data-types"></a>
