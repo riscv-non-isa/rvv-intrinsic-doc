@@ -377,7 +377,7 @@ For intrinsics with `maskedoff` and `ta` argument:
 | No      | No                   | N/A                       | `vadd_vv_<ty>(vs2, vs1, vl)`
 | No      | Yes                  | N/A                       | `vadd_vv_<ty>_tu(dest, vs2, vs1, vl)`
 | Yes     | No                   | No                        | `vadd_vv_<ty>_mt(mask, vundefined(), vs2, vs1, vl, VE_TAIL_AGNOSTIC)`
-| Yes     | No                   | Yes                       | `vadd_vv_<ty>_mt(mask, maskedoff, vs2, vs1, vl, VE_TAIL_AGNOSTIC)`
+| Yes     | No                   | Yes                       | `vadd_vv_<ty>_mt(mask, maskedoff, vs2, vs1, vl, VE_TAIL_AGNOSTIC)`<br>`vadd_vv_<ty>_m(mask, maskedoff, vs2, vs1, vl)`
 | Yes     | Yes                  | Yes                       | `vadd_vv_<ty>_mt(mask, maskedoff, vs2, vs1, vl, VE_TAIL_UNDISTURBED)`
 | Yes     | Yes                  | No                        | No support. Tail undisturbed and maskedoff agnostic is likely rare.
 
@@ -393,7 +393,7 @@ For multiply-add intrinsics:
 | No      | No                   | N/A                       | `vmacc_vv_<ty>(vd, vs1, vs2, vl)`
 | No      | Yes                  | N/A                       | `vmacc_vv_<ty>_tu(vd, vs1, vs2, vl)`
 | Yes     | No                   | No                        | No support.
-| Yes     | No                   | Yes                       | `vmacc_vv_<ty>_mt(mask, vd, vs1, vs2, vl, VE_TAIL_AGNOSTIC)`
+| Yes     | No                   | Yes                       | `vmacc_vv_<ty>_mt(mask, vd, vs1, vs2, vl, VE_TAIL_AGNOSTIC)`<br>`vmacc_vv_<ty>_m(mask, vd, vs1, vs2, vl)`
 | Yes     | Yes                  | Yes                       | `vmacc_vv_<ty>_mt(mask, vd, vs1, vs2, vl, VE_TAIL_UNDISTURBED)`
 | Yes     | Yes                  | No                        | No support. Tail undisturbed and maskedoff agnostic is likely rare.
 
