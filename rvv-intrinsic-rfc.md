@@ -353,7 +353,6 @@ vint8m1_t vmerge_vvm_i8m1_m(vbool8_t mask, vint8m1_t vs2, vint8m1_t vs1, size_t 
 The naming rule of intrinsics with tail policy is
 
 ```
-INTRINSIC_WITH_MASK_AND_TAIL_POLICY ::= INTRINSIC '_mt'
 INTRINSIC_WITH_ADDITIONAL_DEST ::= INTRINSIC '_tu'
 ```
 
@@ -361,9 +360,6 @@ INTRINSIC_WITH_ADDITIONAL_DEST ::= INTRINSIC '_tu'
 Example:
 
 vadd.vv vd, vs2, vs1, v0.t:
-// `ta` == 0, tail undisturbed.
-// `ta` == 1, tail agnostic.
-vint8m1_t vadd_vv_i8m1_mt(vbool8_t mask, vint8m1_t maskedoff, vint8m1_t vs2, vint8m1_t vs1, size_t vl, uint8_t ta);
 
 // Add an additional `dest` argument to control tail undisturbed/agnostic.
 // `dest` == vundefined(), tail agnostic.
@@ -381,9 +377,9 @@ For intrinsics with `maskedoff` and `ta` argument:
 | ------- | -------------------- | ------------------------- | ------------------------------------------------------------------------
 | No      | No                   | N/A                       | `vadd_vv_<ty>(vs2, vs1, vl)`
 | No      | Yes                  | N/A                       | `vadd_vv_<ty>_tu(dest, vs2, vs1, vl)`
-| Yes     | No                   | No                        | `vadd_vv_<ty>_mt(mask, vundefined(), vs2, vs1, vl, VE_TAIL_AGNOSTIC)`
-| Yes     | No                   | Yes                       | `vadd_vv_<ty>_mt(mask, maskedoff, vs2, vs1, vl, VE_TAIL_AGNOSTIC)`
-| Yes     | Yes                  | Yes                       | `vadd_vv_<ty>_mt(mask, maskedoff, vs2, vs1, vl, VE_TAIL_UNDISTURBED)`
+| Yes     | No                   | No                        | No support.
+| Yes     | No                   | Yes                       | No support.
+| Yes     | Yes                  | Yes                       | No support.
 | Yes     | Yes                  | No                        | No support. Tail undisturbed and maskedoff agnostic is likely rare.
 
 For intrinsics without mask and with an additional `dest` argument:
@@ -398,8 +394,8 @@ For multiply-add intrinsics:
 | No      | No                   | N/A                       | `vmacc_vv_<ty>(vd, vs1, vs2, vl)`
 | No      | Yes                  | N/A                       | `vmacc_vv_<ty>_tu(vd, vs1, vs2, vl)`
 | Yes     | No                   | No                        | No support.
-| Yes     | No                   | Yes                       | `vmacc_vv_<ty>_mt(mask, vd, vs1, vs2, vl, VE_TAIL_AGNOSTIC)`
-| Yes     | Yes                  | Yes                       | `vmacc_vv_<ty>_mt(mask, vd, vs1, vs2, vl, VE_TAIL_UNDISTURBED)`
+| Yes     | No                   | Yes                       | No support.
+| Yes     | Yes                  | Yes                       | No support.
 | Yes     | Yes                  | No                        | No support. Tail undisturbed and maskedoff agnostic is likely rare.
 
 If the type of the destination is mask type or scalar type, it is always tail-agnostic. The intrinsics are
