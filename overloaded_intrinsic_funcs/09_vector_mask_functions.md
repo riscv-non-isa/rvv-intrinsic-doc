@@ -281,29 +281,6 @@ vuint64m1_t viota (vbool64_t mask, vuint64m1_t maskedoff, vbool64_t op1, size_t 
 vuint64m2_t viota (vbool32_t mask, vuint64m2_t maskedoff, vbool32_t op1, size_t vl);
 vuint64m4_t viota (vbool16_t mask, vuint64m4_t maskedoff, vbool16_t op1, size_t vl);
 vuint64m8_t viota (vbool8_t mask, vuint64m8_t maskedoff, vbool8_t op1, size_t vl);
-// masked functions
-vuint8mf8_t viota (vbool64_t mask, vuint8mf8_t maskedoff, vbool64_t op1, size_t vl, size_t ta);
-vuint8mf4_t viota (vbool32_t mask, vuint8mf4_t maskedoff, vbool32_t op1, size_t vl, size_t ta);
-vuint8mf2_t viota (vbool16_t mask, vuint8mf2_t maskedoff, vbool16_t op1, size_t vl, size_t ta);
-vuint8m1_t viota (vbool8_t mask, vuint8m1_t maskedoff, vbool8_t op1, size_t vl, size_t ta);
-vuint8m2_t viota (vbool4_t mask, vuint8m2_t maskedoff, vbool4_t op1, size_t vl, size_t ta);
-vuint8m4_t viota (vbool2_t mask, vuint8m4_t maskedoff, vbool2_t op1, size_t vl, size_t ta);
-vuint8m8_t viota (vbool1_t mask, vuint8m8_t maskedoff, vbool1_t op1, size_t vl, size_t ta);
-vuint16mf4_t viota (vbool64_t mask, vuint16mf4_t maskedoff, vbool64_t op1, size_t vl, size_t ta);
-vuint16mf2_t viota (vbool32_t mask, vuint16mf2_t maskedoff, vbool32_t op1, size_t vl, size_t ta);
-vuint16m1_t viota (vbool16_t mask, vuint16m1_t maskedoff, vbool16_t op1, size_t vl, size_t ta);
-vuint16m2_t viota (vbool8_t mask, vuint16m2_t maskedoff, vbool8_t op1, size_t vl, size_t ta);
-vuint16m4_t viota (vbool4_t mask, vuint16m4_t maskedoff, vbool4_t op1, size_t vl, size_t ta);
-vuint16m8_t viota (vbool2_t mask, vuint16m8_t maskedoff, vbool2_t op1, size_t vl, size_t ta);
-vuint32mf2_t viota (vbool64_t mask, vuint32mf2_t maskedoff, vbool64_t op1, size_t vl, size_t ta);
-vuint32m1_t viota (vbool32_t mask, vuint32m1_t maskedoff, vbool32_t op1, size_t vl, size_t ta);
-vuint32m2_t viota (vbool16_t mask, vuint32m2_t maskedoff, vbool16_t op1, size_t vl, size_t ta);
-vuint32m4_t viota (vbool8_t mask, vuint32m4_t maskedoff, vbool8_t op1, size_t vl, size_t ta);
-vuint32m8_t viota (vbool4_t mask, vuint32m8_t maskedoff, vbool4_t op1, size_t vl, size_t ta);
-vuint64m1_t viota (vbool64_t mask, vuint64m1_t maskedoff, vbool64_t op1, size_t vl, size_t ta);
-vuint64m2_t viota (vbool32_t mask, vuint64m2_t maskedoff, vbool32_t op1, size_t vl, size_t ta);
-vuint64m4_t viota (vbool16_t mask, vuint64m4_t maskedoff, vbool16_t op1, size_t vl, size_t ta);
-vuint64m8_t viota (vbool8_t mask, vuint64m8_t maskedoff, vbool8_t op1, size_t vl, size_t ta);
 ```
 ### [Vector Element Index Functions](../rvv-intrinsic-api.md#169-vector-element-index-operations):
 
@@ -376,27 +353,4 @@ vuint64m1_t vid (vbool64_t mask, vuint64m1_t maskedoff, size_t vl);
 vuint64m2_t vid (vbool32_t mask, vuint64m2_t maskedoff, size_t vl);
 vuint64m4_t vid (vbool16_t mask, vuint64m4_t maskedoff, size_t vl);
 vuint64m8_t vid (vbool8_t mask, vuint64m8_t maskedoff, size_t vl);
-// masked functions
-vuint8mf8_t vid (vbool64_t mask, vuint8mf8_t maskedoff, size_t vl, size_t ta);
-vuint8mf4_t vid (vbool32_t mask, vuint8mf4_t maskedoff, size_t vl, size_t ta);
-vuint8mf2_t vid (vbool16_t mask, vuint8mf2_t maskedoff, size_t vl, size_t ta);
-vuint8m1_t vid (vbool8_t mask, vuint8m1_t maskedoff, size_t vl, size_t ta);
-vuint8m2_t vid (vbool4_t mask, vuint8m2_t maskedoff, size_t vl, size_t ta);
-vuint8m4_t vid (vbool2_t mask, vuint8m4_t maskedoff, size_t vl, size_t ta);
-vuint8m8_t vid (vbool1_t mask, vuint8m8_t maskedoff, size_t vl, size_t ta);
-vuint16mf4_t vid (vbool64_t mask, vuint16mf4_t maskedoff, size_t vl, size_t ta);
-vuint16mf2_t vid (vbool32_t mask, vuint16mf2_t maskedoff, size_t vl, size_t ta);
-vuint16m1_t vid (vbool16_t mask, vuint16m1_t maskedoff, size_t vl, size_t ta);
-vuint16m2_t vid (vbool8_t mask, vuint16m2_t maskedoff, size_t vl, size_t ta);
-vuint16m4_t vid (vbool4_t mask, vuint16m4_t maskedoff, size_t vl, size_t ta);
-vuint16m8_t vid (vbool2_t mask, vuint16m8_t maskedoff, size_t vl, size_t ta);
-vuint32mf2_t vid (vbool64_t mask, vuint32mf2_t maskedoff, size_t vl, size_t ta);
-vuint32m1_t vid (vbool32_t mask, vuint32m1_t maskedoff, size_t vl, size_t ta);
-vuint32m2_t vid (vbool16_t mask, vuint32m2_t maskedoff, size_t vl, size_t ta);
-vuint32m4_t vid (vbool8_t mask, vuint32m4_t maskedoff, size_t vl, size_t ta);
-vuint32m8_t vid (vbool4_t mask, vuint32m8_t maskedoff, size_t vl, size_t ta);
-vuint64m1_t vid (vbool64_t mask, vuint64m1_t maskedoff, size_t vl, size_t ta);
-vuint64m2_t vid (vbool32_t mask, vuint64m2_t maskedoff, size_t vl, size_t ta);
-vuint64m4_t vid (vbool16_t mask, vuint64m4_t maskedoff, size_t vl, size_t ta);
-vuint64m8_t vid (vbool8_t mask, vuint64m8_t maskedoff, size_t vl, size_t ta);
 ```
