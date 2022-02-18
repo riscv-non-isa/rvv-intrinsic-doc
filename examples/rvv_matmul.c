@@ -31,7 +31,7 @@ void matmul(double **a, double **b, double **c, int n, int m, int o) {
       }
 
       vfloat64m1_t vec_sum;
-      vec_sum = vfredsum_vs_f64m1_f64m1(vec_zero, vec_s, vec_zero, vlmax);
+      vec_sum = vfredusum_vs_f64m1_f64m1(vec_zero, vec_s, vec_zero, vlmax);
       double sum = vfmv_f_s_f64m1_f64(vec_sum);
       c[i][j] = sum;
     }

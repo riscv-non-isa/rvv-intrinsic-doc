@@ -37,7 +37,7 @@ void reduce(double *a, double *b, double *result_sum, int *result_count,
     count = count + vpopc_m_b64(mask, vl);
   }
   vfloat64m1_t vec_sum;
-  vec_sum = vfredsum_vs_f64m1_f64m1(vec_zero, vec_s, vec_zero, vlmax);
+  vec_sum = vfredusum_vs_f64m1_f64m1(vec_zero, vec_s, vec_zero, vlmax);
   double sum = vfmv_f_s_f64m1_f64(vec_sum);
 
   *result_sum = sum;
