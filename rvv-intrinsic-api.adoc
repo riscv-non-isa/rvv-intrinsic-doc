@@ -64,3 +64,131 @@ types. (N = `SEW` / `LMUL`)
 | Types | N = 1      | N = 2      | N = 4      | N = 8      | N = 16      | N = 32      | N = 64
 | bool  | `vbool1_t` | `vbool2_t` | `vbool4_t` | `vbool8_t` | `vbool16_t` | `vbool32_t` | `vbool64_t`
 |===
+
+== Naming Rules
+
+Intrinsics is the interface to the low level assembly in high level programming
+language. The intrinsic API has the goal to make all the V-ext instructions
+accessible from C/C++. The intrinsic names are as close as the assembly
+mnemonics. Besides the basic intrinsics corresponding to assembly mnemonics,
+there are other intrinsics that do not map to a single instruction in RVV,
+they are named to remain close to the action taken.
+
+The intrinsic names will encode return type if it is appropriate. It is easier
+to know the output type of the intrinsics from the name. In addition, if the
+intrinsic call is used as the operand, having the return type is more immediate.
+If there is no return value, the intrinsics will encode the input value types.
+If the return type is the same, use exceptional rules to differentiate them,
+please refer to section <<naming-exception>>.
+
+```cpp
+INTRINSIC ::= MNEMONIC '_' RET_TYPE
+MNEMONIC ::= Instruction name in v-ext specification, replacing '.' with '_'.
+RET_TYPE ::= SEW LMUL
+SEW ::= ( i8 | i16 | i32 | i64 | u8 | u16 | u32 | u64 | f16 | f32 | f64 )
+LMUL ::= ( m1 | m2 | m4 | m8 | mf2 | mf4 | mf8 )
+
+Example:
+
+vadd.vv vd, vs2, vs1
+vint8m1_t vadd_vv_i8m1(vint8m1_t vs2, vint8m1_t vs1, size_t vl);
+
+vwaddu.vv vd, vs2, vs1
+vint16m2_t vwaddu_vv_i16m2(vint8m1_t vs2, vint8m1_t vs1, size_t vl);
+```
+
+[[naming-exception]]
+=== Exception In Namings
+
+If intrinsics have the same return type under different input types, we can
+not use general naming rules directly on these intrinsics because this will
+cause collision between these intrinsics. Therefore there are exception rules
+for these special cases. The rules are enumerated here.
+
+==== Vector Store Instructions
+
+The return type of the instructions is `void`. So the data type
+stored will be encoded to the intrinsics.
+
+```cpp
+Example:
+
+vse8.v vs3, (rs1)
+void vse8_v_i8m1 (int8_t *base, vint8m1_t value, size_t vl);
+void vse8_v_u8m1 (uint8_t *base, vuint8m1_t value, size_t vl);
+```
+
+==== Vector Comparison Instructions
+
+The instructions return a mask type. So the input type will be encoded to the
+intrinsics.
+
+```cpp
+Example:
+
+vmseq.vv vd, vs2, vs1
+vbool8_t vmseq_vv_i8m1_b8 (vint8m1_t op1, vint8m1_t op2, size_t vl);
+vbool16_t vmseq_vv_i16m1_b16 (vint16m1_t op1, vint16m1_t op2, size_t vl);
+```
+
+==== Vector Reduction Instructions
+
+The instructions' scalar output are held in the 0th element of a single vector
+register using LMUL = 1 in the return vector type. So the input type will be
+encoded in the intrinsics.
+
+```cpp
+Example:
+
+vredsum.vs vd, vs2, vs1
+vint8m1_t vredsum_vs_i8m1_i8m1 (vint8m1_t dest, vint8m1_t vector, vint8m1_t scalar, size_t vl);
+vint8m1_t vredsum_vs_i8m2_i8m1 (vint8m1_t dest, vint8m2_t vector, vint8m1_t scalar, size_t vl);
+```
+
+==== Vector Scalar Move Instructions
+
+The instructions' return a scalar value. So the input type will be encoded in
+the intrinsics.
+
+```cpp
+Example:
+
+vmv.x.s rd, vs2
+int8_t vmv_x_s_i8m1_i8 (vint8m1_t src);
+int8_t vmv_x_s_i8m2_i8 (vint8m2_t src);
+```
+
+==== `vcpop` and `vfirst`
+
+The instructions return a scalar value. So the input type will be encoded in
+the intrinsics.
+
+```cpp
+Example:
+
+vcpop.m rd, vs2
+unsigned long vcpop_m_b1 (vbool1_t op1, size_t vl);
+unsigned long vcpop_m_b2 (vbool2_t op1, size_t vl);
+
+vfirst.m rd, vs2, vm
+long vfirst_m_b1 (vbool1_t op1, size_t vl);
+long vfirst_m_b2 (vbool2_t op1, size_t vl);
+```
+
+==== `vmadc` and `vmsbc`
+
+The instructions return a mask type. So the input type will be encoded to the
+intrinsics.
+
+```cpp
+Example:
+
+vmadc.vv vd, vs2, vs1 
+
+vbool8_t vmadc_vv_i8m1_b8 (vint8m1_t op1, vint8m1_t op2, size_t vl);
+vbool8_t vmadc_vv_i16m2_b8 (vint16m2_t op1, vint16m2_t op2, size_t vl);
+
+vmsbc.vvm vd, vs2, vs1, v0
+vbool8_t vmsbc_vvm_i8m1_b8 (vint8m1_t op1, vint8m1_t op2, vbool8_t borrowin, size_t vl);
+vbool8_t vmsbc_vvm_i16m2_b8 (vint16m2_t op1, vint16m2_t op2, vbool8_t borrowin, size_t vl);
+```
