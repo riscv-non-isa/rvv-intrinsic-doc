@@ -192,3 +192,108 @@ vmsbc.vvm vd, vs2, vs1, v0
 vbool8_t vmsbc_vvm_i8m1_b8 (vint8m1_t op1, vint8m1_t op2, vbool8_t borrowin, size_t vl);
 vbool8_t vmsbc_vvm_i16m2_b8 (vint16m2_t op1, vint16m2_t op2, vbool8_t borrowin, size_t vl);
 ```
+
+== Configuration and Utility Functions
+
+=== Vector Length-Related Functions
+
+This chapter corresponds to configuration instructions `vsetvl`, `vsetvli` and
+`vsetivli`. The following functions is called to obtain vector length and used
+as input parameter for other C intrisic functions that performs actual
+computation. Calling this function won't trigger rvv configuration
+instructions. The configuration instructions will be triggered when `vl` is
+passed as parameters into other C intrinsic API-s.
+
+==== `vsetvlmax`
+
+The functions return the maximum number of elements to process for the later
+vector instruction(s), given the `SEW` and `LMUL`. (VLMAX = VLEN * LMUL / SEW,
+please refer to https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#34-vector-type-register-vtype[v-spec : 3.4. Vector type register, `vtype`].
+
+The intrinsic functions are in the format below, with `e{SEW}m{LMUL}`
+encoding a valid vector type.
+
+```cpp
+size_t vsetvlmax_e{SEW}m{LMUL}();
+
+Example:
+size_t vsetvlmax_e64m1 ();
+```
+
+==== `vsetvl`
+
+The functions return the number of elements to process for the later vector
+instructions, given `SEW`, `LMUL` and `avl` (available vector length).
+
+The intrinsic functions are in the format below, with `e{SEW}m{LMUL}`
+encoding a valid vector type.
+
+```cpp
+size_t vsetvl_e{SEW}m{LMUL}(size_t avl);
+
+Example:
+size_t vsetvlmax_e32m1 ();
+```
+
+=== Reinterpret Cast Conversion Functions
+
+The functions reinterpret the contents of a data as a different type under the
+same SEW/LMUL.
+
+```cpp
+RETURN_VEC_TYPE vreinterpret_v_{INPUT_VEC_SHORT_TYPE}_{RETURN_VEC_SHORT_TYPE} (INPUT_VEC_TYPE src);
+
+Example:
+vfloat16m1_t vreinterpret_v_i16m1_f16m1 (vint16m1_t src);
+```
+
+=== Vector Initialization Functions
+
+The functions returns a placeholding vector type.  The data within the vector
+type is undefined and unpredictable. The only recommended usage for these
+functions is to use them as `maskedoff` operand to trigger the agnostic policy.
+
+```cpp
+RETURN_VEC_TYPE vundefined_{RETURN_VEC_SHORT_TYPE} ();
+
+Example:
+vint32m1_t vundefined_i32m1 ();
+```
+
+NOTE: e.g. `vxor(vundefined(), vundefined())` and `vec a = vundefined(); vec b = vxor(a, a);`
+both don't guarantee result vector with all zeros.
+
+=== Vector LMUL Extension and Truncation Functions
+
+These utility functions help users to truncate or extent current LMUL
+under same SEW regardless of vl, it won't change content of vl register.
+The LMUL extension result of extension part are undefined value.
+
+```cpp
+RETURN_VEC_TYPE vlmul_trunc_v_{INPUT_VEC_SHORT_TYPE}_{RETURN_VEC_SHORT_TYPE} (INPUT_VEC_TYPE op1);
+
+Example:
+vint64m1_t vlmul_trunc_v_i64m2_i64m1 (vint64m2_t op1);
+
+RETURN_VEC_TYPE vlmul_ext_v_{INPUT_VEC_SHORT_TYPE}_{RETURN_VEC_SHORT_TYPE} (INPUT_VEC_TYPE op1);
+
+Example:
+vint64m2_t vlmul_ext_v_i64m1_i64m2 (vint64m1_t op1);
+```
+
+=== Read / Write to vector CSRs
+
+Please refer to v-spec: https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#vector-extension-programmers-model[3. Vector Extension Programmer’s Model]
+for definitions and usages of the CSRs.
+
+```cpp
+enum RVV_CSR {
+  RVV_VSTART = 0,
+  RVV_VXSAT,
+  RVV_VXRM,
+  RVV_VCSR,
+};
+
+unsigned long vread_csr(enum RVV_CSR csr);
+void vwrite_csr(enum RVV_CSR csr, unsigned long value);
+```
