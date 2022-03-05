@@ -14,3 +14,11 @@
 :sectnums!:
 
 :sectnums:
+
+== Introduction
+
+These C intrinsic targets the https://github.com/riscv/riscv-v-spec/tree/master[RISC-V "V" Vector Extension].
+This document states usage and detail of the RVV intrinsics' and its
+programming model. Naming rules and special cases will be covered. Please go to
+link:examples[repository="riscv-non-isa/rvv-intrinsic-doc", branch="master", mode="view", link-window="_blank", server="https://www.github.com/"]
+for more.
