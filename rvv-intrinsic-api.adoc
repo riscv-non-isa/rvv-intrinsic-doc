@@ -297,3 +297,151 @@ enum RVV_CSR {
 unsigned long vread_csr(enum RVV_CSR csr);
 void vwrite_csr(enum RVV_CSR csr, unsigned long value);
 ```
+
+== Vector Loads and Stores
+
+This chapter corresponds to instructions in https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#7-vector-loads-and-stores[7. Vector Loads and Stores]
+of v-spec. The C intrinsics provide high level interface so the users don't need
+to care about detail addressing mode or encoding.
+
+The file link:intrinsic_funcs/02_vector_loads_and_stores_functions.md[repository="riscv-non-isa/rvv-intrinsic-doc", branch="master", mode="view", link-window="_blank", server="https://www.github.com/"]
+collects prototype of all vector load / store intrinsic functions.
+
+=== Vector Unit-Stride Load / Store Intrinsic Functions
+
+The functions in this section corresponds to https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#74-vector-unit-stride-instructions[7.4. Vector Unit-Stride Instructions]
+in v-spec.
+
+The vector load functions unit-stride load data from the base pointer by the
+vector length provided. The data will be returned by the function.
+
+The vector store function store vector data into the base pointer by the vector
+length provided. The functions don't return anything. Masked unit-stride store
+functions don't have a `maskedoff` argument. When unmasked, no element is
+stored
+
+The intrinsic functions are in the format:
+
+```cpp
+// Vector Unit-Stride Load
+RETURN_VEC_TYPE vle{SEW}_v_{RETURN_VEC_SHORT_TYPE} (SCALAR_TYPE *base, size_t vl);
+RETURN_VEC_TYPE vle{SEW}_v_{RETURN_VEC_SHORT_TYPE}_m (VEC_BOOL_TYPE mask, RETURN_VEC_TYPE maskedoff, SCALAR_TYPE *base, size_t vl);
+
+Example:
+vint8m1_t vle8_v_i8m1 (const int8_t *base, size_t vl);
+vint8m1_t vle8_v_i8m1_m (vbool8_t mask, vint8m1_t maskedoff, const int8_t *base, size_t vl);
+
+// Vector Unit-Stride Store
+void vse{SEW}_v_{STORE_VEC_SHORT_TYPE} (SCALAR_TYPE *base, STORE_VEC_TYPE value, size_t vl);
+void vse{SEW}_v_{STORE_VEC_SHORT_TYPE}_m (VEC_BOOL_TYPE mask, SCALAR_TYPE *base, STORE_VEC_TYPE value, size_t vl);
+
+Example:
+void vse8_v_i8m1 (int8_t *base, vint8m1_t value, size_t vl);
+void vse8_v_i8m1_m (vbool8_t mask, int8_t *base, vint8m1_t value, size_t vl);
+```
+
+==== Vector Mask Load / Store Intrinsic Functions
+
+The mask load / store functions load / store the masked values into a single
+vector register. They do not have a masked type.
+
+The intrinsic functions are in the format:
+
+```cpp
+// N = SEW / LMUL
+
+// Vector Mask Load
+VEC_BOOL_TYPE vlm_v_b{N} (SCALAR_BOOL_TYPE *base, size_t vl);
+
+Example:
+vbool8_t vlm_v_b8 (const uint8_t *base, size_t vl);
+
+// Vector Mask Store
+void vsm_v_b{N} (SCALAR_BOOL_TYPE *base, VEC_BOOL_TYPE value, size_t vl);
+
+Example: 
+void vsm_v_b8 (uint8_t *base, vbool8_t value, size_t vl);
+```
+
+=== Vector Strided Load / Store Functions
+
+The functions in this section corresponds to https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#75-vector-strided-instructions[7.5. Vector Strided Instructions]
+in v-spec.
+
+An additional `bstride` argument is needed compared to the unit-stride
+functions. The unit of `bstride` is in bytes.
+
+The intrinsic functions are in the format:
+
+```cpp
+// Vector Strided Load
+RETURN_VEC_TYPE vlse{SEW}_v_{RETURN_VEC_SHORT_TYPE} (SCALAR_TYPE *base, ptrdiff_t bstride, size_t vl);
+RETURN_VEC_TYPE vlse{SEW}_v_{RETURN_VEC_SHORT_TYPE}_m (VEC_BOOL_TYPE mask, RETURN_VEC_TYPE maskedoff, SCALAR_TYPE *base, ptrdiff_t bstride, size_t vl);
+
+Example:
+vint8m1_t vlse8_v_i8m1 (const int8_t *base, ptrdiff_t bstride, size_t vl);
+vint8m1_t vlse8_v_i8m1_m (vbool8_t mask, vint8m1_t maskedoff, const int8_t *base, ptrdiff_t bstride, size_t vl);
+
+// Vector Strided Store
+void vsse{SEW}_v_{STORE_VEC_SHORT_TYPW} (SCALAR_TYPE *base, ptrdiff_t bstride, STORE_VEC_TYPE value, size_t vl);
+void vsse{SEW}_v_{STORE_VEC_SHORT_TYPW}_m (VEC_BOOL_TYPE mask, SCALAR_TYPE *base, ptrdiff_t bstride, STORE_VEC_TYPE value, size_t vl);
+
+Example:
+void vsse8_v_i8m1 (int8_t *base, ptrdiff_t bstride, vint8m1_t value, size_t vl);
+void vsse8_v_i8m1_m (vbool8_t mask, int8_t *base, ptrdiff_t bstride, vint8m1_t value, size_t vl);
+```
+
+=== Vector Indexed Load / Store Functions
+
+The functions in this section corresponds to https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#76-vector-indexed-instructions[7.6. Vector Indexed Instructions]
+in v-spec.
+
+An additional `bindex` argument is needed compared to the unit-stride
+functions. The SEW encoded in the function name corresponds to the element
+width of the index.
+
+The intrinsic functions are in the format:
+
+```cpp
+// Vector Indexed Load 
+RETURN_VEC_TYPE vloxei{INDEX_SEW}_v_{RETURN_VEC_SHORT_TYPE} (SCALAR_TYPE *base, INDEX_VEC_TYPE bindex, size_t vl);
+RETURN_VEC_TYPE vloxei{INDEX_SEW}_v_{RETURN_VEC_SHORT_TYPE}_m (VEC_BOOL_TYPE mask, RETURN_VEC_TYPE maskedoff, SCALAR_TYPE *base, INDEX_VEC_TYPE bindex, size_t vl);
+RETURN_VEC_TYPE vluxei{INDEX_SEW}_v_{RETURN_VEC_SHORT_TYPE} (SCALAR_TYPE *base, INDEX_VEC_TYPE bindex, size_t vl);
+RETURN_VEC_TYPE vluxei{INDEX_SEW}_v_{RETURN_VEC_SHORT_TYPE}_m (VEC_BOOL_TYPE mask, RETURN_VEC_TYPE maskedoff, SCALAR_TYPE *base, INDEX_VEC_TYPE bindex, size_t vl);
+
+Example:
+vint32m1_t vloxei8_v_i32m1 (const int32_t *base, vuint8mf4_t bindex, size_t vl);
+vint32m1_t vloxei8_v_i32m1_m (vbool32_t mask, vint32m1_t maskedoff, const int32_t *base, vuint8mf4_t bindex, size_t vl);
+vint32m1_t vluxei8_v_i32m1 (const int32_t *base, vuint8mf4_t bindex, size_t vl);
+vint32m1_t vluxei8_v_i32m1_m (vbool32_t mask, vint32m1_t maskedoff, const int32_t *base, vuint8mf4_t bindex, size_t vl);
+
+// Vector Indexed Store
+void vsoxei{INDEX_SEW}_v_{STORE_VEC_SHORT_TYPE} (SCALAR_TYPE *base, INDEX_VEC_TYPE bindex, STORE_VEC_TYPE value, size_t vl);
+void vsoxei{INDEX_SEW}_v_{STORE_VEC_SHORT_TYPE}_m (VEC_BOOL_TYPE mask, SCALAR_TYPE *base, INDEX_VEC_TYPE bindex, STORE_VEC_TYPE value, size_t vl);
+void vsuxei{INDEX_SEW}_v_{STORE_VEC_SHORT_TYPE} (SCALAR_TYPE *base, INDEX_VEC_TYPE bindex, STORE_VEC_TYPE value, size_t vl);
+void vsuxei{INDEX_SEW}_v_{STORE_VEC_SHORT_TYPE}_m (VEC_BOOL_TYPE mask, SCALAR_TYPE *base, INDEX_VEC_TYPE bindex, STORE_VEC_TYPE value, size_t vl);
+
+Example:
+void vsoxei32_v_i32m1 (int32_t *base, vuint32m1_t bindex, vint32m1_t value, size_t vl);
+void vsoxei32_v_i32m1_m (vbool32_t mask, int32_t *base, vuint32m1_t bindex, vint32m1_t value, size_t vl);
+void vsuxei32_v_i32m1 (int32_t *base, vuint32m1_t bindex, vint32m1_t value, size_t vl);
+void vsuxei32_v_i32m1_m (vbool32_t mask, int32_t *base, vuint32m1_t bindex, vint32m1_t value, size_t vl);
+```
+
+=== Vector Unit-stride Fault-Only-First Loads Operations
+
+The functions in this section corresponds to https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#77-unit-stride-fault-only-first-loads[7.7. Unit-stride Fault-Only-First Loads]
+in v-spec.
+
+An additonal `*new_vl` is passed into the function and the number of elements
+loaded will be written into it.
+
+The intrinsic functions are in the format:
+
+```cpp
+RETURN_VEC_TYPE vle{SEW}ff_v_{RETURN_VEC_SHORT_TYPE} (SCALAR_TYPE *base, size_t *new_vl, size_t vl);
+
+Example:
+vint32m1_t vle32ff_v_i32m1 (const int32_t *base, size_t *new_vl, size_t vl);
+```
+
