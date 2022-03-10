@@ -41,9 +41,22 @@ Reinterpret the contents of a data as a different type, without changing any bit
 
 ### Vector LMUL Extension and Truncation Functions
 
-These utility functions help users to truncate or extent current LMUL under same SEW regardless of vl, it won't change content of vl register.
+These utility functions help users to truncate or extend current LMUL under same SEW regardless of vl, it won't change content of vl register.
 
-#### [Intrinsic functions list](intrinsic_funcs/11_miscellaneous_vector_functions.md#vector-lmul-extension-functions)
+#### [LMUL Extension Intrinsic functions list](intrinsic_funcs/11_miscellaneous_vector_functions.md#vector-lmul-extension-functions)
+#### [LMUL Truncation Intrinsic functions list](intrinsic_funcs/11_miscellaneous_vector_functions.md#vector-lmul-truncation-functions)
+
+### Vector Insertion Functions
+
+These utility functions help users insert a smaller LMUL value into a larger LMUL value. Does not support fractional LMULs. Index must be a constant expression less than the ratio between the larger and smaller LMUL.
+
+#### [Intrinsic functions list](intrinsic_funcs/11_miscellaneous_vector_functions.md#vector-insertion-functions)
+
+### Vector Extraction Functions
+
+These utility functions help users extra a smaller LMUL value from a larger LMUL value. Does not support fractional LMULs. Index must be a constant expression less than the ratio between the larger and smaller LMUL.
+
+#### [Intrinsic functions list](intrinsic_funcs/11_miscellaneous_vector_functions.md#vector-extraction-functions)
 
 ### Read/Write URW vector CSRs
 
