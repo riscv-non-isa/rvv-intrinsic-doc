@@ -5,6 +5,7 @@
 
 // reference https://github.com/riscv/riscv-v-spec/blob/master/example/strcpy.s
 char *strcpy_vec(char *dst, const char *src) {
+  char *save = dst;
   size_t vlmax = vsetvlmax_e8m8();
   long first_set_bit = -1;
   size_t vl;
@@ -21,7 +22,7 @@ char *strcpy_vec(char *dst, const char *src) {
 
     first_set_bit = vfirst_m_b1(string_terminate, vl);
   }
-  return dst;
+  return save;
 }
 
 int main() {

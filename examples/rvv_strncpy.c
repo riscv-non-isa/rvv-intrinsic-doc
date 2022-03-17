@@ -4,12 +4,13 @@
 
 // reference https://github.com/riscv/riscv-v-spec/blob/master/example/strncpy.s
 char *strncpy_vec(char *dst, char *src, size_t count) {
+  char *save = dst;
   size_t new_vl;
   long first_set_bit = -1;
 
   while (first_set_bit < 0) {
     if (count == 0)
-      return dst;
+      return save;
     size_t vl = vsetvl_e8m1(count);
 
     vint8m1_t vec_src = vle8ff_v_i8m1(src, &new_vl, vl);
@@ -38,7 +39,7 @@ char *strncpy_vec(char *dst, char *src, size_t count) {
     dst += vl;
   } while (count > 0);
 
-  return dst;
+  return save;
 }
 
 int main() {
