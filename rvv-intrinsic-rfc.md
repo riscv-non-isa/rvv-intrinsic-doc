@@ -19,7 +19,7 @@
   * [Vector Stores](#no-maskedoff-stores)
   * [Reduction Instructions](#no-maskedoff-reduction)
   * [Merge Instructions](#no-maskedoff-merge)
-- [Tail Policy in the Intrinsics](#tail-policy)
+- [Policy Intrinsic Functions](#policy)
 - [Keep the Original Values of the Destination Vector](#dest-operand)
 - [SEW and LMUL of Intrinsics](#sew-and-lmul-of-intrinsics)
 - [C Operators on RISC-V Vector Types](#c-operators)
@@ -346,6 +346,132 @@ Example:
 
 vmerge.vvm vd, vs2, vs1, v0:
 vint8m1_t vmerge_vvm_i8m1_m(vbool8_t mask, vint8m1_t vs2, vint8m1_t vs1, size_t vl);
+```
+
+## Policy Intrinsic Functions<a name="policy"></a>
+
+The intrinsics encode the policy (or policies) explicitly in function name's suffix if operations support those policies.
+Users could use policy intrinsic functions to control tail and inactive elements. Please refer to [3.4.3 Vector Tail Agnostic and Vector Mask Agnostic](https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#343-vector-tail-agnostic-and-vector-mask-agnostic-vta-and-vma)
+and [5.4 Prestart, Active, Inactive, Body, and Tail Element Definitions](https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#sec-inactive-defs) for fundamental definitions.
+
+For policy intrinsic functions:
+
+- When it is a masked intrinsic...
+  - If the mask policy is not explicitly specified, the policy will depend on whether `vundefined()` is passed to the `merge` argument
+  - If the tail policy is not explicitly specified, the policy is set to "agnostic"
+
+- When it is an unmasked intrinsic...
+  - If the tail policy is not explicitly specified, the policy is set to "agnostic".
+
+The general naming rule is as the following.
+The interface differs between instructions and will be enumerated in the following of this section.
+
+```
+INTRINSIC_WITH_TU ::= INTRINSIC '_tu'
+INTRINSIC_WITH_TA ::= INTRINSIC '_ta'
+INTRINSIC_WITH_MASK_TU ::= INTRINSIC '_m_tu'
+INTRINSIC_WITH_MASK_TA ::= INTRINSIC '_m_ta'
+INTRINSIC_WITH_MASK_MU ::= INTRINSIC '_mu'
+INTRINSIC_WITH_MASK_MA ::= INTRINSIC '_ma'
+INTRINSIC_WITH_MASK_TU_MA ::= INTRINSIC '_tuma'
+INTRINSIC_WITH_MASK_TA_MA ::= INTRINSIC '_tama'
+INTRINSIC_WITH_MASK_TU_MU ::= INTRINSIC '_tumu'
+INTRINSIC_WITH_MASK_TA_MU ::= INTRINSIC '_tamu'
+```
+
+### Intrinsics without `dest` or `vd` argument
+
+|Masked?  | TU? | MU? | Intrinsic
+|--- |--- |--- |---
+|No  | No | N/A| `vadd_vv_<ty>_ta(vs2, vs1, vl)` and `vadd_vv_i8m1(vs2, vs1, vl)`
+|No  | Yes| N/A| `vadd_vv_<ty>_tu(merge,vs2, vs1, vl)`
+|Yes | No | No | `vadd_vv_<ty>_tama(mask, vs2, vs1, vl)`
+|Yes | No | Yes| `vadd_vv_<ty>_tamu(mask, merge, vs2, vs1, vl)`
+|Yes | Yes| No | `vadd_vv_<ty>_tuma(mask, merge, vs2, vs1, vl)`
+|Yes | Yes| Yes| `vadd_vv_<ty>_tumu(mask, merge, vs2, vs1, vl)` and `vadd_vv_i8m1_m(mask, merge, vs2, vs1, vl)`
+
+### Intrinsics with the `dest` argument and doesn't have a masked type
+
+|Masked? | TU? | MU? | Intrinsic
+|--- |--- | ---| ---
+|No  | No | N/A| `vmv_v_x_<ty>_ta(src, vl)` and `vmv_v_x_<ty>(src, vl)`
+|No  | Yes| N/A| `vmv_v_x_<ty>_tu(merge, src, vl)`
+
+### Intrinsics with the `vd` argument
+
+|Masked?  | TU? | MU? | Intrinsic
+|--- |--- |--- |---
+|No  | No | N/A| `vmacc_vv_<ty>_ta(vd, vs1, vs2, vl)`
+|No  | Yes| N/A| `vmacc_vv_<ty>_tu(vd, vs1, vs2, vl)` and `vmacc_vv_i8m1(vd, vs1, vs2, vl)`
+|Yes | No | No | `vmacc_vv_<ty>_tama(mask, vd, vs1, vs2, vl)`
+|Yes | No | Yes| `vmacc_vv_<ty>_tamu(mask, vd, vs1, vs2, vl)`
+|Yes | Yes| No | `vmacc_vv_<ty>_tuma(mask, vd, vs1, vs2, vl)`
+|Yes | Yes| Yes| `vmacc_vv_<ty>_tumu(mask, vd, vs1, vs2, vl)` and `vmacc_vv_i8m1_m(mask, vd, vs1, vs2, vl)`
+
+### Intrinsics for the reduction instruction
+
+|Masked?  | TU? | MU? | Intrinsic
+|--- |--- |--- |---
+|No  | No | N/A| `vredsum_vs_<ty>_ta(vs1, vs2, vl)`
+|No  | Yes| N/A| `vredsum_vs_<ty>_tu(vd, vs1, vs2, vl)` and `vredsum_vs_i8m1(vd, vs1, vs2, vl)`
+|Yes | No | N/A| `vredsum_vs_<ty>_m_ta(mask, vs1, vs2, vl)`
+|Yes | Yes| N/A| `vredsum_vs_<ty>_m_tu(mask, vd, vs1, vs2, vl)` and vredsum_vs_i8m1_m(mask, vd, vs1, vs2, vl)`
+
+> NOTE: It is up to the compiler for the exact behaviors if the tail/mask policy is set to agnostic,
+as it is implementation defined. Please refer to [3.4.3 Vector Tail Agnostic and Vector Mask Agnostic](https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#343-vector-tail-agnostic-and-vector-mask-agnostic-vta-and-vma).
+
+### Special cases
+
+There are some special cases for policy functions listed as below:
+
+- The following instructions doesn't have an unmasked intrinsic, therefore it only supports `_ta` and `_tu`:
+  - `vadc`, `vsbc`
+  - `vmv.s.x`, `vfmv.s.f`
+  - Vector integer and floating-point move instructions
+  - Vector integer and floating-point merge instructions
+  - Vector compress instructions
+- The following instructions always follow the tail-agnostic policy, therefore it only supports `_ma` and `_mu`:
+  - `vmsbf.m`, `vmsif.m`, `vmsof.m`
+  - `vmadc`, `vmsbc`,  `vlm.v`
+  - Vector integer and floating-point comparison instructions
+- The following instructions do not have policy intrinsic functions because they do not care about tail and inactive elements:
+  - `vfirst.m`, `vmv.x.s`, `vfmv.f.s`, `vcpop.m`
+  - Vector store instructions
+- `vslideup` and `vslidedown` don't have dest operand in `_ta` and `_tama`
+
+### Explicit policy for overloaded intrinsic functions
+
+The policy is encoded as suffix for overloading functions just like non-overloading ones.
+
+```
+vadd.vv vd, vs2, vs1:
+
+// unmasked
+vint32m1_t vadd (vint32m1_t op1, vint32m1_t op2, size_t vl); // alias to vadd_vv_i32m1
+vint32m1_t vadd_ta (vint32m1_t op1, vint32m1_t op2, size_t vl);
+vint32m1_t vadd_tu (vint32m1_t merge, vint32m1_t op1, vint32m1_t op2, size_t vl);
+// masked
+vint32m1_t vadd (vbool32_t mask, vint32m1_t merge, vint32m1_t op1, vint32m1_t op2, size_t vl); // alias to vadd_vv_i32m1_m
+vint32m1_t vadd_tama (vbool32_t mask, vint32m1_t op1, vint32m1_t op2, size_t vl);
+vint32m1_t vadd_tamu (vbool32_t mask, vint32m1_t merge, vint32m1_t op1, vint32m1_t op2, size_t vl);
+vint32m1_t vadd_tuma (vbool32_t mask, vint32m1_t merge, vint32m1_t op1, vint32m1_t op2, size_t vl);
+vint32m1_t vadd_tumu (vbool32_t mask, vint32m1_t merge, vint32m1_t op1, vint32m1_t op2, size_t vl);
+```
+
+The overloading intrinsics for `vid` and `viota` are special cases from other overloading intrinsics.
+Their arguments for `_ta` and `_tama` make them impossible to overload without specifying the return type, making them identical with the non-overloading ones.
+
+```
+vid.v vd, vm
+
+// unmasked
+vuint32m1_t vid_tu (vuint32m1_t merge, size_t vl);
+vuint32m1_t vid_v_u32m1_ta (size_t vl);
+// masked
+vuint32m1_t vid_tuma (vbool32_t mask, vuint32m1_t merge, size_t vl);
+vuint32m1_t vid_tumu (vbool32_t mask, vuint32m1_t merge, size_t vl);
+vuint32m1_t vid_tamu (vbool32_t mask, vuint32m1_t merge, size_t vl);
+vuint32m1_t vid_v_u32m1_tama (vbool32_t mask, size_t vl);
 ```
 
 ## Keep the Original Values of the Destination Vector<a name="dest-operand"></a>
