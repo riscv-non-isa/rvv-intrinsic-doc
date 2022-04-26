@@ -5143,21 +5143,21 @@ vbool8_t vmfge_vf_f64m8_b8_mu (vbool8_t mask, vbool8_t merge, vfloat64m8_t op1, 
 
 **Prototypes:**
 ``` C
-vuint16mf4_t vfclass_v_u16mf4_tu (vfloat16mf4_t op1, size_t vl);
-vuint16mf2_t vfclass_v_u16mf2_tu (vfloat16mf2_t op1, size_t vl);
-vuint16m1_t vfclass_v_u16m1_tu (vfloat16m1_t op1, size_t vl);
-vuint16m2_t vfclass_v_u16m2_tu (vfloat16m2_t op1, size_t vl);
-vuint16m4_t vfclass_v_u16m4_tu (vfloat16m4_t op1, size_t vl);
-vuint16m8_t vfclass_v_u16m8_tu (vfloat16m8_t op1, size_t vl);
-vuint32mf2_t vfclass_v_u32mf2_tu (vfloat32mf2_t op1, size_t vl);
-vuint32m1_t vfclass_v_u32m1_tu (vfloat32m1_t op1, size_t vl);
-vuint32m2_t vfclass_v_u32m2_tu (vfloat32m2_t op1, size_t vl);
-vuint32m4_t vfclass_v_u32m4_tu (vfloat32m4_t op1, size_t vl);
-vuint32m8_t vfclass_v_u32m8_tu (vfloat32m8_t op1, size_t vl);
-vuint64m1_t vfclass_v_u64m1_tu (vfloat64m1_t op1, size_t vl);
-vuint64m2_t vfclass_v_u64m2_tu (vfloat64m2_t op1, size_t vl);
-vuint64m4_t vfclass_v_u64m4_tu (vfloat64m4_t op1, size_t vl);
-vuint64m8_t vfclass_v_u64m8_tu (vfloat64m8_t op1, size_t vl);
+vuint16mf4_t vfclass_v_u16mf4_tu (vuint16mf4_t merge, vfloat16mf4_t op1, size_t vl);
+vuint16mf2_t vfclass_v_u16mf2_tu (vuint16mf2_t merge, vfloat16mf2_t op1, size_t vl);
+vuint16m1_t vfclass_v_u16m1_tu (vuint16m1_t merge, vfloat16m1_t op1, size_t vl);
+vuint16m2_t vfclass_v_u16m2_tu (vuint16m2_t merge, vfloat16m2_t op1, size_t vl);
+vuint16m4_t vfclass_v_u16m4_tu (vuint16m4_t merge, vfloat16m4_t op1, size_t vl);
+vuint16m8_t vfclass_v_u16m8_tu (vuint16m8_t merge, vfloat16m8_t op1, size_t vl);
+vuint32mf2_t vfclass_v_u32mf2_tu (vuint32mf2_t merge, vfloat32mf2_t op1, size_t vl);
+vuint32m1_t vfclass_v_u32m1_tu (vuint32m1_t merge, vfloat32m1_t op1, size_t vl);
+vuint32m2_t vfclass_v_u32m2_tu (vuint32m2_t merge, vfloat32m2_t op1, size_t vl);
+vuint32m4_t vfclass_v_u32m4_tu (vuint32m4_t merge, vfloat32m4_t op1, size_t vl);
+vuint32m8_t vfclass_v_u32m8_tu (vuint32m8_t merge, vfloat32m8_t op1, size_t vl);
+vuint64m1_t vfclass_v_u64m1_tu (vuint64m1_t merge, vfloat64m1_t op1, size_t vl);
+vuint64m2_t vfclass_v_u64m2_tu (vuint64m2_t merge, vfloat64m2_t op1, size_t vl);
+vuint64m4_t vfclass_v_u64m4_tu (vuint64m4_t merge, vfloat64m4_t op1, size_t vl);
+vuint64m8_t vfclass_v_u64m8_tu (vuint64m8_t merge, vfloat64m8_t op1, size_t vl);
 vuint16mf4_t vfclass_v_u16mf4_ta (vfloat16mf4_t op1, size_t vl);
 vuint16mf2_t vfclass_v_u16mf2_ta (vfloat16mf2_t op1, size_t vl);
 vuint16m1_t vfclass_v_u16m1_ta (vfloat16m1_t op1, size_t vl);
