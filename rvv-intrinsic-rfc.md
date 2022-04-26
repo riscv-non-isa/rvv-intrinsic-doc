@@ -304,7 +304,7 @@ vint8m1_t vcompress_vm_i8m1(vbool8_t vs1, vint8m1_t maskedoff, vint8m1_t vs2, si
 
 There are two additional masking semantics: *zero in output* semantic and *don't care in output* semantic. Users could leverage *merge in output* intrinsics to simulate these two additional masking semantics.
 
-The intrinsics with ending `_m` have no argument to specify tail policy. The tail policy of `_m` intrinsics is tail agnostic.
+The intrinsics with ending `_m` have no argument to specify tail policy. Almost all `_m` intrinsics are tail agnostic and mask undisturbed. See [Policy Intrinsic Functions](#policy) for the more detail.
 
 ```
 Example:
@@ -374,12 +374,12 @@ INTRINSIC_WITH_MASK_TA_MU ::= INTRINSIC '_tamu'
 
 |Masked?  | TU? | MU? | Intrinsic
 |--- |--- |--- |---
-|No  | No | N/A| `vadd_vv_<ty>_ta(op1, op2, vl)` and `vadd_vv_i8m1(op1, op2, vl)`
+|No  | No | N/A| `vadd_vv_<ty>_ta(op1, op2, vl)` and `vadd_vv_<ty>(op1, op2, vl)`
 |No  | Yes| N/A| `vadd_vv_<ty>_tu(merge,op1, op2, vl)`
 |Yes | No | No | `vadd_vv_<ty>_tama(mask, op1, op2, vl)`
-|Yes | No | Yes| `vadd_vv_<ty>_tamu(mask, merge, op1, op2, vl)`
+|Yes | No | Yes| `vadd_vv_<ty>_tamu(mask, merge, op1, op2, vl)`, and `vadd_vv_<ty>_m(mask, merge, op1, op2, vl)`
 |Yes | Yes| No | `vadd_vv_<ty>_tuma(mask, merge, op1, op2, vl)`
-|Yes | Yes| Yes| `vadd_vv_<ty>_tumu(mask, merge, op1, op2, vl)` and `vadd_vv_i8m1_m(mask, merge, op1, op2, vl)`
+|Yes | Yes| Yes| `vadd_vv_<ty>_tumu(mask, merge, op1, op2, vl)`
 
 ### Intrinsics with the `dest` argument and doesn't have a masked type
 
@@ -393,27 +393,27 @@ INTRINSIC_WITH_MASK_TA_MU ::= INTRINSIC '_tamu'
 |Masked?  | TU? | MU? | Intrinsic
 |--- |--- |--- |---
 |No  | No | N/A| `vmacc_vv_<ty>_ta(vd, vs1, vs2, vl)`
-|No  | Yes| N/A| `vmacc_vv_<ty>_tu(vd, vs1, vs2, vl)` and `vmacc_vv_i8m1(vd, vs1, vs2, vl)`
+|No  | Yes| N/A| `vmacc_vv_<ty>_tu(vd, vs1, vs2, vl)` and `vmacc_vv_<ty>(vd, vs1, vs2, vl)`
 |Yes | No | No | `vmacc_vv_<ty>_tama(mask, vd, vs1, vs2, vl)`
-|Yes | No | Yes| `vmacc_vv_<ty>_tamu(mask, vd, vs1, vs2, vl)`
+|Yes | No | Yes| `vmacc_vv_<ty>_tamu(mask, vd, vs1, vs2, vl)` and `vmacc_vv_<ty>_m(mask, vd, vs1, vs2, vl)`
 |Yes | Yes| No | `vmacc_vv_<ty>_tuma(mask, vd, vs1, vs2, vl)`
-|Yes | Yes| Yes| `vmacc_vv_<ty>_tumu(mask, vd, vs1, vs2, vl)` and `vmacc_vv_i8m1_m(mask, vd, vs1, vs2, vl)`
+|Yes | Yes| Yes| `vmacc_vv_<ty>_tumu(mask, vd, vs1, vs2, vl)`
 
-### Intrinsics for the reduction instruction
+### Intrinsics for the reduction instruction which only have tail policy.
 
 |Masked?  | TU? | MU? | Intrinsic
 |--- |--- |--- |---
 |No  | No | N/A| `vredsum_vs_<ty>_ta(vector, scalar, vl)`
-|No  | Yes| N/A| `vredsum_vs_<ty>_tu(merge, vector, scalar, vl)` and `vredsum_vs_i8m1(dest, vector, scalar, vl)`
+|No  | Yes| N/A| `vredsum_vs_<ty>_tu(merge, vector, scalar, vl)` and `vredsum_vs_<ty>(merge, vector, scalar, vl)`
 |Yes | No | N/A| `vredsum_vs_<ty>_tam(mask, vector, scalar, vl)`
-|Yes | Yes| N/A| `vredsum_vs_<ty>_tum(mask, merge, vector, scalar, vl)` and vredsum_vs_i8m1_m(mask, merge, vector, scalar, vl)`
+|Yes | Yes| N/A| `vredsum_vs_<ty>_tum(mask, merge, vector, scalar, vl)` and vredsum_vs_<ty>_m(mask, merge, vector, scalar, vl)`
 
-### Intrinsics for the instructions which may only use mask value.
+### Intrinsics for the instructions which only have mask policy. (ex. vector comparison, `vmsbf.m`, `vmsif.m` and `vmsof.m`.)
 
 Masked?  | TU? | MU? | Intrinsic
 --- |--- |--- |---
 No  | N/A| N/A| `vmseq_vv_i8m1_b8(op, op2, vl)`
-Yes | N/A| Yes| `vmseq_vv_i8m1_b8_ma(mask, op1, op2, vl)`
+Yes | N/A| No | `vmseq_vv_i8m1_b8_ma(mask, op1, op2, vl)`
 Yes | N/A| Yes| `vmseq_vv_i8m1_b8_mu(mask, merge, op1, op2, vl)` and `vmseq_vv_i8m1_b8_m(mask, merge, op1, op2, vl)`
 
 
