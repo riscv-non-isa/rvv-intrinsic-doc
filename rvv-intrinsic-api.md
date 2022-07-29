@@ -33,30 +33,30 @@ Please see [rvv-intrinsic-rfc.md](rvv-intrinsic-rfc.md#naming-rules)
 
 Reinterpret the contents of a data as a different type, without changing any bits and generating any RVV instructions.
 
-#### [Intrinsic functions list](intrinsic_funcs/11_miscellaneous_vector_functions.md#reinterpret-cast-conversion-functions)
+#### [Intrinsic functions list](intrinsic_funcs/10_miscellaneous_vector_functions.md#reinterpret-cast-conversion-functions)
 
 ### Vector Initialization Functions
 
-#### [Intrinsic functions list](intrinsic_funcs/11_miscellaneous_vector_functions.md#vector-initialization-functions)
+#### [Intrinsic functions list](intrinsic_funcs/10_miscellaneous_vector_functions.md#vector-initialization-functions)
 
 ### Vector LMUL Extension and Truncation Functions
 
 These utility functions help users to truncate or extend current LMUL under same SEW regardless of vl, it won't change content of vl register.
 
-#### [LMUL Extension Intrinsic functions list](intrinsic_funcs/11_miscellaneous_vector_functions.md#vector-lmul-extension-functions)
-#### [LMUL Truncation Intrinsic functions list](intrinsic_funcs/11_miscellaneous_vector_functions.md#vector-lmul-truncation-functions)
+#### [LMUL Extension Intrinsic functions list](intrinsic_funcs/10_miscellaneous_vector_functions.md#vector-lmul-extension-functions)
+#### [LMUL Truncation Intrinsic functions list](intrinsic_funcs/10_miscellaneous_vector_functions.md#vector-lmul-truncation-functions)
 
 ### Vector Insertion Functions
 
 These utility functions help users insert a smaller LMUL value into a larger LMUL value. Does not support fractional LMULs. Index must be a constant expression less than the ratio between the larger and smaller LMUL.
 
-#### [Intrinsic functions list](intrinsic_funcs/11_miscellaneous_vector_functions.md#vector-insertion-functions)
+#### [Intrinsic functions list](intrinsic_funcs/10_miscellaneous_vector_functions.md#vector-insertion-functions)
 
 ### Vector Extraction Functions
 
 These utility functions help users extra a smaller LMUL value from a larger LMUL value. Does not support fractional LMULs. Index must be a constant expression less than the ratio between the larger and smaller LMUL.
 
-#### [Intrinsic functions list](intrinsic_funcs/11_miscellaneous_vector_functions.md#vector-extraction-functions)
+#### [Intrinsic functions list](intrinsic_funcs/10_miscellaneous_vector_functions.md#vector-extraction-functions)
 
 ### Read/Write URW vector CSRs
 
@@ -160,7 +160,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vrsub.{vx,vi}
 - vneg.v
 
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#121-vector-single-width-integer-add-and-subtract-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#121-vector-single-width-integer-add-and-subtract-operations)
 
 
 ### 11.2. Vector Widening Integer Add/Subtract Operations
@@ -172,7 +172,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vwcvt.x.x.v
 - vwcvtu.x.x.v
 
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#122-vector-widening-integer-addsubtract-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#122-vector-widening-integer-addsubtract-operations)
 
 
 ### 11.3 Vector Integer Extension
@@ -180,7 +180,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 #### Instructions
 - vzext.vf{2,4,8}
 - vsext.vf{2,4,8}
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#123-vector-integer-extension-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#123-vector-integer-extension-operations)
 
 
 ### 11.4. Vector Integer Add-with-Carry / Subtract-with-Borrow Operations
@@ -190,7 +190,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vsbc.{vvm,vxm}
 - vmsbc.{vvm,vxm}
 
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#124-vector-integer-add-with-carry--subtract-with-borrow-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#124-vector-integer-add-with-carry--subtract-with-borrow-operations)
 
 
 ### 11.5. Vector Bitwise Logical Operations
@@ -200,7 +200,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vor.{vv,vx,vi}
 - vnot.v
 
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#125-vector-bitwise-logical-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#125-vector-bitwise-logical-operations)
 
 
 ### 11.6. Vector Single-Width Bit Shift Operations
@@ -209,7 +209,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vsrl.{vv,vx,vi}
 - vsra.{vv,vx,vi}
 
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#126-vector-single-width-bit-shift-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#126-vector-single-width-bit-shift-operations)
 
 #### Notes
 - A full complement of vector shift instructions are provided, including logical shift left, and logical (zero-extending) and arithmetic (sign-extending) shift right.
@@ -221,7 +221,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vnsrl.{vv,vx,vi}
 - vncvt.x.x.w
 
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#127-vector-narrowing-integer-right-shift-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#127-vector-narrowing-integer-right-shift-operations)
 
 
 ### 11.8. Vector Integer Comparison Operations
@@ -235,7 +235,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vmsgtu.{vv.vx,vi}
 - vmsgt.{vv.vx,vi}
 
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#128-vector-integer-comparison-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#128-vector-integer-comparison-operations)
 
 
 ### 11.9. Vector Integer Min/Max Operations
@@ -245,7 +245,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vmaxu.{vv,vx}
 - vmax.{vv,vx}
 
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#129-vector-integer-minmax-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#129-vector-integer-minmax-operations)
 
 
 ### 11.10. Vector Single-Width Integer Multiply Operations
@@ -255,7 +255,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vmulhu.{vv,vx}
 - vmulhsu.{vv,vx}
 
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#1210-vector-single-width-integer-multiply-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#1210-vector-single-width-integer-multiply-operations)
 
 
 ### 11.11. Vector Integer Divide Operations
@@ -265,7 +265,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vremu.{vv,vx}
 - vrem.{vv,vx}
 
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#1211-vector-integer-divide-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#1211-vector-integer-divide-operations)
 
 
 ### 11.12. Vector Widening Integer Multiply Operations
@@ -274,7 +274,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vwmulu.{vv,vx}
 - vwmulsu.{vv,vx}
 
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#1222-vector-widening-integer-multiply-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#1222-vector-widening-integer-multiply-operations)
 
 
 ### 11.13. Vector Single-Width Integer Multiply-Add Operations
@@ -284,7 +284,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vmadd.{vv,vx}
 - vnmsub.{vv,vx}
 
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#1213-vector-single-width-integer-multiply-add-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#1213-vector-single-width-integer-multiply-add-operations)
 
 
 ### 11.14. Vector Widening Integer Multiply-Add Operations
@@ -294,14 +294,14 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vwmaccsu.{vv,vx}
 - vwmaccus.{vv,vx}
 
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#1214-vector-widening-integer-multiply-add-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#1214-vector-widening-integer-multiply-add-operations)
 
 
 ### 11.15. Vector Integer Merge Operations
 #### Instructions
 - vmerge.{vvm,vxm,vim}
 
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#1215-vector-integer-merge-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#1215-vector-integer-merge-operations)
 
 
 ### 11.16. Vector Integer Move Operations
@@ -310,7 +310,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vmv.v.x
 - vmv.v.i
 
-#### [Intrinsic functions list](intrinsic_funcs/05_vector_integer_arithmetic_functions.md#1216-vector-integer-move-operations)
+#### [Intrinsic functions list](intrinsic_funcs/04_vector_integer_arithmetic_functions.md#1216-vector-integer-move-operations)
 
 
 ## 12. Vector Fixed-Point Arithmetic Operations
@@ -321,7 +321,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vssubu.{vv,vx}
 - vssub.{vv,vx}
 
-#### [Intrinsic functions list](intrinsic_funcs/06_vector_fixed-point_arithmetic_functions.md#131-vector-single-width-saturating-add-and-subtract)
+#### [Intrinsic functions list](intrinsic_funcs/05_vector_fixed-point_arithmetic_functions.md#131-vector-single-width-saturating-add-and-subtract)
 
 
 ### 12.2. Vector Single-Width Averaging Add and Subtract
@@ -329,14 +329,14 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vaadd.{vv,vx,vi}
 - vasub.{vv,vx}
 
-#### [Intrinsic functions list](intrinsic_funcs/06_vector_fixed-point_arithmetic_functions.md#132-vector-single-width-averaging-add-and-subtract-operations)
+#### [Intrinsic functions list](intrinsic_funcs/05_vector_fixed-point_arithmetic_functions.md#132-vector-single-width-averaging-add-and-subtract-operations)
 
 
 ### 12.3. Vector Single-Width Fractional Multiply with Rounding and Saturation
 #### Instructions
 - vsmul.{vv,vx}
 
-#### [Intrinsic functions list](intrinsic_funcs/06_vector_fixed-point_arithmetic_functions.md#133-vector-single-width-fractional-multiply-with-rounding-and-saturation-operations)
+#### [Intrinsic functions list](intrinsic_funcs/05_vector_fixed-point_arithmetic_functions.md#133-vector-single-width-fractional-multiply-with-rounding-and-saturation-operations)
 
 
 ### 12.4. Vector Single-Width Scaling Shift Operations
@@ -344,7 +344,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vssrl.{vv,vx,vi}
 - vssra.{vv,vx,vi}
 
-#### [Intrinsic functions list](intrinsic_funcs/06_vector_fixed-point_arithmetic_functions.md#134-vector-single-width-scaling-shift-operations)
+#### [Intrinsic functions list](intrinsic_funcs/05_vector_fixed-point_arithmetic_functions.md#134-vector-single-width-scaling-shift-operations)
 
 
 ### 12.5. Vector Narrowing Fixed-Point Clip Operations
@@ -352,7 +352,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vnclipu.{wx,wv,wi}
 - vnclip.{wx,wv,wi}
 
-#### [Intrinsic functions list](intrinsic_funcs/06_vector_fixed-point_arithmetic_functions.md#135-vector-narrowing-fixed-point-clip-operations)
+#### [Intrinsic functions list](intrinsic_funcs/05_vector_fixed-point_arithmetic_functions.md#135-vector-narrowing-fixed-point-clip-operations)
 
 
 ## 13. Vector Floating-Point Operations
@@ -362,7 +362,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vfsub.{vv,vf}
 - vfrsub.vf
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#142-vector-single-width-floating-point-addsubtract-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#142-vector-single-width-floating-point-addsubtract-operations)
 
 
 ### 13.3. Vector Widening Floating-Point Add/Subtract Operations
@@ -370,7 +370,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vfwadd.{vv,vf,wv,wf}
 - vfwsub.{vv,vf,wv,wf}
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#143-vector-widening-floating-point-addsubtract-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#143-vector-widening-floating-point-addsubtract-operations)
 
 
 ### 13.4. Vector Single-Width Floating-Point Multiply/Divide Operations
@@ -379,14 +379,14 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vfdiv.{vv,vf}
 - vfrdiv.{vv,vf}
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#144-vector-single-width-floating-point-multiplydivide-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#144-vector-single-width-floating-point-multiplydivide-operations)
 
 
 ### 13.5. Vector Widening Floating-Point Multiply Operations
 #### Instructions
 - vfwmul.{vv,vf}
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#145-vector-widening-floating-point-multiply-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#145-vector-widening-floating-point-multiply-operations)
 
 
 ### 13.6. Vector Single-Width Floating-Point Fused Multiply-Add Operations
@@ -401,7 +401,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vfnmsub.{vv,vf}
 
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#146-vector-single-width-floating-point-fused-multiply-add-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#146-vector-single-width-floating-point-fused-multiply-add-operations)
 
 
 ### 13.7. Vector Widening Floating-Point Fused Multiply-Add Operations
@@ -411,33 +411,33 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vfwmsac.{vv,vf}
 - vfwnmsac.{vv,vf}
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#147-vector-widening-floating-point-fused-multiply-add-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#147-vector-widening-floating-point-fused-multiply-add-operations)
 
 
 ### 13.8. Vector Floating-Point Square-Root Operations
 #### Instructions
 - vfsqrt.v
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#148-vector-floating-point-square-root-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#148-vector-floating-point-square-root-operations)
 
 
 ### 13.9. Vector Floating-Point Reciprocal Square-Root Estimate Operations
 - vfrsqrt7.v
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#149-vector-floating-point-reciprocal-square-root-estimate-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#149-vector-floating-point-reciprocal-square-root-estimate-operations)
 
 
 ### 13.10. Vector Floating-Point Reciprocal Estimate Operations
 - vfrec7.v
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#1410-vector-floating-point-reciprocal-estimate-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#1410-vector-floating-point-reciprocal-estimate-operations)
 
 
 ### 13.11. Vector Floating-Point MIN/MAX Operations
 - vfmin.{vv,vf}
 - vfmax.{vv,vf}
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#1411-vector-floating-point-minmax-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#1411-vector-floating-point-minmax-operations)
 
 
 ### 13.12. Vector Floating-Point Sign-Injection Operations
@@ -448,7 +448,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vfneg.v
 - vfabs.v
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#1412-vector-floating-point-sign-injection-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#1412-vector-floating-point-sign-injection-operations)
 
 
 ### 13.13. Vector Floating-Point Compare Operations
@@ -460,28 +460,28 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vmfgt.{vv,vf}
 - vmfge.{vv,vf}
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#1413-vector-floating-point-compare-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#1413-vector-floating-point-compare-operations)
 
 
 ### 13.14. Vector Floating-Point Classify Operations
 #### Instructions
 - vfclass.v
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#1414-vector-floating-point-classify-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#1414-vector-floating-point-classify-operations)
 
 
 ### 13.15. Vector Floating-Point Merge Operations
 #### Instructions
 - vfmerge.vfm
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#1415-vector-floating-point-merge-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#1415-vector-floating-point-merge-operations)
 
 
 ### 13.16. Vector Floating-Point Move Operations
 #### Instructions
 - vfmv.v.f
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#1416-vector-floating-point-move-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#1416-vector-floating-point-move-operations)
 
 
 ### 13.17. Single-Width Floating-Point/Integer Type-Convert Operations
@@ -493,7 +493,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vfcvt.f.xu.v
 - vfcvt.f.x.v
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#1417-single-width-floating-pointinteger-type-convert-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#1417-single-width-floating-pointinteger-type-convert-operations)
 
 
 ### 13.18. Widening Floating-Point/Integer Type-Convert Operations
@@ -506,7 +506,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vfwcvt.f.x.v
 - vfwcvt.f.f.v
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#1418-widening-floating-pointinteger-type-convert-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#1418-widening-floating-pointinteger-type-convert-operations)
 
 
 ### 13.19. Narrowing Floating-Point/Integer Type-Convert Operations
@@ -520,7 +520,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vfncvt.f.f.w
 - vfncvt.rod.f.f.w
 
-#### [Intrinsic functions list](intrinsic_funcs/07_vector_floating-point_functions.md#1419-narrowing-floating-pointinteger-type-convert-operations)
+#### [Intrinsic functions list](intrinsic_funcs/06_vector_floating-point_functions.md#1419-narrowing-floating-pointinteger-type-convert-operations)
 
 
 ## 14. Vector Reduction Operations
@@ -535,7 +535,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vredor.vs
 - vredxor.vs
 
-#### [Intrinsic functions list](intrinsic_funcs/08_vector_reduction_functions.md#151-vector-single-width-integer-reduction-operations)
+#### [Intrinsic functions list](intrinsic_funcs/07_vector_reduction_functions.md#151-vector-single-width-integer-reduction-operations)
 
 #### Notes
 - Reduction intrinsics will generate code using tail undisturbed policy unless
@@ -547,7 +547,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vwredsumu.vs
 - vwredsum.vs
 
-#### [Intrinsic functions list](intrinsic_funcs/08_vector_reduction_functions.md#152-vector-widening-integer-reduction-operations)
+#### [Intrinsic functions list](intrinsic_funcs/07_vector_reduction_functions.md#152-vector-widening-integer-reduction-operations)
 
 #### Notes
 - Reduction intrinsics will generate code using tail undisturbed policy unless
@@ -561,7 +561,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vfredmax.vs
 - vfredmin.vs
 
-#### [Intrinsic functions list](intrinsic_funcs/08_vector_reduction_functions.md#153-vector-single-width-floating-point-reduction-operations)
+#### [Intrinsic functions list](intrinsic_funcs/07_vector_reduction_functions.md#153-vector-single-width-floating-point-reduction-operations)
 
 #### Notes
 - Reduction intrinsics will generate code using tail undisturbed policy unless
@@ -573,7 +573,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vfwredosum.vs
 - vfwredusum.vs
 
-#### [Intrinsic functions list](intrinsic_funcs/08_vector_reduction_functions.md#154-vector-widening-floating-point-reduction-operations)
+#### [Intrinsic functions list](intrinsic_funcs/07_vector_reduction_functions.md#154-vector-widening-floating-point-reduction-operations)
 
 #### Notes
 - Reduction intrinsics will generate code using tail undisturbed policy unless
@@ -596,56 +596,56 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vmset.m
 - vmnot.m
 
-#### [Intrinsic functions list](intrinsic_funcs/09_vector_mask_functions.md#161-vector-mask-register-logical-operations)
+#### [Intrinsic functions list](intrinsic_funcs/08_vector_mask_functions.md#161-vector-mask-register-logical-operations)
 
 
 ### 15.2. Vector count population in mask vcpop.m
 #### Instructions
 - vcpop.m
 
-#### [Intrinsic functions list](intrinsic_funcs/09_vector_mask_functions.md#vector-count-population-in-mask-functions)
+#### [Intrinsic functions list](intrinsic_funcs/08_vector_mask_functions.md#vector-count-population-in-mask-functions)
 
 
 ### 15.3. vfirst find-first-set mask bit
 #### Instructions
 - vfirst.m
 
-#### [Intrinsic functions list](intrinsic_funcs/09_vector_mask_functions.md#163-find-first-set-mask-bit-operations)
+#### [Intrinsic functions list](intrinsic_funcs/08_vector_mask_functions.md#163-find-first-set-mask-bit-operations)
 
 
 ### 15.4. vmsbf.m set-before-first mask bit
 #### Instructions
 - vmsbf.m
 
-#### [Intrinsic functions list](intrinsic_funcs/09_vector_mask_functions.md#164-set-before-first-mask-bit-operations)
+#### [Intrinsic functions list](intrinsic_funcs/08_vector_mask_functions.md#164-set-before-first-mask-bit-operations)
 
 
 ### 15.5. vmsif.m set-including-first mask bit
 #### Instructions
 - vmsif.m
 
-#### [Intrinsic functions list](intrinsic_funcs/09_vector_mask_functions.md#165-set-including-first-mask-bit-operations)
+#### [Intrinsic functions list](intrinsic_funcs/08_vector_mask_functions.md#165-set-including-first-mask-bit-operations)
 
 
 ### 15.6. vmsof.m set-only-first mask bit
 #### Instructions
 - vmsof.m
 
-#### [Intrinsic functions list](intrinsic_funcs/09_vector_mask_functions.md#166-set-only-first-mask-bit-operations)
+#### [Intrinsic functions list](intrinsic_funcs/08_vector_mask_functions.md#166-set-only-first-mask-bit-operations)
 
 
 ### 15.8. Vector Iota Operations
 #### Instructions
 - viota.m
 
-#### [Intrinsic functions list](intrinsic_funcs/09_vector_mask_functions.md#168-vector-iota-operations)
+#### [Intrinsic functions list](intrinsic_funcs/08_vector_mask_functions.md#168-vector-iota-operations)
 
 
 ### 15.9. Vector Element Index Operations
 #### Instructions
 - vid.v
 
-#### [Intrinsic functions list](intrinsic_funcs/09_vector_mask_functions.md#169-vector-element-index-operations)
+#### [Intrinsic functions list](intrinsic_funcs/08_vector_mask_functions.md#169-vector-element-index-operations)
 
 
 ## 16. Vector Permutation Operations
@@ -654,7 +654,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vmv.s.x
 - vmv.x.s
 
-#### [Intrinsic functions list](intrinsic_funcs/10_vector_permutation_functions.md#171-integer-and-floating-point-scalar-move-operations)
+#### [Intrinsic functions list](intrinsic_funcs/09_vector_permutation_functions.md#171-integer-and-floating-point-scalar-move-operations)
 
 #### Notes
 - vmv.s.x intrinsic will generate code using tail undisturbed policy unless
@@ -666,7 +666,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vfmv.f.s
 - vfmv.s.f
 
-#### [Intrinsic functions list](intrinsic_funcs/10_vector_permutation_functions.md#172-integer-and-floating-point-scalar-move-operations)
+#### [Intrinsic functions list](intrinsic_funcs/09_vector_permutation_functions.md#172-integer-and-floating-point-scalar-move-operations)
 
 #### Notes
 - vfmv.s.f intrinsic will generate code using tail undisturbed policy unless
@@ -682,7 +682,7 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vfslide1up.vx
 - vfslide1down.vx
 
-#### [Intrinsic functions list](intrinsic_funcs/10_vector_permutation_functions.md#173-vector-slideup-and-slidedown-operations)
+#### [Intrinsic functions list](intrinsic_funcs/09_vector_permutation_functions.md#173-vector-slideup-and-slidedown-operations)
 
 #### Notes
 - Unmasked vslideup and vslidedown intrinsics will generate code using tail
@@ -692,14 +692,14 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 #### Instructions
 - vrgather.{vx,vi}
 
-#### [Intrinsic functions list](intrinsic_funcs/10_vector_permutation_functions.md#174-vector-register-gather-operations)
+#### [Intrinsic functions list](intrinsic_funcs/09_vector_permutation_functions.md#174-vector-register-gather-operations)
 
 
 ### 16.5. Vector Compress Operations
 #### Instructions
 - vcompress.vm
 
-#### [Intrinsic functions list](intrinsic_funcs/10_vector_permutation_functions.md#175-vector-compress-instruction)
+#### [Intrinsic functions list](intrinsic_funcs/09_vector_permutation_functions.md#175-vector-compress-instruction)
 
 #### Notes
 - vcompress intrinsics will generate code using tail undisturbed policy unless
