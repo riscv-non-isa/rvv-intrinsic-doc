@@ -19,7 +19,7 @@
   * [Vector Stores](#no-maskedoff-stores)
   * [Reduction Instructions](#no-maskedoff-reduction)
   * [Merge Instructions](#no-maskedoff-merge)
-- [Tail Policy in the Intrinsics](#tail-policy)
+- [Policy Intrinsic Functions](#policy)
 - [Keep the Original Values of the Destination Vector](#dest-operand)
 - [SEW and LMUL of Intrinsics](#sew-and-lmul-of-intrinsics)
 - [C Operators on RISC-V Vector Types](#c-operators)
@@ -304,7 +304,7 @@ vint8m1_t vcompress_vm_i8m1(vbool8_t vs1, vint8m1_t maskedoff, vint8m1_t vs2, si
 
 There are two additional masking semantics: *zero in output* semantic and *don't care in output* semantic. Users could leverage *merge in output* intrinsics to simulate these two additional masking semantics.
 
-The intrinsics with ending `_m` have no argument to specify tail policy. The tail policy of `_m` intrinsics is tail agnostic.
+The intrinsics with ending `_m` have no argument to specify tail policy. Almost all `_m` intrinsics are tail agnostic and mask undisturbed. See [Policy Intrinsic Functions](#policy) for the more detail.
 
 ```
 Example:
@@ -348,76 +348,136 @@ vmerge.vvm vd, vs2, vs1, v0:
 vint8m1_t vmerge_vvm_i8m1_m(vbool8_t mask, vint8m1_t vs2, vint8m1_t vs1, size_t vl);
 ```
 
-## Tail Policy in the Intrinsics<a name="tail-policy"></a>
+## Policy Intrinsic Functions<a name="policy"></a>
 
-The naming rule of intrinsics with tail policy is
+The intrinsics encode the policy (or policies) explicitly in function name's suffix if operations support those policies.
+Users could use policy intrinsic functions to control tail and inactive elements. Please refer to [3.4.3 Vector Tail Agnostic and Vector Mask Agnostic](https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#343-vector-tail-agnostic-and-vector-mask-agnostic-vta-and-vma)
+and [5.4 Prestart, Active, Inactive, Body, and Tail Element Definitions](https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#sec-inactive-defs) for fundamental definitions.
+
+The general naming rule is as the following.
+The interface differs between instructions and will be enumerated in the following of this section.
 
 ```
-INTRINSIC_WITH_ADDITIONAL_DEST ::= INTRINSIC '_tu'
+INTRINSIC_WITH_TU ::= INTRINSIC '_tu'
+INTRINSIC_WITH_TA ::= INTRINSIC '_ta'
+INTRINSIC_WITH_MASK_MU ::= INTRINSIC '_mu'
+INTRINSIC_WITH_MASK_MA ::= INTRINSIC '_ma'
+INTRINSIC_WITH_MASK_TUM ::= INTRINSIC '_tum'
+INTRINSIC_WITH_MASK_TAM ::= INTRINSIC '_tam'
+INTRINSIC_WITH_MASK_TU_MA ::= INTRINSIC '_tuma'
+INTRINSIC_WITH_MASK_TA_MA ::= INTRINSIC '_tama'
+INTRINSIC_WITH_MASK_TU_MU ::= INTRINSIC '_tumu'
+INTRINSIC_WITH_MASK_TA_MU ::= INTRINSIC '_tamu'
 ```
 
+### Intrinsics without `dest` or `vd` argument
+
+|Masked?  | TU? | MU? | Intrinsic
+|--- |--- |--- |---
+|No  | No | N/A| `vadd_vv_<ty>_ta(op1, op2, vl)` and `vadd_vv_<ty>(op1, op2, vl)`
+|No  | Yes| N/A| `vadd_vv_<ty>_tu(merge,op1, op2, vl)`
+|Yes | No | No | `vadd_vv_<ty>_tama(mask, op1, op2, vl)`
+|Yes | No | Yes| `vadd_vv_<ty>_tamu(mask, merge, op1, op2, vl)`, and `vadd_vv_<ty>_m(mask, merge, op1, op2, vl)`
+|Yes | Yes| No | `vadd_vv_<ty>_tuma(mask, merge, op1, op2, vl)`
+|Yes | Yes| Yes| `vadd_vv_<ty>_tumu(mask, merge, op1, op2, vl)`
+
+### Intrinsics with the `dest` argument and doesn't have a masked type
+
+|Masked? | TU? | MU? | Intrinsic
+|--- |--- | ---| ---
+|No  | No | N/A| `vmv_v_x_<ty>_ta(src, vl)` and `vmv_v_x_<ty>(src, vl)`
+|No  | Yes| N/A| `vmv_v_x_<ty>_tu(merge, src, vl)`
+
+### Intrinsics with the `vd` argument
+
+|Masked?  | TU? | MU? | Intrinsic
+|--- |--- |--- |---
+|No  | No | N/A| `vmacc_vv_<ty>_ta(vd, vs1, vs2, vl)`
+|No  | Yes| N/A| `vmacc_vv_<ty>_tu(vd, vs1, vs2, vl)` and `vmacc_vv_<ty>(vd, vs1, vs2, vl)`
+|Yes | No | No | `vmacc_vv_<ty>_tama(mask, vd, vs1, vs2, vl)`
+|Yes | No | Yes| `vmacc_vv_<ty>_tamu(mask, vd, vs1, vs2, vl)` and `vmacc_vv_<ty>_m(mask, vd, vs1, vs2, vl)`
+|Yes | Yes| No | `vmacc_vv_<ty>_tuma(mask, vd, vs1, vs2, vl)`
+|Yes | Yes| Yes| `vmacc_vv_<ty>_tumu(mask, vd, vs1, vs2, vl)`
+
+### Intrinsics for the reduction instruction which only have tail policy.
+
+|Masked?  | TU? | MU? | Intrinsic
+|--- |--- |--- |---
+|No  | No | N/A| `vredsum_vs_<ty>_ta(vector, scalar, vl)`
+|No  | Yes| N/A| `vredsum_vs_<ty>_tu(merge, vector, scalar, vl)` and `vredsum_vs_<ty>(merge, vector, scalar, vl)`
+|Yes | No | N/A| `vredsum_vs_<ty>_tam(mask, vector, scalar, vl)`
+|Yes | Yes| N/A| `vredsum_vs_<ty>_tum(mask, merge, vector, scalar, vl)` and vredsum_vs_<ty>_m(mask, merge, vector, scalar, vl)`
+
+### Intrinsics for the instructions which only have mask policy. (ex. vector comparison, `vmsbf.m`, `vmsif.m` and `vmsof.m`.)
+
+Masked?  | TU? | MU? | Intrinsic
+--- |--- |--- |---
+No  | N/A| N/A| `vmseq_vv_i8m1_b8(op, op2, vl)`
+Yes | N/A| No | `vmseq_vv_i8m1_b8_ma(mask, op1, op2, vl)`
+Yes | N/A| Yes| `vmseq_vv_i8m1_b8_mu(mask, merge, op1, op2, vl)` and `vmseq_vv_i8m1_b8_m(mask, merge, op1, op2, vl)`
+
+
+> NOTE: N/A means it is a compiler-defined value. For example, compiler could choose the same policy with adjacent instruction to save the vsetvli instruction.
+
+### Special cases
+
+There are some special cases for policy functions listed as below:
+
+- The following instructions doesn't have an masked intrinsic, therefore it only supports `_ta` and `_tu`:
+  - `vadc`, `vsbc`
+  - `vmv.s.x`, `vfmv.s.f`
+  - Vector integer and floating-point move instructions
+  - Vector integer and floating-point merge instructions
+  - Vector compress instructions
+- The following instructions may only use mask value, it only supports `_ma` and `_mu`:
+  - `vmsbf.m`, `vmsif.m`, `vmsof.m`
+  - Vector integer and floating-point comparison instructions
+- The following instructions do not have policy intrinsic functions:
+  - `vfirst.m`, `vmv.x.s`, `vfmv.f.s`, `vcpop.m`
+  - `vmadc`, `vmsbc`,  `vlm.v`
+  - Vector store instructions
+- `vslideup` and `vslidedown` still have dest operand in `_ta` and `_tama` policy.
+
+### Explicit policy for overloaded intrinsic functions
+
+The policy is encoded as suffix for overloading functions just like non-overloading ones.
+
 ```
-Example:
+vadd.vv vd, vs2, vs1:
 
-vadd.vv vd, vs2, vs1, v0.t:
-
-// Add an additional `dest` argument to control tail undisturbed/agnostic.
-// `dest` == vundefined(), tail agnostic.
-vint8m1_t vmv_v_x_i8m1_tu(vint8m1_t dest, int8_t src, size_t vl);
+// unmasked
+vint32m1_t vadd(vint32m1_t op1, vint32m1_t op2, size_t vl); // alias to vadd_vv_i32m1
+vint32m1_t vadd_ta(vint32m1_t op1, vint32m1_t op2, size_t vl);
+vint32m1_t vadd_tu(vint32m1_t merge, vint32m1_t op1, vint32m1_t op2, size_t vl);
+// masked
+vint32m1_t vadd(vbool32_t mask, vint32m1_t merge, vint32m1_t op1, vint32m1_t op2, size_t vl); // alias to vadd_vv_i32m1_m
+vint32m1_t vadd_tama(vbool32_t mask, vint32m1_t op1, vint32m1_t op2, size_t vl);
+vint32m1_t vadd_tamu(vbool32_t mask, vint32m1_t merge, vint32m1_t op1, vint32m1_t op2, size_t vl);
+vint32m1_t vadd_tuma(vbool32_t mask, vint32m1_t merge, vint32m1_t op1, vint32m1_t op2, size_t vl);
+vint32m1_t vadd_tumu(vbool32_t mask, vint32m1_t merge, vint32m1_t op1, vint32m1_t op2, size_t vl);
 ```
 
-Define two constants for tail policy. Users could use these two constants for `ta` argument.
+The overloading intrinsics for `vmv.s.x`, `vfmv.s.f`, `vid.v` and `viota.m` are special cases from other overloading intrinsics.
+Their arguments for `_ta` and `_tama` make them impossible to overload without specifying the return type, making them identical with the non-overloading ones.
+
 ```
-#define VE_TAIL_UNDISTURBED 0
-#define VE_TAIL_AGNOSTIC 1
+vid.v vd, vm
+
+// unmasked
+vuint32m1_t vid_tu(vuint32m1_t merge, size_t vl);
+vuint32m1_t vid_v_u32m1_ta(size_t vl);
+// masked
+vuint32m1_t vid_tuma(vbool32_t mask, vuint32m1_t merge, size_t vl);
+vuint32m1_t vid_tumu(vbool32_t mask, vuint32m1_t merge, size_t vl);
+vuint32m1_t vid_tamu(vbool32_t mask, vuint32m1_t merge, size_t vl);
+vuint32m1_t vid_v_u32m1_tama(vbool32_t mask, size_t vl);
 ```
-
-For intrinsics with `maskedoff` and `ta` argument:
-| Masked? | Needs tail preserved | Needs maskedoff preserved | Intrinsic
-| ------- | -------------------- | ------------------------- | ------------------------------------------------------------------------
-| No      | No                   | N/A                       | `vadd_vv_<ty>(vs2, vs1, vl)`
-| No      | Yes                  | N/A                       | `vadd_vv_<ty>_tu(dest, vs2, vs1, vl)`
-| Yes     | No                   | No                        | No support.
-| Yes     | No                   | Yes                       | No support.
-| Yes     | Yes                  | Yes                       | No support.
-| Yes     | Yes                  | No                        | No support. Tail undisturbed and maskedoff agnostic is likely rare.
-
-For intrinsics without mask and with an additional `dest` argument:
-| Masked? | Needs tail preserved | Needs maskedoff preserved | Intrinsic
-| ------- | -------------------- | ------------------------- | ---------------------------------------
-| No      | No                   | N/A                       | `vmv_v_x_<ty>(src, vl)`
-| No      | Yes                  | N/A                       | `vmv_v_x_<ty>_tu(dest, src, vl)`
-
-For multiply-add intrinsics:
-| Masked? | Needs tail preserved | Needs maskedoff preserved | Intrinsic
-| ------- | -------------------- | ------------------------- | -------------------------------------------------------------------
-| No      | No                   | N/A                       | `vmacc_vv_<ty>(vd, vs1, vs2, vl)`
-| No      | Yes                  | N/A                       | `vmacc_vv_<ty>_tu(vd, vs1, vs2, vl)`
-| Yes     | No                   | No                        | No support.
-| Yes     | No                   | Yes                       | No support.
-| Yes     | Yes                  | Yes                       | No support.
-| Yes     | Yes                  | No                        | No support. Tail undisturbed and maskedoff agnostic is likely rare.
-
-If the type of the destination is mask type or scalar type, it is always tail-agnostic. The intrinsics are
-* Vector Integer Comparison Instructions
-* Vector Floating-Point Compare Instructions
-* Vector Floating-Point Classify Instruction
-* vmadc.vvm/vmadc.vxm/vmadc.vim
-* vmadc.vv/vmadc.vx/vmadc.vi
-* vmsbc.vvm/vmsbc.vxm
-* vmsbc.vv/vmsbc.vx
-* vmsbf.m
-* vmsif.m
-* vmsof.m
-* vcpop.m
-* vmv.x.s
-* vfmv.f.s
 
 ## Keep the Original Values of the Destination Vector<a name="dest-operand"></a>
 
 `vmv.s.x` and reduction operations will only modify the first element of the destination vector. Users could keep the original values of the remaining elements in the destination vector through `dest` argument in these intrinsics.
 
-Vector slide instructions also have unchanged parts in the destination register group. Users could keep the original values of the unchanged parts in the destination vector group through `dest` argument in the intrinsics.
+Vector slideup works by leaving elements `0<i<OFFSET` undisturbed, so it need the destination operand as input for correctness. Vector slidedown also have destination operand, but it's used for interface consistent with vslideup, not for correctness.
 
 ```
 Example:
