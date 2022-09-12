@@ -22823,8 +22823,7 @@ vfloat64m1_t vfwredusum (vbool4_t mask, vfloat64m1_t dest, vfloat32m8_t vector, 
 ```
 ## Vector Mask Functions:
 
-### [Vector Mask Load/Store Functions](../rvv-intrinsic-api.md#74-vector-mask-load-operations):
-
+### [Vector Mask Load/Store Functions](../rvv-intrinsic-api.md#74-vector-unit-stride-operations):
 **Prototypes:**
 ``` C
 vbool1_t vlm_v_b1 (const uint8_t *base, size_t vl);
