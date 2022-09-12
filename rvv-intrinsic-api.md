@@ -78,9 +78,9 @@ void vwrite_csr(enum RVV_CSR csr, unsigned long value);
 - vle&lt;eew>.v
 - vse&lt;eew>.v
 
-#### [Load Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#74-vector-unit-stride-operations)
-#### [Store Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#74-vector-unit-stride-operations)
-#### [Mask Load/Store Intrinsic functions list](intrinsic_funcs/09_vector_mask_functions.md#74-vector-mask-load-operations)
+#### [Load Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#vector-unit-stride-load-functions)
+#### [Store Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#vector-unit-stride-store-functions)
+#### [Mask Load/Store Intrinsic functions list](intrinsic_funcs/08_vector_mask_functions.md#vector-mask-loadstore-functions)
 
 
 ### 7.5. Vector Strided Load/Store Operations
@@ -88,8 +88,8 @@ void vwrite_csr(enum RVV_CSR csr, unsigned long value);
 - vlse&lt;eew>.v
 - vsse&lt;eew>.v
 
-#### [Load Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#75-vector-strided-loadstore-operations)
-#### [Store Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#75-vector-strided-loadstore-operations)
+#### [Load Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#vector-strided-load-functions)
+#### [Store Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#vector-strided-store-functions)
 
 
 ### 7.6. Vector Indexed Load/Store Operations
@@ -98,15 +98,15 @@ void vwrite_csr(enum RVV_CSR csr, unsigned long value);
 - vsxei&lt;eew>.v
 - vsuxei&lt;eew>.v
 
-#### [Load Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#76-vector-indexed-loadstore-operations)
-#### [Store Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#76-vector-indexed-loadstore-operations)
+#### [Load Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#vector-indexed-load-functions)
+#### [Store Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#vector-indexed-store-functions)
 
 
 ### 7.7. Unit-stride Fault-Only-First Loads Operations
 #### Instructions
 - vle&lt;eew>ff.v
 
-#### [Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#77-unit-stride-fault-only-first-loads-operations)
+#### [Intrinsic functions list](intrinsic_funcs/02_vector_loads_and_stores_functions.md#unit-stride-fault-only-first-loads-functions)
 
 #### Notes
 - The unit-stride fault-only-first load instruction is used to vectorize loops with data-dependent exit conditions (while loops). These instructions execute as a regular load except that they will only take a trap on element 0. If an element > 0 raises an exception, that element and all following elements in the destination vector register are not modified, and the vector length vl is reduced to the number of elements processed without a trap.
