@@ -2,7 +2,7 @@
 
 ## Vector Mask Functions:
 
-### [Vector Mask Load/Store Functions](../rvv-intrinsic-api.md#74-vector-mask-load-operations):
+### [Vector Mask Load/Store Functions](../rvv-intrinsic-api.md#74-vector-unit-stride-operations):
 This operation don't have Policy Intrinsic Functions.
 
 ### [Vector Mask-Register Logical Functions](../rvv-intrinsic-api.md#161-vector-mask-register-logical-operations):
