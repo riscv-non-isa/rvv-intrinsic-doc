@@ -2,7 +2,7 @@
 
 ## Vector Mask Functions:
 
-### [Vector Mask Load/Store Functions](../rvv-intrinsic-api.md#74-vector-mask-load-operations):
+### [Vector Mask Load/Store Functions](../rvv-intrinsic-api.md#74-vector-unit-stride-operations):
 
 **Prototypes:**
 ``` C
