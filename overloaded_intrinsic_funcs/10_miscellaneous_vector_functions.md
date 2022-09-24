@@ -640,7 +640,7 @@ vfloat64m8_t vset (vfloat64m8_t dest, size_t index, vfloat64m1_t val);
 vfloat64m8_t vset (vfloat64m8_t dest, size_t index, vfloat64m2_t val);
 vfloat64m8_t vset (vfloat64m8_t dest, size_t index, vfloat64m4_t val);
 ```
-### [Vector Extraction Functions](../rvv-intrinsic-api.md#vector-extration-functions):
+### [Vector Extraction Functions](../rvv-intrinsic-api.md#vector-extraction-functions):
 
 **Prototypes:**
 ``` C
