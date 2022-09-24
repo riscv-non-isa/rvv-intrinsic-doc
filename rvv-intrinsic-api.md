@@ -54,7 +54,7 @@ These utility functions help users insert a smaller LMUL value into a larger LMU
 
 ### Vector Extraction Functions
 
-These utility functions help users extra a smaller LMUL value from a larger LMUL value. Does not support fractional LMULs. Index must be a constant expression less than the ratio between the larger and smaller LMUL.
+These utility functions help users extract a smaller LMUL value from a larger LMUL value. Does not support fractional LMULs. Index must be a constant expression less than the ratio between the larger and smaller LMUL.
 
 #### [Intrinsic functions list](intrinsic_funcs/10_miscellaneous_vector_functions.md#vector-extraction-functions)
 
