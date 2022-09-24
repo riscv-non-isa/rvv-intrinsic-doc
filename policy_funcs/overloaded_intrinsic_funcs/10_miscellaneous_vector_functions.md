@@ -17,5 +17,5 @@ This operation don't have Policy Intrinsic Functions.
 ### [Vector Insertion Functions](../rvv-intrinsic-api.md#vector-insertion-functions):
 This operation don't have Policy Intrinsic Functions.
 
-### [Vector Extraction Functions](../rvv-intrinsic-api.md#vector-extration-functions):
+### [Vector Extraction Functions](../rvv-intrinsic-api.md#vector-extraction-functions):
 This operation don't have Policy Intrinsic Functions.
