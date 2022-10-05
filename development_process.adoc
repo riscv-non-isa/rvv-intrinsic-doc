@@ -1,0 +1,26 @@
+= Development process
+:sectnums:
+
+:toc:
+
+== General rules on an Issue
+
+The issue tracker of rvv-intrinsic-doc is for discussions related to designs and the developments of the RISC-V V intrinsics. It is less appropriate to ask for debug help or implementation help of a really specific use case.
+
+An issue may be closed as un-related if it is not related to the designs or the developments of the RVV intrinsics.
+
+== General rules to act on a Pull Request
+
+Apart from the criteria below, it is expected that a Pull Request approaches to resolve the conflicts and concerns raised. When discussion comes to a deadlock, the active coordinator of this document shall attempt to clarify existing objections, coordinate between discussion participants and push the progress forward to either approving or rejecting the proposal.
+
+=== Pull request of API-related change
+
+To a pull request of API-related change, the change often come in chunks. However we don't need the **full implementation** before any change is approved and applied into the document. A pull request of such requires a **Proof-of-Concept** in either GCC or LLVM.
+
+To make sure implementation is possible and reasonable in both compilers, an API-related change is required to seek for at least one approval from an active GCC developer and at least one approval from an active LLVM developer. An active developer is someone we recognize that contributes to maintenance and is familiar with RISC-V and RISC-V V intrinsics of GCC or LLVM.
+
+The proof-of-concept of the API-related change is expected to show change(s) (i.e. a patch) to either compiler that (even if not complete) shows the proposal to be feasible.
+
+=== Pull request of document-related change
+
+To a pull request of document-related change, the change is required to seek for at least one approval from an active document maintainer.
