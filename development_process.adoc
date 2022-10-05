@@ -24,3 +24,23 @@ The proof-of-concept of the API-related change is expected to show change(s) (i.
 === Pull request of document-related change
 
 To a pull request of document-related change, the change is required to seek for at least one approval from an active document maintainer.
+
+== General rule to apply backward incompatible change
+
+The RISC-V V intrinsic takes a conservative approach to apply an incompatible change. Application of the change is expected to achieve the following in the proceeding releases.
+
+=== Requirement in the next release
+
+For incompatible change that removes API-(s) from rvv-intrinsic-doc, the implementation of the change in the **next** release is expected to label the to-be-deleted intrinsics as **deprecated**. The compiler should implement **warning** for usage of the deprecated API and add hint to its resolution.
+
+For incompatible change that changes API semantic, the implementation of the change in the **next** release is expected to apply the semantic change with warning(s) to notify the user of such change.
+
+=== Requirement in the next-next release
+
+For incompatible change that removes API-(s) from rvv-intrinsic-doc, the implementation of the change in the **next-next** release is to remove the deprecated intrinsics labeled in the previous release. The compiler should implement **error** to hint for its resolution.
+
+For incompatible change that changes API semantic, the implementation of the change in the **next-next** release is expected to remove the warning.
+
+=== Requirement in the next-next-next release
+
+For incompatible change that removes API-(s) from rvv-intrinsic-doc, their is no specific requirement on diagnostics regarding the **next-next-next** release. The compiler can either provide hint or be oblivious of the removed intrinsics.
