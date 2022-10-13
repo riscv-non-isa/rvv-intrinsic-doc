@@ -1,0 +1,17 @@
+= Version Macro
+
+The `__riscv_v_intrinsic` macro is the test macro to checking the availability and version the compiler supports for the RISC-V V C intrinsic API.
+
+The value of architecture extension test macro are defined as its version, which is compute by the following formula:
+
+```
+<MAJOR_VERSION> * 1,000,000 + <MINOR_VERSION> * 1,000 + <REVISION_VERSION>
+```
+
+For example, the v0.10 version should define the macro with value `10000`.
+
+[cols="1,1,1"]
+|===
+|Name |Value | When defined 
+|`__riscv_v_intrinsic` | Intrinsic Version | Defined when the version is available in the compiler
+|=== 
