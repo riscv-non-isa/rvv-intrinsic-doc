@@ -406,7 +406,7 @@ INTRINSIC_WITH_MASK_TA_MU ::= INTRINSIC '_tamu'
 |No  | No | N/A| `vredsum_vs_<ty>_ta(vector, scalar, vl)`
 |No  | Yes| N/A| `vredsum_vs_<ty>_tu(merge, vector, scalar, vl)` and `vredsum_vs_<ty>(merge, vector, scalar, vl)`
 |Yes | No | N/A| `vredsum_vs_<ty>_tam(mask, vector, scalar, vl)`
-|Yes | Yes| N/A| `vredsum_vs_<ty>_tum(mask, merge, vector, scalar, vl)` and vredsum_vs_<ty>_m(mask, merge, vector, scalar, vl)`
+|Yes | Yes| N/A| `vredsum_vs_<ty>_tum(mask, merge, vector, scalar, vl)` and `vredsum_vs_<ty>_m(mask, merge, vector, scalar, vl)`
 
 ### Intrinsics for the instructions which only have mask policy. (ex. vector comparison, `vmsbf.m`, `vmsif.m` and `vmsof.m`.)
 
