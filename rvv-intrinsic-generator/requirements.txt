@@ -1,0 +1,4 @@
+junitparser==2.6.0
+pylint==2.14.1
+yapf
+pytype
