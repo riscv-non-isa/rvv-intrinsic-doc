@@ -1,0 +1,40 @@
+###############################################################################
+# Copyright 2022 SiFive Inc
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+###############################################################################
+
+CFLAGS?=-O -Werror=implicit-function-declaration
+EXTRA_CFLAGS?=-march=rv64gcv_zvfh -menable-experimental-extensions
+
+TEST_MULTILIB:=rv32gcv-ilp32d,rv64gcv-lp64d
+
+TEST_FILES:=$(wildcard $(BASE_DIR)/*.c)
+TEST_LOGS:=$(subst .c,.log,$(notdir $(TEST_FILES)))
+
+TESTSUITE_NAME?=Report
+TESTING_REPORT_SCRIPT?=$(BASE_DIR)/../testing-report
+
+# TESTING_REPORT_SCRIPT should link to `rvv_intrinsic_gen/testing-report`
+all: $(TEST_LOGS)
+	$(TESTING_REPORT_SCRIPT) --gen-junit-report --testsuite $(TESTSUITE_NAME)
+
+test:
+	echo $(TEST_FILES)
+	echo $(basename $(TEST_FILES))
+
+clean:
+	rm *.log -f
+
+%.log: $(BASE_DIR)/%.c
+	-$(CC) $< -S -o /dev/null $(CFLAGS) $(EXTRA_CFLAGS) &> $@

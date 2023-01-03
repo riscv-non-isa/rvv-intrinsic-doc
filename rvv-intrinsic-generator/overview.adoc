@@ -1,0 +1,72 @@
+= Overview of the RISC-V Vector intrinsics generator
+
+The RISC-V Vector intrinsic generator serves as the generator to generate all
+RISC-V V intrinsic function prototypes. Although not required, it is expected
+for the developer to have knowledge of the RISC-V Vector extension [0] while
+reading through and modify the code.
+
+== Classes
+
+There are a few classes that might help you understand the project faster.
+
+=== Generator (`rvv_intrinsic_gen/generator.py`)
+
+This is the base class of a `Generator`. Other derived generators, namely
+`DocGenerator`, `OverloadedDocGenerator`, `APITestGenerator`, and `Grouper`
+are also defined under the same module.
+
+Notable functions are `function_group` and `func`.
+
+- The `function_group` method is called under `inst.py`, where the instructions
+are listed out as raw data, with template attached, aside from other static
+information (e.g. SEW, LMUL) that will form an intrinsic function.
+- The `func` method is called under template modules (under
+`rvv_intrinsic_gen/template`) containing the `render` function that slightly
+alters some information before sending into `func`. Essentially `func` glues
+the function name, return type, and function arguments together to form an
+intrinsic function.
+
+=== TypeHelper (`rvv_intrinsic_gen/utils.py`)
+
+Given the SEW and LMUL during object construction, the class provides utility
+to return strings of different data types that will be used in an intrinsic
+function. The methods are in abbreviation, but some explanation here will
+give you the taste to interpret the rest.
+
+- `v` is the vector type given the data type (that may be integer or float),
+SEW, and LMUL
+- `s` is the scalar type given the data type (that may be integer or float),
+SEW, and LMUL
+- `vm1` is the vector type but with LMUL fixed to `m1`. This is used in
+vector reduction intrinsics because the `vd` register will always be `m1`.
+Please refer to v-spec for exact detail.
+- `uiv` is the unsigned integer vector type.
+- `qv` is the quadra vector type and `ov` is the octa vector type. They are
+used for the vector integer extension instructions.
+
+The `TypeHelper` is used under the template modules when getting the
+appropriate data type for a intrinsic function.
+
+=== IntrinsicDecorator (`rvv_intrinsic_gen/intrinsic_decorator.py`)
+
+Given the attributes (collected by the `ExtraAttr` class under
+`rvv_intrinsic_gen/enums.py`) upon construction, the decorator provides
+appropriate masked function parameters for a intrinsic function. It also
+helps decorate the function suffix if attributes specifies to be with
+policy behavior specified or masked.
+
+== How the generator works
+
+The entry for execution is under `rvv_intrinsic_gen/main.py`. A generator
+will be specified and forward to `inst.py::gen` the actual generation.
+Under `inst.py::gen`, each call to `function_group` will be similar instruction
+that shares the same SEW, LMUL, data type, and decorator.
+
+Through `function_group`, the information will be fed into the corresponding
+template and rendered into the actual intrinsic function.
+
+== How to extend within this repository
+
+- You can add your own generator, customizing what you will do upon a
+"`function_group`" and "`func`". 
+- You can add more instructions under `inst.py::gen`.

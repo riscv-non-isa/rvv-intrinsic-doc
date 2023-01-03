@@ -1,0 +1,124 @@
+"""
+--------------------------------------------------------------------------------
+Copyright 2022 SiFive Inc
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+--------------------------------------------------------------------------------
+
+Template for rendering Add-With-Carry and Subtract-With-Borrow instructions
+to their corresponding intrinsics.
+"""
+
+#pylint: disable=relative-beyond-top-level
+from utils import prod
+from utils import TypeHelper
+from enums import InstInfo
+from enums import InstType
+
+
+def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
+  #pylint: disable=invalid-name
+  # FIXME: Renaming 'G' to 'g' all in once later.
+  G.inst_group_prologue()
+  for decorator in decorator_list:
+    decorator.write_text_header(G)
+    for args in prod(OP=op_list, TYPE=type_list, SEW=sew_list, LMUL=lmul_list):
+      type_helper = TypeHelper(**args)
+      v = type_helper.v
+      s = type_helper.s
+      m = type_helper.m
+      if "sbc" in args["OP"]:
+        carry = {"borrowin": m}
+      else:
+        carry = {"carryin": m}
+
+      inst_info_vvm = InstInfo.get(args, decorator, InstType.VVVM)
+      inst_info_vxm = InstInfo.get(args, decorator, InstType.VVXM)
+
+      if not "m" in args["OP"]:
+        G.func(
+            inst_info=inst_info_vvm,
+            name="v{OP}_vvm_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            decorator.func_suffix,
+            return_type=v,
+            **decorator.tu_dest_args(v),
+            op1=v,
+            op2=v,
+            **carry,
+            vl=type_helper.size_t)
+        G.func(
+            inst_info=inst_info_vxm,
+            name="v{OP}_vxm_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            decorator.func_suffix,
+            return_type=v,
+            **decorator.tu_dest_args(v),
+            op1=v,
+            op2=s,
+            **carry,
+            vl=type_helper.size_t)
+
+    for args in prod(OP=op_list, TYPE=type_list, SEW=sew_list, LMUL=lmul_list):
+      type_helper = TypeHelper(**args)
+      v = type_helper.v
+      s = type_helper.s
+      m = type_helper.m
+      if "sbc" in args["OP"]:
+        carry = {"borrowin": m}
+      else:
+        carry = {"carryin": m}
+
+      inst_info_vvm = InstInfo.get(args, None, InstType.VVVM)
+      inst_info_vxm = InstInfo.get(args, None, InstType.VVXM)
+
+      inst_info_vv = InstInfo.get(args, None, InstType.VVV)
+      inst_info_vx = InstInfo.get(args, None, InstType.VVX)
+
+      # madc or msbc
+      if "m" in args["OP"]:
+        args["MLEN"] = type_helper.mlen
+        G.func(
+            inst_info_vvm,
+            name="v{OP}_vvm_{TYPE}{SEW}m{LMUL}_b{MLEN}".format_map(args) +
+            decorator.func_suffix,
+            return_type=m,
+            op1=v,
+            op2=v,
+            **carry,
+            vl=type_helper.size_t)
+        G.func(
+            inst_info_vxm,
+            name="v{OP}_vxm_{TYPE}{SEW}m{LMUL}_b{MLEN}".format_map(args) +
+            decorator.func_suffix,
+            return_type=m,
+            op1=v,
+            op2=s,
+            **carry,
+            vl=type_helper.size_t)
+        G.func(
+            inst_info_vv,
+            name="v{OP}_vv_{TYPE}{SEW}m{LMUL}_b{MLEN}".format_map(args) +
+            decorator.func_suffix,
+            return_type=m,
+            op1=v,
+            op2=v,
+            vl=type_helper.size_t)
+        G.func(
+            inst_info_vx,
+            name="v{OP}_vx_{TYPE}{SEW}m{LMUL}_b{MLEN}".format_map(args) +
+            decorator.func_suffix,
+            return_type=m,
+            op1=v,
+            op2=s,
+            vl=type_helper.size_t)
+
+  G.inst_group_epilogue()
