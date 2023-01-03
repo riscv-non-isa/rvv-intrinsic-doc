@@ -1,0 +1,36 @@
+// REQUIRES: riscv-registered-target
+// RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zfh \
+// RUN:   -target-feature +experimental-zvfh -disable-O0-optnone  \
+// RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
+// RUN:   FileCheck --check-prefix=CHECK-RV64 %s
+
+#include <riscv_vector.h>
+
+vbool1_t test_vmmv_m_b1(vbool1_t op1, size_t vl) {
+  return vmmv_m_b1(op1, vl);
+}
+
+vbool2_t test_vmmv_m_b2(vbool2_t op1, size_t vl) {
+  return vmmv_m_b2(op1, vl);
+}
+
+vbool4_t test_vmmv_m_b4(vbool4_t op1, size_t vl) {
+  return vmmv_m_b4(op1, vl);
+}
+
+vbool8_t test_vmmv_m_b8(vbool8_t op1, size_t vl) {
+  return vmmv_m_b8(op1, vl);
+}
+
+vbool16_t test_vmmv_m_b16(vbool16_t op1, size_t vl) {
+  return vmmv_m_b16(op1, vl);
+}
+
+vbool32_t test_vmmv_m_b32(vbool32_t op1, size_t vl) {
+  return vmmv_m_b32(op1, vl);
+}
+
+vbool64_t test_vmmv_m_b64(vbool64_t op1, size_t vl) {
+  return vmmv_m_b64(op1, vl);
+}
+
