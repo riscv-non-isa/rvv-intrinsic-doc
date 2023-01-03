@@ -1,0 +1,33 @@
+name: rvv-intrinsic
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.7", "3.8", "3.9", "3.10"]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r rvv-intrinsic-generator/requirements.txt
+          pylint --version
+      - name: Run yapf
+        run: |
+          make -C rvv-intrinsic-generator yapf-check
+      - name: Lint
+        run: |
+          make -C rvv-intrinsic-generator lint
+      - name: Type check
+        run: |
+          make -C rvv-intrinsic-generator type-check
+      - name: Check golden
+        run: |
+          make -C rvv-intrinsic-generator diff-golden
