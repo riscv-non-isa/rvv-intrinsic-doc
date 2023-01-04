@@ -67,7 +67,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
               name="v{OP}_vs_{TYPE}{SEW}m{LMUL}_{TYPE}{WSEW}m1".format_map(args)
               + decorator.func_suffix,
               return_type=s,
-              **decorator.mask_args(type_helper.m),
+              **decorator.mask_args(type_helper.m, s),
               **decorator.dest_args(s),
               vector=type_helper.v,
               scalar=s,
@@ -78,7 +78,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
               name="v{OP}_vs_{TYPE}{SEW}m{LMUL}_{TYPE}{SEW}m1".format_map(args)
               + decorator.func_suffix,
               return_type=s,
-              **decorator.mask_args(type_helper.m),
+              **decorator.mask_args(type_helper.m, s),
               **decorator.dest_args(s),
               vector=type_helper.v,
               scalar=s,

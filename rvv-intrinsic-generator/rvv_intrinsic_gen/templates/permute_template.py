@@ -79,7 +79,18 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             src=type_helper.v,
             value=type_helper.s,
             vl=type_helper.size_t)
-      elif op in ["slideup", "slidedown"]:
+      elif op == "slideup":
+        G.func(
+            InstInfo.get(args, decorator, InstType.VVX),
+            name="v{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            decorator.func_suffix,
+            return_type=type_helper.v,
+            **decorator.mask_args(type_helper.m, type_helper.v),
+            dest=type_helper.v,
+            src=type_helper.v,
+            offset=type_helper.size_t,
+            vl=type_helper.size_t)
+      elif op == "slidedown":
         G.func(
             InstInfo.get(args, decorator, InstType.VVX),
             name="v{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
