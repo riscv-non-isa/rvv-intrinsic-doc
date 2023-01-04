@@ -80,20 +80,20 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             name="v{OP}_vvm_{TYPE}{SEW}m{LMUL}".format_map(vv_args) +
             decorator.func_suffix,
             return_type=type_helper.v,
-            mask=type_helper.m,
             **decorator.tu_dest_args(type_helper.v),
             op1=type_helper.v,
             op2=type_helper.v,
+            mask=type_helper.m,
             vl=type_helper.size_t)
         G.func(
             inst_info_vvsm,
             name="v{OP}_v{S_TYPE}m_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
-            mask=type_helper.m,
             **decorator.tu_dest_args(type_helper.v),
             op1=type_helper.v,
             op2=type_helper.s,
+            mask=type_helper.m,
             vl=type_helper.size_t)
       elif op == "mv":
         G.func(
