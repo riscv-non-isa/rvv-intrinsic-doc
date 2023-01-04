@@ -96,9 +96,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             name="v{OP}_vm_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
-            mask=type_helper.m,
             **decorator.dest_args(type_helper.v),
             src=type_helper.v,
+            mask=type_helper.m,
             vl=type_helper.size_t)
 
   G.inst_group_epilogue()
