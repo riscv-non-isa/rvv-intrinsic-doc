@@ -90,10 +90,10 @@ class Generator():
     for p in ["m", "tu", "tamu", "tumu", "tuma", "tam", "tum"]:
       if name.split("_")[-1] == p:
         return True
-    if name.find("vmv_s_x") != -1 and name.split("_")[-1] == "ta":
-      return False
-    if name.find("vfmv_s_f") != -1 and name.split("_")[-1] == "ta":
-      return False
+    if name.find("vmv_s_x") != -1 or name.find("vfmv_s_f") != -1:
+      # Prototype for non-policy and ta intrinsics of vmv_s_x and vfmv_s_f
+      # is not feasible for overloading.
+      return name.split("_")[-1] == "tu"
     # vle/vse does not support overloading
     load_ops = [
         "vl(s)?ei?[0-9]+(ff)?_v_.*", "vl(s)?seg[0-9]ei?[0-9]+(ff)?_v_.*"

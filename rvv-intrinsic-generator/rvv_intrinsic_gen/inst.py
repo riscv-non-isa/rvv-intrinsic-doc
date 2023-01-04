@@ -499,10 +499,14 @@ def gen(g):
                    REF_DOC_URL + "#171-integer-scalar-move-operations", ["mv"],
                    TYPES, SEWS, LMULS, decorators.has_no_masking_policy)
 
-  g.function_group(permute_template, "Vector Slideup and Slidedown Functions",
-                   REF_DOC_URL + "#173-vector-slide-operations",
-                   ["slideup", "slidedown"], TYPES, SEWS, LMULS,
+  g.function_group(permute_template, "Vector Slideup Functions",
+                   REF_DOC_URL + "#173-vector-slide-operations", ["slideup"],
+                   TYPES, SEWS, LMULS,
                    decorators.has_masking_no_maskedoff_policy_vslide)
+
+  g.function_group(permute_template, "Vector Slidedown Functions",
+                   REF_DOC_URL + "#173-vector-slide-operations", ["slidedown"],
+                   TYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
 
   g.function_group(
       permute_template, "Vector Slide1up and Slide1down Functions",

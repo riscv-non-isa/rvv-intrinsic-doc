@@ -88,7 +88,8 @@ class IntrinsicDecorator():
       return {}
     elif self.has_maskedoff_name is True and not self.need_maskedoff:
       return {"maskedoff": dest_type}
-    return {"dest": dest_type}
+    else:  # Implicit functions without NEED_MERGE and NEED_MASKED_OFF
+      return {}
 
   def tu_dest_args(self, dest_type, nf=None):
     if self.has_maskedoff_name and not self.need_maskedoff:
@@ -186,4 +187,4 @@ class IntrinsicDecorators():
       self.has_masking_no_maskedoff_policy_vslide =\
         self.has_masking_no_maskedoff
       self.has_masking_no_maskedoff_reduction_policy =\
-        self.has_masking_no_maskedoff
+        self.has_masking_maskedoff
