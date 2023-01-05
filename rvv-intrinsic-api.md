@@ -70,6 +70,8 @@ enum RVV_CSR {
 
 unsigned long vread_csr(enum RVV_CSR csr);
 void vwrite_csr(enum RVV_CSR csr, unsigned long value);
+
+unsigned long vlenb();
 ```
 
 ## 7. Vector Loads and Stores
