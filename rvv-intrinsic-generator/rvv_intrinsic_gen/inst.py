@@ -107,7 +107,7 @@ def gen(g):
 
   ####################################################################
 
-  g.start_group("Vector Load/Store Segment Instructions (Zvlsseg)")
+  g.start_group("Vector Unit-Stride Segment Load/Store Instructions (Zvlsseg)")
 
   g.function_group(seg_load_template,
                    "Vector Unit-Stride Segment Load Functions", "",
@@ -118,6 +118,10 @@ def gen(g):
                    "Vector Unit-Stride Segment Store Functions", "", ["vsseg"],
                    TYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff)
 
+  ####################################################################
+
+  g.start_group("Vector Stride Segment Load/Store Instructions (Zvlsseg)")
+
   g.function_group(seg_load_template, "Vector Strided Segment Load Functions",
                    "", ["vlsseg"], TYPES, SEWS, LMULS,
                    decorators.has_masking_maskedoff_policy)
@@ -125,6 +129,10 @@ def gen(g):
   g.function_group(seg_store_template, "Vector Strided Segment Store Functions",
                    "", ["vssseg"], TYPES, SEWS, LMULS,
                    decorators.has_masking_no_maskedoff)
+
+  ####################################################################
+
+  g.start_group("Vector Indexed Segment Load/Store Instructions (Zvlsseg)")
 
   g.function_group(seg_load_template, "Vector Indexed Segment Load Functions",
                    "", ["vloxseg", "vluxseg"], TYPES, SEWS, LMULS,
