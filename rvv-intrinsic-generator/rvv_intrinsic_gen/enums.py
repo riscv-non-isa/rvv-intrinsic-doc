@@ -106,16 +106,13 @@ class ExtraAttr:
   IS_MASK = 1 << 6
   NEED_MASKOFF = 1 << 7
   NEED_MERGE = 1 << 8
-  IS_TA = 1 << 9
-  IS_TU = 1 << 10
-  IS_TAMA = 1 << 11
-  IS_TAMU = 1 << 12
-  IS_TUMA = 1 << 13
-  IS_TUMU = 1 << 14
-  IS_MA = 1 << 15
-  IS_MU = 1 << 16
-  IS_RED_TUMA = 1 << 17
-  IS_RED_TAMA = 1 << 18
+  IS_TU = 1 << 9
+  IS_TAMU = 1 << 10
+  IS_TUMA = 1 << 11
+  IS_TUMU = 1 << 12
+  IS_MA = 1 << 13
+  IS_MU = 1 << 14
+  IS_RED_TUMA = 1 << 15
 
 
 class InstInfo:

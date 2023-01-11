@@ -36,26 +36,18 @@ class IntrinsicDecorator():
     self.need_maskedoff = (flags & ExtraAttr.NEED_MASKOFF) != 0
     self.has_maskedoff_name = (flags & ExtraAttr.NEED_MERGE) != 0
     self.flags = flags
-    if flags & ExtraAttr.IS_TA:
-      self.func_suffix = "_ta"
-    elif flags & ExtraAttr.IS_TU:
+    if flags & ExtraAttr.IS_TU:
       self.func_suffix = "_tu"
-    elif flags & ExtraAttr.IS_MA:
-      self.func_suffix = "_ma"
     elif flags & ExtraAttr.IS_MU:
       self.func_suffix = "_mu"
-    elif flags & ExtraAttr.IS_TAMA:
-      self.func_suffix = "_tama"
     elif flags & ExtraAttr.IS_TAMU:
-      self.func_suffix = "_tamu"
+      self.func_suffix = "_mu"
     elif flags & ExtraAttr.IS_TUMA:
-      self.func_suffix = "_tuma"
+      self.func_suffix = "_tum"
     elif flags & ExtraAttr.IS_TUMU:
       self.func_suffix = "_tumu"
     elif self.is_mask and flags & ExtraAttr.IS_RED_TUMA:
       self.func_suffix = "_tum"
-    elif self.is_mask and flags & ExtraAttr.IS_RED_TAMA:
-      self.func_suffix = "_tam"
     elif self.is_mask:
       self.func_suffix = "_m"
     else:
@@ -116,53 +108,42 @@ class IntrinsicDecorators():
     if has_tail_policy:  # Intrinsics with a policy suffix
       self.has_no_masking_policy = [
           IntrinsicDecorator(ExtraAttr.NEED_MERGE | ExtraAttr.IS_TU),
-          IntrinsicDecorator(ExtraAttr.IS_TA)
       ]
       self.has_masking_maskedoff_policy = [
           IntrinsicDecorator(ExtraAttr.NEED_MERGE | ExtraAttr.IS_TU),
-          IntrinsicDecorator(ExtraAttr.IS_TA),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
                              | ExtraAttr.NEED_MASKOFF | ExtraAttr.IS_TUMA),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
                              | ExtraAttr.NEED_MASKOFF | ExtraAttr.IS_TUMU),
-          IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.IS_TAMA),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
                              | ExtraAttr.NEED_MASKOFF | ExtraAttr.IS_TAMU)
       ]
       self.has_masking_maskedoff_policy_mu_ma = [
-          IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.IS_MA),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
                              | ExtraAttr.NEED_MASKOFF | ExtraAttr.IS_MU)
       ]
       self.has_masking_no_maskedoff_policy = [
           IntrinsicDecorator(ExtraAttr.IS_TU | ExtraAttr.NEED_MERGE),
-          IntrinsicDecorator(ExtraAttr.IS_TA),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
                              | ExtraAttr.IS_TUMA),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
                              | ExtraAttr.IS_TUMU),
-          IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.IS_TAMA),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
                              | ExtraAttr.IS_TAMU),
       ]
       self.has_masking_no_maskedoff_policy_vslide = [
           IntrinsicDecorator(ExtraAttr.IS_TU | ExtraAttr.NEED_MERGE),
-          IntrinsicDecorator(ExtraAttr.IS_TA | ExtraAttr.NEED_MERGE),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
                              | ExtraAttr.IS_TUMA),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
                              | ExtraAttr.IS_TUMU),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
-                             | ExtraAttr.IS_TAMA),
-          IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
                              | ExtraAttr.IS_TAMU),
       ]
       self.has_masking_no_maskedoff_reduction_policy = [
           IntrinsicDecorator(ExtraAttr.IS_TU | ExtraAttr.NEED_MERGE),
-          IntrinsicDecorator(ExtraAttr.IS_TA),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
                              | ExtraAttr.IS_RED_TUMA),
-          IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.IS_RED_TAMA),
       ]
 
       self.has_no_masking = []
