@@ -2471,7 +2471,7 @@ vuint64m4_t vle64ff (vbool16_t mask, vuint64m4_t maskedoff, const uint64_t *base
 vuint64m8_t vle64ff (vbool8_t mask, vuint64m8_t maskedoff, const uint64_t *base, size_t *new_vl, size_t vl);
 ```
 
-## Vector Load/Store Segment Instructions (Zvlsseg):
+## Vector Unit-Stride Segment Load/Store Instructions (Zvlsseg):
 
 ### [Vector Unit-Stride Segment Load Functions]():
 
@@ -3843,6 +3843,8 @@ void vsseg4e64 (vbool32_t mask, uint64_t *base, vuint64m2_t v0, vuint64m2_t v1, 
 void vsseg2e64 (vbool16_t mask, uint64_t *base, vuint64m4_t v0, vuint64m4_t v1, size_t vl);
 ```
 
+## Vector Stride Segment Load/Store Instructions (Zvlsseg):
+
 ### [Vector Strided Segment Load Functions]():
 
 **Prototypes:**
@@ -4760,6 +4762,8 @@ void vssseg3e64 (vbool32_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m2_t 
 void vssseg4e64 (vbool32_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m2_t v0, vuint64m2_t v1, vuint64m2_t v2, vuint64m2_t v3, size_t vl);
 void vssseg2e64 (vbool16_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m4_t v0, vuint64m4_t v1, size_t vl);
 ```
+
+## Vector Indexed Segment Load/Store Instructions (Zvlsseg):
 
 ### [Vector Indexed Segment Load Functions]():
 
