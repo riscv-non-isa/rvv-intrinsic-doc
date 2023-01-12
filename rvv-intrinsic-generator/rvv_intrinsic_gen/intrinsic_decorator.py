@@ -113,16 +113,7 @@ class IntrinsicDecorators():
   def __init__(self, has_tail_policy):
     # pylint: disable=unused-variable
     # NOTE: The variables here are all used under inst.py, disabling the warning
-    self.has_no_masking = [IntrinsicDecorator()]
-    self.has_masking_maskedoff = [
-        IntrinsicDecorator(),
-        IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MASKOFF)
-    ]
-    self.has_masking_no_maskedoff = [
-        IntrinsicDecorator(),
-        IntrinsicDecorator(ExtraAttr.IS_MASK)
-    ]
-    if has_tail_policy:
+    if has_tail_policy:  # Intrinsics with a policy suffix
       self.has_no_masking_policy = [
           IntrinsicDecorator(ExtraAttr.NEED_MERGE | ExtraAttr.IS_TU),
           IntrinsicDecorator(ExtraAttr.IS_TA)
@@ -173,18 +164,39 @@ class IntrinsicDecorators():
                              | ExtraAttr.IS_RED_TUMA),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.IS_RED_TAMA),
       ]
+
       self.has_no_masking = []
       self.has_masking_maskedoff = []
       self.has_masking_no_maskedoff = []
-    else:
-      # no tail policy use the same decorator
-      self.has_no_masking_policy = self.has_no_masking
+    else:  # Intrinsics without a policy suffix
+      # Intrinsics that is always unmasked
+      self.has_no_masking_policy = [IntrinsicDecorator()]
+      # Intrinsics that can be masked or unmasked
+      self.has_masking_maskedoff_policy = [
+          IntrinsicDecorator(),
+          IntrinsicDecorator(ExtraAttr.IS_MASK)
+      ]
+      # Intrinsics that are always tail agnostic, and can be masked or unmasked
+      self.has_masking_maskedoff_policy_mu_ma = [
+          IntrinsicDecorator(ExtraAttr.IS_MASK)
+      ]
+      # Intrinsics that can be masked or unmasked, and always doesn't have a
+      # maskedoff operand
+      self.has_masking_no_maskedoff_policy = [
+          IntrinsicDecorator(),
+          IntrinsicDecorator(ExtraAttr.IS_MASK)
+      ]
+      # vslideup intrinsics
+      self.has_masking_no_maskedoff_policy_vslide = [
+          IntrinsicDecorator(ExtraAttr.NEED_MERGE),
+          IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE)
+      ]
+      # Reduction intrinsics
+      self.has_masking_no_maskedoff_reduction_policy = [
+          IntrinsicDecorator(),
+          IntrinsicDecorator(ExtraAttr.IS_MASK)
+      ]
 
-      self.has_masking_maskedoff_policy = self.has_masking_maskedoff
-      self.has_masking_maskedoff_policy_mu_ma = self.has_masking_maskedoff
-
-      self.has_masking_no_maskedoff_policy = self.has_masking_no_maskedoff
-      self.has_masking_no_maskedoff_policy_vslide =\
-        self.has_masking_no_maskedoff
-      self.has_masking_no_maskedoff_reduction_policy =\
-        self.has_masking_maskedoff
+      self.has_no_masking = self.has_no_masking_policy
+      self.has_masking_maskedoff = self.has_masking_maskedoff_policy
+      self.has_masking_no_maskedoff = self.has_masking_no_maskedoff_policy
