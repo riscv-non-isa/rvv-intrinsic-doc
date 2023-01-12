@@ -87,7 +87,7 @@ class Generator():
   # vle8_v_i8m2 (const int8_t *base, size_t vl);
   @staticmethod
   def is_support_overloaded(name, **kwargs):
-    for p in ["m", "tu", "tamu", "tumu", "tuma", "tam", "tum"]:
+    for p in ["tu", "tamu", "tumu", "tuma", "tam", "tum"]:
       if name.split("_")[-1] == p:
         return True
     if name.find("vmv_s_x") != -1 or name.find("vfmv_s_f") != -1:
@@ -106,6 +106,8 @@ class Generator():
         "vfmv_v_f", "vread_csr", "vwrite_csr", "vcreate", "vlm_v"
     ]
     if any(i in name for i in unsupported_op):
+      if ("vid" in name) or ("viota" in name):
+        return False
       if name[-2:] != "_m":
         return False
 
