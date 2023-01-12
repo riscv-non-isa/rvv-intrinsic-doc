@@ -30,4 +30,4 @@ jobs:
           make -C rvv-intrinsic-generator type-check
       - name: Check golden
         run: |
-          make -C rvv-intrinsic-generator diff-golden
+          make -C rvv-intrinsic-generator diff-autogen
