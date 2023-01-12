@@ -51,8 +51,8 @@ PYTHONPATHS = $(RVV_INTRINSIC_GEN_PATH):$(ABS_VENDOR_PATH)
 PY3 := PYTHONPATH=$$PYTHONPATH:$(PYTHONPATHS) python3
 # Main entry script of the generator
 MAIN := rvv_intrinsic_gen.main
-# Main output directory is default to golden
-OUTPUT_DIR := golden
+# Main output directory is default to auto-generated
+OUTPUT_DIR := ../auto-generated
 # Derives output directory for each set of intrinsics
 # Output directory for non-policy intrinsics
 DIR := $(abspath $(OUTPUT_DIR))
@@ -155,35 +155,35 @@ llvm-overloaded-test:
 	$(call replace_float, $(POLICY_DIR)/llvm-overloaded-tests)
 
 ###############################################################################
-# Golden Targets
+# Auto-generated Document / Test Targets
 ###############################################################################
 # This is essentially the same with 'make all' as ${OUTPUT_DIR} is default to
-# `golden`, but removes golden/ first.
-gen-golden:
+# auto-generated/, removes it first.
+gen-all:
 	rm -rf ${DIR}
 	make all OUTPUT_DIR=${OUTPUT_DIR}
 
-# Update and commit all files under golden
-git-commit-golden:
-	make git-commit-golden-doc OUTPUT_DIR=${OUTPUT_DIR}
-	make git-commit-golden-test OUTPUT_DIR=${OUTPUT_DIR}
+# Update and commit all files under auto-generated
+git-commit-all:
+	make git-commit-autogen-doc OUTPUT_DIR=${OUTPUT_DIR}
+	make git-commit-autogen-test OUTPUT_DIR=${OUTPUT_DIR}
 
-# Update and commit all documents under golden
-git-commit-golden-doc:
+# Update and commit all documents under auto-generated
+git-commit-autogen-doc:
 	make gen-document OUTPUT_DIR=${OUTPUT_DIR}
 	git add ${DIR}/*
-	git commit -m "[Auto-gen] Update documents under ${OUTPUT_DIR}. (make git-commit-golden-doc)"
+	git commit -m "[Auto-gen] Update documents under ${OUTPUT_DIR}. (make git-commit-autogen-doc)"
 
-# Update and commit all testing C source files under golden
-git-commit-golden-test:
+# Update and commit all testing C source files under auto-generated
+git-commit-autogen-test:
 	make gen-test
 	git add ${DIR}/*
-	git commit -m "[Auto-gen] Update tests under ${OUTPUT_DIR}. (make git-commit-golden-test)"
+	git commit -m "[Auto-gen] Update tests under ${OUTPUT_DIR}. (make git-commit-autogen-test)"
 
-# Runs diff with golden, requires ${TEST_DIR} to be provided.
+# Runs diff with auto-generated, requires ${TEST_DIR} to be provided.
 GOLDEN_DIR = ${DIR}
 TEST_DIR = .tmp
-diff-golden:
+diff-autogen:
 	$(call check_defined, TEST_DIR, output directory for documents/tests generation)
 	rm -rf ${abspath ${TEST_DIR}}
 	make OUTPUT_DIR=${TEST_DIR}
@@ -192,17 +192,17 @@ diff-golden:
 ###############################################################################
 # Testing Targets
 ###############################################################################
-# Test golden/api-testing with testing-report
+# Test auto-generated/api-testing with testing-report
 run-api-testing:
 	make run-test \
-		API_DIR=golden/api-testing \
+		API_DIR=${DIR}/api-testing \
 		API_MAKEFILE=Makefile.api \
 		TESTING_REPORT_SCRIPT=testing-report
 
-# Test golden/overloaded-api-testing with testing-report
+# Test auto-generated/overloaded-api-testing with testing-report
 run-overloaded-api-testing:
 	make run-test \
-		API_DIR=golden/overloaded-api-testing \
+		API_DIR=${DIR}/overloaded-api-testing \
 		API_MAKEFILE=Makefile.api \
 		TESTING_REPORT_SCRIPT=testing-report
 
