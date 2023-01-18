@@ -78,148 +78,76 @@ vuint16m8_t test_vlse16_v_u16m8_tu(vuint16m8_t maskedoff, const uint16_t *base, 
   return vlse16_v_u16m8_tu(maskedoff, base, bstride, vl);
 }
 
-vfloat16mf4_t test_vlse16_v_f16mf4_ta(const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16mf4_ta(base, bstride, vl);
+vfloat16mf4_t test_vlse16_v_f16mf4_tum(vbool64_t mask, vfloat16mf4_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_f16mf4_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vfloat16mf2_t test_vlse16_v_f16mf2_ta(const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16mf2_ta(base, bstride, vl);
+vfloat16mf2_t test_vlse16_v_f16mf2_tum(vbool32_t mask, vfloat16mf2_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_f16mf2_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vfloat16m1_t test_vlse16_v_f16m1_ta(const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m1_ta(base, bstride, vl);
+vfloat16m1_t test_vlse16_v_f16m1_tum(vbool16_t mask, vfloat16m1_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_f16m1_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vfloat16m2_t test_vlse16_v_f16m2_ta(const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m2_ta(base, bstride, vl);
+vfloat16m2_t test_vlse16_v_f16m2_tum(vbool8_t mask, vfloat16m2_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_f16m2_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vfloat16m4_t test_vlse16_v_f16m4_ta(const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m4_ta(base, bstride, vl);
+vfloat16m4_t test_vlse16_v_f16m4_tum(vbool4_t mask, vfloat16m4_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_f16m4_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vfloat16m8_t test_vlse16_v_f16m8_ta(const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m8_ta(base, bstride, vl);
+vfloat16m8_t test_vlse16_v_f16m8_tum(vbool2_t mask, vfloat16m8_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_f16m8_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vint16mf4_t test_vlse16_v_i16mf4_ta(const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16mf4_ta(base, bstride, vl);
+vint16mf4_t test_vlse16_v_i16mf4_tum(vbool64_t mask, vint16mf4_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_i16mf4_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vint16mf2_t test_vlse16_v_i16mf2_ta(const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16mf2_ta(base, bstride, vl);
+vint16mf2_t test_vlse16_v_i16mf2_tum(vbool32_t mask, vint16mf2_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_i16mf2_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vint16m1_t test_vlse16_v_i16m1_ta(const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m1_ta(base, bstride, vl);
+vint16m1_t test_vlse16_v_i16m1_tum(vbool16_t mask, vint16m1_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_i16m1_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vint16m2_t test_vlse16_v_i16m2_ta(const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m2_ta(base, bstride, vl);
+vint16m2_t test_vlse16_v_i16m2_tum(vbool8_t mask, vint16m2_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_i16m2_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vint16m4_t test_vlse16_v_i16m4_ta(const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m4_ta(base, bstride, vl);
+vint16m4_t test_vlse16_v_i16m4_tum(vbool4_t mask, vint16m4_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_i16m4_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vint16m8_t test_vlse16_v_i16m8_ta(const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m8_ta(base, bstride, vl);
+vint16m8_t test_vlse16_v_i16m8_tum(vbool2_t mask, vint16m8_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_i16m8_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vuint16mf4_t test_vlse16_v_u16mf4_ta(const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16mf4_ta(base, bstride, vl);
+vuint16mf4_t test_vlse16_v_u16mf4_tum(vbool64_t mask, vuint16mf4_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_u16mf4_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vuint16mf2_t test_vlse16_v_u16mf2_ta(const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16mf2_ta(base, bstride, vl);
+vuint16mf2_t test_vlse16_v_u16mf2_tum(vbool32_t mask, vuint16mf2_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_u16mf2_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vuint16m1_t test_vlse16_v_u16m1_ta(const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m1_ta(base, bstride, vl);
+vuint16m1_t test_vlse16_v_u16m1_tum(vbool16_t mask, vuint16m1_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_u16m1_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vuint16m2_t test_vlse16_v_u16m2_ta(const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m2_ta(base, bstride, vl);
+vuint16m2_t test_vlse16_v_u16m2_tum(vbool8_t mask, vuint16m2_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_u16m2_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vuint16m4_t test_vlse16_v_u16m4_ta(const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m4_ta(base, bstride, vl);
+vuint16m4_t test_vlse16_v_u16m4_tum(vbool4_t mask, vuint16m4_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_u16m4_tum(mask, maskedoff, base, bstride, vl);
 }
 
-vuint16m8_t test_vlse16_v_u16m8_ta(const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m8_ta(base, bstride, vl);
-}
-
-vfloat16mf4_t test_vlse16_v_f16mf4_tuma(vbool64_t mask, vfloat16mf4_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16mf4_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vfloat16mf2_t test_vlse16_v_f16mf2_tuma(vbool32_t mask, vfloat16mf2_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16mf2_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vfloat16m1_t test_vlse16_v_f16m1_tuma(vbool16_t mask, vfloat16m1_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m1_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vfloat16m2_t test_vlse16_v_f16m2_tuma(vbool8_t mask, vfloat16m2_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m2_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vfloat16m4_t test_vlse16_v_f16m4_tuma(vbool4_t mask, vfloat16m4_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m4_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vfloat16m8_t test_vlse16_v_f16m8_tuma(vbool2_t mask, vfloat16m8_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m8_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vint16mf4_t test_vlse16_v_i16mf4_tuma(vbool64_t mask, vint16mf4_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16mf4_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vint16mf2_t test_vlse16_v_i16mf2_tuma(vbool32_t mask, vint16mf2_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16mf2_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vint16m1_t test_vlse16_v_i16m1_tuma(vbool16_t mask, vint16m1_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m1_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vint16m2_t test_vlse16_v_i16m2_tuma(vbool8_t mask, vint16m2_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m2_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vint16m4_t test_vlse16_v_i16m4_tuma(vbool4_t mask, vint16m4_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m4_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vint16m8_t test_vlse16_v_i16m8_tuma(vbool2_t mask, vint16m8_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m8_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vuint16mf4_t test_vlse16_v_u16mf4_tuma(vbool64_t mask, vuint16mf4_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16mf4_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vuint16mf2_t test_vlse16_v_u16mf2_tuma(vbool32_t mask, vuint16mf2_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16mf2_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vuint16m1_t test_vlse16_v_u16m1_tuma(vbool16_t mask, vuint16m1_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m1_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vuint16m2_t test_vlse16_v_u16m2_tuma(vbool8_t mask, vuint16m2_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m2_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vuint16m4_t test_vlse16_v_u16m4_tuma(vbool4_t mask, vuint16m4_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m4_tuma(mask, maskedoff, base, bstride, vl);
-}
-
-vuint16m8_t test_vlse16_v_u16m8_tuma(vbool2_t mask, vuint16m8_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m8_tuma(mask, maskedoff, base, bstride, vl);
+vuint16m8_t test_vlse16_v_u16m8_tum(vbool2_t mask, vuint16m8_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_u16m8_tum(mask, maskedoff, base, bstride, vl);
 }
 
 vfloat16mf4_t test_vlse16_v_f16mf4_tumu(vbool64_t mask, vfloat16mf4_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
@@ -294,147 +222,75 @@ vuint16m8_t test_vlse16_v_u16m8_tumu(vbool2_t mask, vuint16m8_t maskedoff, const
   return vlse16_v_u16m8_tumu(mask, maskedoff, base, bstride, vl);
 }
 
-vfloat16mf4_t test_vlse16_v_f16mf4_tama(vbool64_t mask, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16mf4_tama(mask, base, bstride, vl);
+vfloat16mf4_t test_vlse16_v_f16mf4_mu(vbool64_t mask, vfloat16mf4_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_f16mf4_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vfloat16mf2_t test_vlse16_v_f16mf2_tama(vbool32_t mask, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16mf2_tama(mask, base, bstride, vl);
+vfloat16mf2_t test_vlse16_v_f16mf2_mu(vbool32_t mask, vfloat16mf2_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_f16mf2_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vfloat16m1_t test_vlse16_v_f16m1_tama(vbool16_t mask, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m1_tama(mask, base, bstride, vl);
+vfloat16m1_t test_vlse16_v_f16m1_mu(vbool16_t mask, vfloat16m1_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_f16m1_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vfloat16m2_t test_vlse16_v_f16m2_tama(vbool8_t mask, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m2_tama(mask, base, bstride, vl);
+vfloat16m2_t test_vlse16_v_f16m2_mu(vbool8_t mask, vfloat16m2_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_f16m2_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vfloat16m4_t test_vlse16_v_f16m4_tama(vbool4_t mask, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m4_tama(mask, base, bstride, vl);
+vfloat16m4_t test_vlse16_v_f16m4_mu(vbool4_t mask, vfloat16m4_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_f16m4_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vfloat16m8_t test_vlse16_v_f16m8_tama(vbool2_t mask, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m8_tama(mask, base, bstride, vl);
+vfloat16m8_t test_vlse16_v_f16m8_mu(vbool2_t mask, vfloat16m8_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_f16m8_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vint16mf4_t test_vlse16_v_i16mf4_tama(vbool64_t mask, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16mf4_tama(mask, base, bstride, vl);
+vint16mf4_t test_vlse16_v_i16mf4_mu(vbool64_t mask, vint16mf4_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_i16mf4_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vint16mf2_t test_vlse16_v_i16mf2_tama(vbool32_t mask, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16mf2_tama(mask, base, bstride, vl);
+vint16mf2_t test_vlse16_v_i16mf2_mu(vbool32_t mask, vint16mf2_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_i16mf2_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vint16m1_t test_vlse16_v_i16m1_tama(vbool16_t mask, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m1_tama(mask, base, bstride, vl);
+vint16m1_t test_vlse16_v_i16m1_mu(vbool16_t mask, vint16m1_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_i16m1_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vint16m2_t test_vlse16_v_i16m2_tama(vbool8_t mask, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m2_tama(mask, base, bstride, vl);
+vint16m2_t test_vlse16_v_i16m2_mu(vbool8_t mask, vint16m2_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_i16m2_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vint16m4_t test_vlse16_v_i16m4_tama(vbool4_t mask, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m4_tama(mask, base, bstride, vl);
+vint16m4_t test_vlse16_v_i16m4_mu(vbool4_t mask, vint16m4_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_i16m4_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vint16m8_t test_vlse16_v_i16m8_tama(vbool2_t mask, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m8_tama(mask, base, bstride, vl);
+vint16m8_t test_vlse16_v_i16m8_mu(vbool2_t mask, vint16m8_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_i16m8_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vuint16mf4_t test_vlse16_v_u16mf4_tama(vbool64_t mask, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16mf4_tama(mask, base, bstride, vl);
+vuint16mf4_t test_vlse16_v_u16mf4_mu(vbool64_t mask, vuint16mf4_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_u16mf4_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vuint16mf2_t test_vlse16_v_u16mf2_tama(vbool32_t mask, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16mf2_tama(mask, base, bstride, vl);
+vuint16mf2_t test_vlse16_v_u16mf2_mu(vbool32_t mask, vuint16mf2_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_u16mf2_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vuint16m1_t test_vlse16_v_u16m1_tama(vbool16_t mask, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m1_tama(mask, base, bstride, vl);
+vuint16m1_t test_vlse16_v_u16m1_mu(vbool16_t mask, vuint16m1_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_u16m1_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vuint16m2_t test_vlse16_v_u16m2_tama(vbool8_t mask, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m2_tama(mask, base, bstride, vl);
+vuint16m2_t test_vlse16_v_u16m2_mu(vbool8_t mask, vuint16m2_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_u16m2_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vuint16m4_t test_vlse16_v_u16m4_tama(vbool4_t mask, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m4_tama(mask, base, bstride, vl);
+vuint16m4_t test_vlse16_v_u16m4_mu(vbool4_t mask, vuint16m4_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_u16m4_mu(mask, maskedoff, base, bstride, vl);
 }
 
-vuint16m8_t test_vlse16_v_u16m8_tama(vbool2_t mask, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m8_tama(mask, base, bstride, vl);
-}
-
-vfloat16mf4_t test_vlse16_v_f16mf4_tamu(vbool64_t mask, vfloat16mf4_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16mf4_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vfloat16mf2_t test_vlse16_v_f16mf2_tamu(vbool32_t mask, vfloat16mf2_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16mf2_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vfloat16m1_t test_vlse16_v_f16m1_tamu(vbool16_t mask, vfloat16m1_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m1_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vfloat16m2_t test_vlse16_v_f16m2_tamu(vbool8_t mask, vfloat16m2_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m2_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vfloat16m4_t test_vlse16_v_f16m4_tamu(vbool4_t mask, vfloat16m4_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m4_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vfloat16m8_t test_vlse16_v_f16m8_tamu(vbool2_t mask, vfloat16m8_t maskedoff, const _Float16 *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_f16m8_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vint16mf4_t test_vlse16_v_i16mf4_tamu(vbool64_t mask, vint16mf4_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16mf4_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vint16mf2_t test_vlse16_v_i16mf2_tamu(vbool32_t mask, vint16mf2_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16mf2_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vint16m1_t test_vlse16_v_i16m1_tamu(vbool16_t mask, vint16m1_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m1_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vint16m2_t test_vlse16_v_i16m2_tamu(vbool8_t mask, vint16m2_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m2_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vint16m4_t test_vlse16_v_i16m4_tamu(vbool4_t mask, vint16m4_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m4_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vint16m8_t test_vlse16_v_i16m8_tamu(vbool2_t mask, vint16m8_t maskedoff, const int16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_i16m8_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vuint16mf4_t test_vlse16_v_u16mf4_tamu(vbool64_t mask, vuint16mf4_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16mf4_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vuint16mf2_t test_vlse16_v_u16mf2_tamu(vbool32_t mask, vuint16mf2_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16mf2_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vuint16m1_t test_vlse16_v_u16m1_tamu(vbool16_t mask, vuint16m1_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m1_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vuint16m2_t test_vlse16_v_u16m2_tamu(vbool8_t mask, vuint16m2_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m2_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vuint16m4_t test_vlse16_v_u16m4_tamu(vbool4_t mask, vuint16m4_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m4_tamu(mask, maskedoff, base, bstride, vl);
-}
-
-vuint16m8_t test_vlse16_v_u16m8_tamu(vbool2_t mask, vuint16m8_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
-  return vlse16_v_u16m8_tamu(mask, maskedoff, base, bstride, vl);
+vuint16m8_t test_vlse16_v_u16m8_mu(vbool2_t mask, vuint16m8_t maskedoff, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
+  return vlse16_v_u16m8_mu(mask, maskedoff, base, bstride, vl);
 }
 
