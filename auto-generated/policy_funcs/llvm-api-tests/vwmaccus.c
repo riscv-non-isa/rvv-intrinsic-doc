@@ -66,124 +66,64 @@ vint64m8_t test_vwmaccus_vx_i64m8_tu(vint64m8_t vd, uint32_t rs1, vint32m4_t vs2
   return vwmaccus_vx_i64m8_tu(vd, rs1, vs2, vl);
 }
 
-vint16mf4_t test_vwmaccus_vx_i16mf4_ta(vint16mf4_t vd, uint8_t rs1, vint8mf8_t vs2, size_t vl) {
-  return vwmaccus_vx_i16mf4_ta(vd, rs1, vs2, vl);
+vint16mf4_t test_vwmaccus_vx_i16mf4_tum(vbool64_t mask, vint16mf4_t vd, uint8_t rs1, vint8mf8_t vs2, size_t vl) {
+  return vwmaccus_vx_i16mf4_tum(mask, vd, rs1, vs2, vl);
 }
 
-vint16mf2_t test_vwmaccus_vx_i16mf2_ta(vint16mf2_t vd, uint8_t rs1, vint8mf4_t vs2, size_t vl) {
-  return vwmaccus_vx_i16mf2_ta(vd, rs1, vs2, vl);
+vint16mf2_t test_vwmaccus_vx_i16mf2_tum(vbool32_t mask, vint16mf2_t vd, uint8_t rs1, vint8mf4_t vs2, size_t vl) {
+  return vwmaccus_vx_i16mf2_tum(mask, vd, rs1, vs2, vl);
 }
 
-vint16m1_t test_vwmaccus_vx_i16m1_ta(vint16m1_t vd, uint8_t rs1, vint8mf2_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m1_ta(vd, rs1, vs2, vl);
+vint16m1_t test_vwmaccus_vx_i16m1_tum(vbool16_t mask, vint16m1_t vd, uint8_t rs1, vint8mf2_t vs2, size_t vl) {
+  return vwmaccus_vx_i16m1_tum(mask, vd, rs1, vs2, vl);
 }
 
-vint16m2_t test_vwmaccus_vx_i16m2_ta(vint16m2_t vd, uint8_t rs1, vint8m1_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m2_ta(vd, rs1, vs2, vl);
+vint16m2_t test_vwmaccus_vx_i16m2_tum(vbool8_t mask, vint16m2_t vd, uint8_t rs1, vint8m1_t vs2, size_t vl) {
+  return vwmaccus_vx_i16m2_tum(mask, vd, rs1, vs2, vl);
 }
 
-vint16m4_t test_vwmaccus_vx_i16m4_ta(vint16m4_t vd, uint8_t rs1, vint8m2_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m4_ta(vd, rs1, vs2, vl);
+vint16m4_t test_vwmaccus_vx_i16m4_tum(vbool4_t mask, vint16m4_t vd, uint8_t rs1, vint8m2_t vs2, size_t vl) {
+  return vwmaccus_vx_i16m4_tum(mask, vd, rs1, vs2, vl);
 }
 
-vint16m8_t test_vwmaccus_vx_i16m8_ta(vint16m8_t vd, uint8_t rs1, vint8m4_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m8_ta(vd, rs1, vs2, vl);
+vint16m8_t test_vwmaccus_vx_i16m8_tum(vbool2_t mask, vint16m8_t vd, uint8_t rs1, vint8m4_t vs2, size_t vl) {
+  return vwmaccus_vx_i16m8_tum(mask, vd, rs1, vs2, vl);
 }
 
-vint32mf2_t test_vwmaccus_vx_i32mf2_ta(vint32mf2_t vd, uint16_t rs1, vint16mf4_t vs2, size_t vl) {
-  return vwmaccus_vx_i32mf2_ta(vd, rs1, vs2, vl);
+vint32mf2_t test_vwmaccus_vx_i32mf2_tum(vbool64_t mask, vint32mf2_t vd, uint16_t rs1, vint16mf4_t vs2, size_t vl) {
+  return vwmaccus_vx_i32mf2_tum(mask, vd, rs1, vs2, vl);
 }
 
-vint32m1_t test_vwmaccus_vx_i32m1_ta(vint32m1_t vd, uint16_t rs1, vint16mf2_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m1_ta(vd, rs1, vs2, vl);
+vint32m1_t test_vwmaccus_vx_i32m1_tum(vbool32_t mask, vint32m1_t vd, uint16_t rs1, vint16mf2_t vs2, size_t vl) {
+  return vwmaccus_vx_i32m1_tum(mask, vd, rs1, vs2, vl);
 }
 
-vint32m2_t test_vwmaccus_vx_i32m2_ta(vint32m2_t vd, uint16_t rs1, vint16m1_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m2_ta(vd, rs1, vs2, vl);
+vint32m2_t test_vwmaccus_vx_i32m2_tum(vbool16_t mask, vint32m2_t vd, uint16_t rs1, vint16m1_t vs2, size_t vl) {
+  return vwmaccus_vx_i32m2_tum(mask, vd, rs1, vs2, vl);
 }
 
-vint32m4_t test_vwmaccus_vx_i32m4_ta(vint32m4_t vd, uint16_t rs1, vint16m2_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m4_ta(vd, rs1, vs2, vl);
+vint32m4_t test_vwmaccus_vx_i32m4_tum(vbool8_t mask, vint32m4_t vd, uint16_t rs1, vint16m2_t vs2, size_t vl) {
+  return vwmaccus_vx_i32m4_tum(mask, vd, rs1, vs2, vl);
 }
 
-vint32m8_t test_vwmaccus_vx_i32m8_ta(vint32m8_t vd, uint16_t rs1, vint16m4_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m8_ta(vd, rs1, vs2, vl);
+vint32m8_t test_vwmaccus_vx_i32m8_tum(vbool4_t mask, vint32m8_t vd, uint16_t rs1, vint16m4_t vs2, size_t vl) {
+  return vwmaccus_vx_i32m8_tum(mask, vd, rs1, vs2, vl);
 }
 
-vint64m1_t test_vwmaccus_vx_i64m1_ta(vint64m1_t vd, uint32_t rs1, vint32mf2_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m1_ta(vd, rs1, vs2, vl);
+vint64m1_t test_vwmaccus_vx_i64m1_tum(vbool64_t mask, vint64m1_t vd, uint32_t rs1, vint32mf2_t vs2, size_t vl) {
+  return vwmaccus_vx_i64m1_tum(mask, vd, rs1, vs2, vl);
 }
 
-vint64m2_t test_vwmaccus_vx_i64m2_ta(vint64m2_t vd, uint32_t rs1, vint32m1_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m2_ta(vd, rs1, vs2, vl);
+vint64m2_t test_vwmaccus_vx_i64m2_tum(vbool32_t mask, vint64m2_t vd, uint32_t rs1, vint32m1_t vs2, size_t vl) {
+  return vwmaccus_vx_i64m2_tum(mask, vd, rs1, vs2, vl);
 }
 
-vint64m4_t test_vwmaccus_vx_i64m4_ta(vint64m4_t vd, uint32_t rs1, vint32m2_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m4_ta(vd, rs1, vs2, vl);
+vint64m4_t test_vwmaccus_vx_i64m4_tum(vbool16_t mask, vint64m4_t vd, uint32_t rs1, vint32m2_t vs2, size_t vl) {
+  return vwmaccus_vx_i64m4_tum(mask, vd, rs1, vs2, vl);
 }
 
-vint64m8_t test_vwmaccus_vx_i64m8_ta(vint64m8_t vd, uint32_t rs1, vint32m4_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m8_ta(vd, rs1, vs2, vl);
-}
-
-vint16mf4_t test_vwmaccus_vx_i16mf4_tuma(vbool64_t mask, vint16mf4_t vd, uint8_t rs1, vint8mf8_t vs2, size_t vl) {
-  return vwmaccus_vx_i16mf4_tuma(mask, vd, rs1, vs2, vl);
-}
-
-vint16mf2_t test_vwmaccus_vx_i16mf2_tuma(vbool32_t mask, vint16mf2_t vd, uint8_t rs1, vint8mf4_t vs2, size_t vl) {
-  return vwmaccus_vx_i16mf2_tuma(mask, vd, rs1, vs2, vl);
-}
-
-vint16m1_t test_vwmaccus_vx_i16m1_tuma(vbool16_t mask, vint16m1_t vd, uint8_t rs1, vint8mf2_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m1_tuma(mask, vd, rs1, vs2, vl);
-}
-
-vint16m2_t test_vwmaccus_vx_i16m2_tuma(vbool8_t mask, vint16m2_t vd, uint8_t rs1, vint8m1_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m2_tuma(mask, vd, rs1, vs2, vl);
-}
-
-vint16m4_t test_vwmaccus_vx_i16m4_tuma(vbool4_t mask, vint16m4_t vd, uint8_t rs1, vint8m2_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m4_tuma(mask, vd, rs1, vs2, vl);
-}
-
-vint16m8_t test_vwmaccus_vx_i16m8_tuma(vbool2_t mask, vint16m8_t vd, uint8_t rs1, vint8m4_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m8_tuma(mask, vd, rs1, vs2, vl);
-}
-
-vint32mf2_t test_vwmaccus_vx_i32mf2_tuma(vbool64_t mask, vint32mf2_t vd, uint16_t rs1, vint16mf4_t vs2, size_t vl) {
-  return vwmaccus_vx_i32mf2_tuma(mask, vd, rs1, vs2, vl);
-}
-
-vint32m1_t test_vwmaccus_vx_i32m1_tuma(vbool32_t mask, vint32m1_t vd, uint16_t rs1, vint16mf2_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m1_tuma(mask, vd, rs1, vs2, vl);
-}
-
-vint32m2_t test_vwmaccus_vx_i32m2_tuma(vbool16_t mask, vint32m2_t vd, uint16_t rs1, vint16m1_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m2_tuma(mask, vd, rs1, vs2, vl);
-}
-
-vint32m4_t test_vwmaccus_vx_i32m4_tuma(vbool8_t mask, vint32m4_t vd, uint16_t rs1, vint16m2_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m4_tuma(mask, vd, rs1, vs2, vl);
-}
-
-vint32m8_t test_vwmaccus_vx_i32m8_tuma(vbool4_t mask, vint32m8_t vd, uint16_t rs1, vint16m4_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m8_tuma(mask, vd, rs1, vs2, vl);
-}
-
-vint64m1_t test_vwmaccus_vx_i64m1_tuma(vbool64_t mask, vint64m1_t vd, uint32_t rs1, vint32mf2_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m1_tuma(mask, vd, rs1, vs2, vl);
-}
-
-vint64m2_t test_vwmaccus_vx_i64m2_tuma(vbool32_t mask, vint64m2_t vd, uint32_t rs1, vint32m1_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m2_tuma(mask, vd, rs1, vs2, vl);
-}
-
-vint64m4_t test_vwmaccus_vx_i64m4_tuma(vbool16_t mask, vint64m4_t vd, uint32_t rs1, vint32m2_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m4_tuma(mask, vd, rs1, vs2, vl);
-}
-
-vint64m8_t test_vwmaccus_vx_i64m8_tuma(vbool8_t mask, vint64m8_t vd, uint32_t rs1, vint32m4_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m8_tuma(mask, vd, rs1, vs2, vl);
+vint64m8_t test_vwmaccus_vx_i64m8_tum(vbool8_t mask, vint64m8_t vd, uint32_t rs1, vint32m4_t vs2, size_t vl) {
+  return vwmaccus_vx_i64m8_tum(mask, vd, rs1, vs2, vl);
 }
 
 vint16mf4_t test_vwmaccus_vx_i16mf4_tumu(vbool64_t mask, vint16mf4_t vd, uint8_t rs1, vint8mf8_t vs2, size_t vl) {
@@ -246,123 +186,63 @@ vint64m8_t test_vwmaccus_vx_i64m8_tumu(vbool8_t mask, vint64m8_t vd, uint32_t rs
   return vwmaccus_vx_i64m8_tumu(mask, vd, rs1, vs2, vl);
 }
 
-vint16mf4_t test_vwmaccus_vx_i16mf4_tama(vbool64_t mask, vint16mf4_t vd, uint8_t rs1, vint8mf8_t vs2, size_t vl) {
-  return vwmaccus_vx_i16mf4_tama(mask, vd, rs1, vs2, vl);
+vint16mf4_t test_vwmaccus_vx_i16mf4_mu(vbool64_t mask, vint16mf4_t vd, uint8_t rs1, vint8mf8_t vs2, size_t vl) {
+  return vwmaccus_vx_i16mf4_mu(mask, vd, rs1, vs2, vl);
 }
 
-vint16mf2_t test_vwmaccus_vx_i16mf2_tama(vbool32_t mask, vint16mf2_t vd, uint8_t rs1, vint8mf4_t vs2, size_t vl) {
-  return vwmaccus_vx_i16mf2_tama(mask, vd, rs1, vs2, vl);
+vint16mf2_t test_vwmaccus_vx_i16mf2_mu(vbool32_t mask, vint16mf2_t vd, uint8_t rs1, vint8mf4_t vs2, size_t vl) {
+  return vwmaccus_vx_i16mf2_mu(mask, vd, rs1, vs2, vl);
 }
 
-vint16m1_t test_vwmaccus_vx_i16m1_tama(vbool16_t mask, vint16m1_t vd, uint8_t rs1, vint8mf2_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m1_tama(mask, vd, rs1, vs2, vl);
+vint16m1_t test_vwmaccus_vx_i16m1_mu(vbool16_t mask, vint16m1_t vd, uint8_t rs1, vint8mf2_t vs2, size_t vl) {
+  return vwmaccus_vx_i16m1_mu(mask, vd, rs1, vs2, vl);
 }
 
-vint16m2_t test_vwmaccus_vx_i16m2_tama(vbool8_t mask, vint16m2_t vd, uint8_t rs1, vint8m1_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m2_tama(mask, vd, rs1, vs2, vl);
+vint16m2_t test_vwmaccus_vx_i16m2_mu(vbool8_t mask, vint16m2_t vd, uint8_t rs1, vint8m1_t vs2, size_t vl) {
+  return vwmaccus_vx_i16m2_mu(mask, vd, rs1, vs2, vl);
 }
 
-vint16m4_t test_vwmaccus_vx_i16m4_tama(vbool4_t mask, vint16m4_t vd, uint8_t rs1, vint8m2_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m4_tama(mask, vd, rs1, vs2, vl);
+vint16m4_t test_vwmaccus_vx_i16m4_mu(vbool4_t mask, vint16m4_t vd, uint8_t rs1, vint8m2_t vs2, size_t vl) {
+  return vwmaccus_vx_i16m4_mu(mask, vd, rs1, vs2, vl);
 }
 
-vint16m8_t test_vwmaccus_vx_i16m8_tama(vbool2_t mask, vint16m8_t vd, uint8_t rs1, vint8m4_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m8_tama(mask, vd, rs1, vs2, vl);
+vint16m8_t test_vwmaccus_vx_i16m8_mu(vbool2_t mask, vint16m8_t vd, uint8_t rs1, vint8m4_t vs2, size_t vl) {
+  return vwmaccus_vx_i16m8_mu(mask, vd, rs1, vs2, vl);
 }
 
-vint32mf2_t test_vwmaccus_vx_i32mf2_tama(vbool64_t mask, vint32mf2_t vd, uint16_t rs1, vint16mf4_t vs2, size_t vl) {
-  return vwmaccus_vx_i32mf2_tama(mask, vd, rs1, vs2, vl);
+vint32mf2_t test_vwmaccus_vx_i32mf2_mu(vbool64_t mask, vint32mf2_t vd, uint16_t rs1, vint16mf4_t vs2, size_t vl) {
+  return vwmaccus_vx_i32mf2_mu(mask, vd, rs1, vs2, vl);
 }
 
-vint32m1_t test_vwmaccus_vx_i32m1_tama(vbool32_t mask, vint32m1_t vd, uint16_t rs1, vint16mf2_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m1_tama(mask, vd, rs1, vs2, vl);
+vint32m1_t test_vwmaccus_vx_i32m1_mu(vbool32_t mask, vint32m1_t vd, uint16_t rs1, vint16mf2_t vs2, size_t vl) {
+  return vwmaccus_vx_i32m1_mu(mask, vd, rs1, vs2, vl);
 }
 
-vint32m2_t test_vwmaccus_vx_i32m2_tama(vbool16_t mask, vint32m2_t vd, uint16_t rs1, vint16m1_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m2_tama(mask, vd, rs1, vs2, vl);
+vint32m2_t test_vwmaccus_vx_i32m2_mu(vbool16_t mask, vint32m2_t vd, uint16_t rs1, vint16m1_t vs2, size_t vl) {
+  return vwmaccus_vx_i32m2_mu(mask, vd, rs1, vs2, vl);
 }
 
-vint32m4_t test_vwmaccus_vx_i32m4_tama(vbool8_t mask, vint32m4_t vd, uint16_t rs1, vint16m2_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m4_tama(mask, vd, rs1, vs2, vl);
+vint32m4_t test_vwmaccus_vx_i32m4_mu(vbool8_t mask, vint32m4_t vd, uint16_t rs1, vint16m2_t vs2, size_t vl) {
+  return vwmaccus_vx_i32m4_mu(mask, vd, rs1, vs2, vl);
 }
 
-vint32m8_t test_vwmaccus_vx_i32m8_tama(vbool4_t mask, vint32m8_t vd, uint16_t rs1, vint16m4_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m8_tama(mask, vd, rs1, vs2, vl);
+vint32m8_t test_vwmaccus_vx_i32m8_mu(vbool4_t mask, vint32m8_t vd, uint16_t rs1, vint16m4_t vs2, size_t vl) {
+  return vwmaccus_vx_i32m8_mu(mask, vd, rs1, vs2, vl);
 }
 
-vint64m1_t test_vwmaccus_vx_i64m1_tama(vbool64_t mask, vint64m1_t vd, uint32_t rs1, vint32mf2_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m1_tama(mask, vd, rs1, vs2, vl);
+vint64m1_t test_vwmaccus_vx_i64m1_mu(vbool64_t mask, vint64m1_t vd, uint32_t rs1, vint32mf2_t vs2, size_t vl) {
+  return vwmaccus_vx_i64m1_mu(mask, vd, rs1, vs2, vl);
 }
 
-vint64m2_t test_vwmaccus_vx_i64m2_tama(vbool32_t mask, vint64m2_t vd, uint32_t rs1, vint32m1_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m2_tama(mask, vd, rs1, vs2, vl);
+vint64m2_t test_vwmaccus_vx_i64m2_mu(vbool32_t mask, vint64m2_t vd, uint32_t rs1, vint32m1_t vs2, size_t vl) {
+  return vwmaccus_vx_i64m2_mu(mask, vd, rs1, vs2, vl);
 }
 
-vint64m4_t test_vwmaccus_vx_i64m4_tama(vbool16_t mask, vint64m4_t vd, uint32_t rs1, vint32m2_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m4_tama(mask, vd, rs1, vs2, vl);
+vint64m4_t test_vwmaccus_vx_i64m4_mu(vbool16_t mask, vint64m4_t vd, uint32_t rs1, vint32m2_t vs2, size_t vl) {
+  return vwmaccus_vx_i64m4_mu(mask, vd, rs1, vs2, vl);
 }
 
-vint64m8_t test_vwmaccus_vx_i64m8_tama(vbool8_t mask, vint64m8_t vd, uint32_t rs1, vint32m4_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m8_tama(mask, vd, rs1, vs2, vl);
-}
-
-vint16mf4_t test_vwmaccus_vx_i16mf4_tamu(vbool64_t mask, vint16mf4_t vd, uint8_t rs1, vint8mf8_t vs2, size_t vl) {
-  return vwmaccus_vx_i16mf4_tamu(mask, vd, rs1, vs2, vl);
-}
-
-vint16mf2_t test_vwmaccus_vx_i16mf2_tamu(vbool32_t mask, vint16mf2_t vd, uint8_t rs1, vint8mf4_t vs2, size_t vl) {
-  return vwmaccus_vx_i16mf2_tamu(mask, vd, rs1, vs2, vl);
-}
-
-vint16m1_t test_vwmaccus_vx_i16m1_tamu(vbool16_t mask, vint16m1_t vd, uint8_t rs1, vint8mf2_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m1_tamu(mask, vd, rs1, vs2, vl);
-}
-
-vint16m2_t test_vwmaccus_vx_i16m2_tamu(vbool8_t mask, vint16m2_t vd, uint8_t rs1, vint8m1_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m2_tamu(mask, vd, rs1, vs2, vl);
-}
-
-vint16m4_t test_vwmaccus_vx_i16m4_tamu(vbool4_t mask, vint16m4_t vd, uint8_t rs1, vint8m2_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m4_tamu(mask, vd, rs1, vs2, vl);
-}
-
-vint16m8_t test_vwmaccus_vx_i16m8_tamu(vbool2_t mask, vint16m8_t vd, uint8_t rs1, vint8m4_t vs2, size_t vl) {
-  return vwmaccus_vx_i16m8_tamu(mask, vd, rs1, vs2, vl);
-}
-
-vint32mf2_t test_vwmaccus_vx_i32mf2_tamu(vbool64_t mask, vint32mf2_t vd, uint16_t rs1, vint16mf4_t vs2, size_t vl) {
-  return vwmaccus_vx_i32mf2_tamu(mask, vd, rs1, vs2, vl);
-}
-
-vint32m1_t test_vwmaccus_vx_i32m1_tamu(vbool32_t mask, vint32m1_t vd, uint16_t rs1, vint16mf2_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m1_tamu(mask, vd, rs1, vs2, vl);
-}
-
-vint32m2_t test_vwmaccus_vx_i32m2_tamu(vbool16_t mask, vint32m2_t vd, uint16_t rs1, vint16m1_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m2_tamu(mask, vd, rs1, vs2, vl);
-}
-
-vint32m4_t test_vwmaccus_vx_i32m4_tamu(vbool8_t mask, vint32m4_t vd, uint16_t rs1, vint16m2_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m4_tamu(mask, vd, rs1, vs2, vl);
-}
-
-vint32m8_t test_vwmaccus_vx_i32m8_tamu(vbool4_t mask, vint32m8_t vd, uint16_t rs1, vint16m4_t vs2, size_t vl) {
-  return vwmaccus_vx_i32m8_tamu(mask, vd, rs1, vs2, vl);
-}
-
-vint64m1_t test_vwmaccus_vx_i64m1_tamu(vbool64_t mask, vint64m1_t vd, uint32_t rs1, vint32mf2_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m1_tamu(mask, vd, rs1, vs2, vl);
-}
-
-vint64m2_t test_vwmaccus_vx_i64m2_tamu(vbool32_t mask, vint64m2_t vd, uint32_t rs1, vint32m1_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m2_tamu(mask, vd, rs1, vs2, vl);
-}
-
-vint64m4_t test_vwmaccus_vx_i64m4_tamu(vbool16_t mask, vint64m4_t vd, uint32_t rs1, vint32m2_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m4_tamu(mask, vd, rs1, vs2, vl);
-}
-
-vint64m8_t test_vwmaccus_vx_i64m8_tamu(vbool8_t mask, vint64m8_t vd, uint32_t rs1, vint32m4_t vs2, size_t vl) {
-  return vwmaccus_vx_i64m8_tamu(mask, vd, rs1, vs2, vl);
+vint64m8_t test_vwmaccus_vx_i64m8_mu(vbool8_t mask, vint64m8_t vd, uint32_t rs1, vint32m4_t vs2, size_t vl) {
+  return vwmaccus_vx_i64m8_mu(mask, vd, rs1, vs2, vl);
 }
 

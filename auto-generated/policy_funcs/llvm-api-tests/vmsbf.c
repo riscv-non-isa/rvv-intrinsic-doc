@@ -5,34 +5,6 @@
 
 #include <riscv_vector.h>
 
-vbool1_t test_vmsbf_m_b1_ma(vbool1_t mask, vbool1_t op1, size_t vl) {
-  return vmsbf_m_b1_ma(mask, op1, vl);
-}
-
-vbool2_t test_vmsbf_m_b2_ma(vbool2_t mask, vbool2_t op1, size_t vl) {
-  return vmsbf_m_b2_ma(mask, op1, vl);
-}
-
-vbool4_t test_vmsbf_m_b4_ma(vbool4_t mask, vbool4_t op1, size_t vl) {
-  return vmsbf_m_b4_ma(mask, op1, vl);
-}
-
-vbool8_t test_vmsbf_m_b8_ma(vbool8_t mask, vbool8_t op1, size_t vl) {
-  return vmsbf_m_b8_ma(mask, op1, vl);
-}
-
-vbool16_t test_vmsbf_m_b16_ma(vbool16_t mask, vbool16_t op1, size_t vl) {
-  return vmsbf_m_b16_ma(mask, op1, vl);
-}
-
-vbool32_t test_vmsbf_m_b32_ma(vbool32_t mask, vbool32_t op1, size_t vl) {
-  return vmsbf_m_b32_ma(mask, op1, vl);
-}
-
-vbool64_t test_vmsbf_m_b64_ma(vbool64_t mask, vbool64_t op1, size_t vl) {
-  return vmsbf_m_b64_ma(mask, op1, vl);
-}
-
 vbool1_t test_vmsbf_m_b1_mu(vbool1_t mask, vbool1_t maskedoff, vbool1_t op1, size_t vl) {
   return vmsbf_m_b1_mu(mask, maskedoff, op1, vl);
 }
