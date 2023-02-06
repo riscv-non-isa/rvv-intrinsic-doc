@@ -21,6 +21,8 @@ import os
 import collections
 import re
 
+from enums import ExtraAttr
+
 
 class Generator():
   """
@@ -454,3 +456,171 @@ class Grouper(Generator):
         sew_list=sew_list,
         lmul_list=lmul_list,
         decorator_list=decorator_list)
+
+
+class CompatibleHeaderGenerator(Generator):
+  """
+  This generator is resposible for the compatible header for 0.10 to v0.11
+  (or higher).
+  """
+
+  def __init__(self, fd, is_overloaded, has_tail_policy):
+    super().__init__()
+    self.is_overloaded = is_overloaded
+    self.has_tail_policy = has_tail_policy
+    self.fd = fd
+
+  def write_title(self, text, link):
+    pass
+
+  def write(self, text):
+    self.fd.write(text)
+
+  def function_group(self, template, title, link, op_list, type_list, sew_list,
+                     lmul_list, decorator_list):
+    if self.has_tail_policy and len(decorator_list) == 0:
+      return
+    super().function_group(template, title, link, op_list, type_list, sew_list,
+                           lmul_list, decorator_list)
+
+  @staticmethod
+  def get_new_func_name(name, inst_info):
+    """
+    Gets new (v0.11 or higher) function name from a v0.10 name.
+
+    Strips the mask suffix (_m) or policy suffix from the v0.10 name (if exist)
+    and replace it with the corresponding suffix in v0.11 (if needed).
+    """
+
+    def is_originally_default_tu_inst(name):
+      default_tu_inst_list = [
+          # multiply-add instructions
+          "vfmacc",
+          "vfmadd",
+          "vfmsac",
+          "vfmsub",
+          "vfnmacc",
+          "vfnmadd",
+          "vfnmsac",
+          "vfnmsub",
+          "vfwmacc",
+          "vfwnmacc",
+          "vfwnmsac",
+          "vmacc",
+          "vmadd",
+          "vnmsac",
+          "vnmsub",
+          "vwmacc",
+          "vwmaccsu",
+          "vwnaccu",
+          "vwmaccus",
+          # reduction instructions
+          "red",
+          # others
+          "vslideup",
+          "vslidedown",
+          "vcompress",
+          "vmv_s_x",
+          "vfmv_s_f",
+      ]
+      for default_tu_inst in default_tu_inst_list:
+        if default_tu_inst in name:
+          return True
+      return False
+
+    def is_no_mu_inst(name):
+      no_mu_inst_list = ["vcpop", "vfirst"]
+      for default_tu_inst in no_mu_inst_list:
+        if default_tu_inst in name:
+          return True
+      return False
+
+    def is_policy_func(inst_info):
+      return (inst_info.extra_attr & ExtraAttr.IS_TA) | \
+      (inst_info.extra_attr & ExtraAttr.IS_TU) | \
+      (inst_info.extra_attr & ExtraAttr.IS_MA) | \
+      (inst_info.extra_attr & ExtraAttr.IS_MU) | \
+      (inst_info.extra_attr & ExtraAttr.IS_TAMA) | \
+      (inst_info.extra_attr & ExtraAttr.IS_TAMU) | \
+      (inst_info.extra_attr & ExtraAttr.IS_TUMA) | \
+      (inst_info.extra_attr & ExtraAttr.IS_TUMU) | \
+      (inst_info.extra_attr & ExtraAttr.IS_RED_TUMA) | \
+      (inst_info.extra_attr & ExtraAttr.IS_RED_TAMA)
+
+    def get_suffix(name, inst_info):
+      suffix = ""
+      if inst_info.store_p():
+        if inst_info.extra_attr & ExtraAttr.IS_MASK:
+          suffix = "_m"
+        else:
+          suffix = ""
+      elif inst_info.extra_attr & ExtraAttr.IS_MASK:
+        if is_no_mu_inst(name):
+          suffix = "_m"
+        else:
+          suffix = "_mu"
+
+      return suffix
+
+    def is_mask_or_policy_suffix(name):
+      """
+      This function checks if the function name has a suffix that needs to be
+      stripped because we will need to replace them with the new ones in v0.11
+      with `get_suffix`.
+      """
+      mask_or_policy_suffix = [
+          "m", "tu", "ta", "tu", "tama", "tamu", "tuma", "tumu", "tam", "tum",
+          "ma", "mu"
+      ]
+      return name.split("_")[-1] in mask_or_policy_suffix
+
+    if is_mask_or_policy_suffix(name):
+      name = "_".join(name.split("_")[:-1])
+
+    if is_originally_default_tu_inst(name):
+      if not is_policy_func(inst_info):
+        if inst_info.extra_attr & ExtraAttr.IS_MASK:
+          return "__riscv_" + name + "_tum"
+        else:
+          return "__riscv_" + name + "_tu"
+      else:
+        assert False
+
+    return "__riscv_" + name + get_suffix(name, inst_info)
+
+  def need_to_swap_param(self, name):
+    """
+    Please see explanation under write_param_swap_compatible_definition.
+    """
+    return "vcompress" in name or "vmerge" in name or "vfmerge" in name
+
+  def write_param_swap_compatible_definition(self, legacy_func_name,
+                                             new_func_name):
+    """
+    From v0.10 to v0.11, the operand order of vcompress and vmerge intrinsics
+    were adjusted so all intrinsics with mnemonics of vvm and vxm are aligned.
+    Please see riscv-non-isa/rvv-intrinsic-doc #185 for more detail.
+    """
+    if "vcompress" in legacy_func_name:
+      self.write(f"#define {legacy_func_name}(mask, dest, src, vl) "
+                 f"{new_func_name}(dest, src, mask, vl)\n")
+      return
+    if "vmerge" in legacy_func_name or "vfmerge" in legacy_func_name:
+      self.write(f"#define {legacy_func_name}(mask, op1, op2, vl) "
+                 f"{new_func_name}(op1, op2, mask, vl)\n")
+      return
+
+    assert False, "Unreachable"
+
+  def func(self, inst_info, name, return_type, **kwargs):
+    self.generated_functions_set.add(name)
+    legacy_func_name = Generator.func_name(name)[8:]
+    new_func_name = CompatibleHeaderGenerator.get_new_func_name(
+        legacy_func_name, inst_info)
+
+    if self.need_to_swap_param(legacy_func_name):
+      self.write_param_swap_compatible_definition(legacy_func_name,
+                                                  new_func_name)
+      return
+
+    self.write(f"#define {legacy_func_name} {new_func_name}\n")

@@ -84,6 +84,7 @@ def main():
     OVERLOADED_DOCS = 3
     NON_OVERLOADED_TEST = 4
     OVERLOADED_TEST = 5
+    COMPATIBLE_HEADER = 6
 
   parser = argparse.ArgumentParser()
   parser.add_argument(
@@ -91,7 +92,8 @@ def main():
       default="doc",
       choices=[
           "non-overloaded-doc", "non-overloaded-docs", "overloaded-doc",
-          "overloaded-docs", "non-overloaded-test", "overloaded-test"
+          "overloaded-docs", "non-overloaded-test", "overloaded-test",
+          "compatible-header"
       ])
   parser.add_argument("--llvm", default=False, action="store_true")
   parser.add_argument("--has-policy", default=False, action="store_true")
@@ -123,12 +125,17 @@ def main():
 
   mode = getattr(GenTypes, args.gen.replace("-", "_").upper())
 
-  if mode in [GenTypes.NON_OVERLOADED_DOC, GenTypes.OVERLOADED_DOC]:
+  if mode in [
+      GenTypes.NON_OVERLOADED_DOC, GenTypes.OVERLOADED_DOC,
+      GenTypes.COMPATIBLE_HEADER
+  ]:
     with open(args.out, "w", encoding="utf-8") as f:
       if mode == GenTypes.NON_OVERLOADED_DOC:
         g = generator.DocGenerator(f, True, args.has_policy)
       elif mode == GenTypes.OVERLOADED_DOC:
         g = generator.OverloadedDocGenerator(f, True, args.has_policy)
+      elif mode == GenTypes.COMPATIBLE_HEADER:
+        g = generator.CompatibleHeaderGenerator(f, False, args.has_policy)
       else:
         assert False
 

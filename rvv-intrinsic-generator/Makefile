@@ -122,6 +122,7 @@ endif
 
 gen-document: non-overloaded-doc non-overloaded-docs overloaded-doc overloaded-docs
 gen-test: non-overloaded-test overloaded-test llvm-non-overloaded-test llvm-overloaded-test
+gen-compatible-header: non-policy-compatible-header
 
 # Generate all-in-one document for non-overloaded intrinsics
 non-overloaded-doc:
@@ -165,6 +166,10 @@ llvm-overloaded-test:
 	$(call replace_float, $(DIR)/llvm-overloaded-tests)
 	$(call replace_float, $(POLICY_DIR)/llvm-overloaded-tests)
 
+# Generate the adaptor header for v0.10
+non-policy-compatible-header:
+	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,non-policy.h,compatible-header,)
+
 ###############################################################################
 # Auto-generated Document / Test Targets
 ###############################################################################
@@ -190,6 +195,12 @@ git-commit-autogen-test:
 	make gen-test
 	git add ${DIR}/*
 	git commit -m "[Auto-gen] Update tests under ${OUTPUT_DIR}. (make git-commit-autogen-test)"
+
+# Update and commit compatible headers under auto-generated
+git-commit-autogen-compatible-header:
+	make gen-compatible-header
+	git add $(DIR)/*
+	git commit -m "[Auto-gen] Update tests under ${OUTPUT_DIR}. (make git-commmit-autogen-compatible-header)"
 
 # Runs diff with auto-generated, requires ${TEST_DIR} to be provided.
 GOLDEN_DIR = ${DIR}

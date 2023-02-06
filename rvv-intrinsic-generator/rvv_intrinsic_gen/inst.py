@@ -21,6 +21,7 @@ grouping.
 """
 
 from intrinsic_decorator import IntrinsicDecorators
+from legacy_intrinsic_decorator import LegacyIntrinsicDecorators
 from templates import setvl_template
 from templates import load_template
 from templates import seg_load_template
@@ -43,10 +44,14 @@ from templates import mask_load_store_template
 from templates import permute_template
 from constants import LMULS,WLMULS,NCVTLMULS,SEWS,WSEWS,FSEWS,WFSEWS,NSEWS,\
   TYPES,ITYPES,FTYPES,MTYPES,MLENS,REF_DOC_URL
+from generator import CompatibleHeaderGenerator
 
 
 def gen(g):
-  decorators = IntrinsicDecorators(g.has_tail_policy)
+  if isinstance(g, CompatibleHeaderGenerator):
+    decorators = LegacyIntrinsicDecorators(g.has_tail_policy)
+  else:
+    decorators = IntrinsicDecorators(g.has_tail_policy)
 
   g.start_group("Configuration-Setting and Utility Functions")
 
