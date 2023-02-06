@@ -68,7 +68,7 @@ endif
 ###############################################################################
 # Functions
 ###############################################################################
-# Generate file $(2).md under $(1). The files contains all RVV intrinsic
+# Generate file $(2) under $(1). The files contains all RVV intrinsic
 # function prototypes, all in one file.
 # $(1): Output path (relative)
 # $(2): Output file name
@@ -76,8 +76,8 @@ endif
 # $(4): Additional flags
 define gen_doc
 	mkdir -p $(1)
-	rm -rf $(1)/$(2).md
-	$(PY3) -m $(MAIN) --gen $(3) --out $(1)/$(2).md $(4) $(TRIGGER_VENDOR_INST)
+	rm -rf $(1)/$(2)
+	$(PY3) -m $(MAIN) --gen $(3) --out $(1)/$(2) $(4) $(TRIGGER_VENDOR_INST)
 endef
 
 # Generate grouped files under $(1). Each file contains a group of RVV
@@ -125,8 +125,8 @@ gen-test: non-overloaded-test overloaded-test llvm-non-overloaded-test llvm-over
 
 # Generate all-in-one document for non-overloaded intrinsics
 non-overloaded-doc:
-	$(call gen_doc,$(DIR),intrinsic_funcs,$@,)
-	$(call gen_doc,$(POLICY_DIR),intrinsic_funcs,$@,--has-policy)
+	$(call gen_doc,$(DIR),intrinsic_funcs.md,$@,)
+	$(call gen_doc,$(POLICY_DIR),intrinsic_funcs.md,$@,--has-policy)
 
 # Generate grouped documents for non-overloaded intrinsics
 non-overloaded-docs:
@@ -135,8 +135,8 @@ non-overloaded-docs:
 
 # Generate all-in-one document for overloaded intrinsics
 overloaded-doc:
-	$(call gen_doc,$(DIR),overloaded_intrinsic_funcs,$@,)
-	$(call gen_doc,$(POLICY_DIR),overloaded_intrinsic_funcs,$@,--has-policy)
+	$(call gen_doc,$(DIR),overloaded_intrinsic_funcs.md,$@,)
+	$(call gen_doc,$(POLICY_DIR),overloaded_intrinsic_funcs.md,$@,--has-policy)
 
 # Generate grouped documents for overloaded intrinsics
 overloaded-docs:
