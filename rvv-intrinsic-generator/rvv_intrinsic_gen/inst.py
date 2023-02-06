@@ -21,7 +21,6 @@ grouping.
 """
 
 from intrinsic_decorator import IntrinsicDecorators
-from templates import vtype_template
 from templates import setvl_template
 from templates import load_template
 from templates import seg_load_template
@@ -43,22 +42,12 @@ from templates import mask_template
 from templates import mask_load_store_template
 from templates import permute_template
 from constants import LMULS,WLMULS,NCVTLMULS,SEWS,WSEWS,FSEWS,WFSEWS,NSEWS,\
-  TYPES,ITYPES,FTYPES,MTYPES,MLENS,REF_DOC_URL,REF_RFC_URL
+  TYPES,ITYPES,FTYPES,MTYPES,MLENS,REF_DOC_URL
 
 
 def gen(g):
   decorators = IntrinsicDecorators(g.has_tail_policy)
-  g.start_group("RVV C Type System")
 
-  # dump all vector type
-  g.write_title("RVV C extension types", REF_RFC_URL + "#data-types")
-  vtype_template.render(G=g, type_list=TYPES, sew_list=SEWS, lmul_list=LMULS)
-
-  g.write_title("RVV C extension mask types", REF_RFC_URL + "#mask-types")
-  g.write("- The Syntax is `vbool<MLEN>_t`\n%s" %
-          "".join(map(lambda x: f" - `vbool{x}_t`\n", MLENS)))
-
-  ####################################################################
   g.start_group("Configuration-Setting and Utility Functions")
 
   g.function_group(setvl_template, "Set `vl` and `vtype` Functions",
