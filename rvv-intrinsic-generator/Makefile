@@ -122,7 +122,7 @@ endif
 
 gen-document: non-overloaded-doc non-overloaded-docs overloaded-doc overloaded-docs
 gen-test: non-overloaded-test overloaded-test llvm-non-overloaded-test llvm-overloaded-test
-gen-compatible-header: non-policy-compatible-header
+gen-compatible-header: non-policy-compatible-header policy-compatible-header
 
 # Generate all-in-one document for non-overloaded intrinsics
 non-overloaded-doc:
@@ -169,6 +169,8 @@ llvm-overloaded-test:
 # Generate the adaptor header for v0.10
 non-policy-compatible-header:
 	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,non-policy.h,compatible-header,)
+policy-compatible-header:
+	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,policy.h,compatible-header,--has-policy)
 
 ###############################################################################
 # Auto-generated Document / Test Targets

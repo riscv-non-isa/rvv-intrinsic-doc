@@ -549,16 +549,41 @@ class CompatibleHeaderGenerator(Generator):
 
     def get_suffix(name, inst_info):
       suffix = ""
-      if inst_info.store_p():
-        if inst_info.extra_attr & ExtraAttr.IS_MASK:
-          suffix = "_m"
-        else:
+      if is_policy_func(inst_info):  # policy intrinsics go here
+        if inst_info.extra_attr & ExtraAttr.IS_TA:
           suffix = ""
-      elif inst_info.extra_attr & ExtraAttr.IS_MASK:
-        if is_no_mu_inst(name):
+        if inst_info.extra_attr & ExtraAttr.IS_TU:
+          suffix = "_tu"
+        if inst_info.extra_attr & ExtraAttr.IS_MA:
           suffix = "_m"
-        else:
+        if inst_info.extra_attr & ExtraAttr.IS_MU:
           suffix = "_mu"
+        if inst_info.extra_attr & ExtraAttr.IS_TAMA:
+          suffix = "_m"
+        if inst_info.extra_attr & ExtraAttr.IS_TAMU:
+          suffix = "_mu"
+        if inst_info.extra_attr & ExtraAttr.IS_TUMA:
+          suffix = "_tum"
+        if inst_info.extra_attr & ExtraAttr.IS_TUMU:
+          suffix = "_tumu"
+        if inst_info.extra_attr & ExtraAttr.IS_MASK and \
+          inst_info.extra_attr & ExtraAttr.IS_RED_TUMA:
+          suffix = "_tum"
+        if inst_info.extra_attr & ExtraAttr.IS_MASK and \
+          inst_info.extra_attr & ExtraAttr.IS_RED_TAMA:
+          suffix = "_m"
+
+      else:  # non-policy intrinsics go here
+        if inst_info.store_p():
+          if inst_info.extra_attr & ExtraAttr.IS_MASK:
+            suffix = "_m"
+          else:
+            suffix = ""
+        elif inst_info.extra_attr & ExtraAttr.IS_MASK:
+          if is_no_mu_inst(name):
+            suffix = "_m"
+          else:
+            suffix = "_mu"
 
       return suffix
 
@@ -577,14 +602,11 @@ class CompatibleHeaderGenerator(Generator):
     if is_mask_or_policy_suffix(name):
       name = "_".join(name.split("_")[:-1])
 
-    if is_originally_default_tu_inst(name):
-      if not is_policy_func(inst_info):
-        if inst_info.extra_attr & ExtraAttr.IS_MASK:
-          return "__riscv_" + name + "_tum"
-        else:
-          return "__riscv_" + name + "_tu"
+    if is_originally_default_tu_inst(name) and not is_policy_func(inst_info):
+      if inst_info.extra_attr & ExtraAttr.IS_MASK:
+        return "__riscv_" + name + "_tum"
       else:
-        assert False
+        return "__riscv_" + name + "_tu"
 
     return "__riscv_" + name + get_suffix(name, inst_info)
 
@@ -595,19 +617,31 @@ class CompatibleHeaderGenerator(Generator):
     return "vcompress" in name or "vmerge" in name or "vfmerge" in name
 
   def write_param_swap_compatible_definition(self, legacy_func_name,
-                                             new_func_name):
+                                             new_func_name, inst_info):
     """
     From v0.10 to v0.11, the operand order of vcompress and vmerge intrinsics
     were adjusted so all intrinsics with mnemonics of vvm and vxm are aligned.
     Please see riscv-non-isa/rvv-intrinsic-doc #185 for more detail.
     """
     if "vcompress" in legacy_func_name:
-      self.write(f"#define {legacy_func_name}(mask, dest, src, vl) "
-                 f"{new_func_name}(dest, src, mask, vl)\n")
+      if inst_info.extra_attr & ExtraAttr.IS_TA:
+        self.write(f"#define {legacy_func_name}(mask, src, vl) "
+                   f"{new_func_name}(src, mask, vl)\n")
+      else:  #TU
+        # The non-policy vcompress intrinsics comes here too because in v0.10
+        # non-policy vcompress has policy behavior of tail undisturbed.
+        self.write(f"#define {legacy_func_name}(mask, dest, src, vl) "
+                   f"{new_func_name}(dest, src, mask, vl)\n")
       return
     if "vmerge" in legacy_func_name or "vfmerge" in legacy_func_name:
-      self.write(f"#define {legacy_func_name}(mask, op1, op2, vl) "
-                 f"{new_func_name}(op1, op2, mask, vl)\n")
+      if inst_info.extra_attr & ExtraAttr.IS_TU:
+        self.write(f"#define {legacy_func_name}(mask, maskedoff, op1, op2, vl) "
+                   f"{new_func_name}(maskedoff, op1, op2, mask, vl)\n")
+      else:  #TA
+        # The non-policy vmerge/vfmerge intrinsics comes here too because in
+        # v0.10 non-policy vcompress has policy behavior of tail agnostic.
+        self.write(f"#define {legacy_func_name}(mask, op1, op2, vl) "
+                   f"{new_func_name}(op1, op2, mask, vl)\n")
       return
 
     assert False, "Unreachable"
@@ -620,7 +654,7 @@ class CompatibleHeaderGenerator(Generator):
 
     if self.need_to_swap_param(legacy_func_name):
       self.write_param_swap_compatible_definition(legacy_func_name,
-                                                  new_func_name)
+                                                  new_func_name, inst_info)
       return
 
     self.write(f"#define {legacy_func_name} {new_func_name}\n")
