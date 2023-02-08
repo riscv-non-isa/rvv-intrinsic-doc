@@ -98,6 +98,17 @@ define gen_tests
 	$(PY3) -m $(MAIN) --gen $(2) --out $(1) $(3) $(TRIGGER_VENDOR_INST)
 endef
 
+# Compile all *.c under $(1) with $(2), then pretty-print with testing-report
+# $(1): Path to testing folder, containing .c files
+# $(2): Path to compiler
+define run_tests
+	make run-test \
+		API_DIR=$(1) \
+		API_MAKEFILE=$(abspath ${CURDIR}/Makefile.api) \
+		TESTING_REPORT_SCRIPT=$(abspath ${CURDIR}/rvv_intrinsic_gen/testing-report)
+		COMPILER=${2}
+endef
+
 ###############################################################################
 # Basic Targets
 ###############################################################################
@@ -194,17 +205,23 @@ diff-autogen:
 ###############################################################################
 # Test auto-generated/api-testing with testing-report
 run-api-testing:
-	make run-test \
-		API_DIR=${DIR}/api-testing \
-		API_MAKEFILE=Makefile.api \
-		TESTING_REPORT_SCRIPT=testing-report
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	$(call run_tests,${DIR}/api-testing,${COMPILER})
 
 # Test auto-generated/overloaded-api-testing with testing-report
 run-overloaded-api-testing:
-	make run-test \
-		API_DIR=${DIR}/overloaded-api-testing \
-		API_MAKEFILE=Makefile.api \
-		TESTING_REPORT_SCRIPT=testing-report
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	$(call run_tests,${DIR}/overloaded-api-testing,${COMPILER})
+
+# Test auto-generated/api-testing with testing-report
+run-policy-api-testing:
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	$(call run_tests,${DIR}/policy_funcs/api-testing,${COMPILER})
+
+# Test auto-generated/overloaded-api-testing with testing-report
+run-policy-overloaded-api-testing:
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	$(call run_tests,${DIR}/policy_funcs/overloaded-api-testing,${COMPILER})
 
 # A parameterized target to run testing through testing-report.
 # Makes target 'test' of ${API_MAKEFILE} with ${TESTING_REPORT_SCRIPT} under
@@ -214,22 +231,22 @@ run-test:
 	$(call check_defined, API_DIR, directory containing the C source file tests)
 	$(call check_defined, API_MAKEFILE, makefile for testing the files in API_DIR)
 	$(call check_defined, TESTING_REPORT_SCRIPT, script to generate testing report)
+	$(call check_defined, COMPILER, compiler (clang/gcc))
 
-	if [ ! -d "${CURDIR}/${API_DIR}" ]; then \
-		echo "Directory '${CURDIR}/${API_DIR}' does not exist"; \
+	if [ ! -d "${API_DIR}" ]; then \
+		echo "Directory '${API_DIR}' does not exist"; \
 	fi
-	if [ ! -f "${CURDIR}/${API_MAKEFILE}" ]; then \
-		echo "File '${CURDIR}/${API_MAKEFILE}' does not exist"; \
+	if [ ! -f "${API_MAKEFILE}" ]; then \
+		echo "File '${API_MAKEFILE}' does not exist"; \
 	fi
-	if [ ! -f "${CURDIR}/${TESTING_REPORT_SCRIPT}" ]; then \
-		echo "File '${CURDIR}/${TESTING_REPORT_SCRIPT}' does not exist"; \
+	if [ ! -f "${TESTING_REPORT_SCRIPT}" ]; then \
+		echo "File '${TESTING_REPORT_SCRIPT}' does not exist"; \
 	fi
-	make -C ${CURDIR}/${API_DIR} clean -f ${CURDIR}/${API_MAKEFILE}
-	make -C ${CURDIR}/${API_DIR} \
-		BASE_DIR=${CURDIR}/${API_DIR} \
-		TESTING_REPORT_SCRIPT=${CURDIR}/${TESTING_REPORT_SCRIPT} \
-		CC=/sifive/tools/riscv-tools/riscv64-unknown-elf-toolsuite-13.0.0-2022.04.2-x86_64-linux-redhat8/bin/riscv64-unknown-elf-clang \
-		-f ${CURDIR}/${API_MAKEFILE}
+	make -C ${API_DIR} \
+		BASE_DIR=${API_DIR} \
+		TESTING_REPORT_SCRIPT=${TESTING_REPORT_SCRIPT} \
+		CC=${COMPILER} \
+		-f ${API_MAKEFILE}
 
 ###############################################################################
 # Custom Vendor Generator Target
