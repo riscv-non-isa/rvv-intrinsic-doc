@@ -24,7 +24,6 @@ void reduce(double *a, double *b, double *result_sum, int *result_count,
   size_t vlmax = vsetvlmax_e64m1();
   vfloat64m1_t vec_zero = vfmv_v_f_f64m1(0, vlmax);
   vfloat64m1_t vec_s = vfmv_v_f_f64m1(0, vlmax);
-  vfloat64m1_t vec_one = vfmv_v_f_f64m1(1, vlmax);
   for (size_t vl; n > 0; n -= vl, a += vl, b += vl) {
     vl = vsetvl_e64m1(n);
 
