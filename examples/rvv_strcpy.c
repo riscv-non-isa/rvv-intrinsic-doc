@@ -26,7 +26,7 @@ char *strcpy_vec(char *dst, const char *src) {
 }
 
 int main() {
-  const int N = 100;
+  const int N = 2000;
   const uint32_t seed = 0xdeadbeef;
   srand(seed);
 
