@@ -58,6 +58,8 @@ OUTPUT_DIR := ../auto-generated
 DIR := $(abspath $(OUTPUT_DIR))
 # Output directory for policy intrinsics
 POLICY_DIR := $(DIR)/policy_funcs
+# Directory that stores the v0.10 unit tests
+LEGACY_API_TESTS_DIR := $(abspath ../legacy-api-unit-tests)
 # Derived variable to trigger option --vendor-inst
 ifdef VENDOR_INST
 TRIGGER_VENDOR_INST := --vendor-inst $(VENDOR_INST)
@@ -235,6 +237,19 @@ run-policy-api-testing:
 run-policy-overloaded-api-testing:
 	$(call check_defined, COMPILER, compiler (clang/gcc))
 	$(call run_tests,${DIR}/policy_funcs/overloaded-api-testing,${COMPILER})
+
+# Test compatible header with the v0.10 unit tests for the non-policy intrinsics
+run-non-policy-compatible-api-testing:
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	cp -r $(DIR)/rvv-v0p10-compatible-headers \
+		$(LEGACY_API_TESTS_DIR)/non-policy-non-overloaded-api-testing
+	$(call run_tests,$(LEGACY_API_TESTS_DIR)/non-policy-non-overloaded-api-testing,${COMPILER})
+
+run-policy-compatible-api-testing:
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	cp -r $(DIR)/rvv-v0p10-compatible-headers \
+		$(LEGACY_API_TESTS_DIR)/policy-non-overloaded-api-testing
+	$(call run_tests,$(LEGACY_API_TESTS_DIR)/policy-non-overloaded-api-testing,${COMPILER})
 
 # A parameterized target to run testing through testing-report.
 # Makes target 'test' of ${API_MAKEFILE} with ${TESTING_REPORT_SCRIPT} under

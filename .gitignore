@@ -1,4 +1,6 @@
 # Omit logs generated when running run-api-testing / run-overloaded-api-testing
 *.log
 *.xml
+legacy-api-unit-tests/non-policy-non-overloaded-api-testing/rvv-v0p10-compatible-headers
+legacy-api-unit-tests/policy-non-overloaded-api-testing/rvv-v0p10-compatible-headers
 
