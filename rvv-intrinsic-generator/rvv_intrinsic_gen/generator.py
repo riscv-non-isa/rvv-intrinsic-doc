@@ -258,6 +258,10 @@ class OverloadedDocGenerator(DocGenerator):
     func_name = Generator.func_name(name)
     if Generator.is_support_overloaded(name, **kwargs):
       func_name = Generator.get_overloaded_op_name(name)
+    # Strip the `__riscv_` prefix here because it will be added back again in
+    # Generator.func()
+    func_name = func_name[8:]
+
     super().func(inst_info, func_name, return_type, **kwargs)
 
 
