@@ -115,9 +115,9 @@ endef
 # If VENDOR_GENERATOR_SCRIPT is defined, also trigger it in all.
 # NOTE: A possible enhancement to this is allow multiple targets be added here
 ifdef VENDOR_GENERATOR_SCRIPT
-all: gen-document gen-test vendor-generator
+all: gen-document gen-test gen-compatible-header vendor-generator
 else
-all: gen-document gen-test
+all: gen-document gen-test gen-compatible-header
 endif
 
 gen-document: non-overloaded-doc non-overloaded-docs overloaded-doc overloaded-docs
