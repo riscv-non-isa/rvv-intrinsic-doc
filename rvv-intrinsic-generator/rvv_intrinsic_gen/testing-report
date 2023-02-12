@@ -87,15 +87,19 @@ def api_testing_report(stats, opts):
     if sz != 0:
       # passed if the number of warning equal to line number
       with open(log, 'r') as fp:
-        data = fp.read()
-        if data.count('warning') == (data.count('\n')):
-          stats[grp][subgrp].pass_list.append(testname)
-          result.pass_list.append(testname)
-          test_case.result = [Error("Treat warning as error", "warning")]
+        last_line = fp.readlines()[-1]
+        if last_line.count('error') == 0:
+          if last_line.count('warning') != 0 and opts.warning_as_error:
+            stats[grp][subgrp].failed_list.append(testname)
+            result.failed_list.append(testname)
+            test_case.result = [Error("Treat warning as error", "warning")]
+          else:
+            stats[grp][subgrp].pass_list.append(testname)
+            result.pass_list.append(testname)
         else:
           stats[grp][subgrp].failed_list.append(testname)
           result.failed_list.append(testname)
-          test_case.result = [Failure(data, "stdout/stderr")]
+          test_case.result = [Failure(last_line, "stdout/stderr")]
     else:
       stats[grp][subgrp].pass_list.append(testname)
       result.pass_list.append(testname)
@@ -267,6 +271,7 @@ def parse_args(args):
   parser.add_argument("--junit-report-path", type=str, default="test_report.xml")
   parser.add_argument("--all", nargs = "*")
   parser.add_argument("--failure", nargs = "*", default = [])
+  parser.add_argument("--warning-as-error", action="store_true", default=False)
   args, unknownargs = parser.parse_known_args()
 
   # Handle unknown args
