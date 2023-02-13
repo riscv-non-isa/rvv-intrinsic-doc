@@ -9,21 +9,21 @@ void index_golden(double *a, double *b, double *c, int n) {
 }
 
 void index_(double *a, double *b, double *c, int n) {
-  size_t vlmax = vsetvlmax_e32m1();
-  vuint32m1_t vec_i = vid_v_u32m1(vlmax);
+  size_t vlmax = __riscv_vsetvlmax_e32m1();
+  vuint32m1_t vec_i = __riscv_vid_v_u32m1(vlmax);
   for (size_t vl; n > 0; n -= vl, a += vl, b += vl, c += vl) {
-    vl = vsetvl_e64m2(n);
+    vl = __riscv_vsetvl_e64m2(n);
 
-    vfloat64m2_t vec_i_double = vfwcvt_f_xu_v_f64m2(vec_i, vl);
+    vfloat64m2_t vec_i_double = __riscv_vfwcvt_f_xu_v_f64m2(vec_i, vl);
 
-    vfloat64m2_t vec_b = vle64_v_f64m2(b, vl);
-    vfloat64m2_t vec_c = vle64_v_f64m2(c, vl);
+    vfloat64m2_t vec_b = __riscv_vle64_v_f64m2(b, vl);
+    vfloat64m2_t vec_c = __riscv_vle64_v_f64m2(c, vl);
 
     vfloat64m2_t vec_a =
-        vfadd_vv_f64m2(vec_b, vfmul_vv_f64m2(vec_c, vec_i_double, vl), vl);
-    vse64_v_f64m2(a, vec_a, vl);
+        __riscv_vfadd_vv_f64m2(vec_b, __riscv_vfmul_vv_f64m2(vec_c, vec_i_double, vl), vl);
+    __riscv_vse64_v_f64m2(a, vec_a, vl);
 
-    vec_i = vadd_vx_u32m1(vec_i, vl, vl);
+    vec_i = __riscv_vadd_vx_u32m1(vec_i, vl, vl);
   }
 }
 
