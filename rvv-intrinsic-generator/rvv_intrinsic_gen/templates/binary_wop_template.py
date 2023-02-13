@@ -44,6 +44,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if op in ["wadd", "wsub"] and data_type == "uint":
         args["OP"] = op + "u"
 
+      args["OP"] = "v" + args["OP"]
+
       inst_info_wvv = InstInfo.get(args, decorator, InstType.WVV)
       inst_info_wvx = InstInfo.get(args, decorator, InstType.WVX)
       inst_info_wvf = InstInfo.get(args, decorator, InstType.WVF)
@@ -69,7 +71,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         else:  #data_type == "int"
           G.func(
               inst_info_wvv,
-              name="v{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              name="{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
               decorator.func_suffix,
               return_type=type_helper.wv,
               **decorator.mask_args(type_helper.m, type_helper.wv),
@@ -79,7 +81,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
               vl=type_helper.size_t)
           G.func(
               inst_info_wvs,
-              name="v{OP}_v{SCALAR}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              name="{OP}_v{SCALAR}_{TYPE}{SEW}m{LMUL}".format_map(args) +
               decorator.func_suffix,
               return_type=type_helper.wv,
               **decorator.mask_args(type_helper.m, type_helper.wv),
@@ -90,7 +92,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       else:
         G.func(
             inst_info_wvv,
-            name="v{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.wv,
             **decorator.mask_args(type_helper.m, type_helper.wv),
@@ -100,7 +102,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vl=type_helper.size_t)
         G.func(
             inst_info_wvs,
-            name="v{OP}_v{SCALAR}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_v{SCALAR}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.wv,
             **decorator.mask_args(type_helper.m, type_helper.wv),
@@ -113,7 +115,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         # integer/floating wadd and wsub support "2*sew = 2*sew op SEW"
         G.func(
             inst_info_wwv,
-            name="v{OP}_wv_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_wv_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.wv,
             **decorator.mask_args(type_helper.m, type_helper.wv),
@@ -123,7 +125,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vl=type_helper.size_t)
         G.func(
             inst_info_wws,
-            name="v{OP}_w{SCALAR}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_w{SCALAR}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.wv,
             **decorator.mask_args(type_helper.m, type_helper.wv),

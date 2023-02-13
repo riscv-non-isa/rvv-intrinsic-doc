@@ -62,6 +62,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if op == "nclip" and data_type == "uint":
         args["OP"] = op + "u"
 
+      args["OP"] = "v" + args["OP"]
+
       if ((op == "nsrl" and data_type == "int") or
           (op == "nsra" and data_type == "uint")):
         # unsupported cases: unsigned sra is unsupported, signed srl
@@ -74,7 +76,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if op in ["nsrl", "nsra", "nclip"]:
         G.func(
             inst_info,
-            name="v{OP}_w{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_w{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             **decorator.mask_args(type_helper.m, type_helper.v),
             **decorator.tu_dest_args(type_helper.v),
@@ -86,7 +88,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       else:
         G.func(
             inst_info,
-            name="v{OP}_w{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_w{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             **decorator.mask_args(type_helper.m, type_helper.v),
             **decorator.tu_dest_args(type_helper.v),

@@ -63,12 +63,12 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         if args["OP"] not in ["eq", "ne"] and data_type == "uint":
           op = op + "u"
 
-      args["OP"] = op
+      args["OP"] = "v" + op
       inst_info = InstInfo.get(args, decorator, inst_type)
 
       G.func(
           inst_info,
-          name="v{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}_b{MLEN}".format_map(args) +
+          name="{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}_b{MLEN}".format_map(args) +
           decorator.func_suffix,
           return_type=type_helper.m,
           **decorator.mask_args(type_helper.m, type_helper.m),

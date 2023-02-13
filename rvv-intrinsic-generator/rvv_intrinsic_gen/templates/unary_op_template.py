@@ -51,6 +51,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         inst_type_vvsm = InstType.VVXM
         inst_type_vs = InstType.VX
 
+      args["OP"] = "v" + args["OP"]
+
       type_helper = TypeHelper(**args)
 
       if op == "merge":
@@ -71,13 +73,13 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       vv_args = args
       if data_type == "float" and op in ["mv", "merge"]:
         vv_args = copy.deepcopy(args)
-        vv_args["OP"] = op
+        vv_args["OP"] = "v" + op
 
       if op == "merge":
         G.func(
             InstInfo.get(
                 vv_args, decorator, InstType.VVVM, extra_attr=extra_attr),
-            name="v{OP}_vvm_{TYPE}{SEW}m{LMUL}".format_map(vv_args) +
+            name="{OP}_vvm_{TYPE}{SEW}m{LMUL}".format_map(vv_args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.tu_dest_args(type_helper.v),
@@ -87,7 +89,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vl=type_helper.size_t)
         G.func(
             inst_info_vvsm,
-            name="v{OP}_v{S_TYPE}m_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_v{S_TYPE}m_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.tu_dest_args(type_helper.v),
@@ -98,7 +100,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       elif op == "mv":
         G.func(
             InstInfo.get(vv_args, decorator, InstType.VV),
-            name="v{OP}_v_v_{TYPE}{SEW}m{LMUL}".format_map(vv_args) +
+            name="{OP}_v_v_{TYPE}{SEW}m{LMUL}".format_map(vv_args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.tu_dest_args(type_helper.v),
@@ -106,7 +108,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vl=type_helper.size_t)
         G.func(
             inst_info_vs,
-            name="v{OP}_v_{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_v_{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.tu_dest_args(type_helper.v),
@@ -116,7 +118,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         assert data_type == "float"
         G.func(
             inst_info_vv,
-            name="v{OP}_v_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_v_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.mask_args(type_helper.m, type_helper.v),
@@ -127,7 +129,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         assert data_type == "float"
         G.func(
             inst_info_vv,
-            name="v{OP}_v_u{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_v_u{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.uiv,
             **decorator.mask_args(type_helper.m, type_helper.uiv),
@@ -137,7 +139,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       elif op == "not":
         G.func(
             inst_info_vv,
-            name="v{OP}_v_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_v_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.mask_args(type_helper.m, type_helper.v),
@@ -164,7 +166,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
 
       type_helper = TypeHelper(**args)
 
-      args["OP"] = f"{op}_vf{ext}"
+      args["OP"] = f"v{op}_vf{ext}"
 
       if ext == 2:
         prefix_lowercase = "w"
@@ -191,7 +193,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
 
       G.func(
           inst_info_v,
-          name="v{OP}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+          name="{OP}_{TYPE}{SEW}m{LMUL}".format_map(args) +
           decorator.func_suffix,
           return_type=rt_type,
           **decorator.mask_args(type_helper.m, rt_type),

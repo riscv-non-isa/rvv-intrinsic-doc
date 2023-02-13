@@ -79,6 +79,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
          (args["TYPES0"] == "uint" and args["TYPES2"] == "uint"):
         args["OP"] += "u"
 
+      args["OP"] = "v" + args["OP"]
+
       extra_attr = ExtraAttr.CONVERT
       inst_info = InstInfo.get(
           args, decorator, InstType.VV, extra_attr=extra_attr)
@@ -89,7 +91,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
          not type_helper.valid_vtype(src_type):
         continue
       func_name = \
-        "v{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}".format_map\
+        "{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}".format_map\
         (args)
       G.func(
           inst_info,
@@ -104,7 +106,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         inst_info = InstInfo.get(
             args, decorator, InstType.VV, extra_attr=extra_attr)
         func_name =\
-          "v{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}".format_map\
+          "{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}".format_map\
           (args)
         G.func(
             inst_info,
@@ -120,7 +122,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         inst_info = \
           InstInfo.get(args, decorator, InstType.VV, extra_attr=extra_attr)
         func_name = \
-          "v{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}".format_map\
+          "{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}".format_map\
           (args)
         G.func(
             inst_info,

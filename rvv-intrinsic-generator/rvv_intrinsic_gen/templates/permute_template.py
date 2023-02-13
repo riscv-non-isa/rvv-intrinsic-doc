@@ -50,19 +50,21 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         vs_inst_type = InstType.VX
         vvs_inst_type = InstType.VVX
 
+      args["OP"] = "v" + args["OP"]
+
       type_helper = TypeHelper(**args)
 
       if op == "mv":
         if decorator.func_suffix == "":
           G.func(
               InstInfo.get(args, decorator, sv_inst_type),
-              name="v{OP}_{S_TYPE}_s_{TYPE}{SEW}m{LMUL}_{TYPE}{SEW}".format_map(
+              name="{OP}_{S_TYPE}_s_{TYPE}{SEW}m{LMUL}_{TYPE}{SEW}".format_map(
                   args),
               return_type=type_helper.s,
               src=type_helper.v)
         G.func(
             InstInfo.get(args, decorator, vs_inst_type),
-            name="v{OP}_s_{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_s_{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.dest_args(type_helper.v),
@@ -71,7 +73,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       elif op in ["slide1up", "slide1down"]:
         G.func(
             InstInfo.get(args, decorator, vvs_inst_type),
-            name="v{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.mask_args(type_helper.m, type_helper.v),
@@ -82,7 +84,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       elif op == "slideup":
         G.func(
             InstInfo.get(args, decorator, InstType.VVX),
-            name="v{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.mask_args(type_helper.m, type_helper.v),
@@ -93,7 +95,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       elif op == "slidedown":
         G.func(
             InstInfo.get(args, decorator, InstType.VVX),
-            name="v{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.mask_args(type_helper.m, type_helper.v),
@@ -104,7 +106,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       elif op == "compress":
         G.func(
             InstInfo.get(args, decorator, InstType.VVV),
-            name="v{OP}_vm_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_vm_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.dest_args(type_helper.v),

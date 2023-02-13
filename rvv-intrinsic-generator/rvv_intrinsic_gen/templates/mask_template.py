@@ -41,26 +41,28 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if op in ["iota", "id"]:
         continue
 
+      args["OP"] = "v" + args["OP"]
+
       inst_info_mm = InstInfo.get(args, decorator, InstType.MMM)
       inst_info_m = InstInfo.get(args, decorator, InstType.MM)
 
       if op in ["mv", "not"]:  # unary operator
         G.func(
             inst_info_m,
-            name="v{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
+            name="{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
             return_type=type_helper.m,
             op1=type_helper.m,
             vl=type_helper.size_t)
       elif op in ["clr", "set"]:  # nullary operator
         G.func(
             inst_info_m,
-            name="v{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
+            name="{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
             return_type=type_helper.m,
             vl=type_helper.size_t)
       elif op in ["sbf", "sif", "sof"]:
         G.func(
             inst_info_m,
-            name="v{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
+            name="{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
             return_type=type_helper.m,
             **decorator.mask_args(type_helper.m, type_helper.m),
             op1=type_helper.m,
@@ -68,7 +70,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       elif op == "cpop":
         G.func(
             inst_info_m,
-            name="v{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
+            name="{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
             return_type=type_helper.ulong,
             **decorator.mask_args(type_helper.m),
             op1=type_helper.m,
@@ -76,7 +78,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       elif op == "first":
         G.func(
             inst_info_m,
-            name="v{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
+            name="{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
             return_type=type_helper.long,
             **decorator.mask_args(type_helper.m),
             op1=type_helper.m,
@@ -84,7 +86,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       else:  # binary operator
         G.func(
             inst_info_mm,
-            name="v{OP}_mm_b{MLEN}".format_map(args) + decorator.func_suffix,
+            name="{OP}_mm_b{MLEN}".format_map(args) + decorator.func_suffix,
             return_type=type_helper.m,
             **decorator.mask_args(type_helper.m),
             op1=type_helper.m,
@@ -94,6 +96,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
     for args in prod(OP=op_list, TYPE=type_list, SEW=sew_list, LMUL=lmul_list):
       op = args["OP"]
       type_helper = TypeHelper(**args)
+
+      args["OP"] = "v" + args["OP"]
+
       if op == "iota":
         G.func(
             InstInfo.get(args, decorator, InstType.MM),

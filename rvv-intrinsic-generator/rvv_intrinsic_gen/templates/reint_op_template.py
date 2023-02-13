@@ -61,8 +61,11 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       rt = "v{TYPES0}{SEW}m{LMUL}_t".format_map(args)
       if not type_helper.valid_vtype(rt):
         continue
+
+      args["OP"] = "v" + args["OP"]
+
       func_name =\
-        "v{OP}_v_{TYPES3}{SEW}m{LMUL}_{TYPES1}{SEW}m{LMUL}".format_map(args)
+        "{OP}_v_{TYPES3}{SEW}m{LMUL}_{TYPES1}{SEW}m{LMUL}".format_map(args)
       src_type = "v{TYPES2}{SEW}m{LMUL}_t".format_map(args)
       G.func(
           InstInfo.get(args, decorator, InstType.REINT),
@@ -96,8 +99,11 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       rt = "v{TYPES0}{DST_SEW}m{LMUL}_t".format_map(args)
       if not type_helper.valid_vtype(rt):
         continue
+
+      args["OP"] = "v" + args["OP"]
+
       func_name =\
-        "v{OP}_v_{TYPES3}{SEW}m{LMUL}_{TYPES1}{DST_SEW}m{LMUL}".format_map(args)
+        "{OP}_v_{TYPES3}{SEW}m{LMUL}_{TYPES1}{DST_SEW}m{LMUL}".format_map(args)
       src_type = "v{TYPES2}{SEW}m{LMUL}_t".format_map(args)
       G.func(
           InstInfo.get(args, decorator, InstType.REINT),

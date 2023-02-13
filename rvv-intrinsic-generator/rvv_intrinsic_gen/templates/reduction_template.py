@@ -56,6 +56,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if not type_helper.valid_vtype(s):
         continue
 
+      args["OP"] = "v" + args["OP"]
+
       inst_info = InstInfo.get(
           args, decorator, inst_type, extra_attr=ExtraAttr.REDUCE)
       if (data_type == "float" and
@@ -64,7 +66,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         if "w" in op:
           G.func(
               inst_info,
-              name="v{OP}_vs_{TYPE}{SEW}m{LMUL}_{TYPE}{WSEW}m1".format_map(args)
+              name="{OP}_vs_{TYPE}{SEW}m{LMUL}_{TYPE}{WSEW}m1".format_map(args)
               + decorator.func_suffix,
               return_type=s,
               **decorator.mask_args(type_helper.m, s),
@@ -75,8 +77,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         else:
           G.func(
               inst_info,
-              name="v{OP}_vs_{TYPE}{SEW}m{LMUL}_{TYPE}{SEW}m1".format_map(args)
-              + decorator.func_suffix,
+              name="{OP}_vs_{TYPE}{SEW}m{LMUL}_{TYPE}{SEW}m1".format_map(args) +
+              decorator.func_suffix,
               return_type=s,
               **decorator.mask_args(type_helper.m, s),
               **decorator.dest_args(s),

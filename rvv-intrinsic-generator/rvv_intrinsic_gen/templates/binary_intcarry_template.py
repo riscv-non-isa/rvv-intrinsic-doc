@@ -42,13 +42,15 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       else:
         carry = {"carryin": m}
 
+      args["OP"] = "v" + args["OP"]
+
       inst_info_vvm = InstInfo.get(args, decorator, InstType.VVVM)
       inst_info_vxm = InstInfo.get(args, decorator, InstType.VVXM)
 
       if not "m" in args["OP"]:
         G.func(
             inst_info=inst_info_vvm,
-            name="v{OP}_vvm_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_vvm_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=v,
             **decorator.tu_dest_args(v),
@@ -58,7 +60,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vl=type_helper.size_t)
         G.func(
             inst_info=inst_info_vxm,
-            name="v{OP}_vxm_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_vxm_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=v,
             **decorator.tu_dest_args(v),
@@ -77,6 +79,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       else:
         carry = {"carryin": m}
 
+      args["OP"] = "v" + args["OP"]
+
       inst_info_vvm = InstInfo.get(args, None, InstType.VVVM)
       inst_info_vxm = InstInfo.get(args, None, InstType.VVXM)
 
@@ -88,7 +92,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         args["MLEN"] = type_helper.mlen
         G.func(
             inst_info_vvm,
-            name="v{OP}_vvm_{TYPE}{SEW}m{LMUL}_b{MLEN}".format_map(args) +
+            name="{OP}_vvm_{TYPE}{SEW}m{LMUL}_b{MLEN}".format_map(args) +
             decorator.func_suffix,
             return_type=m,
             op1=v,
@@ -97,7 +101,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vl=type_helper.size_t)
         G.func(
             inst_info_vxm,
-            name="v{OP}_vxm_{TYPE}{SEW}m{LMUL}_b{MLEN}".format_map(args) +
+            name="{OP}_vxm_{TYPE}{SEW}m{LMUL}_b{MLEN}".format_map(args) +
             decorator.func_suffix,
             return_type=m,
             op1=v,
@@ -106,7 +110,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vl=type_helper.size_t)
         G.func(
             inst_info_vv,
-            name="v{OP}_vv_{TYPE}{SEW}m{LMUL}_b{MLEN}".format_map(args) +
+            name="{OP}_vv_{TYPE}{SEW}m{LMUL}_b{MLEN}".format_map(args) +
             decorator.func_suffix,
             return_type=m,
             op1=v,
@@ -114,7 +118,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vl=type_helper.size_t)
         G.func(
             inst_info_vx,
-            name="v{OP}_vx_{TYPE}{SEW}m{LMUL}_b{MLEN}".format_map(args) +
+            name="{OP}_vx_{TYPE}{SEW}m{LMUL}_b{MLEN}".format_map(args) +
             decorator.func_suffix,
             return_type=m,
             op1=v,
