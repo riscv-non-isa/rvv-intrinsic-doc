@@ -329,7 +329,7 @@ class APITestGenerator(Generator):
 
     non_overloaded_func_name = Generator.func_name(name)
     overloaded_func_name = Generator.get_overloaded_op_name(name)
-    test_file_name = f"{overloaded_func_name.split('_')[3]}.c"
+    test_file_name = f"{inst_info.OP}.c"
 
     if self.is_overloaded:
       func_name = overloaded_func_name
@@ -433,7 +433,7 @@ class Grouper(Generator):
 
     func_name = Generator.func_name(name)
     overloaded_func_name = Generator.get_overloaded_op_name(name)
-    test_file_name = overloaded_func_name.split("_")[3]
+    test_file_name = inst_info.OP
 
     grp_info = (self.current_group, self.current_sub_group)
 

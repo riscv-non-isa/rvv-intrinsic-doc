@@ -48,6 +48,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if op in ["wmacc", "qmacc"] and data_type == "uint":
         args["OP"] = args["OP"] + "u"
 
+      args["OP"] = "v" + args["OP"]
+
       inst_info_vs = InstInfo.get(
           args, decorator, inst_type, extra_attr=ExtraAttr.MAC)
       inst_info_vv = InstInfo.get(
@@ -73,7 +75,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         if "maccsu" in op:
           G.func(
               inst_info_vv,
-              name="v{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              name="{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
               decorator.func_suffix,
               return_type=rt,
               **decorator.mask_args(type_helper.m, type_helper.v),
@@ -83,7 +85,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
               vl=type_helper.size_t)
           G.func(
               inst_info_vx,
-              name="v{OP}_vx_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              name="{OP}_vx_{TYPE}{SEW}m{LMUL}".format_map(args) +
               decorator.func_suffix,
               return_type=rt,
               **decorator.mask_args(type_helper.m, type_helper.v),
@@ -94,7 +96,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         elif "maccus" in op:
           G.func(
               inst_info_vx,
-              name="v{OP}_vx_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              name="{OP}_vx_{TYPE}{SEW}m{LMUL}".format_map(args) +
               decorator.func_suffix,
               return_type=rt,
               **decorator.mask_args(type_helper.m, type_helper.v),
@@ -105,7 +107,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         elif "macc" in op:
           G.func(
               inst_info_vv,
-              name="v{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              name="{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
               decorator.func_suffix,
               return_type=rt,
               **decorator.mask_args(type_helper.m, type_helper.v),
@@ -115,7 +117,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
               vl=type_helper.size_t)
           G.func(
               inst_info_vs,
-              name="v{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              name="{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
               decorator.func_suffix,
               return_type=rt,
               **decorator.mask_args(type_helper.m, type_helper.v),
@@ -126,7 +128,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       elif data_type == "float" and "w" in op:
         G.func(
             inst_info_vv,
-            name="v{OP}_vv_{TYPE}{WSEW}m{WLMUL}".format_map(args) +
+            name="{OP}_vv_{TYPE}{WSEW}m{WLMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.wv,
             **decorator.mask_args(type_helper.m, type_helper.v),
@@ -136,7 +138,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vl=type_helper.size_t)
         G.func(
             inst_info_vs,
-            name="v{OP}_v{S_TYPE}_{TYPE}{WSEW}m{WLMUL}".format_map(args) +
+            name="{OP}_v{S_TYPE}_{TYPE}{WSEW}m{WLMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.wv,
             **decorator.mask_args(type_helper.m, type_helper.v),
@@ -147,7 +149,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       else:
         G.func(
             inst_info_vv,
-            name="v{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.mask_args(type_helper.m, type_helper.v),
@@ -157,7 +159,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vl=type_helper.size_t)
         G.func(
             inst_info_vs,
-            name="v{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.mask_args(type_helper.m, type_helper.v),

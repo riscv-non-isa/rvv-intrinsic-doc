@@ -84,6 +84,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         v_op2 = type_helper.v
         s_op2 = type_helper.s
 
+      args["OP"] = "v" + args["OP"]
+
       inst_info_vv = InstInfo.get(args, decorator, InstType.VVV)
       inst_info_vx = InstInfo.get(args, decorator, InstType.VVX)
       inst_info_vf = InstInfo.get(args, decorator, InstType.VVF)
@@ -100,7 +102,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if op in ["ssra", "sra", "ssrl", "srl", "sll"]:
         G.func(
             inst_info,
-            name="v{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.mask_args(type_helper.m, type_helper.v),
@@ -112,7 +114,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       elif op in ["neg", "fneg"]:
         G.func(
             inst_info_v,
-            name="v{OP}_v_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_v_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.mask_args(type_helper.m, type_helper.v),
@@ -122,7 +124,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       elif "rgather" == op:
         G.func(
             InstInfo.get(args, decorator, InstType.VVV),
-            name="v{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.mask_args(type_helper.m, type_helper.v),
@@ -133,7 +135,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       else:
         G.func(
             inst_info,
-            name="v{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            name="{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.mask_args(type_helper.m, type_helper.v),
