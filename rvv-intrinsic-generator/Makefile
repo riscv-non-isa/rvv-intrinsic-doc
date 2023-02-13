@@ -66,6 +66,12 @@ TRIGGER_VENDOR_INST := --vendor-inst $(VENDOR_INST)
 else
 TRIGGER_VENDOR_INST :=
 endif
+# Derived variable to trigger option --skip-default-inst
+ifeq ($(SKIP_DEFAULT_INST), ON)
+TRIGGER_SKIP_DEFAULT_INST := --skip-default-inst
+else
+TRIGGER_SKIP_DEFAULT_INST :=
+endif
 
 ###############################################################################
 # Functions
@@ -79,7 +85,9 @@ endif
 define gen_doc
 	mkdir -p $(1)
 	rm -rf $(1)/$(2)
-	$(PY3) -m $(MAIN) --gen $(3) --out $(1)/$(2) $(4) $(TRIGGER_VENDOR_INST)
+	$(PY3) -m $(MAIN) --gen $(3) \
+		--out $(1)/$(2) $(4) \
+		$(TRIGGER_VENDOR_INST) $(TRIGGER_SKIP_DEFAULT_INST)
 endef
 
 # Generate grouped files under $(1). Each file contains a group of RVV
@@ -92,12 +100,16 @@ define gen_docs
 	mkdir -p $(1)
 	rm $(1)/$(2) -rf
 	mkdir -p $(1)/$(2)
-	$(PY3) -m $(MAIN) --gen $(3) --out $(1)/$(2) $(4) $(TRIGGER_VENDOR_INST)
+	$(PY3) -m $(MAIN) --gen $(3) \
+		--out $(1)/$(2) $(4) \
+		$(TRIGGER_VENDOR_INST) $(TRIGGER_SKIP_DEFAULT_INST)
 endef
 
 define gen_tests
 	rm $(1)/*.c -f
-	$(PY3) -m $(MAIN) --gen $(2) --out $(1) $(3) $(TRIGGER_VENDOR_INST)
+	$(PY3) -m $(MAIN) --gen $(2) \
+		--out $(1) $(3) \
+		$(TRIGGER_VENDOR_INST) $(TRIGGER_SKIP_DEFAULT_INST)
 endef
 
 # Compile all *.c under $(1) with $(2), then pretty-print with testing-report
@@ -282,7 +294,7 @@ run-test:
 VENDOR_GENERATOR_OUTPUT ?=
 vendor-generator:
 	$(PY3) -m $(MAIN) --out $(DIR)/$(VENDOR_GENERATOR_OUTPUT) \
-	$(TRIGGER_VENDOR_INST) \
+	$(TRIGGER_VENDOR_INST) $(TRIGGER_SKIP_DEFAULT_INST) \
 	--vendor-generator-script $(VENDOR_GENERATOR_SCRIPT) \
 	--vendor-generator-name $(VENDOR_GENERATOR_NAME)
 

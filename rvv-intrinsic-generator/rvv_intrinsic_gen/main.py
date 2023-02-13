@@ -98,6 +98,7 @@ def main():
   parser.add_argument("--llvm", default=False, action="store_true")
   parser.add_argument("--has-policy", default=False, action="store_true")
   parser.add_argument("--vendor-inst")
+  parser.add_argument("--skip-default-inst", default=False, action="store_true")
   parser.add_argument("--vendor-generator-script")
   parser.add_argument("--vendor-generator-name")
   parser.add_argument("--out")
@@ -117,7 +118,10 @@ def main():
     print(f"Triggering the generator {args.vendor_generator_name}")
     with open(args.out, "w", encoding="utf-8") as f:
       g = vendor_generator(f, args.has_policy)
-      inst.gen(g)
+      if not args.skip_default_inst:
+        inst.gen(g)
+      else:
+        print("Skipping default RVV instructions (--skip-default-inst)")
       if vendor_gen is not None:
         vendor_gen(g)
       g.report_summary()
@@ -139,7 +143,10 @@ def main():
       else:
         assert False
 
-      inst.gen(g)
+      if not args.skip_default_inst:
+        inst.gen(g)
+      else:
+        print("Skipping default RVV instructions (--skip-default-inst)")
       if vendor_gen is not None:
         vendor_gen(g)
       g.report_summary()
@@ -155,8 +162,10 @@ def main():
     g = generator.APITestGenerator(args.out, True, args.llvm, args.has_policy)
   else:
     assert False
-
-  inst.gen(g)
+  if not args.skip_default_inst:
+    inst.gen(g)
+  else:
+    print("Skipping default RVV instructions (--skip-default-inst)")
   if vendor_gen is not None:
     vendor_gen(g)
   g.report_summary()
