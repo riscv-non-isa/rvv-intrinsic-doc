@@ -293,6 +293,8 @@ run-test:
 ###############################################################################
 VENDOR_GENERATOR_OUTPUT ?=
 vendor-generator:
+	mkdir -p $(DIR)
+	rm -rf $(DIR)/$(VENDOR_GENERATOR_OUTPUT)
 	$(PY3) -m $(MAIN) --out $(DIR)/$(VENDOR_GENERATOR_OUTPUT) \
 	$(TRIGGER_VENDOR_INST) $(TRIGGER_SKIP_DEFAULT_INST) \
 	--vendor-generator-script $(VENDOR_GENERATOR_SCRIPT) \
