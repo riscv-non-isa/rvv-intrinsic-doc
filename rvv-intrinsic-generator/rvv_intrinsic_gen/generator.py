@@ -278,11 +278,12 @@ class APITestGenerator(Generator):
   Derived generator for api unit tests.
   """
 
-  def __init__(self, f, is_overloaded, is_llvm, has_tail_policy):
+  def __init__(self, f, is_overloaded, is_llvm, is_gnu, has_tail_policy):
     super().__init__()
     self.is_overloaded = is_overloaded
     self.folder = f
     self.llvm = is_llvm
+    self.gnu = is_gnu
     self.has_tail_policy = has_tail_policy
     if not os.path.exists(self.folder):
       os.makedirs(self.folder)
@@ -309,15 +310,21 @@ class APITestGenerator(Generator):
 // RUN:   FileCheck --check-prefix=CHECK-RV64 %s
 
 """)
+    gnu_header = (r"""/* { dg-do compile } */
+/* { dg-options "-march=rv64gcv -mabi=lp64d -O3 -fno-schedule-insns -fno-schedule-insns2" } */
+
+""")
     if self.llvm:
       if has_float_type:
         self.fd.write(float_llvm_header)
       else:
         self.fd.write(int_llvm_header)
+    elif self.gnu:
+      self.fd.write(gnu_header);
     else:
       self.fd.write("#include <stdint.h>\n")
     self.fd.write("#include <riscv_vector.h>\n\n")
-    if not self.llvm:
+    if not (self.llvm or self.gnu) :
       self.fd.write("typedef _Float16 float16_t;\n")
       self.fd.write("typedef float float32_t;\n")
       self.fd.write("typedef double float64_t;\n")
@@ -397,6 +404,18 @@ class APITestGenerator(Generator):
     self.fd.write(call_args)
     self.fd.write(");\n")
     self.fd.write("}\n\n")
+
+  def post_gen(self):
+    if self.gnu:
+      for test_file in set(self.test_files):
+        fd = open(os.path.join(self.folder, test_file), "r", encoding="utf-8")
+        api_count = fd.read().count("__riscv_")
+        fd.close()
+
+        fd = open(os.path.join(self.folder, test_file), "a", encoding="utf-8")
+        #pylint: disable=line-too-long
+        fd.write("/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+{OPCODE}\.[, a-x0-9()]+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,OPCODE=test_file.removesuffix(".c")))
+        fd.close()
 
   def function_group(self, template, title, link, op_list, type_list, sew_list,
                      lmul_list, decorator_list):
