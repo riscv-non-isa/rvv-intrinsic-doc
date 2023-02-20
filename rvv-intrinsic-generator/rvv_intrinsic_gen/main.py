@@ -96,6 +96,7 @@ def main():
           "compatible-header"
       ])
   parser.add_argument("--llvm", default=False, action="store_true")
+  parser.add_argument("--gnu", default=False, action="store_true")
   parser.add_argument("--has-policy", default=False, action="store_true")
   parser.add_argument("--vendor-inst")
   parser.add_argument("--skip-default-inst", default=False, action="store_true")
@@ -156,10 +157,9 @@ def main():
   elif mode == GenTypes.OVERLOADED_DOCS:
     g = generator.OverloadedDocGenerator(args.out, False, args.has_policy)
   elif mode == GenTypes.NON_OVERLOADED_TEST:
-    g = generator.APITestGenerator(args.out, False, args.llvm, args.has_policy)
-
+    g = generator.APITestGenerator(args.out, False, args.llvm, args.gnu, args.has_policy)
   elif mode == GenTypes.OVERLOADED_TEST:
-    g = generator.APITestGenerator(args.out, True, args.llvm, args.has_policy)
+    g = generator.APITestGenerator(args.out, True, args.llvm, args.gnu, args.has_policy)
   else:
     assert False
   if not args.skip_default_inst:
@@ -168,6 +168,7 @@ def main():
     print("Skipping default RVV instructions (--skip-default-inst)")
   if vendor_gen is not None:
     vendor_gen(g)
+  g.post_gen()
   g.report_summary()
   return
 
