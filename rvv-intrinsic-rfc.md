@@ -256,7 +256,7 @@ vuint64m1_t vadd_vx_u64m1(vuint64m1_t op1, uint64_t op2, size_t vl);
 
 To support the implied semantics, the compiler may generate multiple instructions for the intrinsics.
 (More generally, this API does not constrain the compiler in which instructions it actually generates.)
-For example, to support `vmv_x_s_i64m1_i64` when XLEN = 32, the compiler may generate `vmv.x.s`, `vslide1down.vi`, and another `vmv.x.s`, with all SEW = 32, to extract the full 64 bits into two X-registers. (A future extension of the intrinsics could include an "`vmv_x_s_i64m1_i32`", perhaps only when XLEN = 32, whose semantics match `vmv.x.s` for XLEN = 32 and SEW = 64.)
+For example, to support `vmv_x_s_i64m1_i64` when XLEN = 32, the compiler may generate `vmv.x.s`, `vslide1down.vi`, and another `vmv.x.s`, all with SEW = 32, to extract the full 64 bits into two X-registers. (A future API extension could include an "`vmv_x_s_i64m1_i32`", perhaps only when XLEN = 32, whose semantics match `vmv.x.s` for XLEN = 32 and SEW = 64.)
 
 ## Mask in Intrinsics<a name="mask-in-intrinsics"></a>
 
