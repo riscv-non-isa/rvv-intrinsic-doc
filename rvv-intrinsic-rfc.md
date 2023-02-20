@@ -242,8 +242,8 @@ int8_t vmv_x_s_i8m8_i8 (vint8m8_t vs2, size_t vl);
 ## Scalar in Vector Operations<a name="scalar-in-vector-operations"></a>
 
 Some V-extension instructions have both vector and scalar operands,
-and the scalar operands may be truncated or extended depending on the relative widths of XLEN and SEW.
-The intrinsics API hides this detail from the C programmer by using fixed-width integer types, as follows:
+and the scalar operands may be truncated or extended depending on the relative widths of XLEN (or FLEN) and SEW.
+The intrinsics API hides this detail from the C programmer by using fixed-width integer (or floating-point) types, as follows:
 
 ```
 Example:
