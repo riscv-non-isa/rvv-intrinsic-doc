@@ -6,7 +6,6 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
-
 vint64m1_t test_vle64_v_i64m1(const int64_t *base, size_t vl) {
   return __riscv_vle64_v_i64m1(base, vl);
 }

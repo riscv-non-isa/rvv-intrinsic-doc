@@ -6,7 +6,6 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
-
 vint16mf4_t test_vwmaccsu_vv_i16mf4(vint16mf4_t vd, vint8mf8_t vs1, vuint8mf8_t vs2, size_t vl) {
   return __riscv_vwmaccsu_vv_i16mf4(vd, vs1, vs2, vl);
 }

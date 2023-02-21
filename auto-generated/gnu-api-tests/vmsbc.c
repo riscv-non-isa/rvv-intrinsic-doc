@@ -6,7 +6,6 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
-
 vbool64_t test_vmsbc_vvm_i8mf8_b64(vint8mf8_t op1, vint8mf8_t op2, vbool64_t borrowin, size_t vl) {
   return __riscv_vmsbc_vvm_i8mf8_b64(op1, op2, borrowin, vl);
 }

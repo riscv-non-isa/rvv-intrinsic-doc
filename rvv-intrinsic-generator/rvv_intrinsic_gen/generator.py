@@ -177,6 +177,9 @@ class Generator():
     print(f"Generator generated \x1b[1;31m{len(self.generated_functions_set)} \
       \x1b[0mfunctions")
 
+  def post_gen(self):
+    pass
+
 
 class DocGenerator(Generator):
   """
@@ -327,7 +330,7 @@ class APITestGenerator(Generator):
     if not self.llvm:
       self.fd.write("typedef _Float16 float16_t;\n")
       self.fd.write("typedef float float32_t;\n")
-      self.fd.write("typedef double float64_t;\n\n")
+      self.fd.write("typedef double float64_t;\n")
 
   def func(self, inst_info, name, return_type, **kwargs):
     if self.is_overloaded and not Generator.is_support_overloaded(

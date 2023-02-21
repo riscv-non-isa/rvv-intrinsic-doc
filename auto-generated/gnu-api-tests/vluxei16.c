@@ -6,7 +6,6 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
-
 vfloat32mf2_t test_vluxei16_v_f32mf2(const float32_t *base, vuint16mf4_t bindex, size_t vl) {
   return __riscv_vluxei16_v_f32mf2(base, bindex, vl);
 }
