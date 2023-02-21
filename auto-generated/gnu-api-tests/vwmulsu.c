@@ -3,6 +3,10 @@
 
 #include <riscv_vector.h>
 
+typedef _Float16 float16_t;
+typedef float float32_t;
+typedef double float64_t;
+
 vint16mf4_t test_vwmulsu_vv_i16mf4(vint8mf8_t op1, vuint8mf8_t op2, size_t vl) {
   return __riscv_vwmulsu_vv_i16mf4(op1, op2, vl);
 }
@@ -243,4 +247,4 @@ vint64m8_t test_vwmulsu_vx_i64m8_m(vbool8_t mask, vint32m4_t op1, uint32_t op2, 
   return __riscv_vwmulsu_vx_i64m8_m(mask, op1, op2, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vwmulsu\.[, a-x0-9()]+} 60 } } */
+/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vwmulsu\.[,\sa-x0-9()]+} 60 } } */

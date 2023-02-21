@@ -3,6 +3,10 @@
 
 #include <riscv_vector.h>
 
+typedef _Float16 float16_t;
+typedef float float32_t;
+typedef double float64_t;
+
 vfloat32mf2_t test_vle32_v_f32mf2(const float32_t *base, size_t vl) {
   return __riscv_vle32_v_f32mf2(base, vl);
 }
@@ -123,4 +127,4 @@ vuint32m8_t test_vle32_v_u32m8_m(vbool4_t mask, const uint32_t *base, size_t vl)
   return __riscv_vle32_v_u32m8_m(mask, base, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vle32\.[, a-x0-9()]+} 30 } } */
+/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vle32\.[,\sa-x0-9()]+} 30 } } */
