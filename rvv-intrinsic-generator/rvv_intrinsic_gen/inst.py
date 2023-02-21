@@ -549,3 +549,4 @@ def gen(g):
                    TYPES, SEWS, LMULS, decorators.has_no_masking)
 
   ####################################################################
+  g.gen_prologue()

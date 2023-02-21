@@ -40,6 +40,9 @@ class Generator():
   def write_title(self, text, link):
     pass
 
+  def gen_prologue(self):
+    pass
+
   def inst_group_prologue(self):
     return ""
 
@@ -465,13 +468,41 @@ class CompatibleHeaderGenerator(Generator):
   """
 
   def __init__(self, fd, is_overloaded, has_tail_policy):
+    #pylint: disable=line-too-long
     super().__init__()
     self.is_overloaded = is_overloaded
     self.has_tail_policy = has_tail_policy
     self.fd = fd
+    policy_header_start = """#ifndef __RVV_0P10_COMPATIBLE_HEADERS_POLICY_H
+#define __RVV_0P10_COMPATIBLE_HEADERS_POLICY_H
+
+#if __has_include ("riscv_vector.h")
+#include <riscv_vector.h>
+#endif
+#ifndef __RISCV_VECTOR_H
+#include_next <riscv_vector.h>
+#endif
+"""
+    non_policy_header_start = """#ifndef __RVV_0P10_COMPATIBLE_HEADERS_NON_POLICY_H
+#define __RVV_0P10_COMPATIBLE_HEADERS_NON_POLICY_H
+
+#if __has_include ("riscv_vector.h")
+#include <riscv_vector.h>
+#endif
+#ifndef __RISCV_VECTOR_H
+#include_next <riscv_vector.h>
+#endif
+"""
+    if has_tail_policy:
+      self.write(policy_header_start)
+    else:
+      self.write(non_policy_header_start)
 
   def write_title(self, text, link):
     pass
+
+  def gen_prologue(self):
+    self.write("#endif\n")
 
   def write(self, text):
     self.fd.write(text)
@@ -626,22 +657,23 @@ class CompatibleHeaderGenerator(Generator):
     if "vcompress" in legacy_func_name:
       if inst_info.extra_attr & ExtraAttr.IS_TA:
         self.write(f"#define {legacy_func_name}(mask, src, vl) "
-                   f"{new_func_name}(src, mask, vl)\n")
+                   f"{new_func_name}((src), (mask), (vl))\n")
       else:  #TU
         # The non-policy vcompress intrinsics comes here too because in v0.10
         # non-policy vcompress has policy behavior of tail undisturbed.
         self.write(f"#define {legacy_func_name}(mask, dest, src, vl) "
-                   f"{new_func_name}(dest, src, mask, vl)\n")
+                   f"{new_func_name}((dest), (src), (mask), (vl))\n")
       return
     if "vmerge" in legacy_func_name or "vfmerge" in legacy_func_name:
       if inst_info.extra_attr & ExtraAttr.IS_TU:
-        self.write(f"#define {legacy_func_name}(mask, maskedoff, op1, op2, vl) "
-                   f"{new_func_name}(maskedoff, op1, op2, mask, vl)\n")
+        self.write(
+            f"#define {legacy_func_name}(mask, maskedoff, op1, op2, vl) "
+            f"{new_func_name}((maskedoff), (op1), (op2), (mask), (vl))\n")
       else:  #TA
         # The non-policy vmerge/vfmerge intrinsics comes here too because in
         # v0.10 non-policy vcompress has policy behavior of tail agnostic.
         self.write(f"#define {legacy_func_name}(mask, op1, op2, vl) "
-                   f"{new_func_name}(op1, op2, mask, vl)\n")
+                   f"{new_func_name}((op1), (op2), (mask), (vl))\n")
       return
 
     assert False, "Unreachable"
