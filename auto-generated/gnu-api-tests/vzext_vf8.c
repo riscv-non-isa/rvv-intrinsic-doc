@@ -6,7 +6,6 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
-
 vuint64m1_t test_vzext_vf8_u64m1(vuint8mf8_t op1, size_t vl) {
   return __riscv_vzext_vf8_u64m1(op1, vl);
 }

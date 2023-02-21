@@ -6,7 +6,6 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
-
 vuint8mf8_t test_vnsrl_wv_u8mf8(vuint16mf4_t op1, vuint8mf8_t shift, size_t vl) {
   return __riscv_vnsrl_wv_u8mf8(op1, shift, vl);
 }
