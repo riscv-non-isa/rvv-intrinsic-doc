@@ -3,6 +3,10 @@
 
 #include <riscv_vector.h>
 
+typedef _Float16 float16_t;
+typedef float float32_t;
+typedef double float64_t;
+
 size_t test_vsetvlmax_e8mf8() {
   return __riscv_vsetvlmax_e8mf8();
 }
@@ -91,4 +95,4 @@ size_t test_vsetvlmax_e64m8() {
   return __riscv_vsetvlmax_e64m8();
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vsetvlmax\.[, a-x0-9()]+} 22 } } */
+/* { dg-final { scan-assembler-times {vsetvli\s+[a-x0-9]+,\s*zero,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]} 22 } } */

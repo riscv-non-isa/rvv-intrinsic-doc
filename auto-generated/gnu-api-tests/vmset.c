@@ -3,6 +3,10 @@
 
 #include <riscv_vector.h>
 
+typedef _Float16 float16_t;
+typedef float float32_t;
+typedef double float64_t;
+
 vbool1_t test_vmset_m_b1(size_t vl) {
   return __riscv_vmset_m_b1(vl);
 }
@@ -31,4 +35,4 @@ vbool64_t test_vmset_m_b64(size_t vl) {
   return __riscv_vmset_m_b64(vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vmset\.[, a-x0-9()]+} 7 } } */
+/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vmset\.[,\sa-x0-9()]+} 7 } } */

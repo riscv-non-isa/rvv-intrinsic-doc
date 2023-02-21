@@ -3,29 +3,9 @@
 
 #include <riscv_vector.h>
 
-void test_vsuxei8_v_f16mf4(float16_t *base, vuint8mf8_t bindex, vfloat16mf4_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f16mf4(base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f16mf2(float16_t *base, vuint8mf4_t bindex, vfloat16mf2_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f16mf2(base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f16m1(float16_t *base, vuint8mf2_t bindex, vfloat16m1_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f16m1(base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f16m2(float16_t *base, vuint8m1_t bindex, vfloat16m2_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f16m2(base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f16m4(float16_t *base, vuint8m2_t bindex, vfloat16m4_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f16m4(base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f16m8(float16_t *base, vuint8m4_t bindex, vfloat16m8_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f16m8(base, bindex, value, vl);
-}
+typedef _Float16 float16_t;
+typedef float float32_t;
+typedef double float64_t;
 
 void test_vsuxei8_v_f32mf2(float32_t *base, vuint8mf8_t bindex, vfloat32mf2_t value, size_t vl) {
   return __riscv_vsuxei8_v_f32mf2(base, bindex, value, vl);
@@ -45,22 +25,6 @@ void test_vsuxei8_v_f32m4(float32_t *base, vuint8m1_t bindex, vfloat32m4_t value
 
 void test_vsuxei8_v_f32m8(float32_t *base, vuint8m2_t bindex, vfloat32m8_t value, size_t vl) {
   return __riscv_vsuxei8_v_f32m8(base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f64m1(float64_t *base, vuint8mf8_t bindex, vfloat64m1_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f64m1(base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f64m2(float64_t *base, vuint8mf4_t bindex, vfloat64m2_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f64m2(base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f64m4(float64_t *base, vuint8mf2_t bindex, vfloat64m4_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f64m4(base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f64m8(float64_t *base, vuint8m1_t bindex, vfloat64m8_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f64m8(base, bindex, value, vl);
 }
 
 void test_vsuxei8_v_i8mf8(int8_t *base, vuint8mf8_t bindex, vint8mf8_t value, size_t vl) {
@@ -239,30 +203,6 @@ void test_vsuxei8_v_u64m8(uint64_t *base, vuint8m1_t bindex, vuint64m8_t value, 
   return __riscv_vsuxei8_v_u64m8(base, bindex, value, vl);
 }
 
-void test_vsuxei8_v_f16mf4_m(vbool64_t mask, float16_t *base, vuint8mf8_t bindex, vfloat16mf4_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f16mf4_m(mask, base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f16mf2_m(vbool32_t mask, float16_t *base, vuint8mf4_t bindex, vfloat16mf2_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f16mf2_m(mask, base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f16m1_m(vbool16_t mask, float16_t *base, vuint8mf2_t bindex, vfloat16m1_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f16m1_m(mask, base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f16m2_m(vbool8_t mask, float16_t *base, vuint8m1_t bindex, vfloat16m2_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f16m2_m(mask, base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f16m4_m(vbool4_t mask, float16_t *base, vuint8m2_t bindex, vfloat16m4_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f16m4_m(mask, base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f16m8_m(vbool2_t mask, float16_t *base, vuint8m4_t bindex, vfloat16m8_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f16m8_m(mask, base, bindex, value, vl);
-}
-
 void test_vsuxei8_v_f32mf2_m(vbool64_t mask, float32_t *base, vuint8mf8_t bindex, vfloat32mf2_t value, size_t vl) {
   return __riscv_vsuxei8_v_f32mf2_m(mask, base, bindex, value, vl);
 }
@@ -281,22 +221,6 @@ void test_vsuxei8_v_f32m4_m(vbool8_t mask, float32_t *base, vuint8m1_t bindex, v
 
 void test_vsuxei8_v_f32m8_m(vbool4_t mask, float32_t *base, vuint8m2_t bindex, vfloat32m8_t value, size_t vl) {
   return __riscv_vsuxei8_v_f32m8_m(mask, base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f64m1_m(vbool64_t mask, float64_t *base, vuint8mf8_t bindex, vfloat64m1_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f64m1_m(mask, base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f64m2_m(vbool32_t mask, float64_t *base, vuint8mf4_t bindex, vfloat64m2_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f64m2_m(mask, base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f64m4_m(vbool16_t mask, float64_t *base, vuint8mf2_t bindex, vfloat64m4_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f64m4_m(mask, base, bindex, value, vl);
-}
-
-void test_vsuxei8_v_f64m8_m(vbool8_t mask, float64_t *base, vuint8m1_t bindex, vfloat64m8_t value, size_t vl) {
-  return __riscv_vsuxei8_v_f64m8_m(mask, base, bindex, value, vl);
 }
 
 void test_vsuxei8_v_i8mf8_m(vbool64_t mask, int8_t *base, vuint8mf8_t bindex, vint8mf8_t value, size_t vl) {
@@ -475,4 +399,4 @@ void test_vsuxei8_v_u64m8_m(vbool8_t mask, uint64_t *base, vuint8m1_t bindex, vu
   return __riscv_vsuxei8_v_u64m8_m(mask, base, bindex, value, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vsuxei8\.[, a-x0-9()]+} 118 } } */
+/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vsuxei8\.[,\sa-x0-9()]+} 98 } } */

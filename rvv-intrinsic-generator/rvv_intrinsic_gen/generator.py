@@ -324,10 +324,10 @@ class APITestGenerator(Generator):
     else:
       self.fd.write("#include <stdint.h>\n")
     self.fd.write("#include <riscv_vector.h>\n\n")
-    if not (self.llvm or self.gnu) :
+    if not self.llvm:
       self.fd.write("typedef _Float16 float16_t;\n")
       self.fd.write("typedef float float32_t;\n")
-      self.fd.write("typedef double float64_t;\n")
+      self.fd.write("typedef double float64_t;\n\n")
 
   def func(self, inst_info, name, return_type, **kwargs):
     if self.is_overloaded and not Generator.is_support_overloaded(
@@ -404,6 +404,8 @@ class APITestGenerator(Generator):
     self.fd.write(call_args)
     self.fd.write(");\n")
     self.fd.write("}\n\n")
+    self.fd.flush() # To make sure the data flushed when post_gen.
+
 
   def post_gen(self):
     if self.gnu:
@@ -412,10 +414,49 @@ class APITestGenerator(Generator):
         api_count = fd.read().count("__riscv_")
         fd.close()
 
+        opcode = test_file.removesuffix(".c")
+
+        # TODO: move to switch case if python version > 3.10
+        if opcode.startswith("vsext_") or opcode.startswith("vzext"):
+          pattern = opcode.replace("_", "\.")
+        elif opcode == "vmv":
+          pattern = "v[ml][ve][0-9]*"
+        elif opcode == "vwadd":
+          pattern = "v[w]?add"
+        elif opcode == "vwaddu":
+          pattern = "v[w]?add[u]?"
+        elif opcode == "vwsub":
+          pattern = "v[w]?sub"
+        elif opcode == "vwsubu":
+          pattern = "v[w]?sub[u]?"
+        elif opcode == "vnmsac" or opcode == "vnmsub":
+          pattern = "vnms[acub]+"
+        elif opcode == "vmadd" or opcode == "vmacc":
+          pattern = "vma[c-d][c-d]"
+        elif opcode == "vmsge" or opcode == "vmslt":
+          pattern = "vms[gl][et]"
+        elif opcode == "vmsgeu" or opcode == "vmsltu":
+          pattern = "vms[gl][et]u"
+        else:
+          pattern = opcode
+
+        if not "\." in pattern:
+          pattern = "{PATTERN}\.".format(PATTERN=pattern)
+
         fd = open(os.path.join(self.folder, test_file), "a", encoding="utf-8")
-        #pylint: disable=line-too-long
-        fd.write("/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+{OPCODE}\.[, a-x0-9()]+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,OPCODE=test_file.removesuffix(".c")))
+
+        if opcode == "vsetvl":
+          #pylint: disable=line-too-long
+          fd.write("/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+[a-x0-9]+,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count))
+        elif opcode == "vsetvlmax":
+          #pylint: disable=line-too-long
+          fd.write("/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+[a-x0-9]+,\s*zero,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count))
+        else:
+          #pylint: disable=line-too-long
+          fd.write("/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+{PATTERN}[,\sa-x0-9()]+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern))
+
         fd.close()
+
 
   def function_group(self, template, title, link, op_list, type_list, sew_list,
                      lmul_list, decorator_list):

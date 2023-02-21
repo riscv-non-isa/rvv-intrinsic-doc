@@ -3,6 +3,10 @@
 
 #include <riscv_vector.h>
 
+typedef _Float16 float16_t;
+typedef float float32_t;
+typedef double float64_t;
+
 void test_vse8_v_i8mf8(int8_t *base, vint8mf8_t value, size_t vl) {
   return __riscv_vse8_v_i8mf8(base, value, vl);
 }
@@ -115,4 +119,4 @@ void test_vse8_v_u8m8_m(vbool1_t mask, uint8_t *base, vuint8m8_t value, size_t v
   return __riscv_vse8_v_u8m8_m(mask, base, value, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vse8\.[, a-x0-9()]+} 28 } } */
+/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vse8\.[,\sa-x0-9()]+} 28 } } */
