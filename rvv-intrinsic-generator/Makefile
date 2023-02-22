@@ -135,8 +135,7 @@ all: gen-document gen-test gen-compatible-header
 endif
 
 gen-document: non-overloaded-doc non-overloaded-docs overloaded-doc overloaded-docs
-gen-test: non-overloaded-test overloaded-test llvm-non-overloaded-test llvm-overloaded-test \
-		gnu-non-overloaded-test
+gen-test: non-overloaded-test overloaded-test llvm-non-overloaded-test llvm-overloaded-test
 gen-compatible-header: non-policy-compatible-header policy-compatible-header
 
 # Generate all-in-one document for non-overloaded intrinsics
@@ -173,10 +172,6 @@ llvm-non-overloaded-test:
 	$(call gen_tests,$(POLICY_DIR)/llvm-api-tests,non-overloaded-test,--llvm --has-policy)
 	$(call replace_float, $(DIR)/llvm-api-tests)
 	$(call replace_float, $(POLICY_DIR)/llvm-api-tests)
-
-# Generate GNU non-overloaded intrinsic testing C source files
-gnu-non-overloaded-test:
-	$(call gen_tests,$(DIR)/gnu-api-tests,non-overloaded-test,--gnu)
 
 # Generate overloaded intrinsic testing C source files
 llvm-overloaded-test:

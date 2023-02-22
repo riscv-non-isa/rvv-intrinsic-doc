@@ -419,8 +419,8 @@ class APITestGenerator(Generator):
 
         opcode = test_file.removesuffix(".c")
 
-        # TODO: move to switch case if python version > 3.10
-        if opcode.startswith("vsext_") or opcode.startswith("vzext"):
+        # TODO: move to switch case if python version >= 3.10
+        if "_" in opcode:
           pattern = opcode.replace("_", "\.")
         elif opcode == "vmv":
           pattern = "v[ml][ve][0-9]*"
