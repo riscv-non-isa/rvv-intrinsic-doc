@@ -22,6 +22,7 @@ import collections
 import re
 
 from enums import ExtraAttr
+from enums import ToolChainType
 
 
 class Generator():
@@ -281,12 +282,11 @@ class APITestGenerator(Generator):
   Derived generator for api unit tests.
   """
 
-  def __init__(self, f, is_overloaded, is_llvm, is_gnu, has_tail_policy):
+  def __init__(self, f, is_overloaded, toolchain_type, has_tail_policy):
     super().__init__()
     self.is_overloaded = is_overloaded
     self.folder = f
-    self.llvm = is_llvm
-    self.gnu = is_gnu
+    self.toolchain_type = toolchain_type
     self.has_tail_policy = has_tail_policy
     if not os.path.exists(self.folder):
       os.makedirs(self.folder)
@@ -317,17 +317,17 @@ class APITestGenerator(Generator):
 /* { dg-options "-march=rv64gcv -mabi=lp64d -O3 -fno-schedule-insns -fno-schedule-insns2" } */
 
 """)
-    if self.llvm:
+    if self.toolchain_type == ToolChainType.LLVM:
       if has_float_type:
         self.fd.write(float_llvm_header)
       else:
         self.fd.write(int_llvm_header)
-    elif self.gnu:
+    elif self.toolchain_type == ToolChainType.GNU:
       self.fd.write(gnu_header);
     else:
       self.fd.write("#include <stdint.h>\n")
     self.fd.write("#include <riscv_vector.h>\n\n")
-    if not self.llvm:
+    if self.toolchain_type != ToolChainType.LLVM:
       self.fd.write("typedef _Float16 float16_t;\n")
       self.fd.write("typedef float float32_t;\n")
       self.fd.write("typedef double float64_t;\n")
@@ -411,7 +411,7 @@ class APITestGenerator(Generator):
 
 
   def post_gen(self):
-    if self.gnu:
+    if self.toolchain_type == ToolChainType.GNU:
       for test_file in set(self.test_files):
         fd = open(os.path.join(self.folder, test_file), "r", encoding="utf-8")
         api_count = fd.read().count("__riscv_")
@@ -420,7 +420,7 @@ class APITestGenerator(Generator):
         opcode = test_file.removesuffix(".c")
 
         # TODO: move to switch case if python version >= 3.10
-        if "_" in opcode:
+        if opcode.find("_") != -1:
           pattern = opcode.replace("_", "\.")
         elif opcode == "vmv":
           pattern = "v[ml][ve][0-9]*"
@@ -443,7 +443,7 @@ class APITestGenerator(Generator):
         else:
           pattern = opcode
 
-        if not "\." in pattern:
+        if pattern.find("\.") == -1:
           pattern = "{PATTERN}\.".format(PATTERN=pattern)
 
         fd = open(os.path.join(self.folder, test_file), "a", encoding="utf-8")
