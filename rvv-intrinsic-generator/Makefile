@@ -168,15 +168,15 @@ overloaded-test:
 
 # Generate non-overloaded intrinsic testing C source files
 llvm-non-overloaded-test:
-	$(call gen_tests,$(DIR)/llvm-api-tests,non-overloaded-test,--llvm)
-	$(call gen_tests,$(POLICY_DIR)/llvm-api-tests,non-overloaded-test,--llvm --has-policy)
+	$(call gen_tests,$(DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm)
+	$(call gen_tests,$(POLICY_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --has-policy)
 	$(call replace_float, $(DIR)/llvm-api-tests)
 	$(call replace_float, $(POLICY_DIR)/llvm-api-tests)
 
 # Generate overloaded intrinsic testing C source files
 llvm-overloaded-test:
-	$(call gen_tests,$(DIR)/llvm-overloaded-tests,overloaded-test,--llvm)
-	$(call gen_tests,$(POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--llvm --has-policy)
+	$(call gen_tests,$(DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm)
+	$(call gen_tests,$(POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --has-policy)
 	$(call replace_float, $(DIR)/llvm-overloaded-tests)
 	$(call replace_float, $(POLICY_DIR)/llvm-overloaded-tests)
 
