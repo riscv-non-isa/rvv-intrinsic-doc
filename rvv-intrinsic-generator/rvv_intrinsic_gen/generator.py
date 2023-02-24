@@ -420,31 +420,31 @@ class APITestGenerator(Generator):
         opcode = test_file.removesuffix(".c")
 
         # TODO: move to switch case if python version >= 3.10
-        if opcode.find("_") != -1:
-          pattern = opcode.replace("_", "\.")
+        if "_" in opcode:
+          pattern_str = opcode.replace("_", "\.")
         elif opcode == "vmv":
-          pattern = "v[ml][ve][0-9]*"
+          pattern_str = "v[ml][ve][0-9]*"
         elif opcode == "vwadd":
-          pattern = "v[w]?add"
+          pattern_str = "v[w]?add"
         elif opcode == "vwaddu":
-          pattern = "v[w]?add[u]?"
+          pattern_str = "v[w]?add[u]?"
         elif opcode == "vwsub":
-          pattern = "v[w]?sub"
+          pattern_str = "v[w]?sub"
         elif opcode == "vwsubu":
-          pattern = "v[w]?sub[u]?"
+          pattern_str = "v[w]?sub[u]?"
         elif opcode == "vnmsac" or opcode == "vnmsub":
-          pattern = "vnms[acub]+"
+          pattern_str = "vnms[acub]+"
         elif opcode == "vmadd" or opcode == "vmacc":
-          pattern = "vma[c-d][c-d]"
+          pattern_str = "vma[c-d][c-d]"
         elif opcode == "vmsge" or opcode == "vmslt":
-          pattern = "vms[gl][et]"
+          pattern_str = "vms[gl][et]"
         elif opcode == "vmsgeu" or opcode == "vmsltu":
-          pattern = "vms[gl][et]u"
+          pattern_str = "vms[gl][et]u"
         else:
-          pattern = opcode
+          pattern_str = opcode
 
-        if pattern.find("\.") == -1:
-          pattern = "{PATTERN}\.".format(PATTERN=pattern)
+        if not "\." in  pattern_str:
+          pattern_str = "{PATTERN}\.".format(PATTERN=pattern_str)
 
         fd = open(os.path.join(self.folder, test_file), "a", encoding="utf-8")
 
@@ -456,7 +456,7 @@ class APITestGenerator(Generator):
           fd.write("/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+[a-x0-9]+,\s*zero,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count))
         else:
           #pylint: disable=line-too-long
-          fd.write("/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+{PATTERN}[,\sa-x0-9()]+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern))
+          fd.write("/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+{PATTERN}[,\sa-x0-9()]+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str))
 
         fd.close()
 
