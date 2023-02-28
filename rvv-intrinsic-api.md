@@ -61,17 +61,19 @@ These utility functions help users extract a smaller LMUL value from a larger LM
 ### Read/Write URW vector CSRs
 
 ```
-enum RVV_CSR {
-  RVV_VSTART = 0,
-  RVV_VXSAT,
-  RVV_VXRM,
-  RVV_VCSR,
-};
+unsigned long __riscv_read_csr_vstart();
+void __riscv_write_csr_vstart(unsigned long value);
 
-unsigned long vread_csr(enum RVV_CSR csr);
-void vwrite_csr(enum RVV_CSR csr, unsigned long value);
+unsigned long __riscv_read_csr_vxsat();
+void __riscv_write_csr_vxsat(unsigned long value);
 
-unsigned long vlenb();
+unsigned long __riscv_read_csr_vxrm();
+void __riscv_write_csr_vxrm(unsigned long value);
+
+unsigned long __riscv_read_csr_vcsr();
+void __riscv_write_csr_vcsr(unsigned long value);
+
+unsigned long __riscv_read_csr_vlenb();
 ```
 
 ## 7. Vector Loads and Stores
