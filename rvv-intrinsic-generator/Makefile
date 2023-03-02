@@ -136,7 +136,7 @@ endif
 
 gen-document: non-overloaded-doc non-overloaded-docs overloaded-doc overloaded-docs
 gen-test: non-overloaded-test overloaded-test llvm-non-overloaded-test llvm-overloaded-test \
-		gnu-non-overloaded-test
+		gnu-non-overloaded-test gnu-overloaded-test
 gen-compatible-header: non-policy-compatible-header policy-compatible-header
 
 # Generate all-in-one document for non-overloaded intrinsics
@@ -184,6 +184,10 @@ llvm-overloaded-test:
 # Generate GNU non-overloaded intrinsic testing source files
 gnu-non-overloaded-test:
 	$(call gen_tests,$(DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu)
+
+# Generate GNU overloaded intrinsic testing source files
+gnu-overloaded-test:
+	$(call gen_tests,$(DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu)
 
 # Generate the adaptor header for v0.10
 non-policy-compatible-header:
