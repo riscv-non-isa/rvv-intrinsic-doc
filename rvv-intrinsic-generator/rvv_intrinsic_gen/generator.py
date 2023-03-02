@@ -339,7 +339,12 @@ class APITestGenerator(Generator):
 
     non_overloaded_func_name = Generator.func_name(name)
     overloaded_func_name = Generator.get_overloaded_op_name(name)
-    test_file_name = f"{inst_info.OP}.c"
+
+    if self.is_overloaded and self.toolchain_type == ToolChainType.GNU:
+      # GNU test suite requires *.C as test file suffix for overloaded API.
+      test_file_name = f"{inst_info.OP}.C"
+    else:
+      test_file_name = f"{inst_info.OP}.c"
 
     if self.is_overloaded:
       func_name = overloaded_func_name
@@ -417,7 +422,7 @@ class APITestGenerator(Generator):
         api_count = fd.read().count("__riscv_")
         fd.close()
 
-        opcode = test_file.removesuffix(".c")
+        opcode = test_file.removesuffix(".c").removesuffix(".C")
 
         # TODO: move to switch case if python version >= 3.10
         if "_" in opcode:
