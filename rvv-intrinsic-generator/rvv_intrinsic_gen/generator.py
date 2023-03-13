@@ -515,6 +515,131 @@ class CompatibleHeaderGenerator(Generator):
                            lmul_list, decorator_list)
 
   @staticmethod
+  def is_policy_func(inst_info):
+    """
+    Determine whether the instruction information contains policy attributes.
+    """
+    return (inst_info.extra_attr & ExtraAttr.IS_TA) | \
+    (inst_info.extra_attr & ExtraAttr.IS_TU) | \
+    (inst_info.extra_attr & ExtraAttr.IS_MA) | \
+    (inst_info.extra_attr & ExtraAttr.IS_MU) | \
+    (inst_info.extra_attr & ExtraAttr.IS_TAMA) | \
+    (inst_info.extra_attr & ExtraAttr.IS_TAMU) | \
+    (inst_info.extra_attr & ExtraAttr.IS_TUMA) | \
+    (inst_info.extra_attr & ExtraAttr.IS_TUMU) | \
+    (inst_info.extra_attr & ExtraAttr.IS_RED_TUMA) | \
+    (inst_info.extra_attr & ExtraAttr.IS_RED_TAMA)
+
+  @staticmethod
+  def is_no_mu_inst(name):
+    no_mu_inst_list = ["vcpop", "vfirst", "red"]
+    for default_tu_inst in no_mu_inst_list:
+      if default_tu_inst in name:
+        return True
+    return False
+
+  @staticmethod
+  def is_always_ta_inst(name):
+    always_ta_inst_list = [
+        # mask unit-stride load/store instructions
+        "vlm",
+        "vsm",
+        # add-with-carry/subtract-with-borrow
+        "vadc",
+        "vadc",
+        "vmadc",
+        "vsbc",
+        "vmsbc",
+        # comparison instructions
+        "vmseq",
+        "vmsne",
+        "vmsltu",
+        "vmslt",
+        "vmsleu",
+        "vmsle",
+        "vmsgtu",
+        "vmsgt",
+        "vmsgeu",
+        "vmsge",
+        "vmfeq",
+        "vmfne",
+        "vmflt",
+        "vmfle",
+        "vmfgt",
+        "vmfge",
+        # mask-register logical instructions
+        "vmand",
+        "vmnand",
+        "vmandn",
+        "vmxor",
+        "vmor",
+        "vmnor",
+        "vmorn",
+        "vmxnor",
+        # other
+        "vmsbf",
+        "vmsif",
+        "vmsof",
+        "vfirst",
+        "vcpop"
+    ]
+    for always_ta_inst in always_ta_inst_list:
+      if always_ta_inst in name:
+        return True
+    return False
+
+  def get_new_suffix(name, inst_info):
+    """
+    Gets new suffix for instruction based on name and instruction information.
+    """
+
+    suffix = ""
+    # policy intrinsics go here
+    if CompatibleHeaderGenerator.is_policy_func(inst_info):
+      if inst_info.extra_attr & ExtraAttr.IS_TA:
+        suffix = ""
+      if inst_info.extra_attr & ExtraAttr.IS_TU:
+        suffix = "_tu"
+      if inst_info.extra_attr & ExtraAttr.IS_MA:
+        suffix = "_m"
+      if inst_info.extra_attr & ExtraAttr.IS_MU:
+        suffix = "_mu"
+      if inst_info.extra_attr & ExtraAttr.IS_TAMA:
+        suffix = "_m"
+      if inst_info.extra_attr & ExtraAttr.IS_TAMU:
+        suffix = "_mu"
+      if inst_info.extra_attr & ExtraAttr.IS_TUMA:
+        suffix = "_tum"
+      if inst_info.extra_attr & ExtraAttr.IS_TUMU:
+        suffix = "_tumu"
+      if inst_info.extra_attr & ExtraAttr.IS_MASK and \
+        inst_info.extra_attr & ExtraAttr.IS_RED_TUMA:
+        suffix = "_tum"
+      if inst_info.extra_attr & ExtraAttr.IS_MASK and \
+        inst_info.extra_attr & ExtraAttr.IS_RED_TAMA:
+        suffix = "_m"
+
+    else:  # non-policy intrinsics go here
+      if inst_info.store_p():
+        if inst_info.extra_attr & ExtraAttr.IS_MASK:
+          suffix = "_m"
+        else:
+          suffix = ""
+      elif inst_info.extra_attr & ExtraAttr.IS_MASK:
+        if CompatibleHeaderGenerator.is_no_mu_inst(name):
+          if CompatibleHeaderGenerator.is_always_ta_inst(name):
+            suffix = "_m"
+          else:
+            suffix = "_tum"
+        else:
+          if CompatibleHeaderGenerator.is_always_ta_inst(name):
+            suffix = "_mu"
+          else:
+            suffix = "_tumu"
+
+    return suffix
+
+  @staticmethod
   def get_new_func_name(name, inst_info):
     """
     Gets new (v0.11 or higher) function name from a v0.10 name.
@@ -560,125 +685,11 @@ class CompatibleHeaderGenerator(Generator):
           return True
       return False
 
-    def is_no_mu_inst(name):
-      no_mu_inst_list = ["vcpop", "vfirst", "red"]
-      for default_tu_inst in no_mu_inst_list:
-        if default_tu_inst in name:
-          return True
-      return False
-
-    def is_always_ta_inst(name):
-      always_ta_inst_list = [
-          # mask unit-stride load/store instructions
-          "vlm",
-          "vsm",
-          # add-with-carry/subtract-with-borrow
-          "vadc",
-          "vadc",
-          "vmadc",
-          "vsbc",
-          "vmsbc",
-          # comparison instructions
-          "vmseq",
-          "vmsne",
-          "vmsltu",
-          "vmslt",
-          "vmsleu",
-          "vmsle",
-          "vmsgtu",
-          "vmsgt",
-          "vmsgeu",
-          "vmsge",
-          "vmfeq",
-          "vmfne",
-          "vmflt",
-          "vmfle",
-          "vmfgt",
-          "vmfge",
-          # mask-register logical instructions
-          "vmand",
-          "vmnand",
-          "vmandn",
-          "vmxor",
-          "vmor",
-          "vmnor",
-          "vmorn",
-          "vmxnor",
-          # other
-          "vmsbf",
-          "vmsif",
-          "vmsof",
-          "vfirst",
-          "vcpop"
-      ]
-      for always_ta_inst in always_ta_inst_list:
-        if always_ta_inst in name:
-          return True
-      return False
-
-    def is_policy_func(inst_info):
-      return (inst_info.extra_attr & ExtraAttr.IS_TA) | \
-      (inst_info.extra_attr & ExtraAttr.IS_TU) | \
-      (inst_info.extra_attr & ExtraAttr.IS_MA) | \
-      (inst_info.extra_attr & ExtraAttr.IS_MU) | \
-      (inst_info.extra_attr & ExtraAttr.IS_TAMA) | \
-      (inst_info.extra_attr & ExtraAttr.IS_TAMU) | \
-      (inst_info.extra_attr & ExtraAttr.IS_TUMA) | \
-      (inst_info.extra_attr & ExtraAttr.IS_TUMU) | \
-      (inst_info.extra_attr & ExtraAttr.IS_RED_TUMA) | \
-      (inst_info.extra_attr & ExtraAttr.IS_RED_TAMA)
-
-    def get_suffix(name, inst_info):
-      suffix = ""
-      if is_policy_func(inst_info):  # policy intrinsics go here
-        if inst_info.extra_attr & ExtraAttr.IS_TA:
-          suffix = ""
-        if inst_info.extra_attr & ExtraAttr.IS_TU:
-          suffix = "_tu"
-        if inst_info.extra_attr & ExtraAttr.IS_MA:
-          suffix = "_m"
-        if inst_info.extra_attr & ExtraAttr.IS_MU:
-          suffix = "_mu"
-        if inst_info.extra_attr & ExtraAttr.IS_TAMA:
-          suffix = "_m"
-        if inst_info.extra_attr & ExtraAttr.IS_TAMU:
-          suffix = "_mu"
-        if inst_info.extra_attr & ExtraAttr.IS_TUMA:
-          suffix = "_tum"
-        if inst_info.extra_attr & ExtraAttr.IS_TUMU:
-          suffix = "_tumu"
-        if inst_info.extra_attr & ExtraAttr.IS_MASK and \
-          inst_info.extra_attr & ExtraAttr.IS_RED_TUMA:
-          suffix = "_tum"
-        if inst_info.extra_attr & ExtraAttr.IS_MASK and \
-          inst_info.extra_attr & ExtraAttr.IS_RED_TAMA:
-          suffix = "_m"
-
-      else:  # non-policy intrinsics go here
-        if inst_info.store_p():
-          if inst_info.extra_attr & ExtraAttr.IS_MASK:
-            suffix = "_m"
-          else:
-            suffix = ""
-        elif inst_info.extra_attr & ExtraAttr.IS_MASK:
-          if is_no_mu_inst(name):
-            if is_always_ta_inst(name):
-              suffix = "_m"
-            else:
-              suffix = "_tum"
-          else:
-            if is_always_ta_inst(name):
-              suffix = "_mu"
-            else:
-              suffix = "_tumu"
-
-      return suffix
-
     def is_mask_or_policy_suffix(name):
       """
       This function checks if the function name has a suffix that needs to be
       stripped because we will need to replace them with the new ones in v0.11
-      with `get_suffix`.
+      with `get_new_suffix`.
       """
       mask_or_policy_suffix = [
           "m", "tu", "ta", "tu", "tama", "tamu", "tuma", "tumu", "tam", "tum",
@@ -689,20 +700,22 @@ class CompatibleHeaderGenerator(Generator):
     if is_mask_or_policy_suffix(name):
       name = "_".join(name.split("_")[:-1])
 
-    if is_originally_default_tu_inst(name) and not is_policy_func(inst_info):
+    if is_originally_default_tu_inst(
+        name) and not CompatibleHeaderGenerator.is_policy_func(inst_info):
       if inst_info.extra_attr & ExtraAttr.IS_MASK:
-        if is_no_mu_inst(name):
-          if is_always_ta_inst(name):
+        if CompatibleHeaderGenerator.is_no_mu_inst(name):
+          if CompatibleHeaderGenerator.is_always_ta_inst(name):
             assert False, "Unreachable"
           return "__riscv_" + name + "_tum"
         else:
-          if is_always_ta_inst(name):
+          if CompatibleHeaderGenerator.is_always_ta_inst(name):
             assert False, "Unreachable"
           return "__riscv_" + name + "_tumu"
       else:
         return "__riscv_" + name + "_tu"
 
-    return "__riscv_" + name + get_suffix(name, inst_info)
+    return "__riscv_" + name + CompatibleHeaderGenerator.get_new_suffix(
+        name, inst_info)
 
   def need_to_swap_param(self, name):
     """
