@@ -536,6 +536,7 @@ class CompatibleHeaderGenerator(Generator):
           "vfnmsub",
           "vfwmacc",
           "vfwnmacc",
+          "vfwmsac",
           "vfwnmsac",
           "vmacc",
           "vmadd",
@@ -560,9 +561,58 @@ class CompatibleHeaderGenerator(Generator):
       return False
 
     def is_no_mu_inst(name):
-      no_mu_inst_list = ["vcpop", "vfirst"]
+      no_mu_inst_list = ["vcpop", "vfirst", "red"]
       for default_tu_inst in no_mu_inst_list:
         if default_tu_inst in name:
+          return True
+      return False
+
+    def is_always_ta_inst(name):
+      always_ta_inst_list = [
+          # mask unit-stride load/store instructions
+          "vlm",
+          "vsm",
+          # add-with-carry/subtract-with-borrow
+          "vadc",
+          "vadc",
+          "vmadc",
+          "vsbc",
+          "vmsbc",
+          # comparison instructions
+          "vmseq",
+          "vmsne",
+          "vmsltu",
+          "vmslt",
+          "vmsleu",
+          "vmsle",
+          "vmsgtu",
+          "vmsgt",
+          "vmsgeu",
+          "vmsge",
+          "vmfeq",
+          "vmfne",
+          "vmflt",
+          "vmfle",
+          "vmfgt",
+          "vmfge",
+          # mask-register logical instructions
+          "vmand",
+          "vmnand",
+          "vmandn",
+          "vmxor",
+          "vmor",
+          "vmnor",
+          "vmorn",
+          "vmxnor",
+          # other
+          "vmsbf",
+          "vmsif",
+          "vmsof",
+          "vfirst",
+          "vcpop"
+      ]
+      for always_ta_inst in always_ta_inst_list:
+        if always_ta_inst in name:
           return True
       return False
 
@@ -612,9 +662,15 @@ class CompatibleHeaderGenerator(Generator):
             suffix = ""
         elif inst_info.extra_attr & ExtraAttr.IS_MASK:
           if is_no_mu_inst(name):
-            suffix = "_m"
+            if is_always_ta_inst(name):
+              suffix = "_m"
+            else:
+              suffix = "_tum"
           else:
-            suffix = "_mu"
+            if is_always_ta_inst(name):
+              suffix = "_mu"
+            else:
+              suffix = "_tumu"
 
       return suffix
 
@@ -635,7 +691,14 @@ class CompatibleHeaderGenerator(Generator):
 
     if is_originally_default_tu_inst(name) and not is_policy_func(inst_info):
       if inst_info.extra_attr & ExtraAttr.IS_MASK:
-        return "__riscv_" + name + "_tum"
+        if is_no_mu_inst(name):
+          if is_always_ta_inst(name):
+            assert False, "Unreachable"
+          return "__riscv_" + name + "_tum"
+        else:
+          if is_always_ta_inst(name):
+            assert False, "Unreachable"
+          return "__riscv_" + name + "_tumu"
       else:
         return "__riscv_" + name + "_tu"
 
