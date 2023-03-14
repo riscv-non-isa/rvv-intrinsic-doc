@@ -129,7 +129,8 @@ class InstInfo:
                OP,
                inst_type=InstType.UNKNOWN,
                mem_type=MemType.NO_MEM,
-               extra_attr=ExtraAttr.NO_ATTR):
+               extra_attr=ExtraAttr.NO_ATTR,
+               NF=1):
     #pylint: disable=invalid-name
     self.SEW = SEW
     self.LMUL = LMUL
@@ -137,6 +138,7 @@ class InstInfo:
     self.inst_type = inst_type
     self.mem_type = mem_type
     self.extra_attr = extra_attr
+    self.NF = NF
 
   def load_p(self):
     return self.mem_type == MemType.LOAD
@@ -158,8 +160,12 @@ class InstInfo:
       return InstInfo(args["SEW"], args["LMUL"], args["OP"], inst_type,
                       mem_type, extra_attr)
     elif "SEW" in args:
-      return InstInfo(args["SEW"], args["LMUL"], args["OP"], inst_type,
-                      mem_type, extra_attr | decorator.flags)
+      if "NF" in args:
+        return InstInfo(args["SEW"], args["LMUL"], args["OP"], inst_type,
+                        mem_type, extra_attr | decorator.flags, args["NF"])
+      else:
+        return InstInfo(args["SEW"], args["LMUL"], args["OP"], inst_type,
+                        mem_type, extra_attr | decorator.flags)
     else:
       # For mask operation
       return InstInfo(0, 0, args["OP"], inst_type, mem_type,

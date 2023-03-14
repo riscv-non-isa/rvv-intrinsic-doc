@@ -98,7 +98,7 @@ class Generator():
     for p in ["tu", "tamu", "tumu", "tuma", "tam", "tum"]:
       if name.split("_")[-1] == p:
         return True
-    if name.find("vmv_s_x") != -1 or name.find("vfmv_s_f") != -1:
+    if name.find("vmv_s") != -1 or name.find("vfmv_s") != -1:
       # Prototype for non-policy and ta intrinsics of vmv_s_x and vfmv_s_f
       # is not feasible for overloading.
       return name.split("_")[-1] == "tu"
@@ -473,35 +473,113 @@ class CompatibleHeaderGenerator(Generator):
     self.is_overloaded = is_overloaded
     self.has_tail_policy = has_tail_policy
     self.fd = fd
-    policy_header_start = """#ifndef __RVV_0P10_COMPATIBLE_HEADERS_POLICY_H
-#define __RVV_0P10_COMPATIBLE_HEADERS_POLICY_H
-
+    # Store parameter count for the override macro trick
+    self.override_macro_param_new_unmasked_func_name_and_param_cnt = {}
+    self.override_macro_param_new_masked_func_name_and_param_cnt = {}
+    common_include = """
 #if __has_include ("riscv_vector.h")
 #include <riscv_vector.h>
 #endif
 #ifndef __RISCV_VECTOR_H
 #include_next <riscv_vector.h>
 #endif
-"""
-    non_policy_header_start = """#ifndef __RVV_0P10_COMPATIBLE_HEADERS_NON_POLICY_H
-#define __RVV_0P10_COMPATIBLE_HEADERS_NON_POLICY_H
 
-#if __has_include ("riscv_vector.h")
-#include <riscv_vector.h>
-#endif
-#ifndef __RISCV_VECTOR_H
-#include_next <riscv_vector.h>
-#endif
 """
+
+    non_overloaded_policy_header_start = """#ifndef __RVV_0P10_COMPATIBLE_HEADERS_NON_OVERLOADED_POLICY_H
+#define __RVV_0P10_COMPATIBLE_HEADERS_NON_OVERLOADED_POLICY_H
+
+"""
+
+    non_overloaded_non_policy_header_start = """#ifndef __RVV_0P10_COMPATIBLE_HEADERS_NON_OVERLOADED_NON_POLICY_H
+#define __RVV_0P10_COMPATIBLE_HEADERS_NON_OVERLOADED_NON_POLICY_H
+
+"""
+
+    overloaded_policy_header_start = """#ifndef __RVV_0P10_COMPATIBLE_HEADERS_OVERLOADED_POLICY_H
+#define __RVV_0P10_COMPATIBLE_HEADERS_OVERLOADED_POLICY_H
+
+"""
+
+    overloaded_non_policy_header_start = """#ifndef __RVV_0P10_COMPATIBLE_HEADERS_OVERLOADED_NON_POLICY_H
+#define __RVV_0P10_COMPATIBLE_HEADERS_OVERLOADED_NON_POLICY_H
+
+"""
+
+    override_macro_utility = """
+// The maximum number of parameters is 20, this is held by segment load
+// instructions with a NFIELD (NF) of 8. 20 is contributed by 8 vector register
+// pointers passed, 1 vector mask register, 8 passthrough register for
+// undisturbed policy, and 3 for address base, byte index, vl.
+#define _GET_OVERRIDE(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13,\\
+_14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
+
+"""
+
     if has_tail_policy:
-      self.write(policy_header_start)
+      if self.is_overloaded:
+        self.write(overloaded_policy_header_start)
+      else:
+        self.write(non_overloaded_policy_header_start)
     else:
-      self.write(non_policy_header_start)
+      if self.is_overloaded:
+        self.write(overloaded_non_policy_header_start)
+        self.write(override_macro_utility)
+      else:
+        self.write(non_overloaded_non_policy_header_start)
+    self.write(common_include)
 
   def write_title(self, text, link):
     pass
 
   def gen_prologue(self):
+    if self.is_overloaded:
+      for legacy_func_name, unmasked_new_func_name_and_unmasked_param_cnt_set\
+        in\
+        self.override_macro_param_new_unmasked_func_name_and_param_cnt.items():
+        if self.need_to_swap_param(legacy_func_name):
+          continue
+        unmasked_new_func_name, unmasked_param_cnt_set = \
+          list(unmasked_new_func_name_and_unmasked_param_cnt_set.items())[0]
+
+        assert len(unmasked_param_cnt_set) != 0
+
+        if legacy_func_name in \
+          self.override_macro_param_new_masked_func_name_and_param_cnt:
+          masked_new_func_name, masked_param_cnt_set =\
+            list(
+              self.override_macro_param_new_masked_func_name_and_param_cnt
+                [legacy_func_name].items())[0]
+        else:
+          masked_param_cnt_set = {}
+
+        if len(unmasked_param_cnt_set) + len(masked_param_cnt_set) == 1:
+          self.write(f"#define {legacy_func_name} {unmasked_new_func_name}\n")
+          continue
+        self.write(f"#define {legacy_func_name}(...) _GET_OVERRIDE(__VA_ARGS__")
+        for i in range(20, 0, -1):
+          self.write(", ")
+          if i in unmasked_param_cnt_set:
+            self.write(f"{unmasked_new_func_name}")
+          elif i in masked_param_cnt_set:
+            self.write(f"{masked_new_func_name}")
+          else:
+            self.write(f"{i}")
+        self.write(")(__VA_ARGS__)\n")
+
+      for legacy_func_name, masked_new_func_name_and_masked_param_cnt_set in\
+          self.override_macro_param_new_masked_func_name_and_param_cnt.items():
+        masked_new_func_name, masked_param_cnt_set = \
+          list(masked_new_func_name_and_masked_param_cnt_set.items())[0]
+        if self.need_to_swap_param(legacy_func_name):
+          continue
+        if legacy_func_name in\
+          self.override_macro_param_new_unmasked_func_name_and_param_cnt:
+          continue
+        if len(masked_param_cnt_set) != 1:
+          assert False
+        self.write(f"#define {legacy_func_name} {masked_new_func_name}\n")
+
     self.write("#endif\n")
 
   def write(self, text):
@@ -588,6 +666,42 @@ class CompatibleHeaderGenerator(Generator):
         return True
     return False
 
+  @staticmethod
+  def get_legacy_suffix(inst_info):
+    """
+    Gets legacy suffix for instruction based on name and instruction
+    information.
+    """
+    suffix = ""
+    if CompatibleHeaderGenerator.is_policy_func(
+        inst_info):  # policy intrinsics go here
+      if inst_info.extra_attr & ExtraAttr.IS_TA:
+        suffix = "_ta"
+      if inst_info.extra_attr & ExtraAttr.IS_TU:
+        suffix = "_tu"
+      if inst_info.extra_attr & ExtraAttr.IS_MA:
+        suffix = "_ma"
+      if inst_info.extra_attr & ExtraAttr.IS_MU:
+        suffix = "_mu"
+      if inst_info.extra_attr & ExtraAttr.IS_TAMA:
+        suffix = "_tama"
+      if inst_info.extra_attr & ExtraAttr.IS_TAMU:
+        suffix = "_tamu"
+      if inst_info.extra_attr & ExtraAttr.IS_TUMA:
+        suffix = "_tuma"
+      if inst_info.extra_attr & ExtraAttr.IS_TUMU:
+        suffix = "_tumu"
+      if inst_info.extra_attr & ExtraAttr.IS_MASK and \
+        inst_info.extra_attr & ExtraAttr.IS_RED_TUMA:
+        suffix = "_tum"
+      if inst_info.extra_attr & ExtraAttr.IS_MASK and \
+        inst_info.extra_attr & ExtraAttr.IS_RED_TAMA:
+        suffix = "_tam"
+    else:  # non-policy intrinsics go here
+      assert False, "To be implemented"
+    return suffix
+
+  @staticmethod
   def get_new_suffix(name, inst_info):
     """
     Gets new suffix for instruction based on name and instruction information.
@@ -677,8 +791,8 @@ class CompatibleHeaderGenerator(Generator):
           "vslideup",
           "vslidedown",
           "vcompress",
-          "vmv_s_x",
-          "vfmv_s_f",
+          "vmv_s",
+          "vfmv_s",
       ]
       for default_tu_inst in default_tu_inst_list:
         if default_tu_inst in name:
@@ -755,14 +869,116 @@ class CompatibleHeaderGenerator(Generator):
     assert False, "Unreachable"
 
   def func(self, inst_info, name, return_type, **kwargs):
-    self.generated_functions_set.add(name)
-    legacy_func_name = Generator.func_name(name)[8:]
-    new_func_name = CompatibleHeaderGenerator.get_new_func_name(
-        legacy_func_name, inst_info)
-
-    if self.need_to_swap_param(legacy_func_name):
-      self.write_param_swap_compatible_definition(legacy_func_name,
-                                                  new_func_name, inst_info)
+    if self.is_overloaded and not Generator.is_support_overloaded(
+        name, **kwargs) and "vfmv_s" not in name and "vmv_s" not in name and\
+        not (inst_info.extra_attr & ExtraAttr.IS_MASK and\
+         ("viota" in name or "vid" in name)):
+      # In v0.10, overloaded version of vid, vmv_s_x, and vfmv_s_f is
+      # feasible because they have a default policy assumption of tail
+      # undisturbed.
+      # For masked versions of v0.10 vid, viota, the overloaded version is
+      # possible.
+      # In v0.11, the general assumption of policy is agnostic so they
+      # don't have an overloaded version. Generator.is_support_overloaded
+      # will return False for them so we prevent this by extra checking
+      # the name here.
       return
 
-    self.write(f"#define {legacy_func_name} {new_func_name}\n")
+    if self.is_overloaded:
+      legacy_func_name = Generator.get_overloaded_op_name(name)[8:]
+
+      if not CompatibleHeaderGenerator.is_policy_func(inst_info):
+        # For legacy non-policy overloaded intrinsics, we need the override
+        # technique to map the same legacy overloaded name to its corresponding
+        # v0.11 name.
+        # For example:
+        # vadd (op1, op2, vl) --> __riscv_vadd
+        # vadd(maskedoff, mask, op1, op2, vl) --> __riscv_vadd_tumu
+        if inst_info.extra_attr & ExtraAttr.IS_MASK and\
+          legacy_func_name in\
+            self.override_macro_param_new_masked_func_name_and_param_cnt:
+          return
+        elif not inst_info.extra_attr & ExtraAttr.IS_MASK and\
+          legacy_func_name in\
+            self.override_macro_param_new_unmasked_func_name_and_param_cnt:
+          return
+
+        if inst_info.extra_attr & ExtraAttr.IS_MASK and\
+           legacy_func_name not in\
+            self.override_macro_param_new_masked_func_name_and_param_cnt:
+          self.override_macro_param_new_masked_func_name_and_param_cnt[
+              legacy_func_name] = {}
+        if not inst_info.extra_attr & ExtraAttr.IS_MASK and\
+           legacy_func_name not in\
+            self.override_macro_param_new_unmasked_func_name_and_param_cnt:
+          self.override_macro_param_new_unmasked_func_name_and_param_cnt[
+              legacy_func_name] = {}
+        self.generated_functions_set.add(legacy_func_name)
+      else:
+        if legacy_func_name in self.generated_functions_set:
+          return
+        self.generated_functions_set.add(legacy_func_name)
+
+      if CompatibleHeaderGenerator.is_policy_func(inst_info):
+        # Strip trailing suffix
+        legacy_func_name = "_".join(legacy_func_name.split("_")[:-1])
+
+        legacy_suffix = CompatibleHeaderGenerator.get_legacy_suffix(inst_info)
+        new_suffix = CompatibleHeaderGenerator.get_new_suffix(name, inst_info)
+        if new_suffix == "_m":
+          # Overloaded version intrinsics don't need the `_m` suffix.
+          new_suffix = ""
+
+        new_func_name = "__riscv_" + legacy_func_name + new_suffix
+        legacy_func_name = legacy_func_name + legacy_suffix
+
+        if self.need_to_swap_param(legacy_func_name):
+          self.write_param_swap_compatible_definition(legacy_func_name,
+                                                      new_func_name, inst_info)
+          return
+        self.write(f"#define {legacy_func_name} {new_func_name}\n")
+      else:
+        new_func_name = CompatibleHeaderGenerator.get_new_func_name(
+            legacy_func_name, inst_info)
+
+        if self.need_to_swap_param(legacy_func_name):
+          self.write_param_swap_compatible_definition(legacy_func_name,
+                                                      new_func_name, inst_info)
+          return
+
+        if new_func_name[-2:] == "_m":
+          # Overloaded version intrinsics don't need the `_m` suffix.
+          new_func_name = new_func_name[:-2]
+
+        if inst_info.extra_attr & ExtraAttr.IS_MASK:
+          if new_func_name not in\
+            self.override_macro_param_new_masked_func_name_and_param_cnt[
+              legacy_func_name]:
+            self.override_macro_param_new_masked_func_name_and_param_cnt[
+                legacy_func_name][new_func_name] = set([len(kwargs)])
+          else:
+            self.override_macro_param_new_masked_func_name_and_param_cnt[
+                legacy_func_name][new_func_name].add(len(kwargs))
+          #self.write(f"#define {legacy_func_name}_masked {new_func_name}\n")
+        else:
+          if new_func_name not in\
+            self.override_macro_param_new_unmasked_func_name_and_param_cnt[
+              legacy_func_name]:
+            self.override_macro_param_new_unmasked_func_name_and_param_cnt[
+                legacy_func_name][new_func_name] = set([len(kwargs)])
+          else:
+            self.override_macro_param_new_unmasked_func_name_and_param_cnt[
+                legacy_func_name][new_func_name].add(len(kwargs))
+          #self.write(f"#define {legacy_func_name}_unmasked {new_func_name}\n")
+    else:
+      self.generated_functions_set.add(name)
+      legacy_func_name = Generator.func_name(name)[8:]
+      new_func_name = CompatibleHeaderGenerator.get_new_func_name(
+          legacy_func_name, inst_info)
+
+      if self.need_to_swap_param(legacy_func_name):
+        self.write_param_swap_compatible_definition(legacy_func_name,
+                                                    new_func_name, inst_info)
+        return
+
+      self.write(f"#define {legacy_func_name} {new_func_name}\n")
