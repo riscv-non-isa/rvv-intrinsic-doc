@@ -111,6 +111,9 @@ class LegacyIntrinsicDecorator():
       return {}
     elif self.has_maskedoff_name is True and not self.need_maskedoff:
       return {"maskedoff": dest_type}
+    elif self.is_mask and self.need_maskedoff:
+      # Don't repeatedly assign maskedoff/dest parameter
+      return {}
     return {"dest": dest_type}
 
   def tu_dest_args(self, dest_type, nf=None):
