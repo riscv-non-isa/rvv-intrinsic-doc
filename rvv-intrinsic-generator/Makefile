@@ -106,7 +106,7 @@ define gen_docs
 endef
 
 define gen_tests
-	rm $(1)/*.c -f
+	rm $(1)/*.c $(1)/*.C -f
 	$(PY3) -m $(MAIN) --gen $(2) \
 		--out $(1) $(3) \
 		$(TRIGGER_VENDOR_INST) $(TRIGGER_SKIP_DEFAULT_INST)
@@ -184,10 +184,12 @@ llvm-overloaded-test:
 # Generate GNU non-overloaded intrinsic testing source files
 gnu-non-overloaded-test:
 	$(call gen_tests,$(DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu)
+	$(call gen_tests,$(POLICY_DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu --has-policy)
 
 # Generate GNU overloaded intrinsic testing source files
 gnu-overloaded-test:
 	$(call gen_tests,$(DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu)
+	$(call gen_tests,$(POLICY_DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu --has-policy)
 
 # Generate the adaptor header for v0.10
 non-policy-compatible-header:
