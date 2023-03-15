@@ -276,6 +276,12 @@ run-non-policy-overloaded-compatible-api-testing:
 		$(LEGACY_API_TESTS_DIR)/non-policy-overloaded-api-testing
 	$(call run_tests,$(LEGACY_API_TESTS_DIR)/non-policy-overloaded-api-testing,${COMPILER})
 
+run-policy-overloaded-compatible-api-testing:
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	cp -r $(DIR)/rvv-v0p10-compatible-headers \
+		$(LEGACY_API_TESTS_DIR)/policy-overloaded-api-testing
+	$(call run_tests,$(LEGACY_API_TESTS_DIR)/policy-overloaded-api-testing,${COMPILER})
+
 # A parameterized target to run testing through testing-report.
 # Makes target 'test' of ${API_MAKEFILE} with ${TESTING_REPORT_SCRIPT} under
 # ${API_DIR}. Requires ${API_DIR}, ${API_MAKEFILE}, ${TESTING_REPORT_SCRIPT}
