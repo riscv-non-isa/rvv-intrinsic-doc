@@ -282,11 +282,13 @@ run-test:
 	if [ ! -f "${TESTING_REPORT_SCRIPT}" ]; then \
 		echo "File '${TESTING_REPORT_SCRIPT}' does not exist"; \
 	fi
+	make clean -C ${API_DIR} \
+		-f ${API_MAKEFILE}
 	make -C ${API_DIR} \
 		BASE_DIR=${API_DIR} \
 		TESTING_REPORT_SCRIPT=${TESTING_REPORT_SCRIPT} \
 		CC=${COMPILER} \
-		-f ${API_MAKEFILE}
+		-f ${API_MAKEFILE} -j${nproc}
 
 ###############################################################################
 # Custom Vendor Generator Target
