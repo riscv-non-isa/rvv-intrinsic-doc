@@ -582,6 +582,8 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
         self.write(f"#define {legacy_func_name}(...) ")
         self.write(f"{masked_new_func_name}(__VA_ARGS__)\n")
 
+    if not self.has_tail_policy and self.is_overloaded:
+      self.write("#undef _GET_OVERRIDE\n")
     self.write("#endif\n")
 
   def write(self, text):
