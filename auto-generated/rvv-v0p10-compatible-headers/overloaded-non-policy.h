@@ -758,4 +758,5 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
 #define vlsseg8e8(...) __riscv_vlsseg8e8_tumu(__VA_ARGS__)
 #define viota(...) __riscv_viota_tumu(__VA_ARGS__)
 #define vid(...) __riscv_vid_tumu(__VA_ARGS__)
+#undef _GET_OVERRIDE
 #endif
