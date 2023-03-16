@@ -1,5 +1,6 @@
-#ifndef __RVV_0P10_COMPATIBLE_HEADERS_NON_POLICY_H
-#define __RVV_0P10_COMPATIBLE_HEADERS_NON_POLICY_H
+#ifndef __RVV_0P10_COMPATIBLE_HEADERS_NON_OVERLOADED_NON_POLICY_H
+#define __RVV_0P10_COMPATIBLE_HEADERS_NON_OVERLOADED_NON_POLICY_H
+
 
 #if __has_include ("riscv_vector.h")
 #include <riscv_vector.h>
@@ -7,6 +8,7 @@
 #ifndef __RISCV_VECTOR_H
 #include_next <riscv_vector.h>
 #endif
+
 #define vsetvl_e8mf8 __riscv_vsetvl_e8mf8
 #define vsetvl_e8mf4 __riscv_vsetvl_e8mf4
 #define vsetvl_e8mf2 __riscv_vsetvl_e8mf2
