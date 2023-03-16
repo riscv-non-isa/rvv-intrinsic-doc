@@ -554,7 +554,8 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
           masked_param_cnt_set = {}
 
         if len(unmasked_param_cnt_set) + len(masked_param_cnt_set) == 1:
-          self.write(f"#define {legacy_func_name} {unmasked_new_func_name}\n")
+          self.write(f"#define {legacy_func_name}(...) ")
+          self.write(f"{unmasked_new_func_name}(__VA_ARGS__)\n")
           continue
         self.write(f"#define {legacy_func_name}(...) _GET_OVERRIDE(__VA_ARGS__")
         for i in range(20, 0, -1):
@@ -578,7 +579,8 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
           continue
         if len(masked_param_cnt_set) != 1:
           assert False
-        self.write(f"#define {legacy_func_name} {masked_new_func_name}\n")
+        self.write(f"#define {legacy_func_name}(...) ")
+        self.write(f"{masked_new_func_name}(__VA_ARGS__)\n")
 
     self.write("#endif\n")
 
@@ -936,7 +938,8 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
           self.write_param_swap_compatible_definition(legacy_func_name,
                                                       new_func_name, inst_info)
           return
-        self.write(f"#define {legacy_func_name} {new_func_name}\n")
+        self.write(f"#define {legacy_func_name}(...) ")
+        self.write(f"{new_func_name}(__VA_ARGS__)\n")
       else:
         new_func_name = CompatibleHeaderGenerator.get_new_func_name(
             legacy_func_name, inst_info)
@@ -959,7 +962,6 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
           else:
             self.override_macro_param_new_masked_func_name_and_param_cnt[
                 legacy_func_name][new_func_name].add(len(kwargs))
-          #self.write(f"#define {legacy_func_name}_masked {new_func_name}\n")
         else:
           if new_func_name not in\
             self.override_macro_param_new_unmasked_func_name_and_param_cnt[
@@ -969,7 +971,6 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
           else:
             self.override_macro_param_new_unmasked_func_name_and_param_cnt[
                 legacy_func_name][new_func_name].add(len(kwargs))
-          #self.write(f"#define {legacy_func_name}_unmasked {new_func_name}\n")
     else:
       self.generated_functions_set.add(name)
       legacy_func_name = Generator.func_name(name)[8:]
@@ -981,4 +982,5 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
                                                     new_func_name, inst_info)
         return
 
-      self.write(f"#define {legacy_func_name} {new_func_name}\n")
+      self.write(f"#define {legacy_func_name}(...) ")
+      self.write(f"{new_func_name}(__VA_ARGS__)\n")
