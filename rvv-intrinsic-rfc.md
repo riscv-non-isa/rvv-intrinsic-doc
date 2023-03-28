@@ -88,6 +88,28 @@ n = `SEW`/`LMUL`
 | ----- | -------- | -------- | -------- | -------- | --------- | --------- | ---------
 | bool  | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t
 
+### Tuple Types for segment load/store
+
+The tuple types are grouped tuples of [data type](#data-types) that are used as input operand and return values for the segment load/store intrinsics. The tuple types defined matches the hardware limitation of the vector extension, which is NFIELD * ELMUL <= 8.
+
+NOTE: How the actual vector registers are passed during calls is not defined here. This detail is yet to be defined in the RISC-V psABI specification. Currently the LLVM implementation follows the [draft proposal](https://github.com/riscv-non-isa/riscv-elf-psabi-doc/pull/171) under [riscv-non-isa/riscv-elf-psabi](https://github.com/riscv-non-isa/riscv-elf-psabi-doc).
+
+The following sections enumerates data width (ELEN) and LMUL under [data type](#data-types) and their corresponding tuple types available. For `<data_type>` available under each element width, please check the chart under [data type](#data-types).
+
+For a data type `vint32m1_t` to be available as a tuple of 3, this means users can set/get 3 values of `vint32m1_t` into/from `vint32m1x3_t`.
+
+| Types                                  | Available `<elen>` | Available `<tuple_type>`
+| -------------------------------------- | ------------------ | --------------------------
+| `v<data_type><elen>mf8x<tuple_type>_t` | 8                  | 2, 3, 4, ..., 7, 8
+| `v<data_type><elen>mf4x<tuple_type>_t` | 8, 16              | 2, 3, 4, ..., 7, 8
+| `v<data_type><elen>mf2x<tuple_type>_t` | 8, 16, 32          | 2, 3, 4, ..., 7, 8
+| `v<data_type><elen>m1x<tuple_type>_t`  | 8, 16, 32, 64      | 2, 3, 4, ..., 7, 8
+| `v<data_type><elen>m2x<tuple_type>_t`  | 8, 16, 32, 64      | 2, 3, 4
+| `v<data_type><elen>m4x<tuple_type>_t`  | 8, 16, 32, 64      | 2
+| `v<data_type><elen>m8x<tuple_type>_t`  | X                  | X
+
+(Side note) As a next step after this tuple type variant of segment load/store lands in the specification, we may proceed to define some user friendly types that goes across hardware limitation in the vector extension (which is NFIELD * LMUL <= 8) and allow type such as `vint64m8x2_t` (a tuple of two `vint64m8_t` value) that can be used in function parameters and return values.
+
 ## Configuration-Setting and `vl` Argument<a name="configuration-setting"></a>
 
 There are two variants of configuration setting intrinsics. `vsetvl` is used to
