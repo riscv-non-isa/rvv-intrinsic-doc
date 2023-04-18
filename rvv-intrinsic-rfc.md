@@ -28,6 +28,7 @@
   * [Reinterpret between floating point and integer types](#reinterpret-float)
   * [Reinterpret between signed and unsigned types](#reinterpret-sign)
   * [Reinterpret between different SEWs under the same LMUL](#reinterpret-sew)
+  * [Reinterpret between vector boolean types and LMUL=1 (m1) vector integer types](#reinterpret-vbool-o-vintm1)
   * [LMUL truncation and LMUL extension functions](#lmul-trunc)
   * [Vector Insertion and Extraction functions](#insert-extract)
 - [Overloaded Interface](#overloaded-interface)
@@ -564,6 +565,21 @@ Example:
 
 // Convert SEW under the same LMUL.
 vint64m1_t vreinterpret_v_i32m1_i64m1(vint32m1_t src)
+```
+
+### Reinterpret between vector boolean types and LMUL=1 (m1) vector integer types<a name="reinterpret-vbool-o-vintm1"></a>
+
+These utilities help users to convert vector boolean types to `LMUL=1` vector integer types, e.g. converting `vbool64_t` to `vint64m1_t`, `vbool16_t` to `vint8m1_t`. The reinterpret intrinsics only change the types of the underlying contents. It is a nop operation.
+
+User of this intrinsics should be aware of the [mask register layout](https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#45-mask-register-layout) held in the vector registers and bits in the value may be undefined.
+
+```
+Example:
+
+// Converting a mask vector value to a LMUL=1 int64 vector value
+vint64m1_t vreinterpret_v_b1_i64m1(vbool1_t src);
+// Converting a LMUL=1 int64 vector value to a mask vector value
+vbool1_t vreinterpret_v_i64m1_b1(vint64m1_t src);
 ```
 
 ### LMUL truncation and LMUL extension functions<a name="lmul-trunc)"></a>
