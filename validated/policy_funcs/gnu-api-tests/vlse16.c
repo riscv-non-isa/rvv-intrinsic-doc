@@ -198,4 +198,4 @@ vuint16m8_t test_vlse16_v_u16m8_mu(vbool2_t mask, vuint16m8_t maskedoff, const u
   return __riscv_vlse16_v_u16m8_mu(mask, maskedoff, base, bstride, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vlse16\.[,\sa-x0-9()]+} 48 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlse16\.[ivxfswum.]+\s+} 48 } } */

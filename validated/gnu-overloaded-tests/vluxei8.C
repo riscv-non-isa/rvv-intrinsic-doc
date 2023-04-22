@@ -26,6 +26,22 @@ vfloat32m8_t test_vluxei8_v_f32m8(const float32_t *base, vuint8m2_t bindex, size
   return __riscv_vluxei8(base, bindex, vl);
 }
 
+vfloat64m1_t test_vluxei8_v_f64m1(const float64_t *base, vuint8mf8_t bindex, size_t vl) {
+  return __riscv_vluxei8(base, bindex, vl);
+}
+
+vfloat64m2_t test_vluxei8_v_f64m2(const float64_t *base, vuint8mf4_t bindex, size_t vl) {
+  return __riscv_vluxei8(base, bindex, vl);
+}
+
+vfloat64m4_t test_vluxei8_v_f64m4(const float64_t *base, vuint8mf2_t bindex, size_t vl) {
+  return __riscv_vluxei8(base, bindex, vl);
+}
+
+vfloat64m8_t test_vluxei8_v_f64m8(const float64_t *base, vuint8m1_t bindex, size_t vl) {
+  return __riscv_vluxei8(base, bindex, vl);
+}
+
 vint8mf8_t test_vluxei8_v_i8mf8(const int8_t *base, vuint8mf8_t bindex, size_t vl) {
   return __riscv_vluxei8(base, bindex, vl);
 }
@@ -222,6 +238,22 @@ vfloat32m8_t test_vluxei8_v_f32m8_m(vbool4_t mask, const float32_t *base, vuint8
   return __riscv_vluxei8(mask, base, bindex, vl);
 }
 
+vfloat64m1_t test_vluxei8_v_f64m1_m(vbool64_t mask, const float64_t *base, vuint8mf8_t bindex, size_t vl) {
+  return __riscv_vluxei8(mask, base, bindex, vl);
+}
+
+vfloat64m2_t test_vluxei8_v_f64m2_m(vbool32_t mask, const float64_t *base, vuint8mf4_t bindex, size_t vl) {
+  return __riscv_vluxei8(mask, base, bindex, vl);
+}
+
+vfloat64m4_t test_vluxei8_v_f64m4_m(vbool16_t mask, const float64_t *base, vuint8mf2_t bindex, size_t vl) {
+  return __riscv_vluxei8(mask, base, bindex, vl);
+}
+
+vfloat64m8_t test_vluxei8_v_f64m8_m(vbool8_t mask, const float64_t *base, vuint8m1_t bindex, size_t vl) {
+  return __riscv_vluxei8(mask, base, bindex, vl);
+}
+
 vint8mf8_t test_vluxei8_v_i8mf8_m(vbool64_t mask, const int8_t *base, vuint8mf8_t bindex, size_t vl) {
   return __riscv_vluxei8(mask, base, bindex, vl);
 }
@@ -398,4 +430,4 @@ vuint64m8_t test_vluxei8_v_u64m8_m(vbool8_t mask, const uint64_t *base, vuint8m1
   return __riscv_vluxei8(mask, base, bindex, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vluxei8\.[,\sa-x0-9()]+} 98 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vluxei8\.[ivxfswum.]+\s+} 106 } } */

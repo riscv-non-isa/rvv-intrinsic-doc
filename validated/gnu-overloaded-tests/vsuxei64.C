@@ -22,6 +22,22 @@ void test_vsuxei64_v_f32m4(float32_t *base, vuint64m8_t bindex, vfloat32m4_t val
   return __riscv_vsuxei64(base, bindex, value, vl);
 }
 
+void test_vsuxei64_v_f64m1(float64_t *base, vuint64m1_t bindex, vfloat64m1_t value, size_t vl) {
+  return __riscv_vsuxei64(base, bindex, value, vl);
+}
+
+void test_vsuxei64_v_f64m2(float64_t *base, vuint64m2_t bindex, vfloat64m2_t value, size_t vl) {
+  return __riscv_vsuxei64(base, bindex, value, vl);
+}
+
+void test_vsuxei64_v_f64m4(float64_t *base, vuint64m4_t bindex, vfloat64m4_t value, size_t vl) {
+  return __riscv_vsuxei64(base, bindex, value, vl);
+}
+
+void test_vsuxei64_v_f64m8(float64_t *base, vuint64m8_t bindex, vfloat64m8_t value, size_t vl) {
+  return __riscv_vsuxei64(base, bindex, value, vl);
+}
+
 void test_vsuxei64_v_i8mf8(int8_t *base, vuint64m1_t bindex, vint8mf8_t value, size_t vl) {
   return __riscv_vsuxei64(base, bindex, value, vl);
 }
@@ -166,6 +182,22 @@ void test_vsuxei64_v_f32m4_m(vbool8_t mask, float32_t *base, vuint64m8_t bindex,
   return __riscv_vsuxei64(mask, base, bindex, value, vl);
 }
 
+void test_vsuxei64_v_f64m1_m(vbool64_t mask, float64_t *base, vuint64m1_t bindex, vfloat64m1_t value, size_t vl) {
+  return __riscv_vsuxei64(mask, base, bindex, value, vl);
+}
+
+void test_vsuxei64_v_f64m2_m(vbool32_t mask, float64_t *base, vuint64m2_t bindex, vfloat64m2_t value, size_t vl) {
+  return __riscv_vsuxei64(mask, base, bindex, value, vl);
+}
+
+void test_vsuxei64_v_f64m4_m(vbool16_t mask, float64_t *base, vuint64m4_t bindex, vfloat64m4_t value, size_t vl) {
+  return __riscv_vsuxei64(mask, base, bindex, value, vl);
+}
+
+void test_vsuxei64_v_f64m8_m(vbool8_t mask, float64_t *base, vuint64m8_t bindex, vfloat64m8_t value, size_t vl) {
+  return __riscv_vsuxei64(mask, base, bindex, value, vl);
+}
+
 void test_vsuxei64_v_i8mf8_m(vbool64_t mask, int8_t *base, vuint64m1_t bindex, vint8mf8_t value, size_t vl) {
   return __riscv_vsuxei64(mask, base, bindex, value, vl);
 }
@@ -294,4 +326,4 @@ void test_vsuxei64_v_u64m8_m(vbool8_t mask, uint64_t *base, vuint64m8_t bindex, 
   return __riscv_vsuxei64(mask, base, bindex, value, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vsuxei64\.[,\sa-x0-9()]+} 72 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsuxei64\.[ivxfswum.]+\s+} 80 } } */

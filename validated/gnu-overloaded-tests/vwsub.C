@@ -486,4 +486,4 @@ vint64m8_t test_vwsub_wx_i64m8_m(vbool8_t mask, vint64m8_t op1, int32_t op2, siz
   return __riscv_vwsub_wx(mask, op1, op2, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+v[w]?sub\.[,\sa-x0-9()]+} 120 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+v[w]?sub\.[ivxfswum.]+\s+} 120 } } */

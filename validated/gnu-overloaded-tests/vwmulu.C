@@ -246,4 +246,4 @@ vuint64m8_t test_vwmulu_vx_u64m8_m(vbool8_t mask, vuint32m4_t op1, uint32_t op2,
   return __riscv_vwmulu(mask, op1, op2, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vwmulu\.[,\sa-x0-9()]+} 60 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vwmulu\.[ivxfswum.]+\s+} 60 } } */

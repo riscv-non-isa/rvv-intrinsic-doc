@@ -26,6 +26,22 @@ void test_vsoxei8_v_f32m8(float32_t *base, vuint8m2_t bindex, vfloat32m8_t value
   return __riscv_vsoxei8(base, bindex, value, vl);
 }
 
+void test_vsoxei8_v_f64m1(float64_t *base, vuint8mf8_t bindex, vfloat64m1_t value, size_t vl) {
+  return __riscv_vsoxei8(base, bindex, value, vl);
+}
+
+void test_vsoxei8_v_f64m2(float64_t *base, vuint8mf4_t bindex, vfloat64m2_t value, size_t vl) {
+  return __riscv_vsoxei8(base, bindex, value, vl);
+}
+
+void test_vsoxei8_v_f64m4(float64_t *base, vuint8mf2_t bindex, vfloat64m4_t value, size_t vl) {
+  return __riscv_vsoxei8(base, bindex, value, vl);
+}
+
+void test_vsoxei8_v_f64m8(float64_t *base, vuint8m1_t bindex, vfloat64m8_t value, size_t vl) {
+  return __riscv_vsoxei8(base, bindex, value, vl);
+}
+
 void test_vsoxei8_v_i8mf8(int8_t *base, vuint8mf8_t bindex, vint8mf8_t value, size_t vl) {
   return __riscv_vsoxei8(base, bindex, value, vl);
 }
@@ -222,6 +238,22 @@ void test_vsoxei8_v_f32m8_m(vbool4_t mask, float32_t *base, vuint8m2_t bindex, v
   return __riscv_vsoxei8(mask, base, bindex, value, vl);
 }
 
+void test_vsoxei8_v_f64m1_m(vbool64_t mask, float64_t *base, vuint8mf8_t bindex, vfloat64m1_t value, size_t vl) {
+  return __riscv_vsoxei8(mask, base, bindex, value, vl);
+}
+
+void test_vsoxei8_v_f64m2_m(vbool32_t mask, float64_t *base, vuint8mf4_t bindex, vfloat64m2_t value, size_t vl) {
+  return __riscv_vsoxei8(mask, base, bindex, value, vl);
+}
+
+void test_vsoxei8_v_f64m4_m(vbool16_t mask, float64_t *base, vuint8mf2_t bindex, vfloat64m4_t value, size_t vl) {
+  return __riscv_vsoxei8(mask, base, bindex, value, vl);
+}
+
+void test_vsoxei8_v_f64m8_m(vbool8_t mask, float64_t *base, vuint8m1_t bindex, vfloat64m8_t value, size_t vl) {
+  return __riscv_vsoxei8(mask, base, bindex, value, vl);
+}
+
 void test_vsoxei8_v_i8mf8_m(vbool64_t mask, int8_t *base, vuint8mf8_t bindex, vint8mf8_t value, size_t vl) {
   return __riscv_vsoxei8(mask, base, bindex, value, vl);
 }
@@ -398,4 +430,4 @@ void test_vsoxei8_v_u64m8_m(vbool8_t mask, uint64_t *base, vuint8m1_t bindex, vu
   return __riscv_vsoxei8(mask, base, bindex, value, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vsoxei8\.[,\sa-x0-9()]+} 98 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsoxei8\.[ivxfswum.]+\s+} 106 } } */

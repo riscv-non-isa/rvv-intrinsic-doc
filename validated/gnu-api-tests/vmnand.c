@@ -34,4 +34,4 @@ vbool64_t test_vmnand_mm_b64(vbool64_t op1, vbool64_t op2, size_t vl) {
   return __riscv_vmnand_mm_b64(op1, op2, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vmnand\.[,\sa-x0-9()]+} 7 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vmnand\.[ivxfswum.]+\s+} 7 } } */

@@ -358,4 +358,4 @@ vint64m8_t test_vsra_vx_i64m8_m(vbool8_t mask, vint64m8_t op1, size_t shift, siz
   return __riscv_vsra(mask, op1, shift, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vsra\.[,\sa-x0-9()]+} 88 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsra\.[ivxfswum.]+\s+} 88 } } */

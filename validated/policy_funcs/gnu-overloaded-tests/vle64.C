@@ -6,6 +6,22 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+vfloat64m1_t test_vle64_v_f64m1_tu(vfloat64m1_t maskedoff, const float64_t *base, size_t vl) {
+  return __riscv_vle64_tu(maskedoff, base, vl);
+}
+
+vfloat64m2_t test_vle64_v_f64m2_tu(vfloat64m2_t maskedoff, const float64_t *base, size_t vl) {
+  return __riscv_vle64_tu(maskedoff, base, vl);
+}
+
+vfloat64m4_t test_vle64_v_f64m4_tu(vfloat64m4_t maskedoff, const float64_t *base, size_t vl) {
+  return __riscv_vle64_tu(maskedoff, base, vl);
+}
+
+vfloat64m8_t test_vle64_v_f64m8_tu(vfloat64m8_t maskedoff, const float64_t *base, size_t vl) {
+  return __riscv_vle64_tu(maskedoff, base, vl);
+}
+
 vint64m1_t test_vle64_v_i64m1_tu(vint64m1_t maskedoff, const int64_t *base, size_t vl) {
   return __riscv_vle64_tu(maskedoff, base, vl);
 }
@@ -36,6 +52,22 @@ vuint64m4_t test_vle64_v_u64m4_tu(vuint64m4_t maskedoff, const uint64_t *base, s
 
 vuint64m8_t test_vle64_v_u64m8_tu(vuint64m8_t maskedoff, const uint64_t *base, size_t vl) {
   return __riscv_vle64_tu(maskedoff, base, vl);
+}
+
+vfloat64m1_t test_vle64_v_f64m1_tum(vbool64_t mask, vfloat64m1_t maskedoff, const float64_t *base, size_t vl) {
+  return __riscv_vle64_tum(mask, maskedoff, base, vl);
+}
+
+vfloat64m2_t test_vle64_v_f64m2_tum(vbool32_t mask, vfloat64m2_t maskedoff, const float64_t *base, size_t vl) {
+  return __riscv_vle64_tum(mask, maskedoff, base, vl);
+}
+
+vfloat64m4_t test_vle64_v_f64m4_tum(vbool16_t mask, vfloat64m4_t maskedoff, const float64_t *base, size_t vl) {
+  return __riscv_vle64_tum(mask, maskedoff, base, vl);
+}
+
+vfloat64m8_t test_vle64_v_f64m8_tum(vbool8_t mask, vfloat64m8_t maskedoff, const float64_t *base, size_t vl) {
+  return __riscv_vle64_tum(mask, maskedoff, base, vl);
 }
 
 vint64m1_t test_vle64_v_i64m1_tum(vbool64_t mask, vint64m1_t maskedoff, const int64_t *base, size_t vl) {
@@ -70,6 +102,22 @@ vuint64m8_t test_vle64_v_u64m8_tum(vbool8_t mask, vuint64m8_t maskedoff, const u
   return __riscv_vle64_tum(mask, maskedoff, base, vl);
 }
 
+vfloat64m1_t test_vle64_v_f64m1_tumu(vbool64_t mask, vfloat64m1_t maskedoff, const float64_t *base, size_t vl) {
+  return __riscv_vle64_tumu(mask, maskedoff, base, vl);
+}
+
+vfloat64m2_t test_vle64_v_f64m2_tumu(vbool32_t mask, vfloat64m2_t maskedoff, const float64_t *base, size_t vl) {
+  return __riscv_vle64_tumu(mask, maskedoff, base, vl);
+}
+
+vfloat64m4_t test_vle64_v_f64m4_tumu(vbool16_t mask, vfloat64m4_t maskedoff, const float64_t *base, size_t vl) {
+  return __riscv_vle64_tumu(mask, maskedoff, base, vl);
+}
+
+vfloat64m8_t test_vle64_v_f64m8_tumu(vbool8_t mask, vfloat64m8_t maskedoff, const float64_t *base, size_t vl) {
+  return __riscv_vle64_tumu(mask, maskedoff, base, vl);
+}
+
 vint64m1_t test_vle64_v_i64m1_tumu(vbool64_t mask, vint64m1_t maskedoff, const int64_t *base, size_t vl) {
   return __riscv_vle64_tumu(mask, maskedoff, base, vl);
 }
@@ -102,4 +150,4 @@ vuint64m8_t test_vle64_v_u64m8_tumu(vbool8_t mask, vuint64m8_t maskedoff, const 
   return __riscv_vle64_tumu(mask, maskedoff, base, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vle64\.[,\sa-x0-9()]+} 24 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vle64\.[ivxfswum.]+\s+} 36 } } */

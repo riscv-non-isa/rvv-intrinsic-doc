@@ -6,6 +6,22 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+vfloat64m1_t test_vle64_v_f64m1_m(vbool64_t mask, const float64_t *base, size_t vl) {
+  return __riscv_vle64(mask, base, vl);
+}
+
+vfloat64m2_t test_vle64_v_f64m2_m(vbool32_t mask, const float64_t *base, size_t vl) {
+  return __riscv_vle64(mask, base, vl);
+}
+
+vfloat64m4_t test_vle64_v_f64m4_m(vbool16_t mask, const float64_t *base, size_t vl) {
+  return __riscv_vle64(mask, base, vl);
+}
+
+vfloat64m8_t test_vle64_v_f64m8_m(vbool8_t mask, const float64_t *base, size_t vl) {
+  return __riscv_vle64(mask, base, vl);
+}
+
 vint64m1_t test_vle64_v_i64m1_m(vbool64_t mask, const int64_t *base, size_t vl) {
   return __riscv_vle64(mask, base, vl);
 }
@@ -38,4 +54,4 @@ vuint64m8_t test_vle64_v_u64m8_m(vbool8_t mask, const uint64_t *base, size_t vl)
   return __riscv_vle64(mask, base, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vle64\.[,\sa-x0-9()]+} 8 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vle64\.[ivxfswum.]+\s+} 12 } } */
