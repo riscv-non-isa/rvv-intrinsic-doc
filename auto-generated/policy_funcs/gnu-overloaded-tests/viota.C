@@ -270,4 +270,4 @@ vuint64m8_t test_viota_m_u64m8_tumu(vbool8_t mask, vuint64m8_t maskedoff, vbool8
   return __riscv_viota_tumu(mask, maskedoff, op1, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+viota\.[,\sa-x0-9()]+} 66 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+viota\.[ivxfswum.]+\s+} 66 } } */

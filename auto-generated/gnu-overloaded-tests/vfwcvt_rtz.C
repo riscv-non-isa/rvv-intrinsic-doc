@@ -150,4 +150,4 @@ vuint64m8_t test_vfwcvt_rtz_xu_f_v_u64m8_m(vbool8_t mask, vfloat32m4_t src, size
   return __riscv_vfwcvt_rtz_xu(mask, src, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vfwcvt\.rtz[,\sa-x0-9()]+} 36 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfwcvt\.rtz[ivxfswum.]*\s+} 36 } } */

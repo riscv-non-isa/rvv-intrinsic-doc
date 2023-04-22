@@ -150,4 +150,4 @@ vfloat32m4_t test_vfncvt_rod_f_f_w_f32m4_mu(vbool8_t mask, vfloat32m4_t maskedof
   return __riscv_vfncvt_rod_f_f_w_f32m4_mu(mask, maskedoff, src, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vfncvt\.rod[,\sa-x0-9()]+} 36 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfncvt\.rod[ivxfswum.]*\s+} 36 } } */

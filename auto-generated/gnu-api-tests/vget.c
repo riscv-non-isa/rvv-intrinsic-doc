@@ -270,4 +270,4 @@ vuint64m4_t test_vget_v_u64m8_u64m4(vuint64m8_t src, size_t index) {
   return __riscv_vget_v_u64m8_u64m4(src, 0);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vget\.[,\sa-x0-9()]+} 66 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vget\.[ivxfswum.]+\s+} 66 } } */

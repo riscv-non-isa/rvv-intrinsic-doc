@@ -102,4 +102,4 @@ void test_vssseg2e8_v_u8m4_m(vbool2_t mask, uint8_t *base, ptrdiff_t bstride, vu
   return __riscv_vssseg2e8_v_u8m4_m(mask, base, bstride, v0, v1, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vssseg2e8\.[,\sa-x0-9()]+} 24 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vssseg2e8\.[ivxfswum.]+\s+} 24 } } */

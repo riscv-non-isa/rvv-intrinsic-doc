@@ -126,4 +126,4 @@ void test_vsseg2e16_v_u16m4_m(vbool4_t mask, uint16_t *base, vuint16m4_t v0, vui
   return __riscv_vsseg2e16_v_u16m4_m(mask, base, v0, v1, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vsseg2e16\.[,\sa-x0-9()]+} 30 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsseg2e16\.[ivxfswum.]+\s+} 30 } } */

@@ -66,4 +66,4 @@ float64_t test_vfmv_f_s_f64m8_f64(vfloat64m8_t src) {
   return __riscv_vfmv_f(src);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vfmv\.[,\sa-x0-9()]+} 15 } } */
+/* { dg-final { scan-assembler-times {vfmv\.[ivxfswum.]+\s+[,\sa-x0-9()]+} 15 } } */

@@ -358,4 +358,4 @@ vint64m8_t test_vmin_vx_i64m8_m(vbool8_t mask, vint64m8_t op1, int64_t op2, size
   return __riscv_vmin(mask, op1, op2, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vmin\.[,\sa-x0-9()]+} 88 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vmin\.[ivxfswum.]+\s+} 88 } } */

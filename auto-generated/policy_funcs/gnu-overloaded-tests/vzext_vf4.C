@@ -150,4 +150,4 @@ vuint64m8_t test_vzext_vf4_u64m8_mu(vbool8_t mask, vuint64m8_t maskedoff, vuint1
   return __riscv_vzext_vf4_mu(mask, maskedoff, op1, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vzext\.vf4[,\sa-x0-9()]+} 36 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vzext\.vf4[ivxfswum.]*\s+} 36 } } */

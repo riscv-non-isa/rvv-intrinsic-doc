@@ -358,4 +358,4 @@ vuint64m8_t test_vsrl_vx_u64m8_m(vbool8_t mask, vuint64m8_t op1, size_t shift, s
   return __riscv_vsrl_vx_u64m8_m(mask, op1, shift, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vsrl\.[,\sa-x0-9()]+} 88 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsrl\.[ivxfswum.]+\s+} 88 } } */

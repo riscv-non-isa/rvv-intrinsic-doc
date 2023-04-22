@@ -62,4 +62,4 @@ unsigned long test_vcpop_m_b64_m(vbool64_t mask, vbool64_t op1, size_t vl) {
   return __riscv_vcpop_m_b64_m(mask, op1, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vcpop\.[,\sa-x0-9()]+} 14 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vcpop\.[ivxfswum.]+\s+} 14 } } */

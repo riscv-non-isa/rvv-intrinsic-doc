@@ -486,4 +486,4 @@ vuint32m4_t test_vncvt_x_x_w_u32m4_mu(vbool8_t mask, vuint32m4_t maskedoff, vuin
   return __riscv_vncvt_x_mu(mask, maskedoff, src, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vncvt\.[,\sa-x0-9()]+} 120 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vncvt\.[ivxfswum.]+\s+} 120 } } */

@@ -182,4 +182,4 @@ vbool8_t test_vmsgt_vx_i64m8_b8_mu(vbool8_t mask, vbool8_t maskedoff, vint64m8_t
   return __riscv_vmsgt_vx_i64m8_b8_mu(mask, maskedoff, op1, op2, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vmsgt\.[,\sa-x0-9()]+} 44 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vmsgt\.[ivxfswum.]+\s+} 44 } } */

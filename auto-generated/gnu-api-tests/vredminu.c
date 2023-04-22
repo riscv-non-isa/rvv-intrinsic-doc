@@ -182,4 +182,4 @@ vuint64m1_t test_vredminu_vs_u64m8_u64m1_m(vbool8_t mask, vuint64m8_t vector, vu
   return __riscv_vredminu_vs_u64m8_u64m1_m(mask, vector, scalar, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vredminu\.[,\sa-x0-9()]+} 44 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vredminu\.[ivxfswum.]+\s+} 44 } } */

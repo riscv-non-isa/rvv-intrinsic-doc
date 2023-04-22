@@ -870,4 +870,4 @@ vuint32m8_t test_vreinterpret_v_u64m8_u32m8(vuint64m8_t src) {
   return __riscv_vreinterpret_u32m8(src);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vreinterpret\.[,\sa-x0-9()]+} 216 } } */
+/* { dg-final { scan-assembler-times {vs[1248e][r123468]+\.[ivxfswum.]+\s+[,\sa-x0-9()]+} 216 } } */

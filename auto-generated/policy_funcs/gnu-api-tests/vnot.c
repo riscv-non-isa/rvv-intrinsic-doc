@@ -710,4 +710,4 @@ vuint64m8_t test_vnot_v_u64m8_mu(vbool8_t mask, vuint64m8_t maskedoff, vuint64m8
   return __riscv_vnot_v_u64m8_mu(mask, maskedoff, op1, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vnot\.[,\sa-x0-9()]+} 176 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vnot\.[ivxfswum.]+\s+} 176 } } */

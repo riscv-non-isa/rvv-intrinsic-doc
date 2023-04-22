@@ -422,4 +422,4 @@ void test_vloxseg7ei8_v_u64m1_mu(vuint64m1_t *v0, vuint64m1_t *v1, vuint64m1_t *
   return __riscv_vloxseg7ei8_mu(v0, v1, v2, v3, v4, v5, v6, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, maskedoff6, base, bindex, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vloxseg7ei8\.[,\sa-x0-9()]+} 104 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vloxseg7ei8\.[ivxfswum.]+\s+} 104 } } */

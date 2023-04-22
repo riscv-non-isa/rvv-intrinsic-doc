@@ -478,4 +478,4 @@ vuint64m8_t test_vslidedown_vx_u64m8_m(vbool8_t mask, vuint64m8_t src, size_t of
   return __riscv_vslidedown_vx_u64m8_m(mask, src, offset, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vslidedown\.[,\sa-x0-9()]+} 118 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vslidedown\.[ivxfswum.]+\s+} 118 } } */

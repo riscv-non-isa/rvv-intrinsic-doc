@@ -150,4 +150,4 @@ vint64m1_t test_vwredsum_vs_i32m8_i64m1_m(vbool4_t mask, vint32m8_t vector, vint
   return __riscv_vwredsum_vs_i32m8_i64m1_m(mask, vector, scalar, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vwredsum\.[,\sa-x0-9()]+} 36 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vwredsum\.[ivxfswum.]+\s+} 36 } } */

@@ -246,4 +246,4 @@ vint32m4_t test_vnclip_wx_i32m4_m(vbool8_t mask, vint64m8_t op1, size_t shift, s
   return __riscv_vnclip(mask, op1, shift, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vnclip\.[,\sa-x0-9()]+} 60 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vnclip\.[ivxfswum.]+\s+} 60 } } */

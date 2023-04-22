@@ -46,4 +46,4 @@ void test_vlseg3e8ff_v_u8m2_m(vuint8m2_t *v0, vuint8m2_t *v1, vuint8m2_t *v2, vb
   return __riscv_vlseg3e8ff(v0, v1, v2, mask, base, new_vl, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vlseg3e8ff\.[,\sa-x0-9()]+} 10 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlseg3e8ff\.[ivxfswum.]+\s+} 10 } } */

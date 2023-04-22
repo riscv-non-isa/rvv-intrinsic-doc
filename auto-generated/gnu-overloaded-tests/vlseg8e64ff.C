@@ -18,4 +18,4 @@ void test_vlseg8e64ff_v_u64m1_m(vuint64m1_t *v0, vuint64m1_t *v1, vuint64m1_t *v
   return __riscv_vlseg8e64ff(v0, v1, v2, v3, v4, v5, v6, v7, mask, base, new_vl, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vlseg8e64ff\.[,\sa-x0-9()]+} 3 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlseg8e64ff\.[ivxfswum.]+\s+} 3 } } */

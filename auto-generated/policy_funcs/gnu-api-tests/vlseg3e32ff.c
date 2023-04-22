@@ -150,4 +150,4 @@ void test_vlseg3e32ff_v_u32m2_mu(vuint32m2_t *v0, vuint32m2_t *v1, vuint32m2_t *
   return __riscv_vlseg3e32ff_v_u32m2_mu(v0, v1, v2, mask, maskedoff0, maskedoff1, maskedoff2, base, new_vl, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vlseg3e32ff\.[,\sa-x0-9()]+} 36 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlseg3e32ff\.[ivxfswum.]+\s+} 36 } } */

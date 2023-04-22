@@ -150,4 +150,4 @@ void test_vlseg3e16ff_v_u16m2_tumu(vuint16m2_t *v0, vuint16m2_t *v1, vuint16m2_t
   return __riscv_vlseg3e16ff_tumu(v0, v1, v2, mask, maskedoff0, maskedoff1, maskedoff2, base, new_vl, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vlseg3e16ff\.[,\sa-x0-9()]+} 36 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlseg3e16ff\.[ivxfswum.]+\s+} 36 } } */

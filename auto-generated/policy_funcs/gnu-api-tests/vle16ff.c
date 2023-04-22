@@ -294,4 +294,4 @@ vuint16m8_t test_vle16ff_v_u16m8_mu(vbool2_t mask, vuint16m8_t maskedoff, const 
   return __riscv_vle16ff_v_u16m8_mu(mask, maskedoff, base, new_vl, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vle16ff\.[,\sa-x0-9()]+} 72 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vle16ff\.[ivxfswum.]+\s+} 72 } } */

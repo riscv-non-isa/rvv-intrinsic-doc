@@ -150,4 +150,4 @@ void test_vse16_v_u16m8_m(vbool2_t mask, uint16_t *base, vuint16m8_t value, size
   return __riscv_vse16_v_u16m8_m(mask, base, value, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vse16\.[,\sa-x0-9()]+} 36 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vse16\.[ivxfswum.]+\s+} 36 } } */

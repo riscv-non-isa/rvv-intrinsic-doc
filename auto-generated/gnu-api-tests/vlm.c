@@ -34,4 +34,4 @@ vbool64_t test_vlm_v_b64(const uint8_t *base, size_t vl) {
   return __riscv_vlm_v_b64(base, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vlm\.[,\sa-x0-9()]+} 7 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlm\.[ivxfswum.]+\s+} 7 } } */

@@ -462,4 +462,4 @@ vfloat64m8_t test_vfwcvt_f_f_v_f64m8_m(vbool8_t mask, vfloat32m4_t src, size_t v
   return __riscv_vfwcvt_f(mask, src, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vfwcvt\.[,\sa-x0-9()]+} 114 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfwcvt\.[ivxfswum.]+\s+} 114 } } */

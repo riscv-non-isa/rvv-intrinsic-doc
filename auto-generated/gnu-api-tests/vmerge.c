@@ -418,4 +418,4 @@ vfloat64m8_t test_vmerge_vvm_f64m8(vfloat64m8_t op1, vfloat64m8_t op2, vbool8_t 
   return __riscv_vmerge_vvm_f64m8(op1, op2, mask, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vmerge\.[,\sa-x0-9()]+} 103 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vmerge\.[ivxfswum.]+\s+} 103 } } */

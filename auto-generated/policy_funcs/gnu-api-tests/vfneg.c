@@ -246,4 +246,4 @@ vfloat64m8_t test_vfneg_v_f64m8_mu(vbool8_t mask, vfloat64m8_t maskedoff, vfloat
   return __riscv_vfneg_v_f64m8_mu(mask, maskedoff, op1, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vfneg\.[,\sa-x0-9()]+} 60 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfneg\.[ivxfswum.]+\s+} 60 } } */

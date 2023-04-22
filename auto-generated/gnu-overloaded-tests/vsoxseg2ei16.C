@@ -390,4 +390,4 @@ void test_vsoxseg2ei16_v_u64m4_m(vbool16_t mask, uint64_t *base, vuint16m1_t bin
   return __riscv_vsoxseg2ei16(mask, base, bindex, v0, v1, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vsoxseg2ei16\.[,\sa-x0-9()]+} 96 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsoxseg2ei16\.[ivxfswum.]+\s+} 96 } } */

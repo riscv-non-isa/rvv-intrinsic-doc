@@ -126,4 +126,4 @@ vfloat64m1_t test_vfredusum_vs_f64m8_f64m1_m(vbool8_t mask, vfloat64m8_t vector,
   return __riscv_vfredusum_vs_f64m8_f64m1_m(mask, vector, scalar, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vfredusum\.[,\sa-x0-9()]+} 30 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfredusum\.[ivxfswum.]+\s+} 30 } } */

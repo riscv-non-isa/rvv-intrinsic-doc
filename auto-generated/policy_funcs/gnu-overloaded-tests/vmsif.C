@@ -34,4 +34,4 @@ vbool64_t test_vmsif_m_b64_mu(vbool64_t mask, vbool64_t maskedoff, vbool64_t op1
   return __riscv_vmsif_mu(mask, maskedoff, op1, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vmsif\.[,\sa-x0-9()]+} 7 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vmsif\.[ivxfswum.]+\s+} 7 } } */

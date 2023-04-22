@@ -126,4 +126,4 @@ void test_vsse32_v_u32m8_m(vbool4_t mask, uint32_t *base, ptrdiff_t bstride, vui
   return __riscv_vsse32_v_u32m8_m(mask, base, bstride, value, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vsse32\.[,\sa-x0-9()]+} 30 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsse32\.[ivxfswum.]+\s+} 30 } } */

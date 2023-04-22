@@ -150,4 +150,4 @@ void test_vlsseg5e16_v_u16m1_mu(vuint16m1_t *v0, vuint16m1_t *v1, vuint16m1_t *v
   return __riscv_vlsseg5e16_v_u16m1_mu(v0, v1, v2, v3, v4, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, base, bstride, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vlsseg5e16\.[,\sa-x0-9()]+} 36 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlsseg5e16\.[ivxfswum.]+\s+} 36 } } */

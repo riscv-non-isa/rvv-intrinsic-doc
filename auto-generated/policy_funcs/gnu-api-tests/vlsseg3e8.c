@@ -166,4 +166,4 @@ void test_vlsseg3e8_v_u8m2_mu(vuint8m2_t *v0, vuint8m2_t *v1, vuint8m2_t *v2, vb
   return __riscv_vlsseg3e8_v_u8m2_mu(v0, v1, v2, mask, maskedoff0, maskedoff1, maskedoff2, base, bstride, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vlsseg3e8\.[,\sa-x0-9()]+} 40 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlsseg3e8\.[ivxfswum.]+\s+} 40 } } */

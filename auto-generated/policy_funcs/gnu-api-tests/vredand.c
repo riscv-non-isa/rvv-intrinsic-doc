@@ -358,4 +358,4 @@ vuint64m1_t test_vredand_vs_u64m8_u64m1_tum(vbool8_t mask, vuint64m1_t maskedoff
   return __riscv_vredand_vs_u64m8_u64m1_tum(mask, maskedoff, vector, scalar, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vredand\.[,\sa-x0-9()]+} 88 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vredand\.[ivxfswum.]+\s+} 88 } } */

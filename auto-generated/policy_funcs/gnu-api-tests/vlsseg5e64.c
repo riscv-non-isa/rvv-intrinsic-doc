@@ -54,4 +54,4 @@ void test_vlsseg5e64_v_u64m1_mu(vuint64m1_t *v0, vuint64m1_t *v1, vuint64m1_t *v
   return __riscv_vlsseg5e64_v_u64m1_mu(v0, v1, v2, v3, v4, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, base, bstride, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vlsseg5e64\.[,\sa-x0-9()]+} 12 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlsseg5e64\.[ivxfswum.]+\s+} 12 } } */

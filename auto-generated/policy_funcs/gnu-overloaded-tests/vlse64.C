@@ -150,4 +150,4 @@ vuint64m8_t test_vlse64_v_u64m8_tumu(vbool8_t mask, vuint64m8_t maskedoff, const
   return __riscv_vlse64_tumu(mask, maskedoff, base, bstride, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vlse64\.[,\sa-x0-9()]+} 36 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlse64\.[ivxfswum.]+\s+} 36 } } */

@@ -126,4 +126,4 @@ vfloat64m8_t test_vfslide1down_vf_f64m8_m(vbool8_t mask, vfloat64m8_t src, float
   return __riscv_vfslide1down_vf_f64m8_m(mask, src, value, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vfslide1down\.[,\sa-x0-9()]+} 30 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfslide1down\.[ivxfswum.]+\s+} 30 } } */

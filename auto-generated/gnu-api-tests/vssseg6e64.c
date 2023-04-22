@@ -30,4 +30,4 @@ void test_vssseg6e64_v_u64m1_m(vbool64_t mask, uint64_t *base, ptrdiff_t bstride
   return __riscv_vssseg6e64_v_u64m1_m(mask, base, bstride, v0, v1, v2, v3, v4, v5, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vssseg6e64\.[,\sa-x0-9()]+} 6 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vssseg6e64\.[ivxfswum.]+\s+} 6 } } */

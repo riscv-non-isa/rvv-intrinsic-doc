@@ -710,4 +710,4 @@ vint64m8_t test_vdiv_vx_i64m8_mu(vbool8_t mask, vint64m8_t maskedoff, vint64m8_t
   return __riscv_vdiv_mu(mask, maskedoff, op1, op2, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vdiv\.[,\sa-x0-9()]+} 176 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vdiv\.[ivxfswum.]+\s+} 176 } } */

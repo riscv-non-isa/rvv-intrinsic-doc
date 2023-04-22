@@ -94,4 +94,4 @@ vfloat64m1_t test_vfwredosum_vs_f32m8_f64m1_m(vbool4_t mask, vfloat32m8_t vector
   return __riscv_vfwredosum(mask, vector, scalar, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vfwredosum\.[,\sa-x0-9()]+} 22 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfwredosum\.[ivxfswum.]+\s+} 22 } } */

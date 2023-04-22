@@ -42,4 +42,4 @@ void test_vlseg7e16_v_u16m1_m(vuint16m1_t *v0, vuint16m1_t *v1, vuint16m1_t *v2,
   return __riscv_vlseg7e16(v0, v1, v2, v3, v4, v5, v6, mask, base, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vlseg7e16\.[,\sa-x0-9()]+} 9 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlseg7e16\.[ivxfswum.]+\s+} 9 } } */

@@ -242,4 +242,4 @@ vuint64m8_t test_vcompress_vm_u64m8(vuint64m8_t src, vbool8_t mask, size_t vl) {
   return __riscv_vcompress_vm_u64m8(src, mask, vl);
 }
 
-/* { dg-final { scan-assembler-times {vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+vcompress\.[,\sa-x0-9()]+} 59 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vcompress\.[ivxfswum.]+\s+} 59 } } */
