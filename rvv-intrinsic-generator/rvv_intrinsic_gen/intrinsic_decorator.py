@@ -36,22 +36,23 @@ class IntrinsicDecorator():
     self.need_maskedoff = (flags & ExtraAttr.NEED_MASKOFF) != 0
     self.has_maskedoff_name = (flags & ExtraAttr.NEED_MERGE) != 0
     self.flags = flags
+
+    self.func_suffix = ""
+
     if flags & ExtraAttr.IS_TU:
-      self.func_suffix = "_tu"
+      self.func_suffix += "_tu"
     elif flags & ExtraAttr.IS_MU:
-      self.func_suffix = "_mu"
+      self.func_suffix += "_mu"
     elif flags & ExtraAttr.IS_TAMU:
-      self.func_suffix = "_mu"
+      self.func_suffix += "_mu"
     elif flags & ExtraAttr.IS_TUMA:
-      self.func_suffix = "_tum"
+      self.func_suffix += "_tum"
     elif flags & ExtraAttr.IS_TUMU:
-      self.func_suffix = "_tumu"
+      self.func_suffix += "_tumu"
     elif self.is_mask and flags & ExtraAttr.IS_RED_TUMA:
-      self.func_suffix = "_tum"
+      self.func_suffix += "_tum"
     elif self.is_mask:
-      self.func_suffix = "_m"
-    else:
-      self.func_suffix = ""
+      self.func_suffix += "_m"
 
   def write_text_header(self, g):
     if self.is_mask:
@@ -107,6 +108,12 @@ class IntrinsicDecorator():
             d[f"maskedoff{i}"] = dest_type
       return d
     return {}
+
+  def extra_csr_args(self, csr_type):
+    d = collections.OrderedDict()
+    if self.flags & ExtraAttr.HAS_VXRM:
+      d["vxrm"] = csr_type
+    return d
 
 
 class IntrinsicDecorators():
@@ -195,3 +202,9 @@ class IntrinsicDecorators():
       self.has_no_masking = self.has_no_masking_policy
       self.has_masking_maskedoff = self.has_masking_maskedoff_policy
       self.has_masking_no_maskedoff = self.has_masking_no_maskedoff_policy
+
+    # Append rounding mode (vxrm) operand for the decorators
+    self.has_masking_maskedoff_policy_vxrm = []
+    for decorator in self.has_masking_maskedoff_policy:
+      self.has_masking_maskedoff_policy_vxrm.append(
+          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_VXRM))
