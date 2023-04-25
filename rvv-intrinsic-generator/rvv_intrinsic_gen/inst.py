@@ -259,14 +259,14 @@ def gen(g):
       "Vector Single-Width Saturating Add and Subtract Functions",
       REF_DOC_URL + "#131-vector-single-width-saturating-add-and-subtract",
       ["sadd", "ssub"], ITYPES, SEWS, LMULS,
-      decorators.has_masking_maskedoff_policy)
+      decorators.has_masking_maskedoff_policy_vxrm)
 
   g.function_group(
       binary_op_template,
       "Vector Single-Width Averaging Add and Subtract Functions",
       REF_DOC_URL + "#132-vector-single-width-averaging-add-and-subtract",
       ["aadd", "asub"], ITYPES, SEWS, LMULS,
-      decorators.has_masking_maskedoff_policy)
+      decorators.has_masking_maskedoff_policy_vxrm)
 
   g.function_group(
       binary_op_template,
@@ -274,18 +274,19 @@ def gen(g):
       " Functions", REF_DOC_URL +
       "#133-vector-single-width-fractional-multiply-with-rounding-and-" +
       "saturation", ["smul"], ["int"], SEWS, LMULS,
-      decorators.has_masking_maskedoff_policy)
+      decorators.has_masking_maskedoff_policy_vxrm)
 
   g.function_group(
       binary_op_template, "Vector Single-Width Scaling Shift Functions",
       REF_DOC_URL + "#134-vector-single-width-scaling-shift-operations",
       ["ssrl", "ssra"], ITYPES, SEWS, LMULS,
-      decorators.has_masking_maskedoff_policy)
+      decorators.has_masking_maskedoff_policy_vxrm)
 
   g.function_group(
       binary_nop_template, "Vector Narrowing Fixed-Point Clip Functions",
       REF_DOC_URL + "#135-vector-narrowing-fixed-point-clip-operations",
-      ["nclip"], ITYPES, WSEWS, WLMULS, decorators.has_masking_maskedoff_policy)
+      ["nclip"], ITYPES, WSEWS, WLMULS,
+      decorators.has_masking_maskedoff_policy_vxrm)
 
   ####################################################################
   g.start_group("Vector Floating-Point Functions")

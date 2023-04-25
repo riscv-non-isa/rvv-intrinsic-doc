@@ -104,6 +104,13 @@ class LegacyIntrinsicDecorator():
 
     return {}
 
+  # The legacy intrinsics (v0.10) does not have any csr arugments. This method
+  # here appears for compatibility as callers of under templates may be a
+  # IntrinsicDecorator or a LegacyIntrinsicDecorator
+  def extra_csr_args(self, csr_type):
+    # pylint: disable=unused-argument
+    return {}
+
   def dest_args(self, dest_type):
     if self.func_suffix in ["_ta", "_tama"] and self.has_maskedoff_name:
       return {"dest": dest_type}
@@ -215,3 +222,6 @@ class LegacyIntrinsicDecorators():
         self.has_masking_no_maskedoff
       self.has_masking_no_maskedoff_reduction_policy =\
         self.has_masking_no_maskedoff
+
+    # Rounding mode intrinsics are not supported before v1.0
+    self.has_masking_maskedoff_policy_vxrm = self.has_masking_maskedoff_policy

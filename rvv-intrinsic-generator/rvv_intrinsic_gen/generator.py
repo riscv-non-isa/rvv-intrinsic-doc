@@ -387,6 +387,8 @@ class APITestGenerator(Generator):
           and ((arg_name == "index" and type_name == "size_t"))) \
          or arg_name.startswith("bit_field") or arg_name.startswith("simm"):
         return "0"
+      if arg_name == "vxrm":
+        return "VXRM_RNU"
       return arg_name
 
     # Write test func body.
