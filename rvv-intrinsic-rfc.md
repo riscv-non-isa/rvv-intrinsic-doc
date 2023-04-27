@@ -77,7 +77,7 @@ There are the following data types for `ELEN` = 32.
 | **uint8_t**   | vuint8m1_t    | vuint8m2_t    | vuint8m4_t    | vuint8m8_t    | vuint8mf2_t    | vuint8mf4_t    | N/A
 | **vfloat32**  | vfloat32m1_t  | vfloat32m2_t  | vfloat32m4_t  | vfloat32m8_t  | N/A            | N/A            | N/A
 | **vfloat16**  | vfloat16m1_t  | vfloat16m2_t  | vfloat16m4_t  | vfloat16m8_t  | vfloat16mf2_t  | N/A            | N/A
-| **vbfloat16** | vbfloat16m1_t | vbfloat16m2_t | vbfloat16m4_t | vbfloat16m8_t | vbfloat16mf2_t | vbfloat16mf4_t | N/A
+| **vbfloat16** | vbfloat16m1_t | vbfloat16m2_t | vbfloat16m4_t | vbfloat16m8_t | vbfloat16mf2_t | N/A            | N/A
 
 ### Mask Types<a name="mask-types"></a>
 
