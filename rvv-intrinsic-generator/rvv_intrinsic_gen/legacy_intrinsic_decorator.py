@@ -225,3 +225,13 @@ class LegacyIntrinsicDecorators():
 
     # Rounding mode intrinsics are not supported before v1.0
     self.has_masking_maskedoff_policy_vxrm = self.has_masking_maskedoff_policy
+
+    # Rounding mode intrinsics are not supported before v1.0.
+    self.has_no_masking_policy_frm = self.has_no_masking_policy
+    self.has_masking_maskedoff_policy_frm = self.has_masking_maskedoff_policy
+    self.has_masking_maskedoff_policy_mu_ma_frm =\
+      self.has_masking_maskedoff_policy_mu_ma
+    self.has_masking_no_maskedoff_policy_frm =\
+      self.has_masking_no_maskedoff_policy
+    self.has_masking_no_maskedoff_reduction_policy_frm =\
+      self.has_masking_no_maskedoff_reduction_policy

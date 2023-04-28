@@ -40,6 +40,10 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
 
       type_helper = TypeHelper(**args)
 
+      # No frm variant for vfredmax and vfredmin
+      if decorator.flags & ExtraAttr.HAS_FRM and ("max" in op or "min" in op):
+        continue
+
       if data_type == "float":
         args["OP"] = "f" + op
       if data_type == "uint" and op in ["redmax", "redmin", "wredsum"]:
@@ -73,6 +77,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
               **decorator.dest_args(s),
               vector=type_helper.v,
               scalar=s,
+              **decorator.extra_csr_args(type_helper.uint),
               vl=type_helper.size_t)
         else:
           G.func(
@@ -84,6 +89,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
               **decorator.dest_args(s),
               vector=type_helper.v,
               scalar=s,
+              **decorator.extra_csr_args(type_helper.uint),
               vl=type_helper.size_t)
 
   G.inst_group_epilogue()

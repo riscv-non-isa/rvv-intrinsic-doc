@@ -25,6 +25,7 @@ from utils import TypeHelper
 from utils import get_string_lmul
 from enums import InstInfo
 from enums import InstType
+from enums import ExtraAttr
 
 
 def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
@@ -43,6 +44,10 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       op = args["OP"]
       sew = args["SEW"]
       op2 = args["OP2"]
+
+      # vfneg does not use frm
+      if "fneg" in op and decorator.flags & ExtraAttr.HAS_FRM:
+        continue
 
       if op2 == "s":
         if data_type == "float" and op != "rgather":

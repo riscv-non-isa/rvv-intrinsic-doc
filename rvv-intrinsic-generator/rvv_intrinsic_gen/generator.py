@@ -168,6 +168,10 @@ class Generator():
         "ta", "tu", "tama", "tuma", "tamu", "tumu", "ma", "mu", "tam", "tum"
     ]:
       overloaded_name += "_" + sn[-1]
+    if sn[-1] == "rm" and sn[-2] in [
+        "ta", "tu", "tama", "tuma", "tamu", "tumu", "ma", "mu", "tam", "tum"
+    ]:
+      overloaded_name += "_" + sn[-2]
 
     # Follows the naming guideline under riscv-c-api-doc to add the `__riscv_`
     # suffix for all RVV intrinsics.
@@ -368,6 +372,10 @@ class APITestGenerator(Generator):
     # an immediate.
     func_decl = func_decl.replace(", unsigned int vxrm", "")
 
+    # For "frm" parameter of the floating-point intrinsics, value for it must
+    # be an immediate.
+    func_decl = func_decl.replace(", unsigned int frm", "")
+
     # NOTE(FIXME): This logic is dependent to `TYPES` under constant.py.
     # Hardcoded that if an an intrinsic has a floating-point type variant, the
     # variant will be enumerated before the integer type variant. To fix this
@@ -393,8 +401,13 @@ class APITestGenerator(Generator):
           and ((arg_name == "index" and type_name == "size_t"))) \
          or arg_name.startswith("bit_field") or arg_name.startswith("simm"):
         return "0"
+
       if arg_name == "vxrm":
         return "__RISCV_VXRM_RNU"
+
+      if arg_name == "frm":
+        return "__RISCV_FRM_RNE"
+
       return arg_name
 
     # Write test func body.

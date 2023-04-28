@@ -54,6 +54,22 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if (op == "cvt" and args["TYPES1"] == args["TYPES3"]):
         continue
 
+      # By the v-spec:
+      # A double-width IEEE floating-point value can always represent a
+      # single-width integer exactly.
+      # A double-width IEEE floating-point value can always represent a
+      # single-width IEEE floating-point value exactly.
+      # So we don't need frm variant for vfwcvt.f.f, and vfwcvt.f.x(u) here
+      if op == "wcvt" and decorator.flags & ExtraAttr.HAS_FRM and\
+         (args["TYPES0"] == args["TYPES2"] or\
+          ("float" in args["TYPES0"] and "int" in args["TYPES2"])):
+        continue
+
+      # Int to int conversions do not need a frm variant.
+      if "int" in args["TYPES0"] and\
+         "int" in args["TYPES2"] and decorator.flags & ExtraAttr.HAS_FRM:
+        continue
+
       args["MIDDLE"] = "v"
       factor = ""
       if op == "wcvt":
@@ -100,7 +116,15 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           **decorator.mask_args(type_helper.m, rt),
           **decorator.tu_dest_args(rt),
           src=src_type,
+          **decorator.extra_csr_args(type_helper.uint),
           vl=type_helper.size_t)
+
+      # The following if-statements has a rounding mode specified within the
+      # instruction, and not affected by the dynamic rounding mode.
+      # Skip generation for decorator that has a rounding mode attribute.
+      if decorator.flags & ExtraAttr.HAS_FRM:
+        continue
+
       if args["TYPES1"] != args["TYPES3"] and args["TYPES3"] == "f":
         args["OP"] = args["OP"] + "_rtz"
         inst_info = InstInfo.get(
