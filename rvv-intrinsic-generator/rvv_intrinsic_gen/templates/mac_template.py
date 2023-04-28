@@ -37,6 +37,10 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       data_type = args["TYPE"]
       op = args["OP"]
 
+      # Integer intrinsics do not have frm variant.
+      if "int" in data_type and decorator.flags & ExtraAttr.HAS_FRM:
+        continue
+
       if data_type == "float":
         args["S_TYPE"] = "f"
         args["OP"] = "f" + op
@@ -135,6 +139,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vd=type_helper.wv,
             vs1=type_helper.v,
             vs2=type_helper.v,
+            **decorator.extra_csr_args(type_helper.uint),
             vl=type_helper.size_t)
         G.func(
             inst_info_vs,
@@ -145,6 +150,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vd=type_helper.wv,
             vs1=type_helper.s,
             vs2=type_helper.v,
+            **decorator.extra_csr_args(type_helper.uint),
             vl=type_helper.size_t)
       else:
         G.func(
@@ -156,6 +162,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vd=type_helper.v,
             vs1=type_helper.v,
             vs2=type_helper.v,
+            **decorator.extra_csr_args(type_helper.uint),
             vl=type_helper.size_t)
         G.func(
             inst_info_vs,
@@ -166,6 +173,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vd=type_helper.v,
             rs1=type_helper.s,
             vs2=type_helper.v,
+            **decorator.extra_csr_args(type_helper.uint),
             vl=type_helper.size_t)
 
   G.inst_group_epilogue()

@@ -296,14 +296,14 @@ def gen(g):
       "Vector Single-Width Floating-Point Add/Subtract Functions", REF_DOC_URL +
       "#142-vector-single-width-floating-point-addsubtract-operations",
       ["fadd", "fsub", "frsub", "fneg"], FTYPES, FSEWS, LMULS,
-      decorators.has_masking_maskedoff_policy)
+      decorators.has_masking_maskedoff_policy_frm)
 
   g.function_group(
       binary_wop_template,
       "Vector Widening Floating-Point Add/Subtract Functions", REF_DOC_URL +
       "#143-vector-widening-floating-point-addsubtract-operations",
       ["fwadd", "fwsub"], FTYPES, WFSEWS, WLMULS,
-      decorators.has_masking_maskedoff_policy)
+      decorators.has_masking_maskedoff_policy_frm)
 
   g.function_group(
       binary_op_template,
@@ -311,13 +311,13 @@ def gen(g):
       REF_DOC_URL +
       "#144-vector-single-width-floating-point-multiplydivide-operations",
       ["fmul", "fdiv", "frdiv"], FTYPES, FSEWS, LMULS,
-      decorators.has_masking_maskedoff_policy)
+      decorators.has_masking_maskedoff_policy_frm)
 
   g.function_group(
       binary_wop_template, "Vector Widening Floating-Point Multiply Functions",
       REF_DOC_URL + "#145-vector-widening-floating-point-multiply-operations",
       ["fwmul"], FTYPES, WFSEWS, WLMULS,
-      decorators.has_masking_maskedoff_policy)
+      decorators.has_masking_maskedoff_policy_frm)
 
   g.function_group(
       mac_template,
@@ -325,7 +325,7 @@ def gen(g):
       REF_DOC_URL +
       "#146-vector-single-width-floating-point-fused-multiply-add-operations",
       ["macc", "nmacc", "msac", "nmsac", "madd", "nmadd", "msub", "nmsub"],
-      FTYPES, FSEWS, LMULS, decorators.has_masking_no_maskedoff_policy)
+      FTYPES, FSEWS, LMULS, decorators.has_masking_no_maskedoff_policy_frm)
 
   g.function_group(
       mac_template,
@@ -333,12 +333,13 @@ def gen(g):
       REF_DOC_URL +
       "#147-vector-widening-floating-point-fused-multiply-add-operations",
       ["wmacc", "wnmacc", "wmsac", "wnmsac"], FTYPES, WFSEWS, WLMULS,
-      decorators.has_masking_no_maskedoff_policy)
+      decorators.has_masking_no_maskedoff_policy_frm)
 
   g.function_group(
       unary_op_template, "Vector Floating-Point Square-Root Functions",
       REF_DOC_URL + "#148-vector-floating-point-square-root-operations",
-      ["sqrt"], FTYPES, FSEWS, LMULS, decorators.has_masking_maskedoff_policy)
+      ["sqrt"], FTYPES, FSEWS, LMULS,
+      decorators.has_masking_maskedoff_policy_frm)
 
   g.function_group(
       unary_op_template,
@@ -351,7 +352,7 @@ def gen(g):
       unary_op_template, "Vector Floating-Point Reciprocal Estimate Functions",
       REF_DOC_URL +
       "#1410-vector-floating-point-reciprocal-estimate-operations", ["rec7"],
-      FTYPES, FSEWS, LMULS, decorators.has_masking_maskedoff_policy)
+      FTYPES, FSEWS, LMULS, decorators.has_masking_maskedoff_policy_frm)
 
   g.function_group(
       binary_op_template, "Vector Floating-Point MIN/MAX Functions",
@@ -396,19 +397,19 @@ def gen(g):
       "Single-Width Floating-Point/Integer Type-Convert Functions",
       REF_DOC_URL +
       "#1417-single-width-floating-pointinteger-type-convert-operations",
-      ["cvt"], "", SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+      ["cvt"], "", SEWS, LMULS, decorators.has_masking_maskedoff_policy_frm)
 
   g.function_group(
       cvt_op_template, "Widening Floating-Point/Integer Type-Convert Functions",
       REF_DOC_URL +
       "#1418-widening-floating-pointinteger-type-convert-operations", ["wcvt"],
-      "", WSEWS, WLMULS, decorators.has_masking_maskedoff_policy)
+      "", WSEWS, WLMULS, decorators.has_masking_maskedoff_policy_frm)
 
   g.function_group(
       cvt_op_template,
       "Narrowing Floating-Point/Integer Type-Convert Functions", REF_DOC_URL +
       "#1419-narrowing-floating-pointinteger-type-convert-operations", ["ncvt"],
-      "", NSEWS, NCVTLMULS, decorators.has_masking_maskedoff_policy)
+      "", NSEWS, NCVTLMULS, decorators.has_masking_maskedoff_policy_frm)
 
   ####################################################################
   g.start_group("Vector Reduction Functions")
@@ -430,13 +431,13 @@ def gen(g):
       "Vector Single-Width Floating-Point Reduction Functions", REF_DOC_URL +
       "#153-vector-single-width-floating-point-reduction-operations",
       ["redosum", "redusum", "redmax", "redmin"], FTYPES, FSEWS, LMULS,
-      decorators.has_masking_no_maskedoff_reduction_policy)
+      decorators.has_masking_no_maskedoff_reduction_policy_frm)
 
   g.function_group(
       reduction_template, "Vector Widening Floating-Point Reduction Functions",
       REF_DOC_URL + "#154-vector-widening-floating-point-reduction-operations",
       ["wredosum", "wredusum"], FTYPES, FSEWS, LMULS,
-      decorators.has_masking_no_maskedoff_reduction_policy)
+      decorators.has_masking_no_maskedoff_reduction_policy_frm)
 
   ####################################################################
   g.start_group("Vector Mask Functions")

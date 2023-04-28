@@ -99,6 +99,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             **decorator.tu_dest_args(type_helper.wv),
             op1=type_helper.v,
             op2=type_helper.v,
+            **decorator.extra_csr_args(type_helper.uint),
             vl=type_helper.size_t)
         G.func(
             inst_info_wvs,
@@ -109,6 +110,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             **decorator.tu_dest_args(type_helper.wv),
             op1=type_helper.v,
             op2=type_helper.s,
+            **decorator.extra_csr_args(type_helper.uint),
             vl=type_helper.size_t)
 
       if "add" in op or "sub" in op:
@@ -122,6 +124,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             **decorator.tu_dest_args(type_helper.wv),
             op1=type_helper.wv,
             op2=type_helper.v,
+            **decorator.extra_csr_args(type_helper.uint),
             vl=type_helper.size_t)
         G.func(
             inst_info_wws,
@@ -132,6 +135,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             **decorator.tu_dest_args(type_helper.wv),
             op1=type_helper.wv,
             op2=type_helper.s,
+            **decorator.extra_csr_args(type_helper.uint),
             vl=type_helper.size_t)
 
   G.inst_group_epilogue()

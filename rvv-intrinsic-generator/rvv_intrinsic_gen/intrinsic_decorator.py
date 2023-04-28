@@ -39,6 +39,9 @@ class IntrinsicDecorator():
 
     self.func_suffix = ""
 
+    if flags & ExtraAttr.HAS_FRM:
+      self.func_suffix += "_rm"
+
     if flags & ExtraAttr.IS_TU:
       self.func_suffix += "_tu"
     elif flags & ExtraAttr.IS_MU:
@@ -111,8 +114,13 @@ class IntrinsicDecorator():
 
   def extra_csr_args(self, csr_type):
     d = collections.OrderedDict()
+
     if self.flags & ExtraAttr.HAS_VXRM:
       d["vxrm"] = csr_type
+
+    if self.flags & ExtraAttr.HAS_FRM:
+      d["frm"] = csr_type
+
     return d
 
 
@@ -208,3 +216,32 @@ class IntrinsicDecorators():
     for decorator in self.has_masking_maskedoff_policy:
       self.has_masking_maskedoff_policy_vxrm.append(
           IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_VXRM))
+
+    # Appending the frm attribute to existing decorator collections to add
+    # extra set of floating-point intrinsic that models rounding mode control.
+    # The extra set of intrinsics consists of an additional parameter to
+    # specify the rounding mode.
+    self.has_no_masking_policy_frm = self.has_no_masking_policy.copy()
+    self.has_masking_maskedoff_policy_frm =\
+      self.has_masking_maskedoff_policy.copy()
+    self.has_masking_maskedoff_policy_mu_ma_frm =\
+      self.has_masking_maskedoff_policy_mu_ma.copy()
+    self.has_masking_no_maskedoff_policy_frm =\
+      self.has_masking_no_maskedoff_policy.copy()
+    self.has_masking_no_maskedoff_reduction_policy_frm =\
+      self.has_masking_no_maskedoff_reduction_policy.copy()
+    for decorator in self.has_no_masking_policy:
+      self.has_no_masking_policy_frm.append(
+          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_FRM))
+    for decorator in self.has_masking_maskedoff_policy:
+      self.has_masking_maskedoff_policy_frm.append(
+          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_FRM))
+    for decorator in self.has_masking_maskedoff_policy_mu_ma:
+      self.has_masking_maskedoff_policy_mu_ma_frm.append(
+          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_FRM))
+    for decorator in self.has_masking_no_maskedoff_policy:
+      self.has_masking_no_maskedoff_policy_frm.append(
+          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_FRM))
+    for decorator in self.has_masking_no_maskedoff_reduction_policy:
+      self.has_masking_no_maskedoff_reduction_policy_frm.append(
+          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_FRM))

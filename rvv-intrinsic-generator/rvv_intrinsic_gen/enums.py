@@ -117,6 +117,7 @@ class ExtraAttr:
   IS_RED_TUMA = 1 << 17
   IS_RED_TAMA = 1 << 18  # for 0.10 (LegacyIntrinsicDecorator)
   HAS_VXRM = 1 << 19
+  HAS_FRM = 1 << 20
 
 
 class InstInfo:
