@@ -40,8 +40,10 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
     # Variable in list means
     # [dst type, dst short type, src type, src short type]
     convert_set = [["float", "f", "int", "i"], ["float", "f", "uint", "u"],
+                   ["bfloat", "bf", "int", "i"], ["bfloat", "bf", "uint", "u"],
                    ["uint", "u", "int", "i"], ["int", "i", "uint", "u"],
-                   ["int", "i", "float", "f"], ["uint", "u", "float", "f"]]
+                   ["int", "i", "float", "f"], ["uint", "u", "float", "f"],
+                   ["int", "i", "bfloat", "bf"], ["uint", "u", "bfloat", "bf"]]
 
     for args in prod(
         OP=op_list, SEW=sew_list, TYPES=convert_set, LMUL=lmul_list):
