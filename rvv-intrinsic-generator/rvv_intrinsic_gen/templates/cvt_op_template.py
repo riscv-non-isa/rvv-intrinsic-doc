@@ -40,7 +40,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
     convert_set = [["int", "x", "float", "f"], ["int", "x", "int", "x"],
                    ["uint", "x", "uint", "x"], ["uint", "xu", "float", "f"],
                    ["float", "f", "int", "x"], ["float", "f", "uint", "xu"],
-                   ["float", "f", "float", "f"]]
+                   ["float", "f", "float", "f"], ["bfloat", "bf", "float", "f"],
+                   ["float", "f", "bfloat", "bf"]]
     for args in prod(
         OP=op_list, SEW=sew_list, TYPES=convert_set, LMUL=lmul_list):
       op = args["OP"]
@@ -52,6 +53,13 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       args["TYPES3"] = args["TYPES"][3]
 
       if (op == "cvt" and args["TYPES1"] == args["TYPES3"]):
+        continue
+
+      if ((args["TYPES1"] == "bf" or args["TYPES3"] == "bf") and op == "cvt"):
+        continue
+
+      if ((args["TYPES3"] == "bf" and args["SEW"] != 16 ) or
+          (args["TYPES1"] == "bf" and args["SEW"] != 32)):
         continue
 
       args["MIDDLE"] = "v"
@@ -67,6 +75,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
 
       if args["TYPES1"] == "f" or args["TYPES3"] == "f":
         args["OP"] = "f" + args["OP"]
+
+      if args["TYPES1"] == "bf" or args["TYPES3"] == "bf":
+        args["OP"] = args["OP"] + "bf16"
 
       if args["TYPES0"] == "uint":
         args["D_TYPE"] = "u"
