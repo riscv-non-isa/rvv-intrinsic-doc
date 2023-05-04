@@ -43,7 +43,7 @@ from templates import mask_template
 from templates import mask_load_store_template
 from templates import permute_template
 from constants import LMULS,WLMULS,NCVTLMULS,SEWS,WSEWS,FSEWS,WFSEWS,NSEWS,\
-  TYPES,ITYPES,FTYPES,MTYPES,MLENS,REF_DOC_URL
+  TYPES,ITYPES,FTYPES,BFTYPES,MTYPES,MLENS,REF_DOC_URL
 from generator import CompatibleHeaderGenerator
 
 
@@ -331,7 +331,7 @@ def gen(g):
       "Vector Widening Floating-Point Fused Multiply-Add Functions",
       REF_DOC_URL +
       "#147-vector-widening-floating-point-fused-multiply-add-operations",
-      ["wmacc", "wnmacc", "wmsac", "wnmsac"], FTYPES, WFSEWS, WLMULS,
+      ["wmacc", "wnmacc", "wmsac", "wnmsac"], BFTYPES, WFSEWS, WLMULS,
       decorators.has_masking_no_maskedoff_policy)
 
   g.function_group(
