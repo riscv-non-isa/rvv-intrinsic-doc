@@ -331,7 +331,14 @@ def gen(g):
       "Vector Widening Floating-Point Fused Multiply-Add Functions",
       REF_DOC_URL +
       "#147-vector-widening-floating-point-fused-multiply-add-operations",
-      ["wmacc", "wnmacc", "wmsac", "wnmsac"], BFTYPES, WFSEWS, WLMULS,
+      ["wmacc", "wnmacc", "wmsac", "wnmsac"], FTYPES, WFSEWS, WLMULS,
+      decorators.has_masking_no_maskedoff_policy)
+
+  g.function_group(
+      mac_template,
+      "Vector BFloat16 Widening Multiply-Add Functions (draft)",
+      REF_DOC_URL + "#147-vector-bf16-widening-multiply-add-operations",
+      ["wmacc"], BFTYPES, WFSEWS, WLMULS, 
       decorators.has_masking_no_maskedoff_policy)
 
   g.function_group(
