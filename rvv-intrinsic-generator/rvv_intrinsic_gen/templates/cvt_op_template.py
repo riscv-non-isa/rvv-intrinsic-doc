@@ -112,7 +112,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           **decorator.tu_dest_args(rt),
           src=src_type,
           vl=type_helper.size_t)
-      if args["TYPES1"] != args["TYPES3"] and args["TYPES3"] == "f":
+      if args["TYPES1"] != args["TYPES3"] and args["TYPES3"] == "f" and args["TYPES1"] != "bf":
         args["OP"] = args["OP"] + "_rtz"
         inst_info = InstInfo.get(
             args, decorator, InstType.VV, extra_attr=extra_attr)
