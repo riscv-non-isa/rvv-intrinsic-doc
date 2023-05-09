@@ -319,8 +319,9 @@ class APITestGenerator(Generator):
         self.fd.write(int_llvm_header)
     else:
       self.fd.write("#include <stdint.h>\n")
-    self.fd.write("#include <riscv_vector.h>\n\n")
+    self.fd.write("#include <riscv_vector.h>\n")
     if not self.llvm:
+      self.fd.write("\n")
       self.fd.write("typedef _Float16 float16_t;\n")
       self.fd.write("typedef float float32_t;\n")
       self.fd.write("typedef double float64_t;\n")
@@ -391,6 +392,7 @@ class APITestGenerator(Generator):
 
     # Write test func body.
     # Write test func. func_decl has end of ";" and "\n"
+    self.fd.write("\n")
     self.fd.write(func_decl[:-2])
     self.fd.write(" {\n")
 
@@ -399,7 +401,7 @@ class APITestGenerator(Generator):
         map(lambda a: output_call_arg(a[0], a[1]), kwargs.items()))
     self.fd.write(call_args)
     self.fd.write(");\n")
-    self.fd.write("}\n\n")
+    self.fd.write("}\n")
 
   def function_group(self, template, title, link, op_list, type_list, sew_list,
                      lmul_list, decorator_list):
