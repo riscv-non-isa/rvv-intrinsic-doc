@@ -269,4 +269,3 @@ vuint64m8_t test_vset_v_u64m2_u64m8(vuint64m8_t dest, size_t index, vuint64m2_t 
 vuint64m8_t test_vset_v_u64m4_u64m8(vuint64m8_t dest, size_t index, vuint64m4_t val) {
   return __riscv_vset(dest, 0, val);
 }
-

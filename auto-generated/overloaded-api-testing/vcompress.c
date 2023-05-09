@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf4_t test_vcompress_vm_f16mf4(vfloat16mf4_t src, vbool64_t mask, size_t vl) {
   return __riscv_vcompress(src, mask, vl);
 }
@@ -239,4 +240,3 @@ vuint64m4_t test_vcompress_vm_u64m4(vuint64m4_t src, vbool16_t mask, size_t vl) 
 vuint64m8_t test_vcompress_vm_u64m8(vuint64m8_t src, vbool8_t mask, size_t vl) {
   return __riscv_vcompress(src, mask, vl);
 }
-

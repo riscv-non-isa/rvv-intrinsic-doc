@@ -356,4 +356,3 @@ vuint64m4_t test_vslide1down_vx_u64m4_m(vbool16_t mask, vuint64m4_t src, uint64_
 vuint64m8_t test_vslide1down_vx_u64m8_m(vbool8_t mask, vuint64m8_t src, uint64_t value, size_t vl) {
   return __riscv_vslide1down_vx_u64m8_m(mask, src, value, vl);
 }
-

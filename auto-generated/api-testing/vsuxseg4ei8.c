@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 void test_vsuxseg4ei8_v_f16mf4(float16_t *base, vuint8mf8_t bindex, vfloat16mf4_t v0, vfloat16mf4_t v1, vfloat16mf4_t v2, vfloat16mf4_t v3, size_t vl) {
   return __riscv_vsuxseg4ei8_v_f16mf4(base, bindex, v0, v1, v2, v3, vl);
 }
@@ -299,4 +300,3 @@ void test_vsuxseg4ei8_v_u64m1_m(vbool64_t mask, uint64_t *base, vuint8mf8_t bind
 void test_vsuxseg4ei8_v_u64m2_m(vbool32_t mask, uint64_t *base, vuint8mf4_t bindex, vuint64m2_t v0, vuint64m2_t v1, vuint64m2_t v2, vuint64m2_t v3, size_t vl) {
   return __riscv_vsuxseg4ei8_v_u64m2_m(mask, base, bindex, v0, v1, v2, v3, vl);
 }
-

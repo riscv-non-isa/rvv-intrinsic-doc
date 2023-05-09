@@ -356,4 +356,3 @@ vint64m8_t test_vasub_vv_i64m8_m(vbool8_t mask, vint64m8_t op1, vint64m8_t op2, 
 vint64m8_t test_vasub_vx_i64m8_m(vbool8_t mask, vint64m8_t op1, int64_t op2, size_t vl) {
   return __riscv_vasub_vx_i64m8_m(mask, op1, op2, vl);
 }
-

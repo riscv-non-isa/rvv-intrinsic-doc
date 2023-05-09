@@ -185,4 +185,3 @@ vuint32m4_t test_vle32_v_u32m4_tumu(vbool8_t mask, vuint32m4_t maskedoff, const 
 vuint32m8_t test_vle32_v_u32m8_tumu(vbool4_t mask, vuint32m8_t maskedoff, const uint32_t *base, size_t vl) {
   return __riscv_vle32_tumu(mask, maskedoff, base, vl);
 }
-

@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf4_t test_vfwcvt_f_x_v_f16mf4(vint8mf8_t src, size_t vl) {
   return __riscv_vfwcvt_f_x_v_f16mf4(src, vl);
 }
@@ -459,4 +460,3 @@ vfloat64m4_t test_vfwcvt_f_f_v_f64m4_m(vbool16_t mask, vfloat32m2_t src, size_t 
 vfloat64m8_t test_vfwcvt_f_f_v_f64m8_m(vbool8_t mask, vfloat32m4_t src, size_t vl) {
   return __riscv_vfwcvt_f_f_v_f64m8_m(mask, src, vl);
 }
-

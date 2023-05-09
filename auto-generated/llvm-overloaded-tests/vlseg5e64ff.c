@@ -17,4 +17,3 @@ void test_vlseg5e64ff_v_i64m1_m(vint64m1_t *v0, vint64m1_t *v1, vint64m1_t *v2, 
 void test_vlseg5e64ff_v_u64m1_m(vuint64m1_t *v0, vuint64m1_t *v1, vuint64m1_t *v2, vuint64m1_t *v3, vuint64m1_t *v4, vbool64_t mask, const uint64_t *base, size_t *new_vl, size_t vl) {
   return __riscv_vlseg5e64ff(v0, v1, v2, v3, v4, mask, base, new_vl, vl);
 }
-

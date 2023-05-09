@@ -125,4 +125,3 @@ vfloat64m4_t test_vfrdiv_vf_f64m4_m(vbool16_t mask, vfloat64m4_t op1, double op2
 vfloat64m8_t test_vfrdiv_vf_f64m8_m(vbool8_t mask, vfloat64m8_t op1, double op2, size_t vl) {
   return __riscv_vfrdiv_vf_f64m8_m(mask, op1, op2, vl);
 }
-

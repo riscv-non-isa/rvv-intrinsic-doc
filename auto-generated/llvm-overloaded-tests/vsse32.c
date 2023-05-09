@@ -125,4 +125,3 @@ void test_vsse32_v_u32m4_m(vbool8_t mask, uint32_t *base, ptrdiff_t bstride, vui
 void test_vsse32_v_u32m8_m(vbool4_t mask, uint32_t *base, ptrdiff_t bstride, vuint32m8_t value, size_t vl) {
   return __riscv_vsse32(mask, base, bstride, value, vl);
 }
-

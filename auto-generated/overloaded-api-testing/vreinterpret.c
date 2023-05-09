@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vuint8mf8_t test_vreinterpret_v_i8mf8_u8mf8(vint8mf8_t src) {
   return __riscv_vreinterpret_u8mf8(src);
 }
@@ -1219,4 +1220,3 @@ vbool8_t test_vreinterpret_v_u64m1_b8(vuint64m1_t src) {
 vuint64m1_t test_vreinterpret_v_b8_u64m1(vbool8_t src) {
   return __riscv_vreinterpret_u64m1(src);
 }
-

@@ -180,4 +180,3 @@ vuint64m4_t test_vid_v_u64m4_m(vbool16_t mask, size_t vl) {
 vuint64m8_t test_vid_v_u64m8_m(vbool8_t mask, size_t vl) {
   return __riscv_vid_v_u64m8_m(mask, vl);
 }
-

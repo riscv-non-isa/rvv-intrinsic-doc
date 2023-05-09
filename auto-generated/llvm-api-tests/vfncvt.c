@@ -461,4 +461,3 @@ vfloat32m2_t test_vfncvt_f_f_w_f32m2_m(vbool16_t mask, vfloat64m4_t src, size_t 
 vfloat32m4_t test_vfncvt_f_f_w_f32m4_m(vbool8_t mask, vfloat64m8_t src, size_t vl) {
   return __riscv_vfncvt_f_f_w_f32m4_m(mask, src, vl);
 }
-

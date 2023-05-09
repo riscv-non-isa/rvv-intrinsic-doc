@@ -101,4 +101,3 @@ void test_vssseg3e16_v_u16m1_m(vbool16_t mask, uint16_t *base, ptrdiff_t bstride
 void test_vssseg3e16_v_u16m2_m(vbool8_t mask, uint16_t *base, ptrdiff_t bstride, vuint16m2_t v0, vuint16m2_t v1, vuint16m2_t v2, size_t vl) {
   return __riscv_vssseg3e16_v_u16m2_m(mask, base, bstride, v0, v1, v2, vl);
 }
-

@@ -32,4 +32,3 @@ vbool32_t test_vmset_m_b32(size_t vl) {
 vbool64_t test_vmset_m_b64(size_t vl) {
   return __riscv_vmset_m_b64(vl);
 }
-

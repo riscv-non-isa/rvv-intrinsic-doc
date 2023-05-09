@@ -213,4 +213,3 @@ void test_vluxseg7ei64_v_u32m1_m(vuint32m1_t *v0, vuint32m1_t *v1, vuint32m1_t *
 void test_vluxseg7ei64_v_u64m1_m(vuint64m1_t *v0, vuint64m1_t *v1, vuint64m1_t *v2, vuint64m1_t *v3, vuint64m1_t *v4, vuint64m1_t *v5, vuint64m1_t *v6, vbool64_t mask, const uint64_t *base, vuint64m1_t bindex, size_t vl) {
   return __riscv_vluxseg7ei64_v_u64m1_m(v0, v1, v2, v3, v4, v5, v6, mask, base, bindex, vl);
 }
-

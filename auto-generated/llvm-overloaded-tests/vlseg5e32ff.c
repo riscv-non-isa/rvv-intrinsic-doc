@@ -29,4 +29,3 @@ void test_vlseg5e32ff_v_u32mf2_m(vuint32mf2_t *v0, vuint32mf2_t *v1, vuint32mf2_
 void test_vlseg5e32ff_v_u32m1_m(vuint32m1_t *v0, vuint32m1_t *v1, vuint32m1_t *v2, vuint32m1_t *v3, vuint32m1_t *v4, vbool32_t mask, const uint32_t *base, size_t *new_vl, size_t vl) {
   return __riscv_vlseg5e32ff(v0, v1, v2, v3, v4, mask, base, new_vl, vl);
 }
-

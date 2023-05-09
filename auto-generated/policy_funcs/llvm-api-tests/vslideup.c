@@ -949,4 +949,3 @@ vuint64m4_t test_vslideup_vx_u64m4_mu(vbool16_t mask, vuint64m4_t dest, vuint64m
 vuint64m8_t test_vslideup_vx_u64m8_mu(vbool8_t mask, vuint64m8_t dest, vuint64m8_t src, size_t offset, size_t vl) {
   return __riscv_vslideup_vx_u64m8_mu(mask, dest, src, offset, vl);
 }
-

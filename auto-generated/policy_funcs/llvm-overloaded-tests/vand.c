@@ -1412,4 +1412,3 @@ vuint64m8_t test_vand_vv_u64m8_mu(vbool8_t mask, vuint64m8_t maskedoff, vuint64m
 vuint64m8_t test_vand_vx_u64m8_mu(vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t op1, uint64_t op2, size_t vl) {
   return __riscv_vand_mu(mask, maskedoff, op1, op2, vl);
 }
-

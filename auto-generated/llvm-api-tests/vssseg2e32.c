@@ -101,4 +101,3 @@ void test_vssseg2e32_v_u32m2_m(vbool16_t mask, uint32_t *base, ptrdiff_t bstride
 void test_vssseg2e32_v_u32m4_m(vbool8_t mask, uint32_t *base, ptrdiff_t bstride, vuint32m4_t v0, vuint32m4_t v1, size_t vl) {
   return __riscv_vssseg2e32_v_u32m4_m(mask, base, bstride, v0, v1, vl);
 }
-

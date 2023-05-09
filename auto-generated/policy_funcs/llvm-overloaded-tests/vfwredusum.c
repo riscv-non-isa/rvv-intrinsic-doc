@@ -93,4 +93,3 @@ vfloat64m1_t test_vfwredusum_vs_f32m4_f64m1_tum(vbool8_t mask, vfloat64m1_t mask
 vfloat64m1_t test_vfwredusum_vs_f32m8_f64m1_tum(vbool4_t mask, vfloat64m1_t maskedoff, vfloat32m8_t vector, vfloat64m1_t scalar, size_t vl) {
   return __riscv_vfwredusum_tum(mask, maskedoff, vector, scalar, vl);
 }
-

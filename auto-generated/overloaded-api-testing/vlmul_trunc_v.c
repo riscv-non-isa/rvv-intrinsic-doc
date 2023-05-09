@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf4_t test_vlmul_trunc_v_f16mf2_f16mf4(vfloat16mf2_t op1) {
   return __riscv_vlmul_trunc_f16mf4(op1);
 }
@@ -543,4 +544,3 @@ vuint64m2_t test_vlmul_trunc_v_u64m8_u64m2(vuint64m8_t op1) {
 vuint64m4_t test_vlmul_trunc_v_u64m8_u64m4(vuint64m8_t op1) {
   return __riscv_vlmul_trunc_u64m4(op1);
 }
-

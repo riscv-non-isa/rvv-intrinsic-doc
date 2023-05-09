@@ -125,4 +125,3 @@ vfloat64m1_t test_vfredosum_vs_f64m4_f64m1_tum(vbool16_t mask, vfloat64m1_t mask
 vfloat64m1_t test_vfredosum_vs_f64m8_f64m1_tum(vbool8_t mask, vfloat64m1_t maskedoff, vfloat64m8_t vector, vfloat64m1_t scalar, size_t vl) {
   return __riscv_vfredosum_tum(mask, maskedoff, vector, scalar, vl);
 }
-

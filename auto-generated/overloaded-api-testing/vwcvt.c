@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vint16mf4_t test_vwcvt_x_x_v_i16mf4(vint8mf8_t src, size_t vl) {
   return __riscv_vwcvt_x(src, vl);
 }
@@ -123,4 +124,3 @@ vint64m4_t test_vwcvt_x_x_v_i64m4_m(vbool16_t mask, vint32m2_t src, size_t vl) {
 vint64m8_t test_vwcvt_x_x_v_i64m8_m(vbool8_t mask, vint32m4_t src, size_t vl) {
   return __riscv_vwcvt_x(mask, src, vl);
 }
-

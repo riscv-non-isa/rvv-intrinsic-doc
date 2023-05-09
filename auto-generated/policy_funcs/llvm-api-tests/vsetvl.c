@@ -92,4 +92,3 @@ size_t test_vsetvl_e64m4(size_t avl) {
 size_t test_vsetvl_e64m8(size_t avl) {
   return __riscv_vsetvl_e64m8(avl);
 }
-

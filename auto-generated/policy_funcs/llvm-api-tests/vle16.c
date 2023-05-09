@@ -293,4 +293,3 @@ vuint16m4_t test_vle16_v_u16m4_mu(vbool4_t mask, vuint16m4_t maskedoff, const ui
 vuint16m8_t test_vle16_v_u16m8_mu(vbool2_t mask, vuint16m8_t maskedoff, const uint16_t *base, size_t vl) {
   return __riscv_vle16_v_u16m8_mu(mask, maskedoff, base, vl);
 }
-

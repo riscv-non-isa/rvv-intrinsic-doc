@@ -356,4 +356,3 @@ vint64m8_t test_vssra_vv_i64m8_m(vbool8_t mask, vint64m8_t op1, vuint64m8_t shif
 vint64m8_t test_vssra_vx_i64m8_m(vbool8_t mask, vint64m8_t op1, size_t shift, size_t vl) {
   return __riscv_vssra(mask, op1, shift, vl);
 }
-

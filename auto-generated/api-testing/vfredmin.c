@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16m1_t test_vfredmin_vs_f16mf4_f16m1(vfloat16mf4_t vector, vfloat16m1_t scalar, size_t vl) {
   return __riscv_vfredmin_vs_f16mf4_f16m1(vector, scalar, vl);
 }
@@ -123,4 +124,3 @@ vfloat64m1_t test_vfredmin_vs_f64m4_f64m1_m(vbool16_t mask, vfloat64m4_t vector,
 vfloat64m1_t test_vfredmin_vs_f64m8_f64m1_m(vbool8_t mask, vfloat64m8_t vector, vfloat64m1_t scalar, size_t vl) {
   return __riscv_vfredmin_vs_f64m8_f64m1_m(mask, vector, scalar, vl);
 }
-

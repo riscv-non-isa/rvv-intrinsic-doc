@@ -116,4 +116,3 @@ void test_vsse8_v_u8m4_m(vbool2_t mask, uint8_t *base, ptrdiff_t bstride, vuint8
 void test_vsse8_v_u8m8_m(vbool1_t mask, uint8_t *base, ptrdiff_t bstride, vuint8m8_t value, size_t vl) {
   return __riscv_vsse8_v_u8m8_m(mask, base, bstride, value, vl);
 }
-

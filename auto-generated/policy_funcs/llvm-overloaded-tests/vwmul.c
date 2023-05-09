@@ -484,4 +484,3 @@ vint64m8_t test_vwmul_vv_i64m8_mu(vbool8_t mask, vint64m8_t maskedoff, vint32m4_
 vint64m8_t test_vwmul_vx_i64m8_mu(vbool8_t mask, vint64m8_t maskedoff, vint32m4_t op1, int32_t op2, size_t vl) {
   return __riscv_vwmul_mu(mask, maskedoff, op1, op2, vl);
 }
-

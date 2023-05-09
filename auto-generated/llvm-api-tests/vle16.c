@@ -149,4 +149,3 @@ vuint16m4_t test_vle16_v_u16m4_m(vbool4_t mask, const uint16_t *base, size_t vl)
 vuint16m8_t test_vle16_v_u16m8_m(vbool2_t mask, const uint16_t *base, size_t vl) {
   return __riscv_vle16_v_u16m8_m(mask, base, vl);
 }
-

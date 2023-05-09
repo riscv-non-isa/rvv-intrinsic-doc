@@ -113,4 +113,3 @@ void test_vlseg2e64ff_v_u64m2_tumu(vuint64m2_t *v0, vuint64m2_t *v1, vbool32_t m
 void test_vlseg2e64ff_v_u64m4_tumu(vuint64m4_t *v0, vuint64m4_t *v1, vbool16_t mask, vuint64m4_t maskedoff0, vuint64m4_t maskedoff1, const uint64_t *base, size_t *new_vl, size_t vl) {
   return __riscv_vlseg2e64ff_tumu(v0, v1, mask, maskedoff0, maskedoff1, base, new_vl, vl);
 }
-

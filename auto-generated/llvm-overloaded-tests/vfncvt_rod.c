@@ -77,4 +77,3 @@ vfloat32m2_t test_vfncvt_rod_f_f_w_f32m2_m(vbool16_t mask, vfloat64m4_t src, siz
 vfloat32m4_t test_vfncvt_rod_f_f_w_f32m4_m(vbool8_t mask, vfloat64m8_t src, size_t vl) {
   return __riscv_vfncvt_rod_f(mask, src, vl);
 }
-

@@ -197,4 +197,3 @@ void test_vlsseg3e16_v_u16m1_mu(vuint16m1_t *v0, vuint16m1_t *v1, vuint16m1_t *v
 void test_vlsseg3e16_v_u16m2_mu(vuint16m2_t *v0, vuint16m2_t *v1, vuint16m2_t *v2, vbool8_t mask, vuint16m2_t maskedoff0, vuint16m2_t maskedoff1, vuint16m2_t maskedoff2, const uint16_t *base, ptrdiff_t bstride, size_t vl) {
   return __riscv_vlsseg3e16_v_u16m2_mu(v0, v1, v2, mask, maskedoff0, maskedoff1, maskedoff2, base, bstride, vl);
 }
-

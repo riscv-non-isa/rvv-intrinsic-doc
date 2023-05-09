@@ -477,4 +477,3 @@ void test_vsoxei8_v_u64m4_m(vbool16_t mask, uint64_t *base, vuint8mf2_t bindex, 
 void test_vsoxei8_v_u64m8_m(vbool8_t mask, uint64_t *base, vuint8m1_t bindex, vuint64m8_t value, size_t vl) {
   return __riscv_vsoxei8(mask, base, bindex, value, vl);
 }
-

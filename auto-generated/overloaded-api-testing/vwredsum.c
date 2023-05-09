@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vint16m1_t test_vwredsum_vs_i8mf8_i16m1(vint8mf8_t vector, vint16m1_t scalar, size_t vl) {
   return __riscv_vwredsum(vector, scalar, vl);
 }
@@ -147,4 +148,3 @@ vint64m1_t test_vwredsum_vs_i32m4_i64m1_m(vbool8_t mask, vint32m4_t vector, vint
 vint64m1_t test_vwredsum_vs_i32m8_i64m1_m(vbool4_t mask, vint32m8_t vector, vint64m1_t scalar, size_t vl) {
   return __riscv_vwredsum(mask, vector, scalar, vl);
 }
-

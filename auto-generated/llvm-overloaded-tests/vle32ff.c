@@ -65,4 +65,3 @@ vuint32m4_t test_vle32ff_v_u32m4_m(vbool8_t mask, const uint32_t *base, size_t *
 vuint32m8_t test_vle32ff_v_u32m8_m(vbool4_t mask, const uint32_t *base, size_t *new_vl, size_t vl) {
   return __riscv_vle32ff(mask, base, new_vl, vl);
 }
-

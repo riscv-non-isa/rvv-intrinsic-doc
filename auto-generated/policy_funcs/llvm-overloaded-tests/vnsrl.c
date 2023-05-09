@@ -484,4 +484,3 @@ vuint32m4_t test_vnsrl_wv_u32m4_mu(vbool8_t mask, vuint32m4_t maskedoff, vuint64
 vuint32m4_t test_vnsrl_wx_u32m4_mu(vbool8_t mask, vuint32m4_t maskedoff, vuint64m8_t op1, size_t shift, size_t vl) {
   return __riscv_vnsrl_mu(mask, maskedoff, op1, shift, vl);
 }
-

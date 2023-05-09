@@ -421,4 +421,3 @@ void test_vluxseg5ei32_v_u32m1_mu(vuint32m1_t *v0, vuint32m1_t *v1, vuint32m1_t 
 void test_vluxseg5ei32_v_u64m1_mu(vuint64m1_t *v0, vuint64m1_t *v1, vuint64m1_t *v2, vuint64m1_t *v3, vuint64m1_t *v4, vbool64_t mask, vuint64m1_t maskedoff0, vuint64m1_t maskedoff1, vuint64m1_t maskedoff2, vuint64m1_t maskedoff3, vuint64m1_t maskedoff4, const uint64_t *base, vuint32mf2_t bindex, size_t vl) {
   return __riscv_vluxseg5ei32_mu(v0, v1, v2, v3, v4, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, base, bindex, vl);
 }
-

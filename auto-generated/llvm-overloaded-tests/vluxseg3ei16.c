@@ -301,4 +301,3 @@ void test_vluxseg3ei16_v_u64m1_m(vuint64m1_t *v0, vuint64m1_t *v1, vuint64m1_t *
 void test_vluxseg3ei16_v_u64m2_m(vuint64m2_t *v0, vuint64m2_t *v1, vuint64m2_t *v2, vbool32_t mask, const uint64_t *base, vuint16mf2_t bindex, size_t vl) {
   return __riscv_vluxseg3ei16(v0, v1, v2, mask, base, bindex, vl);
 }
-

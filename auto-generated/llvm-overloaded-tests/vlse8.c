@@ -60,4 +60,3 @@ vuint8m4_t test_vlse8_v_u8m4_m(vbool2_t mask, const uint8_t *base, ptrdiff_t bst
 vuint8m8_t test_vlse8_v_u8m8_m(vbool1_t mask, const uint8_t *base, ptrdiff_t bstride, size_t vl) {
   return __riscv_vlse8(mask, base, bstride, vl);
 }
-

@@ -53,4 +53,3 @@ void test_vsseg6e32_v_u32mf2_m(vbool64_t mask, uint32_t *base, vuint32mf2_t v0, 
 void test_vsseg6e32_v_u32m1_m(vbool32_t mask, uint32_t *base, vuint32m1_t v0, vuint32m1_t v1, vuint32m1_t v2, vuint32m1_t v3, vuint32m1_t v4, vuint32m1_t v5, size_t vl) {
   return __riscv_vsseg6e32_v_u32m1_m(mask, base, v0, v1, v2, v3, v4, v5, vl);
 }
-

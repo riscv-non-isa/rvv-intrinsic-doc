@@ -356,4 +356,3 @@ vuint64m8_t test_vssrl_vv_u64m8_m(vbool8_t mask, vuint64m8_t op1, vuint64m8_t sh
 vuint64m8_t test_vssrl_vx_u64m8_m(vbool8_t mask, vuint64m8_t op1, size_t shift, size_t vl) {
   return __riscv_vssrl(mask, op1, shift, vl);
 }
-

@@ -708,4 +708,3 @@ vuint64m4_t test_vrsub_vx_u64m4_mu(vbool16_t mask, vuint64m4_t maskedoff, vuint6
 vuint64m8_t test_vrsub_vx_u64m8_mu(vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t op1, uint64_t op2, size_t vl) {
   return __riscv_vrsub_mu(mask, maskedoff, op1, op2, vl);
 }
-

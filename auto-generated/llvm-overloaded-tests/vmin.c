@@ -356,4 +356,3 @@ vint64m8_t test_vmin_vv_i64m8_m(vbool8_t mask, vint64m8_t op1, vint64m8_t op2, s
 vint64m8_t test_vmin_vx_i64m8_m(vbool8_t mask, vint64m8_t op1, int64_t op2, size_t vl) {
   return __riscv_vmin(mask, op1, op2, vl);
 }
-

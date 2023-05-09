@@ -485,4 +485,3 @@ vfloat64m8_t test_vfnmsac_vv_f64m8_mu(vbool8_t mask, vfloat64m8_t vd, vfloat64m8
 vfloat64m8_t test_vfnmsac_vf_f64m8_mu(vbool8_t mask, vfloat64m8_t vd, double rs1, vfloat64m8_t vs2, size_t vl) {
   return __riscv_vfnmsac_vf_f64m8_mu(mask, vd, rs1, vs2, vl);
 }
-

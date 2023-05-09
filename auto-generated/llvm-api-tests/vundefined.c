@@ -241,4 +241,3 @@ vuint64m4_t test_vundefined_u64m4() {
 vuint64m8_t test_vundefined_u64m8() {
   return __riscv_vundefined_u64m8();
 }
-

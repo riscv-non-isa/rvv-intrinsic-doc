@@ -181,4 +181,3 @@ vbool8_t test_vmsgt_vv_i64m8_b8_mu(vbool8_t mask, vbool8_t maskedoff, vint64m8_t
 vbool8_t test_vmsgt_vx_i64m8_b8_mu(vbool8_t mask, vbool8_t maskedoff, vint64m8_t op1, int64_t op2, size_t vl) {
   return __riscv_vmsgt_vx_i64m8_b8_mu(mask, maskedoff, op1, op2, vl);
 }
-

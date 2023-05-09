@@ -245,4 +245,3 @@ vfloat64m8_t test_vfsgnjx_vv_f64m8_m(vbool8_t mask, vfloat64m8_t op1, vfloat64m8
 vfloat64m8_t test_vfsgnjx_vf_f64m8_m(vbool8_t mask, vfloat64m8_t op1, double op2, size_t vl) {
   return __riscv_vfsgnjx(mask, op1, op2, vl);
 }
-

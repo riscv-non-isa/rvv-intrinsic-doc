@@ -356,4 +356,3 @@ vuint64m8_t test_vsbc_vvm_u64m8_tu(vuint64m8_t maskedoff, vuint64m8_t op1, vuint
 vuint64m8_t test_vsbc_vxm_u64m8_tu(vuint64m8_t maskedoff, vuint64m8_t op1, uint64_t op2, vbool8_t borrowin, size_t vl) {
   return __riscv_vsbc_vxm_u64m8_tu(maskedoff, op1, op2, borrowin, vl);
 }
-

@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vbool1_t test_vmsif_m_b1(vbool1_t op1, size_t vl) {
   return __riscv_vmsif(op1, vl);
 }
@@ -59,4 +60,3 @@ vbool32_t test_vmsif_m_b32_m(vbool32_t mask, vbool32_t op1, size_t vl) {
 vbool64_t test_vmsif_m_b64_m(vbool64_t mask, vbool64_t op1, size_t vl) {
   return __riscv_vmsif(mask, op1, vl);
 }
-

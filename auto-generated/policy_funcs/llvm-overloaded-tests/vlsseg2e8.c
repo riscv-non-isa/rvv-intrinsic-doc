@@ -148,4 +148,3 @@ void test_vlsseg2e8_v_u8m2_tumu(vuint8m2_t *v0, vuint8m2_t *v1, vbool4_t mask, v
 void test_vlsseg2e8_v_u8m4_tumu(vuint8m4_t *v0, vuint8m4_t *v1, vbool2_t mask, vuint8m4_t maskedoff0, vuint8m4_t maskedoff1, const uint8_t *base, ptrdiff_t bstride, size_t vl) {
   return __riscv_vlsseg2e8_tumu(v0, v1, mask, maskedoff0, maskedoff1, base, bstride, vl);
 }
-

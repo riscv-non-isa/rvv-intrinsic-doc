@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vbool1_t test_vmnot_m_b1(vbool1_t op1, size_t vl) {
   return __riscv_vmnot(op1, vl);
 }
@@ -31,4 +32,3 @@ vbool32_t test_vmnot_m_b32(vbool32_t op1, size_t vl) {
 vbool64_t test_vmnot_m_b64(vbool64_t op1, size_t vl) {
   return __riscv_vmnot(op1, vl);
 }
-

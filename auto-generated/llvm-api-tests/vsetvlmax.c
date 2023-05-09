@@ -92,4 +92,3 @@ size_t test_vsetvlmax_e64m4() {
 size_t test_vsetvlmax_e64m8() {
   return __riscv_vsetvlmax_e64m8();
 }
-

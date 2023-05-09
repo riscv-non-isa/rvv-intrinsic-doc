@@ -77,4 +77,3 @@ void test_vlseg3e32_v_u32m1_m(vuint32m1_t *v0, vuint32m1_t *v1, vuint32m1_t *v2,
 void test_vlseg3e32_v_u32m2_m(vuint32m2_t *v0, vuint32m2_t *v1, vuint32m2_t *v2, vbool16_t mask, const uint32_t *base, size_t vl) {
   return __riscv_vlseg3e32_v_u32m2_m(v0, v1, v2, mask, base, vl);
 }
-

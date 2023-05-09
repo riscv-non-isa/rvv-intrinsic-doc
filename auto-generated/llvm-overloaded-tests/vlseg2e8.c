@@ -52,4 +52,3 @@ void test_vlseg2e8_v_u8m2_m(vuint8m2_t *v0, vuint8m2_t *v1, vbool4_t mask, const
 void test_vlseg2e8_v_u8m4_m(vuint8m4_t *v0, vuint8m4_t *v1, vbool2_t mask, const uint8_t *base, size_t vl) {
   return __riscv_vlseg2e8(v0, v1, mask, base, vl);
 }
-

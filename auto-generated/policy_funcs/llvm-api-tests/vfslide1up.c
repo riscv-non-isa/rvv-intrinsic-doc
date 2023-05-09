@@ -245,4 +245,3 @@ vfloat64m4_t test_vfslide1up_vf_f64m4_mu(vbool16_t mask, vfloat64m4_t maskedoff,
 vfloat64m8_t test_vfslide1up_vf_f64m8_mu(vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t src, double value, size_t vl) {
   return __riscv_vfslide1up_vf_f64m8_mu(mask, maskedoff, src, value, vl);
 }
-

@@ -244,4 +244,3 @@ vuint32m2_t test_vncvt_x_x_w_u32m2_m(vbool16_t mask, vuint64m4_t src, size_t vl)
 vuint32m4_t test_vncvt_x_x_w_u32m4_m(vbool8_t mask, vuint64m8_t src, size_t vl) {
   return __riscv_vncvt_x(mask, src, vl);
 }
-

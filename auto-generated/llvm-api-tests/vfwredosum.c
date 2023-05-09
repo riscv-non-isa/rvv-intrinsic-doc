@@ -93,4 +93,3 @@ vfloat64m1_t test_vfwredosum_vs_f32m4_f64m1_m(vbool8_t mask, vfloat32m4_t vector
 vfloat64m1_t test_vfwredosum_vs_f32m8_f64m1_m(vbool4_t mask, vfloat32m8_t vector, vfloat64m1_t scalar, size_t vl) {
   return __riscv_vfwredosum_vs_f32m8_f64m1_m(mask, vector, scalar, vl);
 }
-

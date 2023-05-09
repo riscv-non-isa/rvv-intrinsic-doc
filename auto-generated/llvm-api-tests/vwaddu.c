@@ -484,4 +484,3 @@ vuint64m8_t test_vwaddu_wv_u64m8_m(vbool8_t mask, vuint64m8_t op1, vuint32m4_t o
 vuint64m8_t test_vwaddu_wx_u64m8_m(vbool8_t mask, vuint64m8_t op1, uint32_t op2, size_t vl) {
   return __riscv_vwaddu_wx_u64m8_m(mask, op1, op2, vl);
 }
-

@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vint8m1_t test_vredor_vs_i8mf8_i8m1(vint8mf8_t vector, vint8m1_t scalar, size_t vl) {
   return __riscv_vredor_vs_i8mf8_i8m1(vector, scalar, vl);
 }
@@ -355,4 +356,3 @@ vuint64m1_t test_vredor_vs_u64m4_u64m1_m(vbool16_t mask, vuint64m4_t vector, vui
 vuint64m1_t test_vredor_vs_u64m8_u64m1_m(vbool8_t mask, vuint64m8_t vector, vuint64m1_t scalar, size_t vl) {
   return __riscv_vredor_vs_u64m8_u64m1_m(mask, vector, scalar, vl);
 }
-

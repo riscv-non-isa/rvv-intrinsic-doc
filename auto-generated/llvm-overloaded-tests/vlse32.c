@@ -65,4 +65,3 @@ vuint32m4_t test_vlse32_v_u32m4_m(vbool8_t mask, const uint32_t *base, ptrdiff_t
 vuint32m8_t test_vlse32_v_u32m8_m(vbool4_t mask, const uint32_t *base, ptrdiff_t bstride, size_t vl) {
   return __riscv_vlse32(mask, base, bstride, vl);
 }
-

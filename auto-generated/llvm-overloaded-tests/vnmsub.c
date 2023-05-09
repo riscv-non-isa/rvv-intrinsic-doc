@@ -709,4 +709,3 @@ vuint64m8_t test_vnmsub_vv_u64m8_m(vbool8_t mask, vuint64m8_t vd, vuint64m8_t vs
 vuint64m8_t test_vnmsub_vx_u64m8_m(vbool8_t mask, vuint64m8_t vd, uint64_t rs1, vuint64m8_t vs2, size_t vl) {
   return __riscv_vnmsub(mask, vd, rs1, vs2, vl);
 }
-

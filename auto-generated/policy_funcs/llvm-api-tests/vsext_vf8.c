@@ -68,4 +68,3 @@ vint64m4_t test_vsext_vf8_i64m4_mu(vbool16_t mask, vint64m4_t maskedoff, vint8mf
 vint64m8_t test_vsext_vf8_i64m8_mu(vbool8_t mask, vint64m8_t maskedoff, vint8m1_t op1, size_t vl) {
   return __riscv_vsext_vf8_i64m8_mu(mask, maskedoff, op1, vl);
 }
-

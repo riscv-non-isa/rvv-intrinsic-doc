@@ -77,4 +77,3 @@ void test_vsseg2e64_v_u64m2_m(vbool32_t mask, uint64_t *base, vuint64m2_t v0, vu
 void test_vsseg2e64_v_u64m4_m(vbool16_t mask, uint64_t *base, vuint64m4_t v0, vuint64m4_t v1, size_t vl) {
   return __riscv_vsseg2e64(mask, base, v0, v1, vl);
 }
-

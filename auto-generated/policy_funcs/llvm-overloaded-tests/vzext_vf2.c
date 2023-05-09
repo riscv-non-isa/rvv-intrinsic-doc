@@ -244,4 +244,3 @@ vuint64m4_t test_vzext_vf2_u64m4_mu(vbool16_t mask, vuint64m4_t maskedoff, vuint
 vuint64m8_t test_vzext_vf2_u64m8_mu(vbool8_t mask, vuint64m8_t maskedoff, vuint32m4_t op1, size_t vl) {
   return __riscv_vzext_vf2_mu(mask, maskedoff, op1, vl);
 }
-

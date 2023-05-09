@@ -485,4 +485,3 @@ vuint64m4_t test_vfcvt_rtz_xu_f_v_u64m4_mu(vbool16_t mask, vuint64m4_t maskedoff
 vuint64m8_t test_vfcvt_rtz_xu_f_v_u64m8_mu(vbool8_t mask, vuint64m8_t maskedoff, vfloat64m8_t src, size_t vl) {
   return __riscv_vfcvt_rtz_xu_f_v_u64m8_mu(mask, maskedoff, src, vl);
 }
-

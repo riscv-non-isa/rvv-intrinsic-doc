@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vuint16mf4_t test_vwmulu_vv_u16mf4(vuint8mf8_t op1, vuint8mf8_t op2, size_t vl) {
   return __riscv_vwmulu(op1, op2, vl);
 }
@@ -243,4 +244,3 @@ vuint64m8_t test_vwmulu_vv_u64m8_m(vbool8_t mask, vuint32m4_t op1, vuint32m4_t o
 vuint64m8_t test_vwmulu_vx_u64m8_m(vbool8_t mask, vuint32m4_t op1, uint32_t op2, size_t vl) {
   return __riscv_vwmulu(mask, op1, op2, vl);
 }
-

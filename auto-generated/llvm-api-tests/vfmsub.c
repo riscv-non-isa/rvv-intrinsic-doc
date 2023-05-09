@@ -245,4 +245,3 @@ vfloat64m8_t test_vfmsub_vv_f64m8_m(vbool8_t mask, vfloat64m8_t vd, vfloat64m8_t
 vfloat64m8_t test_vfmsub_vf_f64m8_m(vbool8_t mask, vfloat64m8_t vd, double rs1, vfloat64m8_t vs2, size_t vl) {
   return __riscv_vfmsub_vf_f64m8_m(mask, vd, rs1, vs2, vl);
 }
-

@@ -41,4 +41,3 @@ void test_vlseg7e64ff_v_i64m1_tumu(vint64m1_t *v0, vint64m1_t *v1, vint64m1_t *v
 void test_vlseg7e64ff_v_u64m1_tumu(vuint64m1_t *v0, vuint64m1_t *v1, vuint64m1_t *v2, vuint64m1_t *v3, vuint64m1_t *v4, vuint64m1_t *v5, vuint64m1_t *v6, vbool64_t mask, vuint64m1_t maskedoff0, vuint64m1_t maskedoff1, vuint64m1_t maskedoff2, vuint64m1_t maskedoff3, vuint64m1_t maskedoff4, vuint64m1_t maskedoff5, vuint64m1_t maskedoff6, const uint64_t *base, size_t *new_vl, size_t vl) {
   return __riscv_vlseg7e64ff_tumu(v0, v1, v2, v3, v4, v5, v6, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, maskedoff6, base, new_vl, vl);
 }
-

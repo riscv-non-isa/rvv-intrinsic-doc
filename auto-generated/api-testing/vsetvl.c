@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 size_t test_vsetvl_e8mf8(size_t avl) {
   return __riscv_vsetvl_e8mf8(avl);
 }
@@ -91,4 +92,3 @@ size_t test_vsetvl_e64m4(size_t avl) {
 size_t test_vsetvl_e64m8(size_t avl) {
   return __riscv_vsetvl_e64m8(avl);
 }
-

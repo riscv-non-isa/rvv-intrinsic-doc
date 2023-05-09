@@ -61,4 +61,3 @@ vuint8m4_t test_vle8_v_u8m4_m(vbool2_t mask, const uint8_t *base, size_t vl) {
 vuint8m8_t test_vle8_v_u8m8_m(vbool1_t mask, const uint8_t *base, size_t vl) {
   return __riscv_vle8(mask, base, vl);
 }
-

@@ -197,4 +197,3 @@ void test_vlsseg2e32_v_u32m2_mu(vuint32m2_t *v0, vuint32m2_t *v1, vbool16_t mask
 void test_vlsseg2e32_v_u32m4_mu(vuint32m4_t *v0, vuint32m4_t *v1, vbool8_t mask, vuint32m4_t maskedoff0, vuint32m4_t maskedoff1, const uint32_t *base, ptrdiff_t bstride, size_t vl) {
   return __riscv_vlsseg2e32_v_u32m4_mu(v0, v1, mask, maskedoff0, maskedoff1, base, bstride, vl);
 }
-

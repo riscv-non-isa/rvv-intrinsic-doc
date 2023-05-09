@@ -268,4 +268,3 @@ vuint64m4_t test_vid_v_u64m4_tumu(vbool16_t mask, vuint64m4_t maskedoff, size_t 
 vuint64m8_t test_vid_v_u64m8_tumu(vbool8_t mask, vuint64m8_t maskedoff, size_t vl) {
   return __riscv_vid_tumu(mask, maskedoff, vl);
 }
-

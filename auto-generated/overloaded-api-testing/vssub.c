@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vint8mf8_t test_vssub_vv_i8mf8(vint8mf8_t op1, vint8mf8_t op2, size_t vl) {
   return __riscv_vssub(op1, op2, vl);
 }
@@ -355,4 +356,3 @@ vint64m8_t test_vssub_vv_i64m8_m(vbool8_t mask, vint64m8_t op1, vint64m8_t op2, 
 vint64m8_t test_vssub_vx_i64m8_m(vbool8_t mask, vint64m8_t op1, int64_t op2, size_t vl) {
   return __riscv_vssub(mask, op1, op2, vl);
 }
-

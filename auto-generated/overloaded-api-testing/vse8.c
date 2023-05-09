@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 void test_vse8_v_i8mf8(int8_t *base, vint8mf8_t value, size_t vl) {
   return __riscv_vse8(base, value, vl);
 }
@@ -115,4 +116,3 @@ void test_vse8_v_u8m4_m(vbool2_t mask, uint8_t *base, vuint8m4_t value, size_t v
 void test_vse8_v_u8m8_m(vbool1_t mask, uint8_t *base, vuint8m8_t value, size_t vl) {
   return __riscv_vse8(mask, base, value, vl);
 }
-

@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf4_t test_vfslide1up_vf_f16mf4(vfloat16mf4_t src, float16_t value, size_t vl) {
   return __riscv_vfslide1up(src, value, vl);
 }
@@ -123,4 +124,3 @@ vfloat64m4_t test_vfslide1up_vf_f64m4_m(vbool16_t mask, vfloat64m4_t src, float6
 vfloat64m8_t test_vfslide1up_vf_f64m8_m(vbool8_t mask, vfloat64m8_t src, float64_t value, size_t vl) {
   return __riscv_vfslide1up(mask, src, value, vl);
 }
-

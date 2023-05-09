@@ -197,4 +197,3 @@ void test_vlseg2e8ff_v_u8m2_mu(vuint8m2_t *v0, vuint8m2_t *v1, vbool4_t mask, vu
 void test_vlseg2e8ff_v_u8m4_mu(vuint8m4_t *v0, vuint8m4_t *v1, vbool2_t mask, vuint8m4_t maskedoff0, vuint8m4_t maskedoff1, const uint8_t *base, size_t *new_vl, size_t vl) {
   return __riscv_vlseg2e8ff_v_u8m4_mu(v0, v1, mask, maskedoff0, maskedoff1, base, new_vl, vl);
 }
-

@@ -485,4 +485,3 @@ vfloat64m4_t test_vfcvt_f_xu_v_f64m4_m(vbool16_t mask, vuint64m4_t src, size_t v
 vfloat64m8_t test_vfcvt_f_xu_v_f64m8_m(vbool8_t mask, vuint64m8_t src, size_t vl) {
   return __riscv_vfcvt_f(mask, src, vl);
 }
-

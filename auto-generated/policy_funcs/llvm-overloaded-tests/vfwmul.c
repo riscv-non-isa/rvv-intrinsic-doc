@@ -293,4 +293,3 @@ vfloat64m8_t test_vfwmul_vv_f64m8_mu(vbool8_t mask, vfloat64m8_t maskedoff, vflo
 vfloat64m8_t test_vfwmul_vf_f64m8_mu(vbool8_t mask, vfloat64m8_t maskedoff, vfloat32m4_t op1, float op2, size_t vl) {
   return __riscv_vfwmul_mu(mask, maskedoff, op1, op2, vl);
 }
-

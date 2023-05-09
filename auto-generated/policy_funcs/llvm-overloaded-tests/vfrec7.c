@@ -245,4 +245,3 @@ vfloat64m4_t test_vfrec7_v_f64m4_mu(vbool16_t mask, vfloat64m4_t maskedoff, vflo
 vfloat64m8_t test_vfrec7_v_f64m8_mu(vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, size_t vl) {
   return __riscv_vfrec7_mu(mask, maskedoff, op1, vl);
 }
-

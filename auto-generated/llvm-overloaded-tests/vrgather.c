@@ -949,4 +949,3 @@ vuint64m8_t test_vrgather_vv_u64m8_m(vbool8_t mask, vuint64m8_t op1, vuint64m8_t
 vuint64m8_t test_vrgather_vx_u64m8_m(vbool8_t mask, vuint64m8_t op1, size_t index, size_t vl) {
   return __riscv_vrgather(mask, op1, index, vl);
 }
-

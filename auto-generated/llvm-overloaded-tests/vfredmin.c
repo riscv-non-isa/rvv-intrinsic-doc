@@ -125,4 +125,3 @@ vfloat64m1_t test_vfredmin_vs_f64m4_f64m1_m(vbool16_t mask, vfloat64m4_t vector,
 vfloat64m1_t test_vfredmin_vs_f64m8_f64m1_m(vbool8_t mask, vfloat64m8_t vector, vfloat64m1_t scalar, size_t vl) {
   return __riscv_vfredmin(mask, vector, scalar, vl);
 }
-

@@ -101,4 +101,3 @@ void test_vlseg3e64ff_v_u64m1_mu(vuint64m1_t *v0, vuint64m1_t *v1, vuint64m1_t *
 void test_vlseg3e64ff_v_u64m2_mu(vuint64m2_t *v0, vuint64m2_t *v1, vuint64m2_t *v2, vbool32_t mask, vuint64m2_t maskedoff0, vuint64m2_t maskedoff1, vuint64m2_t maskedoff2, const uint64_t *base, size_t *new_vl, size_t vl) {
   return __riscv_vlseg3e64ff_v_u64m2_mu(v0, v1, v2, mask, maskedoff0, maskedoff1, maskedoff2, base, new_vl, vl);
 }
-

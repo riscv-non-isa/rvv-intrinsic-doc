@@ -244,4 +244,3 @@ vint64m8_t test_vwmulsu_vv_i64m8_m(vbool8_t mask, vint32m4_t op1, vuint32m4_t op
 vint64m8_t test_vwmulsu_vx_i64m8_m(vbool8_t mask, vint32m4_t op1, uint32_t op2, size_t vl) {
   return __riscv_vwmulsu(mask, op1, op2, vl);
 }
-

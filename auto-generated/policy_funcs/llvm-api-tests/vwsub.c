@@ -964,4 +964,3 @@ vint64m8_t test_vwsub_wv_i64m8_mu(vbool8_t mask, vint64m8_t maskedoff, vint64m8_
 vint64m8_t test_vwsub_wx_i64m8_mu(vbool8_t mask, vint64m8_t maskedoff, vint64m8_t op1, int32_t op2, size_t vl) {
   return __riscv_vwsub_wx_i64m8_mu(mask, maskedoff, op1, op2, vl);
 }
-

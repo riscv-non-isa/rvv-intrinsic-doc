@@ -244,4 +244,3 @@ vuint32m4_t test_vnclipu_wv_u32m4_m(vbool8_t mask, vuint64m8_t op1, vuint32m4_t 
 vuint32m4_t test_vnclipu_wx_u32m4_m(vbool8_t mask, vuint64m8_t op1, size_t shift, size_t vl) {
   return __riscv_vnclipu_wx_u32m4_m(mask, op1, shift, vl);
 }
-

@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16m2_t test_vset_v_f16m1_f16m2(vfloat16m2_t dest, size_t index, vfloat16m1_t val) {
   return __riscv_vset_v_f16m1_f16m2(dest, 0, val);
 }
@@ -267,4 +268,3 @@ vuint64m8_t test_vset_v_u64m2_u64m8(vuint64m8_t dest, size_t index, vuint64m2_t 
 vuint64m8_t test_vset_v_u64m4_u64m8(vuint64m8_t dest, size_t index, vuint64m4_t val) {
   return __riscv_vset_v_u64m4_u64m8(dest, 0, val);
 }
-

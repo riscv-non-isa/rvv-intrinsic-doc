@@ -485,4 +485,3 @@ vuint64m8_t test_vwmaccu_vv_u64m8_mu(vbool8_t mask, vuint64m8_t vd, vuint32m4_t 
 vuint64m8_t test_vwmaccu_vx_u64m8_mu(vbool8_t mask, vuint64m8_t vd, uint32_t rs1, vuint32m4_t vs2, size_t vl) {
   return __riscv_vwmaccu_vx_u64m8_mu(mask, vd, rs1, vs2, vl);
 }
-

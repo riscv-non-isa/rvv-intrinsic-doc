@@ -180,4 +180,3 @@ vuint64m1_t test_vredmaxu_vs_u64m4_u64m1_tum(vbool16_t mask, vuint64m1_t maskedo
 vuint64m1_t test_vredmaxu_vs_u64m8_u64m1_tum(vbool8_t mask, vuint64m1_t maskedoff, vuint64m8_t vector, vuint64m1_t scalar, size_t vl) {
   return __riscv_vredmaxu_tum(mask, maskedoff, vector, scalar, vl);
 }
-

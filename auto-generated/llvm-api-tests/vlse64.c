@@ -101,4 +101,3 @@ vuint64m4_t test_vlse64_v_u64m4_m(vbool16_t mask, const uint64_t *base, ptrdiff_
 vuint64m8_t test_vlse64_v_u64m8_m(vbool8_t mask, const uint64_t *base, ptrdiff_t bstride, size_t vl) {
   return __riscv_vlse64_v_u64m8_m(mask, base, bstride, vl);
 }
-

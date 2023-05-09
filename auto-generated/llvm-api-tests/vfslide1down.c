@@ -125,4 +125,3 @@ vfloat64m4_t test_vfslide1down_vf_f64m4_m(vbool16_t mask, vfloat64m4_t src, doub
 vfloat64m8_t test_vfslide1down_vf_f64m8_m(vbool8_t mask, vfloat64m8_t src, double value, size_t vl) {
   return __riscv_vfslide1down_vf_f64m8_m(mask, src, value, vl);
 }
-

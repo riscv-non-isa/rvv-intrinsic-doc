@@ -708,4 +708,3 @@ vbool8_t test_vmsbc_vv_u64m8_b8(vuint64m8_t op1, vuint64m8_t op2, size_t vl) {
 vbool8_t test_vmsbc_vx_u64m8_b8(vuint64m8_t op1, uint64_t op2, size_t vl) {
   return __riscv_vmsbc_vx_u64m8_b8(op1, op2, vl);
 }
-

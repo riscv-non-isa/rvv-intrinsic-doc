@@ -245,4 +245,3 @@ vuint32m4_t test_vlse32_v_u32m4_mu(vbool8_t mask, vuint32m4_t maskedoff, const u
 vuint32m8_t test_vlse32_v_u32m8_mu(vbool4_t mask, vuint32m8_t maskedoff, const uint32_t *base, ptrdiff_t bstride, size_t vl) {
   return __riscv_vlse32_v_u32m8_mu(mask, maskedoff, base, bstride, vl);
 }
-

@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vint8mf8_t test_vadc_vvm_i8mf8(vint8mf8_t op1, vint8mf8_t op2, vbool64_t carryin, size_t vl) {
   return __riscv_vadc(op1, op2, carryin, vl);
 }
@@ -355,4 +356,3 @@ vuint64m8_t test_vadc_vvm_u64m8(vuint64m8_t op1, vuint64m8_t op2, vbool8_t carry
 vuint64m8_t test_vadc_vxm_u64m8(vuint64m8_t op1, uint64_t op2, vbool8_t carryin, size_t vl) {
   return __riscv_vadc(op1, op2, carryin, vl);
 }
-

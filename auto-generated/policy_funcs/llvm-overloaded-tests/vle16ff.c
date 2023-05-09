@@ -221,4 +221,3 @@ vuint16m4_t test_vle16ff_v_u16m4_tumu(vbool4_t mask, vuint16m4_t maskedoff, cons
 vuint16m8_t test_vle16ff_v_u16m8_tumu(vbool2_t mask, vuint16m8_t maskedoff, const uint16_t *base, size_t *new_vl, size_t vl) {
   return __riscv_vle16ff_tumu(mask, maskedoff, base, new_vl, vl);
 }
-

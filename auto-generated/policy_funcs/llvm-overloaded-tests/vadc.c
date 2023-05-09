@@ -356,4 +356,3 @@ vuint64m8_t test_vadc_vvm_u64m8_tu(vuint64m8_t maskedoff, vuint64m8_t op1, vuint
 vuint64m8_t test_vadc_vxm_u64m8_tu(vuint64m8_t maskedoff, vuint64m8_t op1, uint64_t op2, vbool8_t carryin, size_t vl) {
   return __riscv_vadc_tu(maskedoff, op1, op2, carryin, vl);
 }
-

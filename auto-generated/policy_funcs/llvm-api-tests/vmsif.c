@@ -32,4 +32,3 @@ vbool32_t test_vmsif_m_b32_mu(vbool32_t mask, vbool32_t maskedoff, vbool32_t op1
 vbool64_t test_vmsif_m_b64_mu(vbool64_t mask, vbool64_t maskedoff, vbool64_t op1, size_t vl) {
   return __riscv_vmsif_m_b64_mu(mask, maskedoff, op1, vl);
 }
-

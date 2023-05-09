@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vint8m1_t test_vredmax_vs_i8mf8_i8m1(vint8mf8_t vector, vint8m1_t scalar, size_t vl) {
   return __riscv_vredmax_vs_i8mf8_i8m1(vector, scalar, vl);
 }
@@ -179,4 +180,3 @@ vint64m1_t test_vredmax_vs_i64m4_i64m1_m(vbool16_t mask, vint64m4_t vector, vint
 vint64m1_t test_vredmax_vs_i64m8_i64m1_m(vbool8_t mask, vint64m8_t vector, vint64m1_t scalar, size_t vl) {
   return __riscv_vredmax_vs_i64m8_i64m1_m(mask, vector, scalar, vl);
 }
-

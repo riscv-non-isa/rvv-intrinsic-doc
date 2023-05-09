@@ -125,4 +125,3 @@ vfloat64m4_t test_vfneg_v_f64m4_m(vbool16_t mask, vfloat64m4_t op1, size_t vl) {
 vfloat64m8_t test_vfneg_v_f64m8_m(vbool8_t mask, vfloat64m8_t op1, size_t vl) {
   return __riscv_vfneg_v_f64m8_m(mask, op1, vl);
 }
-

@@ -389,4 +389,3 @@ void test_vluxseg2ei8_v_u64m2_m(vuint64m2_t *v0, vuint64m2_t *v1, vbool32_t mask
 void test_vluxseg2ei8_v_u64m4_m(vuint64m4_t *v0, vuint64m4_t *v1, vbool16_t mask, const uint64_t *base, vuint8mf2_t bindex, size_t vl) {
   return __riscv_vluxseg2ei8_v_u64m4_m(v0, v1, mask, base, bindex, vl);
 }
-

@@ -421,4 +421,3 @@ void test_vloxseg6ei8_v_u32m1_mu(vuint32m1_t *v0, vuint32m1_t *v1, vuint32m1_t *
 void test_vloxseg6ei8_v_u64m1_mu(vuint64m1_t *v0, vuint64m1_t *v1, vuint64m1_t *v2, vuint64m1_t *v3, vuint64m1_t *v4, vuint64m1_t *v5, vbool64_t mask, vuint64m1_t maskedoff0, vuint64m1_t maskedoff1, vuint64m1_t maskedoff2, vuint64m1_t maskedoff3, vuint64m1_t maskedoff4, vuint64m1_t maskedoff5, const uint64_t *base, vuint8mf8_t bindex, size_t vl) {
   return __riscv_vloxseg6ei8_mu(v0, v1, v2, v3, v4, v5, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, bindex, vl);
 }
-

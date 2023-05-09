@@ -268,4 +268,3 @@ vuint64m4_t test_viota_m_u64m4_tumu(vbool16_t mask, vuint64m4_t maskedoff, vbool
 vuint64m8_t test_viota_m_u64m8_tumu(vbool8_t mask, vuint64m8_t maskedoff, vbool8_t op1, size_t vl) {
   return __riscv_viota_tumu(mask, maskedoff, op1, vl);
 }
-

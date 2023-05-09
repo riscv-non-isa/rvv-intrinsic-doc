@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf4_t test_vfmerge_vfm_f16mf4(vfloat16mf4_t op1, float16_t op2, vbool64_t mask, size_t vl) {
   return __riscv_vfmerge_vfm_f16mf4(op1, op2, mask, vl);
 }
@@ -63,4 +64,3 @@ vfloat64m4_t test_vfmerge_vfm_f64m4(vfloat64m4_t op1, float64_t op2, vbool16_t m
 vfloat64m8_t test_vfmerge_vfm_f64m8(vfloat64m8_t op1, float64_t op2, vbool8_t mask, size_t vl) {
   return __riscv_vfmerge_vfm_f64m8(op1, op2, mask, vl);
 }
-

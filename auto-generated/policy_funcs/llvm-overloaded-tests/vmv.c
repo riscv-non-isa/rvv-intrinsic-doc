@@ -593,4 +593,3 @@ vuint64m4_t test_vmv_s_x_u64m4_tu(vuint64m4_t maskedoff, uint64_t src, size_t vl
 vuint64m8_t test_vmv_s_x_u64m8_tu(vuint64m8_t maskedoff, uint64_t src, size_t vl) {
   return __riscv_vmv_s_tu(maskedoff, src, vl);
 }
-

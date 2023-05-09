@@ -180,4 +180,3 @@ vuint64m4_t test_viota_m_u64m4_m(vbool16_t mask, vbool16_t op1, size_t vl) {
 vuint64m8_t test_viota_m_u64m8_m(vbool8_t mask, vbool8_t op1, size_t vl) {
   return __riscv_viota_m_u64m8_m(mask, op1, vl);
 }
-

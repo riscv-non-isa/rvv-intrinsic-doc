@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vbool1_t test_vmnor_mm_b1(vbool1_t op1, vbool1_t op2, size_t vl) {
   return __riscv_vmnor(op1, op2, vl);
 }
@@ -31,4 +32,3 @@ vbool32_t test_vmnor_mm_b32(vbool32_t op1, vbool32_t op2, size_t vl) {
 vbool64_t test_vmnor_mm_b64(vbool64_t op1, vbool64_t op2, size_t vl) {
   return __riscv_vmnor(op1, op2, vl);
 }
-

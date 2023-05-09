@@ -36,4 +36,3 @@ void test_vlseg8e8_v_u8mf2_m(vuint8mf2_t *v0, vuint8mf2_t *v1, vuint8mf2_t *v2, 
 void test_vlseg8e8_v_u8m1_m(vuint8m1_t *v0, vuint8m1_t *v1, vuint8m1_t *v2, vuint8m1_t *v3, vuint8m1_t *v4, vuint8m1_t *v5, vuint8m1_t *v6, vuint8m1_t *v7, vbool8_t mask, const uint8_t *base, size_t vl) {
   return __riscv_vlseg8e8(v0, v1, v2, v3, v4, v5, v6, v7, mask, base, vl);
 }
-

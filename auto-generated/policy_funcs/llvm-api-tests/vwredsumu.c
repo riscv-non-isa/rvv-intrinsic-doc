@@ -148,4 +148,3 @@ vuint64m1_t test_vwredsumu_vs_u32m4_u64m1_tum(vbool8_t mask, vuint64m1_t maskedo
 vuint64m1_t test_vwredsumu_vs_u32m8_u64m1_tum(vbool4_t mask, vuint64m1_t maskedoff, vuint32m8_t vector, vuint64m1_t scalar, size_t vl) {
   return __riscv_vwredsumu_vs_u32m8_u64m1_tum(mask, maskedoff, vector, scalar, vl);
 }
-

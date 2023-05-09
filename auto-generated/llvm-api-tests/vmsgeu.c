@@ -357,4 +357,3 @@ vbool8_t test_vmsgeu_vv_u64m8_b8_m(vbool8_t mask, vuint64m8_t op1, vuint64m8_t o
 vbool8_t test_vmsgeu_vx_u64m8_b8_m(vbool8_t mask, vuint64m8_t op1, uint64_t op2, size_t vl) {
   return __riscv_vmsgeu_vx_u64m8_b8_m(mask, op1, op2, vl);
 }
-

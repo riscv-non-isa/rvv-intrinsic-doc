@@ -124,4 +124,3 @@ vuint64m4_t test_vzext_vf2_u64m4_m(vbool16_t mask, vuint32m2_t op1, size_t vl) {
 vuint64m8_t test_vzext_vf2_u64m8_m(vbool8_t mask, vuint32m4_t op1, size_t vl) {
   return __riscv_vzext_vf2_u64m8_m(mask, op1, vl);
 }
-

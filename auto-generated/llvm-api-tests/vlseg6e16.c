@@ -77,4 +77,3 @@ void test_vlseg6e16_v_u16mf2_m(vuint16mf2_t *v0, vuint16mf2_t *v1, vuint16mf2_t 
 void test_vlseg6e16_v_u16m1_m(vuint16m1_t *v0, vuint16m1_t *v1, vuint16m1_t *v2, vuint16m1_t *v3, vuint16m1_t *v4, vuint16m1_t *v5, vbool16_t mask, const uint16_t *base, size_t vl) {
   return __riscv_vlseg6e16_v_u16m1_m(v0, v1, v2, v3, v4, v5, mask, base, vl);
 }
-

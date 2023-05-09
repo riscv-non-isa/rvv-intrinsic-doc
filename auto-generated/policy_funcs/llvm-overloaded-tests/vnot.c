@@ -708,4 +708,3 @@ vuint64m4_t test_vnot_v_u64m4_mu(vbool16_t mask, vuint64m4_t maskedoff, vuint64m
 vuint64m8_t test_vnot_v_u64m8_mu(vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t op1, size_t vl) {
   return __riscv_vnot_mu(mask, maskedoff, op1, vl);
 }
-

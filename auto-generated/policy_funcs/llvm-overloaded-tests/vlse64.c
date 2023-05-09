@@ -149,4 +149,3 @@ vuint64m4_t test_vlse64_v_u64m4_tumu(vbool16_t mask, vuint64m4_t maskedoff, cons
 vuint64m8_t test_vlse64_v_u64m8_tumu(vbool8_t mask, vuint64m8_t maskedoff, const uint64_t *base, ptrdiff_t bstride, size_t vl) {
   return __riscv_vlse64_tumu(mask, maskedoff, base, bstride, vl);
 }
-

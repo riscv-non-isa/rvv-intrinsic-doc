@@ -125,4 +125,3 @@ void test_vse32_v_u32m4_m(vbool8_t mask, uint32_t *base, vuint32m4_t value, size
 void test_vse32_v_u32m8_m(vbool4_t mask, uint32_t *base, vuint32m8_t value, size_t vl) {
   return __riscv_vse32_v_u32m8_m(mask, base, value, vl);
 }
-

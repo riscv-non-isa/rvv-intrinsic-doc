@@ -917,4 +917,3 @@ vfloat64m4_t test_vfwcvt_f_f_v_f64m4_mu(vbool16_t mask, vfloat64m4_t maskedoff, 
 vfloat64m8_t test_vfwcvt_f_f_v_f64m8_mu(vbool8_t mask, vfloat64m8_t maskedoff, vfloat32m4_t src, size_t vl) {
   return __riscv_vfwcvt_f_mu(mask, maskedoff, src, vl);
 }
-

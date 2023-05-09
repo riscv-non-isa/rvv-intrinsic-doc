@@ -125,4 +125,3 @@ vfloat64m4_t test_vfmv_s_f_f64m4_tu(vfloat64m4_t maskedoff, double src, size_t v
 vfloat64m8_t test_vfmv_s_f_f64m8_tu(vfloat64m8_t maskedoff, double src, size_t vl) {
   return __riscv_vfmv_s_tu(maskedoff, src, vl);
 }
-

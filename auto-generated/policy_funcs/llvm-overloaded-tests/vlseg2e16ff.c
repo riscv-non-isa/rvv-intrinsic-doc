@@ -185,4 +185,3 @@ void test_vlseg2e16ff_v_u16m2_tumu(vuint16m2_t *v0, vuint16m2_t *v1, vbool8_t ma
 void test_vlseg2e16ff_v_u16m4_tumu(vuint16m4_t *v0, vuint16m4_t *v1, vbool4_t mask, vuint16m4_t maskedoff0, vuint16m4_t maskedoff1, const uint16_t *base, size_t *new_vl, size_t vl) {
   return __riscv_vlseg2e16ff_tumu(v0, v1, mask, maskedoff0, maskedoff1, base, new_vl, vl);
 }
-

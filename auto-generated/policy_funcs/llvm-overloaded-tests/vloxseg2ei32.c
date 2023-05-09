@@ -741,4 +741,3 @@ void test_vloxseg2ei32_v_u64m2_mu(vuint64m2_t *v0, vuint64m2_t *v1, vbool32_t ma
 void test_vloxseg2ei32_v_u64m4_mu(vuint64m4_t *v0, vuint64m4_t *v1, vbool16_t mask, vuint64m4_t maskedoff0, vuint64m4_t maskedoff1, const uint64_t *base, vuint32m2_t bindex, size_t vl) {
   return __riscv_vloxseg2ei32_mu(v0, v1, mask, maskedoff0, maskedoff1, base, bindex, vl);
 }
-

@@ -185,4 +185,3 @@ double test_vfmv_f_s_f64m8_f64(vfloat64m8_t src) {
 vfloat64m8_t test_vfmv_s_f_f64m8(double src, size_t vl) {
   return __riscv_vfmv_s_f_f64m8(src, vl);
 }
-

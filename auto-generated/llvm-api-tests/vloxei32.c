@@ -421,4 +421,3 @@ vuint64m4_t test_vloxei32_v_u64m4_m(vbool16_t mask, const uint64_t *base, vuint3
 vuint64m8_t test_vloxei32_v_u64m8_m(vbool8_t mask, const uint64_t *base, vuint32m4_t bindex, size_t vl) {
   return __riscv_vloxei32_v_u64m8_m(mask, base, bindex, vl);
 }
-

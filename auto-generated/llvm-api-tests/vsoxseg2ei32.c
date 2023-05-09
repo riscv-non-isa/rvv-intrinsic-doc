@@ -373,4 +373,3 @@ void test_vsoxseg2ei32_v_u64m2_m(vbool32_t mask, uint64_t *base, vuint32m1_t bin
 void test_vsoxseg2ei32_v_u64m4_m(vbool16_t mask, uint64_t *base, vuint32m2_t bindex, vuint64m4_t v0, vuint64m4_t v1, size_t vl) {
   return __riscv_vsoxseg2ei32_v_u64m4_m(mask, base, bindex, v0, v1, vl);
 }
-

@@ -125,4 +125,3 @@ vbool8_t test_vmfle_vv_f64m8_b8_mu(vbool8_t mask, vbool8_t maskedoff, vfloat64m8
 vbool8_t test_vmfle_vf_f64m8_b8_mu(vbool8_t mask, vbool8_t maskedoff, vfloat64m8_t op1, double op2, size_t vl) {
   return __riscv_vmfle_vf_f64m8_b8_mu(mask, maskedoff, op1, op2, vl);
 }
-

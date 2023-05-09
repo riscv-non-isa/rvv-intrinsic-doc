@@ -417,4 +417,3 @@ vfloat64m4_t test_vmerge_vvm_f64m4_tu(vfloat64m4_t maskedoff, vfloat64m4_t op1, 
 vfloat64m8_t test_vmerge_vvm_f64m8_tu(vfloat64m8_t maskedoff, vfloat64m8_t op1, vfloat64m8_t op2, vbool8_t mask, size_t vl) {
   return __riscv_vmerge_tu(maskedoff, op1, op2, mask, vl);
 }
-
