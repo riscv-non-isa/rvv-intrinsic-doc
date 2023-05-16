@@ -59,15 +59,15 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
            op != "wcvtbf16" and op != "ncvtbf16"):
         continue
 
-      if ((op == "wcvtbf16" and args["TYPES1"] != "bf" ) or
-          (op == "ncvtbf16" and args["TYPES3"] != "bf" )):
+      if ((op == "wcvtbf16" and args["TYPES3"] != "bf" ) or
+          (op == "ncvtbf16" and args["TYPES1"] != "bf" )):
         continue
 
       args["MIDDLE"] = "v"
       factor = ""
-      if op == "wcvt":
+      if op == "wcvt" or op == "wcvtbf16":
         factor = "W"
-      if op == "ncvt":
+      if op == "ncvt" or op == "ncvtbf16":
         factor = "N"
         args["MIDDLE"] = "w"
 
