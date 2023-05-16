@@ -55,11 +55,12 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if (op == "cvt" and args["TYPES1"] == args["TYPES3"]):
         continue
 
-      if ((args["TYPES1"] == "bf" or args["TYPES3"] == "bf") and op == "cvt"):
+      if ((args["TYPES1"] == "bf" or args["TYPES3"] == "bf") and 
+           op != "wcvtbf16" and op != "ncvtbf16"):
         continue
 
-      if ((args["TYPES3"] == "bf" and args["SEW"] != 16 ) or
-          (args["TYPES1"] == "bf" and args["SEW"] != 32)):
+      if ((op == "wcvtbf16" and args["TYPES1"] != "bf" ) or
+          (op == "ncvtbf16" and args["TYPES3"] != "bf" )):
         continue
 
       args["MIDDLE"] = "v"
@@ -75,9 +76,6 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
 
       if args["TYPES1"] == "f" or args["TYPES3"] == "f":
         args["OP"] = "f" + args["OP"]
-
-      if args["TYPES1"] == "bf" or args["TYPES3"] == "bf":
-        args["OP"] = args["OP"] + "bf16"
 
       if args["TYPES0"] == "uint":
         args["D_TYPE"] = "u"
