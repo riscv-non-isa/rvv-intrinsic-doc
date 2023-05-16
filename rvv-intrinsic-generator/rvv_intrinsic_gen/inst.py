@@ -335,13 +335,6 @@ def gen(g):
       decorators.has_masking_no_maskedoff_policy)
 
   g.function_group(
-      mac_template,
-      "Vector BFloat16 Widening Multiply-Add Functions (draft)",
-      REF_DOC_URL + "#147-vector-bf16-widening-multiply-add-operations",
-      ["wmacc"], BFTYPES, WFSEWS, WLMULS, 
-      decorators.has_masking_no_maskedoff_policy)
-
-  g.function_group(
       unary_op_template, "Vector Floating-Point Square-Root Functions",
       REF_DOC_URL + "#148-vector-floating-point-square-root-operations",
       ["sqrt"], FTYPES, FSEWS, LMULS, decorators.has_masking_maskedoff_policy)
@@ -414,6 +407,27 @@ def gen(g):
       cvt_op_template,
       "Narrowing Floating-Point/Integer Type-Convert Functions", REF_DOC_URL +
       "#1419-narrowing-floating-pointinteger-type-convert-operations", ["ncvt"],
+      "", NSEWS, NCVTLMULS, decorators.has_masking_maskedoff_policy)
+     
+  ####################################################################
+  g.start_group("Vector BFloat16 Functions (still on the draft status)")
+
+  g.function_group(
+      mac_template, "Vector BFloat16 Widening Multiply-Add Functions",
+      REF_DOC_URL + "#1420-vector-bf16-widening-multiply-add-operations",
+      ["wmacc"], BFTYPES, WFSEWS, WLMULS,
+      decorators.has_masking_no_maskedoff_policy)
+
+  g.function_group(
+      cvt_op_template, "Widening BFloat16/FP32 Type-Convert Functions",
+      REF_DOC_URL +
+      "#1421-widening-bf16-fp32-type-convert-operations", ["wcvtbf16"],
+      "", WSEWS, WLMULS, decorators.has_masking_maskedoff_policy)
+
+  g.function_group(
+      cvt_op_template,
+      "Narrowing FP32/BFloat16 Type-Convert Functions", REF_DOC_URL +
+      "#1422-narrowing-fp32-bf16-type-convert-operations", ["ncvtbf16"],
       "", NSEWS, NCVTLMULS, decorators.has_masking_maskedoff_policy)
 
   ####################################################################
