@@ -241,9 +241,9 @@ int8_t vmv_x_s_i8m8_i8 (vint8m8_t vs2, size_t vl);
 
 ## Scalar in Vector Operations<a name="scalar-in-vector-operations"></a>
 
-In V specification, it defines operations between vector and scalar types. If `XLEN` > `SEW`, the least-significant SEW bits of the scalar register are used. If `XLEN` < `SEW`, the value from the scalar register is sign-extended to SEW bits.
-
-We define arithmetic intrinsics with scalar using SEW types.
+Some V-extension instructions have both vector and scalar operands,
+and the scalar operands may be truncated or extended depending on the relative widths of XLEN (or FLEN) and SEW.
+The intrinsics API hides this detail from the C programmer by using fixed-width integer (or floating-point) types, as follows:
 
 ```
 Example:
@@ -254,18 +254,9 @@ vuint8m1_t vadd_vx_u8m1(vuint8m1_t op1, uint8_t op2, size_t vl);
 vuint64m1_t vadd_vx_u64m1(vuint64m1_t op1, uint64_t op2, size_t vl);
 ```
 
-The compiler may generate multiple instructions for the intrinsics. For example, it is a little bit complicated to support `uint64_t` operations under `XLEN` = 32.
-
-It breaks the one-to-one mapping between intrinsics and assembly mnemonics in some hardware configurations. However, it makes more sense for users to use the scalar types consistent with the `SEW` of vector types.
-
-There is the same issue for `vmv.x.s`, `vmv.s.x`, `vfmv.f.s`, `vfmv.s.f`, `vslide1up.vx`, `vfslide1up.vf`, `vslide1down.vx`, and `vfslide1down.vx`. Use `SEW` to encode the scalar type.
-
-```
-Example:
-
-// Use uint8_t for op2.
-vuint8m1_t vslide1up_vx_u8m1(vuint8m1_t dest, vuint8m1_t op1, uint8_1 op2);
-```
+To support the implied semantics, the compiler may generate multiple instructions for the intrinsics.
+(More generally, this API does not constrain the compiler in which instructions it actually generates.)
+For example, to support `vmv_x_s_i64m1_i64` when XLEN = 32, the compiler may generate `vmv.x.s`, `vslide1down.vx`, and another `vmv.x.s`, all with SEW = 32, to extract the full 64 bits into two X-registers.
 
 ## Mask in Intrinsics<a name="mask-in-intrinsics"></a>
 

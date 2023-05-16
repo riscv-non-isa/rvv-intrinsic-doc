@@ -84,6 +84,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             op1=type_helper.wv,
             shift=(f"vuint{args['SEW']}m{args['LMUL']}_t"
                    if op2 == "v" else "size_t"),
+            **decorator.extra_csr_args(type_helper.uint),
             vl=type_helper.size_t)
       else:
         G.func(

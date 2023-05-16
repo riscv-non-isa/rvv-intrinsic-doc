@@ -51,6 +51,7 @@ class TypeHelper:
   intptr_t = "intptr_t"
   ptrdiff_t = "ptrdiff_t"
   ulong = "unsigned long"
+  uint = "unsigned int"
   long = "long"
   boolean = "uint8_t"
   const_int = "const int"
@@ -157,8 +158,8 @@ class TypeHelper:
 
 
 def seg_constraint(**kargs):
-  return ((get_float_lmul(kargs["LMUL"]) * kargs["NF"]) <=
-          8) and basic_constraint(**kargs)
+  return ((get_float_lmul(kargs["LMUL"]) * kargs["NF"])
+          <= 8) and basic_constraint(**kargs)
 
 
 def seg_arg(v, nf, ptr_t=False):

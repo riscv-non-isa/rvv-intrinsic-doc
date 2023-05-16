@@ -95,6 +95,12 @@ class IntrinsicDecorator():
       return d
     return {}
 
+  def extra_csr_args(self, csr_type):
+    d = collections.OrderedDict()
+    if self.flags & ExtraAttr.HAS_VXRM:
+      d["vxrm"] = csr_type
+    return d
+
 
 class IntrinsicDecorators():
   """
@@ -182,3 +188,9 @@ class IntrinsicDecorators():
       self.has_no_masking = self.has_no_masking_policy
       self.has_masking_maskedoff = self.has_masking_maskedoff_policy
       self.has_masking_no_maskedoff = self.has_masking_no_maskedoff_policy
+
+    # Append rounding mode (vxrm) operand for the decorators
+    self.has_masking_maskedoff_policy_vxrm = []
+    for decorator in self.has_masking_maskedoff_policy:
+      self.has_masking_maskedoff_policy_vxrm.append(
+          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_VXRM))
