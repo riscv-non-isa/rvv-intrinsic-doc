@@ -51,32 +51,34 @@ Further, individual intrinsic functions depend on the availability of the corres
 
 Encode `SEW` and `LMUL` into data types. We enforce the constraint `LMUL ≥ SEW/ELEN` in the implementation. There are the following data types for `ELEN` = 64.
 
-| Types        | LMUL = 1     | LMUL = 2     | LMUL = 4     | LMUL = 8     | LMUL = 1/2    | LMUL = 1/4    | LMUL = 1/8
-| ------------ | ------------ | ------------ | ------------ | -----------  | ------------- | ------------- | --------------
-| **int64_t**  | vint64m1_t   | vint64m2_t   | vint64m4_t   | vint64m8_t   | N/A           | N/A           | N/A
-| **uint64_t** | vuint64m1_t  | vuint64m2_t  | vuint64m4_t  | vuint64m8_t  | N/A           | N/A           | N/A
-| **int32_t**  | vint32m1_t   | vint32m2_t   | vint32m4_t   | vint32m8_t   | vint32mf2_t   | N/A           | N/A
-| **uint32_t** | vuint32m1_t  | vuint32m2_t  | vuint32m4_t  | vuint32m8_t  | vuint32mf2_t  | N/A           | N/A
-| **int16_t**  | vint16m1_t   | vint16m2_t   | vint16m4_t   | vint16m8_t   | vint16mf2_t   | vint16mf4_t   | N/A
-| **uint16_t** | vuint16m1_t  | vuint16m2_t  | vuint16m4_t  | vuint16m8_t  | vuint16mf2_t  | vuint16mf4_t  | N/A
-| **int8_t**   | vint8m1_t    | vint8m2_t    | vint8m4_t    | vint8m8_t    | vint8mf2_t    | vint8mf4_t    | vint8mf8_t
-| **uint8_t**  | vuint8m1_t   | vuint8m2_t   | vuint8m4_t   | vuint8m8_t   | vuint8mf2_t   | vuint8mf4_t   | vuint8mf8_t
-| **vfloat64** | vfloat64m1_t | vfloat64m2_t | vfloat64m4_t | vfloat64m8_t | N/A           | N/A           | N/A
-| **vfloat32** | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t | vfloat32mf2_t | N/A           | N/A
-| **vfloat16** | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t | vfloat16mf2_t | vfloat16mf4_t | N/A
+| Types         | LMUL = 1      | LMUL = 2      | LMUL = 4      | LMUL = 8      | LMUL = 1/2     | LMUL = 1/4     | LMUL = 1/8
+| ------------  | ------------  | ------------  | ------------  | -----------   | -------------  | -------------  | --------------
+| **int64_t**   | vint64m1_t    | vint64m2_t    | vint64m4_t    | vint64m8_t    | N/A            | N/A            | N/A
+| **uint64_t**  | vuint64m1_t   | vuint64m2_t   | vuint64m4_t   | vuint64m8_t   | N/A            | N/A            | N/A
+| **int32_t**   | vint32m1_t    | vint32m2_t    | vint32m4_t    | vint32m8_t    | vint32mf2_t    | N/A            | N/A
+| **uint32_t**  | vuint32m1_t   | vuint32m2_t   | vuint32m4_t   | vuint32m8_t   | vuint32mf2_t   | N/A            | N/A
+| **int16_t**   | vint16m1_t    | vint16m2_t    | vint16m4_t    | vint16m8_t    | vint16mf2_t    | vint16mf4_t    | N/A
+| **uint16_t**  | vuint16m1_t   | vuint16m2_t   | vuint16m4_t   | vuint16m8_t   | vuint16mf2_t   | vuint16mf4_t   | N/A
+| **int8_t**    | vint8m1_t     | vint8m2_t     | vint8m4_t     | vint8m8_t     | vint8mf2_t     | vint8mf4_t     | vint8mf8_t
+| **uint8_t**   | vuint8m1_t    | vuint8m2_t    | vuint8m4_t    | vuint8m8_t    | vuint8mf2_t    | vuint8mf4_t    | vuint8mf8_t
+| **vfloat64**  | vfloat64m1_t  | vfloat64m2_t  | vfloat64m4_t  | vfloat64m8_t  | N/A            | N/A            | N/A
+| **vfloat32**  | vfloat32m1_t  | vfloat32m2_t  | vfloat32m4_t  | vfloat32m8_t  | vfloat32mf2_t  | N/A            | N/A
+| **vfloat16**  | vfloat16m1_t  | vfloat16m2_t  | vfloat16m4_t  | vfloat16m8_t  | vfloat16mf2_t  | vfloat16mf4_t  | N/A
+| **vbfloat16** | vbfloat16m1_t | vbfloat16m2_t | vbfloat16m4_t | vbfloat16m8_t | vbfloat16mf2_t | vbfloat16mf4_t | N/A
 
 There are the following data types for `ELEN` = 32.
 
-| Types        | LMUL = 1     | LMUL = 2     | LMUL = 4     | LMUL = 8     | LMUL = 1/2    | LMUL = 1/4    | LMUL = 1/8
-| ------------ | ------------ | ------------ | ------------ | -----------  | ------------- | ------------- | --------------
-| **int32_t**  | vint32m1_t   | vint32m2_t   | vint32m4_t   | vint32m8_t   | N/A           | N/A           | N/A
-| **uint32_t** | vuint32m1_t  | vuint32m2_t  | vuint32m4_t  | vuint32m8_t  | N/A           | N/A           | N/A
-| **int16_t**  | vint16m1_t   | vint16m2_t   | vint16m4_t   | vint16m8_t   | vint16mf2_t   | N/A           | N/A
-| **uint16_t** | vuint16m1_t  | vuint16m2_t  | vuint16m4_t  | vuint16m8_t  | vuint16mf2_t  | N/A           | N/A
-| **int8_t**   | vint8m1_t    | vint8m2_t    | vint8m4_t    | vint8m8_t    | vint8mf2_t    | vint8mf4_t    | N/A
-| **uint8_t**  | vuint8m1_t   | vuint8m2_t   | vuint8m4_t   | vuint8m8_t   | vuint8mf2_t   | vuint8mf4_t   | N/A
-| **vfloat32** | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t | N/A           | N/A           | N/A
-| **vfloat16** | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t | vfloat16mf2_t | N/A           | N/A
+| Types         | LMUL = 1      | LMUL = 2      | LMUL = 4      | LMUL = 8      | LMUL = 1/2     | LMUL = 1/4     | LMUL = 1/8
+| ------------  | ------------  | ------------  | ------------  | -----------   | -------------  | -------------  | --------------
+| **int32_t**   | vint32m1_t    | vint32m2_t    | vint32m4_t    | vint32m8_t    | N/A            | N/A            | N/A
+| **uint32_t**  | vuint32m1_t   | vuint32m2_t   | vuint32m4_t   | vuint32m8_t   | N/A            | N/A            | N/A
+| **int16_t**   | vint16m1_t    | vint16m2_t    | vint16m4_t    | vint16m8_t    | vint16mf2_t    | N/A            | N/A
+| **uint16_t**  | vuint16m1_t   | vuint16m2_t   | vuint16m4_t   | vuint16m8_t   | vuint16mf2_t   | N/A            | N/A
+| **int8_t**    | vint8m1_t     | vint8m2_t     | vint8m4_t     | vint8m8_t     | vint8mf2_t     | vint8mf4_t     | N/A
+| **uint8_t**   | vuint8m1_t    | vuint8m2_t    | vuint8m4_t    | vuint8m8_t    | vuint8mf2_t    | vuint8mf4_t    | N/A
+| **vfloat32**  | vfloat32m1_t  | vfloat32m2_t  | vfloat32m4_t  | vfloat32m8_t  | N/A            | N/A            | N/A
+| **vfloat16**  | vfloat16m1_t  | vfloat16m2_t  | vfloat16m4_t  | vfloat16m8_t  | vfloat16mf2_t  | N/A            | N/A
+| **vbfloat16** | vbfloat16m1_t | vbfloat16m2_t | vbfloat16m4_t | vbfloat16m8_t | vbfloat16mf2_t | N/A            | N/A
 
 ### Mask Types<a name="mask-types"></a>
 
