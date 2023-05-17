@@ -43,7 +43,7 @@ from templates import mask_template
 from templates import mask_load_store_template
 from templates import permute_template
 from constants import LMULS,WLMULS,NCVTLMULS,SEWS,WSEWS,FSEWS,WFSEWS,NSEWS,\
-  TYPES,ITYPES,FTYPES,BFTYPES,MTYPES,MLENS,REF_DOC_URL
+  TYPES,BTYPES,ITYPES,FTYPES,BFTYPES,MTYPES,MLENS,REF_DOC_URL
 from generator import CompatibleHeaderGenerator
 
 
@@ -68,11 +68,11 @@ def gen(g):
 
   g.function_group(load_template, "Vector Unit-Stride Load Functions",
                    REF_DOC_URL + "#74-vector-unit-stride-operations", ["vle"],
-                   TYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+                   BTYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
 
   g.function_group(store_template, "Vector Unit-Stride Store Functions",
                    REF_DOC_URL + "#74-vector-unit-stride-operations", ["vse"],
-                   TYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff)
+                   BTYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff)
 
   g.function_group(load_template, "Vector Strided Load Functions",
                    REF_DOC_URL + "#75-vector-strided-loadstore-operations",
