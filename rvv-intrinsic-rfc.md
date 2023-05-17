@@ -20,6 +20,7 @@
   * [Reduction Instructions](#no-maskedoff-reduction)
   * [Merge Instructions](#no-maskedoff-merge)
 - [Policy Intrinsic Functions](#policy)
+- [Rounding mode in fixed-point intrinsics](#vxrm)
 - [Keep the Original Values of the Destination Vector](#dest-operand)
 - [SEW and LMUL of Intrinsics](#sew-and-lmul-of-intrinsics)
 - [C Operators on RISC-V Vector Types](#c-operators)
@@ -462,6 +463,23 @@ vuint32m1_t vid_tuma(vbool32_t mask, vuint32m1_t merge, size_t vl);
 vuint32m1_t vid_tumu(vbool32_t mask, vuint32m1_t merge, size_t vl);
 vuint32m1_t vid_tamu(vbool32_t mask, vuint32m1_t merge, size_t vl);
 vuint32m1_t vid_v_u32m1_tama(vbool32_t mask, size_t vl);
+```
+
+## Rounding mode in fixed-point intrinsics<a name="vxrm"></a>
+
+Regarding the fixed-point intrinsics, namely the intrinsics that represent instructions under [section 12 of the v-spec](https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#sec-vector-fixed-point), the parameter that models the control of the rounding mode is identical to what is defined in [section 3.8 of the v-spec](https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#38-vector-fixed-point-rounding-mode-register-vxrm).
+
+Computation of `vsadd`, `vsaddu`, `vssub`, and `vssubu` do not need the rounding mode, therefore the intrinsics of these instructions do not have the parameter for rounding mode control.
+
+The compiler defines an enum to help express the rounding modes.
+
+```
+enum __RISCV_VXRM {
+  __RISCV_VXRM_RNU = 0,
+  __RISCV_VXRM_RNE = 1,
+  __RISCV_VXRM_RDN = 2,
+  __RISCV_VXRM_ROD = 3,
+};
 ```
 
 ## Keep the Original Values of the Destination Vector<a name="dest-operand"></a>
