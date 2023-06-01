@@ -25,11 +25,20 @@ operand_mnemonic_dict["vwsll"] = ["vv", "vx"]  # saving the `vi` variant
 # Zvbc: Vector Carryless Multiplication
 operand_mnemonic_dict["vclmul"] = ["vv", "vx"]
 operand_mnemonic_dict["vclmulh"] = ["vv", "vx"]
+# Zvkg: Vector GCM/GMAC
+operand_mnemonic_dict["vghsh"] = ["vv"]
+operand_mnemonic_dict["vgmul"] = ["vv"]
+
+
+def has_vd_input(name):
+  has_vd_input_inst_set = {"vghsh", "vgmul"}
+
+  return name in has_vd_input_inst_set
 
 
 def has_vs1_input(name):
   has_vs1_input_inst_set = {
-      "vandn", "vrol", "vror", "vwsll", "vclmul", "vclmulh"
+      "vandn", "vrol", "vror", "vwsll", "vclmul", "vclmulh", "vghsh"
   }
 
   return name in has_vs1_input_inst_set
@@ -81,10 +90,15 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         else:
           kwargs["return_type"] = type_helper.v
         kwargs = {**kwargs, **decorator.mask_args(type_helper.m, type_helper.v)}
-        if op == "vwsll":
-          kwargs = {**kwargs, **decorator.tu_dest_args(type_helper.wv)}
+        # If vd is already in the input parameter, we don't need to emit another
+        # parameter when tail policy is TU.
+        if has_vd_input(op):
+          kwargs["vd"] = type_helper.v
         else:
-          kwargs = {**kwargs, **decorator.tu_dest_args(type_helper.v)}
+          if op == "vwsll":
+            kwargs = {**kwargs, **decorator.tu_dest_args(type_helper.wv)}
+          else:
+            kwargs = {**kwargs, **decorator.tu_dest_args(type_helper.v)}
 
         kwargs["vs2"] = type_helper.v
 
