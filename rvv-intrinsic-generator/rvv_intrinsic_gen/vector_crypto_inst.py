@@ -91,3 +91,47 @@ def gen(g):
       decorators.has_no_masking_policy)
 
   ####################################################################
+
+  g.start_group("Zvkned - NIST Suite: Vector AES Block Cipher")
+
+  g.function_group(
+      vector_crypto_template,
+      "Vector AES Encryption",
+      "",  # FIXME: We probably have a separate document for vector-crypto
+      ["vaesef", "vaesem"],
+      UITYPE,
+      [32],
+      LMULS,
+      decorators.has_no_masking_policy)
+
+  g.function_group(
+      vector_crypto_template,
+      "Vector AES Decryption",
+      "",  # FIXME: We probably have a separate document for vector-crypto
+      ["vaesdf", "vaesdm"],
+      UITYPE,
+      [32],
+      LMULS,
+      decorators.has_no_masking_policy)
+
+  g.function_group(
+      vector_crypto_template,
+      "Vector AES-128 Forward KeySchedule generation",
+      "",  # FIXME: We probably have a separate document for vector-crypto
+      ["vaeskf1", "vaeskf2"],
+      UITYPE,
+      [32],
+      LMULS,
+      decorators.has_no_masking_policy)
+
+  g.function_group(
+      vector_crypto_template,
+      "Vector AES round zero",
+      "",  # FIXME: We probably have a separate document for vector-crypto
+      ["vaesz"],
+      UITYPE,
+      [32],
+      LMULS,
+      decorators.has_no_masking_policy)
+
+  ####################################################################

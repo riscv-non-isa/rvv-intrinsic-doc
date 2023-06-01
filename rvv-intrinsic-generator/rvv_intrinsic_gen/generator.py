@@ -580,6 +580,9 @@ class APITestGenerator(Generator):
       if arg_name == "frm":
         return "__RISCV_FRM_RNE"
 
+      if arg_name == "uimm":
+        return "0"
+
       return arg_name
 
     # Write test func body.
