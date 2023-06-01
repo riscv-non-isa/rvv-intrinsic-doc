@@ -77,3 +77,17 @@ def gen(g):
       decorators.has_masking_maskedoff_policy)
 
   ####################################################################
+
+  g.start_group("Zvkg - Vector GCM/GMAC")
+
+  g.function_group(
+      vector_crypto_template,
+      "Vector GCM/GMAC",
+      "",  # FIXME: We probably have a separate document for vector-crypto
+      ["vghsh", "vgmul"],
+      UITYPE,
+      [32],
+      LMULS,
+      decorators.has_no_masking_policy)
+
+  ####################################################################
