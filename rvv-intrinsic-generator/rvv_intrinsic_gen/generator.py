@@ -95,7 +95,7 @@ class Generator():
   # vle8_v_i8m2 (const int8_t *base, size_t vl);
   @staticmethod
   def is_support_overloaded(name, **kwargs):
-    for p in ["tu", "tamu", "tumu", "tuma", "tam", "tum"]:
+    for p in ["tu", "tamu", "tumu", "tuma", "tam", "tum", "mu"]:
       if name.split("_")[-1] == p:
         return True
     if name.find("vmv_s") != -1 or name.find("vfmv_s") != -1:
