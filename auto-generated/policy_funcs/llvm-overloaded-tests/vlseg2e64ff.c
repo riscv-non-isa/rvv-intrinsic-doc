@@ -114,3 +114,39 @@ void test_vlseg2e64ff_v_u64m4_tumu(vuint64m4_t *v0, vuint64m4_t *v1, vbool16_t m
   return __riscv_vlseg2e64ff_tumu(v0, v1, mask, maskedoff0, maskedoff1, base, new_vl, vl);
 }
 
+void test_vlseg2e64ff_v_f64m1_mu(vfloat64m1_t *v0, vfloat64m1_t *v1, vbool64_t mask, vfloat64m1_t maskedoff0, vfloat64m1_t maskedoff1, const double *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg2e64ff_mu(v0, v1, mask, maskedoff0, maskedoff1, base, new_vl, vl);
+}
+
+void test_vlseg2e64ff_v_f64m2_mu(vfloat64m2_t *v0, vfloat64m2_t *v1, vbool32_t mask, vfloat64m2_t maskedoff0, vfloat64m2_t maskedoff1, const double *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg2e64ff_mu(v0, v1, mask, maskedoff0, maskedoff1, base, new_vl, vl);
+}
+
+void test_vlseg2e64ff_v_f64m4_mu(vfloat64m4_t *v0, vfloat64m4_t *v1, vbool16_t mask, vfloat64m4_t maskedoff0, vfloat64m4_t maskedoff1, const double *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg2e64ff_mu(v0, v1, mask, maskedoff0, maskedoff1, base, new_vl, vl);
+}
+
+void test_vlseg2e64ff_v_i64m1_mu(vint64m1_t *v0, vint64m1_t *v1, vbool64_t mask, vint64m1_t maskedoff0, vint64m1_t maskedoff1, const int64_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg2e64ff_mu(v0, v1, mask, maskedoff0, maskedoff1, base, new_vl, vl);
+}
+
+void test_vlseg2e64ff_v_i64m2_mu(vint64m2_t *v0, vint64m2_t *v1, vbool32_t mask, vint64m2_t maskedoff0, vint64m2_t maskedoff1, const int64_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg2e64ff_mu(v0, v1, mask, maskedoff0, maskedoff1, base, new_vl, vl);
+}
+
+void test_vlseg2e64ff_v_i64m4_mu(vint64m4_t *v0, vint64m4_t *v1, vbool16_t mask, vint64m4_t maskedoff0, vint64m4_t maskedoff1, const int64_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg2e64ff_mu(v0, v1, mask, maskedoff0, maskedoff1, base, new_vl, vl);
+}
+
+void test_vlseg2e64ff_v_u64m1_mu(vuint64m1_t *v0, vuint64m1_t *v1, vbool64_t mask, vuint64m1_t maskedoff0, vuint64m1_t maskedoff1, const uint64_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg2e64ff_mu(v0, v1, mask, maskedoff0, maskedoff1, base, new_vl, vl);
+}
+
+void test_vlseg2e64ff_v_u64m2_mu(vuint64m2_t *v0, vuint64m2_t *v1, vbool32_t mask, vuint64m2_t maskedoff0, vuint64m2_t maskedoff1, const uint64_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg2e64ff_mu(v0, v1, mask, maskedoff0, maskedoff1, base, new_vl, vl);
+}
+
+void test_vlseg2e64ff_v_u64m4_mu(vuint64m4_t *v0, vuint64m4_t *v1, vbool16_t mask, vuint64m4_t maskedoff0, vuint64m4_t maskedoff1, const uint64_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg2e64ff_mu(v0, v1, mask, maskedoff0, maskedoff1, base, new_vl, vl);
+}
+
