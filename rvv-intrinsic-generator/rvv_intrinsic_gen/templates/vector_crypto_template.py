@@ -43,12 +43,15 @@ operand_mnemonic_dict["vsha2cl"] = ["vv"]
 # Zvkned: NIST Suite: Vector AES Block Cipher
 operand_mnemonic_dict["vsm4k"] = ["vi"]
 operand_mnemonic_dict["vsm4r"] = ["vv", "vs"]
+# Zvksh: ShangMi Suite: SM3 Secure Hash
+operand_mnemonic_dict["vsm3me"] = ["vv"]
+operand_mnemonic_dict["vsm3c"] = ["vi"]
 
 
 def has_vd_input(name):
   has_vd_input_inst_set = {
       "vghsh", "vgmul", "vaesef", "vaesem", "vaesdf", "vaesdm", "vaesz",
-      "vsha2ms", "vsha2ch", "vsha2cl", "vsm4r"
+      "vsha2ms", "vsha2ch", "vsha2cl", "vsm4r", "vsm3c"
   }
 
   return name in has_vd_input_inst_set
@@ -57,7 +60,7 @@ def has_vd_input(name):
 def has_vs1_input(name):
   has_vs1_input_inst_set = {
       "vandn", "vrol", "vror", "vwsll", "vclmul", "vclmulh", "vghsh", "vsha2ms",
-      "vsha2ch", "vsha2cl"
+      "vsha2ch", "vsha2cl", "vsm3me"
   }
 
   return name in has_vs1_input_inst_set

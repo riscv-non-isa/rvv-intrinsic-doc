@@ -182,4 +182,29 @@ def gen(g):
       LMULS,
       decorators.has_no_masking_policy)
 
+  ####################################################################
+
+  g.start_group("Zvksh - ShangMi Suite: SM3 Secure Hash")
+
+  g.function_group(
+      vector_crypto_template,
+      "Vector SM3 Message Expansion",
+      "",  # FIXME: We probably have a separate document for vector-crypto
+      ["vsm3me"],
+      UITYPE,
+      [32],
+      LMULS,
+      decorators.has_no_masking_policy)
+
+  g.function_group(
+      vector_crypto_template,
+      "Vector SM3 Message Expansion",
+      "",  # FIXME: We probably have a separate document for vector-crypto
+      ["vsm3c"],
+      UITYPE,
+      [32],
+      LMULS,
+      decorators.has_no_masking_policy)
+
+
 ####################################################################
