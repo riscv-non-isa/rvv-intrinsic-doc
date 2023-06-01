@@ -28,10 +28,20 @@ operand_mnemonic_dict["vclmulh"] = ["vv", "vx"]
 # Zvkg: Vector GCM/GMAC
 operand_mnemonic_dict["vghsh"] = ["vv"]
 operand_mnemonic_dict["vgmul"] = ["vv"]
+# Zvkned: NIST Suite: Vector AES Block Cipher
+operand_mnemonic_dict["vaesef"] = ["vv", "vs"]
+operand_mnemonic_dict["vaesem"] = ["vv", "vs"]
+operand_mnemonic_dict["vaesdf"] = ["vv", "vs"]
+operand_mnemonic_dict["vaesdm"] = ["vv", "vs"]
+operand_mnemonic_dict["vaeskf1"] = ["vi"]
+operand_mnemonic_dict["vaeskf2"] = ["vi"]
+operand_mnemonic_dict["vaesz"] = ["vs"]
 
 
 def has_vd_input(name):
-  has_vd_input_inst_set = {"vghsh", "vgmul"}
+  has_vd_input_inst_set = {
+      "vghsh", "vgmul", "vaesef", "vaesem", "vaesdf", "vaesdm", "vaesz"
+  }
 
   return name in has_vd_input_inst_set
 
@@ -76,6 +86,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           else:
             inst_info = InstInfo.get(args, decorator, InstType.VX,
                                      ExtraAttr.NO_ATTR)
+        elif operand_mnemonic == "vi":
+          inst_info = InstInfo.get(args, decorator, InstType.VI,
+                                   ExtraAttr.NO_ATTR)
         elif operand_mnemonic == "v":
           inst_info = InstInfo.get(args, decorator, InstType.V,
                                    ExtraAttr.NO_ATTR)
@@ -109,6 +122,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             kwargs["rs1"] = type_helper.size_t
           else:
             kwargs["rs1"] = type_helper.s
+        if "vi" in operand_mnemonic_dict[op]:
+          kwargs["uimm"] = type_helper.size_t
 
         kwargs["vl"] = type_helper.size_t
 
