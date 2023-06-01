@@ -55,6 +55,8 @@ MAIN := rvv_intrinsic_gen.main
 BF16_INST := $(RVV_INTRINSIC_GEN_PATH)/bfloat16_inst.py
 # Script to clang-format the auto-generated adoc files
 CLANG_FORMAT_ADOC = clang_format_autogen
+# Extra flags specified when calling rvv_intrinsic_gen.main
+EXTRA_FLAG :=
 # Main output directory is default to auto-generated
 OUTPUT_DIR := ../auto-generated
 # Derives output directory for each set of intrinsics
@@ -164,50 +166,38 @@ gen-gnu-test: gnu-overloaded-test gnu-non-overloaded-test
 
 # Generate all-in-one document for non-overloaded intrinsics
 non-overloaded-doc:
-	$(call gen_doc,$(DIR),intrinsic_funcs.adoc,$@,)
-	$(call gen_doc,$(POLICY_DIR),intrinsic_funcs.adoc,$@,--has-policy)
-	$(call clang_format_adoc, --file, $(DIR)/intrinsic_funcs.adoc)
-	$(call clang_format_adoc, --file, $(POLICY_DIR)/intrinsic_funcs.adoc)
+	$(call gen_doc,$(DIR),intrinsic_funcs.md,$@,$(EXTRA_FLAG))
+	$(call gen_doc,$(POLICY_DIR),intrinsic_funcs.md,$@,--has-policy $(EXTRA_FLAG))
 
 # Generate grouped documents for non-overloaded intrinsics
 non-overloaded-docs:
-	$(call gen_docs,$(DIR),intrinsic_funcs,$@,)
-	$(call gen_docs,$(POLICY_DIR),intrinsic_funcs,$@,--has-policy)
-	$(call clang_format_adoc, --folder, $(DIR)/intrinsic_funcs)
-	$(call clang_format_adoc, --folder, $(POLICY_DIR)/intrinsic_funcs)
+	$(call gen_docs,$(DIR),intrinsic_funcs,$@,$(EXTRA_FLAG))
+	$(call gen_docs,$(POLICY_DIR),intrinsic_funcs,$@,--has-policy $(EXTRA_FLAG))
 
 # Generate all-in-one document for overloaded intrinsics
 overloaded-doc:
-	$(call gen_doc,$(DIR),overloaded_intrinsic_funcs.adoc,$@,)
-	$(call gen_doc,$(POLICY_DIR),overloaded_intrinsic_funcs.adoc,$@,--has-policy)
-	$(call clang_format_adoc, --file, $(DIR)/overloaded_intrinsic_funcs.adoc)
-	$(call clang_format_adoc, --file, $(POLICY_DIR)/overloaded_intrinsic_funcs.adoc)
+	$(call gen_doc,$(DIR),overloaded_intrinsic_funcs.md,$@,$(EXTRA_FLAG))
+	$(call gen_doc,$(POLICY_DIR),overloaded_intrinsic_funcs.md,$@,--has-policy $(EXTRA_FLAG))
 
 # Generate grouped documents for overloaded intrinsics
 overloaded-docs:
-	$(call gen_docs,$(DIR),overloaded_intrinsic_funcs,$@,)
-	$(call gen_docs,$(POLICY_DIR),overloaded_intrinsic_funcs,$@,--has-policy)
-	$(call clang_format_adoc, --folder, $(DIR)/overloaded_intrinsic_funcs)
-	$(call clang_format_adoc, --folder, $(POLICY_DIR)/overloaded_intrinsic_funcs)
+	$(call gen_docs,$(DIR),overloaded_intrinsic_funcs,$@,$(EXTRA_FLAG))
+	$(call gen_docs,$(POLICY_DIR),overloaded_intrinsic_funcs,$@,--has-policy $(EXTRA_FLAG))
 
 # Generate non-overloaded intrinsic testing C source files
 non-overloaded-test:
-	$(call gen_tests,$(DIR)/api-testing,non-overloaded-test,)
-	$(call gen_tests,$(POLICY_DIR)/api-testing,non-overloaded-test,--has-policy)
-	clang-format -i $(DIR)/api-testing/*
-	clang-format -i $(POLICY_DIR)/api-testing/*
+	$(call gen_tests,$(DIR)/api-testing,non-overloaded-test,$(EXTRA_FLAG))
+	$(call gen_tests,$(POLICY_DIR)/api-testing,non-overloaded-test,--has-policy $(EXTRA_FLAG))
 
 # Generate overloaded intrinsic testing C source files
 overloaded-test:
-	$(call gen_tests,$(DIR)/overloaded-api-testing,overloaded-test,)
-	$(call gen_tests,$(POLICY_DIR)/overloaded-api-testing,overloaded-test,--has-policy)
-	clang-format -i $(DIR)/overloaded-api-testing/*
-	clang-format -i $(POLICY_DIR)/overloaded-api-testing/*
+	$(call gen_tests,$(DIR)/overloaded-api-testing,overloaded-test,$(EXTRA_FLAG))
+	$(call gen_tests,$(POLICY_DIR)/overloaded-api-testing,overloaded-test,--has-policy $(EXTRA_FLAG))
 
 # Generate non-overloaded intrinsic testing C source files
 llvm-non-overloaded-test:
-	$(call gen_tests,$(DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm)
-	$(call gen_tests,$(POLICY_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --has-policy)
+	$(call gen_tests,$(DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm $(EXTRA_FLAG))
+	$(call gen_tests,$(POLICY_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --has-policy $(EXTRA_FLAG))
 	$(call replace_float, $(DIR)/llvm-api-tests)
 	$(call replace_float, $(POLICY_DIR)/llvm-api-tests)
 	clang-format -i $(DIR)/llvm-api-tests/*
@@ -215,8 +205,8 @@ llvm-non-overloaded-test:
 
 # Generate overloaded intrinsic testing C source files
 llvm-overloaded-test:
-	$(call gen_tests,$(DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm)
-	$(call gen_tests,$(POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --has-policy)
+	$(call gen_tests,$(DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm $(EXTRA_FLAG))
+	$(call gen_tests,$(POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --has-policy $(EXTRA_FLAG))
 	$(call replace_float, $(DIR)/llvm-overloaded-tests)
 	$(call replace_float, $(POLICY_DIR)/llvm-overloaded-tests)
 	clang-format -i $(DIR)/llvm-overloaded-tests/*
@@ -292,18 +282,15 @@ bf16-llvm-overloaded-test:
 
 # Generate the adaptor header for v0.10
 non-policy-compatible-header:
-	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,non-policy.h,non-overloaded-compatible-header,)
+	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,non-policy.h,non-overloaded-compatible-header,$(EXTRA_FLAG))
 policy-compatible-header:
-	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,policy.h,non-overloaded-compatible-header,--has-policy)
-	clang-format -i $(DIR)/rvv-v0p10-compatible-headers/*
+	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,policy.h,non-overloaded-compatible-header,--has-policy $(EXTRA_FLAG))
 
 non-policy-overloaded-compatible-header:
-	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,overloaded-non-policy.h,overloaded-compatible-header,)
-	clang-format -i $(DIR)/rvv-v0p10-compatible-headers/*
+	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,overloaded-non-policy.h,overloaded-compatible-header,$(EXTRA_FLAG))
 
 policy-overloaded-compatible-header:
-	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,overloaded-policy.h,overloaded-compatible-header,--has-policy)
-	clang-format -i $(DIR)/rvv-v0p10-compatible-headers/*
+	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,overloaded-policy.h,overloaded-compatible-header,--has-policy $(EXTRA_FLAG))
 
 
 ###############################################################################
