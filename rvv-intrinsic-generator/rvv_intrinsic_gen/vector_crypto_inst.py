@@ -135,3 +135,28 @@ def gen(g):
       decorators.has_no_masking_policy)
 
   ####################################################################
+
+  g.start_group("Zvknh - NIST Suite: Vector SHA-2 Secure Hash")
+
+  g.function_group(
+      vector_crypto_template,
+      "Vector SHA-2 message schedule",
+      "",  # FIXME: We probably have a separate document for vector-crypto
+      ["vsha2ms"],
+      UITYPE,
+      [32, 64],
+      LMULS,
+      decorators.has_no_masking_policy)
+
+  g.function_group(
+      vector_crypto_template,
+      "Vector SHA-2 two rounds of compression",
+      "",  # FIXME: We probably have a separate document for vector-crypto
+      ["vsha2ch", "vsha2cl"],
+      UITYPE,
+      [32, 64],
+      LMULS,
+      decorators.has_no_masking_policy)
+
+
+####################################################################
