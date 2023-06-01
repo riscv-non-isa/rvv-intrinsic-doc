@@ -266,7 +266,7 @@ class Generator(ABC):
       overloaded_name = "_".join([sn[0], sn[1], sn[-1]])
     elif any(op in name for op in [
         "vzext", "vsext", "vwadd", "vwsub", "vfwadd", "vfwsub", "vwadd",
-        "vwsub", "vfwadd", "vfwsub", "vmv", "vfmv"
+        "vwsub", "vfwadd", "vfwsub", "vmv", "vfmv", "vsm4r"
     ]):
       # 2. compiler can not distinguish *.wx and *.vx, need encode them in
       #    suffix, for example:
