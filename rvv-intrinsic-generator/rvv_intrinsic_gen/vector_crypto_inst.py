@@ -158,5 +158,28 @@ def gen(g):
       LMULS,
       decorators.has_no_masking_policy)
 
+  ####################################################################
+
+  g.start_group("Zvksed - ShangMi Suite: SM4 Block Cipher")
+
+  g.function_group(
+      vector_crypto_template,
+      "Vector SM4 KeyExpansion",
+      "",  # FIXME: We probably have a separate document for vector-crypto
+      ["vsm4k"],
+      UITYPE,
+      [32],
+      LMULS,
+      decorators.has_no_masking_policy)
+
+  g.function_group(
+      vector_crypto_template,
+      "Vector SM4 Rounds",
+      "",  # FIXME: We probably have a separate document for vector-crypto
+      ["vsm4r"],
+      UITYPE,
+      [32],
+      LMULS,
+      decorators.has_no_masking_policy)
 
 ####################################################################
