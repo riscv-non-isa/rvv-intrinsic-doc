@@ -346,6 +346,15 @@ diff-autogen:
 	$(call check_defined, TEST_DIR, output directory for documents/tests generation)
 	rm -rf ${abspath ${TEST_DIR}}
 	make OUTPUT_DIR=${TEST_DIR}
+	make EXTRA_FLAG=--gen-vector-crypto OUTPUT_DIR=${TEST_DIR}/vector-crypto
+
+# Remove redundant folder created for vector crypto. The reason this line is
+# needed is because the targets in this Makefile to generate compatible header
+# creates a folder in prior before running the script. The vector crypto,
+# however, does not need compatible header because it does not exist before
+# v0.10.
+	rm -rf ${TEST_DIR}/vector-crypto/rvv-v0p10-compatible-headers
+
 	diff -qr ${TEST_DIR} ${GOLDEN_DIR}
 
 ###############################################################################
