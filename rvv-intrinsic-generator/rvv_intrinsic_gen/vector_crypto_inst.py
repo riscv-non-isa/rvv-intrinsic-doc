@@ -63,3 +63,17 @@ def gen(g):
       decorators.has_masking_maskedoff_policy)
 
   ####################################################################
+
+  g.start_group("Zvbc - Vector Carryless Multiplication")
+
+  g.function_group(
+      vector_crypto_template,
+      "Vector Carryless Multiplication",
+      "",  # FIXME: We probably have a separate document for vector-crypto
+      ["vclmul", "vclmulh"],
+      UITYPE,
+      [64],
+      LMULS,
+      decorators.has_masking_maskedoff_policy)
+
+  ####################################################################
