@@ -22,16 +22,23 @@ operand_mnemonic_dict["vcpop"] = ["v"]
 operand_mnemonic_dict["vrol"] = ["vv", "vx"]
 operand_mnemonic_dict["vror"] = ["vv", "vx"]  # saving the `vi` variant
 operand_mnemonic_dict["vwsll"] = ["vv", "vx"]  # saving the `vi` variant
+# Zvbc: Vector Carryless Multiplication
+operand_mnemonic_dict["vclmul"] = ["vv", "vx"]
+operand_mnemonic_dict["vclmulh"] = ["vv", "vx"]
 
 
 def has_vs1_input(name):
-  has_vs1_input_inst_set = {"vandn", "vrol", "vror", "vwsll"}
+  has_vs1_input_inst_set = {
+      "vandn", "vrol", "vror", "vwsll", "vclmul", "vclmulh"
+  }
 
   return name in has_vs1_input_inst_set
 
 
 def has_rs1_input(name):
-  has_rs1_input_inst_set = {"vandn", "vrol", "vror", "vwsll"}
+  has_rs1_input_inst_set = {
+      "vandn", "vrol", "vror", "vwsll", "vclmul", "vclmulh"
+  }
 
   return name in has_rs1_input_inst_set
 
