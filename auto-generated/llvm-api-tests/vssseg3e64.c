@@ -6,51 +6,51 @@
 
 #include <riscv_vector.h>
 
-void test_vssseg3e64_v_f64m1(double *base, ptrdiff_t bstride, vfloat64m1_t v0, vfloat64m1_t v1, vfloat64m1_t v2, size_t vl) {
-  return __riscv_vssseg3e64_v_f64m1(base, bstride, v0, v1, v2, vl);
+void test_vssseg3e64_v_f64m1x3(double *base, ptrdiff_t bstride, vfloat64m1x3_t v_tuple, size_t vl) {
+  return __riscv_vssseg3e64_v_f64m1x3(base, bstride, v_tuple, vl);
 }
 
-void test_vssseg3e64_v_f64m2(double *base, ptrdiff_t bstride, vfloat64m2_t v0, vfloat64m2_t v1, vfloat64m2_t v2, size_t vl) {
-  return __riscv_vssseg3e64_v_f64m2(base, bstride, v0, v1, v2, vl);
+void test_vssseg3e64_v_f64m2x3(double *base, ptrdiff_t bstride, vfloat64m2x3_t v_tuple, size_t vl) {
+  return __riscv_vssseg3e64_v_f64m2x3(base, bstride, v_tuple, vl);
 }
 
-void test_vssseg3e64_v_i64m1(int64_t *base, ptrdiff_t bstride, vint64m1_t v0, vint64m1_t v1, vint64m1_t v2, size_t vl) {
-  return __riscv_vssseg3e64_v_i64m1(base, bstride, v0, v1, v2, vl);
+void test_vssseg3e64_v_i64m1x3(int64_t *base, ptrdiff_t bstride, vint64m1x3_t v_tuple, size_t vl) {
+  return __riscv_vssseg3e64_v_i64m1x3(base, bstride, v_tuple, vl);
 }
 
-void test_vssseg3e64_v_i64m2(int64_t *base, ptrdiff_t bstride, vint64m2_t v0, vint64m2_t v1, vint64m2_t v2, size_t vl) {
-  return __riscv_vssseg3e64_v_i64m2(base, bstride, v0, v1, v2, vl);
+void test_vssseg3e64_v_i64m2x3(int64_t *base, ptrdiff_t bstride, vint64m2x3_t v_tuple, size_t vl) {
+  return __riscv_vssseg3e64_v_i64m2x3(base, bstride, v_tuple, vl);
 }
 
-void test_vssseg3e64_v_u64m1(uint64_t *base, ptrdiff_t bstride, vuint64m1_t v0, vuint64m1_t v1, vuint64m1_t v2, size_t vl) {
-  return __riscv_vssseg3e64_v_u64m1(base, bstride, v0, v1, v2, vl);
+void test_vssseg3e64_v_u64m1x3(uint64_t *base, ptrdiff_t bstride, vuint64m1x3_t v_tuple, size_t vl) {
+  return __riscv_vssseg3e64_v_u64m1x3(base, bstride, v_tuple, vl);
 }
 
-void test_vssseg3e64_v_u64m2(uint64_t *base, ptrdiff_t bstride, vuint64m2_t v0, vuint64m2_t v1, vuint64m2_t v2, size_t vl) {
-  return __riscv_vssseg3e64_v_u64m2(base, bstride, v0, v1, v2, vl);
+void test_vssseg3e64_v_u64m2x3(uint64_t *base, ptrdiff_t bstride, vuint64m2x3_t v_tuple, size_t vl) {
+  return __riscv_vssseg3e64_v_u64m2x3(base, bstride, v_tuple, vl);
 }
 
-void test_vssseg3e64_v_f64m1_m(vbool64_t mask, double *base, ptrdiff_t bstride, vfloat64m1_t v0, vfloat64m1_t v1, vfloat64m1_t v2, size_t vl) {
-  return __riscv_vssseg3e64_v_f64m1_m(mask, base, bstride, v0, v1, v2, vl);
+void test_vssseg3e64_v_f64m1x3_m(vbool64_t mask, double *base, ptrdiff_t bstride, vfloat64m1x3_t v_tuple, size_t vl) {
+  return __riscv_vssseg3e64_v_f64m1x3_m(mask, base, bstride, v_tuple, vl);
 }
 
-void test_vssseg3e64_v_f64m2_m(vbool32_t mask, double *base, ptrdiff_t bstride, vfloat64m2_t v0, vfloat64m2_t v1, vfloat64m2_t v2, size_t vl) {
-  return __riscv_vssseg3e64_v_f64m2_m(mask, base, bstride, v0, v1, v2, vl);
+void test_vssseg3e64_v_f64m2x3_m(vbool32_t mask, double *base, ptrdiff_t bstride, vfloat64m2x3_t v_tuple, size_t vl) {
+  return __riscv_vssseg3e64_v_f64m2x3_m(mask, base, bstride, v_tuple, vl);
 }
 
-void test_vssseg3e64_v_i64m1_m(vbool64_t mask, int64_t *base, ptrdiff_t bstride, vint64m1_t v0, vint64m1_t v1, vint64m1_t v2, size_t vl) {
-  return __riscv_vssseg3e64_v_i64m1_m(mask, base, bstride, v0, v1, v2, vl);
+void test_vssseg3e64_v_i64m1x3_m(vbool64_t mask, int64_t *base, ptrdiff_t bstride, vint64m1x3_t v_tuple, size_t vl) {
+  return __riscv_vssseg3e64_v_i64m1x3_m(mask, base, bstride, v_tuple, vl);
 }
 
-void test_vssseg3e64_v_i64m2_m(vbool32_t mask, int64_t *base, ptrdiff_t bstride, vint64m2_t v0, vint64m2_t v1, vint64m2_t v2, size_t vl) {
-  return __riscv_vssseg3e64_v_i64m2_m(mask, base, bstride, v0, v1, v2, vl);
+void test_vssseg3e64_v_i64m2x3_m(vbool32_t mask, int64_t *base, ptrdiff_t bstride, vint64m2x3_t v_tuple, size_t vl) {
+  return __riscv_vssseg3e64_v_i64m2x3_m(mask, base, bstride, v_tuple, vl);
 }
 
-void test_vssseg3e64_v_u64m1_m(vbool64_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m1_t v0, vuint64m1_t v1, vuint64m1_t v2, size_t vl) {
-  return __riscv_vssseg3e64_v_u64m1_m(mask, base, bstride, v0, v1, v2, vl);
+void test_vssseg3e64_v_u64m1x3_m(vbool64_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m1x3_t v_tuple, size_t vl) {
+  return __riscv_vssseg3e64_v_u64m1x3_m(mask, base, bstride, v_tuple, vl);
 }
 
-void test_vssseg3e64_v_u64m2_m(vbool32_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m2_t v0, vuint64m2_t v1, vuint64m2_t v2, size_t vl) {
-  return __riscv_vssseg3e64_v_u64m2_m(mask, base, bstride, v0, v1, v2, vl);
+void test_vssseg3e64_v_u64m2x3_m(vbool32_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m2x3_t v_tuple, size_t vl) {
+  return __riscv_vssseg3e64_v_u64m2x3_m(mask, base, bstride, v_tuple, vl);
 }
 

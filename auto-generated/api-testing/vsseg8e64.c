@@ -4,27 +4,27 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
-void test_vsseg8e64_v_f64m1(float64_t *base, vfloat64m1_t v0, vfloat64m1_t v1, vfloat64m1_t v2, vfloat64m1_t v3, vfloat64m1_t v4, vfloat64m1_t v5, vfloat64m1_t v6, vfloat64m1_t v7, size_t vl) {
-  return __riscv_vsseg8e64_v_f64m1(base, v0, v1, v2, v3, v4, v5, v6, v7, vl);
+void test_vsseg8e64_v_f64m1x8(float64_t *base, vfloat64m1x8_t v_tuple, size_t vl) {
+  return __riscv_vsseg8e64_v_f64m1x8(base, v_tuple, vl);
 }
 
-void test_vsseg8e64_v_i64m1(int64_t *base, vint64m1_t v0, vint64m1_t v1, vint64m1_t v2, vint64m1_t v3, vint64m1_t v4, vint64m1_t v5, vint64m1_t v6, vint64m1_t v7, size_t vl) {
-  return __riscv_vsseg8e64_v_i64m1(base, v0, v1, v2, v3, v4, v5, v6, v7, vl);
+void test_vsseg8e64_v_i64m1x8(int64_t *base, vint64m1x8_t v_tuple, size_t vl) {
+  return __riscv_vsseg8e64_v_i64m1x8(base, v_tuple, vl);
 }
 
-void test_vsseg8e64_v_u64m1(uint64_t *base, vuint64m1_t v0, vuint64m1_t v1, vuint64m1_t v2, vuint64m1_t v3, vuint64m1_t v4, vuint64m1_t v5, vuint64m1_t v6, vuint64m1_t v7, size_t vl) {
-  return __riscv_vsseg8e64_v_u64m1(base, v0, v1, v2, v3, v4, v5, v6, v7, vl);
+void test_vsseg8e64_v_u64m1x8(uint64_t *base, vuint64m1x8_t v_tuple, size_t vl) {
+  return __riscv_vsseg8e64_v_u64m1x8(base, v_tuple, vl);
 }
 
-void test_vsseg8e64_v_f64m1_m(vbool64_t mask, float64_t *base, vfloat64m1_t v0, vfloat64m1_t v1, vfloat64m1_t v2, vfloat64m1_t v3, vfloat64m1_t v4, vfloat64m1_t v5, vfloat64m1_t v6, vfloat64m1_t v7, size_t vl) {
-  return __riscv_vsseg8e64_v_f64m1_m(mask, base, v0, v1, v2, v3, v4, v5, v6, v7, vl);
+void test_vsseg8e64_v_f64m1x8_m(vbool64_t mask, float64_t *base, vfloat64m1x8_t v_tuple, size_t vl) {
+  return __riscv_vsseg8e64_v_f64m1x8_m(mask, base, v_tuple, vl);
 }
 
-void test_vsseg8e64_v_i64m1_m(vbool64_t mask, int64_t *base, vint64m1_t v0, vint64m1_t v1, vint64m1_t v2, vint64m1_t v3, vint64m1_t v4, vint64m1_t v5, vint64m1_t v6, vint64m1_t v7, size_t vl) {
-  return __riscv_vsseg8e64_v_i64m1_m(mask, base, v0, v1, v2, v3, v4, v5, v6, v7, vl);
+void test_vsseg8e64_v_i64m1x8_m(vbool64_t mask, int64_t *base, vint64m1x8_t v_tuple, size_t vl) {
+  return __riscv_vsseg8e64_v_i64m1x8_m(mask, base, v_tuple, vl);
 }
 
-void test_vsseg8e64_v_u64m1_m(vbool64_t mask, uint64_t *base, vuint64m1_t v0, vuint64m1_t v1, vuint64m1_t v2, vuint64m1_t v3, vuint64m1_t v4, vuint64m1_t v5, vuint64m1_t v6, vuint64m1_t v7, size_t vl) {
-  return __riscv_vsseg8e64_v_u64m1_m(mask, base, v0, v1, v2, v3, v4, v5, v6, v7, vl);
+void test_vsseg8e64_v_u64m1x8_m(vbool64_t mask, uint64_t *base, vuint64m1x8_t v_tuple, size_t vl) {
+  return __riscv_vsseg8e64_v_u64m1x8_m(mask, base, v_tuple, vl);
 }
 
