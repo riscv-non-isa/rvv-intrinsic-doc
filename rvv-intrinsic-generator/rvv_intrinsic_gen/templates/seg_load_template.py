@@ -109,6 +109,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
                 type_helper.v, int(nf), is_seg_load_store_tuple_type=True),
             base="const {TYPE}{SEW}_t *".format_map(args),
             **extra_addr_args,
-            vl=type_helper.size_t)
+            vl=type_helper.size_t,
+            **decorator.ntl_args())
 
   G.inst_group_epilogue()

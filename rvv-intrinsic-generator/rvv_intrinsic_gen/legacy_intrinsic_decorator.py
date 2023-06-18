@@ -128,6 +128,11 @@ class LegacyIntrinsicDecorator():
       return d
     return {}
 
+  def ntl_args(self):
+    if self.flags & ExtraAttr.IS_NTL:
+      return {"domain": "int"}
+    return {}
+
 
 class LegacyIntrinsicDecorators():
   """
@@ -215,3 +220,6 @@ class LegacyIntrinsicDecorators():
         self.has_masking_no_maskedoff
       self.has_masking_no_maskedoff_reduction_policy =\
         self.has_masking_no_maskedoff
+
+    self.has_masking_maskedoff_policy_ntl = self.has_masking_maskedoff_policy
+    self.has_masking_no_maskedoff_ntl = self.has_masking_no_maskedoff

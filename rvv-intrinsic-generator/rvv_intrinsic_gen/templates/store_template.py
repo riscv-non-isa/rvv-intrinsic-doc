@@ -69,6 +69,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           base="{TYPE}{SEW}_t *".format_map(args),
           **extra_addr_args,
           value=type_helper.v,
-          vl=type_helper.size_t)
+          vl=type_helper.size_t,
+          **decorator.ntl_args())
 
   G.inst_group_epilogue()

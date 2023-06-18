@@ -95,8 +95,11 @@ class Generator():
   # vle8_v_i8m2 (const int8_t *base, size_t vl);
   @staticmethod
   def is_support_overloaded(name, **kwargs):
+    policy_index = -1
+    if name.split("-")[-1] == "ntl":
+      policy_index = -2
     for p in ["tu", "tamu", "tumu", "tuma", "tam", "tum", "mu"]:
-      if name.split("_")[-1] == p:
+      if name.split("_")[policy_index] == p:
         return True
     if name.find("vmv_s") != -1 or name.find("vfmv_s") != -1:
       # Prototype for non-policy and ta intrinsics of vmv_s_x and vfmv_s_f
@@ -164,10 +167,15 @@ class Generator():
     else:
       overloaded_name = sn[0]
     # append policy suffix if need
-    if sn[-1] in [
+    policy_index = -1
+    if sn[-1] == "ntl":
+      policy_index = -2
+    if sn[policy_index] in [
         "ta", "tu", "tama", "tuma", "tamu", "tumu", "ma", "mu", "tam", "tum"
     ]:
-      overloaded_name += "_" + sn[-1]
+      overloaded_name += "_" + sn[policy_index]
+    if sn[-1] == "ntl":
+      overloaded_name += "_ntl"
 
     # Follows the naming guideline under riscv-c-api-doc to add the `__riscv_`
     # suffix for all RVV intrinsics.
@@ -325,6 +333,60 @@ class APITestGenerator(Generator):
       self.fd.write("typedef float float32_t;\n")
       self.fd.write("typedef double float64_t;\n")
 
+  def generate_for_ntl_domain(self, name, func_decl, func_name, test_file_name,
+                              **kwargs):
+
+    def output_call_arg(arg_name, type_name):
+      if ((name.startswith("vget") or name.startswith("vset")) \
+          and ((arg_name == "index" and type_name == "size_t"))) \
+         or arg_name.startswith("bit_field") or arg_name.startswith("simm"):
+        return "0"
+      return arg_name
+
+    ntl_domain_values = [
+        "__RISCV_NTLH_INNERMOST_PRIVATE", "__RISCV_NTLH_ALL_PRIVATE",
+        "__RISCV_NTLH_INNERMOST_SHARED", "__RISCV_NTLH_ALL"
+    ]
+    ntl_domain_args = ["P1", "PALL", "S1", "ALL"]
+    ntl_test_file_names = [
+        test_file_name.replace(".c", f"_{i}_tuple.c") for i in ntl_domain_args
+    ]
+    ntl_domains = [(ntl_domain_values[i], ntl_domain_args[i],
+                    ntl_test_file_names[i])
+                   for i in range(len(ntl_domain_values))]
+
+    for ntl_domain_value, ntl_domain_arg, ntl_test_file_name in ntl_domains:
+      # pylint: disable=consider-using-with
+      self.fd = open(
+          os.path.join(self.folder, ntl_test_file_name), "a", encoding="utf-8")
+      ntl_func_decl = func_decl.replace("ntl", f"ntl_{ntl_domain_arg}")
+      self.fd.write(ntl_func_decl[:-2])
+      self.fd.write(" {\n")
+
+      self.fd.write(f"  return {func_name}(")
+      call_args = ", ".join(
+          map(lambda a: output_call_arg(a[0], a[1]), kwargs.items()))
+      ntl_call_args = call_args.replace("domain", ntl_domain_value)
+      self.fd.write(ntl_call_args)
+      self.fd.write(");\n")
+      self.fd.write("}\n\n")
+      self.fd.close()
+
+  def generate_ntl_test_file_header(self, has_float_type, header,
+                                    test_file_name):
+    domain_values = ["P1", "ALL", "PALL", "S1"]
+    for val in domain_values:
+      if header:
+        # pylint: disable=consider-using-with
+        self.fd = open(
+            os.path.join(self.folder,
+                         test_file_name.replace(".c", f"_{val}_tuple.c")),
+            "w",
+            encoding="utf-8")
+        self.write_file_header(has_float_type)
+        self.fd.write("#include <riscv_ntlh.h>\n\n")
+        self.fd.close()
+
   def func(self, inst_info, name, return_type, **kwargs):
     if self.is_overloaded and not Generator.is_support_overloaded(
         name, **kwargs):
@@ -333,6 +395,8 @@ class APITestGenerator(Generator):
     non_overloaded_func_name = Generator.func_name(name)
     overloaded_func_name = Generator.get_overloaded_op_name(name)
     test_file_name = f"{inst_info.OP}.c"
+    if "ntl" in non_overloaded_func_name:
+      test_file_name = test_file_name.replace(".c", "_ntl.c")
 
     if self.is_overloaded:
       func_name = overloaded_func_name
@@ -349,13 +413,6 @@ class APITestGenerator(Generator):
       self.fd.close()
 
     self.test_files.append(test_file_name)
-    # pylint: disable=consider-using-with
-    # NOTE(FIXME): For APITestGenerator, every function will own an individual
-    # C source file. Overriding here is acceptable but shows the problem that
-    # the long-living file descriptor is not useful in every generator.
-    self.fd = open(
-        os.path.join(self.folder, test_file_name), mode, encoding="utf-8")
-
     stripped_prefix_non_overloaded_func_name = non_overloaded_func_name[8:]
     func_decl = super().func(inst_info,
                              "test_" + stripped_prefix_non_overloaded_func_name,
@@ -379,8 +436,20 @@ class APITestGenerator(Generator):
       if i in func_decl:
         has_float_type = True
 
-    if header:
-      self.write_file_header(has_float_type)
+    if "ntl" in test_file_name:
+      self.generate_ntl_test_file_header(has_float_type, header, test_file_name)
+    else:
+      # pylint: disable=consider-using-with
+      # NOTE(FIXME): For APITestGenerator, every function will own an individual
+      # C source file. Overriding here is acceptable but shows the problem that
+      # the long-living file descriptor is not useful in every generator.
+      self.fd = open(
+          os.path.join(self.folder, test_file_name), mode, encoding="utf-8")
+      for i in has_float_type_variant_inst:
+        if i in func_decl:
+          has_float_type = True
+      if header:
+        self.write_file_header(has_float_type)
 
     def output_call_arg(arg_name, type_name):
       if ((name.startswith("vget") or name.startswith("vset")) \
@@ -391,15 +460,19 @@ class APITestGenerator(Generator):
 
     # Write test func body.
     # Write test func. func_decl has end of ";" and "\n"
-    self.fd.write(func_decl[:-2])
-    self.fd.write(" {\n")
+    if "ntl" in func_decl:
+      self.generate_for_ntl_domain(name, func_decl, func_name, test_file_name,
+                                   **kwargs)
+    else:
+      self.fd.write(func_decl[:-2])
+      self.fd.write(" {\n")
 
-    self.fd.write(f"  return {func_name}(")
-    call_args = ", ".join(
-        map(lambda a: output_call_arg(a[0], a[1]), kwargs.items()))
-    self.fd.write(call_args)
-    self.fd.write(");\n")
-    self.fd.write("}\n\n")
+      self.fd.write(f"  return {func_name}(")
+      call_args = ", ".join(
+          map(lambda a: output_call_arg(a[0], a[1]), kwargs.items()))
+      self.fd.write(call_args)
+      self.fd.write(");\n")
+      self.fd.write("}\n\n")
 
   def function_group(self, template, title, link, op_list, type_list, sew_list,
                      lmul_list, decorator_list):

@@ -116,6 +116,7 @@ class ExtraAttr:
   IS_MU = 1 << 16
   IS_RED_TUMA = 1 << 17
   IS_RED_TAMA = 1 << 18  # for 0.10 (LegacyIntrinsicDecorator)
+  IS_NTL = 1 << 19  # non-temporal local hint variant for load/store
 
 
 class InstInfo:

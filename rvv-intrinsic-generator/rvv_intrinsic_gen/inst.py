@@ -68,36 +68,38 @@ def gen(g):
 
   g.function_group(load_template, "Vector Unit-Stride Load Functions",
                    REF_DOC_URL + "#74-vector-unit-stride-operations", ["vle"],
-                   TYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+                   TYPES, SEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy_ntl)
 
   g.function_group(store_template, "Vector Unit-Stride Store Functions",
                    REF_DOC_URL + "#74-vector-unit-stride-operations", ["vse"],
-                   TYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff)
+                   TYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff_ntl)
 
   g.function_group(load_template, "Vector Strided Load Functions",
                    REF_DOC_URL + "#75-vector-strided-loadstore-operations",
                    ["vlse"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_maskedoff_policy)
+                   decorators.has_masking_maskedoff_policy_ntl)
 
   g.function_group(store_template, "Vector Strided Store Functions",
                    REF_DOC_URL + "#75-vector-strided-loadstore-operations",
                    ["vsse"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_no_maskedoff)
+                   decorators.has_masking_no_maskedoff_ntl)
 
   g.function_group(load_template, "Vector Indexed Load Functions",
                    REF_DOC_URL + "#76-vector-indexed-loadstore-operations",
                    ["vloxei", "vluxei"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_maskedoff_policy)
+                   decorators.has_masking_maskedoff_policy_ntl)
 
   g.function_group(store_template, "Vector Indexed Store Functions",
                    REF_DOC_URL + "#76-vector-indexed-loadstore-operations",
                    ["vsoxei", "vsuxei"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_no_maskedoff)
+                   decorators.has_masking_no_maskedoff_ntl)
 
   g.function_group(
       load_template, "Unit-stride Fault-Only-First Loads Functions",
       REF_DOC_URL + "#77-unit-stride-fault-only-first-loads-operations",
-      ["vleff"], TYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+      ["vleff"], TYPES, SEWS, LMULS,
+      decorators.has_masking_maskedoff_policy_ntl)
 
   ####################################################################
 
@@ -106,11 +108,11 @@ def gen(g):
   g.function_group(seg_load_template,
                    "Vector Unit-Stride Segment Load Functions", "",
                    ["vlseg", "vlsegff"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_maskedoff_policy)
+                   decorators.has_masking_maskedoff_policy_ntl)
 
   g.function_group(seg_store_template,
                    "Vector Unit-Stride Segment Store Functions", "", ["vsseg"],
-                   TYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff)
+                   TYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff_ntl)
 
   ####################################################################
 
@@ -118,11 +120,11 @@ def gen(g):
 
   g.function_group(seg_load_template, "Vector Strided Segment Load Functions",
                    "", ["vlsseg"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_maskedoff_policy)
+                   decorators.has_masking_maskedoff_policy_ntl)
 
   g.function_group(seg_store_template, "Vector Strided Segment Store Functions",
                    "", ["vssseg"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_no_maskedoff)
+                   decorators.has_masking_no_maskedoff_ntl)
 
   ####################################################################
 
@@ -130,11 +132,11 @@ def gen(g):
 
   g.function_group(seg_load_template, "Vector Indexed Segment Load Functions",
                    "", ["vloxseg", "vluxseg"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_maskedoff_policy)
+                   decorators.has_masking_maskedoff_policy_ntl)
 
   g.function_group(seg_store_template, "Vector Indexed Segment Store Functions",
                    "", ["vsoxseg", "vsuxseg"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_no_maskedoff)
+                   decorators.has_masking_no_maskedoff_ntl)
 
   ####################################################################
 

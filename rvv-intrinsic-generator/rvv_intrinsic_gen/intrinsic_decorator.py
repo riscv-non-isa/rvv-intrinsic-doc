@@ -53,6 +53,9 @@ class IntrinsicDecorator():
     else:
       self.func_suffix = ""
 
+    if flags & ExtraAttr.IS_NTL:
+      self.func_suffix += "_ntl"
+
   def write_text_header(self, g):
     if self.is_mask:
       g.write("// masked functions\n")
@@ -107,6 +110,18 @@ class IntrinsicDecorator():
             d[f"maskedoff{i}"] = dest_type
       return d
     return {}
+
+  def ntl_args(self):
+    if self.flags & ExtraAttr.IS_NTL:
+      return {"domain": "int"}
+    return {}
+
+
+def add_ntl_variant(decorators):
+  new_dec_list = []
+  for dec in decorators:
+    new_dec_list.append(IntrinsicDecorator(dec.flags | ExtraAttr.IS_NTL))
+  return decorators + new_dec_list
 
 
 class IntrinsicDecorators():
@@ -195,3 +210,8 @@ class IntrinsicDecorators():
       self.has_no_masking = self.has_no_masking_policy
       self.has_masking_maskedoff = self.has_masking_maskedoff_policy
       self.has_masking_no_maskedoff = self.has_masking_no_maskedoff_policy
+
+    self.has_masking_maskedoff_policy_ntl = add_ntl_variant(
+        self.has_masking_maskedoff_policy)
+    self.has_masking_no_maskedoff_ntl = add_ntl_variant(
+        self.has_masking_no_maskedoff)
