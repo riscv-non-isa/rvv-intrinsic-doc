@@ -1,0 +1,128 @@
+#include <stdint.h>
+#include <riscv_vector.h>
+
+typedef _Float16 float16_t;
+typedef float float32_t;
+typedef double float64_t;
+#include <riscv_ntlh.h>
+
+vfloat32mf2_t test_vlse32_v_f32mf2_ntl_S1(const float32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_f32mf2_ntl(base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vfloat32m1_t test_vlse32_v_f32m1_ntl_S1(const float32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_f32m1_ntl(base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vfloat32m2_t test_vlse32_v_f32m2_ntl_S1(const float32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_f32m2_ntl(base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vfloat32m4_t test_vlse32_v_f32m4_ntl_S1(const float32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_f32m4_ntl(base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vfloat32m8_t test_vlse32_v_f32m8_ntl_S1(const float32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_f32m8_ntl(base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vint32mf2_t test_vlse32_v_i32mf2_ntl_S1(const int32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_i32mf2_ntl(base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vint32m1_t test_vlse32_v_i32m1_ntl_S1(const int32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_i32m1_ntl(base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vint32m2_t test_vlse32_v_i32m2_ntl_S1(const int32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_i32m2_ntl(base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vint32m4_t test_vlse32_v_i32m4_ntl_S1(const int32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_i32m4_ntl(base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vint32m8_t test_vlse32_v_i32m8_ntl_S1(const int32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_i32m8_ntl(base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vuint32mf2_t test_vlse32_v_u32mf2_ntl_S1(const uint32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_u32mf2_ntl(base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vuint32m1_t test_vlse32_v_u32m1_ntl_S1(const uint32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_u32m1_ntl(base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vuint32m2_t test_vlse32_v_u32m2_ntl_S1(const uint32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_u32m2_ntl(base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vuint32m4_t test_vlse32_v_u32m4_ntl_S1(const uint32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_u32m4_ntl(base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vuint32m8_t test_vlse32_v_u32m8_ntl_S1(const uint32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_u32m8_ntl(base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vfloat32mf2_t test_vlse32_v_f32mf2_m_ntl_S1(vbool64_t mask, const float32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_f32mf2_m_ntl(mask, base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vfloat32m1_t test_vlse32_v_f32m1_m_ntl_S1(vbool32_t mask, const float32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_f32m1_m_ntl(mask, base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vfloat32m2_t test_vlse32_v_f32m2_m_ntl_S1(vbool16_t mask, const float32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_f32m2_m_ntl(mask, base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vfloat32m4_t test_vlse32_v_f32m4_m_ntl_S1(vbool8_t mask, const float32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_f32m4_m_ntl(mask, base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vfloat32m8_t test_vlse32_v_f32m8_m_ntl_S1(vbool4_t mask, const float32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_f32m8_m_ntl(mask, base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vint32mf2_t test_vlse32_v_i32mf2_m_ntl_S1(vbool64_t mask, const int32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_i32mf2_m_ntl(mask, base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vint32m1_t test_vlse32_v_i32m1_m_ntl_S1(vbool32_t mask, const int32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_i32m1_m_ntl(mask, base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vint32m2_t test_vlse32_v_i32m2_m_ntl_S1(vbool16_t mask, const int32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_i32m2_m_ntl(mask, base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vint32m4_t test_vlse32_v_i32m4_m_ntl_S1(vbool8_t mask, const int32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_i32m4_m_ntl(mask, base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vint32m8_t test_vlse32_v_i32m8_m_ntl_S1(vbool4_t mask, const int32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_i32m8_m_ntl(mask, base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vuint32mf2_t test_vlse32_v_u32mf2_m_ntl_S1(vbool64_t mask, const uint32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_u32mf2_m_ntl(mask, base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vuint32m1_t test_vlse32_v_u32m1_m_ntl_S1(vbool32_t mask, const uint32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_u32m1_m_ntl(mask, base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vuint32m2_t test_vlse32_v_u32m2_m_ntl_S1(vbool16_t mask, const uint32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_u32m2_m_ntl(mask, base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vuint32m4_t test_vlse32_v_u32m4_m_ntl_S1(vbool8_t mask, const uint32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_u32m4_m_ntl(mask, base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
+vuint32m8_t test_vlse32_v_u32m8_m_ntl_S1(vbool4_t mask, const uint32_t *base, ptrdiff_t bstride, size_t vl, int domain) {
+  return __riscv_vlse32_v_u32m8_m_ntl(mask, base, bstride, vl, __RISCV_NTLH_INNERMOST_SHARED);
+}
+
