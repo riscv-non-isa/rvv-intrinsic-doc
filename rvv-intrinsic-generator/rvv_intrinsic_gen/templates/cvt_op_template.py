@@ -40,7 +40,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
     convert_set = [["int", "x", "float", "f"], ["int", "x", "int", "x"],
                    ["uint", "x", "uint", "x"], ["uint", "xu", "float", "f"],
                    ["float", "f", "int", "x"], ["float", "f", "uint", "xu"],
-                   ["float", "f", "float", "f"]]
+                   ["float", "f", "float", "f"], ["bfloat", "bf", "float", "f"],
+                   ["float", "f", "bfloat", "bf"]]
     for args in prod(
         OP=op_list, SEW=sew_list, TYPES=convert_set, LMUL=lmul_list):
       op = args["OP"]
@@ -54,11 +55,19 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if (op == "cvt" and args["TYPES1"] == args["TYPES3"]):
         continue
 
+      if ((args["TYPES1"] == "bf" or args["TYPES3"] == "bf") and 
+           op != "wcvtbf16" and op != "ncvtbf16"):
+        continue
+
+      if ((op == "wcvtbf16" and args["TYPES3"] != "bf" ) or
+          (op == "ncvtbf16" and args["TYPES1"] != "bf" )):
+        continue
+
       args["MIDDLE"] = "v"
       factor = ""
-      if op == "wcvt":
+      if op == "wcvt" or op == "wcvtbf16":
         factor = "W"
-      if op == "ncvt":
+      if op == "ncvt" or op == "ncvtbf16":
         factor = "N"
         args["MIDDLE"] = "w"
 
@@ -101,7 +110,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           **decorator.tu_dest_args(rt),
           src=src_type,
           vl=type_helper.size_t)
-      if args["TYPES1"] != args["TYPES3"] and args["TYPES3"] == "f":
+      if args["TYPES1"] != args["TYPES3"] and args["TYPES3"] == "f" and args["TYPES1"] != "bf":
         args["OP"] = args["OP"] + "_rtz"
         inst_info = InstInfo.get(
             args, decorator, InstType.VV, extra_attr=extra_attr)

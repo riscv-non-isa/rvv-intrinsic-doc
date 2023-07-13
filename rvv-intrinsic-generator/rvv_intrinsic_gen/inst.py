@@ -43,7 +43,7 @@ from templates import mask_template
 from templates import mask_load_store_template
 from templates import permute_template
 from constants import LMULS,WLMULS,NCVTLMULS,SEWS,WSEWS,FSEWS,WFSEWS,NSEWS,\
-  TYPES,ITYPES,FTYPES,MTYPES,MLENS,REF_DOC_URL
+  TYPES,BTYPES,ITYPES,FTYPES,BFTYPES,MTYPES,MLENS,REF_DOC_URL
 from generator import CompatibleHeaderGenerator
 
 
@@ -68,11 +68,11 @@ def gen(g):
 
   g.function_group(load_template, "Vector Unit-Stride Load Functions",
                    REF_DOC_URL + "#74-vector-unit-stride-operations", ["vle"],
-                   TYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+                   BTYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
 
   g.function_group(store_template, "Vector Unit-Stride Store Functions",
                    REF_DOC_URL + "#74-vector-unit-stride-operations", ["vse"],
-                   TYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff)
+                   BTYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff)
 
   g.function_group(load_template, "Vector Strided Load Functions",
                    REF_DOC_URL + "#75-vector-strided-loadstore-operations",
@@ -408,6 +408,27 @@ def gen(g):
       cvt_op_template,
       "Narrowing Floating-Point/Integer Type-Convert Functions", REF_DOC_URL +
       "#1419-narrowing-floating-pointinteger-type-convert-operations", ["ncvt"],
+      "", NSEWS, NCVTLMULS, decorators.has_masking_maskedoff_policy)
+     
+  ####################################################################
+  g.start_group("Vector BFloat16 Functions (still on the draft status)")
+
+  g.function_group(
+      mac_template, "Vector BFloat16 Widening Multiply-Add Functions",
+      REF_DOC_URL + "#1420-vector-bf16-widening-multiply-add-operations",
+      ["wmacc"], BFTYPES, WFSEWS, WLMULS,
+      decorators.has_masking_no_maskedoff_policy)
+
+  g.function_group(
+      cvt_op_template, "Widening BFloat16/FP32 Type-Convert Functions",
+      REF_DOC_URL +
+      "#1421-widening-bf16-fp32-type-convert-operations", ["wcvtbf16"],
+      "", WSEWS, WLMULS, decorators.has_masking_maskedoff_policy)
+
+  g.function_group(
+      cvt_op_template,
+      "Narrowing FP32/BFloat16 Type-Convert Functions", REF_DOC_URL +
+      "#1422-narrowing-fp32-bf16-type-convert-operations", ["ncvtbf16"],
       "", NSEWS, NCVTLMULS, decorators.has_masking_maskedoff_policy)
 
   ####################################################################

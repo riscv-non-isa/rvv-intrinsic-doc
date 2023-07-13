@@ -41,6 +41,10 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         args["S_TYPE"] = "f"
         args["OP"] = "f" + op
         inst_type = InstType.VVF
+      elif data_type == "bfloat":
+        args["S_TYPE"] = "f"
+        args["OP"] = "f" + op + "bf16"
+        inst_type = InstType.VVF
       else:
         args["S_TYPE"] = "x"
         inst_type = InstType.VVX
@@ -146,6 +150,30 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vs1=type_helper.s,
             vs2=type_helper.v,
             vl=type_helper.size_t)
+      elif data_type == "bfloat":
+        if "wmacc" in op and args["SEW"] == 16:
+          G.func(
+              inst_info_vv,
+              name="{OP}_vv_f{WSEW}m{WLMUL}".format_map(args) +
+              decorator.func_suffix,
+              return_type="vfloat{WSEW}m{WLMUL}_t".format_map(args),
+              **decorator.mask_args(type_helper.m, type_helper.v),
+              vd="vfloat{WSEW}m{WLMUL}_t".format_map(args),
+              vs1=type_helper.v,
+              vs2=type_helper.v,
+              vl=type_helper.size_t)
+          G.func(
+              inst_info_vs,
+              name="{OP}_v{S_TYPE}_f{WSEW}m{WLMUL}".format_map(args) +
+              decorator.func_suffix,
+              return_type="vfloat{WSEW}m{WLMUL}_t".format_map(args),
+              **decorator.mask_args(type_helper.m, type_helper.v),
+              vd="vfloat{WSEW}m{WLMUL}_t".format_map(args),
+              vs1=type_helper.s,
+              vs2=type_helper.v,
+              vl=type_helper.size_t)
+        else:
+          continue
       else:
         G.func(
             inst_info_vv,
