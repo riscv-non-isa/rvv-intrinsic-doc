@@ -789,3 +789,27 @@ vuint32m4_t __riscv_vsm4r_vs (vuint32m4_t vd, vuint32m4_t vs2, size_t vl);
 vuint32m8_t __riscv_vsm4r_vv (vuint32m8_t vd, vuint32m8_t vs2, size_t vl);
 vuint32m8_t __riscv_vsm4r_vs (vuint32m8_t vd, vuint32m8_t vs2, size_t vl);
 ```
+
+## Zvksh - ShangMi Suite: SM3 Secure Hash:
+
+### [Vector SM3 Message Expansion]():
+
+**Prototypes:**
+``` C
+vuint32mf2_t __riscv_vsm3me (vuint32mf2_t vs2, vuint32mf2_t vs1, size_t vl);
+vuint32m1_t __riscv_vsm3me (vuint32m1_t vs2, vuint32m1_t vs1, size_t vl);
+vuint32m2_t __riscv_vsm3me (vuint32m2_t vs2, vuint32m2_t vs1, size_t vl);
+vuint32m4_t __riscv_vsm3me (vuint32m4_t vs2, vuint32m4_t vs1, size_t vl);
+vuint32m8_t __riscv_vsm3me (vuint32m8_t vs2, vuint32m8_t vs1, size_t vl);
+```
+
+### [Vector SM3 Message Expansion]():
+
+**Prototypes:**
+``` C
+vuint32mf2_t __riscv_vsm3c (vuint32mf2_t vd, vuint32mf2_t vs2, size_t uimm, size_t vl);
+vuint32m1_t __riscv_vsm3c (vuint32m1_t vd, vuint32m1_t vs2, size_t uimm, size_t vl);
+vuint32m2_t __riscv_vsm3c (vuint32m2_t vd, vuint32m2_t vs2, size_t uimm, size_t vl);
+vuint32m4_t __riscv_vsm3c (vuint32m4_t vd, vuint32m4_t vs2, size_t uimm, size_t vl);
+vuint32m8_t __riscv_vsm3c (vuint32m8_t vd, vuint32m8_t vs2, size_t uimm, size_t vl);
+```
