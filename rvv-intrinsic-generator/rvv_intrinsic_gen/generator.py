@@ -151,7 +151,7 @@ class Generator():
       overloaded_name = "_".join([sn[0], sn[1], sn[-1]])
     elif any(op in name for op in [
         "vzext", "vsext", "vwadd", "vwsub", "vfwadd", "vfwsub", "vwadd",
-        "vwsub", "vfwadd", "vfwsub", "vmv", "vfmv"
+        "vwsub", "vfwadd", "vfwsub", "vmv", "vfmv", "vsm4r"
     ]):
       # 2. compiler can not distinguish *.wx and *.vx, need encode them in
       #    suffix, for example:
@@ -393,8 +393,13 @@ class APITestGenerator(Generator):
           and ((arg_name == "index" and type_name == "size_t"))) \
          or arg_name.startswith("bit_field") or arg_name.startswith("simm"):
         return "0"
+
       if arg_name == "vxrm":
         return "__RISCV_VXRM_RNU"
+
+      if arg_name == "uimm":
+        return "0"
+
       return arg_name
 
     # Write test func body.

@@ -24,6 +24,7 @@ import os
 import importlib.util
 import inspect
 import inst
+import vector_crypto_inst
 import generator
 
 
@@ -102,6 +103,7 @@ def main():
   parser.add_argument("--skip-default-inst", default=False, action="store_true")
   parser.add_argument("--vendor-generator-script")
   parser.add_argument("--vendor-generator-name")
+  parser.add_argument("--gen-vector-crypto", default=False, action="store_true")
   parser.add_argument("--out")
   args = parser.parse_args()
 
@@ -135,6 +137,12 @@ def main():
       GenTypes.NON_OVERLOADED_COMPATIBLE_HEADER,
       GenTypes.OVERLOADED_COMPATIBLE_HEADER
   ]:
+    # Vector crypto does not need compatible header because we don't have
+    # them before v0.10
+    if mode in (GenTypes.NON_OVERLOADED_COMPATIBLE_HEADER,
+                GenTypes.OVERLOADED_COMPATIBLE_HEADER) and\
+       args.gen_vector_crypto:
+      return
     with open(args.out, "w", encoding="utf-8") as f:
       if mode == GenTypes.NON_OVERLOADED_DOC:
         g = generator.DocGenerator(f, True, args.has_policy)
@@ -148,7 +156,10 @@ def main():
         assert False
 
       if not args.skip_default_inst:
-        inst.gen(g)
+        if args.gen_vector_crypto:
+          vector_crypto_inst.gen(g)
+        else:
+          inst.gen(g)
       else:
         print("Skipping default RVV instructions (--skip-default-inst)")
       if vendor_gen is not None:
@@ -167,7 +178,10 @@ def main():
   else:
     assert False
   if not args.skip_default_inst:
-    inst.gen(g)
+    if args.gen_vector_crypto:
+      vector_crypto_inst.gen(g)
+    else:
+      inst.gen(g)
   else:
     print("Skipping default RVV instructions (--skip-default-inst)")
   if vendor_gen is not None:
