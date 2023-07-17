@@ -96,7 +96,7 @@ class Generator():
   # vle8_v_i8m2 (const int8_t *base, size_t vl);
   @staticmethod
   def is_support_overloaded(name, **kwargs):
-    for p in ["tu", "tamu", "tumu", "tuma", "tam", "tum"]:
+    for p in ["tu", "tamu", "tumu", "tuma", "tam", "tum", "mu"]:
       if name.split("_")[-1] == p:
         return True
     if name.find("vmv_s") != -1 or name.find("vfmv_s") != -1:
@@ -455,6 +455,12 @@ class APITestGenerator(Generator):
                              return_type, **kwargs)
     func_decl = func_decl.replace(" (", "(")
 
+    # Strip redundant parameters in function declaration because the intrinsic
+    # requires an immediate to be provided to the parameter.
+    # For "vxrm" parameter of the fixed-point intrinsics, value for it must be
+    # an immediate.
+    func_decl = func_decl.replace(", unsigned int vxrm", "")
+
     # NOTE(FIXME): This logic is dependent to `TYPES` under constant.py.
     # Hardcoded that if an an intrinsic has a floating-point type variant, the
     # variant will be enumerated before the integer type variant. To fix this
@@ -481,7 +487,7 @@ class APITestGenerator(Generator):
          or arg_name.startswith("bit_field") or arg_name.startswith("simm"):
         return "0"
       if arg_name == "vxrm":
-        return "VXRM_RNU"
+        return "__RISCV_VXRM_RNU"
       return arg_name
 
     # Write test func body.

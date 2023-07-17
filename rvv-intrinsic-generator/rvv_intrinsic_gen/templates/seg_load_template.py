@@ -29,6 +29,7 @@ import collections
 from enums import InstInfo
 from enums import InstType
 from enums import MemType
+from generator import CompatibleHeaderGenerator
 
 
 def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
@@ -77,16 +78,37 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         args["OP"] = op + nf + "e" + str(eew)
 
       inst_info = InstInfo.get(args, decorator, inst_type, MemType.LOAD)
-      G.func(
-          inst_info,
-          name="{OP}_v_{TYPE}{SEW}m{LMUL}".format_map(args) +
-          decorator.func_suffix,
-          return_type=type_helper.void,
-          **seg_arg(type_helper.v, int(nf), ptr_t=True),
-          **decorator.mask_args(type_helper.m, type_helper.v, int(nf)),
-          **decorator.tu_dest_args(type_helper.v, int(nf)),
-          base="const {TYPE}{SEW}_t *".format_map(args),
-          **extra_addr_args,
-          vl=type_helper.size_t)
+      # Legacy non-tuple-type variant for the compatible header
+      if isinstance(G, CompatibleHeaderGenerator):
+        G.func(
+            inst_info,
+            name="{OP}_v_{TYPE}{SEW}m{LMUL}".format_map(args) +
+            decorator.func_suffix,
+            return_type=type_helper.void,
+            **seg_arg(type_helper.v, int(nf), ptr_t=True),
+            **decorator.mask_args(type_helper.m, type_helper.v, int(nf)),
+            **decorator.tu_dest_args(type_helper.v, int(nf)),
+            base="const {TYPE}{SEW}_t *".format_map(args),
+            **extra_addr_args,
+            vl=type_helper.size_t)
+
+      # Tuple type segment load is supported for v1.0 or newer. The current
+      # compatible header targets v0.10 to v0.11.
+      if not isinstance(G, CompatibleHeaderGenerator):
+        G.func(
+            inst_info,
+            name="{OP}_v_{TYPE}{SEW}m{LMUL}x{NF}".format_map(args) +
+            decorator.func_suffix,
+            return_type=type_helper.tuple_v,
+            **decorator.mask_args(
+                type_helper.m,
+                type_helper.v,
+                int(nf),
+                is_seg_load_store_tuple_type=True),
+            **decorator.tu_dest_args(
+                type_helper.v, int(nf), is_seg_load_store_tuple_type=True),
+            base="const {TYPE}{SEW}_t *".format_map(args),
+            **extra_addr_args,
+            vl=type_helper.size_t)
 
   G.inst_group_epilogue()

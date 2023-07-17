@@ -23,8 +23,10 @@ intrinsics defined and do not have a corresponding instruction in RVV.
 from utils import prod
 from utils import TypeHelper
 from utils import basic_constraint
+from utils import seg_constraint
 from enums import InstInfo
 from enums import InstType
+from generator import CompatibleHeaderGenerator
 
 
 def not_fractional_lmul(lmul):
@@ -93,5 +95,40 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             dest=type_helper.v,
             index=type_helper.size_t,
             val=src_type)
+
+    # Tuple type vget/vset is supported for v1.0 or newer. The current
+    # compatible header targets v0.10 to v0.11.
+    if not isinstance(G, CompatibleHeaderGenerator):
+      for args in prod(
+          OP=op_list,
+          SEW=sew_list,
+          TYPE=type_list,
+          LMUL=lmul_list,
+          NF=list(range(2, 9)),
+          constraint=seg_constraint):
+
+        tuple_type = "v{TYPE}{SEW}m{LMUL}x{NF}_t".format_map(args)
+        vector_type = "v{TYPE}{SEW}m{LMUL}_t".format_map(args)
+        if args["OP"] == "vget":
+          func_name = "{OP}_v_{TYPE}{SEW}m{LMUL}x{NF}_{TYPE}{SEW}m{LMUL}".\
+              format_map(args)
+          G.func(
+              InstInfo.get(args, decorator, InstType.VGET),
+              name=func_name,
+              return_type=vector_type,
+              src=tuple_type,
+              index=type_helper.size_t)
+        elif args["OP"] == "vset":
+          func_name = "{OP}_v_{TYPE}{SEW}m{LMUL}_{TYPE}{SEW}m{LMUL}x{NF}".\
+              format_map(args)
+          G.func(
+              InstInfo.get(args, decorator, InstType.VSET),
+              name=func_name,
+              return_type=tuple_type,
+              dest=tuple_type,
+              index=type_helper.size_t,
+              val=vector_type)
+        else:
+          assert False, "Unreachable"
 
   G.inst_group_epilogue()

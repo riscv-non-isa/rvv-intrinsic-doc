@@ -24,6 +24,7 @@ from utils import prod
 from utils import TypeHelper
 from enums import InstInfo
 from enums import InstType
+from generator import CompatibleHeaderGenerator
 
 
 def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
@@ -111,5 +112,44 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           return_type=rt,
           **decorator.mask_args(type_helper.m, rt),
           src=src_type)
+
+    # This reinterpret is only available in v1.0 or newer. The current
+    # compatible header targets v0.10 to v0.11 so we don't include this
+    # when the generator is for compatible header.
+    if isinstance(G, CompatibleHeaderGenerator):
+      continue
+    G.write("// Reinterpret between vector boolean types and LMUL=1 (m1)")
+    G.write(" vector integer types\n")
+    # [integer type, integer short type]
+    convert_set = [["int", "i"], ["uint", "u"]]
+    for args in prod(
+        OP=op_list, SEW=sew_list, TYPES=convert_set, LMUL=lmul_list):
+
+      args["OP"] = "v" + args["OP"]
+
+      type_helper = TypeHelper(**args)
+      args["TYPES0"] = args["TYPES"][0]
+      args["TYPES1"] = args["TYPES"][1]
+
+      args["MLEN"] = type_helper.mlen
+
+      mask_type = "vbool{MLEN}_t".format_map(args)
+      int_type = "v{TYPES0}{SEW}m1_t".format_map(args)
+
+      func_name =\
+        "{OP}_v_{TYPES1}{SEW}m1_b{MLEN}".format_map(args)
+      G.func(
+          InstInfo.get(args, decorator, InstType.REINT),
+          name=func_name + decorator.func_suffix,
+          return_type=mask_type,
+          src=int_type)
+
+      func_name =\
+        "{OP}_v_b{MLEN}_{TYPES1}{SEW}m1".format_map(args)
+      G.func(
+          InstInfo.get(args, decorator, InstType.REINT),
+          name=func_name + decorator.func_suffix,
+          return_type=int_type,
+          src=mask_type)
 
   G.inst_group_epilogue()

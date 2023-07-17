@@ -162,10 +162,12 @@ overloaded-docs:
 # Generate non-overloaded intrinsic testing C source files
 non-overloaded-test:
 	$(call gen_tests,$(DIR)/api-testing,non-overloaded-test,)
+	$(call gen_tests,$(POLICY_DIR)/api-testing,non-overloaded-test,--has-policy)
 
 # Generate overloaded intrinsic testing C source files
 overloaded-test:
 	$(call gen_tests,$(DIR)/overloaded-api-testing,overloaded-test,)
+	$(call gen_tests,$(POLICY_DIR)/overloaded-api-testing,overloaded-test,--has-policy)
 
 # Generate non-overloaded intrinsic testing C source files
 llvm-non-overloaded-test:

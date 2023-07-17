@@ -6,16 +6,16 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
-void test_vlsseg5e64_v_f64m1_m(vfloat64m1_t *v0, vfloat64m1_t *v1, vfloat64m1_t *v2, vfloat64m1_t *v3, vfloat64m1_t *v4, vbool64_t mask, const float64_t *base, ptrdiff_t bstride, size_t vl) {
-  return __riscv_vlsseg5e64(v0, v1, v2, v3, v4, mask, base, bstride, vl);
+vfloat64m1x5_t test_vlsseg5e64_v_f64m1x5_m(vbool64_t mask, const float64_t *base, ptrdiff_t bstride, size_t vl) {
+  return __riscv_vlsseg5e64(mask, base, bstride, vl);
 }
 
-void test_vlsseg5e64_v_i64m1_m(vint64m1_t *v0, vint64m1_t *v1, vint64m1_t *v2, vint64m1_t *v3, vint64m1_t *v4, vbool64_t mask, const int64_t *base, ptrdiff_t bstride, size_t vl) {
-  return __riscv_vlsseg5e64(v0, v1, v2, v3, v4, mask, base, bstride, vl);
+vint64m1x5_t test_vlsseg5e64_v_i64m1x5_m(vbool64_t mask, const int64_t *base, ptrdiff_t bstride, size_t vl) {
+  return __riscv_vlsseg5e64(mask, base, bstride, vl);
 }
 
-void test_vlsseg5e64_v_u64m1_m(vuint64m1_t *v0, vuint64m1_t *v1, vuint64m1_t *v2, vuint64m1_t *v3, vuint64m1_t *v4, vbool64_t mask, const uint64_t *base, ptrdiff_t bstride, size_t vl) {
-  return __riscv_vlsseg5e64(v0, v1, v2, v3, v4, mask, base, bstride, vl);
+vuint64m1x5_t test_vlsseg5e64_v_u64m1x5_m(vbool64_t mask, const uint64_t *base, ptrdiff_t bstride, size_t vl) {
+  return __riscv_vlsseg5e64(mask, base, bstride, vl);
 }
 
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlsseg5e64\.[ivxfswum.]+\s+} 3 } } */

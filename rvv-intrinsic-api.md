@@ -707,28 +707,10 @@ Keep this chapter none to aligned to riscv-v-spec chapters
 - vcompress intrinsics will generate code using tail undisturbed policy unless
   vundefined() is passed to the dest argument.
 
-## 17. None
-Keep this chapter none to aligned to riscv-v-spec chapters
-
-## 18. Divided Element Extension ('Zvediv')
-### 18.3. Vector Integer Dot-Product Operations
-#### Instructions
-- vdotu.vv
-- vdot.vv
-
 #### Intrinsic functions list
 TODO
 
-
-### 18.4. Vector Floating-Point Dot Product Operations
-#### Instructions
-- vfdotu.vv
-
-#### Intrinsic functions list
-TODO
-
-
-## 19. RVV Intrinsic Examples
+## RVV Intrinsic Examples
 - [sgemm](rvv_sgemm.c)
 - [saxpy](rvv_saxpy.c)
 

@@ -6,75 +6,99 @@
 
 #include <riscv_vector.h>
 
-void test_vlseg6e32_v_f32mf2_tu(vfloat32mf2_t *v0, vfloat32mf2_t *v1, vfloat32mf2_t *v2, vfloat32mf2_t *v3, vfloat32mf2_t *v4, vfloat32mf2_t *v5, vfloat32mf2_t maskedoff0, vfloat32mf2_t maskedoff1, vfloat32mf2_t maskedoff2, vfloat32mf2_t maskedoff3, vfloat32mf2_t maskedoff4, vfloat32mf2_t maskedoff5, const float *base, size_t vl) {
-  return __riscv_vlseg6e32_tu(v0, v1, v2, v3, v4, v5, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vfloat32mf2x6_t test_vlseg6e32_v_f32mf2x6_tu(vfloat32mf2x6_t maskedoff_tuple, const float *base, size_t vl) {
+  return __riscv_vlseg6e32_tu(maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_f32m1_tu(vfloat32m1_t *v0, vfloat32m1_t *v1, vfloat32m1_t *v2, vfloat32m1_t *v3, vfloat32m1_t *v4, vfloat32m1_t *v5, vfloat32m1_t maskedoff0, vfloat32m1_t maskedoff1, vfloat32m1_t maskedoff2, vfloat32m1_t maskedoff3, vfloat32m1_t maskedoff4, vfloat32m1_t maskedoff5, const float *base, size_t vl) {
-  return __riscv_vlseg6e32_tu(v0, v1, v2, v3, v4, v5, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vfloat32m1x6_t test_vlseg6e32_v_f32m1x6_tu(vfloat32m1x6_t maskedoff_tuple, const float *base, size_t vl) {
+  return __riscv_vlseg6e32_tu(maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_i32mf2_tu(vint32mf2_t *v0, vint32mf2_t *v1, vint32mf2_t *v2, vint32mf2_t *v3, vint32mf2_t *v4, vint32mf2_t *v5, vint32mf2_t maskedoff0, vint32mf2_t maskedoff1, vint32mf2_t maskedoff2, vint32mf2_t maskedoff3, vint32mf2_t maskedoff4, vint32mf2_t maskedoff5, const int32_t *base, size_t vl) {
-  return __riscv_vlseg6e32_tu(v0, v1, v2, v3, v4, v5, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vint32mf2x6_t test_vlseg6e32_v_i32mf2x6_tu(vint32mf2x6_t maskedoff_tuple, const int32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_tu(maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_i32m1_tu(vint32m1_t *v0, vint32m1_t *v1, vint32m1_t *v2, vint32m1_t *v3, vint32m1_t *v4, vint32m1_t *v5, vint32m1_t maskedoff0, vint32m1_t maskedoff1, vint32m1_t maskedoff2, vint32m1_t maskedoff3, vint32m1_t maskedoff4, vint32m1_t maskedoff5, const int32_t *base, size_t vl) {
-  return __riscv_vlseg6e32_tu(v0, v1, v2, v3, v4, v5, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vint32m1x6_t test_vlseg6e32_v_i32m1x6_tu(vint32m1x6_t maskedoff_tuple, const int32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_tu(maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_u32mf2_tu(vuint32mf2_t *v0, vuint32mf2_t *v1, vuint32mf2_t *v2, vuint32mf2_t *v3, vuint32mf2_t *v4, vuint32mf2_t *v5, vuint32mf2_t maskedoff0, vuint32mf2_t maskedoff1, vuint32mf2_t maskedoff2, vuint32mf2_t maskedoff3, vuint32mf2_t maskedoff4, vuint32mf2_t maskedoff5, const uint32_t *base, size_t vl) {
-  return __riscv_vlseg6e32_tu(v0, v1, v2, v3, v4, v5, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vuint32mf2x6_t test_vlseg6e32_v_u32mf2x6_tu(vuint32mf2x6_t maskedoff_tuple, const uint32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_tu(maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_u32m1_tu(vuint32m1_t *v0, vuint32m1_t *v1, vuint32m1_t *v2, vuint32m1_t *v3, vuint32m1_t *v4, vuint32m1_t *v5, vuint32m1_t maskedoff0, vuint32m1_t maskedoff1, vuint32m1_t maskedoff2, vuint32m1_t maskedoff3, vuint32m1_t maskedoff4, vuint32m1_t maskedoff5, const uint32_t *base, size_t vl) {
-  return __riscv_vlseg6e32_tu(v0, v1, v2, v3, v4, v5, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vuint32m1x6_t test_vlseg6e32_v_u32m1x6_tu(vuint32m1x6_t maskedoff_tuple, const uint32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_tu(maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_f32mf2_tum(vfloat32mf2_t *v0, vfloat32mf2_t *v1, vfloat32mf2_t *v2, vfloat32mf2_t *v3, vfloat32mf2_t *v4, vfloat32mf2_t *v5, vbool64_t mask, vfloat32mf2_t maskedoff0, vfloat32mf2_t maskedoff1, vfloat32mf2_t maskedoff2, vfloat32mf2_t maskedoff3, vfloat32mf2_t maskedoff4, vfloat32mf2_t maskedoff5, const float *base, size_t vl) {
-  return __riscv_vlseg6e32_tum(v0, v1, v2, v3, v4, v5, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vfloat32mf2x6_t test_vlseg6e32_v_f32mf2x6_tum(vbool64_t mask, vfloat32mf2x6_t maskedoff_tuple, const float *base, size_t vl) {
+  return __riscv_vlseg6e32_tum(mask, maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_f32m1_tum(vfloat32m1_t *v0, vfloat32m1_t *v1, vfloat32m1_t *v2, vfloat32m1_t *v3, vfloat32m1_t *v4, vfloat32m1_t *v5, vbool32_t mask, vfloat32m1_t maskedoff0, vfloat32m1_t maskedoff1, vfloat32m1_t maskedoff2, vfloat32m1_t maskedoff3, vfloat32m1_t maskedoff4, vfloat32m1_t maskedoff5, const float *base, size_t vl) {
-  return __riscv_vlseg6e32_tum(v0, v1, v2, v3, v4, v5, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vfloat32m1x6_t test_vlseg6e32_v_f32m1x6_tum(vbool32_t mask, vfloat32m1x6_t maskedoff_tuple, const float *base, size_t vl) {
+  return __riscv_vlseg6e32_tum(mask, maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_i32mf2_tum(vint32mf2_t *v0, vint32mf2_t *v1, vint32mf2_t *v2, vint32mf2_t *v3, vint32mf2_t *v4, vint32mf2_t *v5, vbool64_t mask, vint32mf2_t maskedoff0, vint32mf2_t maskedoff1, vint32mf2_t maskedoff2, vint32mf2_t maskedoff3, vint32mf2_t maskedoff4, vint32mf2_t maskedoff5, const int32_t *base, size_t vl) {
-  return __riscv_vlseg6e32_tum(v0, v1, v2, v3, v4, v5, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vint32mf2x6_t test_vlseg6e32_v_i32mf2x6_tum(vbool64_t mask, vint32mf2x6_t maskedoff_tuple, const int32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_tum(mask, maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_i32m1_tum(vint32m1_t *v0, vint32m1_t *v1, vint32m1_t *v2, vint32m1_t *v3, vint32m1_t *v4, vint32m1_t *v5, vbool32_t mask, vint32m1_t maskedoff0, vint32m1_t maskedoff1, vint32m1_t maskedoff2, vint32m1_t maskedoff3, vint32m1_t maskedoff4, vint32m1_t maskedoff5, const int32_t *base, size_t vl) {
-  return __riscv_vlseg6e32_tum(v0, v1, v2, v3, v4, v5, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vint32m1x6_t test_vlseg6e32_v_i32m1x6_tum(vbool32_t mask, vint32m1x6_t maskedoff_tuple, const int32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_tum(mask, maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_u32mf2_tum(vuint32mf2_t *v0, vuint32mf2_t *v1, vuint32mf2_t *v2, vuint32mf2_t *v3, vuint32mf2_t *v4, vuint32mf2_t *v5, vbool64_t mask, vuint32mf2_t maskedoff0, vuint32mf2_t maskedoff1, vuint32mf2_t maskedoff2, vuint32mf2_t maskedoff3, vuint32mf2_t maskedoff4, vuint32mf2_t maskedoff5, const uint32_t *base, size_t vl) {
-  return __riscv_vlseg6e32_tum(v0, v1, v2, v3, v4, v5, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vuint32mf2x6_t test_vlseg6e32_v_u32mf2x6_tum(vbool64_t mask, vuint32mf2x6_t maskedoff_tuple, const uint32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_tum(mask, maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_u32m1_tum(vuint32m1_t *v0, vuint32m1_t *v1, vuint32m1_t *v2, vuint32m1_t *v3, vuint32m1_t *v4, vuint32m1_t *v5, vbool32_t mask, vuint32m1_t maskedoff0, vuint32m1_t maskedoff1, vuint32m1_t maskedoff2, vuint32m1_t maskedoff3, vuint32m1_t maskedoff4, vuint32m1_t maskedoff5, const uint32_t *base, size_t vl) {
-  return __riscv_vlseg6e32_tum(v0, v1, v2, v3, v4, v5, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vuint32m1x6_t test_vlseg6e32_v_u32m1x6_tum(vbool32_t mask, vuint32m1x6_t maskedoff_tuple, const uint32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_tum(mask, maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_f32mf2_tumu(vfloat32mf2_t *v0, vfloat32mf2_t *v1, vfloat32mf2_t *v2, vfloat32mf2_t *v3, vfloat32mf2_t *v4, vfloat32mf2_t *v5, vbool64_t mask, vfloat32mf2_t maskedoff0, vfloat32mf2_t maskedoff1, vfloat32mf2_t maskedoff2, vfloat32mf2_t maskedoff3, vfloat32mf2_t maskedoff4, vfloat32mf2_t maskedoff5, const float *base, size_t vl) {
-  return __riscv_vlseg6e32_tumu(v0, v1, v2, v3, v4, v5, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vfloat32mf2x6_t test_vlseg6e32_v_f32mf2x6_tumu(vbool64_t mask, vfloat32mf2x6_t maskedoff_tuple, const float *base, size_t vl) {
+  return __riscv_vlseg6e32_tumu(mask, maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_f32m1_tumu(vfloat32m1_t *v0, vfloat32m1_t *v1, vfloat32m1_t *v2, vfloat32m1_t *v3, vfloat32m1_t *v4, vfloat32m1_t *v5, vbool32_t mask, vfloat32m1_t maskedoff0, vfloat32m1_t maskedoff1, vfloat32m1_t maskedoff2, vfloat32m1_t maskedoff3, vfloat32m1_t maskedoff4, vfloat32m1_t maskedoff5, const float *base, size_t vl) {
-  return __riscv_vlseg6e32_tumu(v0, v1, v2, v3, v4, v5, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vfloat32m1x6_t test_vlseg6e32_v_f32m1x6_tumu(vbool32_t mask, vfloat32m1x6_t maskedoff_tuple, const float *base, size_t vl) {
+  return __riscv_vlseg6e32_tumu(mask, maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_i32mf2_tumu(vint32mf2_t *v0, vint32mf2_t *v1, vint32mf2_t *v2, vint32mf2_t *v3, vint32mf2_t *v4, vint32mf2_t *v5, vbool64_t mask, vint32mf2_t maskedoff0, vint32mf2_t maskedoff1, vint32mf2_t maskedoff2, vint32mf2_t maskedoff3, vint32mf2_t maskedoff4, vint32mf2_t maskedoff5, const int32_t *base, size_t vl) {
-  return __riscv_vlseg6e32_tumu(v0, v1, v2, v3, v4, v5, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vint32mf2x6_t test_vlseg6e32_v_i32mf2x6_tumu(vbool64_t mask, vint32mf2x6_t maskedoff_tuple, const int32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_tumu(mask, maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_i32m1_tumu(vint32m1_t *v0, vint32m1_t *v1, vint32m1_t *v2, vint32m1_t *v3, vint32m1_t *v4, vint32m1_t *v5, vbool32_t mask, vint32m1_t maskedoff0, vint32m1_t maskedoff1, vint32m1_t maskedoff2, vint32m1_t maskedoff3, vint32m1_t maskedoff4, vint32m1_t maskedoff5, const int32_t *base, size_t vl) {
-  return __riscv_vlseg6e32_tumu(v0, v1, v2, v3, v4, v5, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vint32m1x6_t test_vlseg6e32_v_i32m1x6_tumu(vbool32_t mask, vint32m1x6_t maskedoff_tuple, const int32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_tumu(mask, maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_u32mf2_tumu(vuint32mf2_t *v0, vuint32mf2_t *v1, vuint32mf2_t *v2, vuint32mf2_t *v3, vuint32mf2_t *v4, vuint32mf2_t *v5, vbool64_t mask, vuint32mf2_t maskedoff0, vuint32mf2_t maskedoff1, vuint32mf2_t maskedoff2, vuint32mf2_t maskedoff3, vuint32mf2_t maskedoff4, vuint32mf2_t maskedoff5, const uint32_t *base, size_t vl) {
-  return __riscv_vlseg6e32_tumu(v0, v1, v2, v3, v4, v5, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vuint32mf2x6_t test_vlseg6e32_v_u32mf2x6_tumu(vbool64_t mask, vuint32mf2x6_t maskedoff_tuple, const uint32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_tumu(mask, maskedoff_tuple, base, vl);
 }
 
-void test_vlseg6e32_v_u32m1_tumu(vuint32m1_t *v0, vuint32m1_t *v1, vuint32m1_t *v2, vuint32m1_t *v3, vuint32m1_t *v4, vuint32m1_t *v5, vbool32_t mask, vuint32m1_t maskedoff0, vuint32m1_t maskedoff1, vuint32m1_t maskedoff2, vuint32m1_t maskedoff3, vuint32m1_t maskedoff4, vuint32m1_t maskedoff5, const uint32_t *base, size_t vl) {
-  return __riscv_vlseg6e32_tumu(v0, v1, v2, v3, v4, v5, mask, maskedoff0, maskedoff1, maskedoff2, maskedoff3, maskedoff4, maskedoff5, base, vl);
+vuint32m1x6_t test_vlseg6e32_v_u32m1x6_tumu(vbool32_t mask, vuint32m1x6_t maskedoff_tuple, const uint32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_tumu(mask, maskedoff_tuple, base, vl);
+}
+
+vfloat32mf2x6_t test_vlseg6e32_v_f32mf2x6_mu(vbool64_t mask, vfloat32mf2x6_t maskedoff_tuple, const float *base, size_t vl) {
+  return __riscv_vlseg6e32_mu(mask, maskedoff_tuple, base, vl);
+}
+
+vfloat32m1x6_t test_vlseg6e32_v_f32m1x6_mu(vbool32_t mask, vfloat32m1x6_t maskedoff_tuple, const float *base, size_t vl) {
+  return __riscv_vlseg6e32_mu(mask, maskedoff_tuple, base, vl);
+}
+
+vint32mf2x6_t test_vlseg6e32_v_i32mf2x6_mu(vbool64_t mask, vint32mf2x6_t maskedoff_tuple, const int32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_mu(mask, maskedoff_tuple, base, vl);
+}
+
+vint32m1x6_t test_vlseg6e32_v_i32m1x6_mu(vbool32_t mask, vint32m1x6_t maskedoff_tuple, const int32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_mu(mask, maskedoff_tuple, base, vl);
+}
+
+vuint32mf2x6_t test_vlseg6e32_v_u32mf2x6_mu(vbool64_t mask, vuint32mf2x6_t maskedoff_tuple, const uint32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_mu(mask, maskedoff_tuple, base, vl);
+}
+
+vuint32m1x6_t test_vlseg6e32_v_u32m1x6_mu(vbool32_t mask, vuint32m1x6_t maskedoff_tuple, const uint32_t *base, size_t vl) {
+  return __riscv_vlseg6e32_mu(mask, maskedoff_tuple, base, vl);
 }
 

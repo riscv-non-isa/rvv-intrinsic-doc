@@ -6,68 +6,68 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
-void test_vlseg7e8ff_v_i8mf8(vint8mf8_t *v0, vint8mf8_t *v1, vint8mf8_t *v2, vint8mf8_t *v3, vint8mf8_t *v4, vint8mf8_t *v5, vint8mf8_t *v6, const int8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_i8mf8(v0, v1, v2, v3, v4, v5, v6, base, new_vl, vl);
+vint8mf8x7_t test_vlseg7e8ff_v_i8mf8x7(const int8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_i8mf8x7(base, new_vl, vl);
 }
 
-void test_vlseg7e8ff_v_i8mf4(vint8mf4_t *v0, vint8mf4_t *v1, vint8mf4_t *v2, vint8mf4_t *v3, vint8mf4_t *v4, vint8mf4_t *v5, vint8mf4_t *v6, const int8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_i8mf4(v0, v1, v2, v3, v4, v5, v6, base, new_vl, vl);
+vint8mf4x7_t test_vlseg7e8ff_v_i8mf4x7(const int8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_i8mf4x7(base, new_vl, vl);
 }
 
-void test_vlseg7e8ff_v_i8mf2(vint8mf2_t *v0, vint8mf2_t *v1, vint8mf2_t *v2, vint8mf2_t *v3, vint8mf2_t *v4, vint8mf2_t *v5, vint8mf2_t *v6, const int8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_i8mf2(v0, v1, v2, v3, v4, v5, v6, base, new_vl, vl);
+vint8mf2x7_t test_vlseg7e8ff_v_i8mf2x7(const int8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_i8mf2x7(base, new_vl, vl);
 }
 
-void test_vlseg7e8ff_v_i8m1(vint8m1_t *v0, vint8m1_t *v1, vint8m1_t *v2, vint8m1_t *v3, vint8m1_t *v4, vint8m1_t *v5, vint8m1_t *v6, const int8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_i8m1(v0, v1, v2, v3, v4, v5, v6, base, new_vl, vl);
+vint8m1x7_t test_vlseg7e8ff_v_i8m1x7(const int8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_i8m1x7(base, new_vl, vl);
 }
 
-void test_vlseg7e8ff_v_u8mf8(vuint8mf8_t *v0, vuint8mf8_t *v1, vuint8mf8_t *v2, vuint8mf8_t *v3, vuint8mf8_t *v4, vuint8mf8_t *v5, vuint8mf8_t *v6, const uint8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_u8mf8(v0, v1, v2, v3, v4, v5, v6, base, new_vl, vl);
+vuint8mf8x7_t test_vlseg7e8ff_v_u8mf8x7(const uint8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_u8mf8x7(base, new_vl, vl);
 }
 
-void test_vlseg7e8ff_v_u8mf4(vuint8mf4_t *v0, vuint8mf4_t *v1, vuint8mf4_t *v2, vuint8mf4_t *v3, vuint8mf4_t *v4, vuint8mf4_t *v5, vuint8mf4_t *v6, const uint8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_u8mf4(v0, v1, v2, v3, v4, v5, v6, base, new_vl, vl);
+vuint8mf4x7_t test_vlseg7e8ff_v_u8mf4x7(const uint8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_u8mf4x7(base, new_vl, vl);
 }
 
-void test_vlseg7e8ff_v_u8mf2(vuint8mf2_t *v0, vuint8mf2_t *v1, vuint8mf2_t *v2, vuint8mf2_t *v3, vuint8mf2_t *v4, vuint8mf2_t *v5, vuint8mf2_t *v6, const uint8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_u8mf2(v0, v1, v2, v3, v4, v5, v6, base, new_vl, vl);
+vuint8mf2x7_t test_vlseg7e8ff_v_u8mf2x7(const uint8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_u8mf2x7(base, new_vl, vl);
 }
 
-void test_vlseg7e8ff_v_u8m1(vuint8m1_t *v0, vuint8m1_t *v1, vuint8m1_t *v2, vuint8m1_t *v3, vuint8m1_t *v4, vuint8m1_t *v5, vuint8m1_t *v6, const uint8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_u8m1(v0, v1, v2, v3, v4, v5, v6, base, new_vl, vl);
+vuint8m1x7_t test_vlseg7e8ff_v_u8m1x7(const uint8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_u8m1x7(base, new_vl, vl);
 }
 
-void test_vlseg7e8ff_v_i8mf8_m(vint8mf8_t *v0, vint8mf8_t *v1, vint8mf8_t *v2, vint8mf8_t *v3, vint8mf8_t *v4, vint8mf8_t *v5, vint8mf8_t *v6, vbool64_t mask, const int8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_i8mf8_m(v0, v1, v2, v3, v4, v5, v6, mask, base, new_vl, vl);
+vint8mf8x7_t test_vlseg7e8ff_v_i8mf8x7_m(vbool64_t mask, const int8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_i8mf8x7_m(mask, base, new_vl, vl);
 }
 
-void test_vlseg7e8ff_v_i8mf4_m(vint8mf4_t *v0, vint8mf4_t *v1, vint8mf4_t *v2, vint8mf4_t *v3, vint8mf4_t *v4, vint8mf4_t *v5, vint8mf4_t *v6, vbool32_t mask, const int8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_i8mf4_m(v0, v1, v2, v3, v4, v5, v6, mask, base, new_vl, vl);
+vint8mf4x7_t test_vlseg7e8ff_v_i8mf4x7_m(vbool32_t mask, const int8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_i8mf4x7_m(mask, base, new_vl, vl);
 }
 
-void test_vlseg7e8ff_v_i8mf2_m(vint8mf2_t *v0, vint8mf2_t *v1, vint8mf2_t *v2, vint8mf2_t *v3, vint8mf2_t *v4, vint8mf2_t *v5, vint8mf2_t *v6, vbool16_t mask, const int8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_i8mf2_m(v0, v1, v2, v3, v4, v5, v6, mask, base, new_vl, vl);
+vint8mf2x7_t test_vlseg7e8ff_v_i8mf2x7_m(vbool16_t mask, const int8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_i8mf2x7_m(mask, base, new_vl, vl);
 }
 
-void test_vlseg7e8ff_v_i8m1_m(vint8m1_t *v0, vint8m1_t *v1, vint8m1_t *v2, vint8m1_t *v3, vint8m1_t *v4, vint8m1_t *v5, vint8m1_t *v6, vbool8_t mask, const int8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_i8m1_m(v0, v1, v2, v3, v4, v5, v6, mask, base, new_vl, vl);
+vint8m1x7_t test_vlseg7e8ff_v_i8m1x7_m(vbool8_t mask, const int8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_i8m1x7_m(mask, base, new_vl, vl);
 }
 
-void test_vlseg7e8ff_v_u8mf8_m(vuint8mf8_t *v0, vuint8mf8_t *v1, vuint8mf8_t *v2, vuint8mf8_t *v3, vuint8mf8_t *v4, vuint8mf8_t *v5, vuint8mf8_t *v6, vbool64_t mask, const uint8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_u8mf8_m(v0, v1, v2, v3, v4, v5, v6, mask, base, new_vl, vl);
+vuint8mf8x7_t test_vlseg7e8ff_v_u8mf8x7_m(vbool64_t mask, const uint8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_u8mf8x7_m(mask, base, new_vl, vl);
 }
 
-void test_vlseg7e8ff_v_u8mf4_m(vuint8mf4_t *v0, vuint8mf4_t *v1, vuint8mf4_t *v2, vuint8mf4_t *v3, vuint8mf4_t *v4, vuint8mf4_t *v5, vuint8mf4_t *v6, vbool32_t mask, const uint8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_u8mf4_m(v0, v1, v2, v3, v4, v5, v6, mask, base, new_vl, vl);
+vuint8mf4x7_t test_vlseg7e8ff_v_u8mf4x7_m(vbool32_t mask, const uint8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_u8mf4x7_m(mask, base, new_vl, vl);
 }
 
-void test_vlseg7e8ff_v_u8mf2_m(vuint8mf2_t *v0, vuint8mf2_t *v1, vuint8mf2_t *v2, vuint8mf2_t *v3, vuint8mf2_t *v4, vuint8mf2_t *v5, vuint8mf2_t *v6, vbool16_t mask, const uint8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_u8mf2_m(v0, v1, v2, v3, v4, v5, v6, mask, base, new_vl, vl);
+vuint8mf2x7_t test_vlseg7e8ff_v_u8mf2x7_m(vbool16_t mask, const uint8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_u8mf2x7_m(mask, base, new_vl, vl);
 }
 
-void test_vlseg7e8ff_v_u8m1_m(vuint8m1_t *v0, vuint8m1_t *v1, vuint8m1_t *v2, vuint8m1_t *v3, vuint8m1_t *v4, vuint8m1_t *v5, vuint8m1_t *v6, vbool8_t mask, const uint8_t *base, size_t *new_vl, size_t vl) {
-  return __riscv_vlseg7e8ff_v_u8m1_m(v0, v1, v2, v3, v4, v5, v6, mask, base, new_vl, vl);
+vuint8m1x7_t test_vlseg7e8ff_v_u8m1x7_m(vbool8_t mask, const uint8_t *base, size_t *new_vl, size_t vl) {
+  return __riscv_vlseg7e8ff_v_u8m1x7_m(mask, base, new_vl, vl);
 }
 
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlseg7e8ff\.[ivxfswum.]+\s+} 16 } } */
