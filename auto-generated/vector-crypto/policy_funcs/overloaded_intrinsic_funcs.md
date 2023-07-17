@@ -1026,3 +1026,21 @@ vuint64m4_t __riscv_vclmulh_mu (vbool16_t mask, vuint64m4_t maskedoff, vuint64m4
 vuint64m8_t __riscv_vclmulh_mu (vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t vs2, vuint64m8_t vs1, size_t vl);
 vuint64m8_t __riscv_vclmulh_mu (vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t vs2, uint64_t rs1, size_t vl);
 ```
+
+## Zvkg - Vector GCM/GMAC:
+
+### [Vector GCM/GMAC]():
+
+**Prototypes:**
+``` C
+vuint32mf2_t __riscv_vghsh_tu (vuint32mf2_t vd, vuint32mf2_t vs2, vuint32mf2_t vs1, size_t vl);
+vuint32m1_t __riscv_vghsh_tu (vuint32m1_t vd, vuint32m1_t vs2, vuint32m1_t vs1, size_t vl);
+vuint32m2_t __riscv_vghsh_tu (vuint32m2_t vd, vuint32m2_t vs2, vuint32m2_t vs1, size_t vl);
+vuint32m4_t __riscv_vghsh_tu (vuint32m4_t vd, vuint32m4_t vs2, vuint32m4_t vs1, size_t vl);
+vuint32m8_t __riscv_vghsh_tu (vuint32m8_t vd, vuint32m8_t vs2, vuint32m8_t vs1, size_t vl);
+vuint32mf2_t __riscv_vgmul_tu (vuint32mf2_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m1_t __riscv_vgmul_tu (vuint32m1_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m2_t __riscv_vgmul_tu (vuint32m2_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m4_t __riscv_vgmul_tu (vuint32m4_t vd, vuint32m4_t vs2, size_t vl);
+vuint32m8_t __riscv_vgmul_tu (vuint32m8_t vd, vuint32m8_t vs2, size_t vl);
+```
