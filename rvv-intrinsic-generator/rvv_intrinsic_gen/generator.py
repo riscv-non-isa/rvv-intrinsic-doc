@@ -22,6 +22,7 @@ import collections
 import re
 
 from enums import ExtraAttr
+from enums import ToolChainType
 
 
 class Generator():
@@ -180,6 +181,9 @@ class Generator():
     print(f"Generator generated \x1b[1;31m{len(self.generated_functions_set)} \
       \x1b[0mfunctions")
 
+  def post_gen(self):
+    pass
+
 
 class DocGenerator(Generator):
   """
@@ -281,11 +285,11 @@ class APITestGenerator(Generator):
   Derived generator for api unit tests.
   """
 
-  def __init__(self, f, is_overloaded, is_llvm, has_tail_policy):
+  def __init__(self, f, is_overloaded, toolchain_type, has_tail_policy):
     super().__init__()
     self.is_overloaded = is_overloaded
     self.folder = f
-    self.llvm = is_llvm
+    self.toolchain_type = toolchain_type
     self.has_tail_policy = has_tail_policy
     if not os.path.exists(self.folder):
       os.makedirs(self.folder)
@@ -312,15 +316,21 @@ class APITestGenerator(Generator):
 // RUN:   FileCheck --check-prefix=CHECK-RV64 %s
 
 """)
-    if self.llvm:
+    gnu_header = (r"""/* { dg-do compile } */
+/* { dg-options "-march=rv64gcv -mabi=lp64d -O3 -fno-schedule-insns -fno-schedule-insns2" } */
+
+""")
+    if self.toolchain_type == ToolChainType.LLVM:
       if has_float_type:
         self.fd.write(float_llvm_header)
       else:
         self.fd.write(int_llvm_header)
+    elif self.toolchain_type == ToolChainType.GNU:
+      self.fd.write(gnu_header);
     else:
       self.fd.write("#include <stdint.h>\n")
     self.fd.write("#include <riscv_vector.h>\n\n")
-    if not self.llvm:
+    if self.toolchain_type != ToolChainType.LLVM:
       self.fd.write("typedef _Float16 float16_t;\n")
       self.fd.write("typedef float float32_t;\n")
       self.fd.write("typedef double float64_t;\n")
@@ -408,6 +418,59 @@ class APITestGenerator(Generator):
     self.fd.write(call_args)
     self.fd.write(");\n")
     self.fd.write("}\n\n")
+    self.fd.flush() # To make sure the data flushed when post_gen.
+
+
+  def post_gen(self):
+    if self.toolchain_type == ToolChainType.GNU:
+      for test_file in set(self.test_files):
+        fd = open(os.path.join(self.folder, test_file), "r", encoding="utf-8")
+        api_count = fd.read().count("__riscv_")
+        fd.close()
+
+        opcode = test_file.removesuffix(".c")
+
+        # TODO: move to switch case if python version >= 3.10
+        if "_" in opcode:
+          pattern_str = opcode.replace("_", "\.")
+        elif opcode == "vmv":
+          pattern_str = "v[ml][ve][0-9]*"
+        elif opcode == "vwadd":
+          pattern_str = "v[w]?add"
+        elif opcode == "vwaddu":
+          pattern_str = "v[w]?add[u]?"
+        elif opcode == "vwsub":
+          pattern_str = "v[w]?sub"
+        elif opcode == "vwsubu":
+          pattern_str = "v[w]?sub[u]?"
+        elif opcode == "vnmsac" or opcode == "vnmsub":
+          pattern_str = "vnms[acub]+"
+        elif opcode == "vmadd" or opcode == "vmacc":
+          pattern_str = "vma[c-d][c-d]"
+        elif opcode == "vmsge" or opcode == "vmslt":
+          pattern_str = "vms[gl][et]"
+        elif opcode == "vmsgeu" or opcode == "vmsltu":
+          pattern_str = "vms[gl][et]u"
+        else:
+          pattern_str = opcode
+
+        if not "\." in  pattern_str:
+          pattern_str = "{PATTERN}\.".format(PATTERN=pattern_str)
+
+        fd = open(os.path.join(self.folder, test_file), "a", encoding="utf-8")
+
+        if opcode == "vsetvl":
+          #pylint: disable=line-too-long
+          fd.write("/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+[a-x0-9]+,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count))
+        elif opcode == "vsetvlmax":
+          #pylint: disable=line-too-long
+          fd.write("/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+[a-x0-9]+,\s*zero,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count))
+        else:
+          #pylint: disable=line-too-long
+          fd.write("/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+{PATTERN}[,\sa-x0-9()]+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str))
+
+        fd.close()
+
 
   def function_group(self, template, title, link, op_list, type_list, sew_list,
                      lmul_list, decorator_list):
