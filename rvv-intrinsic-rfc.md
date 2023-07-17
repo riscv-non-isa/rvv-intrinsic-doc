@@ -20,6 +20,7 @@
   * [Reduction Instructions](#no-maskedoff-reduction)
   * [Merge Instructions](#no-maskedoff-merge)
 - [Policy Intrinsic Functions](#policy)
+- [Rounding mode in fixed-point intrinsics](#vxrm)
 - [Keep the Original Values of the Destination Vector](#dest-operand)
 - [SEW and LMUL of Intrinsics](#sew-and-lmul-of-intrinsics)
 - [C Operators on RISC-V Vector Types](#c-operators)
@@ -28,6 +29,7 @@
   * [Reinterpret between floating point and integer types](#reinterpret-float)
   * [Reinterpret between signed and unsigned types](#reinterpret-sign)
   * [Reinterpret between different SEWs under the same LMUL](#reinterpret-sew)
+  * [Reinterpret between vector boolean types and LMUL=1 (m1) vector integer types](#reinterpret-vbool-o-vintm1)
   * [LMUL truncation and LMUL extension functions](#lmul-trunc)
   * [Vector Insertion and Extraction functions](#insert-extract)
 - [Overloaded Interface](#overloaded-interface)
@@ -86,6 +88,28 @@ n = `SEW`/`LMUL`
 | Types | n = 1    | n = 2    | n = 4    | n = 8    | n = 16    | n = 32    | n = 64
 | ----- | -------- | -------- | -------- | -------- | --------- | --------- | ---------
 | bool  | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t
+
+### Tuple Types for segment load/store
+
+The tuple types are grouped tuples of [data type](#data-types) that are used as input operand and return values for the segment load/store intrinsics. The tuple types defined matches the hardware limitation of the vector extension, which is NFIELD * ELMUL <= 8.
+
+NOTE: How the actual vector registers are passed during calls is not defined here. This detail is yet to be defined in the RISC-V psABI specification. Currently the LLVM implementation follows the [draft proposal](https://github.com/riscv-non-isa/riscv-elf-psabi-doc/pull/171) under [riscv-non-isa/riscv-elf-psabi](https://github.com/riscv-non-isa/riscv-elf-psabi-doc).
+
+The following sections enumerates data width (ELEN) and LMUL under [data type](#data-types) and their corresponding tuple types available. For `<data_type>` available under each element width, please check the chart under [data type](#data-types).
+
+For a data type `vint32m1_t` to be available as a tuple of 3, this means users can set/get 3 values of `vint32m1_t` into/from `vint32m1x3_t`.
+
+| Types                                  | Available `<elen>` | Available `<tuple_type>`
+| -------------------------------------- | ------------------ | --------------------------
+| `v<data_type><elen>mf8x<tuple_type>_t` | 8                  | 2, 3, 4, ..., 7, 8
+| `v<data_type><elen>mf4x<tuple_type>_t` | 8, 16              | 2, 3, 4, ..., 7, 8
+| `v<data_type><elen>mf2x<tuple_type>_t` | 8, 16, 32          | 2, 3, 4, ..., 7, 8
+| `v<data_type><elen>m1x<tuple_type>_t`  | 8, 16, 32, 64      | 2, 3, 4, ..., 7, 8
+| `v<data_type><elen>m2x<tuple_type>_t`  | 8, 16, 32, 64      | 2, 3, 4
+| `v<data_type><elen>m4x<tuple_type>_t`  | 8, 16, 32, 64      | 2
+| `v<data_type><elen>m8x<tuple_type>_t`  | X                  | X
+
+(Side note) As a next step after this tuple type variant of segment load/store lands in the specification, we may proceed to define some user friendly types that goes across hardware limitation in the vector extension (which is NFIELD * LMUL <= 8) and allow type such as `vint64m8x2_t` (a tuple of two `vint64m8_t` value) that can be used in function parameters and return values.
 
 ## Configuration-Setting and `vl` Argument<a name="configuration-setting"></a>
 
@@ -241,9 +265,9 @@ int8_t vmv_x_s_i8m8_i8 (vint8m8_t vs2, size_t vl);
 
 ## Scalar in Vector Operations<a name="scalar-in-vector-operations"></a>
 
-In V specification, it defines operations between vector and scalar types. If `XLEN` > `SEW`, the least-significant SEW bits of the scalar register are used. If `XLEN` < `SEW`, the value from the scalar register is sign-extended to SEW bits.
-
-We define arithmetic intrinsics with scalar using SEW types.
+Some V-extension instructions have both vector and scalar operands,
+and the scalar operands may be truncated or extended depending on the relative widths of XLEN (or FLEN) and SEW.
+The intrinsics API hides this detail from the C programmer by using fixed-width integer (or floating-point) types, as follows:
 
 ```
 Example:
@@ -254,18 +278,9 @@ vuint8m1_t vadd_vx_u8m1(vuint8m1_t op1, uint8_t op2, size_t vl);
 vuint64m1_t vadd_vx_u64m1(vuint64m1_t op1, uint64_t op2, size_t vl);
 ```
 
-The compiler may generate multiple instructions for the intrinsics. For example, it is a little bit complicated to support `uint64_t` operations under `XLEN` = 32.
-
-It breaks the one-to-one mapping between intrinsics and assembly mnemonics in some hardware configurations. However, it makes more sense for users to use the scalar types consistent with the `SEW` of vector types.
-
-There is the same issue for `vmv.x.s`, `vmv.s.x`, `vfmv.f.s`, `vfmv.s.f`, `vslide1up.vx`, `vfslide1up.vf`, `vslide1down.vx`, and `vfslide1down.vx`. Use `SEW` to encode the scalar type.
-
-```
-Example:
-
-// Use uint8_t for op2.
-vuint8m1_t vslide1up_vx_u8m1(vuint8m1_t dest, vuint8m1_t op1, uint8_1 op2);
-```
+To support the implied semantics, the compiler may generate multiple instructions for the intrinsics.
+(More generally, this API does not constrain the compiler in which instructions it actually generates.)
+For example, to support `vmv_x_s_i64m1_i64` when XLEN = 32, the compiler may generate `vmv.x.s`, `vslide1down.vx`, and another `vmv.x.s`, all with SEW = 32, to extract the full 64 bits into two X-registers.
 
 ## Mask in Intrinsics<a name="mask-in-intrinsics"></a>
 
@@ -473,6 +488,23 @@ vuint32m1_t vid_tamu(vbool32_t mask, vuint32m1_t merge, size_t vl);
 vuint32m1_t vid_v_u32m1_tama(vbool32_t mask, size_t vl);
 ```
 
+## Rounding mode in fixed-point intrinsics<a name="vxrm"></a>
+
+Regarding the fixed-point intrinsics, namely the intrinsics that represent instructions under [section 12 of the v-spec](https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#sec-vector-fixed-point), the parameter that models the control of the rounding mode is identical to what is defined in [section 3.8 of the v-spec](https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#38-vector-fixed-point-rounding-mode-register-vxrm).
+
+Computation of `vsadd`, `vsaddu`, `vssub`, and `vssubu` do not need the rounding mode, therefore the intrinsics of these instructions do not have the parameter for rounding mode control.
+
+The compiler defines an enum to help express the rounding modes.
+
+```
+enum __RISCV_VXRM {
+  __RISCV_VXRM_RNU = 0,
+  __RISCV_VXRM_RNE = 1,
+  __RISCV_VXRM_RDN = 2,
+  __RISCV_VXRM_ROD = 3,
+};
+```
+
 ## Keep the Original Values of the Destination Vector<a name="dest-operand"></a>
 
 `vmv.s.x` and reduction operations will only modify the first element of the destination vector. Users could keep the original values of the remaining elements in the destination vector through `dest` argument in these intrinsics.
@@ -573,6 +605,21 @@ Example:
 
 // Convert SEW under the same LMUL.
 vint64m1_t vreinterpret_v_i32m1_i64m1(vint32m1_t src)
+```
+
+### Reinterpret between vector boolean types and LMUL=1 (m1) vector integer types<a name="reinterpret-vbool-o-vintm1"></a>
+
+These utilities help users to convert vector boolean types to `LMUL=1` vector integer types, e.g. converting `vbool64_t` to `vint64m1_t`, `vbool16_t` to `vint8m1_t`. The reinterpret intrinsics only change the types of the underlying contents. It is a nop operation.
+
+User of this intrinsics should be aware of the [mask register layout](https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#45-mask-register-layout) held in the vector registers and bits in the value may be undefined.
+
+```
+Example:
+
+// Converting a mask vector value to a LMUL=1 int64 vector value
+vint64m1_t vreinterpret_v_b1_i64m1(vbool1_t src);
+// Converting a LMUL=1 int64 vector value to a mask vector value
+vbool1_t vreinterpret_v_i64m1_b1(vint64m1_t src);
 ```
 
 ### LMUL truncation and LMUL extension functions<a name="lmul-trunc)"></a>

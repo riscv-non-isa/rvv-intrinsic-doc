@@ -51,6 +51,7 @@ class TypeHelper:
   intptr_t = "intptr_t"
   ptrdiff_t = "ptrdiff_t"
   ulong = "unsigned long"
+  uint = "unsigned int"
   long = "long"
   boolean = "uint8_t"
   const_int = "const int"
@@ -112,6 +113,10 @@ class TypeHelper:
     return "v{TYPE}{SEW}m{LMUL}_t".format_map(self.args)
 
   @property
+  def tuple_v(self):
+    return "v{TYPE}{SEW}m{LMUL}x{NF}_t".format_map(self.args)
+
+  @property
   def vm1(self):
     return "v{TYPE}{SEW}m1_t".format_map(self.args)
 
@@ -157,18 +162,24 @@ class TypeHelper:
 
 
 def seg_constraint(**kargs):
-  return ((get_float_lmul(kargs["LMUL"]) * kargs["NF"]) <=
-          8) and basic_constraint(**kargs)
+  return ((get_float_lmul(kargs["LMUL"]) * kargs["NF"])
+          <= 8) and basic_constraint(**kargs)
 
 
-def seg_arg(v, nf, ptr_t=False):
+def seg_arg(v, nf, ptr_t=False, is_seg_load_store_tuple_type=False):
   args = {}
-  for i in range(nf):
+  if is_seg_load_store_tuple_type:
     if ptr_t:
-      vt = f"{v} *"
+      args["v_tuple"] = f"{v.split('_')[0]}x{nf}_t *"
     else:
-      vt = v
-    args[f"v{i}"] = vt
+      args["v_tuple"] = f"{v.split('_')[0]}x{nf}_t"
+  else:
+    for i in range(nf):
+      if ptr_t:
+        vt = f"{v} *"
+      else:
+        vt = v
+      args[f"v{i}"] = vt
   return args
 
 

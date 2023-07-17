@@ -41,6 +41,9 @@ class Generator():
   def write_title(self, text, link):
     pass
 
+  def gen_prologue(self):
+    pass
+
   def inst_group_prologue(self):
     return ""
 
@@ -93,10 +96,10 @@ class Generator():
   # vle8_v_i8m2 (const int8_t *base, size_t vl);
   @staticmethod
   def is_support_overloaded(name, **kwargs):
-    for p in ["tu", "tamu", "tumu", "tuma", "tam", "tum"]:
+    for p in ["tu", "tamu", "tumu", "tuma", "tam", "tum", "mu"]:
       if name.split("_")[-1] == p:
         return True
-    if name.find("vmv_s_x") != -1 or name.find("vfmv_s_f") != -1:
+    if name.find("vmv_s") != -1 or name.find("vfmv_s") != -1:
       # Prototype for non-policy and ta intrinsics of vmv_s_x and vfmv_s_f
       # is not feasible for overloading.
       return name.split("_")[-1] == "tu"
@@ -127,6 +130,84 @@ class Generator():
         return False
 
     return True
+
+
+  @staticmethod
+  def adjust_gnu_api_count(api_count, test_file, has_policy):
+    if test_file == "vmv.C":
+      api_count = 178 if has_policy else 110
+    if test_file == "vmv.c":
+      api_count = 178 if has_policy else 198
+    if test_file == "vle8.c":
+      api_count = 62 if has_policy else api_count
+    if test_file == "vle8.C":
+      api_count = 48 if has_policy else api_count
+    if test_file == "vle16.c":
+      api_count = 52 if has_policy else api_count
+    if test_file == "vle16.C":
+      api_count = 40 if has_policy else api_count
+    if test_file == "vle32.c":
+      api_count = 63 if has_policy else api_count
+    if test_file == "vle32.C":
+      api_count = 48 if has_policy else api_count
+
+    return api_count
+
+
+  @staticmethod
+  def adjust_gnu_pattern_str(opcode):
+    # TODO: move to switch case if python version >= 3.10
+    if opcode == "vlmul_ext_v" or opcode == "vlmul_trunc_v" \
+      or opcode == "vreinterpret" or opcode == "vundefined":
+      pattern_str = "vs[1248e][r123468]+"
+    elif opcode == "vmv":
+      pattern_str = "v[ml][ve][0-9]*"
+    elif opcode == "vwadd":
+      pattern_str = "v[w]?add"
+    elif opcode == "vwaddu":
+      pattern_str = "v[w]?add[u]?"
+    elif opcode == "vwsub":
+      pattern_str = "v[w]?sub"
+    elif opcode == "vwsubu":
+      pattern_str = "v[w]?sub[u]?"
+    elif opcode == "vnmsac" or opcode == "vnmsub":
+      pattern_str = "vnms[acub]+"
+    elif opcode == "vmadd" or opcode == "vmacc":
+      pattern_str = "vma[c-d][c-d]"
+    elif opcode == "vmsge" or opcode == "vmslt":
+      pattern_str = "vms[gl][et]"
+    elif opcode == "vmsgeu" or opcode == "vmsltu":
+      pattern_str = "vms[gl][et]u"
+    else:
+      pattern_str = opcode
+
+    pattern_str = pattern_str.replace("_", "\.")
+
+    if not "\." in pattern_str:
+      pattern_str = "{PATTERN}\.[ivxfswum.]+".format(PATTERN=pattern_str)
+    else:
+      pattern_str = "{PATTERN}[ivxfswum.]*".format(PATTERN=pattern_str)
+
+    return pattern_str
+
+
+  @staticmethod
+  def gen_gnu_dg_pattern_str(opcode, pattern_str, api_count):
+    if opcode == "vsetvl":
+      #pylint: disable=line-too-long
+      return "/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+[a-x0-9]+,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count)
+    elif opcode == "vsetvlmax":
+      #pylint: disable=line-too-long
+      return "/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+[a-x0-9]+,\s*zero,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count)
+    elif opcode == "vlmul_ext_v" or opcode == "vlmul_trunc_v" \
+      or opcode == "vreinterpret" or opcode == "vundefined" \
+      or opcode == "vfmv":
+      #pylint: disable=line-too-long
+      return "/* {{ dg-final {{ scan-assembler-times {{{PATTERN}\s+[,\sa-x0-9()]+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
+    else:
+      #pylint: disable=line-too-long
+      return "/* {{ dg-final {{ scan-assembler-times {{vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+{PATTERN}\s+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
+
 
   @staticmethod
   def get_overloaded_op_name(name):
@@ -339,7 +420,12 @@ class APITestGenerator(Generator):
 
     non_overloaded_func_name = Generator.func_name(name)
     overloaded_func_name = Generator.get_overloaded_op_name(name)
-    test_file_name = f"{inst_info.OP}.c"
+
+    if self.is_overloaded and self.toolchain_type == ToolChainType.GNU:
+      # GNU test suite requires *.C as test file suffix for overloaded API.
+      test_file_name = f"{inst_info.OP}.C"
+    else:
+      test_file_name = f"{inst_info.OP}.c"
 
     if self.is_overloaded:
       func_name = overloaded_func_name
@@ -369,6 +455,12 @@ class APITestGenerator(Generator):
                              return_type, **kwargs)
     func_decl = func_decl.replace(" (", "(")
 
+    # Strip redundant parameters in function declaration because the intrinsic
+    # requires an immediate to be provided to the parameter.
+    # For "vxrm" parameter of the fixed-point intrinsics, value for it must be
+    # an immediate.
+    func_decl = func_decl.replace(", unsigned int vxrm", "")
+
     # NOTE(FIXME): This logic is dependent to `TYPES` under constant.py.
     # Hardcoded that if an an intrinsic has a floating-point type variant, the
     # variant will be enumerated before the integer type variant. To fix this
@@ -394,6 +486,8 @@ class APITestGenerator(Generator):
           and ((arg_name == "index" and type_name == "size_t"))) \
          or arg_name.startswith("bit_field") or arg_name.startswith("simm"):
         return "0"
+      if arg_name == "vxrm":
+        return "__RISCV_VXRM_RNU"
       return arg_name
 
     # Write test func body.
@@ -417,47 +511,17 @@ class APITestGenerator(Generator):
         api_count = fd.read().count("__riscv_")
         fd.close()
 
-        opcode = test_file.removesuffix(".c")
+        api_count = Generator.adjust_gnu_api_count(api_count, test_file,
+                                                   self.has_tail_policy)
 
-        # TODO: move to switch case if python version >= 3.10
-        if "_" in opcode:
-          pattern_str = opcode.replace("_", "\.")
-        elif opcode == "vmv":
-          pattern_str = "v[ml][ve][0-9]*"
-        elif opcode == "vwadd":
-          pattern_str = "v[w]?add"
-        elif opcode == "vwaddu":
-          pattern_str = "v[w]?add[u]?"
-        elif opcode == "vwsub":
-          pattern_str = "v[w]?sub"
-        elif opcode == "vwsubu":
-          pattern_str = "v[w]?sub[u]?"
-        elif opcode == "vnmsac" or opcode == "vnmsub":
-          pattern_str = "vnms[acub]+"
-        elif opcode == "vmadd" or opcode == "vmacc":
-          pattern_str = "vma[c-d][c-d]"
-        elif opcode == "vmsge" or opcode == "vmslt":
-          pattern_str = "vms[gl][et]"
-        elif opcode == "vmsgeu" or opcode == "vmsltu":
-          pattern_str = "vms[gl][et]u"
-        else:
-          pattern_str = opcode
-
-        if not "\." in  pattern_str:
-          pattern_str = "{PATTERN}\.".format(PATTERN=pattern_str)
+        opcode = test_file.removesuffix(".c").removesuffix(".C")
+        pattern_str = Generator.adjust_gnu_pattern_str(opcode)
 
         fd = open(os.path.join(self.folder, test_file), "a", encoding="utf-8")
+        dg_pattern_str = Generator.gen_gnu_dg_pattern_str(opcode, pattern_str,
+                                                          api_count)
 
-        if opcode == "vsetvl":
-          #pylint: disable=line-too-long
-          fd.write("/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+[a-x0-9]+,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count))
-        elif opcode == "vsetvlmax":
-          #pylint: disable=line-too-long
-          fd.write("/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+[a-x0-9]+,\s*zero,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count))
-        else:
-          #pylint: disable=line-too-long
-          fd.write("/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+zero,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]\s+{PATTERN}[,\sa-x0-9()]+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str))
-
+        fd.write(dg_pattern_str)
         fd.close()
 
 
@@ -528,13 +592,121 @@ class CompatibleHeaderGenerator(Generator):
   """
 
   def __init__(self, fd, is_overloaded, has_tail_policy):
+    #pylint: disable=line-too-long
     super().__init__()
     self.is_overloaded = is_overloaded
     self.has_tail_policy = has_tail_policy
     self.fd = fd
+    # Store parameter count for the override macro trick
+    self.override_macro_param_new_unmasked_func_name_and_param_cnt = {}
+    self.override_macro_param_new_masked_func_name_and_param_cnt = {}
+    common_include = """
+#if __has_include ("riscv_vector.h")
+#include <riscv_vector.h>
+#endif
+#ifndef __RISCV_VECTOR_H
+#include_next <riscv_vector.h>
+#endif
+
+"""
+
+    non_overloaded_policy_header_start = """#ifndef __RVV_0P10_COMPATIBLE_HEADERS_NON_OVERLOADED_POLICY_H
+#define __RVV_0P10_COMPATIBLE_HEADERS_NON_OVERLOADED_POLICY_H
+
+"""
+
+    non_overloaded_non_policy_header_start = """#ifndef __RVV_0P10_COMPATIBLE_HEADERS_NON_OVERLOADED_NON_POLICY_H
+#define __RVV_0P10_COMPATIBLE_HEADERS_NON_OVERLOADED_NON_POLICY_H
+
+"""
+
+    overloaded_policy_header_start = """#ifndef __RVV_0P10_COMPATIBLE_HEADERS_OVERLOADED_POLICY_H
+#define __RVV_0P10_COMPATIBLE_HEADERS_OVERLOADED_POLICY_H
+
+"""
+
+    overloaded_non_policy_header_start = """#ifndef __RVV_0P10_COMPATIBLE_HEADERS_OVERLOADED_NON_POLICY_H
+#define __RVV_0P10_COMPATIBLE_HEADERS_OVERLOADED_NON_POLICY_H
+
+"""
+
+    override_macro_utility = """
+// The maximum number of parameters is 20, this is held by segment load
+// instructions with a NFIELD (NF) of 8. 20 is contributed by 8 vector register
+// pointers passed, 1 vector mask register, 8 passthrough register for
+// undisturbed policy, and 3 for address base, byte index, vl.
+#define _GET_OVERRIDE(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12, _13,\\
+_14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
+
+"""
+
+    if has_tail_policy:
+      if self.is_overloaded:
+        self.write(overloaded_policy_header_start)
+      else:
+        self.write(non_overloaded_policy_header_start)
+    else:
+      if self.is_overloaded:
+        self.write(overloaded_non_policy_header_start)
+        self.write(override_macro_utility)
+      else:
+        self.write(non_overloaded_non_policy_header_start)
+    self.write(common_include)
 
   def write_title(self, text, link):
     pass
+
+  def gen_prologue(self):
+    if self.is_overloaded:
+      for legacy_func_name, unmasked_new_func_name_and_unmasked_param_cnt_set\
+        in\
+        self.override_macro_param_new_unmasked_func_name_and_param_cnt.items():
+        if self.need_to_swap_param(legacy_func_name):
+          continue
+        unmasked_new_func_name, unmasked_param_cnt_set = \
+          list(unmasked_new_func_name_and_unmasked_param_cnt_set.items())[0]
+
+        assert len(unmasked_param_cnt_set) != 0
+
+        if legacy_func_name in \
+          self.override_macro_param_new_masked_func_name_and_param_cnt:
+          masked_new_func_name, masked_param_cnt_set =\
+            list(
+              self.override_macro_param_new_masked_func_name_and_param_cnt
+                [legacy_func_name].items())[0]
+        else:
+          masked_param_cnt_set = {}
+
+        if len(unmasked_param_cnt_set) + len(masked_param_cnt_set) == 1:
+          self.write(f"#define {legacy_func_name}(...) ")
+          self.write(f"{unmasked_new_func_name}(__VA_ARGS__)\n")
+          continue
+        self.write(f"#define {legacy_func_name}(...) _GET_OVERRIDE(__VA_ARGS__")
+        for i in range(20, 0, -1):
+          self.write(", ")
+          if i in unmasked_param_cnt_set:
+            self.write(f"{unmasked_new_func_name}")
+          elif i in masked_param_cnt_set:
+            self.write(f"{masked_new_func_name}")
+          else:
+            self.write(f"{i}")
+        self.write(")(__VA_ARGS__)\n")
+
+      for legacy_func_name, masked_new_func_name_and_masked_param_cnt_set in\
+          self.override_macro_param_new_masked_func_name_and_param_cnt.items():
+        masked_new_func_name, masked_param_cnt_set = \
+          list(masked_new_func_name_and_masked_param_cnt_set.items())[0]
+        if self.need_to_swap_param(legacy_func_name):
+          continue
+        if legacy_func_name in\
+          self.override_macro_param_new_unmasked_func_name_and_param_cnt:
+          continue
+        if len(masked_param_cnt_set) != 1:
+          assert False
+        self.write(f"#define {legacy_func_name}(...) ")
+        self.write(f"{masked_new_func_name}(__VA_ARGS__)\n")
+
+    self.write("#endif\n")
 
   def write(self, text):
     self.fd.write(text)
@@ -545,6 +717,167 @@ class CompatibleHeaderGenerator(Generator):
       return
     super().function_group(template, title, link, op_list, type_list, sew_list,
                            lmul_list, decorator_list)
+
+  @staticmethod
+  def is_policy_func(inst_info):
+    """
+    Determine whether the instruction information contains policy attributes.
+    """
+    return (inst_info.extra_attr & ExtraAttr.IS_TA) | \
+    (inst_info.extra_attr & ExtraAttr.IS_TU) | \
+    (inst_info.extra_attr & ExtraAttr.IS_MA) | \
+    (inst_info.extra_attr & ExtraAttr.IS_MU) | \
+    (inst_info.extra_attr & ExtraAttr.IS_TAMA) | \
+    (inst_info.extra_attr & ExtraAttr.IS_TAMU) | \
+    (inst_info.extra_attr & ExtraAttr.IS_TUMA) | \
+    (inst_info.extra_attr & ExtraAttr.IS_TUMU) | \
+    (inst_info.extra_attr & ExtraAttr.IS_RED_TUMA) | \
+    (inst_info.extra_attr & ExtraAttr.IS_RED_TAMA)
+
+  @staticmethod
+  def is_no_mu_inst(name):
+    no_mu_inst_list = ["vcpop", "vfirst", "red"]
+    for default_tu_inst in no_mu_inst_list:
+      if default_tu_inst in name:
+        return True
+    return False
+
+  @staticmethod
+  def is_always_ta_inst(name):
+    always_ta_inst_list = [
+        # mask unit-stride load/store instructions
+        "vlm",
+        "vsm",
+        # add-with-carry/subtract-with-borrow
+        "vadc",
+        "vadc",
+        "vmadc",
+        "vsbc",
+        "vmsbc",
+        # comparison instructions
+        "vmseq",
+        "vmsne",
+        "vmsltu",
+        "vmslt",
+        "vmsleu",
+        "vmsle",
+        "vmsgtu",
+        "vmsgt",
+        "vmsgeu",
+        "vmsge",
+        "vmfeq",
+        "vmfne",
+        "vmflt",
+        "vmfle",
+        "vmfgt",
+        "vmfge",
+        # mask-register logical instructions
+        "vmand",
+        "vmnand",
+        "vmandn",
+        "vmxor",
+        "vmor",
+        "vmnor",
+        "vmorn",
+        "vmxnor",
+        # other
+        "vmsbf",
+        "vmsif",
+        "vmsof",
+        "vfirst",
+        "vcpop"
+    ]
+    for always_ta_inst in always_ta_inst_list:
+      if always_ta_inst in name:
+        return True
+    return False
+
+  @staticmethod
+  def get_legacy_suffix(inst_info):
+    """
+    Gets legacy suffix for instruction based on name and instruction
+    information.
+    """
+    suffix = ""
+    if CompatibleHeaderGenerator.is_policy_func(
+        inst_info):  # policy intrinsics go here
+      if inst_info.extra_attr & ExtraAttr.IS_TA:
+        suffix = "_ta"
+      if inst_info.extra_attr & ExtraAttr.IS_TU:
+        suffix = "_tu"
+      if inst_info.extra_attr & ExtraAttr.IS_MA:
+        suffix = "_ma"
+      if inst_info.extra_attr & ExtraAttr.IS_MU:
+        suffix = "_mu"
+      if inst_info.extra_attr & ExtraAttr.IS_TAMA:
+        suffix = "_tama"
+      if inst_info.extra_attr & ExtraAttr.IS_TAMU:
+        suffix = "_tamu"
+      if inst_info.extra_attr & ExtraAttr.IS_TUMA:
+        suffix = "_tuma"
+      if inst_info.extra_attr & ExtraAttr.IS_TUMU:
+        suffix = "_tumu"
+      if inst_info.extra_attr & ExtraAttr.IS_MASK and \
+        inst_info.extra_attr & ExtraAttr.IS_RED_TUMA:
+        suffix = "_tum"
+      if inst_info.extra_attr & ExtraAttr.IS_MASK and \
+        inst_info.extra_attr & ExtraAttr.IS_RED_TAMA:
+        suffix = "_tam"
+    else:  # non-policy intrinsics go here
+      assert False, "To be implemented"
+    return suffix
+
+  @staticmethod
+  def get_new_suffix(name, inst_info):
+    """
+    Gets new suffix for instruction based on name and instruction information.
+    """
+
+    suffix = ""
+    # policy intrinsics go here
+    if CompatibleHeaderGenerator.is_policy_func(inst_info):
+      if inst_info.extra_attr & ExtraAttr.IS_TA:
+        suffix = ""
+      if inst_info.extra_attr & ExtraAttr.IS_TU:
+        suffix = "_tu"
+      if inst_info.extra_attr & ExtraAttr.IS_MA:
+        suffix = "_m"
+      if inst_info.extra_attr & ExtraAttr.IS_MU:
+        suffix = "_mu"
+      if inst_info.extra_attr & ExtraAttr.IS_TAMA:
+        suffix = "_m"
+      if inst_info.extra_attr & ExtraAttr.IS_TAMU:
+        suffix = "_mu"
+      if inst_info.extra_attr & ExtraAttr.IS_TUMA:
+        suffix = "_tum"
+      if inst_info.extra_attr & ExtraAttr.IS_TUMU:
+        suffix = "_tumu"
+      if inst_info.extra_attr & ExtraAttr.IS_MASK and \
+        inst_info.extra_attr & ExtraAttr.IS_RED_TUMA:
+        suffix = "_tum"
+      if inst_info.extra_attr & ExtraAttr.IS_MASK and \
+        inst_info.extra_attr & ExtraAttr.IS_RED_TAMA:
+        suffix = "_m"
+
+    else:  # non-policy intrinsics go here
+      if inst_info.store_p():
+        if inst_info.extra_attr & ExtraAttr.IS_MASK:
+          suffix = "_m"
+        else:
+          suffix = ""
+      elif inst_info.extra_attr & ExtraAttr.IS_MASK:
+        if CompatibleHeaderGenerator.is_no_mu_inst(name):
+          if CompatibleHeaderGenerator.is_always_ta_inst(name):
+            suffix = "_m"
+          else:
+            suffix = "_tum"
+        else:
+          if CompatibleHeaderGenerator.is_always_ta_inst(name):
+            suffix = "_mu"
+          else:
+            suffix = "_tumu"
+
+    return suffix
 
   @staticmethod
   def get_new_func_name(name, inst_info):
@@ -568,6 +901,7 @@ class CompatibleHeaderGenerator(Generator):
           "vfnmsub",
           "vfwmacc",
           "vfwnmacc",
+          "vfwmsac",
           "vfwnmsac",
           "vmacc",
           "vmadd",
@@ -583,78 +917,19 @@ class CompatibleHeaderGenerator(Generator):
           "vslideup",
           "vslidedown",
           "vcompress",
-          "vmv_s_x",
-          "vfmv_s_f",
+          "vmv_s",
+          "vfmv_s",
       ]
       for default_tu_inst in default_tu_inst_list:
         if default_tu_inst in name:
           return True
       return False
 
-    def is_no_mu_inst(name):
-      no_mu_inst_list = ["vcpop", "vfirst"]
-      for default_tu_inst in no_mu_inst_list:
-        if default_tu_inst in name:
-          return True
-      return False
-
-    def is_policy_func(inst_info):
-      return (inst_info.extra_attr & ExtraAttr.IS_TA) | \
-      (inst_info.extra_attr & ExtraAttr.IS_TU) | \
-      (inst_info.extra_attr & ExtraAttr.IS_MA) | \
-      (inst_info.extra_attr & ExtraAttr.IS_MU) | \
-      (inst_info.extra_attr & ExtraAttr.IS_TAMA) | \
-      (inst_info.extra_attr & ExtraAttr.IS_TAMU) | \
-      (inst_info.extra_attr & ExtraAttr.IS_TUMA) | \
-      (inst_info.extra_attr & ExtraAttr.IS_TUMU) | \
-      (inst_info.extra_attr & ExtraAttr.IS_RED_TUMA) | \
-      (inst_info.extra_attr & ExtraAttr.IS_RED_TAMA)
-
-    def get_suffix(name, inst_info):
-      suffix = ""
-      if is_policy_func(inst_info):  # policy intrinsics go here
-        if inst_info.extra_attr & ExtraAttr.IS_TA:
-          suffix = ""
-        if inst_info.extra_attr & ExtraAttr.IS_TU:
-          suffix = "_tu"
-        if inst_info.extra_attr & ExtraAttr.IS_MA:
-          suffix = "_m"
-        if inst_info.extra_attr & ExtraAttr.IS_MU:
-          suffix = "_mu"
-        if inst_info.extra_attr & ExtraAttr.IS_TAMA:
-          suffix = "_m"
-        if inst_info.extra_attr & ExtraAttr.IS_TAMU:
-          suffix = "_mu"
-        if inst_info.extra_attr & ExtraAttr.IS_TUMA:
-          suffix = "_tum"
-        if inst_info.extra_attr & ExtraAttr.IS_TUMU:
-          suffix = "_tumu"
-        if inst_info.extra_attr & ExtraAttr.IS_MASK and \
-          inst_info.extra_attr & ExtraAttr.IS_RED_TUMA:
-          suffix = "_tum"
-        if inst_info.extra_attr & ExtraAttr.IS_MASK and \
-          inst_info.extra_attr & ExtraAttr.IS_RED_TAMA:
-          suffix = "_m"
-
-      else:  # non-policy intrinsics go here
-        if inst_info.store_p():
-          if inst_info.extra_attr & ExtraAttr.IS_MASK:
-            suffix = "_m"
-          else:
-            suffix = ""
-        elif inst_info.extra_attr & ExtraAttr.IS_MASK:
-          if is_no_mu_inst(name):
-            suffix = "_m"
-          else:
-            suffix = "_mu"
-
-      return suffix
-
     def is_mask_or_policy_suffix(name):
       """
       This function checks if the function name has a suffix that needs to be
       stripped because we will need to replace them with the new ones in v0.11
-      with `get_suffix`.
+      with `get_new_suffix`.
       """
       mask_or_policy_suffix = [
           "m", "tu", "ta", "tu", "tama", "tamu", "tuma", "tumu", "tam", "tum",
@@ -665,13 +940,22 @@ class CompatibleHeaderGenerator(Generator):
     if is_mask_or_policy_suffix(name):
       name = "_".join(name.split("_")[:-1])
 
-    if is_originally_default_tu_inst(name) and not is_policy_func(inst_info):
+    if is_originally_default_tu_inst(
+        name) and not CompatibleHeaderGenerator.is_policy_func(inst_info):
       if inst_info.extra_attr & ExtraAttr.IS_MASK:
-        return "__riscv_" + name + "_tum"
+        if CompatibleHeaderGenerator.is_no_mu_inst(name):
+          if CompatibleHeaderGenerator.is_always_ta_inst(name):
+            assert False, "Unreachable"
+          return "__riscv_" + name + "_tum"
+        else:
+          if CompatibleHeaderGenerator.is_always_ta_inst(name):
+            assert False, "Unreachable"
+          return "__riscv_" + name + "_tumu"
       else:
         return "__riscv_" + name + "_tu"
 
-    return "__riscv_" + name + get_suffix(name, inst_info)
+    return "__riscv_" + name + CompatibleHeaderGenerator.get_new_suffix(
+        name, inst_info)
 
   def need_to_swap_param(self, name):
     """
@@ -689,35 +973,138 @@ class CompatibleHeaderGenerator(Generator):
     if "vcompress" in legacy_func_name:
       if inst_info.extra_attr & ExtraAttr.IS_TA:
         self.write(f"#define {legacy_func_name}(mask, src, vl) "
-                   f"{new_func_name}(src, mask, vl)\n")
+                   f"{new_func_name}((src), (mask), (vl))\n")
       else:  #TU
         # The non-policy vcompress intrinsics comes here too because in v0.10
         # non-policy vcompress has policy behavior of tail undisturbed.
         self.write(f"#define {legacy_func_name}(mask, dest, src, vl) "
-                   f"{new_func_name}(dest, src, mask, vl)\n")
+                   f"{new_func_name}((dest), (src), (mask), (vl))\n")
       return
     if "vmerge" in legacy_func_name or "vfmerge" in legacy_func_name:
       if inst_info.extra_attr & ExtraAttr.IS_TU:
-        self.write(f"#define {legacy_func_name}(mask, maskedoff, op1, op2, vl) "
-                   f"{new_func_name}(maskedoff, op1, op2, mask, vl)\n")
+        self.write(
+            f"#define {legacy_func_name}(mask, maskedoff, op1, op2, vl) "
+            f"{new_func_name}((maskedoff), (op1), (op2), (mask), (vl))\n")
       else:  #TA
         # The non-policy vmerge/vfmerge intrinsics comes here too because in
         # v0.10 non-policy vcompress has policy behavior of tail agnostic.
         self.write(f"#define {legacy_func_name}(mask, op1, op2, vl) "
-                   f"{new_func_name}(op1, op2, mask, vl)\n")
+                   f"{new_func_name}((op1), (op2), (mask), (vl))\n")
       return
 
     assert False, "Unreachable"
 
   def func(self, inst_info, name, return_type, **kwargs):
-    self.generated_functions_set.add(name)
-    legacy_func_name = Generator.func_name(name)[8:]
-    new_func_name = CompatibleHeaderGenerator.get_new_func_name(
-        legacy_func_name, inst_info)
-
-    if self.need_to_swap_param(legacy_func_name):
-      self.write_param_swap_compatible_definition(legacy_func_name,
-                                                  new_func_name, inst_info)
+    if self.is_overloaded and not Generator.is_support_overloaded(
+        name, **kwargs) and "vfmv_s" not in name and "vmv_s" not in name and\
+        not (inst_info.extra_attr & ExtraAttr.IS_MASK and\
+         ("viota" in name or "vid" in name)):
+      # In v0.10, overloaded version of vid, vmv_s_x, and vfmv_s_f is
+      # feasible because they have a default policy assumption of tail
+      # undisturbed.
+      # For masked versions of v0.10 vid, viota, the overloaded version is
+      # possible.
+      # In v0.11, the general assumption of policy is agnostic so they
+      # don't have an overloaded version. Generator.is_support_overloaded
+      # will return False for them so we prevent this by extra checking
+      # the name here.
       return
 
-    self.write(f"#define {legacy_func_name} {new_func_name}\n")
+    if self.is_overloaded:
+      legacy_func_name = Generator.get_overloaded_op_name(name)[8:]
+
+      if not CompatibleHeaderGenerator.is_policy_func(inst_info):
+        # For legacy non-policy overloaded intrinsics, we need the override
+        # technique to map the same legacy overloaded name to its corresponding
+        # v0.11 name.
+        # For example:
+        # vadd (op1, op2, vl) --> __riscv_vadd
+        # vadd(maskedoff, mask, op1, op2, vl) --> __riscv_vadd_tumu
+        if inst_info.extra_attr & ExtraAttr.IS_MASK and\
+          legacy_func_name in\
+            self.override_macro_param_new_masked_func_name_and_param_cnt:
+          return
+        elif not inst_info.extra_attr & ExtraAttr.IS_MASK and\
+          legacy_func_name in\
+            self.override_macro_param_new_unmasked_func_name_and_param_cnt:
+          return
+
+        if inst_info.extra_attr & ExtraAttr.IS_MASK and\
+           legacy_func_name not in\
+            self.override_macro_param_new_masked_func_name_and_param_cnt:
+          self.override_macro_param_new_masked_func_name_and_param_cnt[
+              legacy_func_name] = {}
+        if not inst_info.extra_attr & ExtraAttr.IS_MASK and\
+           legacy_func_name not in\
+            self.override_macro_param_new_unmasked_func_name_and_param_cnt:
+          self.override_macro_param_new_unmasked_func_name_and_param_cnt[
+              legacy_func_name] = {}
+        self.generated_functions_set.add(legacy_func_name)
+      else:
+        if legacy_func_name in self.generated_functions_set:
+          return
+        self.generated_functions_set.add(legacy_func_name)
+
+      if CompatibleHeaderGenerator.is_policy_func(inst_info):
+        # Strip trailing suffix
+        legacy_func_name = "_".join(legacy_func_name.split("_")[:-1])
+
+        legacy_suffix = CompatibleHeaderGenerator.get_legacy_suffix(inst_info)
+        new_suffix = CompatibleHeaderGenerator.get_new_suffix(name, inst_info)
+        if new_suffix == "_m":
+          # Overloaded version intrinsics don't need the `_m` suffix.
+          new_suffix = ""
+
+        new_func_name = "__riscv_" + legacy_func_name + new_suffix
+        legacy_func_name = legacy_func_name + legacy_suffix
+
+        if self.need_to_swap_param(legacy_func_name):
+          self.write_param_swap_compatible_definition(legacy_func_name,
+                                                      new_func_name, inst_info)
+          return
+        self.write(f"#define {legacy_func_name}(...) ")
+        self.write(f"{new_func_name}(__VA_ARGS__)\n")
+      else:
+        new_func_name = CompatibleHeaderGenerator.get_new_func_name(
+            legacy_func_name, inst_info)
+
+        if self.need_to_swap_param(legacy_func_name):
+          self.write_param_swap_compatible_definition(legacy_func_name,
+                                                      new_func_name, inst_info)
+          return
+
+        if new_func_name[-2:] == "_m":
+          # Overloaded version intrinsics don't need the `_m` suffix.
+          new_func_name = new_func_name[:-2]
+
+        if inst_info.extra_attr & ExtraAttr.IS_MASK:
+          if new_func_name not in\
+            self.override_macro_param_new_masked_func_name_and_param_cnt[
+              legacy_func_name]:
+            self.override_macro_param_new_masked_func_name_and_param_cnt[
+                legacy_func_name][new_func_name] = set([len(kwargs)])
+          else:
+            self.override_macro_param_new_masked_func_name_and_param_cnt[
+                legacy_func_name][new_func_name].add(len(kwargs))
+        else:
+          if new_func_name not in\
+            self.override_macro_param_new_unmasked_func_name_and_param_cnt[
+              legacy_func_name]:
+            self.override_macro_param_new_unmasked_func_name_and_param_cnt[
+                legacy_func_name][new_func_name] = set([len(kwargs)])
+          else:
+            self.override_macro_param_new_unmasked_func_name_and_param_cnt[
+                legacy_func_name][new_func_name].add(len(kwargs))
+    else:
+      self.generated_functions_set.add(name)
+      legacy_func_name = Generator.func_name(name)[8:]
+      new_func_name = CompatibleHeaderGenerator.get_new_func_name(
+          legacy_func_name, inst_info)
+
+      if self.need_to_swap_param(legacy_func_name):
+        self.write_param_swap_compatible_definition(legacy_func_name,
+                                                    new_func_name, inst_info)
+        return
+
+      self.write(f"#define {legacy_func_name}(...) ")
+      self.write(f"{new_func_name}(__VA_ARGS__)\n")

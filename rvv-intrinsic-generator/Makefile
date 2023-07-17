@@ -106,7 +106,7 @@ define gen_docs
 endef
 
 define gen_tests
-	rm $(1)/*.c -f
+	rm $(1)/*.c $(1)/*.C -f
 	$(PY3) -m $(MAIN) --gen $(2) \
 		--out $(1) $(3) \
 		$(TRIGGER_VENDOR_INST) $(TRIGGER_SKIP_DEFAULT_INST)
@@ -135,8 +135,9 @@ all: gen-document gen-test gen-compatible-header
 endif
 
 gen-document: non-overloaded-doc non-overloaded-docs overloaded-doc overloaded-docs
-gen-test: non-overloaded-test overloaded-test llvm-non-overloaded-test llvm-overloaded-test
-gen-compatible-header: non-policy-compatible-header policy-compatible-header
+gen-test: non-overloaded-test overloaded-test llvm-non-overloaded-test llvm-overloaded-test \
+		gnu-non-overloaded-test gnu-overloaded-test
+gen-compatible-header: non-policy-compatible-header policy-compatible-header non-policy-overloaded-compatible-header policy-overloaded-compatible-header
 
 # Generate all-in-one document for non-overloaded intrinsics
 non-overloaded-doc:
@@ -161,10 +162,12 @@ overloaded-docs:
 # Generate non-overloaded intrinsic testing C source files
 non-overloaded-test:
 	$(call gen_tests,$(DIR)/api-testing,non-overloaded-test,)
+	$(call gen_tests,$(POLICY_DIR)/api-testing,non-overloaded-test,--has-policy)
 
 # Generate overloaded intrinsic testing C source files
 overloaded-test:
 	$(call gen_tests,$(DIR)/overloaded-api-testing,overloaded-test,)
+	$(call gen_tests,$(POLICY_DIR)/overloaded-api-testing,overloaded-test,--has-policy)
 
 # Generate non-overloaded intrinsic testing C source files
 llvm-non-overloaded-test:
@@ -180,11 +183,28 @@ llvm-overloaded-test:
 	$(call replace_float, $(DIR)/llvm-overloaded-tests)
 	$(call replace_float, $(POLICY_DIR)/llvm-overloaded-tests)
 
+# Generate GNU non-overloaded intrinsic testing source files
+gnu-non-overloaded-test:
+	$(call gen_tests,$(DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu)
+	$(call gen_tests,$(POLICY_DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu --has-policy)
+
+# Generate GNU overloaded intrinsic testing source files
+gnu-overloaded-test:
+	$(call gen_tests,$(DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu)
+	$(call gen_tests,$(POLICY_DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu --has-policy)
+
 # Generate the adaptor header for v0.10
 non-policy-compatible-header:
-	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,non-policy.h,compatible-header,)
+	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,non-policy.h,non-overloaded-compatible-header,)
 policy-compatible-header:
-	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,policy.h,compatible-header,--has-policy)
+	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,policy.h,non-overloaded-compatible-header,--has-policy)
+
+non-policy-overloaded-compatible-header:
+	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,overloaded-non-policy.h,overloaded-compatible-header,)
+
+policy-overloaded-compatible-header:
+	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,overloaded-policy.h,overloaded-compatible-header,--has-policy)
+
 
 ###############################################################################
 # Auto-generated Document / Test Targets
@@ -263,6 +283,18 @@ run-policy-compatible-api-testing:
 		$(LEGACY_API_TESTS_DIR)/policy-non-overloaded-api-testing
 	$(call run_tests,$(LEGACY_API_TESTS_DIR)/policy-non-overloaded-api-testing,${COMPILER})
 
+run-non-policy-overloaded-compatible-api-testing:
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	cp -r $(DIR)/rvv-v0p10-compatible-headers \
+		$(LEGACY_API_TESTS_DIR)/non-policy-overloaded-api-testing
+	$(call run_tests,$(LEGACY_API_TESTS_DIR)/non-policy-overloaded-api-testing,${COMPILER})
+
+run-policy-overloaded-compatible-api-testing:
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	cp -r $(DIR)/rvv-v0p10-compatible-headers \
+		$(LEGACY_API_TESTS_DIR)/policy-overloaded-api-testing
+	$(call run_tests,$(LEGACY_API_TESTS_DIR)/policy-overloaded-api-testing,${COMPILER})
+
 # A parameterized target to run testing through testing-report.
 # Makes target 'test' of ${API_MAKEFILE} with ${TESTING_REPORT_SCRIPT} under
 # ${API_DIR}. Requires ${API_DIR}, ${API_MAKEFILE}, ${TESTING_REPORT_SCRIPT}
@@ -282,11 +314,13 @@ run-test:
 	if [ ! -f "${TESTING_REPORT_SCRIPT}" ]; then \
 		echo "File '${TESTING_REPORT_SCRIPT}' does not exist"; \
 	fi
+	make clean -C ${API_DIR} \
+		-f ${API_MAKEFILE}
 	make -C ${API_DIR} \
 		BASE_DIR=${API_DIR} \
 		TESTING_REPORT_SCRIPT=${TESTING_REPORT_SCRIPT} \
 		CC=${COMPILER} \
-		-f ${API_MAKEFILE}
+		-f ${API_MAKEFILE} -j${nproc}
 
 ###############################################################################
 # Custom Vendor Generator Target
