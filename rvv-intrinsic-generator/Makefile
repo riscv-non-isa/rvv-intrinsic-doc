@@ -53,11 +53,14 @@ PY3 := PYTHONPATH=$$PYTHONPATH:$(PYTHONPATHS) python3
 MAIN := rvv_intrinsic_gen.main
 # Main output directory is default to auto-generated
 OUTPUT_DIR := ../auto-generated
+GNU_OUTPUT_DIR := ../gnu-auto-generated
 # Derives output directory for each set of intrinsics
 # Output directory for non-policy intrinsics
 DIR := $(abspath $(OUTPUT_DIR))
+GNU_DIR := $(abspath $(GNU_OUTPUT_DIR))
 # Output directory for policy intrinsics
 POLICY_DIR := $(DIR)/policy_funcs
+GNU_POLICY_DIR := $(GNU_DIR)/policy_funcs
 # Directory that stores the v0.10 unit tests
 LEGACY_API_TESTS_DIR := $(abspath ../legacy-api-unit-tests)
 # Derived variable to trigger option --vendor-inst
@@ -72,6 +75,9 @@ TRIGGER_SKIP_DEFAULT_INST := --skip-default-inst
 else
 TRIGGER_SKIP_DEFAULT_INST :=
 endif
+
+GNU_TEST_ARCHS := rv32gc_zve32x rv32gc_zve32f rv32gc_zve64x rv32gc_zve64f \
+		  rv32gc_zve64d rv64gc_zve64d rv64gcv rv64gcv_zvfh
 
 ###############################################################################
 # Functions
@@ -138,6 +144,10 @@ gen-document: non-overloaded-doc non-overloaded-docs overloaded-doc overloaded-d
 gen-test: non-overloaded-test overloaded-test llvm-non-overloaded-test llvm-overloaded-test \
 		gnu-non-overloaded-test gnu-overloaded-test
 gen-compatible-header: non-policy-compatible-header policy-compatible-header non-policy-overloaded-compatible-header policy-overloaded-compatible-header
+gen-gnu-test: gnu-setup-test gnu-overloaded-test gnu-non-overloaded-test
+
+gnu-setup-test:
+	rm -rf ${GNU_DIR} && mkdir -p ${GNU_DIR}
 
 # Generate all-in-one document for non-overloaded intrinsics
 non-overloaded-doc:
@@ -185,13 +195,21 @@ llvm-overloaded-test:
 
 # Generate GNU non-overloaded intrinsic testing source files
 gnu-non-overloaded-test:
-	$(call gen_tests,$(DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu)
-	$(call gen_tests,$(POLICY_DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu --has-policy)
+	$(foreach arch,$(GNU_TEST_ARCHS), \
+		$(call gen_tests,$(GNU_DIR)/$(arch)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu); \
+	)
+	$(foreach arch,$(GNU_TEST_ARCHS), \
+		$(call gen_tests,$(GNU_POLICY_DIR)/${arch}/gnu-api-tests,non-overloaded-test,--toolchain-type gnu,--has-policy); \
+	)
 
 # Generate GNU overloaded intrinsic testing source files
 gnu-overloaded-test:
-	$(call gen_tests,$(DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu)
-	$(call gen_tests,$(POLICY_DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu --has-policy)
+	$(foreach arch,$(GNU_TEST_ARCHS), \
+		$(call gen_tests,$(GNU_DIR)/$(arch)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu); \
+	)
+	$(foreach arch,$(GNU_TEST_ARCHS), \
+		$(call gen_tests,$(GNU_POLICY_DIR)/$(arch)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu --has-policy); \
+	)
 
 # Generate the adaptor header for v0.10
 non-policy-compatible-header:
