@@ -114,7 +114,7 @@ endef
 define gen_tests
 	rm $(1)/*.c $(1)/*.C -f
 	$(PY3) -m $(MAIN) --gen $(2) \
-		--out $(1) $(3) \
+		--out $(1) $(3) $(4)\
 		$(TRIGGER_VENDOR_INST) $(TRIGGER_SKIP_DEFAULT_INST)
 endef
 
@@ -196,19 +196,19 @@ llvm-overloaded-test:
 # Generate GNU non-overloaded intrinsic testing source files
 gnu-non-overloaded-test:
 	$(foreach arch,$(GNU_TEST_ARCHS), \
-		$(call gen_tests,$(GNU_DIR)/$(arch)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu); \
+		$(call gen_tests,$(GNU_DIR)/$(arch)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu,--march-mabi $(arch)); \
 	)
 	$(foreach arch,$(GNU_TEST_ARCHS), \
-		$(call gen_tests,$(GNU_POLICY_DIR)/${arch}/gnu-api-tests,non-overloaded-test,--toolchain-type gnu,--has-policy); \
+		$(call gen_tests,$(GNU_POLICY_DIR)/${arch}/gnu-api-tests,non-overloaded-test,--toolchain-type gnu,--march-mabi $(arch),--has-policy); \
 	)
 
 # Generate GNU overloaded intrinsic testing source files
 gnu-overloaded-test:
 	$(foreach arch,$(GNU_TEST_ARCHS), \
-		$(call gen_tests,$(GNU_DIR)/$(arch)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu); \
+		$(call gen_tests,$(GNU_DIR)/$(arch)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu,--march-mabi $(arch)); \
 	)
 	$(foreach arch,$(GNU_TEST_ARCHS), \
-		$(call gen_tests,$(GNU_POLICY_DIR)/$(arch)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu --has-policy); \
+		$(call gen_tests,$(GNU_POLICY_DIR)/$(arch)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu,--march-mabi $(arch), --has-policy); \
 	)
 
 # Generate the adaptor header for v0.10

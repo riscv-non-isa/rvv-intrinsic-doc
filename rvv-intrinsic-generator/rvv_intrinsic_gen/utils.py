@@ -21,8 +21,30 @@ Utility on handling RVV types
 import itertools
 import re
 
+# default ELEN = 64
 ELEN = 64
 
+HAS_FLOAT_TYPE = True
+
+HAS_HALF_FLOAT_TYPE = True
+
+HAS_DOUBLE_FLOAT_TYPE = True
+
+IS_RV32 = False
+
+def set_elen_float(elen, has_float_type, has_half_float_type, has_double_float_type):
+  global ELEN
+  global HAS_FLOAT_TYPE
+  global HAS_HALF_FLOAT_TYPE
+  global HAS_DOUBLE_FLOAT_TYPE
+  ELEN = elen
+  HAS_FLOAT_TYPE = has_float_type
+  HAS_HALF_FLOAT_TYPE = has_half_float_type
+  HAS_DOUBLE_FLOAT_TYPE = has_double_float_type
+
+def set_rv32(rv32):
+  global IS_RV32
+  IS_RV32 = rv32
 
 # ex. f8 -> 0.125
 def get_float_lmul(num):
@@ -92,10 +114,25 @@ class TypeHelper:
       return False
     sew = i.group("SEW")
     lmul = i.group("LMUL")
-    # assume ELEN = 64
+
     if vtype[:6] == "vfloat":
-      if sew not in ["16", "32", "64"]:
+      if not HAS_FLOAT_TYPE:
         return False
+      elif HAS_HALF_FLOAT_TYPE:
+        if HAS_DOUBLE_FLOAT_TYPE:
+          if sew not in ["16", "32", "64"]:
+            return False
+        else:
+          if sew not in ["16", "32"]:
+            return False
+      else:
+        if HAS_DOUBLE_FLOAT_TYPE:
+          if sew not in ["32", "64"]:
+            return False
+        else:
+          if sew not in ["32"]:
+            return False
+
     elif vtype[:7] == "vbfloat":
       if sew not in ["16"]:
         return False
@@ -104,7 +141,7 @@ class TypeHelper:
         return False
     if lmul not in ["f8", "f4", "f2", "1", "2", "4", "8"]:
       return False
-    if get_float_lmul(lmul) < int(sew) / ELEN:
+    if int(sew) > ELEN or get_float_lmul(lmul) < int(sew) / ELEN:
       return False
     return True
 
@@ -184,6 +221,14 @@ def seg_arg(v, nf, ptr_t=False, is_seg_load_store_tuple_type=False):
 
 
 def basic_constraint(**kargs):
+  if "MLEN" in kargs:
+    if ELEN == 32 and kargs["MLEN"] == 64:
+      return False
+  if "EEW" in kargs:
+    if kargs["OP"] in ["vloxei", "vluxei", "vsoxei", \
+       "vsuxei", "vloxseg", "vluxseg", "vsoxseg", "vsuxseg"] \
+       and (ELEN == 32 or IS_RV32) and kargs["EEW"] == 64:
+      return False
   if "TYPE" in kargs:
     if kargs["TYPE"] == "float" and kargs["SEW"] == 8:
       return False
@@ -218,7 +263,7 @@ def prod(constraint=basic_constraint, **kargs):
       result.append(temp)
 
   # Put float in front of int
-  if "TYPE" in result[0]:
+  if len(result) != 0 and "TYPE" in result[0]:
     result = sorted(result, key=lambda d: d["TYPE"])
 
   return result

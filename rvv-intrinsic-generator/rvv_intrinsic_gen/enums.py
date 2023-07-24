@@ -103,6 +103,20 @@ class ToolChainType(enum.Enum):
   LLVM = "llvm"
   GNU = "gnu"
 
+@unique
+class MarchAbi(enum.Enum):
+  """
+  Enum of the march and mabi of the intrinsic test files.
+  """
+  UNKNOWN = "unknown"
+  RV32GC_ZVE32X = "rv32gc_zve32x"
+  RV32GC_ZVE32F = "rv32gc_zve32f"
+  RV32GC_ZVE64X = "rv32gc_zve64x"
+  RV32GC_ZVE64F = "rv32gc_zve64f"
+  RV32GC_ZVE64D = "rv32gc_zve64d"
+  RV64GC_ZVE64D = "rv64gc_zve64d"
+  RV64GCV_ZVFH   = "rv64gcv_zvfh"
+  RV64GCV       = "rv64gcv"
 
 class ExtraAttr:
   """

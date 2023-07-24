@@ -27,6 +27,7 @@ import inst
 import generator
 
 from enums import ToolChainType
+from enums import MarchAbi
 
 
 def get_gen_from_vendor(vendor_inst_filepath):
@@ -99,6 +100,7 @@ def main():
           "non-overloaded-compatible-header", "overloaded-compatible-header"
       ])
   parser.add_argument("--toolchain-type", default=ToolChainType.UNKNOWN)
+  parser.add_argument("--march-mabi", default=MarchAbi.UNKNOWN)
   parser.add_argument("--has-policy", default=False, action="store_true")
   parser.add_argument("--vendor-inst")
   parser.add_argument("--skip-default-inst", default=False, action="store_true")
@@ -165,11 +167,11 @@ def main():
   elif mode == GenTypes.NON_OVERLOADED_TEST:
     g = generator.APITestGenerator(args.out, False,
                                    ToolChainType(args.toolchain_type),
-                                   args.has_policy)
+                                   args.has_policy, MarchAbi(args.march_mabi))
   elif mode == GenTypes.OVERLOADED_TEST:
     g = generator.APITestGenerator(args.out, True,
                                    ToolChainType(args.toolchain_type),
-                                   args.has_policy)
+                                   args.has_policy, MarchAbi(args.march_mabi))
   else:
     assert False
   if not args.skip_default_inst:

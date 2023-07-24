@@ -23,7 +23,9 @@ import re
 
 from enums import ExtraAttr
 from enums import ToolChainType
-
+from enums import MarchAbi
+from utils import set_elen_float
+from utils import set_rv32
 
 class Generator():
   """
@@ -363,12 +365,13 @@ class APITestGenerator(Generator):
   Derived generator for api unit tests.
   """
 
-  def __init__(self, f, is_overloaded, toolchain_type, has_tail_policy):
+  def __init__(self, f, is_overloaded, toolchain_type, has_tail_policy, march_mabi):
     super().__init__()
     self.is_overloaded = is_overloaded
     self.folder = f
     self.toolchain_type = toolchain_type
     self.has_tail_policy = has_tail_policy
+    self.march_mabi = march_mabi
     if not os.path.exists(self.folder):
       os.makedirs(self.folder)
     if not os.path.isdir(self.folder):
@@ -378,6 +381,31 @@ class APITestGenerator(Generator):
     # test file name candidates which are declared in inst.py, it could have
     # different op name
     self.test_file_names = []
+
+  def gnu_header_select(self):
+    # TODO: move to switch case if python version >= 3.10
+    if self.march_mabi == MarchAbi.RV32GC_ZVE32X:
+      march_mabi= "-march=rv32gc_zve32x -mabi=ilp32d"
+    elif self.march_mabi == MarchAbi.RV32GC_ZVE32F:
+      march_mabi= "-march=rv32gc_zve32f -mabi=ilp32d"
+    elif self.march_mabi == MarchAbi.RV32GC_ZVE64X:
+      march_mabi= "-march=rv32gc_zve64x -mabi=ilp32d"
+    elif self.march_mabi == MarchAbi.RV32GC_ZVE64F:
+      march_mabi= "-march=rv32gc_zve64f -mabi=ilp32d"
+    elif self.march_mabi == MarchAbi.RV32GC_ZVE64D:
+      march_mabi= "-march=rv32gc_zve64d -mabi=ilp32d"
+    elif self.march_mabi == MarchAbi.RV64GC_ZVE64D:
+      march_mabi= "-march=rv64gc_zve64d -mabi=lp64d"
+    elif self.march_mabi == MarchAbi.RV64GCV_ZVFH:
+      march_mabi= "-march=rv64gcv_zvfh -mabi=lp64d"
+    else:
+      march_mabi= "rv64gcv -mabi=lp64d"
+    gnu_header_str = (r"""/* { dg-do compile } */
+/* { dg-options """ + '"' + march_mabi + r""" -O3 -fno-schedule-insns -fno-schedule-insns2" } */
+
+""")
+
+    return gnu_header_str
 
   def write_file_header(self, has_float_type):
     #pylint: disable=line-too-long
@@ -394,17 +422,15 @@ class APITestGenerator(Generator):
 // RUN:   FileCheck --check-prefix=CHECK-RV64 %s
 
 """)
-    gnu_header = (r"""/* { dg-do compile } */
-/* { dg-options "-march=rv64gcv -mabi=lp64d -O3 -fno-schedule-insns -fno-schedule-insns2" } */
 
-""")
     if self.toolchain_type == ToolChainType.LLVM:
       if has_float_type:
         self.fd.write(float_llvm_header)
       else:
         self.fd.write(int_llvm_header)
     elif self.toolchain_type == ToolChainType.GNU:
-      self.fd.write(gnu_header);
+      gnu_header = self.gnu_header_select()
+      self.fd.write(gnu_header)
     else:
       self.fd.write("#include <stdint.h>\n")
     self.fd.write("#include <riscv_vector.h>\n\n")
@@ -524,10 +550,31 @@ class APITestGenerator(Generator):
         fd.write(dg_pattern_str)
         fd.close()
 
+  def set_flags(self):
+    if self.toolchain_type == ToolChainType.GNU:
+      if self.march_mabi not in [MarchAbi.RV64GC_ZVE64D,
+          MarchAbi.RV64GCV_ZVFH, MarchAbi.RV64GCV]:
+        set_rv32(True)
+      if self.march_mabi == MarchAbi.RV32GC_ZVE32X:
+        set_elen_float(32, False, False, False)
+      elif self.march_mabi == MarchAbi.RV32GC_ZVE32F:
+          set_elen_float(32, True, False, False)
+      elif self.march_mabi == MarchAbi.RV32GC_ZVE64X:
+        set_elen_float(64, False, False, False)
+      elif self.march_mabi == MarchAbi.RV32GC_ZVE64F:
+        set_elen_float(64, True, False, False)
+      elif self.march_mabi in [MarchAbi.RV32GC_ZVE64D,
+             MarchAbi.RV64GC_ZVE64D]:
+        set_elen_float(64, True, False, True)
+      elif self.march_mabi == MarchAbi.RV64GCV_ZVFH:
+        set_elen_float(64, True, True, True)
+      else:
+        set_elen_float(64, True, False, True)
 
   def function_group(self, template, title, link, op_list, type_list, sew_list,
                      lmul_list, decorator_list):
     self.test_file_names = op_list
+    self.set_flags()
     template.render(
         G=self,
         op_list=op_list,
