@@ -385,21 +385,21 @@ class APITestGenerator(Generator):
   def gnu_header_select(self):
     # TODO: move to switch case if python version >= 3.10
     if self.march_mabi == MarchAbi.RV32GC_ZVE32X:
-      march_mabi= "-march=rv32gc_zve32x -mabi=ilp32d"
+      march_mabi = "-march=rv32gc_zve32x -mabi=ilp32d -Wno-psabi"
     elif self.march_mabi == MarchAbi.RV32GC_ZVE32F:
-      march_mabi= "-march=rv32gc_zve32f -mabi=ilp32d"
+      march_mabi = "-march=rv32gc_zve32f -mabi=ilp32d -Wno-psabi"
     elif self.march_mabi == MarchAbi.RV32GC_ZVE64X:
-      march_mabi= "-march=rv32gc_zve64x -mabi=ilp32d"
+      march_mabi = "-march=rv32gc_zve64x -mabi=ilp32d -Wno-psabi"
     elif self.march_mabi == MarchAbi.RV32GC_ZVE64F:
-      march_mabi= "-march=rv32gc_zve64f -mabi=ilp32d"
+      march_mabi = "-march=rv32gc_zve64f -mabi=ilp32d -Wno-psabi"
     elif self.march_mabi == MarchAbi.RV32GC_ZVE64D:
-      march_mabi= "-march=rv32gc_zve64d -mabi=ilp32d"
+      march_mabi = "-march=rv32gc_zve64d -mabi=ilp32d -Wno-psabi"
     elif self.march_mabi == MarchAbi.RV64GC_ZVE64D:
-      march_mabi= "-march=rv64gc_zve64d -mabi=lp64d"
+      march_mabi = "-march=rv64gc_zve64d -mabi=lp64d -Wno-psabi"
     elif self.march_mabi == MarchAbi.RV64GCV_ZVFH:
-      march_mabi= "-march=rv64gcv_zvfh -mabi=lp64d"
+      march_mabi = "-march=rv64gcv_zvfh -mabi=lp64d -Wno-psabi"
     else:
-      march_mabi= "rv64gcv -mabi=lp64d"
+      march_mabi = "rv64gcv -mabi=lp64d -Wno-psabi"
     gnu_header_str = (r"""/* { dg-do compile } */
 /* { dg-options """ + '"' + march_mabi + r""" -O3 -fno-schedule-insns -fno-schedule-insns2" } */
 
