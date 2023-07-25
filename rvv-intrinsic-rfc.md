@@ -21,6 +21,7 @@
   * [Merge Instructions](#no-maskedoff-merge)
 - [Policy Intrinsic Functions](#policy)
 - [Rounding mode in fixed-point intrinsics](#vxrm)
+- [Rounding mode in floating-point intrinsics](#frm-in-rvv-intrinsic)
 - [Keep the Original Values of the Destination Vector](#dest-operand)
 - [SEW and LMUL of Intrinsics](#sew-and-lmul-of-intrinsics)
 - [C Operators on RISC-V Vector Types](#c-operators)
@@ -504,6 +505,26 @@ enum __RISCV_VXRM {
   __RISCV_VXRM_ROD = 3,
 };
 ```
+
+## Rounding mode in floating-point intrinsics<a name="##frm-in-rvv-intrinsic"></a>
+
+The rounding mode for RVV floating-point intrinsics is controled by the same CSR `frm` of the [RISC-V standard "F" extension ([Chapter 8 of the RISC-V ISA Manual](https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf)). The RVV intrinsics provide variants for the floating-point intrinsics that has the `_rm` suffix which has an parameter for users to specify an immediate value to control the rounding mode.
+
+The compiler defines an enum to help express the rounding modes for `frm`.
+
+```
+enum __RISCV_FRM {
+  __RISCV_FRM_RNE = 0,
+  __RISCV_FRM_RTZ = 1,
+  __RISCV_FRM_RDN = 2,
+  __RISCV_FRM_RUP = 3,
+  __RISCV_FRM_RMM = 4,
+};
+```
+
+Since not all users care about or need to alternate the rounding mode, the RVV intrinsics also provide variants of the floating point intrinsics without the `_rm` suffix that does not write to `frm` and runs under what is already in the control status register.
+
+NOTE: The intrinsic with rounding mode specified is expected to compute under the specified mode, it is up to the compiler to insert correctly necessary read/write to `frm`.
 
 ## Keep the Original Values of the Destination Vector<a name="dest-operand"></a>
 
