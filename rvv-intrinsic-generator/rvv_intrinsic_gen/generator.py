@@ -399,7 +399,7 @@ class APITestGenerator(Generator):
     elif self.march_mabi == MarchAbi.RV64GCV_ZVFH:
       march_mabi = "-march=rv64gcv_zvfh -mabi=lp64d -Wno-psabi"
     else:
-      march_mabi = "rv64gcv -mabi=lp64d -Wno-psabi"
+      march_mabi = "-march=rv64gcv -mabi=lp64d -Wno-psabi"
     gnu_header_str = (r"""/* { dg-do compile } */
 /* { dg-options """ + '"' + march_mabi + r""" -O3 -fno-schedule-insns -fno-schedule-insns2" } */
 
