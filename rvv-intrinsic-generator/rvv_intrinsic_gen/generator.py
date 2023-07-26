@@ -111,7 +111,7 @@ class Generator():
         return False
     unsupported_op = [
         "setvl", "vundefined", "viota", "vmclr", "vmset_", "vid", "vmv_v_x",
-        "vfmv_v_f", "vread_csr", "vwrite_csr", "vcreate", "vlm_v"
+        "vfmv_v_f", "vcreate", "vlm_v"
     ]
     if any(i in name for i in unsupported_op):
       if ("vid" in name) or ("viota" in name):
@@ -138,7 +138,7 @@ class Generator():
         overloaded_name = "_".join(sn[0:3])
       else:
         overloaded_name = "_".join(sn[0:-1])
-    elif name in ["vread_csr", "vwrite_csr", "vlmul_trunc", "vlmul_ext"]:
+    elif name in ["vlmul_trunc", "vlmul_ext"]:
       overloaded_name = name
     elif name.find("cvt") != -1:
       if name.find("cvt_rod") != -1 or name.find("cvt_rtz") != -1:
