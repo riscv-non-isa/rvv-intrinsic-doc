@@ -34,6 +34,8 @@ IS_RV32 = False
 IS_RV64GCV = False
 IS_ZVE32 = False
 
+IS_GNU_TOOLCHIAN = False
+
 def set_elen_float(elen, has_float_type, has_half_float_type, has_double_float_type):
   global ELEN
   global HAS_FLOAT_TYPE
@@ -47,6 +49,10 @@ def set_elen_float(elen, has_float_type, has_half_float_type, has_double_float_t
 def set_rv32(rv32):
   global IS_RV32
   IS_RV32 = rv32
+
+def set_toolchain_type(gnu):
+  global IS_GNU_TOOLCHIAN
+  IS_GNU_TOOLCHIAN = gnu
 
 def set_rv64gcv(rv64gcv):
   global IS_RV64GCV
@@ -239,6 +245,10 @@ def basic_constraint(**kargs):
        "vsuxei", "vloxseg", "vluxseg", "vsoxseg", "vsuxseg"] \
        and (ELEN == 32 or IS_RV32) and kargs["EEW"] == 64:
       return False
+  if ELEN == 32 and "WSEW" in kargs and kargs["WSEW"] == 64:
+    return False
+  if IS_GNU_TOOLCHIAN and ELEN == 64 and kargs["OP"] == "smul" \
+     and kargs["SEW"] == 64:
   if "WSEW" in kargs and kargs["WSEW"] == 64 \
       and kargs["OP"] in ["wsubu", "wsub", "wmulu", "wmul", \
       "wmulsu", "wmaccus", "wmaccu", "wmaccsu", "wmacc", "waddu", \

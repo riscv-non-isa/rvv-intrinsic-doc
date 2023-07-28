@@ -259,7 +259,7 @@ def gen(g):
       "Vector Single-Width Saturating Add and Subtract Functions",
       REF_DOC_URL + "#131-vector-single-width-saturating-add-and-subtract",
       ["sadd", "ssub"], ITYPES, SEWS, LMULS,
-      decorators.has_masking_maskedoff_policy_vxrm)
+      decorators.has_masking_maskedoff_policy)
 
   g.function_group(
       binary_op_template,

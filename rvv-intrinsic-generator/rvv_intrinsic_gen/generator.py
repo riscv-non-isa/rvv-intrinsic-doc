@@ -26,8 +26,10 @@ from enums import ToolChainType
 from enums import MarchAbi
 from utils import set_elen_float
 from utils import set_rv32
+from utils import set_toolchain_type
 from utils import set_rv64gcv
 from utils import set_zve32
+
 
 class Generator():
   """
@@ -137,7 +139,7 @@ class Generator():
 
 
   @staticmethod
-  def adjust_gnu_api_count(api_count, test_file, has_policy):
+  def adjust_gnu_api_count(api_count, test_file, has_policy, march_mabi):
     if test_file == "vmv.C":
       api_count = 178 if has_policy else 110
     if test_file == "vmv.c":
@@ -154,6 +156,11 @@ class Generator():
       api_count = 63 if has_policy else api_count
     if test_file == "vle32.C":
       api_count = 48 if has_policy else api_count
+    if test_file in ["vsadd.c", "vsaddu.c", "vssub.c", "vssubu.c", "vaadd.c",\
+                     "vaaddu.c", "vasub.c", "vasubu.c"] \
+       and march_mabi in [MarchAbi.RV32GC_ZVE64D, MarchAbi.RV32GC_ZVE64F, \
+                          MarchAbi.RV32GC_ZVE64X]:
+      api_count = 80
 
     return api_count
 
@@ -442,7 +449,10 @@ class APITestGenerator(Generator):
       self.fd.write(gnu_header)
     else:
       self.fd.write("#include <stdint.h>\n")
-    self.fd.write("#include <riscv_vector.h>\n\n")
+    if self.toolchain_type == ToolChainType.GNU:
+      self.fd.write("#include \"riscv_vector.h\"\n\n")
+    else:
+      self.fd.write("#include <riscv_vector.h>\n\n")
     if self.toolchain_type != ToolChainType.LLVM:
       self.fd.write("typedef _Float16 float16_t;\n")
       self.fd.write("typedef float float32_t;\n")
@@ -556,7 +566,8 @@ class APITestGenerator(Generator):
         fd.close()
 
         api_count = Generator.adjust_gnu_api_count(api_count, test_file,
-                                                   self.has_tail_policy)
+                                                   self.has_tail_policy,
+                                                   self.march_mabi)
 
         opcode = test_file.removesuffix(".c").removesuffix(".C")
         pattern_str = Generator.adjust_gnu_pattern_str(opcode)
@@ -570,6 +581,7 @@ class APITestGenerator(Generator):
 
   def set_flags(self):
     if self.toolchain_type == ToolChainType.GNU:
+      set_toolchain_type (True)
       if self.march_mabi in [MarchAbi.RV64GCV_ZVFH,
                              MarchAbi.RV64GCV]:
         set_rv64gcv(True)
