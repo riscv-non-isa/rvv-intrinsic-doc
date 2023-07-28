@@ -26,6 +26,8 @@ from enums import ToolChainType
 from enums import MarchAbi
 from utils import set_elen_float
 from utils import set_rv32
+from utils import set_rv64gcv
+from utils import set_zve32
 
 class Generator():
   """
@@ -159,11 +161,11 @@ class Generator():
   @staticmethod
   def adjust_gnu_pattern_str(opcode):
     # TODO: move to switch case if python version >= 3.10
-    if opcode == "vlmul_ext_v" or opcode == "vlmul_trunc_v" \
-      or opcode == "vreinterpret" or opcode == "vundefined":
+    if opcode in ["vlmul_ext_v", "vlmul_trunc_v", \
+                  "vreinterpret", "vundefined"]:
       pattern_str = "vs[1248e][r123468]+"
     elif opcode == "vmv":
-      pattern_str = "v[ml][ve][0-9]*"
+      pattern_str = "v[ml][s]*[ve][0-9]*"
     elif opcode == "vwadd":
       pattern_str = "v[w]?add"
     elif opcode == "vwaddu":
@@ -201,11 +203,14 @@ class Generator():
     elif opcode == "vsetvlmax":
       #pylint: disable=line-too-long
       return "/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+[a-x0-9]+,\s*zero,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count)
-    elif opcode == "vlmul_ext_v" or opcode == "vlmul_trunc_v" \
-      or opcode == "vreinterpret" or opcode == "vundefined" \
-      or opcode == "vfmv":
+    elif opcode in ["vlmul_ext_v", "vlmul_trunc_v", "vreinterpret", "vundefined", "vfmv"]:
       #pylint: disable=line-too-long
       return "/* {{ dg-final {{ scan-assembler-times {{{PATTERN}\s+[,\sa-x0-9()]+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
+    elif opcode in ["vmv", "vxor", "vsub", "vsbc", "vrsub", "vremu", "vrem", "vor", "vnmsub", "vnmsac", \
+                    "vmul", "vmsne", "vmsltu", "vmslt", "vmsleu", "vmsle", "vmsgtu", "vmsgt", "vmsgeu", \
+                    "vmsge", "vmseq", "vmsbc", "vminu", "vmin", "vmerge", "vmaxu", "vmax", "vmadd", "vmadc", \
+                    "vmacc", "vdivu", "vdiv", "vand", "vadd", "vadc"]:
+      return "/* {{ dg-final {{ scan-assembler-times {{{PATTERN}\s+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
     else:
       #pylint: disable=line-too-long
       return "/* {{ dg-final {{ scan-assembler-times {{vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+{PATTERN}\s+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
@@ -565,13 +570,18 @@ class APITestGenerator(Generator):
 
   def set_flags(self):
     if self.toolchain_type == ToolChainType.GNU:
+      if self.march_mabi in [MarchAbi.RV64GCV_ZVFH,
+                             MarchAbi.RV64GCV]:
+        set_rv64gcv(True)
       if self.march_mabi not in [MarchAbi.RV64GC_ZVE64D,
           MarchAbi.RV64GCV_ZVFH, MarchAbi.RV64GCV]:
         set_rv32(True)
       if self.march_mabi == MarchAbi.RV32GC_ZVE32X:
         set_elen_float(32, False, False, False)
+        set_zve32(True)
       elif self.march_mabi == MarchAbi.RV32GC_ZVE32F:
-          set_elen_float(32, True, False, False)
+        set_elen_float(32, True, False, False)
+        set_zve32(True)
       elif self.march_mabi == MarchAbi.RV32GC_ZVE64X:
         set_elen_float(64, False, False, False)
       elif self.march_mabi == MarchAbi.RV32GC_ZVE64F:

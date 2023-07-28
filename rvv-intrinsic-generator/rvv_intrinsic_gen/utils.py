@@ -31,6 +31,8 @@ HAS_HALF_FLOAT_TYPE = True
 HAS_DOUBLE_FLOAT_TYPE = True
 
 IS_RV32 = False
+IS_RV64GCV = False
+IS_ZVE32 = False
 
 def set_elen_float(elen, has_float_type, has_half_float_type, has_double_float_type):
   global ELEN
@@ -45,6 +47,14 @@ def set_elen_float(elen, has_float_type, has_half_float_type, has_double_float_t
 def set_rv32(rv32):
   global IS_RV32
   IS_RV32 = rv32
+
+def set_rv64gcv(rv64gcv):
+  global IS_RV64GCV
+  IS_RV64GCV = rv64gcv
+
+def set_zve32(zve32):
+  global IS_ZVE32
+  IS_ZVE32 = zve32
 
 # ex. f8 -> 0.125
 def get_float_lmul(num):
@@ -229,6 +239,19 @@ def basic_constraint(**kargs):
        "vsuxei", "vloxseg", "vluxseg", "vsoxseg", "vsuxseg"] \
        and (ELEN == 32 or IS_RV32) and kargs["EEW"] == 64:
       return False
+  if "WSEW" in kargs and kargs["WSEW"] == 64 \
+      and kargs["OP"] in ["wsubu", "wsub", "wmulu", "wmul", \
+      "wmulsu", "wmaccus", "wmaccu", "wmaccsu", "wmacc", "waddu", \
+      "wadd", "nsrl", "nsra"] and IS_ZVE32:
+    return False
+  if "SEW" in kargs and kargs["SEW"] == 64 \
+      and kargs["OP"] in ["mulh", "mulhu", "mulhsu"] \
+      and not IS_RV64GCV:
+    return False
+  if "SEW" in kargs and kargs["SEW"] == 64 \
+      and kargs["OP"] in ["rsub"] \
+      and IS_RV32:
+    return False
   if "TYPE" in kargs:
     if kargs["TYPE"] == "float" and kargs["SEW"] == 8:
       return False
