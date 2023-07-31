@@ -249,6 +249,7 @@ def basic_constraint(**kargs):
     return False
   if IS_GNU_TOOLCHIAN and ELEN == 64 and kargs["OP"] == "smul" \
      and kargs["SEW"] == 64:
+    return False
   if "WSEW" in kargs and kargs["WSEW"] == 64 \
       and kargs["OP"] in ["wsubu", "wsub", "wmulu", "wmul", \
       "wmulsu", "wmaccus", "wmaccu", "wmaccsu", "wmacc", "waddu", \
