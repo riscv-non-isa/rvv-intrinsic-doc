@@ -542,6 +542,7 @@ class APITestGenerator(Generator):
     # For "vxrm" parameter of the fixed-point intrinsics, value for it must be
     # an immediate.
     func_decl = func_decl.replace(", unsigned int vxrm", "")
+    func_decl = func_decl.replace(", size_t uimm", "")
 
     # For "frm" parameter of the floating-point intrinsics, value for it must
     # be an immediate.
