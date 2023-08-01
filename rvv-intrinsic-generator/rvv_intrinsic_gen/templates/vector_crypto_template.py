@@ -51,7 +51,7 @@ operand_mnemonic_dict["vsm3c"] = ["vi"]
 def has_vd_input(name):
   has_vd_input_inst_set = {
       "vghsh", "vgmul", "vaesef", "vaesem", "vaesdf", "vaesdm", "vaesz",
-      "vsha2ms", "vsha2ch", "vsha2cl", "vsm4r", "vsm3c"
+      "vsha2ms", "vsha2ch", "vsha2cl", "vsm4r", "vsm3c", "vaeskf2"
   }
 
   return name in has_vd_input_inst_set
@@ -114,7 +114,16 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           kwargs["return_type"] = type_helper.wv
         else:
           kwargs["return_type"] = type_helper.v
-        kwargs = {**kwargs, **decorator.mask_args(type_helper.m, type_helper.v)}
+        if op == "vwsll":
+          kwargs = {
+              **kwargs,
+              **decorator.mask_args(type_helper.m, type_helper.wv)
+          }
+        else:
+          kwargs = {
+              **kwargs,
+              **decorator.mask_args(type_helper.m, type_helper.v)
+          }
         # If vd is already in the input parameter, we don't need to emit another
         # parameter when tail policy is TU.
         if has_vd_input(op):
@@ -139,10 +148,6 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
 
         kwargs["vl"] = type_helper.size_t
 
-        if op == "vwsll":
-          args["SEW"] = args["WSEW"]
-          args["LMUL"] = args["WLMUL"]
-
         if operand_mnemonic == "vs":
           starting_from_lmul_index = lmul_list.index(args["LMUL"])
           # print(starting_from_lmul_index)
@@ -158,10 +163,17 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
                 decorator.func_suffix,
                 **kwargs)
         else:
-          G.func(
-              inst_info,
-              name="{OP}_{MNEMONIC}_{TYPE}{SEW}m{LMUL}".format_map(args) +
-              decorator.func_suffix,
-              **kwargs)
+          if op == "vwsll":
+            G.func(
+                inst_info,
+                name="{OP}_{MNEMONIC}_{TYPE}{WSEW}m{WLMUL}".format_map(args) +
+                decorator.func_suffix,
+                **kwargs)
+          else:
+            G.func(
+                inst_info,
+                name="{OP}_{MNEMONIC}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+                decorator.func_suffix,
+                **kwargs)
 
   G.inst_group_epilogue()
