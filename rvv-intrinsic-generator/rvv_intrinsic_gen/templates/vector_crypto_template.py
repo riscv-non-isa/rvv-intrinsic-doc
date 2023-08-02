@@ -156,12 +156,10 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
                 f"v{args['TYPE']}{args['SEW']}m{lmul_list[i]}_t"
             kwargs["vd"] = f"v{args['TYPE']}{args['SEW']}m{lmul_list[i]}_t"
             kwargs["vs2"] = f"v{args['TYPE']}{args['SEW']}m{args['LMUL']}_t"
-            args["LMUL"] = lmul_list[i]
-            G.func(
-                inst_info,
-                name="{OP}_{MNEMONIC}_{TYPE}{SEW}m{LMUL}".format_map(args) +
-                decorator.func_suffix,
-                **kwargs)
+            func_name = "{OP}_{MNEMONIC}_".format_map(args) +\
+                        f"{args['TYPE']}{args['SEW']}m{args['LMUL']}_" +\
+                          f"{args['TYPE']}{args['SEW']}m{lmul_list[i]}"
+            G.func(inst_info, name=func_name + decorator.func_suffix, **kwargs)
         else:
           if op == "vwsll":
             G.func(
