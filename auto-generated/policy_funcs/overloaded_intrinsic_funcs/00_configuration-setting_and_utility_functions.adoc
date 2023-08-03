@@ -1,0 +1,10 @@
+
+== Configuration-Setting and Utility Functions
+
+[[set-vl-and-vtype]]
+=== Set `vl` and `vtype` Functions
+This operation don't have Policy Intrinsic Functions.
+
+[[set-vl-to-vlmax-with-specific-vtype]]
+=== Set the vl to VLMAX with specific vtype
+This operation don't have Policy Intrinsic Functions.
