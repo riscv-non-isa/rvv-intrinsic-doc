@@ -31,5 +31,3 @@ ITYPES = ["int", "uint"]
 FTYPES = ["float"]
 MTYPES = ["bool"]
 MLENS = [1, 2, 4, 8, 16, 32, 64]
-REF_DOC_URL = "../rvv-intrinsic-api.md"
-REF_RFC_URL = "../rvv-intrinsic-rfc.md"

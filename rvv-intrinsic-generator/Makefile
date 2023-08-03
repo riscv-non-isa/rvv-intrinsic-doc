@@ -140,8 +140,8 @@ gen-compatible-header: non-policy-compatible-header policy-compatible-header non
 
 # Generate all-in-one document for non-overloaded intrinsics
 non-overloaded-doc:
-	$(call gen_doc,$(DIR),intrinsic_funcs.md,$@,)
-	$(call gen_doc,$(POLICY_DIR),intrinsic_funcs.md,$@,--has-policy)
+	$(call gen_doc,$(DIR),intrinsic_funcs.adoc,$@,)
+	$(call gen_doc,$(POLICY_DIR),intrinsic_funcs.adoc,$@,--has-policy)
 
 # Generate grouped documents for non-overloaded intrinsics
 non-overloaded-docs:
@@ -150,8 +150,8 @@ non-overloaded-docs:
 
 # Generate all-in-one document for overloaded intrinsics
 overloaded-doc:
-	$(call gen_doc,$(DIR),overloaded_intrinsic_funcs.md,$@,)
-	$(call gen_doc,$(POLICY_DIR),overloaded_intrinsic_funcs.md,$@,--has-policy)
+	$(call gen_doc,$(DIR),overloaded_intrinsic_funcs.adoc,$@,)
+	$(call gen_doc,$(POLICY_DIR),overloaded_intrinsic_funcs.adoc,$@,--has-policy)
 
 # Generate grouped documents for overloaded intrinsics
 overloaded-docs:
