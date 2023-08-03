@@ -456,7 +456,7 @@ class APITestGenerator(Generator):
   def inst_group_epilogue(self):
     return ""
 
-  def write_file_header(self, has_float_type, has_bfloat16_type):
+  def write_file_header(self, has_float_type, has_bfloat16_type, name):
     #pylint: disable=line-too-long
     int_llvm_header = r"""// REQUIRES: riscv-registered-target
 // RUN: %clang_cc1 -triple riscv64 -target-feature +v -disable-O0-optnone \
@@ -485,9 +485,38 @@ class APITestGenerator(Generator):
         r""" -Wno-psabi -O3 -fno-schedule-insns -fno-schedule-insns2" } */
 
 """)
+
+    vector_crypto_llvm_header = (r"""// REQUIRES: riscv-registered-target
+// RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zvl512b \
+// RUN:   -target-feature +experimental-zvbb \
+// RUN:   -target-feature +experimental-zvbc \
+// RUN:   -target-feature +experimental-zvkg \
+// RUN:   -target-feature +experimental-zvkned \
+// RUN:   -target-feature +experimental-zvknhb \
+// RUN:   -target-feature +experimental-zvksed \
+// RUN:   -target-feature +experimental-zvksh -disable-O0-optnone \
+// RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
+// RUN:   FileCheck --check-prefix=CHECK-RV64 %s
+
+""")
+
+    def is_vector_crypto_inst(name):
+      vector_crypto_inst = [
+          "vandn", "vbrev", "vbrev8", "vrev8", "vclz", "vctz", "vrol", "vror",
+          "vwsll", "vclmul", "vclmulh", "vghsh", "vgmul", "vaesef", "vaesem",
+          "vaesdf", "vaesdm", "vaeskf1", "vaeskf2", "vaesz", "vsha2ms",
+          "vsha2ch", "vsha2cl", "vsm4k", "vsm4r", "vsm3me", "vsm3c"
+      ]
+      for inst in vector_crypto_inst:
+        if inst in name:
+          return True
+      return False
+
     if self.toolchain_type == ToolChainType.LLVM:
       if has_bfloat16_type:
         self.fd.write(bfloat16_llvm_header)
+      elif is_vector_crypto_inst(name):
+        self.fd.write(vector_crypto_llvm_header)
       elif has_float_type:
         self.fd.write(float_llvm_header)
       else:
@@ -568,7 +597,7 @@ class APITestGenerator(Generator):
         has_float_type = True
 
     if header:
-      self.write_file_header(has_float_type, has_bfloat16_type)
+      self.write_file_header(has_float_type, has_bfloat16_type, name)
 
     def output_call_arg(arg_name, type_name):
       if ((name.startswith("vget") or name.startswith("vset")) \
