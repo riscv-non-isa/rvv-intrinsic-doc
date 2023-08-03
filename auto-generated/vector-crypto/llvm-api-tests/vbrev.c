@@ -1,5 +1,12 @@
 // REQUIRES: riscv-registered-target
-// RUN: %clang_cc1 -triple riscv64 -target-feature +v -disable-O0-optnone \
+// RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zvl512b \
+// RUN:   -target-feature +experimental-zvbb \
+// RUN:   -target-feature +experimental-zvbc \
+// RUN:   -target-feature +experimental-zvkg \
+// RUN:   -target-feature +experimental-zvkned \
+// RUN:   -target-feature +experimental-zvknhb \
+// RUN:   -target-feature +experimental-zvksed \
+// RUN:   -target-feature +experimental-zvksh -disable-O0-optnone \
 // RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
 // RUN:   FileCheck --check-prefix=CHECK-RV64 %s
 
