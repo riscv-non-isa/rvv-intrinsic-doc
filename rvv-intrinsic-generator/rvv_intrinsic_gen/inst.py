@@ -43,7 +43,7 @@ from templates import mask_template
 from templates import mask_load_store_template
 from templates import permute_template
 from constants import LMULS,WLMULS,NCVTLMULS,SEWS,WSEWS,FSEWS,WFSEWS,NSEWS,\
-  TYPES,ITYPES,FTYPES,MTYPES,MLENS,REF_DOC_URL
+  TYPES,ITYPES,FTYPES,MTYPES,MLENS
 from generator import CompatibleHeaderGenerator
 
 
@@ -56,499 +56,453 @@ def gen(g):
   g.start_group("Configuration-Setting and Utility Functions")
 
   g.function_group(setvl_template, "Set `vl` and `vtype` Functions",
-                   REF_DOC_URL + "#set-vl-and-vtype-functions", ["setvl"], [],
-                   SEWS, LMULS, [])
+                   "set-vl-and-vtype", ["setvl"], [], SEWS, LMULS, [])
 
   g.function_group(setvl_template, "Set the vl to VLMAX with specific vtype",
-                   REF_DOC_URL + "#set-vl-to-vlmax-with-specific-vtype",
-                   ["setvlmax"], [], SEWS, LMULS, [])
+                   "set-vl-to-vlmax-with-specific-vtype", ["setvlmax"], [],
+                   SEWS, LMULS, [])
 
   ####################################################################
   g.start_group("Vector Loads and Stores Functions")
 
   g.function_group(load_template, "Vector Unit-Stride Load Functions",
-                   REF_DOC_URL + "#74-vector-unit-stride-operations", ["vle"],
-                   TYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+                   "vector-unit-stride-load", ["vle"], TYPES, SEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy)
 
   g.function_group(store_template, "Vector Unit-Stride Store Functions",
-                   REF_DOC_URL + "#74-vector-unit-stride-operations", ["vse"],
-                   TYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff)
+                   "vector-unit-stride-store", ["vse"], TYPES, SEWS, LMULS,
+                   decorators.has_masking_no_maskedoff)
 
   g.function_group(load_template, "Vector Strided Load Functions",
-                   REF_DOC_URL + "#75-vector-strided-loadstore-operations",
-                   ["vlse"], TYPES, SEWS, LMULS,
+                   "vector-strided-load", ["vlse"], TYPES, SEWS, LMULS,
                    decorators.has_masking_maskedoff_policy)
 
   g.function_group(store_template, "Vector Strided Store Functions",
-                   REF_DOC_URL + "#75-vector-strided-loadstore-operations",
-                   ["vsse"], TYPES, SEWS, LMULS,
+                   "vector-strided-store", ["vsse"], TYPES, SEWS, LMULS,
                    decorators.has_masking_no_maskedoff)
 
   g.function_group(load_template, "Vector Indexed Load Functions",
-                   REF_DOC_URL + "#76-vector-indexed-loadstore-operations",
-                   ["vloxei", "vluxei"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_maskedoff_policy)
+                   "vector-indexed-load", ["vloxei", "vluxei"], TYPES, SEWS,
+                   LMULS, decorators.has_masking_maskedoff_policy)
 
   g.function_group(store_template, "Vector Indexed Store Functions",
-                   REF_DOC_URL + "#76-vector-indexed-loadstore-operations",
-                   ["vsoxei", "vsuxei"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_no_maskedoff)
+                   "vector-indexed-store", ["vsoxei", "vsuxei"], TYPES, SEWS,
+                   LMULS, decorators.has_masking_no_maskedoff)
 
-  g.function_group(
-      load_template, "Unit-stride Fault-Only-First Loads Functions",
-      REF_DOC_URL + "#77-unit-stride-fault-only-first-loads-operations",
-      ["vleff"], TYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template,
+                   "Unit-stride Fault-Only-First Loads Functions",
+                   "unit-stride-fault-only-first-loads", ["vleff"], TYPES, SEWS,
+                   LMULS, decorators.has_masking_maskedoff_policy)
 
   ####################################################################
 
   g.start_group("Vector Unit-Stride Segment Load/Store Instructions (Zvlsseg)")
 
   g.function_group(seg_load_template,
-                   "Vector Unit-Stride Segment Load Functions", "",
-                   ["vlseg", "vlsegff"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_maskedoff_policy)
+                   "Vector Unit-Stride Segment Load Functions",
+                   "vector-unit-stride-segment-load", ["vlseg", "vlsegff"],
+                   TYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
 
   g.function_group(seg_store_template,
-                   "Vector Unit-Stride Segment Store Functions", "", ["vsseg"],
-                   TYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff)
+                   "Vector Unit-Stride Segment Store Functions",
+                   "vecrtor-unit-stride-segment-store", ["vsseg"], TYPES, SEWS,
+                   LMULS, decorators.has_masking_no_maskedoff)
 
   ####################################################################
 
   g.start_group("Vector Stride Segment Load/Store Instructions (Zvlsseg)")
 
   g.function_group(seg_load_template, "Vector Strided Segment Load Functions",
-                   "", ["vlsseg"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_maskedoff_policy)
+                   "vector-strided-segment-load", ["vlsseg"], TYPES, SEWS,
+                   LMULS, decorators.has_masking_maskedoff_policy)
 
   g.function_group(seg_store_template, "Vector Strided Segment Store Functions",
-                   "", ["vssseg"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_no_maskedoff)
+                   "vector-strided-segment-store", ["vssseg"], TYPES, SEWS,
+                   LMULS, decorators.has_masking_no_maskedoff)
 
   ####################################################################
 
   g.start_group("Vector Indexed Segment Load/Store Instructions (Zvlsseg)")
 
   g.function_group(seg_load_template, "Vector Indexed Segment Load Functions",
-                   "", ["vloxseg", "vluxseg"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_maskedoff_policy)
+                   "vector-indexed-segment-load", ["vloxseg", "vluxseg"], TYPES,
+                   SEWS, LMULS, decorators.has_masking_maskedoff_policy)
 
   g.function_group(seg_store_template, "Vector Indexed Segment Store Functions",
-                   "", ["vsoxseg", "vsuxseg"], TYPES, SEWS, LMULS,
-                   decorators.has_masking_no_maskedoff)
+                   "vector-indexed-segment-store", ["vsoxseg", "vsuxseg"],
+                   TYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff)
 
   ####################################################################
 
   g.start_group("Vector Integer Arithmetic Functions")
 
-  g.function_group(
-      binary_op_template,
-      "Vector Single-Width Integer Add and Subtract Functions",
-      REF_DOC_URL + "#121-vector-single-width-integer-add-and-subtract",
-      ["add", "sub", "rsub", "neg"], ITYPES, SEWS, LMULS,
-      decorators.has_masking_maskedoff_policy)
+  g.function_group(binary_op_template,
+                   "Vector Single-Width Integer Add and Subtract Functions",
+                   "vector-single-width-integer-add-and-subtract",
+                   ["add", "sub", "rsub", "neg"], ITYPES, SEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy)
 
-  g.function_group(
-      binary_wop_template, "Vector Widening Integer Add/Subtract Functions",
-      REF_DOC_URL + "#122-vector-widening-integer-addsubtract-operations",
-      ["wadd", "wsub"], ITYPES, WSEWS, WLMULS,
-      decorators.has_masking_maskedoff_policy)
+  g.function_group(binary_wop_template,
+                   "Vector Widening Integer Add/Subtract Functions",
+                   "vector-widening-integer-add-subtract", ["wadd", "wsub"],
+                   ITYPES, WSEWS, WLMULS,
+                   decorators.has_masking_maskedoff_policy)
 
   g.function_group(unary_op_template, "Vector Integer Extension Functions",
-                   REF_DOC_URL + "#123-vector-integer-extension-operations",
-                   ["zext", "sext"], ITYPES, SEWS, LMULS,
-                   decorators.has_masking_maskedoff_policy)
+                   "vector-integer-extension", ["zext", "sext"], ITYPES, SEWS,
+                   LMULS, decorators.has_masking_maskedoff_policy)
 
   if g.has_tail_policy:
     g.function_group(
         binary_intcarry_template,
         "Vector Integer Add-with-Carry / Subtract-with-Borrow Functions",
-        REF_DOC_URL +
-        "#124-vector-integer-add-with-carry--subtract-with-borrow-operations",
-        ["adc", "sbc"], ITYPES, SEWS, LMULS, decorators.has_no_masking_policy)
+        "vector-integer-add-with-carry-subtract-with-borrow", ["adc", "sbc"],
+        ITYPES, SEWS, LMULS, decorators.has_no_masking_policy)
 
-    g.function_group(
-        binary_intcarry_template,
-        "Vector Integer Add-with-Carry / Subtract-with-Borrow Functions",
-        REF_DOC_URL +
-        "#124-vector-integer-add-with-carry--subtract-with-borrow-operations",
-        ["madc", "msbc"], ITYPES, SEWS, LMULS, decorators.has_no_masking)
+    g.function_group(binary_intcarry_template,
+                     "Vector Integer Carry-out / Borrow-out Functions ",
+                     "vector-integer-carry-out-borrow-out", ["madc", "msbc"],
+                     ITYPES, SEWS, LMULS, decorators.has_no_masking)
   else:
     g.function_group(
         binary_intcarry_template,
         "Vector Integer Add-with-Carry / Subtract-with-Borrow Functions",
-        REF_DOC_URL +
-        "#124-vector-integer-add-with-carry--subtract-with-borrow-operations",
+        "vector-integer-add-with-carry-subtract-with-borrow",
         ["adc", "sbc", "madc", "msbc"], ITYPES, SEWS, LMULS,
         decorators.has_no_masking)
 
-  g.function_group(binary_op_template, "Vector Bitwise Logical Functions",
-                   REF_DOC_URL + "#125-vector-bitwise-logical-operations",
-                   ["and", "or", "xor"], ITYPES, SEWS, LMULS,
+  g.function_group(binary_op_template,
+                   "Vector Bitwise Binary Logical Functions",
+                   "vector-bitwise-binary-logical", ["and", "or", "xor"],
+                   ITYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+
+  g.function_group(unary_op_template, "Vector Bitwise Unary Logical Functions",
+                   "vector-bitwise-unary-logical", ["not"], ITYPES, SEWS, LMULS,
                    decorators.has_masking_maskedoff_policy)
 
-  g.function_group(unary_op_template, "Vector Bitwise Logical Functions",
-                   REF_DOC_URL + "#125-vector-bitwise-logical-operations",
-                   ["not"], ITYPES, SEWS, LMULS,
+  g.function_group(binary_op_template,
+                   "Vector Single-Width Bit Shift Functions",
+                   "vector-single-width-bit-shift", ["sll", "srl", "sra"],
+                   ITYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+
+  g.function_group(binary_nop_template,
+                   "Vector Narrowing Integer Right Shift Functions",
+                   "vector-narrowing-integer-right-shift", ["nsrl", "nsra"],
+                   ITYPES, WSEWS, WLMULS,
                    decorators.has_masking_maskedoff_policy)
-
-  g.function_group(
-      binary_op_template, "Vector Single-Width Bit Shift Functions",
-      REF_DOC_URL + "#126-vector-single-width-bit-shift-operations",
-      ["sll", "srl", "sra"], ITYPES, SEWS, LMULS,
-      decorators.has_masking_maskedoff_policy)
-
-  g.function_group(
-      binary_nop_template, "Vector Narrowing Integer Right Shift Functions",
-      REF_DOC_URL + "#127-vector-narrowing-integer-right-shift-operations",
-      ["nsrl", "nsra"], ITYPES, WSEWS, WLMULS,
-      decorators.has_masking_maskedoff_policy)
 
   g.function_group(cmp_template, "Vector Integer Comparison Functions",
-                   REF_DOC_URL + "#128-vector-integer-comparison-operations",
+                   "vector-integer-comparison",
                    ["eq", "ne", "lt", "le", "gt", "ge"], ITYPES, SEWS, LMULS,
                    decorators.has_masking_maskedoff_policy_mu_ma)
 
   g.function_group(binary_op_template, "Vector Integer Min/Max Functions",
-                   REF_DOC_URL + "#129-vector-integer-minmax-operations",
-                   ["min", "max"], ITYPES, SEWS, LMULS,
+                   "vector-integer-minmax", ["min", "max"], ITYPES, SEWS, LMULS,
                    decorators.has_masking_maskedoff_policy)
 
-  g.function_group(
-      binary_op_template, "Vector Single-Width Integer Multiply Functions",
-      REF_DOC_URL + "#1210-vector-single-width-integer-multiply-operations",
-      ["mul", "mulh", "mulhsu"], ITYPES, SEWS, LMULS,
-      decorators.has_masking_maskedoff_policy)
+  g.function_group(binary_op_template,
+                   "Vector Single-Width Integer Multiply Functions",
+                   "vector-single-width-integer-multiply",
+                   ["mul", "mulh", "mulhsu"], ITYPES, SEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy)
 
   g.function_group(binary_op_template, "Vector Integer Divide Functions",
-                   REF_DOC_URL + "#1211-vector-integer-divide-operations",
-                   ["div", "rem"], ITYPES, SEWS, LMULS,
+                   "vector-integer-divide", ["div", "rem"], ITYPES, SEWS, LMULS,
                    decorators.has_masking_maskedoff_policy)
 
-  g.function_group(
-      binary_wop_template, "Vector Widening Integer Multiply Functions",
-      REF_DOC_URL + "#1212-vector-widening-integer-multiply-operations",
-      ["wmul", "wmulsu"], ITYPES, WSEWS, WLMULS,
-      decorators.has_masking_maskedoff_policy)
+  g.function_group(binary_wop_template,
+                   "Vector Widening Integer Multiply Functions",
+                   "vector-widening-integer-multiply", ["wmul", "wmulsu"],
+                   ITYPES, WSEWS, WLMULS,
+                   decorators.has_masking_maskedoff_policy)
 
-  g.function_group(
-      mac_template, "Vector Single-Width Integer Multiply-Add Functions",
-      REF_DOC_URL + "#1213-vector-single-width-integer-multiply-add-operations",
-      ["macc", "nmsac", "madd", "nmsub"], ITYPES, SEWS, LMULS,
-      decorators.has_masking_no_maskedoff_policy)
+  g.function_group(mac_template,
+                   "Vector Single-Width Integer Multiply-Add Functions",
+                   "vector-single-width-integer-multiply-add",
+                   ["macc", "nmsac", "madd", "nmsub"], ITYPES, SEWS, LMULS,
+                   decorators.has_masking_no_maskedoff_policy)
 
-  g.function_group(
-      mac_template, "Vector Widening Integer Multiply-Add Functions",
-      REF_DOC_URL + "#1214-vector-widening-integer-multiply-add-operations",
-      ["wmacc", "wmaccsu", "wmaccus"], ITYPES, WSEWS, WLMULS,
-      decorators.has_masking_no_maskedoff_policy)
+  g.function_group(mac_template,
+                   "Vector Widening Integer Multiply-Add Functions",
+                   "vector-widening-integer-multiply-add",
+                   ["wmacc", "wmaccsu", "wmaccus"], ITYPES, WSEWS, WLMULS,
+                   decorators.has_masking_no_maskedoff_policy)
 
   g.function_group(unary_op_template, "Vector Integer Merge Functions",
-                   REF_DOC_URL + "#1216-vector-integer-merge-operations",
-                   ["merge"], ITYPES, SEWS, LMULS,
+                   "vector-integer-merge", ["merge"], ITYPES, SEWS, LMULS,
                    decorators.has_no_masking_policy)
 
   g.function_group(unary_op_template, "Vector Integer Move Functions",
-                   REF_DOC_URL + "#1217-vector-integer-move-operations", ["mv"],
-                   ITYPES, SEWS, LMULS, decorators.has_no_masking_policy)
+                   "vector-integer-move", ["mv"], ITYPES, SEWS, LMULS,
+                   decorators.has_no_masking_policy)
 
   ####################################################################
   g.start_group("Vector Fixed-Point Arithmetic Functions")
 
-  g.function_group(
-      binary_op_template,
-      "Vector Single-Width Saturating Add and Subtract Functions",
-      REF_DOC_URL + "#131-vector-single-width-saturating-add-and-subtract",
-      ["sadd", "ssub"], ITYPES, SEWS, LMULS,
-      decorators.has_masking_maskedoff_policy)
+  g.function_group(binary_op_template,
+                   "Vector Single-Width Saturating Add and Subtract Functions",
+                   "vector-single-width-saturating-add-and-subtract",
+                   ["sadd", "ssub"], ITYPES, SEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy)
 
-  g.function_group(
-      binary_op_template,
-      "Vector Single-Width Averaging Add and Subtract Functions",
-      REF_DOC_URL + "#132-vector-single-width-averaging-add-and-subtract",
-      ["aadd", "asub"], ITYPES, SEWS, LMULS,
-      decorators.has_masking_maskedoff_policy_vxrm)
+  g.function_group(binary_op_template,
+                   "Vector Single-Width Averaging Add and Subtract Functions",
+                   "vector-single-width-averaging-add-and-subtract",
+                   ["aadd", "asub"], ITYPES, SEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy_vxrm)
 
   g.function_group(
       binary_op_template,
       "Vector Single-Width Fractional Multiply with Rounding and Saturation" +
-      " Functions", REF_DOC_URL +
-      "#133-vector-single-width-fractional-multiply-with-rounding-and-" +
+      " Functions",
+      "vector-single-width-fractional-multiply-with-rounding-and-" +
       "saturation", ["smul"], ["int"], SEWS, LMULS,
       decorators.has_masking_maskedoff_policy_vxrm)
 
-  g.function_group(
-      binary_op_template, "Vector Single-Width Scaling Shift Functions",
-      REF_DOC_URL + "#134-vector-single-width-scaling-shift-operations",
-      ["ssrl", "ssra"], ITYPES, SEWS, LMULS,
-      decorators.has_masking_maskedoff_policy_vxrm)
+  g.function_group(binary_op_template,
+                   "Vector Single-Width Scaling Shift Functions",
+                   "vector-single-width-scaling-shift", ["ssrl", "ssra"],
+                   ITYPES, SEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy_vxrm)
 
-  g.function_group(
-      binary_nop_template, "Vector Narrowing Fixed-Point Clip Functions",
-      REF_DOC_URL + "#135-vector-narrowing-fixed-point-clip-operations",
-      ["nclip"], ITYPES, WSEWS, WLMULS,
-      decorators.has_masking_maskedoff_policy_vxrm)
+  g.function_group(binary_nop_template,
+                   "Vector Narrowing Fixed-Point Clip Functions",
+                   "vector-narrowing-fixed-point-clip", ["nclip"], ITYPES,
+                   WSEWS, WLMULS, decorators.has_masking_maskedoff_policy_vxrm)
 
   ####################################################################
   g.start_group("Vector Floating-Point Functions")
 
-  g.function_group(
-      binary_op_template,
-      "Vector Single-Width Floating-Point Add/Subtract Functions", REF_DOC_URL +
-      "#142-vector-single-width-floating-point-addsubtract-operations",
-      ["fadd", "fsub", "frsub", "fneg"], FTYPES, FSEWS, LMULS,
-      decorators.has_masking_maskedoff_policy_frm)
+  g.function_group(binary_op_template,
+                   "Vector Single-Width Floating-Point Add/Subtract Functions",
+                   "vector-single-width-floating-point-add-subtract",
+                   ["fadd", "fsub", "frsub", "fneg"], FTYPES, FSEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy_frm)
 
-  g.function_group(
-      binary_wop_template,
-      "Vector Widening Floating-Point Add/Subtract Functions", REF_DOC_URL +
-      "#143-vector-widening-floating-point-addsubtract-operations",
-      ["fwadd", "fwsub"], FTYPES, WFSEWS, WLMULS,
-      decorators.has_masking_maskedoff_policy_frm)
+  g.function_group(binary_wop_template,
+                   "Vector Widening Floating-Point Add/Subtract Functions",
+                   "vector-widening-floating-point-add-subtract",
+                   ["fwadd", "fwsub"], FTYPES, WFSEWS, WLMULS,
+                   decorators.has_masking_maskedoff_policy_frm)
 
   g.function_group(
       binary_op_template,
       "Vector Single-Width Floating-Point Multiply/Divide Functions",
-      REF_DOC_URL +
-      "#144-vector-single-width-floating-point-multiplydivide-operations",
+      "vector-single-width-floating-point-multiply-divide",
       ["fmul", "fdiv", "frdiv"], FTYPES, FSEWS, LMULS,
       decorators.has_masking_maskedoff_policy_frm)
 
-  g.function_group(
-      binary_wop_template, "Vector Widening Floating-Point Multiply Functions",
-      REF_DOC_URL + "#145-vector-widening-floating-point-multiply-operations",
-      ["fwmul"], FTYPES, WFSEWS, WLMULS,
-      decorators.has_masking_maskedoff_policy_frm)
+  g.function_group(binary_wop_template,
+                   "Vector Widening Floating-Point Multiply Functions",
+                   "vector-widening-floating-point-multiply", ["fwmul"], FTYPES,
+                   WFSEWS, WLMULS, decorators.has_masking_maskedoff_policy_frm)
 
   g.function_group(
       mac_template,
       "Vector Single-Width Floating-Point Fused Multiply-Add Functions",
-      REF_DOC_URL +
-      "#146-vector-single-width-floating-point-fused-multiply-add-operations",
+      "vector-single-width-floating-point-fused-multiply-add",
       ["macc", "nmacc", "msac", "nmsac", "madd", "nmadd", "msub", "nmsub"],
       FTYPES, FSEWS, LMULS, decorators.has_masking_no_maskedoff_policy_frm)
 
   g.function_group(
       mac_template,
       "Vector Widening Floating-Point Fused Multiply-Add Functions",
-      REF_DOC_URL +
-      "#147-vector-widening-floating-point-fused-multiply-add-operations",
+      "vector-widening-floating-point-fused-multiply-add",
       ["wmacc", "wnmacc", "wmsac", "wnmsac"], FTYPES, WFSEWS, WLMULS,
       decorators.has_masking_no_maskedoff_policy_frm)
 
-  g.function_group(
-      unary_op_template, "Vector Floating-Point Square-Root Functions",
-      REF_DOC_URL + "#148-vector-floating-point-square-root-operations",
-      ["sqrt"], FTYPES, FSEWS, LMULS,
-      decorators.has_masking_maskedoff_policy_frm)
+  g.function_group(unary_op_template,
+                   "Vector Floating-Point Square-Root Functions",
+                   "vector-floating-point-square-root", ["sqrt"], FTYPES, FSEWS,
+                   LMULS, decorators.has_masking_maskedoff_policy_frm)
 
   g.function_group(
       unary_op_template,
       "Vector Floating-Point Reciprocal Square-Root Estimate Functions",
-      REF_DOC_URL +
-      "#149-vector-floating-point-reciprocal-square-root-estimate-operations",
-      ["rsqrt7"], FTYPES, FSEWS, LMULS, decorators.has_masking_maskedoff_policy)
+      "vector-floating-point-reciprocal-square-root-estimate", ["rsqrt7"],
+      FTYPES, FSEWS, LMULS, decorators.has_masking_maskedoff_policy)
 
-  g.function_group(
-      unary_op_template, "Vector Floating-Point Reciprocal Estimate Functions",
-      REF_DOC_URL +
-      "#1410-vector-floating-point-reciprocal-estimate-operations", ["rec7"],
-      FTYPES, FSEWS, LMULS, decorators.has_masking_maskedoff_policy_frm)
+  g.function_group(unary_op_template,
+                   "Vector Floating-Point Reciprocal Estimate Functions",
+                   "#1410-vector-floating-point-reciprocal-estimate", ["rec7"],
+                   FTYPES, FSEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy_frm)
 
-  g.function_group(
-      binary_op_template, "Vector Floating-Point MIN/MAX Functions",
-      REF_DOC_URL + "#1411-vector-floating-point-minmax-operations",
-      ["fmin", "fmax"], FTYPES, FSEWS, LMULS,
-      decorators.has_masking_maskedoff_policy)
+  g.function_group(binary_op_template,
+                   "Vector Floating-Point MIN/MAX Functions",
+                   "vector-floating-point-minmax", ["fmin", "fmax"], FTYPES,
+                   FSEWS, LMULS, decorators.has_masking_maskedoff_policy)
 
-  g.function_group(
-      binary_op_template, "Vector Floating-Point Sign-Injection Functions",
-      REF_DOC_URL + "#1412-vector-floating-point-sign-injection-operations",
-      ["fsgnj", "fsgnjn", "fsgnjx"], FTYPES, FSEWS, LMULS,
-      decorators.has_masking_maskedoff_policy)
+  g.function_group(binary_op_template,
+                   "Vector Floating-Point Sign-Injection Functions",
+                   "vector-floating-point-sign-injection",
+                   ["fsgnj", "fsgnjn", "fsgnjx"], FTYPES, FSEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy)
 
-  g.function_group(
-      unary_op_template, "Vector Floating-Point Absolute Value Functions",
-      REF_DOC_URL + "#1412-vector-floating-point-sign-injection-operations",
-      ["abs"], FTYPES, FSEWS, LMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(unary_op_template,
+                   "Vector Floating-Point Absolute Value Functions",
+                   "vector-floating-point-absolute-value", ["abs"], FTYPES,
+                   FSEWS, LMULS, decorators.has_masking_maskedoff_policy)
 
-  g.function_group(
-      cmp_template, "Vector Floating-Point Compare Functions",
-      REF_DOC_URL + "#1413-vector-floating-point-compare-operations",
-      ["eq", "ne", "lt", "le", "gt", "ge"], FTYPES, FSEWS, LMULS,
-      decorators.has_masking_maskedoff_policy_mu_ma)
+  g.function_group(cmp_template, "Vector Floating-Point Compare Functions",
+                   "vector-floating-point-compare",
+                   ["eq", "ne", "lt", "le", "gt", "ge"], FTYPES, FSEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy_mu_ma)
 
-  g.function_group(
-      unary_op_template, "Vector Floating-Point Classify Functions",
-      REF_DOC_URL + "#1414-vector-floating-point-classify-operations",
-      ["class"], FTYPES, FSEWS, LMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(unary_op_template,
+                   "Vector Floating-Point Classify Functions",
+                   "vector-floating-point-classify", ["class"], FTYPES, FSEWS,
+                   LMULS, decorators.has_masking_maskedoff_policy)
 
   g.function_group(unary_op_template, "Vector Floating-Point Merge Functions",
-                   REF_DOC_URL + "#1415-vector-floating-point-merge-operations",
-                   ["merge"], FTYPES, FSEWS, LMULS,
-                   decorators.has_no_masking_policy)
+                   "vector-floating-point-merge", ["merge"], FTYPES, FSEWS,
+                   LMULS, decorators.has_no_masking_policy)
 
   g.function_group(unary_op_template, "Vector Floating-Point Move Functions",
-                   REF_DOC_URL + "#1416-vector-floating-point-move-operations",
-                   ["mv"], FTYPES, FSEWS, LMULS,
+                   "vector-floating-point-move", ["mv"], FTYPES, FSEWS, LMULS,
                    decorators.has_no_masking_policy)
 
   g.function_group(
       cvt_op_template,
       "Single-Width Floating-Point/Integer Type-Convert Functions",
-      REF_DOC_URL +
-      "#1417-single-width-floating-pointinteger-type-convert-operations",
-      ["cvt"], "", SEWS, LMULS, decorators.has_masking_maskedoff_policy_frm)
+      "single-width-floating-pointinteger-type-convert", ["cvt"], "", SEWS,
+      LMULS, decorators.has_masking_maskedoff_policy_frm)
 
-  g.function_group(
-      cvt_op_template, "Widening Floating-Point/Integer Type-Convert Functions",
-      REF_DOC_URL +
-      "#1418-widening-floating-pointinteger-type-convert-operations", ["wcvt"],
-      "", WSEWS, WLMULS, decorators.has_masking_maskedoff_policy_frm)
+  g.function_group(cvt_op_template,
+                   "Widening Floating-Point/Integer Type-Convert Functions",
+                   "widening-floating-pointinteger-type-convert", ["wcvt"], "",
+                   WSEWS, WLMULS, decorators.has_masking_maskedoff_policy_frm)
 
-  g.function_group(
-      cvt_op_template,
-      "Narrowing Floating-Point/Integer Type-Convert Functions", REF_DOC_URL +
-      "#1419-narrowing-floating-pointinteger-type-convert-operations", ["ncvt"],
-      "", NSEWS, NCVTLMULS, decorators.has_masking_maskedoff_policy_frm)
+  g.function_group(cvt_op_template,
+                   "Narrowing Floating-Point/Integer Type-Convert Functions",
+                   "narrowing-floating-pointinteger-type-convert", ["ncvt"], "",
+                   NSEWS, NCVTLMULS,
+                   decorators.has_masking_maskedoff_policy_frm)
 
   ####################################################################
   g.start_group("Vector Reduction Functions")
 
-  g.function_group(
-      reduction_template, "Vector Single-Width Integer Reduction Functions",
-      REF_DOC_URL + "#151-vector-single-width-integer-reduction-operations",
-      ["redsum", "redmax", "redmin", "redand", "redor", "redxor"], ITYPES, SEWS,
-      LMULS, decorators.has_masking_no_maskedoff_reduction_policy)
+  g.function_group(reduction_template,
+                   "Vector Single-Width Integer Reduction Functions",
+                   "vector-single-width-integer-reduction",
+                   ["redsum", "redmax", "redmin", "redand", "redor", "redxor"],
+                   ITYPES, SEWS, LMULS,
+                   decorators.has_masking_no_maskedoff_reduction_policy)
 
-  g.function_group(
-      reduction_template, "Vector Widening Integer Reduction Functions",
-      REF_DOC_URL + "##152-vector-widening-integer-reduction-operations",
-      ["wredsum"], ITYPES, SEWS, LMULS,
-      decorators.has_masking_no_maskedoff_reduction_policy)
+  g.function_group(reduction_template,
+                   "Vector Widening Integer Reduction Functions",
+                   "vector-widening-integer-reduction", ["wredsum"], ITYPES,
+                   SEWS, LMULS,
+                   decorators.has_masking_no_maskedoff_reduction_policy)
 
-  g.function_group(
-      reduction_template,
-      "Vector Single-Width Floating-Point Reduction Functions", REF_DOC_URL +
-      "#153-vector-single-width-floating-point-reduction-operations",
-      ["redosum", "redusum", "redmax", "redmin"], FTYPES, FSEWS, LMULS,
-      decorators.has_masking_no_maskedoff_reduction_policy_frm)
+  g.function_group(reduction_template,
+                   "Vector Single-Width Floating-Point Reduction Functions",
+                   "vector-single-width-floating-point-reduction",
+                   ["redosum", "redusum", "redmax", "redmin"], FTYPES, FSEWS,
+                   LMULS,
+                   decorators.has_masking_no_maskedoff_reduction_policy_frm)
 
-  g.function_group(
-      reduction_template, "Vector Widening Floating-Point Reduction Functions",
-      REF_DOC_URL + "#154-vector-widening-floating-point-reduction-operations",
-      ["wredosum", "wredusum"], FTYPES, FSEWS, LMULS,
-      decorators.has_masking_no_maskedoff_reduction_policy_frm)
+  g.function_group(reduction_template,
+                   "Vector Widening Floating-Point Reduction Functions",
+                   "vector-widening-floating-point-reduction",
+                   ["wredosum", "wredusum"], FTYPES, FSEWS, LMULS,
+                   decorators.has_masking_no_maskedoff_reduction_policy_frm)
 
   ####################################################################
   g.start_group("Vector Mask Functions")
 
   g.function_group(mask_load_store_template, "Vector Mask Load/Store Functions",
-                   REF_DOC_URL + "#74-vector-unit-stride-operations",
-                   ["vlm", "vsm"], MTYPES, MLENS, [1],
+                   "vector-unit-stride", ["vlm", "vsm"], MTYPES, MLENS, [1],
                    decorators.has_no_masking)
 
   g.function_group(mask_template, "Vector Mask-Register Logical Functions",
-                   REF_DOC_URL + "#161-vector-mask-register-logical-operations",
-                   [
+                   "vector-mask-register-logical", [
                        "and", "nand", "andn", "xor", "or", "nor", "orn", "xnor",
                        "mv", "clr", "set", "not"
                    ], MTYPES, MLENS, [1], decorators.has_no_masking)
 
   g.function_group(mask_template, "Vector count population in mask Functions",
-                   REF_DOC_URL + "#162-vector-count-population-in-mask-vcpopm",
-                   ["cpop"], MTYPES, MLENS, [1],
-                   decorators.has_masking_no_maskedoff)
+                   "vector-count-population-in-mask-vcpopm", ["cpop"], MTYPES,
+                   MLENS, [1], decorators.has_masking_no_maskedoff)
 
   g.function_group(mask_template, "Find-first-set mask bit Functions",
-                   REF_DOC_URL + "#163-vfirst-find-first-set-mask-bit",
-                   ["first"], MTYPES, MLENS, [1],
-                   decorators.has_masking_no_maskedoff)
+                   "vfirst-find-first-set-mask-bit", ["first"], MTYPES, MLENS,
+                   [1], decorators.has_masking_no_maskedoff)
 
   g.function_group(mask_template, "Set-before-first mask bit Functions",
-                   REF_DOC_URL + "#164-vmsbfm-set-before-first-mask-bit",
-                   ["sbf"], MTYPES, MLENS, [1],
-                   decorators.has_masking_maskedoff_policy_mu_ma)
+                   "vmsbfm-set-before-first-mask-bit", ["sbf"], MTYPES, MLENS,
+                   [1], decorators.has_masking_maskedoff_policy_mu_ma)
 
   g.function_group(mask_template, "Set-including-first mask bit Functions",
-                   REF_DOC_URL + "#165-vmsifm-set-including-first-mask-bit",
-                   ["sif"], MTYPES, MLENS, [1],
-                   decorators.has_masking_maskedoff_policy_mu_ma)
+                   "vmsifm-set-including-first-mask-bit", ["sif"], MTYPES,
+                   MLENS, [1], decorators.has_masking_maskedoff_policy_mu_ma)
 
   g.function_group(mask_template, "Set-only-first mask bit Functions",
-                   REF_DOC_URL + "#166-vmsofm-set-only-first-mask-bit", ["sof"],
-                   MTYPES, MLENS, [1],
-                   decorators.has_masking_maskedoff_policy_mu_ma)
+                   "vmsofm-set-only-first-mask-bit", ["sof"], MTYPES, MLENS,
+                   [1], decorators.has_masking_maskedoff_policy_mu_ma)
 
-  g.function_group(mask_template, "Vector Iota Functions",
-                   REF_DOC_URL + "#168-vector-iota-operations", ["iota"],
-                   MTYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(mask_template, "Vector Iota Functions", "vector-iota",
+                   ["iota"], MTYPES, SEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy)
 
   g.function_group(mask_template, "Vector Element Index Functions",
-                   REF_DOC_URL + "#169-vector-element-index-operations", ["id"],
-                   MTYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+                   "vector-element-index", ["id"], MTYPES, SEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy)
 
   ####################################################################
   g.start_group("Vector Permutation Functions")
 
   g.function_group(permute_template,
                    "Integer and Floating-Point Scalar Move Functions",
-                   REF_DOC_URL + "#171-integer-scalar-move-operations", ["mv"],
-                   TYPES, SEWS, LMULS, decorators.has_no_masking_policy)
+                   "integer-scalar-move", ["mv"], TYPES, SEWS, LMULS,
+                   decorators.has_no_masking_policy)
 
   g.function_group(permute_template, "Vector Slideup Functions",
-                   REF_DOC_URL + "#173-vector-slide-operations", ["slideup"],
-                   TYPES, SEWS, LMULS,
+                   "vector-slideup", ["slideup"], TYPES, SEWS, LMULS,
                    decorators.has_masking_no_maskedoff_policy_vslide)
 
   g.function_group(permute_template, "Vector Slidedown Functions",
-                   REF_DOC_URL + "#173-vector-slide-operations", ["slidedown"],
-                   TYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
-
-  g.function_group(
-      permute_template, "Vector Slide1up and Slide1down Functions",
-      REF_DOC_URL + "#173-vector-slide1up-and-slide1down-functions",
-      ["slide1up", "slide1down"], TYPES, SEWS, LMULS,
-      decorators.has_masking_maskedoff_policy)
-
-  g.function_group(binary_op_template, "Vector Register Gather Functions",
-                   REF_DOC_URL + "#174-vector-register-gather-operations",
-                   ["rgather", "rgatherei16"], TYPES, SEWS, LMULS,
+                   "vector-slidedown", ["slidedown"], TYPES, SEWS, LMULS,
                    decorators.has_masking_maskedoff_policy)
 
+  g.function_group(permute_template, "Vector Slide1up and Slide1down Functions",
+                   "vector-slide1up-and-slide1down", ["slide1up", "slide1down"],
+                   TYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+
+  g.function_group(binary_op_template, "Vector Register Gather Functions",
+                   "vector-register-gather", ["rgather", "rgatherei16"], TYPES,
+                   SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+
   g.function_group(permute_template, "Vector Compress Functions",
-                   REF_DOC_URL + "#175-vector-compress-operations",
-                   ["compress"], TYPES, SEWS, LMULS,
+                   "vector-compress", ["compress"], TYPES, SEWS, LMULS,
                    decorators.has_no_masking_policy)
 
   ####################################################################
   g.start_group("Miscellaneous Vector Functions")
 
   g.function_group(reint_op_template, "Reinterpret Cast Conversion Functions",
-                   REF_DOC_URL + "#reinterpret-cast-conversion-functions",
-                   ["reinterpret"], "", SEWS, LMULS, decorators.has_no_masking)
+                   "reinterpret-cast-conversion", ["reinterpret"], "", SEWS,
+                   LMULS, decorators.has_no_masking)
 
-  g.function_group(
-      misc_op_template, "Vector LMUL Extension Functions",
-      REF_DOC_URL + "vector-lmul-extension-and-truncation-functions",
-      ["vlmul_ext_v"], TYPES, SEWS, LMULS, decorators.has_no_masking)
+  g.function_group(misc_op_template, "Vector LMUL Extension Functions",
+                   "vector-lmul-extensionn", ["vlmul_ext_v"], TYPES, SEWS,
+                   LMULS, decorators.has_no_masking)
 
-  g.function_group(
-      misc_op_template, "Vector LMUL Truncation Functions",
-      REF_DOC_URL + "vector-lmul-extension-and-truncation-functions",
-      ["vlmul_trunc_v"], TYPES, SEWS, LMULS, decorators.has_no_masking)
+  g.function_group(misc_op_template, "Vector LMUL Truncation Functions",
+                   "vector-lmul-truncation", ["vlmul_trunc_v"], TYPES, SEWS,
+                   LMULS, decorators.has_no_masking)
 
   g.function_group(misc_op_template, "Vector Initialization Functions",
-                   REF_DOC_URL + "#vector-initialization-functions",
-                   ["vundefined"], TYPES, SEWS, LMULS,
+                   "#vector-initialization", ["vundefined"], TYPES, SEWS, LMULS,
                    decorators.has_no_masking)
 
   g.function_group(get_set_diff_lmul_op_template, "Vector Insertion Functions",
-                   REF_DOC_URL + "#vector-insertion-functions", ["vset"], TYPES,
-                   SEWS, LMULS, decorators.has_no_masking)
+                   "vector-insertion", ["vset"], TYPES, SEWS, LMULS,
+                   decorators.has_no_masking)
 
   g.function_group(get_set_diff_lmul_op_template, "Vector Extraction Functions",
-                   REF_DOC_URL + "#vector-extraction-functions", ["vget"],
-                   TYPES, SEWS, LMULS, decorators.has_no_masking)
+                   "vector-extraction", ["vget"], TYPES, SEWS, LMULS,
+                   decorators.has_no_masking)
 
   ####################################################################
   g.gen_prologue()

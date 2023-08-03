@@ -209,10 +209,10 @@ class DocGenerator(Generator):
     self.fd.write(text)
 
   def write_title(self, text, link):
-    self.fd.write("\n### [" + text + "](" + link + "):\n")
+    self.fd.write("\n[[" + link + "]]\n=== " + text + "\n")
 
   def inst_group_prologue(self):
-    s = "\n**Prototypes:**\n``` C\n"
+    s = "\n``` C\n"
     self.write(s)
     return s
 
@@ -243,7 +243,7 @@ class DocGenerator(Generator):
     # here.
     super().start_group(group_name)
     if not self.is_all_in_one:
-      file_name = f"{self.group_counter:02d}_{group_name}.md"
+      file_name = f"{self.group_counter:02d}_{group_name}.adoc"
       file_name = file_name.replace(" ", "_")
       file_name = file_name.replace("/", "_")
       file_name = file_name.replace("(", "")
@@ -255,7 +255,7 @@ class DocGenerator(Generator):
         self.fd.close()
       self.fd = open(
           os.path.join(self.folder, file_name), "w", encoding="utf-8")
-    self.write(f"\n## {group_name}:\n")
+    self.write(f"\n== {group_name}\n")
 
 
 class OverloadedDocGenerator(DocGenerator):
