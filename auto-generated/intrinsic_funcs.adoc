@@ -1,66 +1,8 @@
 
-== Configuration-Setting and Utility Functions
-
-[[set-vl-and-vtype]]
-=== Set `vl` and `vtype` Functions
-
-``` C
-size_t __riscv_vsetvl_e8mf8 (size_t avl);
-size_t __riscv_vsetvl_e8mf4 (size_t avl);
-size_t __riscv_vsetvl_e8mf2 (size_t avl);
-size_t __riscv_vsetvl_e8m1 (size_t avl);
-size_t __riscv_vsetvl_e8m2 (size_t avl);
-size_t __riscv_vsetvl_e8m4 (size_t avl);
-size_t __riscv_vsetvl_e8m8 (size_t avl);
-size_t __riscv_vsetvl_e16mf4 (size_t avl);
-size_t __riscv_vsetvl_e16mf2 (size_t avl);
-size_t __riscv_vsetvl_e16m1 (size_t avl);
-size_t __riscv_vsetvl_e16m2 (size_t avl);
-size_t __riscv_vsetvl_e16m4 (size_t avl);
-size_t __riscv_vsetvl_e16m8 (size_t avl);
-size_t __riscv_vsetvl_e32mf2 (size_t avl);
-size_t __riscv_vsetvl_e32m1 (size_t avl);
-size_t __riscv_vsetvl_e32m2 (size_t avl);
-size_t __riscv_vsetvl_e32m4 (size_t avl);
-size_t __riscv_vsetvl_e32m8 (size_t avl);
-size_t __riscv_vsetvl_e64m1 (size_t avl);
-size_t __riscv_vsetvl_e64m2 (size_t avl);
-size_t __riscv_vsetvl_e64m4 (size_t avl);
-size_t __riscv_vsetvl_e64m8 (size_t avl);
-```
-
-[[set-vl-to-vlmax-with-specific-vtype]]
-=== Set the vl to VLMAX with specific vtype
-
-``` C
-size_t __riscv_vsetvlmax_e8mf8 ();
-size_t __riscv_vsetvlmax_e8mf4 ();
-size_t __riscv_vsetvlmax_e8mf2 ();
-size_t __riscv_vsetvlmax_e8m1 ();
-size_t __riscv_vsetvlmax_e8m2 ();
-size_t __riscv_vsetvlmax_e8m4 ();
-size_t __riscv_vsetvlmax_e8m8 ();
-size_t __riscv_vsetvlmax_e16mf4 ();
-size_t __riscv_vsetvlmax_e16mf2 ();
-size_t __riscv_vsetvlmax_e16m1 ();
-size_t __riscv_vsetvlmax_e16m2 ();
-size_t __riscv_vsetvlmax_e16m4 ();
-size_t __riscv_vsetvlmax_e16m8 ();
-size_t __riscv_vsetvlmax_e32mf2 ();
-size_t __riscv_vsetvlmax_e32m1 ();
-size_t __riscv_vsetvlmax_e32m2 ();
-size_t __riscv_vsetvlmax_e32m4 ();
-size_t __riscv_vsetvlmax_e32m8 ();
-size_t __riscv_vsetvlmax_e64m1 ();
-size_t __riscv_vsetvlmax_e64m2 ();
-size_t __riscv_vsetvlmax_e64m4 ();
-size_t __riscv_vsetvlmax_e64m8 ();
-```
-
-== Vector Loads and Stores Functions
+== Vector Loads and Stores Intrinsics
 
 [[vector-unit-stride-load]]
-=== Vector Unit-Stride Load Functions
+=== Vector Unit-Stride Load Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vle16_v_f16mf4 (const float16_t *base, size_t vl);
@@ -185,7 +127,7 @@ vuint64m8_t __riscv_vle64_v_u64m8_m (vbool8_t mask, const uint64_t *base, size_t
 ```
 
 [[vector-unit-stride-store]]
-=== Vector Unit-Stride Store Functions
+=== Vector Unit-Stride Store Intrinsics
 
 ``` C
 void __riscv_vse16_v_f16mf4 (float16_t *base, vfloat16mf4_t value, size_t vl);
@@ -309,8 +251,28 @@ void __riscv_vse64_v_u64m4_m (vbool16_t mask, uint64_t *base, vuint64m4_t value,
 void __riscv_vse64_v_u64m8_m (vbool8_t mask, uint64_t *base, vuint64m8_t value, size_t vl);
 ```
 
+[[vector-unit-stride]]
+=== Vector Mask Load/Store Intrinsics
+
+``` C
+vbool1_t __riscv_vlm_v_b1 (const uint8_t *base, size_t vl);
+vbool2_t __riscv_vlm_v_b2 (const uint8_t *base, size_t vl);
+vbool4_t __riscv_vlm_v_b4 (const uint8_t *base, size_t vl);
+vbool8_t __riscv_vlm_v_b8 (const uint8_t *base, size_t vl);
+vbool16_t __riscv_vlm_v_b16 (const uint8_t *base, size_t vl);
+vbool32_t __riscv_vlm_v_b32 (const uint8_t *base, size_t vl);
+vbool64_t __riscv_vlm_v_b64 (const uint8_t *base, size_t vl);
+void __riscv_vsm_v_b1 (uint8_t *base, vbool1_t value, size_t vl);
+void __riscv_vsm_v_b2 (uint8_t *base, vbool2_t value, size_t vl);
+void __riscv_vsm_v_b4 (uint8_t *base, vbool4_t value, size_t vl);
+void __riscv_vsm_v_b8 (uint8_t *base, vbool8_t value, size_t vl);
+void __riscv_vsm_v_b16 (uint8_t *base, vbool16_t value, size_t vl);
+void __riscv_vsm_v_b32 (uint8_t *base, vbool32_t value, size_t vl);
+void __riscv_vsm_v_b64 (uint8_t *base, vbool64_t value, size_t vl);
+```
+
 [[vector-strided-load]]
-=== Vector Strided Load Functions
+=== Vector Strided Load Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vlse16_v_f16mf4 (const float16_t *base, ptrdiff_t bstride, size_t vl);
@@ -435,7 +397,7 @@ vuint64m8_t __riscv_vlse64_v_u64m8_m (vbool8_t mask, const uint64_t *base, ptrdi
 ```
 
 [[vector-strided-store]]
-=== Vector Strided Store Functions
+=== Vector Strided Store Intrinsics
 
 ``` C
 void __riscv_vsse16_v_f16mf4 (float16_t *base, ptrdiff_t bstride, vfloat16mf4_t value, size_t vl);
@@ -560,7 +522,7 @@ void __riscv_vsse64_v_u64m8_m (vbool8_t mask, uint64_t *base, ptrdiff_t bstride,
 ```
 
 [[vector-indexed-load]]
-=== Vector Indexed Load Functions
+=== Vector Indexed Load Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vloxei8_v_f16mf4 (const float16_t *base, vuint8mf8_t bindex, size_t vl);
@@ -1415,7 +1377,7 @@ vuint64m8_t __riscv_vluxei64_v_u64m8_m (vbool8_t mask, const uint64_t *base, vui
 ```
 
 [[vector-indexed-store]]
-=== Vector Indexed Store Functions
+=== Vector Indexed Store Intrinsics
 
 ``` C
 void __riscv_vsoxei8_v_f16mf4 (float16_t *base, vuint8mf8_t bindex, vfloat16mf4_t value, size_t vl);
@@ -2270,7 +2232,7 @@ void __riscv_vsuxei64_v_u64m8_m (vbool8_t mask, uint64_t *base, vuint64m8_t bind
 ```
 
 [[unit-stride-fault-only-first-loads]]
-=== Unit-stride Fault-Only-First Loads Functions
+=== Unit-stride Fault-Only-First Loads Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vle16ff_v_f16mf4 (const float16_t *base, size_t *new_vl, size_t vl);
@@ -2394,10 +2356,10 @@ vuint64m4_t __riscv_vle64ff_v_u64m4_m (vbool16_t mask, const uint64_t *base, siz
 vuint64m8_t __riscv_vle64ff_v_u64m8_m (vbool8_t mask, const uint64_t *base, size_t *new_vl, size_t vl);
 ```
 
-== Vector Unit-Stride Segment Load/Store Instructions (Zvlsseg)
+== Vector Loads and Stores Segment Instructions
 
 [[vector-unit-stride-segment-load]]
-=== Vector Unit-Stride Segment Load Functions
+=== Vector Unit-Stride Segment Load Intrinsics
 
 ``` C
 vfloat16mf4x2_t __riscv_vlseg2e16_v_f16mf4x2 (const float16_t *base, size_t vl);
@@ -3308,7 +3270,7 @@ vuint64m4x2_t __riscv_vlseg2e64ff_v_u64m4x2_m (vbool16_t mask, const uint64_t *b
 ```
 
 [[vecrtor-unit-stride-segment-store]]
-=== Vector Unit-Stride Segment Store Functions
+=== Vector Unit-Stride Segment Store Intrinsics
 
 ``` C
 void __riscv_vsseg2e16_v_f16mf4x2 (float16_t *base, vfloat16mf4x2_t v_tuple, size_t vl);
@@ -3766,10 +3728,8 @@ void __riscv_vsseg4e64_v_u64m2x4_m (vbool32_t mask, uint64_t *base, vuint64m2x4_
 void __riscv_vsseg2e64_v_u64m4x2_m (vbool16_t mask, uint64_t *base, vuint64m4x2_t v_tuple, size_t vl);
 ```
 
-== Vector Stride Segment Load/Store Instructions (Zvlsseg)
-
 [[vector-strided-segment-load]]
-=== Vector Strided Segment Load Functions
+=== Vector Strided Segment Load Intrinsics
 
 ``` C
 vfloat16mf4x2_t __riscv_vlsseg2e16_v_f16mf4x2 (const float16_t *base, ptrdiff_t bstride, size_t vl);
@@ -4228,7 +4188,7 @@ vuint64m4x2_t __riscv_vlsseg2e64_v_u64m4x2_m (vbool16_t mask, const uint64_t *ba
 ```
 
 [[vector-strided-segment-store]]
-=== Vector Strided Segment Store Functions
+=== Vector Strided Segment Store Intrinsics
 
 ``` C
 void __riscv_vssseg2e16_v_f16mf4x2 (float16_t *base, ptrdiff_t bstride, vfloat16mf4x2_t v_tuple, size_t vl);
@@ -4686,10 +4646,8 @@ void __riscv_vssseg4e64_v_u64m2x4_m (vbool32_t mask, uint64_t *base, ptrdiff_t b
 void __riscv_vssseg2e64_v_u64m4x2_m (vbool16_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m4x2_t v_tuple, size_t vl);
 ```
 
-== Vector Indexed Segment Load/Store Instructions (Zvlsseg)
-
 [[vector-indexed-segment-load]]
-=== Vector Indexed Segment Load Functions
+=== Vector Indexed Segment Load Intrinsics
 
 ``` C
 vfloat16mf4x2_t __riscv_vloxseg2ei8_v_f16mf4x2 (const float16_t *base, vuint8mf8_t bindex, size_t vl);
@@ -8260,7 +8218,7 @@ vuint64m4x2_t __riscv_vluxseg2ei64_v_u64m4x2_m (vbool16_t mask, const uint64_t *
 ```
 
 [[vector-indexed-segment-store]]
-=== Vector Indexed Segment Store Functions
+=== Vector Indexed Segment Store Intrinsics
 
 ``` C
 void __riscv_vsoxseg2ei8_v_f16mf4x2 (float16_t *base, vuint8mf8_t bindex, vfloat16mf4x2_t v_tuple, size_t vl);
@@ -11830,10 +11788,10 @@ void __riscv_vsuxseg4ei64_v_u64m2x4_m (vbool32_t mask, uint64_t *base, vuint64m2
 void __riscv_vsuxseg2ei64_v_u64m4x2_m (vbool16_t mask, uint64_t *base, vuint64m4_t bindex, vuint64m4x2_t v_tuple, size_t vl);
 ```
 
-== Vector Integer Arithmetic Functions
+== Vector Integer Arithmetic Instructions
 
 [[vector-single-width-integer-add-and-subtract]]
-=== Vector Single-Width Integer Add and Subtract Functions
+=== Vector Single-Width Integer Add and Subtract Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vadd_vv_i8mf8 (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
@@ -12324,7 +12282,7 @@ vuint64m8_t __riscv_vrsub_vx_u64m8_m (vbool8_t mask, vuint64m8_t op1, uint64_t o
 ```
 
 [[vector-widening-integer-add-subtract]]
-=== Vector Widening Integer Add/Subtract Functions
+=== Vector Widening Integer Add/Subtract Intrinsics
 
 ``` C
 vint16mf4_t __riscv_vwadd_vv_i16mf4 (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
@@ -12811,7 +12769,7 @@ vuint64m8_t __riscv_vwsubu_wx_u64m8_m (vbool8_t mask, vuint64m8_t op1, uint32_t 
 ```
 
 [[vector-integer-extension]]
-=== Vector Integer Extension Functions
+=== Vector Integer Extension Intrinsics
 
 ``` C
 vint16mf4_t __riscv_vsext_vf2_i16mf4 (vint8mf8_t op1, size_t vl);
@@ -12930,7 +12888,7 @@ vuint64m8_t __riscv_vzext_vf2_u64m8_m (vbool8_t mask, vuint32m4_t op1, size_t vl
 ```
 
 [[vector-integer-add-with-carry-subtract-with-borrow]]
-=== Vector Integer Add-with-Carry / Subtract-with-Borrow Functions
+=== Vector Integer Add-with-Carry / Subtract-with-Borrow Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vadc_vvm_i8mf8 (vint8mf8_t op1, vint8mf8_t op2, vbool64_t carryin, size_t vl);
@@ -13464,7 +13422,7 @@ vbool8_t __riscv_vmsbc_vx_u64m8_b8 (vuint64m8_t op1, uint64_t op2, size_t vl);
 ```
 
 [[vector-bitwise-binary-logical]]
-=== Vector Bitwise Binary Logical Functions
+=== Vector Bitwise Binary Logical Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vand_vv_i8mf8 (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
@@ -13999,7 +13957,7 @@ vuint64m8_t __riscv_vxor_vx_u64m8_m (vbool8_t mask, vuint64m8_t op1, uint64_t op
 ```
 
 [[vector-bitwise-unary-logical]]
-=== Vector Bitwise Unary Logical Functions
+=== Vector Bitwise Unary Logical Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vnot_v_i8mf8 (vint8mf8_t op1, size_t vl);
@@ -14094,7 +14052,7 @@ vuint64m8_t __riscv_vnot_v_u64m8_m (vbool8_t mask, vuint64m8_t op1, size_t vl);
 ```
 
 [[vector-single-width-bit-shift]]
-=== Vector Single-Width Bit Shift Functions
+=== Vector Single-Width Bit Shift Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vsll_vv_i8mf8 (vint8mf8_t op1, vuint8mf8_t shift, size_t vl);
@@ -14453,7 +14411,7 @@ vuint64m8_t __riscv_vsrl_vx_u64m8_m (vbool8_t mask, vuint64m8_t op1, size_t shif
 ```
 
 [[vector-narrowing-integer-right-shift]]
-=== Vector Narrowing Integer Right Shift Functions
+=== Vector Narrowing Integer Right Shift Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vnsra_wv_i8mf8 (vint16mf4_t op1, vuint8mf8_t shift, size_t vl);
@@ -14580,7 +14538,7 @@ vuint32m4_t __riscv_vnsrl_wx_u32m4_m (vbool8_t mask, vuint64m8_t op1, size_t shi
 ```
 
 [[vector-integer-comparison]]
-=== Vector Integer Comparison Functions
+=== Vector Integer Compare Intrinsics
 
 ``` C
 vbool64_t __riscv_vmseq_vv_i8mf8_b64 (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
@@ -15643,7 +15601,7 @@ vbool8_t __riscv_vmsgeu_vx_u64m8_b8_m (vbool8_t mask, vuint64m8_t op1, uint64_t 
 ```
 
 [[vector-integer-minmax]]
-=== Vector Integer Min/Max Functions
+=== Vector Integer Min/Max Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vmin_vv_i8mf8 (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
@@ -16002,7 +15960,7 @@ vuint64m8_t __riscv_vmaxu_vx_u64m8_m (vbool8_t mask, vuint64m8_t op1, uint64_t o
 ```
 
 [[vector-single-width-integer-multiply]]
-=== Vector Single-Width Integer Multiply Functions
+=== Vector Single-Width Integer Multiply Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vmul_vv_i8mf8 (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
@@ -16449,7 +16407,7 @@ vuint64m8_t __riscv_vmulhu_vx_u64m8_m (vbool8_t mask, vuint64m8_t op1, uint64_t 
 ```
 
 [[vector-integer-divide]]
-=== Vector Integer Divide Functions
+=== Vector Integer Divide Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vdiv_vv_i8mf8 (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
@@ -16808,7 +16766,7 @@ vuint64m8_t __riscv_vremu_vx_u64m8_m (vbool8_t mask, vuint64m8_t op1, uint64_t o
 ```
 
 [[vector-widening-integer-multiply]]
-=== Vector Widening Integer Multiply Functions
+=== Vector Widening Integer Multiply Intrinsics
 
 ``` C
 vint16mf4_t __riscv_vwmul_vv_i16mf4 (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
@@ -16995,7 +16953,7 @@ vuint64m8_t __riscv_vwmulu_vx_u64m8_m (vbool8_t mask, vuint32m4_t op1, uint32_t 
 ```
 
 [[vector-single-width-integer-multiply-add]]
-=== Vector Single-Width Integer Multiply-Add Functions
+=== Vector Single-Width Integer Multiply-Add Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vmacc_vv_i8mf8 (vint8mf8_t vd, vint8mf8_t vs1, vint8mf8_t vs2, size_t vl);
@@ -17706,7 +17664,7 @@ vuint64m8_t __riscv_vnmsub_vx_u64m8_m (vbool8_t mask, vuint64m8_t vd, uint64_t r
 ```
 
 [[vector-widening-integer-multiply-add]]
-=== Vector Widening Integer Multiply-Add Functions
+=== Vector Widening Integer Multiply-Add Intrinsics
 
 ``` C
 vint16mf4_t __riscv_vwmacc_vv_i16mf4 (vint16mf4_t vd, vint8mf8_t vs1, vint8mf8_t vs2, size_t vl);
@@ -17923,7 +17881,7 @@ vuint64m8_t __riscv_vwmaccu_vx_u64m8_m (vbool8_t mask, vuint64m8_t vd, uint32_t 
 ```
 
 [[vector-integer-merge]]
-=== Vector Integer Merge Functions
+=== Vector Integer Merge Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vmerge_vvm_i8mf8 (vint8mf8_t op1, vint8mf8_t op2, vbool64_t mask, size_t vl);
@@ -18017,7 +17975,7 @@ vuint64m8_t __riscv_vmerge_vxm_u64m8 (vuint64m8_t op1, uint64_t op2, vbool8_t ma
 ```
 
 [[vector-integer-move]]
-=== Vector Integer Move Functions
+=== Vector Integer Move Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vmv_v_v_i8mf8 (vint8mf8_t src, size_t vl);
@@ -18110,10 +18068,10 @@ vuint64m8_t __riscv_vmv_v_v_u64m8 (vuint64m8_t src, size_t vl);
 vuint64m8_t __riscv_vmv_v_x_u64m8 (uint64_t src, size_t vl);
 ```
 
-== Vector Fixed-Point Arithmetic Functions
+== Vector Fixed-Point Arithmetic Instructions
 
 [[vector-single-width-saturating-add-and-subtract]]
-=== Vector Single-Width Saturating Add and Subtract Functions
+=== Vector Single-Width Saturating Add and Subtract Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vsadd_vv_i8mf8 (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
@@ -18472,7 +18430,7 @@ vuint64m8_t __riscv_vssubu_vx_u64m8_m (vbool8_t mask, vuint64m8_t op1, uint64_t 
 ```
 
 [[vector-single-width-averaging-add-and-subtract]]
-=== Vector Single-Width Averaging Add and Subtract Functions
+=== Vector Single-Width Averaging Add and Subtract Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vaadd_vv_i8mf8 (vint8mf8_t op1, vint8mf8_t op2, unsigned int vxrm, size_t vl);
@@ -18831,7 +18789,7 @@ vuint64m8_t __riscv_vasubu_vx_u64m8_m (vbool8_t mask, vuint64m8_t op1, uint64_t 
 ```
 
 [[vector-single-width-fractional-multiply-with-rounding-and-saturation]]
-=== Vector Single-Width Fractional Multiply with Rounding and Saturation Functions
+=== Vector Single-Width Fractional Multiply with Rounding and SaturationIntrinsics
 
 ``` C
 vint8mf8_t __riscv_vsmul_vv_i8mf8 (vint8mf8_t op1, vint8mf8_t op2, unsigned int vxrm, size_t vl);
@@ -18926,7 +18884,7 @@ vint64m8_t __riscv_vsmul_vx_i64m8_m (vbool8_t mask, vint64m8_t op1, int64_t op2,
 ```
 
 [[vector-single-width-scaling-shift]]
-=== Vector Single-Width Scaling Shift Functions
+=== Vector Single-Width Scaling Shift Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vssra_vv_i8mf8 (vint8mf8_t op1, vuint8mf8_t shift, unsigned int vxrm, size_t vl);
@@ -19109,7 +19067,7 @@ vuint64m8_t __riscv_vssrl_vx_u64m8_m (vbool8_t mask, vuint64m8_t op1, size_t shi
 ```
 
 [[vector-narrowing-fixed-point-clip]]
-=== Vector Narrowing Fixed-Point Clip Functions
+=== Vector Narrowing Fixed-Point Clip Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vnclip_wv_i8mf8 (vint16mf4_t op1, vuint8mf8_t shift, unsigned int vxrm, size_t vl);
@@ -19235,10 +19193,10 @@ vuint32m4_t __riscv_vnclipu_wv_u32m4_m (vbool8_t mask, vuint64m8_t op1, vuint32m
 vuint32m4_t __riscv_vnclipu_wx_u32m4_m (vbool8_t mask, vuint64m8_t op1, size_t shift, unsigned int vxrm, size_t vl);
 ```
 
-== Vector Floating-Point Functions
+== Vector Floating-Point Instructions
 
 [[vector-single-width-floating-point-add-subtract]]
-=== Vector Single-Width Floating-Point Add/Subtract Functions
+=== Vector Single-Width Floating-Point Add/Subtract Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vfadd_vv_f16mf4 (vfloat16mf4_t op1, vfloat16mf4_t op2, size_t vl);
@@ -19576,7 +19534,7 @@ vfloat64m8_t __riscv_vfrsub_vf_f64m8_rm_m (vbool8_t mask, vfloat64m8_t op1, floa
 ```
 
 [[vector-widening-floating-point-add-subtract]]
-=== Vector Widening Floating-Point Add/Subtract Functions
+=== Vector Widening Floating-Point Add/Subtract Intrinsics
 
 ``` C
 vfloat32mf2_t __riscv_vfwadd_vv_f32mf2 (vfloat16mf4_t op1, vfloat16mf4_t op2, size_t vl);
@@ -19872,7 +19830,7 @@ vfloat64m8_t __riscv_vfwsub_wf_f64m8_rm_m (vbool8_t mask, vfloat64m8_t op1, floa
 ```
 
 [[vector-single-width-floating-point-multiply-divide]]
-=== Vector Single-Width Floating-Point Multiply/Divide Functions
+=== Vector Single-Width Floating-Point Multiply/Divide Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vfmul_vv_f16mf4 (vfloat16mf4_t op1, vfloat16mf4_t op2, size_t vl);
@@ -20180,7 +20138,7 @@ vfloat64m8_t __riscv_vfrdiv_vf_f64m8_rm_m (vbool8_t mask, vfloat64m8_t op1, floa
 ```
 
 [[vector-widening-floating-point-multiply]]
-=== Vector Widening Floating-Point Multiply Functions
+=== Vector Widening Floating-Point Multiply Intrinsics
 
 ``` C
 vfloat32mf2_t __riscv_vfwmul_vv_f32mf2 (vfloat16mf4_t op1, vfloat16mf4_t op2, size_t vl);
@@ -20260,7 +20218,7 @@ vfloat64m8_t __riscv_vfwmul_vf_f64m8_rm_m (vbool8_t mask, vfloat32m4_t op1, floa
 ```
 
 [[vector-single-width-floating-point-fused-multiply-add]]
-=== Vector Single-Width Floating-Point Fused Multiply-Add Functions
+=== Vector Single-Width Floating-Point Fused Multiply-Add Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vfmacc_vv_f16mf4 (vfloat16mf4_t vd, vfloat16mf4_t vs1, vfloat16mf4_t vs2, size_t vl);
@@ -21228,7 +21186,7 @@ vfloat64m8_t __riscv_vfnmsub_vf_f64m8_rm_m (vbool8_t mask, vfloat64m8_t vd, floa
 ```
 
 [[vector-widening-floating-point-fused-multiply-add]]
-=== Vector Widening Floating-Point Fused Multiply-Add Functions
+=== Vector Widening Floating-Point Fused Multiply-Add Intrinsics
 
 ``` C
 vfloat32mf2_t __riscv_vfwmacc_vv_f32mf2 (vfloat32mf2_t vd, vfloat16mf4_t vs1, vfloat16mf4_t vs2, size_t vl);
@@ -21524,7 +21482,7 @@ vfloat64m8_t __riscv_vfwnmsac_vf_f64m8_rm_m (vbool8_t mask, vfloat64m8_t vd, flo
 ```
 
 [[vector-floating-point-square-root]]
-=== Vector Floating-Point Square-Root Functions
+=== Vector Floating-Point Square-Root Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vfsqrt_v_f16mf4 (vfloat16mf4_t op1, size_t vl);
@@ -21592,7 +21550,7 @@ vfloat64m8_t __riscv_vfsqrt_v_f64m8_rm_m (vbool8_t mask, vfloat64m8_t op1, unsig
 ```
 
 [[vector-floating-point-reciprocal-square-root-estimate]]
-=== Vector Floating-Point Reciprocal Square-Root Estimate Functions
+=== Vector Floating-Point Reciprocal Square-Root Estimate Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vfrsqrt7_v_f16mf4 (vfloat16mf4_t op1, size_t vl);
@@ -21629,7 +21587,7 @@ vfloat64m8_t __riscv_vfrsqrt7_v_f64m8_m (vbool8_t mask, vfloat64m8_t op1, size_t
 ```
 
 [[#1410-vector-floating-point-reciprocal-estimate]]
-=== Vector Floating-Point Reciprocal Estimate Functions
+=== Vector Floating-Point Reciprocal Estimate Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vfrec7_v_f16mf4 (vfloat16mf4_t op1, size_t vl);
@@ -21697,7 +21655,7 @@ vfloat64m8_t __riscv_vfrec7_v_f64m8_rm_m (vbool8_t mask, vfloat64m8_t op1, unsig
 ```
 
 [[vector-floating-point-minmax]]
-=== Vector Floating-Point MIN/MAX Functions
+=== Vector Floating-Point MIN/MAX Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vfmin_vv_f16mf4 (vfloat16mf4_t op1, vfloat16mf4_t op2, size_t vl);
@@ -21824,7 +21782,7 @@ vfloat64m8_t __riscv_vfmax_vf_f64m8_m (vbool8_t mask, vfloat64m8_t op1, float64_
 ```
 
 [[vector-floating-point-sign-injection]]
-=== Vector Floating-Point Sign-Injection Functions
+=== Vector Floating-Point Sign-Injection Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vfsgnj_vv_f16mf4 (vfloat16mf4_t op1, vfloat16mf4_t op2, size_t vl);
@@ -22011,7 +21969,7 @@ vfloat64m8_t __riscv_vfsgnjx_vf_f64m8_m (vbool8_t mask, vfloat64m8_t op1, float6
 ```
 
 [[vector-floating-point-absolute-value]]
-=== Vector Floating-Point Absolute Value Functions
+=== Vector Floating-Point Absolute Value Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vfabs_v_f16mf4 (vfloat16mf4_t op1, size_t vl);
@@ -22048,7 +22006,7 @@ vfloat64m8_t __riscv_vfabs_v_f64m8_m (vbool8_t mask, vfloat64m8_t op1, size_t vl
 ```
 
 [[vector-floating-point-compare]]
-=== Vector Floating-Point Compare Functions
+=== Vector Floating-Point Compare Intrinsics
 
 ``` C
 vbool64_t __riscv_vmfeq_vv_f16mf4_b64 (vfloat16mf4_t op1, vfloat16mf4_t op2, size_t vl);
@@ -22415,7 +22373,7 @@ vbool8_t __riscv_vmfge_vf_f64m8_b8_m (vbool8_t mask, vfloat64m8_t op1, float64_t
 ```
 
 [[vector-floating-point-classify]]
-=== Vector Floating-Point Classify Functions
+=== Vector Floating-Point Classify Intrinsics
 
 ``` C
 vuint16mf4_t __riscv_vfclass_v_u16mf4 (vfloat16mf4_t op1, size_t vl);
@@ -22452,7 +22410,7 @@ vuint64m8_t __riscv_vfclass_v_u64m8_m (vbool8_t mask, vfloat64m8_t op1, size_t v
 ```
 
 [[vector-floating-point-merge]]
-=== Vector Floating-Point Merge Functions
+=== Vector Floating-Point Merge Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vmerge_vvm_f16mf4 (vfloat16mf4_t op1, vfloat16mf4_t op2, vbool64_t mask, size_t vl);
@@ -22488,7 +22446,7 @@ vfloat64m8_t __riscv_vfmerge_vfm_f64m8 (vfloat64m8_t op1, float64_t op2, vbool8_
 ```
 
 [[vector-floating-point-move]]
-=== Vector Floating-Point Move Functions
+=== Vector Floating-Point Move Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vmv_v_v_f16mf4 (vfloat16mf4_t src, size_t vl);
@@ -22524,7 +22482,7 @@ vfloat64m8_t __riscv_vfmv_v_f_f64m8 (float64_t src, size_t vl);
 ```
 
 [[single-width-floating-pointinteger-type-convert]]
-=== Single-Width Floating-Point/Integer Type-Convert Functions
+=== Single-Width Floating-Point/Integer Type-Convert Intrinsics
 
 ``` C
 vint16mf4_t __riscv_vfcvt_x_f_v_i16mf4 (vfloat16mf4_t src, size_t vl);
@@ -22832,7 +22790,7 @@ vfloat64m8_t __riscv_vfcvt_f_xu_v_f64m8_rm_m (vbool8_t mask, vuint64m8_t src, un
 ```
 
 [[widening-floating-pointinteger-type-convert]]
-=== Widening Floating-Point/Integer Type-Convert Functions
+=== Widening Floating-Point/Integer Type-Convert Intrinsics
 
 ``` C
 vint16mf4_t __riscv_vwcvt_x_x_v_i16mf4 (vint8mf8_t src, size_t vl);
@@ -23086,7 +23044,7 @@ vuint64m8_t __riscv_vfwcvt_xu_f_v_u64m8_rm_m (vbool8_t mask, vfloat32m4_t src, u
 ```
 
 [[narrowing-floating-pointinteger-type-convert]]
-=== Narrowing Floating-Point/Integer Type-Convert Functions
+=== Narrowing Floating-Point/Integer Type-Convert Intrinsics
 
 ``` C
 vint8mf8_t __riscv_vfncvt_x_f_w_i8mf8 (vfloat16mf4_t src, size_t vl);
@@ -23459,10 +23417,10 @@ vfloat32m2_t __riscv_vfncvt_f_f_w_f32m2_rm_m (vbool16_t mask, vfloat64m4_t src, 
 vfloat32m4_t __riscv_vfncvt_f_f_w_f32m4_rm_m (vbool8_t mask, vfloat64m8_t src, unsigned int frm, size_t vl);
 ```
 
-== Vector Reduction Functions
+== Vector Reduction Operations
 
 [[vector-single-width-integer-reduction]]
-=== Vector Single-Width Integer Reduction Functions
+=== Vector Single-Width Integer Reduction Intrinsics
 
 ``` C
 vint8m1_t __riscv_vredsum_vs_i8mf8_i8m1 (vint8mf8_t vector, vint8m1_t scalar, size_t vl);
@@ -23997,7 +23955,7 @@ vuint64m1_t __riscv_vredxor_vs_u64m8_u64m1_m (vbool8_t mask, vuint64m8_t vector,
 ```
 
 [[vector-widening-integer-reduction]]
-=== Vector Widening Integer Reduction Functions
+=== Vector Widening Integer Reduction Intrinsics
 
 ``` C
 vint16m1_t __riscv_vwredsum_vs_i8mf8_i16m1 (vint8mf8_t vector, vint16m1_t scalar, size_t vl);
@@ -24076,7 +24034,7 @@ vuint64m1_t __riscv_vwredsumu_vs_u32m8_u64m1_m (vbool4_t mask, vuint32m8_t vecto
 ```
 
 [[vector-single-width-floating-point-reduction]]
-=== Vector Single-Width Floating-Point Reduction Functions
+=== Vector Single-Width Floating-Point Reduction Intrinsics
 
 ``` C
 vfloat16m1_t __riscv_vfredosum_vs_f16mf4_f16m1 (vfloat16mf4_t vector, vfloat16m1_t scalar, size_t vl);
@@ -24264,7 +24222,7 @@ vfloat64m1_t __riscv_vfredusum_vs_f64m8_f64m1_rm_m (vbool8_t mask, vfloat64m8_t 
 ```
 
 [[vector-widening-floating-point-reduction]]
-=== Vector Widening Floating-Point Reduction Functions
+=== Vector Widening Floating-Point Reduction Intrinsics
 
 ``` C
 vfloat32m1_t __riscv_vfwredosum_vs_f16mf4_f32m1 (vfloat16mf4_t vector, vfloat32m1_t scalar, size_t vl);
@@ -24359,30 +24317,10 @@ vfloat64m1_t __riscv_vfwredusum_vs_f32m4_f64m1_rm_m (vbool8_t mask, vfloat32m4_t
 vfloat64m1_t __riscv_vfwredusum_vs_f32m8_f64m1_rm_m (vbool4_t mask, vfloat32m8_t vector, vfloat64m1_t scalar, unsigned int frm, size_t vl);
 ```
 
-== Vector Mask Functions
-
-[[vector-unit-stride]]
-=== Vector Mask Load/Store Functions
-
-``` C
-vbool1_t __riscv_vlm_v_b1 (const uint8_t *base, size_t vl);
-vbool2_t __riscv_vlm_v_b2 (const uint8_t *base, size_t vl);
-vbool4_t __riscv_vlm_v_b4 (const uint8_t *base, size_t vl);
-vbool8_t __riscv_vlm_v_b8 (const uint8_t *base, size_t vl);
-vbool16_t __riscv_vlm_v_b16 (const uint8_t *base, size_t vl);
-vbool32_t __riscv_vlm_v_b32 (const uint8_t *base, size_t vl);
-vbool64_t __riscv_vlm_v_b64 (const uint8_t *base, size_t vl);
-void __riscv_vsm_v_b1 (uint8_t *base, vbool1_t value, size_t vl);
-void __riscv_vsm_v_b2 (uint8_t *base, vbool2_t value, size_t vl);
-void __riscv_vsm_v_b4 (uint8_t *base, vbool4_t value, size_t vl);
-void __riscv_vsm_v_b8 (uint8_t *base, vbool8_t value, size_t vl);
-void __riscv_vsm_v_b16 (uint8_t *base, vbool16_t value, size_t vl);
-void __riscv_vsm_v_b32 (uint8_t *base, vbool32_t value, size_t vl);
-void __riscv_vsm_v_b64 (uint8_t *base, vbool64_t value, size_t vl);
-```
+== Vector Mask Instructions
 
 [[vector-mask-register-logical]]
-=== Vector Mask-Register Logical Functions
+=== Vector Mask-Register Logical
 
 ``` C
 vbool1_t __riscv_vmand_mm_b1 (vbool1_t op1, vbool1_t op2, size_t vl);
@@ -24472,7 +24410,7 @@ vbool64_t __riscv_vmnot_m_b64 (vbool64_t op1, size_t vl);
 ```
 
 [[vector-count-population-in-mask-vcpopm]]
-=== Vector count population in mask Functions
+=== Vector count population in mask `vcpop.m`
 
 ``` C
 unsigned long __riscv_vcpop_m_b1 (vbool1_t op1, size_t vl);
@@ -24493,7 +24431,7 @@ unsigned long __riscv_vcpop_m_b64_m (vbool64_t mask, vbool64_t op1, size_t vl);
 ```
 
 [[vfirst-find-first-set-mask-bit]]
-=== Find-first-set mask bit Functions
+=== `vfirst` find-first-set mask bit
 
 ``` C
 long __riscv_vfirst_m_b1 (vbool1_t op1, size_t vl);
@@ -24514,7 +24452,7 @@ long __riscv_vfirst_m_b64_m (vbool64_t mask, vbool64_t op1, size_t vl);
 ```
 
 [[vmsbfm-set-before-first-mask-bit]]
-=== Set-before-first mask bit Functions
+=== `vmsbf.m` set-before-first mask bit
 
 ``` C
 vbool1_t __riscv_vmsbf_m_b1 (vbool1_t op1, size_t vl);
@@ -24535,7 +24473,7 @@ vbool64_t __riscv_vmsbf_m_b64_m (vbool64_t mask, vbool64_t op1, size_t vl);
 ```
 
 [[vmsifm-set-including-first-mask-bit]]
-=== Set-including-first mask bit Functions
+=== `vmsif.m` set-including-first mask bit
 
 ``` C
 vbool1_t __riscv_vmsif_m_b1 (vbool1_t op1, size_t vl);
@@ -24556,7 +24494,7 @@ vbool64_t __riscv_vmsif_m_b64_m (vbool64_t mask, vbool64_t op1, size_t vl);
 ```
 
 [[vmsofm-set-only-first-mask-bit]]
-=== Set-only-first mask bit Functions
+=== `vmsof.m` set-only-first mask bit
 
 ``` C
 vbool1_t __riscv_vmsof_m_b1 (vbool1_t op1, size_t vl);
@@ -24577,7 +24515,7 @@ vbool64_t __riscv_vmsof_m_b64_m (vbool64_t mask, vbool64_t op1, size_t vl);
 ```
 
 [[vector-iota]]
-=== Vector Iota Functions
+=== Vector Iota Intrinsics
 
 ``` C
 vuint8mf8_t __riscv_viota_m_u8mf8 (vbool64_t op1, size_t vl);
@@ -24628,7 +24566,7 @@ vuint64m8_t __riscv_viota_m_u64m8_m (vbool8_t mask, vbool8_t op1, size_t vl);
 ```
 
 [[vector-element-index]]
-=== Vector Element Index Functions
+=== Vector Element Index Intrinsics
 
 ``` C
 vuint8mf8_t __riscv_vid_v_u8mf8 (size_t vl);
@@ -24678,10 +24616,10 @@ vuint64m4_t __riscv_vid_v_u64m4_m (vbool16_t mask, size_t vl);
 vuint64m8_t __riscv_vid_v_u64m8_m (vbool8_t mask, size_t vl);
 ```
 
-== Vector Permutation Functions
+== Vector Permutation Instructions
 
 [[integer-scalar-move]]
-=== Integer and Floating-Point Scalar Move Functions
+=== Integer and Floating-Point Scalar Move Intrinsics
 
 ``` C
 float16_t __riscv_vfmv_f_s_f16mf4_f16 (vfloat16mf4_t src);
@@ -24805,7 +24743,7 @@ vuint64m8_t __riscv_vmv_s_x_u64m8 (uint64_t src, size_t vl);
 ```
 
 [[vector-slideup]]
-=== Vector Slideup Functions
+=== Vector Slideup Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vslideup_vx_f16mf4 (vfloat16mf4_t dest, vfloat16mf4_t src, size_t offset, size_t vl);
@@ -24930,7 +24868,7 @@ vuint64m8_t __riscv_vslideup_vx_u64m8_m (vbool8_t mask, vuint64m8_t dest, vuint6
 ```
 
 [[vector-slidedown]]
-=== Vector Slidedown Functions
+=== Vector Slidedown Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vslidedown_vx_f16mf4 (vfloat16mf4_t src, size_t offset, size_t vl);
@@ -25055,7 +24993,7 @@ vuint64m8_t __riscv_vslidedown_vx_u64m8_m (vbool8_t mask, vuint64m8_t src, size_
 ```
 
 [[vector-slide1up-and-slide1down]]
-=== Vector Slide1up and Slide1down Functions
+=== Vector Slide1up and Slide1down Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vfslide1up_vf_f16mf4 (vfloat16mf4_t src, float16_t value, size_t vl);
@@ -25298,7 +25236,7 @@ vuint64m8_t __riscv_vslide1down_vx_u64m8_m (vbool8_t mask, vuint64m8_t src, uint
 ```
 
 [[vector-register-gather]]
-=== Vector Register Gather Functions
+=== Vector Register Gather Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vrgather_vv_f16mf4 (vfloat16mf4_t op1, vuint16mf4_t index, size_t vl);
@@ -25655,7 +25593,7 @@ vuint64m8_t __riscv_vrgatherei16_vv_u64m8_m (vbool8_t mask, vuint64m8_t op1, vui
 ```
 
 [[vector-compress]]
-=== Vector Compress Functions
+=== Vector Compress Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vcompress_vm_f16mf4 (vfloat16mf4_t src, vbool64_t mask, size_t vl);
@@ -25719,10 +25657,66 @@ vuint64m4_t __riscv_vcompress_vm_u64m4 (vuint64m4_t src, vbool16_t mask, size_t 
 vuint64m8_t __riscv_vcompress_vm_u64m8 (vuint64m8_t src, vbool8_t mask, size_t vl);
 ```
 
-== Miscellaneous Vector Functions
+== Miscellaneous Vector Utility Intrinsics
+
+[[set-vl-and-vtype]]
+=== Get `vl` with specific vtype
+
+``` C
+size_t __riscv_vsetvl_e8mf8 (size_t avl);
+size_t __riscv_vsetvl_e8mf4 (size_t avl);
+size_t __riscv_vsetvl_e8mf2 (size_t avl);
+size_t __riscv_vsetvl_e8m1 (size_t avl);
+size_t __riscv_vsetvl_e8m2 (size_t avl);
+size_t __riscv_vsetvl_e8m4 (size_t avl);
+size_t __riscv_vsetvl_e8m8 (size_t avl);
+size_t __riscv_vsetvl_e16mf4 (size_t avl);
+size_t __riscv_vsetvl_e16mf2 (size_t avl);
+size_t __riscv_vsetvl_e16m1 (size_t avl);
+size_t __riscv_vsetvl_e16m2 (size_t avl);
+size_t __riscv_vsetvl_e16m4 (size_t avl);
+size_t __riscv_vsetvl_e16m8 (size_t avl);
+size_t __riscv_vsetvl_e32mf2 (size_t avl);
+size_t __riscv_vsetvl_e32m1 (size_t avl);
+size_t __riscv_vsetvl_e32m2 (size_t avl);
+size_t __riscv_vsetvl_e32m4 (size_t avl);
+size_t __riscv_vsetvl_e32m8 (size_t avl);
+size_t __riscv_vsetvl_e64m1 (size_t avl);
+size_t __riscv_vsetvl_e64m2 (size_t avl);
+size_t __riscv_vsetvl_e64m4 (size_t avl);
+size_t __riscv_vsetvl_e64m8 (size_t avl);
+```
+
+[[set-vl-to-vlmax-with-specific-vtype]]
+=== Get `VLMAX` with specific vtype
+
+``` C
+size_t __riscv_vsetvlmax_e8mf8 ();
+size_t __riscv_vsetvlmax_e8mf4 ();
+size_t __riscv_vsetvlmax_e8mf2 ();
+size_t __riscv_vsetvlmax_e8m1 ();
+size_t __riscv_vsetvlmax_e8m2 ();
+size_t __riscv_vsetvlmax_e8m4 ();
+size_t __riscv_vsetvlmax_e8m8 ();
+size_t __riscv_vsetvlmax_e16mf4 ();
+size_t __riscv_vsetvlmax_e16mf2 ();
+size_t __riscv_vsetvlmax_e16m1 ();
+size_t __riscv_vsetvlmax_e16m2 ();
+size_t __riscv_vsetvlmax_e16m4 ();
+size_t __riscv_vsetvlmax_e16m8 ();
+size_t __riscv_vsetvlmax_e32mf2 ();
+size_t __riscv_vsetvlmax_e32m1 ();
+size_t __riscv_vsetvlmax_e32m2 ();
+size_t __riscv_vsetvlmax_e32m4 ();
+size_t __riscv_vsetvlmax_e32m8 ();
+size_t __riscv_vsetvlmax_e64m1 ();
+size_t __riscv_vsetvlmax_e64m2 ();
+size_t __riscv_vsetvlmax_e64m4 ();
+size_t __riscv_vsetvlmax_e64m8 ();
+```
 
 [[reinterpret-cast-conversion]]
-=== Reinterpret Cast Conversion Functions
+=== Reinterpret Cast Conversion Intrinsics
 
 ``` C
 // Reinterpret between different type under the same SEW/LMUL
@@ -26035,7 +26029,7 @@ vuint64m1_t __riscv_vreinterpret_v_b8_u64m1 (vbool8_t src);
 ```
 
 [[vector-lmul-extensionn]]
-=== Vector LMUL Extension Functions
+=== Vector LMUL Extension Intrinsics
 
 ``` C
 vfloat16mf2_t __riscv_vlmul_ext_v_f16mf4_f16mf2 (vfloat16mf4_t op1);
@@ -26176,7 +26170,7 @@ vuint64m8_t __riscv_vlmul_ext_v_u64m4_u64m8 (vuint64m4_t op1);
 ```
 
 [[vector-lmul-truncation]]
-=== Vector LMUL Truncation Functions
+=== Vector LMUL Truncation Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vlmul_trunc_v_f16mf2_f16mf4 (vfloat16mf2_t op1);
@@ -26316,8 +26310,8 @@ vuint64m2_t __riscv_vlmul_trunc_v_u64m8_u64m2 (vuint64m8_t op1);
 vuint64m4_t __riscv_vlmul_trunc_v_u64m8_u64m4 (vuint64m8_t op1);
 ```
 
-[[#vector-initialization]]
-=== Vector Initialization Functions
+[[vector-initialization]]
+=== Vector Initialization Intrinsics
 
 ``` C
 vfloat16mf4_t __riscv_vundefined_f16mf4 ();
@@ -26382,7 +26376,7 @@ vuint64m8_t __riscv_vundefined_u64m8 ();
 ```
 
 [[vector-insertion]]
-=== Vector Insertion Functions
+=== Vector Insertion Intrinsics
 
 ``` C
 vfloat16m2_t __riscv_vset_v_f16m1_f16m2 (vfloat16m2_t dest, size_t index, vfloat16m1_t val);
@@ -26680,7 +26674,7 @@ vuint64m4x2_t __riscv_vset_v_u64m4_u64m4x2 (vuint64m4x2_t dest, size_t index, vu
 ```
 
 [[vector-extraction]]
-=== Vector Extraction Functions
+=== Vector Extraction Intrinsics
 
 ``` C
 vfloat16m1_t __riscv_vget_v_f16m2_f16m1 (vfloat16m2_t src, size_t index);

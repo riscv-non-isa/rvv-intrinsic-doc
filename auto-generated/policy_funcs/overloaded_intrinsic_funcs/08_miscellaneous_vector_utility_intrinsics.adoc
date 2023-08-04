@@ -1,0 +1,34 @@
+
+== Miscellaneous Vector Utility Intrinsics
+
+[[policy-variant-overloadedset-vl-and-vtype]]
+=== Get `vl` with specific vtype
+This operation don't have a policy variant.
+
+[[policy-variant-overloadedset-vl-to-vlmax-with-specific-vtype]]
+=== Get `VLMAX` with specific vtype
+This operation don't have a policy variant.
+
+[[policy-variant-overloadedreinterpret-cast-conversion]]
+=== Reinterpret Cast Conversion Intrinsics
+This operation don't have a policy variant.
+
+[[policy-variant-overloadedvector-lmul-extensionn]]
+=== Vector LMUL Extension Intrinsics
+This operation don't have a policy variant.
+
+[[policy-variant-overloadedvector-lmul-truncation]]
+=== Vector LMUL Truncation Intrinsics
+This operation don't have a policy variant.
+
+[[policy-variant-overloadedvector-initialization]]
+=== Vector Initialization Intrinsics
+This operation don't have a policy variant.
+
+[[policy-variant-overloadedvector-insertion]]
+=== Vector Insertion Intrinsics
+This operation don't have a policy variant.
+
+[[policy-variant-overloadedvector-extraction]]
+=== Vector Extraction Intrinsics
+This operation don't have a policy variant.
