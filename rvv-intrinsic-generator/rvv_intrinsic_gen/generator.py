@@ -209,7 +209,10 @@ class DocGenerator(Generator):
     self.fd.write(text)
 
   def write_title(self, text, link):
-    self.fd.write("\n[[" + link + "]]\n=== " + text + "\n")
+    if self.has_tail_policy:
+      self.fd.write("\n[[policy-variant-" + link + "]]\n=== " + text + "\n")
+    else:
+      self.fd.write("\n[[" + link + "]]\n=== " + text + "\n")
 
   def inst_group_prologue(self):
     s = "\n``` C\n"
@@ -225,7 +228,7 @@ class DocGenerator(Generator):
                      lmul_list, decorator_list):
     self.write_title(title, link)
     if self.has_tail_policy and len(decorator_list) == 0:
-      s = "This operation don't have Policy Intrinsic Functions.\n"
+      s = "This operation don't have a policy variant.\n"
       self.write(s)
       return
     super().function_group(template, title, link, op_list, type_list, sew_list,
@@ -262,6 +265,13 @@ class OverloadedDocGenerator(DocGenerator):
   """
   Derived generator for documents that collects overloaded function definitions
   """
+
+  def write_title(self, text, link):
+    if self.has_tail_policy:
+      self.fd.write("\n[[policy-variant-overloaded" + link + "]]\n=== " + text +
+                    "\n")
+    else:
+      self.fd.write("\n[[overloaded-" + link + "]]\n=== " + text + "\n")
 
   def func(self, inst_info, name, return_type, **kwargs):
     func_name = Generator.func_name(name)
