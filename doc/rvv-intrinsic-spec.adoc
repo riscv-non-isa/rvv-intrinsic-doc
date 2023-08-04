@@ -449,7 +449,22 @@ The full list of types is attached in the Appendix.
 [[chapter-pseudo-instruction]]
 == Pseudo instructions
 
-The intrinsics provide extra utility functions to help users manipulate across the RVV intrinsic types. These functions are called "pseudo intrinsics. These pseudo intrinsics do not represent any real instructions.
+The intrinsics provide extra utility functions to help users manipulate across the RVV intrinsic types. These functions are called "pseudo intrinsics". These pseudo intrinsics do not represent any real instructions.
+
+[[pseudo-vsetvl-vsetvlmax]]
+=== `vsetvl` / `vsetvlmax`
+
+[[pseudo-vreinterpret]]
+=== `vreinterpret`
+
+[[pseudo-vundefined]]
+=== `vundefined`
+
+[[pseudo-vget-vset]]
+=== `vget` / `vset`
+
+[[pseudo-vlmul_trunc-vlmul_ext]]
+=== `vlmul_trunc` / `vlmul_ext`
 
 == Programming Notes
 
