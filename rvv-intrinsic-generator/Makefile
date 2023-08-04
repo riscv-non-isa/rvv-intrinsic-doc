@@ -98,7 +98,7 @@ endef
 # $(4): Additional flags
 define gen_docs
 	mkdir -p $(1)
-	rm $(1)/$(2) -rf
+	rm -rf $(1)/$(2)
 	mkdir -p $(1)/$(2)
 	$(PY3) -m $(MAIN) --gen $(3) \
 		--out $(1)/$(2) $(4) \
@@ -106,7 +106,7 @@ define gen_docs
 endef
 
 define gen_tests
-	rm $(1)/*.c -f
+	rm -f $(1)/*.c
 	$(PY3) -m $(MAIN) --gen $(2) \
 		--out $(1) $(3) \
 		$(TRIGGER_VENDOR_INST) $(TRIGGER_SKIP_DEFAULT_INST)
