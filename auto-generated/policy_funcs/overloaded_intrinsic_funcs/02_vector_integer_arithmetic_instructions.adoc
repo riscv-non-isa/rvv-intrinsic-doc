@@ -1947,6 +1947,135 @@ vuint64m8_t __riscv_vwsubu_wv_mu (vbool8_t mask, vuint64m8_t maskedoff, vuint64m
 vuint64m8_t __riscv_vwsubu_wx_mu (vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t op1, uint32_t op2, size_t vl);
 ```
 
+[[policy-variant-overloadedvector-integer-widening]]
+=== Vector Integer Widening Intrinsics
+
+``` C
+vint16mf4_t __riscv_vwcvt_x_tu (vint16mf4_t maskedoff, vint8mf8_t src, size_t vl);
+vint16mf2_t __riscv_vwcvt_x_tu (vint16mf2_t maskedoff, vint8mf4_t src, size_t vl);
+vint16m1_t __riscv_vwcvt_x_tu (vint16m1_t maskedoff, vint8mf2_t src, size_t vl);
+vint16m2_t __riscv_vwcvt_x_tu (vint16m2_t maskedoff, vint8m1_t src, size_t vl);
+vint16m4_t __riscv_vwcvt_x_tu (vint16m4_t maskedoff, vint8m2_t src, size_t vl);
+vint16m8_t __riscv_vwcvt_x_tu (vint16m8_t maskedoff, vint8m4_t src, size_t vl);
+vuint16mf4_t __riscv_vwcvtu_x_tu (vuint16mf4_t maskedoff, vuint8mf8_t src, size_t vl);
+vuint16mf2_t __riscv_vwcvtu_x_tu (vuint16mf2_t maskedoff, vuint8mf4_t src, size_t vl);
+vuint16m1_t __riscv_vwcvtu_x_tu (vuint16m1_t maskedoff, vuint8mf2_t src, size_t vl);
+vuint16m2_t __riscv_vwcvtu_x_tu (vuint16m2_t maskedoff, vuint8m1_t src, size_t vl);
+vuint16m4_t __riscv_vwcvtu_x_tu (vuint16m4_t maskedoff, vuint8m2_t src, size_t vl);
+vuint16m8_t __riscv_vwcvtu_x_tu (vuint16m8_t maskedoff, vuint8m4_t src, size_t vl);
+vint32mf2_t __riscv_vwcvt_x_tu (vint32mf2_t maskedoff, vint16mf4_t src, size_t vl);
+vint32m1_t __riscv_vwcvt_x_tu (vint32m1_t maskedoff, vint16mf2_t src, size_t vl);
+vint32m2_t __riscv_vwcvt_x_tu (vint32m2_t maskedoff, vint16m1_t src, size_t vl);
+vint32m4_t __riscv_vwcvt_x_tu (vint32m4_t maskedoff, vint16m2_t src, size_t vl);
+vint32m8_t __riscv_vwcvt_x_tu (vint32m8_t maskedoff, vint16m4_t src, size_t vl);
+vuint32mf2_t __riscv_vwcvtu_x_tu (vuint32mf2_t maskedoff, vuint16mf4_t src, size_t vl);
+vuint32m1_t __riscv_vwcvtu_x_tu (vuint32m1_t maskedoff, vuint16mf2_t src, size_t vl);
+vuint32m2_t __riscv_vwcvtu_x_tu (vuint32m2_t maskedoff, vuint16m1_t src, size_t vl);
+vuint32m4_t __riscv_vwcvtu_x_tu (vuint32m4_t maskedoff, vuint16m2_t src, size_t vl);
+vuint32m8_t __riscv_vwcvtu_x_tu (vuint32m8_t maskedoff, vuint16m4_t src, size_t vl);
+vint64m1_t __riscv_vwcvt_x_tu (vint64m1_t maskedoff, vint32mf2_t src, size_t vl);
+vint64m2_t __riscv_vwcvt_x_tu (vint64m2_t maskedoff, vint32m1_t src, size_t vl);
+vint64m4_t __riscv_vwcvt_x_tu (vint64m4_t maskedoff, vint32m2_t src, size_t vl);
+vint64m8_t __riscv_vwcvt_x_tu (vint64m8_t maskedoff, vint32m4_t src, size_t vl);
+vuint64m1_t __riscv_vwcvtu_x_tu (vuint64m1_t maskedoff, vuint32mf2_t src, size_t vl);
+vuint64m2_t __riscv_vwcvtu_x_tu (vuint64m2_t maskedoff, vuint32m1_t src, size_t vl);
+vuint64m4_t __riscv_vwcvtu_x_tu (vuint64m4_t maskedoff, vuint32m2_t src, size_t vl);
+vuint64m8_t __riscv_vwcvtu_x_tu (vuint64m8_t maskedoff, vuint32m4_t src, size_t vl);
+// masked functions
+vint16mf4_t __riscv_vwcvt_x_tum (vbool64_t mask, vint16mf4_t maskedoff, vint8mf8_t src, size_t vl);
+vint16mf2_t __riscv_vwcvt_x_tum (vbool32_t mask, vint16mf2_t maskedoff, vint8mf4_t src, size_t vl);
+vint16m1_t __riscv_vwcvt_x_tum (vbool16_t mask, vint16m1_t maskedoff, vint8mf2_t src, size_t vl);
+vint16m2_t __riscv_vwcvt_x_tum (vbool8_t mask, vint16m2_t maskedoff, vint8m1_t src, size_t vl);
+vint16m4_t __riscv_vwcvt_x_tum (vbool4_t mask, vint16m4_t maskedoff, vint8m2_t src, size_t vl);
+vint16m8_t __riscv_vwcvt_x_tum (vbool2_t mask, vint16m8_t maskedoff, vint8m4_t src, size_t vl);
+vuint16mf4_t __riscv_vwcvtu_x_tum (vbool64_t mask, vuint16mf4_t maskedoff, vuint8mf8_t src, size_t vl);
+vuint16mf2_t __riscv_vwcvtu_x_tum (vbool32_t mask, vuint16mf2_t maskedoff, vuint8mf4_t src, size_t vl);
+vuint16m1_t __riscv_vwcvtu_x_tum (vbool16_t mask, vuint16m1_t maskedoff, vuint8mf2_t src, size_t vl);
+vuint16m2_t __riscv_vwcvtu_x_tum (vbool8_t mask, vuint16m2_t maskedoff, vuint8m1_t src, size_t vl);
+vuint16m4_t __riscv_vwcvtu_x_tum (vbool4_t mask, vuint16m4_t maskedoff, vuint8m2_t src, size_t vl);
+vuint16m8_t __riscv_vwcvtu_x_tum (vbool2_t mask, vuint16m8_t maskedoff, vuint8m4_t src, size_t vl);
+vint32mf2_t __riscv_vwcvt_x_tum (vbool64_t mask, vint32mf2_t maskedoff, vint16mf4_t src, size_t vl);
+vint32m1_t __riscv_vwcvt_x_tum (vbool32_t mask, vint32m1_t maskedoff, vint16mf2_t src, size_t vl);
+vint32m2_t __riscv_vwcvt_x_tum (vbool16_t mask, vint32m2_t maskedoff, vint16m1_t src, size_t vl);
+vint32m4_t __riscv_vwcvt_x_tum (vbool8_t mask, vint32m4_t maskedoff, vint16m2_t src, size_t vl);
+vint32m8_t __riscv_vwcvt_x_tum (vbool4_t mask, vint32m8_t maskedoff, vint16m4_t src, size_t vl);
+vuint32mf2_t __riscv_vwcvtu_x_tum (vbool64_t mask, vuint32mf2_t maskedoff, vuint16mf4_t src, size_t vl);
+vuint32m1_t __riscv_vwcvtu_x_tum (vbool32_t mask, vuint32m1_t maskedoff, vuint16mf2_t src, size_t vl);
+vuint32m2_t __riscv_vwcvtu_x_tum (vbool16_t mask, vuint32m2_t maskedoff, vuint16m1_t src, size_t vl);
+vuint32m4_t __riscv_vwcvtu_x_tum (vbool8_t mask, vuint32m4_t maskedoff, vuint16m2_t src, size_t vl);
+vuint32m8_t __riscv_vwcvtu_x_tum (vbool4_t mask, vuint32m8_t maskedoff, vuint16m4_t src, size_t vl);
+vint64m1_t __riscv_vwcvt_x_tum (vbool64_t mask, vint64m1_t maskedoff, vint32mf2_t src, size_t vl);
+vint64m2_t __riscv_vwcvt_x_tum (vbool32_t mask, vint64m2_t maskedoff, vint32m1_t src, size_t vl);
+vint64m4_t __riscv_vwcvt_x_tum (vbool16_t mask, vint64m4_t maskedoff, vint32m2_t src, size_t vl);
+vint64m8_t __riscv_vwcvt_x_tum (vbool8_t mask, vint64m8_t maskedoff, vint32m4_t src, size_t vl);
+vuint64m1_t __riscv_vwcvtu_x_tum (vbool64_t mask, vuint64m1_t maskedoff, vuint32mf2_t src, size_t vl);
+vuint64m2_t __riscv_vwcvtu_x_tum (vbool32_t mask, vuint64m2_t maskedoff, vuint32m1_t src, size_t vl);
+vuint64m4_t __riscv_vwcvtu_x_tum (vbool16_t mask, vuint64m4_t maskedoff, vuint32m2_t src, size_t vl);
+vuint64m8_t __riscv_vwcvtu_x_tum (vbool8_t mask, vuint64m8_t maskedoff, vuint32m4_t src, size_t vl);
+// masked functions
+vint16mf4_t __riscv_vwcvt_x_tumu (vbool64_t mask, vint16mf4_t maskedoff, vint8mf8_t src, size_t vl);
+vint16mf2_t __riscv_vwcvt_x_tumu (vbool32_t mask, vint16mf2_t maskedoff, vint8mf4_t src, size_t vl);
+vint16m1_t __riscv_vwcvt_x_tumu (vbool16_t mask, vint16m1_t maskedoff, vint8mf2_t src, size_t vl);
+vint16m2_t __riscv_vwcvt_x_tumu (vbool8_t mask, vint16m2_t maskedoff, vint8m1_t src, size_t vl);
+vint16m4_t __riscv_vwcvt_x_tumu (vbool4_t mask, vint16m4_t maskedoff, vint8m2_t src, size_t vl);
+vint16m8_t __riscv_vwcvt_x_tumu (vbool2_t mask, vint16m8_t maskedoff, vint8m4_t src, size_t vl);
+vuint16mf4_t __riscv_vwcvtu_x_tumu (vbool64_t mask, vuint16mf4_t maskedoff, vuint8mf8_t src, size_t vl);
+vuint16mf2_t __riscv_vwcvtu_x_tumu (vbool32_t mask, vuint16mf2_t maskedoff, vuint8mf4_t src, size_t vl);
+vuint16m1_t __riscv_vwcvtu_x_tumu (vbool16_t mask, vuint16m1_t maskedoff, vuint8mf2_t src, size_t vl);
+vuint16m2_t __riscv_vwcvtu_x_tumu (vbool8_t mask, vuint16m2_t maskedoff, vuint8m1_t src, size_t vl);
+vuint16m4_t __riscv_vwcvtu_x_tumu (vbool4_t mask, vuint16m4_t maskedoff, vuint8m2_t src, size_t vl);
+vuint16m8_t __riscv_vwcvtu_x_tumu (vbool2_t mask, vuint16m8_t maskedoff, vuint8m4_t src, size_t vl);
+vint32mf2_t __riscv_vwcvt_x_tumu (vbool64_t mask, vint32mf2_t maskedoff, vint16mf4_t src, size_t vl);
+vint32m1_t __riscv_vwcvt_x_tumu (vbool32_t mask, vint32m1_t maskedoff, vint16mf2_t src, size_t vl);
+vint32m2_t __riscv_vwcvt_x_tumu (vbool16_t mask, vint32m2_t maskedoff, vint16m1_t src, size_t vl);
+vint32m4_t __riscv_vwcvt_x_tumu (vbool8_t mask, vint32m4_t maskedoff, vint16m2_t src, size_t vl);
+vint32m8_t __riscv_vwcvt_x_tumu (vbool4_t mask, vint32m8_t maskedoff, vint16m4_t src, size_t vl);
+vuint32mf2_t __riscv_vwcvtu_x_tumu (vbool64_t mask, vuint32mf2_t maskedoff, vuint16mf4_t src, size_t vl);
+vuint32m1_t __riscv_vwcvtu_x_tumu (vbool32_t mask, vuint32m1_t maskedoff, vuint16mf2_t src, size_t vl);
+vuint32m2_t __riscv_vwcvtu_x_tumu (vbool16_t mask, vuint32m2_t maskedoff, vuint16m1_t src, size_t vl);
+vuint32m4_t __riscv_vwcvtu_x_tumu (vbool8_t mask, vuint32m4_t maskedoff, vuint16m2_t src, size_t vl);
+vuint32m8_t __riscv_vwcvtu_x_tumu (vbool4_t mask, vuint32m8_t maskedoff, vuint16m4_t src, size_t vl);
+vint64m1_t __riscv_vwcvt_x_tumu (vbool64_t mask, vint64m1_t maskedoff, vint32mf2_t src, size_t vl);
+vint64m2_t __riscv_vwcvt_x_tumu (vbool32_t mask, vint64m2_t maskedoff, vint32m1_t src, size_t vl);
+vint64m4_t __riscv_vwcvt_x_tumu (vbool16_t mask, vint64m4_t maskedoff, vint32m2_t src, size_t vl);
+vint64m8_t __riscv_vwcvt_x_tumu (vbool8_t mask, vint64m8_t maskedoff, vint32m4_t src, size_t vl);
+vuint64m1_t __riscv_vwcvtu_x_tumu (vbool64_t mask, vuint64m1_t maskedoff, vuint32mf2_t src, size_t vl);
+vuint64m2_t __riscv_vwcvtu_x_tumu (vbool32_t mask, vuint64m2_t maskedoff, vuint32m1_t src, size_t vl);
+vuint64m4_t __riscv_vwcvtu_x_tumu (vbool16_t mask, vuint64m4_t maskedoff, vuint32m2_t src, size_t vl);
+vuint64m8_t __riscv_vwcvtu_x_tumu (vbool8_t mask, vuint64m8_t maskedoff, vuint32m4_t src, size_t vl);
+// masked functions
+vint16mf4_t __riscv_vwcvt_x_mu (vbool64_t mask, vint16mf4_t maskedoff, vint8mf8_t src, size_t vl);
+vint16mf2_t __riscv_vwcvt_x_mu (vbool32_t mask, vint16mf2_t maskedoff, vint8mf4_t src, size_t vl);
+vint16m1_t __riscv_vwcvt_x_mu (vbool16_t mask, vint16m1_t maskedoff, vint8mf2_t src, size_t vl);
+vint16m2_t __riscv_vwcvt_x_mu (vbool8_t mask, vint16m2_t maskedoff, vint8m1_t src, size_t vl);
+vint16m4_t __riscv_vwcvt_x_mu (vbool4_t mask, vint16m4_t maskedoff, vint8m2_t src, size_t vl);
+vint16m8_t __riscv_vwcvt_x_mu (vbool2_t mask, vint16m8_t maskedoff, vint8m4_t src, size_t vl);
+vuint16mf4_t __riscv_vwcvtu_x_mu (vbool64_t mask, vuint16mf4_t maskedoff, vuint8mf8_t src, size_t vl);
+vuint16mf2_t __riscv_vwcvtu_x_mu (vbool32_t mask, vuint16mf2_t maskedoff, vuint8mf4_t src, size_t vl);
+vuint16m1_t __riscv_vwcvtu_x_mu (vbool16_t mask, vuint16m1_t maskedoff, vuint8mf2_t src, size_t vl);
+vuint16m2_t __riscv_vwcvtu_x_mu (vbool8_t mask, vuint16m2_t maskedoff, vuint8m1_t src, size_t vl);
+vuint16m4_t __riscv_vwcvtu_x_mu (vbool4_t mask, vuint16m4_t maskedoff, vuint8m2_t src, size_t vl);
+vuint16m8_t __riscv_vwcvtu_x_mu (vbool2_t mask, vuint16m8_t maskedoff, vuint8m4_t src, size_t vl);
+vint32mf2_t __riscv_vwcvt_x_mu (vbool64_t mask, vint32mf2_t maskedoff, vint16mf4_t src, size_t vl);
+vint32m1_t __riscv_vwcvt_x_mu (vbool32_t mask, vint32m1_t maskedoff, vint16mf2_t src, size_t vl);
+vint32m2_t __riscv_vwcvt_x_mu (vbool16_t mask, vint32m2_t maskedoff, vint16m1_t src, size_t vl);
+vint32m4_t __riscv_vwcvt_x_mu (vbool8_t mask, vint32m4_t maskedoff, vint16m2_t src, size_t vl);
+vint32m8_t __riscv_vwcvt_x_mu (vbool4_t mask, vint32m8_t maskedoff, vint16m4_t src, size_t vl);
+vuint32mf2_t __riscv_vwcvtu_x_mu (vbool64_t mask, vuint32mf2_t maskedoff, vuint16mf4_t src, size_t vl);
+vuint32m1_t __riscv_vwcvtu_x_mu (vbool32_t mask, vuint32m1_t maskedoff, vuint16mf2_t src, size_t vl);
+vuint32m2_t __riscv_vwcvtu_x_mu (vbool16_t mask, vuint32m2_t maskedoff, vuint16m1_t src, size_t vl);
+vuint32m4_t __riscv_vwcvtu_x_mu (vbool8_t mask, vuint32m4_t maskedoff, vuint16m2_t src, size_t vl);
+vuint32m8_t __riscv_vwcvtu_x_mu (vbool4_t mask, vuint32m8_t maskedoff, vuint16m4_t src, size_t vl);
+vint64m1_t __riscv_vwcvt_x_mu (vbool64_t mask, vint64m1_t maskedoff, vint32mf2_t src, size_t vl);
+vint64m2_t __riscv_vwcvt_x_mu (vbool32_t mask, vint64m2_t maskedoff, vint32m1_t src, size_t vl);
+vint64m4_t __riscv_vwcvt_x_mu (vbool16_t mask, vint64m4_t maskedoff, vint32m2_t src, size_t vl);
+vint64m8_t __riscv_vwcvt_x_mu (vbool8_t mask, vint64m8_t maskedoff, vint32m4_t src, size_t vl);
+vuint64m1_t __riscv_vwcvtu_x_mu (vbool64_t mask, vuint64m1_t maskedoff, vuint32mf2_t src, size_t vl);
+vuint64m2_t __riscv_vwcvtu_x_mu (vbool32_t mask, vuint64m2_t maskedoff, vuint32m1_t src, size_t vl);
+vuint64m4_t __riscv_vwcvtu_x_mu (vbool16_t mask, vuint64m4_t maskedoff, vuint32m2_t src, size_t vl);
+vuint64m8_t __riscv_vwcvtu_x_mu (vbool8_t mask, vuint64m8_t maskedoff, vuint32m4_t src, size_t vl);
+```
+
 [[policy-variant-overloadedvector-integer-extension]]
 === Vector Integer Extension Intrinsics
 
@@ -4576,6 +4705,135 @@ vuint32m2_t __riscv_vnsrl_mu (vbool16_t mask, vuint32m2_t maskedoff, vuint64m4_t
 vuint32m2_t __riscv_vnsrl_mu (vbool16_t mask, vuint32m2_t maskedoff, vuint64m4_t op1, size_t shift, size_t vl);
 vuint32m4_t __riscv_vnsrl_mu (vbool8_t mask, vuint32m4_t maskedoff, vuint64m8_t op1, vuint32m4_t shift, size_t vl);
 vuint32m4_t __riscv_vnsrl_mu (vbool8_t mask, vuint32m4_t maskedoff, vuint64m8_t op1, size_t shift, size_t vl);
+```
+
+[[policy-variant-overloadedvector-integer-narrowing]]
+=== Vector Integer Narrowing Intrinsics
+
+``` C
+vint8mf8_t __riscv_vncvt_x_tu (vint8mf8_t maskedoff, vint16mf4_t src, size_t vl);
+vint8mf4_t __riscv_vncvt_x_tu (vint8mf4_t maskedoff, vint16mf2_t src, size_t vl);
+vint8mf2_t __riscv_vncvt_x_tu (vint8mf2_t maskedoff, vint16m1_t src, size_t vl);
+vint8m1_t __riscv_vncvt_x_tu (vint8m1_t maskedoff, vint16m2_t src, size_t vl);
+vint8m2_t __riscv_vncvt_x_tu (vint8m2_t maskedoff, vint16m4_t src, size_t vl);
+vint8m4_t __riscv_vncvt_x_tu (vint8m4_t maskedoff, vint16m8_t src, size_t vl);
+vuint8mf8_t __riscv_vncvt_x_tu (vuint8mf8_t maskedoff, vuint16mf4_t src, size_t vl);
+vuint8mf4_t __riscv_vncvt_x_tu (vuint8mf4_t maskedoff, vuint16mf2_t src, size_t vl);
+vuint8mf2_t __riscv_vncvt_x_tu (vuint8mf2_t maskedoff, vuint16m1_t src, size_t vl);
+vuint8m1_t __riscv_vncvt_x_tu (vuint8m1_t maskedoff, vuint16m2_t src, size_t vl);
+vuint8m2_t __riscv_vncvt_x_tu (vuint8m2_t maskedoff, vuint16m4_t src, size_t vl);
+vuint8m4_t __riscv_vncvt_x_tu (vuint8m4_t maskedoff, vuint16m8_t src, size_t vl);
+vint16mf4_t __riscv_vncvt_x_tu (vint16mf4_t maskedoff, vint32mf2_t src, size_t vl);
+vint16mf2_t __riscv_vncvt_x_tu (vint16mf2_t maskedoff, vint32m1_t src, size_t vl);
+vint16m1_t __riscv_vncvt_x_tu (vint16m1_t maskedoff, vint32m2_t src, size_t vl);
+vint16m2_t __riscv_vncvt_x_tu (vint16m2_t maskedoff, vint32m4_t src, size_t vl);
+vint16m4_t __riscv_vncvt_x_tu (vint16m4_t maskedoff, vint32m8_t src, size_t vl);
+vuint16mf4_t __riscv_vncvt_x_tu (vuint16mf4_t maskedoff, vuint32mf2_t src, size_t vl);
+vuint16mf2_t __riscv_vncvt_x_tu (vuint16mf2_t maskedoff, vuint32m1_t src, size_t vl);
+vuint16m1_t __riscv_vncvt_x_tu (vuint16m1_t maskedoff, vuint32m2_t src, size_t vl);
+vuint16m2_t __riscv_vncvt_x_tu (vuint16m2_t maskedoff, vuint32m4_t src, size_t vl);
+vuint16m4_t __riscv_vncvt_x_tu (vuint16m4_t maskedoff, vuint32m8_t src, size_t vl);
+vint32mf2_t __riscv_vncvt_x_tu (vint32mf2_t maskedoff, vint64m1_t src, size_t vl);
+vint32m1_t __riscv_vncvt_x_tu (vint32m1_t maskedoff, vint64m2_t src, size_t vl);
+vint32m2_t __riscv_vncvt_x_tu (vint32m2_t maskedoff, vint64m4_t src, size_t vl);
+vint32m4_t __riscv_vncvt_x_tu (vint32m4_t maskedoff, vint64m8_t src, size_t vl);
+vuint32mf2_t __riscv_vncvt_x_tu (vuint32mf2_t maskedoff, vuint64m1_t src, size_t vl);
+vuint32m1_t __riscv_vncvt_x_tu (vuint32m1_t maskedoff, vuint64m2_t src, size_t vl);
+vuint32m2_t __riscv_vncvt_x_tu (vuint32m2_t maskedoff, vuint64m4_t src, size_t vl);
+vuint32m4_t __riscv_vncvt_x_tu (vuint32m4_t maskedoff, vuint64m8_t src, size_t vl);
+// masked functions
+vint8mf8_t __riscv_vncvt_x_tum (vbool64_t mask, vint8mf8_t maskedoff, vint16mf4_t src, size_t vl);
+vint8mf4_t __riscv_vncvt_x_tum (vbool32_t mask, vint8mf4_t maskedoff, vint16mf2_t src, size_t vl);
+vint8mf2_t __riscv_vncvt_x_tum (vbool16_t mask, vint8mf2_t maskedoff, vint16m1_t src, size_t vl);
+vint8m1_t __riscv_vncvt_x_tum (vbool8_t mask, vint8m1_t maskedoff, vint16m2_t src, size_t vl);
+vint8m2_t __riscv_vncvt_x_tum (vbool4_t mask, vint8m2_t maskedoff, vint16m4_t src, size_t vl);
+vint8m4_t __riscv_vncvt_x_tum (vbool2_t mask, vint8m4_t maskedoff, vint16m8_t src, size_t vl);
+vuint8mf8_t __riscv_vncvt_x_tum (vbool64_t mask, vuint8mf8_t maskedoff, vuint16mf4_t src, size_t vl);
+vuint8mf4_t __riscv_vncvt_x_tum (vbool32_t mask, vuint8mf4_t maskedoff, vuint16mf2_t src, size_t vl);
+vuint8mf2_t __riscv_vncvt_x_tum (vbool16_t mask, vuint8mf2_t maskedoff, vuint16m1_t src, size_t vl);
+vuint8m1_t __riscv_vncvt_x_tum (vbool8_t mask, vuint8m1_t maskedoff, vuint16m2_t src, size_t vl);
+vuint8m2_t __riscv_vncvt_x_tum (vbool4_t mask, vuint8m2_t maskedoff, vuint16m4_t src, size_t vl);
+vuint8m4_t __riscv_vncvt_x_tum (vbool2_t mask, vuint8m4_t maskedoff, vuint16m8_t src, size_t vl);
+vint16mf4_t __riscv_vncvt_x_tum (vbool64_t mask, vint16mf4_t maskedoff, vint32mf2_t src, size_t vl);
+vint16mf2_t __riscv_vncvt_x_tum (vbool32_t mask, vint16mf2_t maskedoff, vint32m1_t src, size_t vl);
+vint16m1_t __riscv_vncvt_x_tum (vbool16_t mask, vint16m1_t maskedoff, vint32m2_t src, size_t vl);
+vint16m2_t __riscv_vncvt_x_tum (vbool8_t mask, vint16m2_t maskedoff, vint32m4_t src, size_t vl);
+vint16m4_t __riscv_vncvt_x_tum (vbool4_t mask, vint16m4_t maskedoff, vint32m8_t src, size_t vl);
+vuint16mf4_t __riscv_vncvt_x_tum (vbool64_t mask, vuint16mf4_t maskedoff, vuint32mf2_t src, size_t vl);
+vuint16mf2_t __riscv_vncvt_x_tum (vbool32_t mask, vuint16mf2_t maskedoff, vuint32m1_t src, size_t vl);
+vuint16m1_t __riscv_vncvt_x_tum (vbool16_t mask, vuint16m1_t maskedoff, vuint32m2_t src, size_t vl);
+vuint16m2_t __riscv_vncvt_x_tum (vbool8_t mask, vuint16m2_t maskedoff, vuint32m4_t src, size_t vl);
+vuint16m4_t __riscv_vncvt_x_tum (vbool4_t mask, vuint16m4_t maskedoff, vuint32m8_t src, size_t vl);
+vint32mf2_t __riscv_vncvt_x_tum (vbool64_t mask, vint32mf2_t maskedoff, vint64m1_t src, size_t vl);
+vint32m1_t __riscv_vncvt_x_tum (vbool32_t mask, vint32m1_t maskedoff, vint64m2_t src, size_t vl);
+vint32m2_t __riscv_vncvt_x_tum (vbool16_t mask, vint32m2_t maskedoff, vint64m4_t src, size_t vl);
+vint32m4_t __riscv_vncvt_x_tum (vbool8_t mask, vint32m4_t maskedoff, vint64m8_t src, size_t vl);
+vuint32mf2_t __riscv_vncvt_x_tum (vbool64_t mask, vuint32mf2_t maskedoff, vuint64m1_t src, size_t vl);
+vuint32m1_t __riscv_vncvt_x_tum (vbool32_t mask, vuint32m1_t maskedoff, vuint64m2_t src, size_t vl);
+vuint32m2_t __riscv_vncvt_x_tum (vbool16_t mask, vuint32m2_t maskedoff, vuint64m4_t src, size_t vl);
+vuint32m4_t __riscv_vncvt_x_tum (vbool8_t mask, vuint32m4_t maskedoff, vuint64m8_t src, size_t vl);
+// masked functions
+vint8mf8_t __riscv_vncvt_x_tumu (vbool64_t mask, vint8mf8_t maskedoff, vint16mf4_t src, size_t vl);
+vint8mf4_t __riscv_vncvt_x_tumu (vbool32_t mask, vint8mf4_t maskedoff, vint16mf2_t src, size_t vl);
+vint8mf2_t __riscv_vncvt_x_tumu (vbool16_t mask, vint8mf2_t maskedoff, vint16m1_t src, size_t vl);
+vint8m1_t __riscv_vncvt_x_tumu (vbool8_t mask, vint8m1_t maskedoff, vint16m2_t src, size_t vl);
+vint8m2_t __riscv_vncvt_x_tumu (vbool4_t mask, vint8m2_t maskedoff, vint16m4_t src, size_t vl);
+vint8m4_t __riscv_vncvt_x_tumu (vbool2_t mask, vint8m4_t maskedoff, vint16m8_t src, size_t vl);
+vuint8mf8_t __riscv_vncvt_x_tumu (vbool64_t mask, vuint8mf8_t maskedoff, vuint16mf4_t src, size_t vl);
+vuint8mf4_t __riscv_vncvt_x_tumu (vbool32_t mask, vuint8mf4_t maskedoff, vuint16mf2_t src, size_t vl);
+vuint8mf2_t __riscv_vncvt_x_tumu (vbool16_t mask, vuint8mf2_t maskedoff, vuint16m1_t src, size_t vl);
+vuint8m1_t __riscv_vncvt_x_tumu (vbool8_t mask, vuint8m1_t maskedoff, vuint16m2_t src, size_t vl);
+vuint8m2_t __riscv_vncvt_x_tumu (vbool4_t mask, vuint8m2_t maskedoff, vuint16m4_t src, size_t vl);
+vuint8m4_t __riscv_vncvt_x_tumu (vbool2_t mask, vuint8m4_t maskedoff, vuint16m8_t src, size_t vl);
+vint16mf4_t __riscv_vncvt_x_tumu (vbool64_t mask, vint16mf4_t maskedoff, vint32mf2_t src, size_t vl);
+vint16mf2_t __riscv_vncvt_x_tumu (vbool32_t mask, vint16mf2_t maskedoff, vint32m1_t src, size_t vl);
+vint16m1_t __riscv_vncvt_x_tumu (vbool16_t mask, vint16m1_t maskedoff, vint32m2_t src, size_t vl);
+vint16m2_t __riscv_vncvt_x_tumu (vbool8_t mask, vint16m2_t maskedoff, vint32m4_t src, size_t vl);
+vint16m4_t __riscv_vncvt_x_tumu (vbool4_t mask, vint16m4_t maskedoff, vint32m8_t src, size_t vl);
+vuint16mf4_t __riscv_vncvt_x_tumu (vbool64_t mask, vuint16mf4_t maskedoff, vuint32mf2_t src, size_t vl);
+vuint16mf2_t __riscv_vncvt_x_tumu (vbool32_t mask, vuint16mf2_t maskedoff, vuint32m1_t src, size_t vl);
+vuint16m1_t __riscv_vncvt_x_tumu (vbool16_t mask, vuint16m1_t maskedoff, vuint32m2_t src, size_t vl);
+vuint16m2_t __riscv_vncvt_x_tumu (vbool8_t mask, vuint16m2_t maskedoff, vuint32m4_t src, size_t vl);
+vuint16m4_t __riscv_vncvt_x_tumu (vbool4_t mask, vuint16m4_t maskedoff, vuint32m8_t src, size_t vl);
+vint32mf2_t __riscv_vncvt_x_tumu (vbool64_t mask, vint32mf2_t maskedoff, vint64m1_t src, size_t vl);
+vint32m1_t __riscv_vncvt_x_tumu (vbool32_t mask, vint32m1_t maskedoff, vint64m2_t src, size_t vl);
+vint32m2_t __riscv_vncvt_x_tumu (vbool16_t mask, vint32m2_t maskedoff, vint64m4_t src, size_t vl);
+vint32m4_t __riscv_vncvt_x_tumu (vbool8_t mask, vint32m4_t maskedoff, vint64m8_t src, size_t vl);
+vuint32mf2_t __riscv_vncvt_x_tumu (vbool64_t mask, vuint32mf2_t maskedoff, vuint64m1_t src, size_t vl);
+vuint32m1_t __riscv_vncvt_x_tumu (vbool32_t mask, vuint32m1_t maskedoff, vuint64m2_t src, size_t vl);
+vuint32m2_t __riscv_vncvt_x_tumu (vbool16_t mask, vuint32m2_t maskedoff, vuint64m4_t src, size_t vl);
+vuint32m4_t __riscv_vncvt_x_tumu (vbool8_t mask, vuint32m4_t maskedoff, vuint64m8_t src, size_t vl);
+// masked functions
+vint8mf8_t __riscv_vncvt_x_mu (vbool64_t mask, vint8mf8_t maskedoff, vint16mf4_t src, size_t vl);
+vint8mf4_t __riscv_vncvt_x_mu (vbool32_t mask, vint8mf4_t maskedoff, vint16mf2_t src, size_t vl);
+vint8mf2_t __riscv_vncvt_x_mu (vbool16_t mask, vint8mf2_t maskedoff, vint16m1_t src, size_t vl);
+vint8m1_t __riscv_vncvt_x_mu (vbool8_t mask, vint8m1_t maskedoff, vint16m2_t src, size_t vl);
+vint8m2_t __riscv_vncvt_x_mu (vbool4_t mask, vint8m2_t maskedoff, vint16m4_t src, size_t vl);
+vint8m4_t __riscv_vncvt_x_mu (vbool2_t mask, vint8m4_t maskedoff, vint16m8_t src, size_t vl);
+vuint8mf8_t __riscv_vncvt_x_mu (vbool64_t mask, vuint8mf8_t maskedoff, vuint16mf4_t src, size_t vl);
+vuint8mf4_t __riscv_vncvt_x_mu (vbool32_t mask, vuint8mf4_t maskedoff, vuint16mf2_t src, size_t vl);
+vuint8mf2_t __riscv_vncvt_x_mu (vbool16_t mask, vuint8mf2_t maskedoff, vuint16m1_t src, size_t vl);
+vuint8m1_t __riscv_vncvt_x_mu (vbool8_t mask, vuint8m1_t maskedoff, vuint16m2_t src, size_t vl);
+vuint8m2_t __riscv_vncvt_x_mu (vbool4_t mask, vuint8m2_t maskedoff, vuint16m4_t src, size_t vl);
+vuint8m4_t __riscv_vncvt_x_mu (vbool2_t mask, vuint8m4_t maskedoff, vuint16m8_t src, size_t vl);
+vint16mf4_t __riscv_vncvt_x_mu (vbool64_t mask, vint16mf4_t maskedoff, vint32mf2_t src, size_t vl);
+vint16mf2_t __riscv_vncvt_x_mu (vbool32_t mask, vint16mf2_t maskedoff, vint32m1_t src, size_t vl);
+vint16m1_t __riscv_vncvt_x_mu (vbool16_t mask, vint16m1_t maskedoff, vint32m2_t src, size_t vl);
+vint16m2_t __riscv_vncvt_x_mu (vbool8_t mask, vint16m2_t maskedoff, vint32m4_t src, size_t vl);
+vint16m4_t __riscv_vncvt_x_mu (vbool4_t mask, vint16m4_t maskedoff, vint32m8_t src, size_t vl);
+vuint16mf4_t __riscv_vncvt_x_mu (vbool64_t mask, vuint16mf4_t maskedoff, vuint32mf2_t src, size_t vl);
+vuint16mf2_t __riscv_vncvt_x_mu (vbool32_t mask, vuint16mf2_t maskedoff, vuint32m1_t src, size_t vl);
+vuint16m1_t __riscv_vncvt_x_mu (vbool16_t mask, vuint16m1_t maskedoff, vuint32m2_t src, size_t vl);
+vuint16m2_t __riscv_vncvt_x_mu (vbool8_t mask, vuint16m2_t maskedoff, vuint32m4_t src, size_t vl);
+vuint16m4_t __riscv_vncvt_x_mu (vbool4_t mask, vuint16m4_t maskedoff, vuint32m8_t src, size_t vl);
+vint32mf2_t __riscv_vncvt_x_mu (vbool64_t mask, vint32mf2_t maskedoff, vint64m1_t src, size_t vl);
+vint32m1_t __riscv_vncvt_x_mu (vbool32_t mask, vint32m1_t maskedoff, vint64m2_t src, size_t vl);
+vint32m2_t __riscv_vncvt_x_mu (vbool16_t mask, vint32m2_t maskedoff, vint64m4_t src, size_t vl);
+vint32m4_t __riscv_vncvt_x_mu (vbool8_t mask, vint32m4_t maskedoff, vint64m8_t src, size_t vl);
+vuint32mf2_t __riscv_vncvt_x_mu (vbool64_t mask, vuint32mf2_t maskedoff, vuint64m1_t src, size_t vl);
+vuint32m1_t __riscv_vncvt_x_mu (vbool32_t mask, vuint32m1_t maskedoff, vuint64m2_t src, size_t vl);
+vuint32m2_t __riscv_vncvt_x_mu (vbool16_t mask, vuint32m2_t maskedoff, vuint64m4_t src, size_t vl);
+vuint32m4_t __riscv_vncvt_x_mu (vbool8_t mask, vuint32m4_t maskedoff, vuint64m8_t src, size_t vl);
 ```
 
 [[policy-variant-overloadedvector-integer-comparison]]
