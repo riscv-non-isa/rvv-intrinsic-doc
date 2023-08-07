@@ -1,0 +1,90 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+  release:
+    types:
+      - created
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install packages
+        run: sudo apt-get update && sudo apt-get install -y make ruby
+
+      - name: Install gems
+        run: sudo gem install asciidoctor asciidoctor-pdf
+
+      - name: Build
+        run: make -C doc build
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: v-intrinsic-spec.pdf
+          path: doc/v-intrinsic-spec.pdf
+
+  draft-release:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: v-intrinsic-spec.pdf
+          path: ./doc/
+
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date -u +'%Y%m%d')"
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: draft-${{ steps.date.outputs.date }}-${{ github.sha }}
+          release_name: Draft release ${{ steps.date.outputs.date }}
+          body: Latest snapshot (${{ github.sha }})
+          prerelease: true
+
+      - name: Upload release asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: doc/v-intrinsic-spec.pdf
+          asset_name: v-intrinsic-spec.pdf
+          asset_content_type: application/pdf
+
+  release:
+    if: github.event_name == 'release' && github.event.action == 'created'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: v-intrinsic-spec.pdf
+          path: ./doc
+
+      - name: Upload release asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: doc/v-intrinsic-spec.pdf
+          asset_name: v-intrinsic-spec.pdf
+          asset_content_type: application/pdf
