@@ -44,6 +44,8 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
 // masked functions
 // masked functions
 // masked functions
+// masked functions
+// masked functions
 #define vmerge(mask, op1, op2, vl) __riscv_vmerge((op1), (op2), (mask), (vl))
 // masked functions
 // masked functions
@@ -299,6 +301,8 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
 #define vwsubu_vx(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, __riscv_vwsubu_vx_tumu, 4, __riscv_vwsubu_vx, 2, 1)(__VA_ARGS__)
 #define vwsubu_wv(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, __riscv_vwsubu_wv_tumu, 4, __riscv_vwsubu_wv, 2, 1)(__VA_ARGS__)
 #define vwsubu_wx(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, __riscv_vwsubu_wx_tumu, 4, __riscv_vwsubu_wx, 2, 1)(__VA_ARGS__)
+#define vwcvt_x(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vwcvt_x_tumu, 3, __riscv_vwcvt_x, 1)(__VA_ARGS__)
+#define vwcvtu_x(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vwcvtu_x_tumu, 3, __riscv_vwcvtu_x, 1)(__VA_ARGS__)
 #define vsext_vf2(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vsext_vf2_tumu, 3, __riscv_vsext_vf2, 1)(__VA_ARGS__)
 #define vsext_vf4(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vsext_vf4_tumu, 3, __riscv_vsext_vf4, 1)(__VA_ARGS__)
 #define vsext_vf8(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vsext_vf8_tumu, 3, __riscv_vsext_vf8, 1)(__VA_ARGS__)
@@ -318,6 +322,7 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
 #define vsrl(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, __riscv_vsrl_tumu, 4, __riscv_vsrl, 2, 1)(__VA_ARGS__)
 #define vnsra(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, __riscv_vnsra_tumu, 4, __riscv_vnsra, 2, 1)(__VA_ARGS__)
 #define vnsrl(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, __riscv_vnsrl_tumu, 4, __riscv_vnsrl, 2, 1)(__VA_ARGS__)
+#define vncvt_x(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vncvt_x_tumu, 3, __riscv_vncvt_x, 1)(__VA_ARGS__)
 #define vmseq(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, __riscv_vmseq_mu, 4, __riscv_vmseq, 2, 1)(__VA_ARGS__)
 #define vmsne(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, __riscv_vmsne_mu, 4, __riscv_vmsne, 2, 1)(__VA_ARGS__)
 #define vmslt(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, __riscv_vmslt_mu, 4, __riscv_vmslt, 2, 1)(__VA_ARGS__)
@@ -414,8 +419,6 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
 #define vfcvt_xu(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vfcvt_xu_tumu, 3, __riscv_vfcvt_xu, 1)(__VA_ARGS__)
 #define vfcvt_rtz_xu(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vfcvt_rtz_xu_tumu, 3, __riscv_vfcvt_rtz_xu, 1)(__VA_ARGS__)
 #define vfcvt_f(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vfcvt_f_tumu, 3, __riscv_vfcvt_f, 1)(__VA_ARGS__)
-#define vwcvt_x(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vwcvt_x_tumu, 3, __riscv_vwcvt_x, 1)(__VA_ARGS__)
-#define vwcvtu_x(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vwcvtu_x_tumu, 3, __riscv_vwcvtu_x, 1)(__VA_ARGS__)
 #define vfwcvt_f(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vfwcvt_f_tumu, 3, __riscv_vfwcvt_f, 1)(__VA_ARGS__)
 #define vfwcvt_x(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vfwcvt_x_tumu, 3, __riscv_vfwcvt_x, 1)(__VA_ARGS__)
 #define vfwcvt_rtz_x(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vfwcvt_rtz_x_tumu, 3, __riscv_vfwcvt_rtz_x, 1)(__VA_ARGS__)
@@ -423,7 +426,6 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
 #define vfwcvt_rtz_xu(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vfwcvt_rtz_xu_tumu, 3, __riscv_vfwcvt_rtz_xu, 1)(__VA_ARGS__)
 #define vfncvt_x(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vfncvt_x_tumu, 3, __riscv_vfncvt_x, 1)(__VA_ARGS__)
 #define vfncvt_rtz_x(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vfncvt_rtz_x_tumu, 3, __riscv_vfncvt_rtz_x, 1)(__VA_ARGS__)
-#define vncvt_x(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vncvt_x_tumu, 3, __riscv_vncvt_x, 1)(__VA_ARGS__)
 #define vfncvt_xu(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vfncvt_xu_tumu, 3, __riscv_vfncvt_xu, 1)(__VA_ARGS__)
 #define vfncvt_rtz_xu(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vfncvt_rtz_xu_tumu, 3, __riscv_vfncvt_rtz_xu, 1)(__VA_ARGS__)
 #define vfncvt_f(...) _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, __riscv_vfncvt_f_tumu, 3, __riscv_vfncvt_f, 1)(__VA_ARGS__)
