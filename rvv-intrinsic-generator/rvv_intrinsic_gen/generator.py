@@ -228,7 +228,7 @@ class DocGenerator(Generator):
                      lmul_list, decorator_list):
     self.write_title(title, link)
     if self.has_tail_policy and len(decorator_list) == 0:
-      s = "This operation don't have a policy variant.\n"
+      s = "Intrinsics here don't have a policy variant.\n"
       self.write(s)
       return
     super().function_group(template, title, link, op_list, type_list, sew_list,
