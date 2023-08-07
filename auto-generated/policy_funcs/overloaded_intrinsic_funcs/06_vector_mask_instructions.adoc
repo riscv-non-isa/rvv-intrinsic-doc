@@ -3,15 +3,15 @@
 
 [[policy-variant-overloadedvector-mask-register-logical]]
 === Vector Mask-Register Logical
-This operation don't have a policy variant.
+Intrinsics here don't have a policy variant.
 
 [[policy-variant-overloadedvector-count-population-in-mask-vcpopm]]
 === Vector count population in mask `vcpop.m`
-This operation don't have a policy variant.
+Intrinsics here don't have a policy variant.
 
 [[policy-variant-overloadedvfirst-find-first-set-mask-bit]]
 === `vfirst` find-first-set mask bit
-This operation don't have a policy variant.
+Intrinsics here don't have a policy variant.
 
 [[policy-variant-overloadedvmsbfm-set-before-first-mask-bit]]
 === `vmsbf.m` set-before-first mask bit
