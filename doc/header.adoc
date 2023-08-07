@@ -3,9 +3,6 @@ Authors: Author 1, Author 2
 :docgroup: RISC-V Vector C Intrinsic Task Group
 :description: RISC-V Vector C Intrinsic Specification Document
 :company: RISC-V.org
-:revdate: 7/2023
-:revnumber: 1.0
-:revremark: This document is under development. Expect potential changes. Visit http://riscv.org/spec-state for further details.
 :revinfo:
 :url-riscv: http://riscv.org
 :doctype: book
