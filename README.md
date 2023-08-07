@@ -1,29 +1,11 @@
 # RISC-V Vector Extension Intrinsic Document
-- [RISC-V Vector Extension Intrinsic API Reference Manual](rvv-intrinsic-api.md)
-- [RISC-V Vector Extension Intrinsic Functions](auto-generated/intrinsic_funcs)
-- [RISC-V Vector Extension Intrinsic Examples](examples)
 
-# Copyright and License Information
+Working draft fo the RISC-V vector specification under [doc/](doc/), intrinsic prototypes are generated through script under [rvv-intrinsic-generator](rvv-intrinsic-generator/) into [auto-generated/](auto-generated/).
 
-The RISC-V Vector Extension Intrinsic Document is
+Please check out the current intrinsics specification in [doc/v-intrinsic-spec.pdf](doc/v-intrinsic-spec.pdf).
 
- &copy; 2021 Hsiangkai Wang <kai.wang@sifive.com>
+[The RISC-V Vector C intrinsics TG mailing list](https://lists.riscv.org/g/tech-rvv-intrinsics)
 
- &copy; 2021 Zakk Chen <zakk.chen@sifive.com>
+[Monthly meeting Google Doc](https://docs.google.com/document/d/19UucISxO9yuQcQ5S30g7wn2wV5D-1z0fA0GKNVOuktI/edit#)
 
- &copy; 2021 Kito Cheng <kito.cheng@sifive.com>
-
- &copy; 2021 Yi-Hsiu, Hsu <yihsiu.hsu@sifive.com>
-
- &copy; 2021 Roger Ferrer Ibanez <roger.ferrer@bsc.es>
-
- &copy; 2021 Nick Knight <nick.knight@sifive.com>
-
- &copy; 2021 Mingjie Xing <mingjie@iscas.ac.cn>
-
-
-In general:
-- code is licensed under the BSD 3-clause license (SPDX license identifier `BSD-3-Clause`); while
-- documentation is licensed under the Creative Commons Attribution 4.0 International license (SPDX license identifier `CC-BY-4.0`).
-
-The files [`COPYING.BSD`](./COPYING.BSD) and [`COPYING.CC`](./COPYING.CC) in the top level directory contain the complete text of these licenses.
+[Meeting minutes can be found here](https://github.com/riscv-admin/rvv-intrinsics/tree/main)
