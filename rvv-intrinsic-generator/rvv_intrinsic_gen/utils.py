@@ -32,7 +32,6 @@ HAS_DOUBLE_FLOAT_TYPE = True
 
 IS_RV32 = False
 IS_RV64GCV = False
-IS_ZVE32 = False
 
 IS_GNU_TOOLCHIAN = False
 
@@ -57,10 +56,6 @@ def set_toolchain_type(gnu):
 def set_rv64gcv(rv64gcv):
   global IS_RV64GCV
   IS_RV64GCV = rv64gcv
-
-def set_zve32(zve32):
-  global IS_ZVE32
-  IS_ZVE32 = zve32
 
 # ex. f8 -> 0.125
 def get_float_lmul(num):
@@ -237,31 +232,19 @@ def seg_arg(v, nf, ptr_t=False, is_seg_load_store_tuple_type=False):
 
 
 def basic_constraint(**kargs):
-  if "MLEN" in kargs:
-    if ELEN == 32 and kargs["MLEN"] == 64:
-      return False
-  if "EEW" in kargs:
-    if kargs["OP"] in ["vloxei", "vluxei", "vsoxei", \
-       "vsuxei", "vloxseg", "vluxseg", "vsoxseg", "vsuxseg"] \
-       and (ELEN == 32 or IS_RV32) and kargs["EEW"] == 64:
-      return False
-  if ELEN == 32 and "WSEW" in kargs and kargs["WSEW"] == 64:
+  if "MLEN" in kargs and ELEN == 32 and kargs["MLEN"] == 64:
     return False
-  if IS_GNU_TOOLCHIAN and ELEN == 64 and kargs["OP"] == "smul" \
-     and kargs["SEW"] == 64:
+  if "EEW" in kargs and kargs["OP"] in ["vloxei", "vluxei", "vsoxei", \
+      "vsuxei", "vloxseg", "vluxseg", "vsoxseg", "vsuxseg"] \
+      and IS_RV32 and kargs["EEW"] == 64:
     return False
-  if "WSEW" in kargs and kargs["WSEW"] == 64 \
-      and kargs["OP"] in ["wsubu", "wsub", "wmulu", "wmul", \
-      "wmulsu", "wmaccus", "wmaccu", "wmaccsu", "wmacc", "waddu", \
-      "wadd", "nsrl", "nsra"] and IS_ZVE32:
+  if IS_GNU_TOOLCHIAN and not IS_RV64GCV and kargs["OP"] in ["mulh", \
+     "mulhu", "mulhsu", "smul"] and kargs["SEW"] == 64:
     return False
-  if "SEW" in kargs and kargs["SEW"] == 64 \
-      and kargs["OP"] in ["mulh", "mulhu", "mulhsu"] \
-      and not IS_RV64GCV:
-    return False
-  if "SEW" in kargs and kargs["SEW"] == 64 \
-      and kargs["OP"] in ["rsub"] \
-      and IS_RV32:
+  if ELEN == 32 and "WSEW" in kargs and kargs["OP"] in ["wsubu", \
+      "wsub", "wmulu", "wmul", "wmulsu", "wmaccus", "wmaccu", \
+      "wmaccsu", "wmacc", "waddu", "wadd", "nsrl", "nsra", \
+      "nclip"] and kargs["WSEW"] == 64:
     return False
   if "TYPE" in kargs:
     if kargs["TYPE"] == "float" and kargs["SEW"] == 8:

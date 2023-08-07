@@ -28,8 +28,6 @@ from utils import set_elen_float
 from utils import set_rv32
 from utils import set_toolchain_type
 from utils import set_rv64gcv
-from utils import set_zve32
-
 
 class Generator():
   """
@@ -590,10 +588,8 @@ class APITestGenerator(Generator):
         set_rv32(True)
       if self.march_mabi == MarchAbi.RV32GC_ZVE32X:
         set_elen_float(32, False, False, False)
-        set_zve32(True)
       elif self.march_mabi == MarchAbi.RV32GC_ZVE32F:
         set_elen_float(32, True, False, False)
-        set_zve32(True)
       elif self.march_mabi == MarchAbi.RV32GC_ZVE64X:
         set_elen_float(64, False, False, False)
       elif self.march_mabi == MarchAbi.RV32GC_ZVE64F:
