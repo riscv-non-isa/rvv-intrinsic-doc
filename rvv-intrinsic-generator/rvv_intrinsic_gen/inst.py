@@ -138,6 +138,10 @@ def gen(g):
                    ITYPES, WSEWS, WLMULS,
                    decorators.has_masking_maskedoff_policy)
 
+  g.function_group(cvt_op_template, "Vector Integer Widening Intrinsics",
+                   "vector-integer-widening", ["wcvt"], ITYPES, WSEWS, WLMULS,
+                   decorators.has_masking_maskedoff_policy)
+
   g.function_group(unary_op_template, "Vector Integer Extension Intrinsics",
                    "vector-integer-extension", ["zext", "sext"], ITYPES, SEWS,
                    LMULS, decorators.has_masking_maskedoff_policy)
@@ -180,6 +184,10 @@ def gen(g):
                    "vector-narrowing-integer-right-shift", ["nsrl", "nsra"],
                    ITYPES, WSEWS, WLMULS,
                    decorators.has_masking_maskedoff_policy)
+
+  g.function_group(cvt_op_template, "Vector Integer Narrowing Intrinsics",
+                   "vector-integer-narrowing", ["ncvt"], ITYPES, NSEWS,
+                   NCVTLMULS, decorators.has_masking_maskedoff_policy)
 
   g.function_group(cmp_template, "Vector Integer Compare Intrinsics",
                    "vector-integer-comparison",
