@@ -2364,7 +2364,7 @@ vuint64m8_t __riscv_vsbc_vxm_u64m8_tu (vuint64m8_t maskedoff, vuint64m8_t op1, u
 
 [[policy-variant-vector-integer-carry-out-borrow-out]]
 === Vector Integer Carry-out / Borrow-out Intrinsics
-This operation don't have a policy variant.
+Intrinsics here don't have a policy variant.
 
 [[policy-variant-vector-bitwise-binary-logical]]
 === Vector Bitwise Binary Logical Intrinsics
