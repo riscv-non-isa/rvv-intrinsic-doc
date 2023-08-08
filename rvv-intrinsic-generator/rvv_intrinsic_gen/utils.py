@@ -32,6 +32,8 @@ HAS_DOUBLE_FLOAT_TYPE = True
 
 IS_RV32 = False
 IS_RV64GCV = False
+IS_ZVE32 = False
+IS_ZVFH = False
 
 IS_GNU_TOOLCHIAN = False
 
@@ -56,6 +58,14 @@ def set_toolchain_type(gnu):
 def set_rv64gcv(rv64gcv):
   global IS_RV64GCV
   IS_RV64GCV = rv64gcv
+
+def set_zve32(zve32):
+  global IS_ZVE32
+  IS_ZVE32 = zve32
+
+def set_zvfh(zvfh):
+  global IS_ZVFH
+  IS_ZVFH = zvfh
 
 # ex. f8 -> 0.125
 def get_float_lmul(num):
@@ -248,6 +258,10 @@ def basic_constraint(**kargs):
     return False
   if "TYPE" in kargs:
     if kargs["TYPE"] == "float" and kargs["SEW"] == 8:
+      return False
+  if "TYPE" in kargs:
+    if kargs["TYPE"] == "float" and kargs["SEW"] == 16 \
+       and kargs["OP"] in ["rgatherei16"] and IS_ZVFH:
       return False
   if "SEW" in kargs and "LMUL" in kargs and kargs["SEW"] is not None and kargs[
       "LMUL"] is not None:
