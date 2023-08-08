@@ -85,7 +85,7 @@ Please see <<policy-naming-scheme>> for the exact suffix that specifies the poli
 
 For the fixed-point intrinsics, representing the instructions under v-spec section 12, the `vxrm` operand of the intrinsics indicates the rounding mode (`vxrm`) ^8^ control.
 
-The `vxrm` operand is required to be an immediate. The compiler should implement the following enum that maps to the defined rounding mode values under v-spec Table 4 ^8^.
+The `vxrm` operand is required to be an integer constant expression. The compiler should implement the following enum that maps to the defined rounding mode values under v-spec Table 4 ^8^.
 
 ```c
 enum __RISCV_VXRM {
@@ -116,9 +116,9 @@ NOTE: The implicit-`frm` intrinsics are intended to be used regardless of `FENV_
 [[chapter-explicit-frm]]
 ==== Explicit-`frm` intrinsics
 
-The explicit-`frm` intrinsics contain the `frm` operand which indicates the rounding mode (`frm`) ^10^ control. The floating-point intrinsics with the `frm` operand is followed by an `_rm` suffix in the function name.
+The explicit-`frm` intrinsics contain the `frm` operand which indicates the rounding mode (`frm`) ^10^ control. The floating-point intrinsics with the `frm` operand are followed by an `_rm` suffix in the function name.
 
-The `frm` operand is required to be an immediate. The compiler should implement the following enum that maps to the defined rounding mode values under RISC-V ISA Manual Table 8.1 ^8^.
+The `frm` operand is required to be an integer constant expression. The compiler should implement the following enum that maps to the defined rounding mode values under RISC-V ISA Manual Table 8.1 ^8^.
 
 ```c
 enum __RISCV_FRM {
@@ -464,9 +464,9 @@ The intrinsics provide extra utility functions to help users manipulate across t
 
 == Programming Notes
 
-=== Builtin mapping
+=== Assembly generated from the intrinsics
 
-Builtin mapping of the intrinsics is a compiler and system specific issue.
+Some users may expect the intrinsics to directly translate and appear in the assembly, the intrinsics are the interfaces that expose the vector instruction semantics. The compiler is free to optimize them out if there is an opportunity.
 
 === Bookkeeping of `vtype` in the compiler
 
