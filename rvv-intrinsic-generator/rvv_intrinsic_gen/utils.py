@@ -59,14 +59,6 @@ def set_rv64gcv(rv64gcv):
   global IS_RV64GCV
   IS_RV64GCV = rv64gcv
 
-def set_zve32(zve32):
-  global IS_ZVE32
-  IS_ZVE32 = zve32
-
-def set_zvfh(zvfh):
-  global IS_ZVFH
-  IS_ZVFH = zvfh
-
 # ex. f8 -> 0.125
 def get_float_lmul(num):
   if isinstance(num, str) and num[0] == "f":
@@ -256,12 +248,18 @@ def basic_constraint(**kargs):
       "wmaccsu", "wmacc", "waddu", "wadd", "nsrl", "nsra", \
       "nclip"] and kargs["WSEW"] == 64:
     return False
+  if "TYPES" in kargs and kargs["OP"] == "reinterpret" and \
+    "float" in kargs["TYPES"] and ((kargs["SEW"] == 16 and \
+    not HAS_HALF_FLOAT_TYPE) or (kargs["SEW"] == 32 and \
+    not HAS_FLOAT_TYPE) or (kargs["SEW"] == 64 and \
+    not HAS_DOUBLE_FLOAT_TYPE)):
+    return False
   if "TYPE" in kargs:
     if kargs["TYPE"] == "float" and kargs["SEW"] == 8:
       return False
   if "TYPE" in kargs:
     if kargs["TYPE"] == "float" and kargs["SEW"] == 16 \
-       and kargs["OP"] in ["rgatherei16"] and IS_ZVFH:
+       and kargs["OP"] in ["rgatherei16"] and HAS_HALF_FLOAT_TYPE:
       return False
   if "SEW" in kargs and "LMUL" in kargs and kargs["SEW"] is not None and kargs[
       "LMUL"] is not None:

@@ -28,8 +28,6 @@ from utils import set_elen_float
 from utils import set_rv32
 from utils import set_toolchain_type
 from utils import set_rv64gcv
-from utils import set_zve32
-from utils import set_zvfh
 
 
 class Generator():
@@ -165,7 +163,45 @@ class Generator():
        and march_mabi in [MarchAbi.RV32GC_ZVE64D, MarchAbi.RV32GC_ZVE64F, \
                           MarchAbi.RV32GC_ZVE64X]:
       api_count = 80
-
+    if test_file == "vreinterpret.c":
+      if march_mabi in [MarchAbi.RV32GC_ZVE64D, MarchAbi.RV64GC_ZVE64D, MarchAbi.RV64GCV]:
+        api_count = 236
+      elif march_mabi == MarchAbi.RV32GC_ZVE32F:
+        api_count = 128
+      elif march_mabi == MarchAbi.RV32GC_ZVE32X:
+        api_count = 112
+      elif march_mabi == MarchAbi.RV32GC_ZVE64F:
+        api_count = 220
+      elif march_mabi == MarchAbi.RV32GC_ZVE64X:
+        api_count = 200
+      else:
+        api_count = 260
+    if test_file == "vget.c":
+      if march_mabi in [MarchAbi.RV32GC_ZVE64D, MarchAbi.RV64GC_ZVE64D, MarchAbi.RV64GCV]:
+        api_count = 170
+      elif march_mabi == MarchAbi.RV32GC_ZVE32X:
+        api_count = 102
+      elif march_mabi == MarchAbi.RV32GC_ZVE32F:
+        api_count = 119
+      elif march_mabi == MarchAbi.RV32GC_ZVE64F:
+        api_count = 153
+      elif march_mabi == MarchAbi.RV32GC_ZVE64X:
+        api_count = 136
+      else:
+        api_count = 187
+    if test_file == "vset.c":
+      if march_mabi in [MarchAbi.RV32GC_ZVE64D, MarchAbi.RV64GCV, MarchAbi.RV64GC_ZVE64D]:
+        api_count = 60
+      elif march_mabi == MarchAbi.RV32GC_ZVE32F:
+        api_count = 42
+      elif march_mabi == MarchAbi.RV32GC_ZVE32X:
+        api_count = 36
+      elif march_mabi == MarchAbi.RV32GC_ZVE64F:
+        api_count = 54
+      elif march_mabi == MarchAbi.RV32GC_ZVE64X:
+        api_count = 48
+      else:
+        api_count = 66
     return api_count
 
 
@@ -193,6 +229,10 @@ class Generator():
       pattern_str = "vms[gl][et]"
     elif opcode == "vmsgeu" or opcode == "vmsltu":
       pattern_str = "vms[gl][et]u"
+    elif opcode == "vget":
+      pattern_str = "vl[124]re[0-9]*\.v\s+v[124],0\([a-z0-9]*\)\s+vs[124]r\.+"
+    elif opcode == "vset":
+      pattern_str = "vl[1248]re[0-9]*\.v\s+v[1248],0\([a-z0-9]*\)\s+vl[1248]re[0-9]*\.v\s+v[1248],0\([a-z0-9]*\)+"
     else:
       pattern_str = opcode
 
@@ -221,6 +261,10 @@ class Generator():
                     "vmul", "vmsne", "vmsltu", "vmslt", "vmsleu", "vmsle", "vmsgtu", "vmsgt", "vmsgeu", \
                     "vmsge", "vmseq", "vmsbc", "vminu", "vmin", "vmerge", "vmaxu", "vmax", "vmadd", "vmadc", \
                     "vmacc", "vdivu", "vdiv", "vand", "vadd", "vadc"]:
+      return "/* {{ dg-final {{ scan-assembler-times {{{PATTERN}\s+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
+    elif opcode == "vget":
+      return "/* {{ dg-final {{ scan-assembler-times {{{PATTERN}\s+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
+    elif opcode == "vset":
       return "/* {{ dg-final {{ scan-assembler-times {{{PATTERN}\s+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
     else:
       #pylint: disable=line-too-long
@@ -605,7 +649,6 @@ class APITestGenerator(Generator):
         set_elen_float(64, True, False, True)
       elif self.march_mabi == MarchAbi.RV64GCV_ZVFH:
         set_elen_float(64, True, True, True)
-        set_zvfh(True)
       else:
         set_elen_float(64, True, False, True)
 
