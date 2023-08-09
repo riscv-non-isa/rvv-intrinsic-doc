@@ -7,7 +7,7 @@ void reduce_golden(double *a, double *b, double *result_sum,
   int count = 0;
   double s = 0;
   for (int i = 0; i < n; ++i) {
-    if (a[i] != 0.0) {
+    if (a[i] != 42.0) {
       s += a[i] * b[i];
       count++;
     }
@@ -17,8 +17,8 @@ void reduce_golden(double *a, double *b, double *result_sum,
   *result_count = count;
 }
 
-void reduce(double *a, double *b, double *result_sum, int *result_count,
-              int n) {
+void reduce_vec(double *a, double *b, double *result_sum, int *result_count,
+                int n) {
   int count = 0;
   // set vlmax and initialize variables
   size_t vlmax = __riscv_vsetvlmax_e64m1();
@@ -30,9 +30,9 @@ void reduce(double *a, double *b, double *result_sum, int *result_count,
     vfloat64m1_t vec_a = __riscv_vle64_v_f64m1(a, vl);
     vfloat64m1_t vec_b = __riscv_vle64_v_f64m1(b, vl);
 
-    vbool64_t mask = __riscv_vmfne_vv_f64m1_b64(vec_a, vec_zero, vl);
+    vbool64_t mask = __riscv_vmfne_vf_f64m1_b64(vec_a, 42, vl);
 
-    vec_s = __riscv_vfmacc_vv_f64m1_m(mask, vec_s, vec_a, vec_b, vl);
+    vec_s = __riscv_vfmacc_vv_f64m1_tumu(mask, vec_s, vec_a, vec_b, vl);
     count = count + __riscv_vcpop_m_b64(mask, vl);
   }
   vfloat64m1_t vec_sum;
@@ -57,7 +57,7 @@ int main() {
   double golden_sum, actual_sum;
   int golden_count, actual_count;
   reduce_golden(A, B, &golden_sum, &golden_count, N);
-  reduce(A, B, &actual_sum, &actual_count, N);
+  reduce_vec(A, B, &actual_sum, &actual_count, N);
 
   // compare
   puts(golden_sum - actual_sum < 1e-6 && golden_count == actual_count ? "pass"
