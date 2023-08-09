@@ -3,43 +3,39 @@
 #include <string.h>
 
 // reference https://github.com/riscv/riscv-v-spec/blob/master/example/strncpy.s
-char *strncpy_vec(char *dst, char *src, size_t count) {
-  char *save = dst;
-  size_t new_vl;
+char *strncpy_vec(char *destination, char *source, size_t count) {
+  unsigned char *dst = (unsigned char*)destination;
+  unsigned char *src = (unsigned char*)source;
   long first_set_bit = -1;
-
-  while (first_set_bit < 0) {
+  size_t vl;
+  for (; first_set_bit < 0; count -= vl, src += vl, dst += vl) {
     if (count == 0)
-      return save;
-    size_t vl = __riscv_vsetvl_e8m1(count);
+      return destination;
 
-    vint8m1_t vec_src = __riscv_vle8ff_v_i8m1(src, &new_vl, vl);
+    vl = __riscv_vsetvl_e8m1(count);
+    vuint8m1_t vec_src = __riscv_vle8ff_v_u8m1(src, &vl, vl);
 
-    vbool8_t string_terminate = __riscv_vmseq_vx_i8m1_b8(vec_src, 0, new_vl);
-    vbool8_t mask = __riscv_vmsif_m_b8(string_terminate, new_vl);
+    vbool8_t string_terminate = __riscv_vmseq_vx_u8m1_b8(vec_src, 0, vl);
+    vbool8_t mask = __riscv_vmsif_m_b8(string_terminate, vl);
 
-    __riscv_vse8_v_i8m1_m(mask, dst, vec_src, new_vl);
+    __riscv_vse8_v_u8m1_m(mask, dst, vec_src, vl);
 
-    count -= new_vl;
-    src += new_vl;
-    dst += new_vl;
-
-    first_set_bit = __riscv_vfirst_m_b8(string_terminate, new_vl);
+    first_set_bit = __riscv_vfirst_m_b8(string_terminate, vl);
   }
 
-  size_t tail = new_vl - first_set_bit;
+  size_t tail = vl - first_set_bit;
   count += tail;
   dst -= tail;
   size_t vlmax = __riscv_vsetvlmax_e8m1();
-  vint8m1_t vec_zero = __riscv_vmv_v_x_i8m1(0, vlmax);
+  vuint8m1_t vec_zero = __riscv_vmv_v_x_u8m1(0, vlmax);
   do {
     size_t vl = __riscv_vsetvl_e8m1(count);
-    __riscv_vse8_v_i8m1(dst, vec_zero, vl);
+    __riscv_vse8_v_u8m1(dst, vec_zero, vl);
     count -= vl;
     dst += vl;
   } while (count > 0);
 
-  return save;
+  return destination;
 }
 
 int main() {
