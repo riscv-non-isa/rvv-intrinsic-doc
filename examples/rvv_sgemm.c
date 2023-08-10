@@ -109,11 +109,11 @@ int main() {
   int pass = 1;
   for (int i = 0; i < OUTPUT_LEN; i++) {
     if (!fp_eq(golden_array[i], c_array[i], 1e-5)) {
-      printf("index %d failed, %f=!%f\n", i, golden_array[i], c_array[i]);
+      printf("index %d fail, %f=!%f\n", i, golden_array[i], c_array[i]);
       pass = 0;
     }
   }
   if (pass)
-    printf("passed\n");
+    printf("pass\n");
   return (pass == 0);
 }
