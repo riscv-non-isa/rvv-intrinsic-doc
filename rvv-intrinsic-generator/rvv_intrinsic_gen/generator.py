@@ -28,6 +28,7 @@ from utils import set_elen_float
 from utils import set_rv32
 from utils import set_toolchain_type
 from utils import set_rv64gcv
+from utils import set_rv32f
 
 
 class Generator():
@@ -140,12 +141,18 @@ class Generator():
   @staticmethod
   def adjust_gnu_api_count(api_count, test_file, has_policy, march_mabi):
     if test_file in ["vmv.c", "vmv.C"]:
-      if march_mabi in [MarchAbi.RV32GC_ZVE32F, MarchAbi.RV32GC_ZVE32X]:
-        api_count = 100
-      elif march_mabi in [MarchAbi.RV32GC_ZVE64D, MarchAbi.RV32GC_ZVE64F, MarchAbi.RV32GC_ZVE64X]:
+      if march_mabi == MarchAbi.RV32GC_ZVE32F:
+        api_count = 136
+      elif march_mabi == MarchAbi.RV32GC_ZVE32X:
+        api_count = 132
+      elif march_mabi == MarchAbi.RV32GC_ZVE64F:
+        api_count = 214
+      elif march_mabi == MarchAbi.RV32GC_ZVE64X:
         api_count = 208
-      else:
-        api_count = 200
+      elif march_mabi in [MarchAbi.RV64GC_ZVE64D, MarchAbi.RV64GCV]:
+        api_count = 210
+      elif march_mabi in [MarchAbi.RV64GCV_ZVFH, MarchAbi.RV32GC_ZVE64D]:
+        api_count = 218
     if test_file == "vle8.c":
       api_count = 62 if has_policy else api_count
     if test_file == "vle8.C":
@@ -640,10 +647,12 @@ class APITestGenerator(Generator):
         set_elen_float(32, False, False, False)
       elif self.march_mabi == MarchAbi.RV32GC_ZVE32F:
         set_elen_float(32, True, False, False)
+        set_rv32f(True)
       elif self.march_mabi == MarchAbi.RV32GC_ZVE64X:
         set_elen_float(64, False, False, False)
       elif self.march_mabi == MarchAbi.RV32GC_ZVE64F:
         set_elen_float(64, True, False, False)
+        set_rv32f(True)
       elif self.march_mabi in [MarchAbi.RV32GC_ZVE64D,
              MarchAbi.RV64GC_ZVE64D]:
         set_elen_float(64, True, False, True)

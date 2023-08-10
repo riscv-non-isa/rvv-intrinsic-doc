@@ -32,8 +32,7 @@ HAS_DOUBLE_FLOAT_TYPE = True
 
 IS_RV32 = False
 IS_RV64GCV = False
-IS_ZVE32 = False
-IS_ZVFH = False
+IS_RV32F = False
 
 IS_GNU_TOOLCHIAN = False
 
@@ -58,6 +57,10 @@ def set_toolchain_type(gnu):
 def set_rv64gcv(rv64gcv):
   global IS_RV64GCV
   IS_RV64GCV = rv64gcv
+
+def set_rv32f(rv32f):
+  global IS_RV32F
+  IS_RV32F = rv32f
 
 # ex. f8 -> 0.125
 def get_float_lmul(num):
@@ -248,6 +251,9 @@ def basic_constraint(**kargs):
       "wmaccsu", "wmacc", "waddu", "wadd", "nsrl", "nsra", \
       "nclip"] and kargs["WSEW"] == 64:
     return False
+  if ELEN == 64 and "SEW" in kargs and kargs["SEW"] == 64 \
+    and IS_RV32 and kargs["OP"] == "rsub":
+    return False
   if "TYPES" in kargs and kargs["OP"] == "reinterpret" and \
     "float" in kargs["TYPES"] and ((kargs["SEW"] == 16 and \
     not HAS_HALF_FLOAT_TYPE) or (kargs["SEW"] == 32 and \
@@ -260,6 +266,11 @@ def basic_constraint(**kargs):
   if "TYPE" in kargs:
     if kargs["TYPE"] == "float" and kargs["SEW"] == 16 \
        and kargs["OP"] in ["rgatherei16"] and HAS_HALF_FLOAT_TYPE:
+      return False
+  if "TYPE" in kargs:
+    if kargs["TYPE"] == "float" and kargs["WSEW"] == 64 \
+      and kargs["OP"] in ["wmacc", "wnmacc", "wmsac", \
+      "wnmsac","fwadd", "fwsub", "fwmul"] and IS_RV32F:
       return False
   if "SEW" in kargs and "LMUL" in kargs and kargs["SEW"] is not None and kargs[
       "LMUL"] is not None:
