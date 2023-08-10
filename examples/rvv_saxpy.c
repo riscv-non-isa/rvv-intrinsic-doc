@@ -73,11 +73,11 @@ int main() {
   int pass = 1;
   for (int i = 0; i < N; i++) {
     if (!fp_eq(output_golden[i], output[i], 1e-6)) {
-      printf("failed, %f=!%f\n", output_golden[i], output[i]);
+      printf("fail, %f=!%f\n", output_golden[i], output[i]);
       pass = 0;
     }
   }
   if (pass)
-    printf("passed\n");
+    printf("pass\n");
   return (pass == 0);
 }
