@@ -507,5 +507,9 @@ def gen(g):
                    "Vector Extraction Intrinsics", "vector-extraction",
                    ["vget"], TYPES, SEWS, LMULS, decorators.has_no_masking)
 
+  g.function_group(misc_op_template, "Vector Tuple Creation Intrinsics",
+                   "vector-tuple-creation", ["vcreate"], TYPES, SEWS, LMULS,
+                   decorators.has_no_masking)
+
   ####################################################################
   g.gen_prologue()
