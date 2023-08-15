@@ -78,6 +78,7 @@ class InstType(enum.Enum):
   LMUL_TRUNC = 105
   VGET = 106
   VSET = 107
+  VCREATE = 108
 
   UNKNOWN = -1
 

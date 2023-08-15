@@ -21,10 +21,13 @@ function to their corresponding intrinsics.
 
 #pylint: disable=relative-beyond-top-level
 from utils import prod
+from utils import seg_constraint
 from utils import TypeHelper
 from utils import get_float_lmul
+import collections
 from enums import InstInfo
 from enums import InstType
+from generator import CompatibleHeaderGenerator
 
 
 def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
@@ -82,5 +85,33 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           name=func_name + decorator.func_suffix,
           return_type=dst_type,
           op1=type_helper.v)
+
+  nf_list = range(2, 9)
+  for decorator in decorator_list:
+    if not "vcreate" in op_list:
+      break
+    for args in prod(
+        constraint=seg_constraint,
+        OP=op_list,
+        TYPE=type_list,
+        SEW=sew_list,
+        LMUL=lmul_list,
+        NF=nf_list):
+      type_helper = TypeHelper(**args)
+
+      # This intrinsic appears after v0.12
+      if isinstance(G, CompatibleHeaderGenerator):
+        continue
+
+      args_for_vcreate = collections.OrderedDict()
+      for i in range(args["NF"]):
+        arg_name = "v" + str(i)
+        args_for_vcreate[arg_name] = type_helper.v
+
+      G.func(
+          InstInfo.get(args, decorator, InstType.VCREATE),
+          name="{OP}_v_{TYPE}{SEW}m{LMUL}x{NF}".format_map(args),
+          return_type=type_helper.tuple_v,
+          **args_for_vcreate)
 
   G.inst_group_epilogue()
