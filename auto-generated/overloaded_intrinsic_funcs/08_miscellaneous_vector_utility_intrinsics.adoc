@@ -3,15 +3,11 @@
 
 [[overloaded-set-vl-and-vtype]]
 === Get `vl` with specific vtype
-
-``` C
-```
+Intrinsics here don't have an overloaded variant.
 
 [[overloaded-set-vl-to-vlmax-with-specific-vtype]]
 === Get `VLMAX` with specific vtype
-
-``` C
-```
+Intrinsics here don't have an overloaded variant.
 
 [[overloaded-reinterpret-cast-conversion]]
 === Reinterpret Cast Conversion Intrinsics
@@ -610,9 +606,7 @@ vuint64m4_t __riscv_vlmul_trunc_u64m4 (vuint64m8_t op1);
 
 [[overloaded-vector-initialization]]
 === Vector Initialization Intrinsics
-
-``` C
-```
+Intrinsics here don't have an overloaded variant.
 
 [[overloaded-vector-insertion]]
 === Vector Insertion Intrinsics
