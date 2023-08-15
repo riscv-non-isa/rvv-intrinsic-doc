@@ -110,14 +110,11 @@ class Generator():
       if re.match(p, name) and name[-2:] != "_m":
         return False
     unsupported_op = [
-        "setvl", "vundefined", "viota", "vmclr", "vmset_", "vid", "vmv_v_x",
+        "setvl", "vundefined", "viota", "vmclr", "vmset", "vid", "vmv_v_x",
         "vfmv_v_f", "vcreate", "vlm_v"
     ]
     if any(i in name for i in unsupported_op):
-      if ("vid" in name) or ("viota" in name):
-        return False
-      if name[-2:] != "_m":
-        return False
+      return False
 
     if name.startswith("sf_vc"):
       any_vector_type = False
@@ -275,8 +272,9 @@ class OverloadedDocGenerator(DocGenerator):
 
   def func(self, inst_info, name, return_type, **kwargs):
     func_name = Generator.func_name(name)
-    if Generator.is_support_overloaded(name, **kwargs):
-      func_name = Generator.get_overloaded_op_name(name)
+    if not Generator.is_support_overloaded(name, **kwargs):
+      return
+    func_name = Generator.get_overloaded_op_name(name)
     # Strip the `__riscv_` prefix here because it will be added back again in
     # Generator.func()
     func_name = func_name[8:]
