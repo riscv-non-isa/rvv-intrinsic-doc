@@ -191,6 +191,10 @@ class DocGenerator(Generator):
     super().__init__()
     self.is_all_in_one = is_all_in_one
     self.has_tail_policy = has_tail_policy
+    # This is used under OverloadedDocGenerator::function_group to emit
+    # text description when all intrinsics under op_list does not have an
+    # overloaded variants.
+    self.do_not_have_overloaded_variant = False
     if self.is_all_in_one:
       self.fd = f
     else:
@@ -228,6 +232,10 @@ class DocGenerator(Generator):
       s = "Intrinsics here don't have a policy variant.\n"
       self.write(s)
       return
+    if self.do_not_have_overloaded_variant:
+      self.write("Intrinsics here don't have an overloaded variant.\n")
+      return
+
     super().function_group(template, title, link, op_list, type_list, sew_list,
                            lmul_list, decorator_list)
 
@@ -269,6 +277,15 @@ class OverloadedDocGenerator(DocGenerator):
                     "\n")
     else:
       self.fd.write("\n[[overloaded-" + link + "]]\n=== " + text + "\n")
+
+  def function_group(self, template, title, link, op_list, type_list, sew_list,
+                     lmul_list, decorator_list):
+    self.do_not_have_overloaded_variant = True
+    for op in op_list:
+      if Generator.is_support_overloaded(op):
+        self.do_not_have_overloaded_variant = False
+    super().function_group(template, title, link, op_list, type_list, sew_list,
+                           lmul_list, decorator_list)
 
   def func(self, inst_info, name, return_type, **kwargs):
     func_name = Generator.func_name(name)
