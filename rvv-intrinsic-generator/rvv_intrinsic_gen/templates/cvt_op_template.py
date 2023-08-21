@@ -25,6 +25,7 @@ from utils import TypeHelper
 from enums import InstInfo
 from enums import InstType
 from enums import ExtraAttr
+from constants import ITYPES
 
 
 def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
@@ -37,10 +38,12 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
     decorator.write_text_header(G)
     # Variable in list means
     # [dst_type, dst_type_short, src_type, src_type_short]
-    convert_set = [["int", "x", "float", "f"], ["int", "x", "int", "x"],
-                   ["uint", "x", "uint", "x"], ["uint", "xu", "float", "f"],
-                   ["float", "f", "int", "x"], ["float", "f", "uint", "xu"],
-                   ["float", "f", "float", "f"]]
+    if type_list == ITYPES:
+      convert_set = [["int", "x", "int", "x"], ["uint", "x", "uint", "x"]]
+    else:
+      convert_set = [["int", "x", "float", "f"], ["uint", "xu", "float", "f"],
+                     ["float", "f", "int", "x"], ["float", "f", "uint", "xu"],
+                     ["float", "f", "float", "f"]]
     for args in prod(
         OP=op_list, SEW=sew_list, TYPES=convert_set, LMUL=lmul_list):
       op = args["OP"]

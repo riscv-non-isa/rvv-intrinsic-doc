@@ -104,7 +104,7 @@ endef
 # $(4): Additional flags
 define gen_docs
 	mkdir -p $(1)
-	rm $(1)/$(2) -rf
+	rm -rf $(1)/$(2)
 	mkdir -p $(1)/$(2)
 	$(PY3) -m $(MAIN) --gen $(3) \
 		--out $(1)/$(2) $(4) \
@@ -151,8 +151,8 @@ gnu-setup-test:
 
 # Generate all-in-one document for non-overloaded intrinsics
 non-overloaded-doc:
-	$(call gen_doc,$(DIR),intrinsic_funcs.md,$@,)
-	$(call gen_doc,$(POLICY_DIR),intrinsic_funcs.md,$@,--has-policy)
+	$(call gen_doc,$(DIR),intrinsic_funcs.adoc,$@,)
+	$(call gen_doc,$(POLICY_DIR),intrinsic_funcs.adoc,$@,--has-policy)
 
 # Generate grouped documents for non-overloaded intrinsics
 non-overloaded-docs:
@@ -161,8 +161,8 @@ non-overloaded-docs:
 
 # Generate all-in-one document for overloaded intrinsics
 overloaded-doc:
-	$(call gen_doc,$(DIR),overloaded_intrinsic_funcs.md,$@,)
-	$(call gen_doc,$(POLICY_DIR),overloaded_intrinsic_funcs.md,$@,--has-policy)
+	$(call gen_doc,$(DIR),overloaded_intrinsic_funcs.adoc,$@,)
+	$(call gen_doc,$(POLICY_DIR),overloaded_intrinsic_funcs.adoc,$@,--has-policy)
 
 # Generate grouped documents for overloaded intrinsics
 overloaded-docs:

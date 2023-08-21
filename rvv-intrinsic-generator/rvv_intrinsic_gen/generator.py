@@ -360,10 +360,13 @@ class DocGenerator(Generator):
     self.fd.write(text)
 
   def write_title(self, text, link):
-    self.fd.write("\n### [" + text + "](" + link + "):\n")
+    if self.has_tail_policy:
+      self.fd.write("\n[[policy-variant-" + link + "]]\n=== " + text + "\n")
+    else:
+      self.fd.write("\n[[" + link + "]]\n=== " + text + "\n")
 
   def inst_group_prologue(self):
-    s = "\n**Prototypes:**\n``` C\n"
+    s = "\n``` C\n"
     self.write(s)
     return s
 
@@ -376,7 +379,7 @@ class DocGenerator(Generator):
                      lmul_list, decorator_list):
     self.write_title(title, link)
     if self.has_tail_policy and len(decorator_list) == 0:
-      s = "This operation don't have Policy Intrinsic Functions.\n"
+      s = "Intrinsics here don't have a policy variant.\n"
       self.write(s)
       return
     super().function_group(template, title, link, op_list, type_list, sew_list,
@@ -394,7 +397,7 @@ class DocGenerator(Generator):
     # here.
     super().start_group(group_name)
     if not self.is_all_in_one:
-      file_name = f"{self.group_counter:02d}_{group_name}.md"
+      file_name = f"{self.group_counter:02d}_{group_name}.adoc"
       file_name = file_name.replace(" ", "_")
       file_name = file_name.replace("/", "_")
       file_name = file_name.replace("(", "")
@@ -406,13 +409,20 @@ class DocGenerator(Generator):
         self.fd.close()
       self.fd = open(
           os.path.join(self.folder, file_name), "w", encoding="utf-8")
-    self.write(f"\n## {group_name}:\n")
+    self.write(f"\n== {group_name}\n")
 
 
 class OverloadedDocGenerator(DocGenerator):
   """
   Derived generator for documents that collects overloaded function definitions
   """
+
+  def write_title(self, text, link):
+    if self.has_tail_policy:
+      self.fd.write("\n[[policy-variant-overloaded" + link + "]]\n=== " + text +
+                    "\n")
+    else:
+      self.fd.write("\n[[overloaded-" + link + "]]\n=== " + text + "\n")
 
   def func(self, inst_info, name, return_type, **kwargs):
     func_name = Generator.func_name(name)
