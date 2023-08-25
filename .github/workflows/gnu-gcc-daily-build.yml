@@ -52,4 +52,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: gcc.log
-          path: ../riscv-gnu-toolchain/build-gcc-newlib-stage2/gcc/testsuite/gcc/gcc.log
+          path: /home/runner/work/rvv-intrinsic-doc/riscv-gnu-toolchain/build-gcc-newlib-stage2/gcc/testsuite/gcc/gcc.log
+
