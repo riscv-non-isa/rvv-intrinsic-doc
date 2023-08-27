@@ -1,7 +1,7 @@
 name: GNU GCC Testcases Daily Regression
 on:
   schedule:
-  - cron: "0 22 * * 1-5"
+  - cron: "0 18 * * 0-6"
 
 jobs:
     test_script:
