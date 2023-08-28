@@ -157,7 +157,7 @@ With the default policy scheme mentioned under <<control-to-policy>>, each intri
 * `_mu` suffix: Represents a masked (`vm=0`) vector operation with tail-agnostic (`vta=1`), mask-undisturbed (`vma=0`)
 * `_tumu` suffix: Represents a masked (`vm=0`) vector operation with tail-undisturbed (`vta=0`), mask-undisturbed (`vma=0`)
 
-Using `vadd` with EEW=8 and EMUL=1 as an example, the variants are:
+Using `vadd` with EEW=32 and EMUL=1 as an example, the variants are:
 
 ```c
 // vm=1, vta=1
