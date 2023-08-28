@@ -390,15 +390,15 @@ Type with bold font is only available when `ELEN >= 64` (that is, unavailable un
 [cols="2,2,2,2,2,2,2,2"]
 [%autowidth]
 |===
-| Types    | EMUL=1/8   | EMUL=1/4   | EMUL=1/ 2   | EMUL=1     | EMUL=2     | EMUL=4   | EMUL=8
-| int8_t   | *vint8mf8_t* | vint8m4_t    | vint8mf2_t    | vint8m1_t    | vint8m2_t    | vint8m4_t  | vint8m8_t
-| int16_t  | N/A          | *vint16m4_t* | vint16mf2_t   | vint16m1_t   | vint16m2_t   | vint16m4_t | vint16m16_t
-| int32_t  | N/A          | N/A          | *vint32mf2_t* | vint32m1_t   | vint32m2_t   | vint32m4_t | vint32m32_t
-| int64_t  | N/A          | N/A          | N/A           | *vint64m1_t* | *vint64m2_t* | *vint64m4_t* | *vint64m8_t*
-| uint8_t   | *vuint8mf8_t* | vuint8m4_t    | vuint8mf2_t    | vuint8m1_t    | vuint8m2_t    | vuint8m4_t  | vuint8m8_t
-| uint16_t  | N/A          | *vuint16m4_t* | vuint16mf2_t   | vuint16m1_t   | vuint16m2_t   | vuint16m4_t | vuint16m16_t
-| uint32_t  | N/A          | N/A          | *vuint32mf2_t* | vuint32m1_t   | vuint32m2_t   | vuint32m4_t | vuint32m32_t
-| uint64_t  | N/A          | N/A          | N/A           | *vuint64m1_t* | *vuint64m2_t* | *vuint64m4_t* | *vuint64m8_t*
+| Types     | EMUL=1/8      | EMUL=1/4       | EMUL=1/ 2      | EMUL=1        | EMUL=2        | EMUL=4        | EMUL=8
+| int8_t    | *vint8mf8_t*  | vint8mf4_t     | vint8mf2_t     | vint8m1_t     | vint8m2_t     | vint8m4_t     | vint8m8_t
+| int16_t   | N/A           | *vint16mf4_t*  | vint16mf2_t    | vint16m1_t    | vint16m2_t    | vint16m4_t    | vint16m16_t
+| int32_t   | N/A           | N/A            | *vint32mf2_t*  | vint32m1_t    | vint32m2_t    | vint32m4_t    | vint32m32_t
+| int64_t   | N/A           | N/A            | N/A            | *vint64m1_t*  | *vint64m2_t*  | *vint64m4_t*  | *vint64m8_t*
+| uint8_t   | *vuint8mf8_t* | vuint8mf4_t    | vuint8mf2_t    | vuint8m1_t    | vuint8m2_t    | vuint8m4_t    | vuint8m8_t
+| uint16_t  | N/A           | *vuint16mf4_t* | vuint16mf2_t   | vuint16m1_t   | vuint16m2_t   | vuint16m4_t   | vuint16m8_t
+| uint32_t  | N/A           | N/A            | *vuint32mf2_t* | vuint32m1_t   | vuint32m2_t   | vuint32m4_t   | vuint32m8_t
+| uint64_t  | N/A           | N/A            | N/A            | *vuint64m1_t* | *vuint64m2_t* | *vuint64m4_t* | *vuint64m8_t*
 |===
 
 [[floating-point-type]]
@@ -417,8 +417,8 @@ Floating-point types with element widths of 64 requires the `zve64d` extension t
 [%autowidth]
 |===
 | Types      | EMUL=1/8 | EMUL=1/4   | EMUL=1/ 2   | EMUL=1     | EMUL=2     | EMUL=4   | EMUL=8
-| float16_t  | N/A        | vfloat16m4_t | vfloat16mf2_t | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m16_t
-| float32_t  | N/A        | N/A          | vfloat32mf2_t | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m32_t
+| float16_t  | N/A        | vfloat16m4_t | vfloat16mf2_t | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t
+| float32_t  | N/A        | N/A          | vfloat32mf2_t | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t
 | float64_t  | N/A        | N/A          | N/A           | vfloat64m1_t | vfloat64m2_t | vfloat64m4_t | vfloat64m8_t
 |===
 
