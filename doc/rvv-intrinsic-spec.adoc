@@ -174,7 +174,7 @@ vint32m1_t __riscv_vadd_vv_i32m1_tum(vbool32_t mask, vint32m1_t maskedoff,
 // vm=0, vta=1, vma=0
 vint32m1_t __riscv_vadd_vv_i32m1_mu(vbool32_t mask, vint32m1_t maskedoff,
                                     vint32m1_t op1, vint32m1_t op2, size_t vl);
-// vm=0, vta=1, vma=1
+// vm=0, vta=0, vma=0
 vint32m1_t __riscv_vadd_vv_i32m1_tumu(vbool32_t mask, vint32m1_t maskedoff,
                                       vint32m1_t op1, vint32m1_t op2,
                                       size_t vl);
@@ -277,7 +277,7 @@ vint32m1_t __riscv_vadd(vint32m1_t v0, vint32m1_t v1, size_t vl);
 vint16m4_t __riscv_vadd(vint16m4_t v0, vint16m4_t v1, size_t vl);
 ```
 
-Since the main intent is to let the users put different values of EEW and EMUL as input operand, the overloaded intrinsics do not hide the policy suffix. That is, suffix listed under <<chapter-control-to-policy>> is not hidden and is still encoded in the function name, except for the masked, tail-agnostic, mask-agnostic (`vta=0`, `vta=0`, `vma=0`) variant. Take the vector floating-point add (`vfadd`) as an example, the intrinsics API provides the following overloaded interfaces.
+Since the main intent is to let the users put different values of EEW and EMUL as input operand, the overloaded intrinsics do not hide the policy suffix. That is, suffix listed under <<chapter-control-to-policy>> is not hidden and is still encoded in the function name, except for the masked, tail-agnostic, mask-agnostic (`vm=0`, `vta=1`, `vma=1`) variant. Take the vector floating-point add (`vfadd`) as an example, the intrinsics API provides the following overloaded interfaces.
 
 ```c
 vfloat32m1_t __riscv_vfadd(vbool32_t mask, vfloat32m1_t op1, vfloat32m1_t op2,
