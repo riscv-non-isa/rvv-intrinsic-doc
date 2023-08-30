@@ -1,0 +1,73 @@
+/* { dg-do compile } */
+/* { dg-options "-march=rv32gc_zve32x -mabi=ilp32d -Wno-psabi -O3 -fno-schedule-insns -fno-schedule-insns2" } */
+
+#include "riscv_vector.h"
+
+typedef _Float16 float16_t;
+typedef float float32_t;
+typedef double float64_t;
+void test_vsse32_v_i32m1(int32_t *base, ptrdiff_t bstride, vint32m1_t value, size_t vl) {
+  return __riscv_vsse32(base, bstride, value, vl);
+}
+
+void test_vsse32_v_i32m2(int32_t *base, ptrdiff_t bstride, vint32m2_t value, size_t vl) {
+  return __riscv_vsse32(base, bstride, value, vl);
+}
+
+void test_vsse32_v_i32m4(int32_t *base, ptrdiff_t bstride, vint32m4_t value, size_t vl) {
+  return __riscv_vsse32(base, bstride, value, vl);
+}
+
+void test_vsse32_v_i32m8(int32_t *base, ptrdiff_t bstride, vint32m8_t value, size_t vl) {
+  return __riscv_vsse32(base, bstride, value, vl);
+}
+
+void test_vsse32_v_u32m1(uint32_t *base, ptrdiff_t bstride, vuint32m1_t value, size_t vl) {
+  return __riscv_vsse32(base, bstride, value, vl);
+}
+
+void test_vsse32_v_u32m2(uint32_t *base, ptrdiff_t bstride, vuint32m2_t value, size_t vl) {
+  return __riscv_vsse32(base, bstride, value, vl);
+}
+
+void test_vsse32_v_u32m4(uint32_t *base, ptrdiff_t bstride, vuint32m4_t value, size_t vl) {
+  return __riscv_vsse32(base, bstride, value, vl);
+}
+
+void test_vsse32_v_u32m8(uint32_t *base, ptrdiff_t bstride, vuint32m8_t value, size_t vl) {
+  return __riscv_vsse32(base, bstride, value, vl);
+}
+
+void test_vsse32_v_i32m1_m(vbool32_t mask, int32_t *base, ptrdiff_t bstride, vint32m1_t value, size_t vl) {
+  return __riscv_vsse32(mask, base, bstride, value, vl);
+}
+
+void test_vsse32_v_i32m2_m(vbool16_t mask, int32_t *base, ptrdiff_t bstride, vint32m2_t value, size_t vl) {
+  return __riscv_vsse32(mask, base, bstride, value, vl);
+}
+
+void test_vsse32_v_i32m4_m(vbool8_t mask, int32_t *base, ptrdiff_t bstride, vint32m4_t value, size_t vl) {
+  return __riscv_vsse32(mask, base, bstride, value, vl);
+}
+
+void test_vsse32_v_i32m8_m(vbool4_t mask, int32_t *base, ptrdiff_t bstride, vint32m8_t value, size_t vl) {
+  return __riscv_vsse32(mask, base, bstride, value, vl);
+}
+
+void test_vsse32_v_u32m1_m(vbool32_t mask, uint32_t *base, ptrdiff_t bstride, vuint32m1_t value, size_t vl) {
+  return __riscv_vsse32(mask, base, bstride, value, vl);
+}
+
+void test_vsse32_v_u32m2_m(vbool16_t mask, uint32_t *base, ptrdiff_t bstride, vuint32m2_t value, size_t vl) {
+  return __riscv_vsse32(mask, base, bstride, value, vl);
+}
+
+void test_vsse32_v_u32m4_m(vbool8_t mask, uint32_t *base, ptrdiff_t bstride, vuint32m4_t value, size_t vl) {
+  return __riscv_vsse32(mask, base, bstride, value, vl);
+}
+
+void test_vsse32_v_u32m8_m(vbool4_t mask, uint32_t *base, ptrdiff_t bstride, vuint32m8_t value, size_t vl) {
+  return __riscv_vsse32(mask, base, bstride, value, vl);
+}
+
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsse32\.[ivxfswum.]+\s+} 16 } } */

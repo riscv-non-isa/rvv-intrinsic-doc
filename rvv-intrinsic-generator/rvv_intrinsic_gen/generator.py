@@ -22,6 +22,13 @@ import collections
 import re
 
 from enums import ExtraAttr
+from enums import ToolChainType
+from enums import MarchAbi
+from utils import set_elen_float
+from utils import set_rv32
+from utils import set_toolchain_type
+from utils import set_rv64gcv
+from utils import set_rv32f
 
 
 class Generator():
@@ -127,6 +134,147 @@ class Generator():
 
     return True
 
+
+  @staticmethod
+  def adjust_gnu_api_count(api_count, test_file, has_policy, march_mabi):
+    if test_file in ["vmv.c", "vmv.C"]:
+      if march_mabi == MarchAbi.RV32GC_ZVE32F:
+        api_count = 136
+      elif march_mabi == MarchAbi.RV32GC_ZVE32X:
+        api_count = 132
+      elif march_mabi == MarchAbi.RV32GC_ZVE64F:
+        api_count = 214
+      elif march_mabi == MarchAbi.RV32GC_ZVE64X:
+        api_count = 208
+      elif march_mabi in [MarchAbi.RV64GC_ZVE64D, MarchAbi.RV64GCV]:
+        api_count = 210
+      elif march_mabi in [MarchAbi.RV64GCV_ZVFH, MarchAbi.RV32GC_ZVE64D]:
+        api_count = 218
+    if test_file == "vle8.c":
+      api_count = 62 if has_policy else api_count
+    if test_file == "vle8.C":
+      api_count = 48 if has_policy else api_count
+    if test_file == "vle16.c":
+      api_count = 52 if has_policy else api_count
+    if test_file == "vle16.C":
+      api_count = 40 if has_policy else api_count
+    if test_file == "vle32.c":
+      api_count = 63 if has_policy else api_count
+    if test_file == "vle32.C":
+      api_count = 48 if has_policy else api_count
+    if test_file in ["vsadd.c", "vsaddu.c", "vssub.c", "vssubu.c", "vaadd.c",\
+                     "vaaddu.c", "vasub.c", "vasubu.c"] \
+       and march_mabi in [MarchAbi.RV32GC_ZVE64D, MarchAbi.RV32GC_ZVE64F, \
+                          MarchAbi.RV32GC_ZVE64X]:
+      api_count = 80
+    if test_file == "vreinterpret.c":
+      if march_mabi in [MarchAbi.RV32GC_ZVE64D, MarchAbi.RV64GC_ZVE64D, MarchAbi.RV64GCV]:
+        api_count = 236
+      elif march_mabi == MarchAbi.RV32GC_ZVE32F:
+        api_count = 128
+      elif march_mabi == MarchAbi.RV32GC_ZVE32X:
+        api_count = 112
+      elif march_mabi == MarchAbi.RV32GC_ZVE64F:
+        api_count = 220
+      elif march_mabi == MarchAbi.RV32GC_ZVE64X:
+        api_count = 200
+      else:
+        api_count = 260
+    if test_file == "vget.c":
+      if march_mabi in [MarchAbi.RV32GC_ZVE64D, MarchAbi.RV64GC_ZVE64D, MarchAbi.RV64GCV]:
+        api_count = 170
+      elif march_mabi == MarchAbi.RV32GC_ZVE32X:
+        api_count = 102
+      elif march_mabi == MarchAbi.RV32GC_ZVE32F:
+        api_count = 119
+      elif march_mabi == MarchAbi.RV32GC_ZVE64F:
+        api_count = 153
+      elif march_mabi == MarchAbi.RV32GC_ZVE64X:
+        api_count = 136
+      else:
+        api_count = 187
+    if test_file == "vset.c":
+      if march_mabi in [MarchAbi.RV32GC_ZVE64D, MarchAbi.RV64GCV, MarchAbi.RV64GC_ZVE64D]:
+        api_count = 60
+      elif march_mabi == MarchAbi.RV32GC_ZVE32F:
+        api_count = 42
+      elif march_mabi == MarchAbi.RV32GC_ZVE32X:
+        api_count = 36
+      elif march_mabi == MarchAbi.RV32GC_ZVE64F:
+        api_count = 54
+      elif march_mabi == MarchAbi.RV32GC_ZVE64X:
+        api_count = 48
+      else:
+        api_count = 66
+    return api_count
+
+
+  @staticmethod
+  def adjust_gnu_pattern_str(opcode):
+    # TODO: move to switch case if python version >= 3.10
+    if opcode in ["vlmul_ext_v", "vlmul_trunc_v", \
+                  "vreinterpret", "vundefined"]:
+      pattern_str = "vs[1248e][r123468]+"
+    elif opcode == "vmv":
+      pattern_str = "v[ml][s]*[ve][0-9]*"
+    elif opcode == "vwadd":
+      pattern_str = "v[w]?add"
+    elif opcode == "vwaddu":
+      pattern_str = "v[w]?add[u]?"
+    elif opcode == "vwsub":
+      pattern_str = "v[w]?sub"
+    elif opcode == "vwsubu":
+      pattern_str = "v[w]?sub[u]?"
+    elif opcode == "vnmsac" or opcode == "vnmsub":
+      pattern_str = "vnms[acub]+"
+    elif opcode == "vmadd" or opcode == "vmacc":
+      pattern_str = "vma[c-d][c-d]"
+    elif opcode == "vmsge" or opcode == "vmslt":
+      pattern_str = "vms[gl][et]"
+    elif opcode == "vmsgeu" or opcode == "vmsltu":
+      pattern_str = "vms[gl][et]u"
+    elif opcode == "vget":
+      pattern_str = "vl[124]re[0-9]*\.v\s+v[124],0\([a-z0-9]*\)\s+vs[124]r\.+"
+    elif opcode == "vset":
+      pattern_str = "vl[1248]re[0-9]*\.v\s+v[1248],0\([a-z0-9]*\)\s+vl[1248]re[0-9]*\.v\s+v[1248],0\([a-z0-9]*\)+"
+    else:
+      pattern_str = opcode
+
+    pattern_str = pattern_str.replace("_", "\.")
+
+    if not "\." in pattern_str:
+      pattern_str = "{PATTERN}\.[ivxfswum.]+".format(PATTERN=pattern_str)
+    else:
+      pattern_str = "{PATTERN}[ivxfswum.]*".format(PATTERN=pattern_str)
+
+    return pattern_str
+
+
+  @staticmethod
+  def gen_gnu_dg_pattern_str(opcode, pattern_str, api_count):
+    if opcode == "vsetvl":
+      #pylint: disable=line-too-long
+      return "/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+[a-x0-9]+,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count)
+    elif opcode == "vsetvlmax":
+      #pylint: disable=line-too-long
+      return "/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+[a-x0-9]+,\s*zero,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count)
+    elif opcode in ["vlmul_ext_v", "vlmul_trunc_v", "vreinterpret", "vundefined", "vfmv"]:
+      #pylint: disable=line-too-long
+      return "/* {{ dg-final {{ scan-assembler-times {{{PATTERN}\s+[,\sa-x0-9()]+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
+    elif opcode in ["vmv", "vxor", "vsub", "vsbc", "vrsub", "vremu", "vrem", "vor", "vnmsub", "vnmsac", \
+                    "vmul", "vmsne", "vmsltu", "vmslt", "vmsleu", "vmsle", "vmsgtu", "vmsgt", "vmsgeu", \
+                    "vmsge", "vmseq", "vmsbc", "vminu", "vmin", "vmerge", "vmaxu", "vmax", "vmadd", "vmadc", \
+                    "vmacc", "vdivu", "vdiv", "vand", "vadd", "vadc"]:
+      return "/* {{ dg-final {{ scan-assembler-times {{{PATTERN}\s+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
+    elif opcode == "vget":
+      return "/* {{ dg-final {{ scan-assembler-times {{{PATTERN}\s+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
+    elif opcode == "vset":
+      return "/* {{ dg-final {{ scan-assembler-times {{{PATTERN}\s+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
+    else:
+      #pylint: disable=line-too-long
+      return "/* {{ dg-final {{ scan-assembler-times {{vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+{PATTERN}\s+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
+
+
   @staticmethod
   def get_overloaded_op_name(name):
     sn = name.split("_")
@@ -180,6 +328,9 @@ class Generator():
   def report_summary(self):
     print(f"Generator generated \x1b[1;31m{len(self.generated_functions_set)} \
       \x1b[0mfunctions")
+
+  def post_gen(self):
+    pass
 
 
 class DocGenerator(Generator):
@@ -310,12 +461,13 @@ class APITestGenerator(Generator):
   Derived generator for api unit tests.
   """
 
-  def __init__(self, f, is_overloaded, is_llvm, has_tail_policy):
+  def __init__(self, f, is_overloaded, toolchain_type, has_tail_policy, march_mabi):
     super().__init__()
     self.is_overloaded = is_overloaded
     self.folder = f
-    self.llvm = is_llvm
+    self.toolchain_type = toolchain_type
     self.has_tail_policy = has_tail_policy
+    self.march_mabi = march_mabi
     if not os.path.exists(self.folder):
       os.makedirs(self.folder)
     if not os.path.isdir(self.folder):
@@ -325,6 +477,31 @@ class APITestGenerator(Generator):
     # test file name candidates which are declared in inst.py, it could have
     # different op name
     self.test_file_names = []
+
+  def gnu_header_select(self):
+    # TODO: move to switch case if python version >= 3.10
+    if self.march_mabi == MarchAbi.RV32GC_ZVE32X:
+      march_mabi = "-march=rv32gc_zve32x -mabi=ilp32d -Wno-psabi"
+    elif self.march_mabi == MarchAbi.RV32GC_ZVE32F:
+      march_mabi = "-march=rv32gc_zve32f -mabi=ilp32d -Wno-psabi"
+    elif self.march_mabi == MarchAbi.RV32GC_ZVE64X:
+      march_mabi = "-march=rv32gc_zve64x -mabi=ilp32d -Wno-psabi"
+    elif self.march_mabi == MarchAbi.RV32GC_ZVE64F:
+      march_mabi = "-march=rv32gc_zve64f -mabi=ilp32d -Wno-psabi"
+    elif self.march_mabi == MarchAbi.RV32GC_ZVE64D:
+      march_mabi = "-march=rv32gc_zve64d -mabi=ilp32d -Wno-psabi"
+    elif self.march_mabi == MarchAbi.RV64GC_ZVE64D:
+      march_mabi = "-march=rv64gc_zve64d -mabi=lp64d -Wno-psabi"
+    elif self.march_mabi == MarchAbi.RV64GCV_ZVFH:
+      march_mabi = "-march=rv64gcv_zvfh -mabi=lp64d -Wno-psabi"
+    else:
+      march_mabi = "-march=rv64gcv -mabi=lp64d -Wno-psabi"
+    gnu_header_str = (r"""/* { dg-do compile } */
+/* { dg-options """ + '"' + march_mabi + r""" -O3 -fno-schedule-insns -fno-schedule-insns2" } */
+
+""")
+
+    return gnu_header_str
 
   def write_file_header(self, has_float_type):
     #pylint: disable=line-too-long
@@ -341,15 +518,22 @@ class APITestGenerator(Generator):
 // RUN:   FileCheck --check-prefix=CHECK-RV64 %s
 
 """)
-    if self.llvm:
+
+    if self.toolchain_type == ToolChainType.LLVM:
       if has_float_type:
         self.fd.write(float_llvm_header)
       else:
         self.fd.write(int_llvm_header)
+    elif self.toolchain_type == ToolChainType.GNU:
+      gnu_header = self.gnu_header_select()
+      self.fd.write(gnu_header)
     else:
       self.fd.write("#include <stdint.h>\n")
-    self.fd.write("#include <riscv_vector.h>\n\n")
-    if not self.llvm:
+    if self.toolchain_type == ToolChainType.GNU:
+      self.fd.write("#include \"riscv_vector.h\"\n\n")
+    else:
+      self.fd.write("#include <riscv_vector.h>\n\n")
+    if self.toolchain_type != ToolChainType.LLVM:
       self.fd.write("typedef _Float16 float16_t;\n")
       self.fd.write("typedef float float32_t;\n")
       self.fd.write("typedef double float64_t;\n")
@@ -361,7 +545,12 @@ class APITestGenerator(Generator):
 
     non_overloaded_func_name = Generator.func_name(name)
     overloaded_func_name = Generator.get_overloaded_op_name(name)
-    test_file_name = f"{inst_info.OP}.c"
+
+    if self.is_overloaded and self.toolchain_type == ToolChainType.GNU:
+      # GNU test suite requires *.C as test file suffix for overloaded API.
+      test_file_name = f"{inst_info.OP}.C"
+    else:
+      test_file_name = f"{inst_info.OP}.c"
 
     if self.is_overloaded:
       func_name = overloaded_func_name
@@ -446,10 +635,61 @@ class APITestGenerator(Generator):
     self.fd.write(call_args)
     self.fd.write(");\n")
     self.fd.write("}\n\n")
+    self.fd.flush() # To make sure the data flushed when post_gen.
+
+
+  def post_gen(self):
+    if self.toolchain_type == ToolChainType.GNU:
+      for test_file in set(self.test_files):
+        fd = open(os.path.join(self.folder, test_file), "r", encoding="utf-8")
+        api_count = fd.read().count("__riscv_")
+        fd.close()
+
+        api_count = Generator.adjust_gnu_api_count(api_count, test_file,
+                                                   self.has_tail_policy,
+                                                   self.march_mabi)
+
+        opcode = test_file.removesuffix(".c").removesuffix(".C")
+        pattern_str = Generator.adjust_gnu_pattern_str(opcode)
+
+        fd = open(os.path.join(self.folder, test_file), "a", encoding="utf-8")
+        dg_pattern_str = Generator.gen_gnu_dg_pattern_str(opcode, pattern_str,
+                                                          api_count)
+
+        fd.write(dg_pattern_str)
+        fd.close()
+
+  def set_flags(self):
+    if self.toolchain_type == ToolChainType.GNU:
+      set_toolchain_type (True)
+      if self.march_mabi in [MarchAbi.RV64GCV_ZVFH,
+                             MarchAbi.RV64GCV]:
+        set_rv64gcv(True)
+      if self.march_mabi not in [MarchAbi.RV64GC_ZVE64D,
+          MarchAbi.RV64GCV_ZVFH, MarchAbi.RV64GCV]:
+        set_rv32(True)
+      if self.march_mabi == MarchAbi.RV32GC_ZVE32X:
+        set_elen_float(32, False, False, False)
+      elif self.march_mabi == MarchAbi.RV32GC_ZVE32F:
+        set_elen_float(32, True, False, False)
+        set_rv32f(True)
+      elif self.march_mabi == MarchAbi.RV32GC_ZVE64X:
+        set_elen_float(64, False, False, False)
+      elif self.march_mabi == MarchAbi.RV32GC_ZVE64F:
+        set_elen_float(64, True, False, False)
+        set_rv32f(True)
+      elif self.march_mabi in [MarchAbi.RV32GC_ZVE64D,
+             MarchAbi.RV64GC_ZVE64D]:
+        set_elen_float(64, True, False, True)
+      elif self.march_mabi == MarchAbi.RV64GCV_ZVFH:
+        set_elen_float(64, True, True, True)
+      else:
+        set_elen_float(64, True, False, True)
 
   def function_group(self, template, title, link, op_list, type_list, sew_list,
                      lmul_list, decorator_list):
     self.test_file_names = op_list
+    self.set_flags()
     template.render(
         G=self,
         op_list=op_list,
