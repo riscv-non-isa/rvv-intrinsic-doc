@@ -35164,3 +35164,7 @@ Intrinsics here don't have a policy variant.
 [[policy-variant-overloadedvector-extraction]]
 === Vector Extraction Intrinsics
 Intrinsics here don't have a policy variant.
+
+[[policy-variant-overloadedvector-tuple-creation]]
+=== Vector Tuple Creation Intrinsics
+Intrinsics here don't have a policy variant.
