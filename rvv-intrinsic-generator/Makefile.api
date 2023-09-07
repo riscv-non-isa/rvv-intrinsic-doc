@@ -15,7 +15,8 @@
 ###############################################################################
 
 CFLAGS?=-O -Werror=implicit-function-declaration
-EXTRA_CFLAGS?=-march=rv64gcv_zfh_zvfh0p1 -menable-experimental-extensions
+ARCH_FLAG?=-march=rv64gcv_zfh_zvfh
+EXTRA_CFLAGS?=
 
 TEST_MULTILIB:=rv32gcv-ilp32d,rv64gcv-lp64d
 
@@ -37,4 +38,4 @@ clean:
 	rm *.log -f
 
 %.log: $(BASE_DIR)/%.c
-	-$(CC) $< -S -o /dev/null $(CFLAGS) $(EXTRA_CFLAGS) &> $@
+	-$(CC) $< -S -o /dev/null $(ARCH_FLAG) $(CFLAGS) $(EXTRA_CFLAGS) &> $@
