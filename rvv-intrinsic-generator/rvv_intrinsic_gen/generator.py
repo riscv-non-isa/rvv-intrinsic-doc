@@ -19,7 +19,6 @@ Generator classes that controls structures of the output.
 """
 import os
 import collections
-import re
 
 from enums import ExtraAttr
 
@@ -102,12 +101,21 @@ class Generator():
       # Prototype for non-policy and ta intrinsics of vmv_s_x and vfmv_s_f
       # is not feasible for overloading.
       return name.split("_")[-1] == "tu"
-    # vle/vse does not support overloading
+    # Load instruction intrinsics do not support overloading
     load_ops = [
-        "vl(s)?ei?[0-9]+(ff)?_v_.*", "vl(s)?seg[0-9]ei?[0-9]+(ff)?_v_.*"
+        # Non-segment load
+        "vle",
+        "vlse",
+        "vluxei",
+        "vloxei",
+        # Segment load
+        "vlseg*",
+        "vlsseg",
+        "vluxseg",
+        "vloxseg"
     ]
-    for p in load_ops:
-      if re.match(p, name) and name[-2:] != "_m":
+    for load_op in load_ops:
+      if load_op in name:
         return False
     unsupported_op = [
         "setvl", "vundefined", "viota", "vmclr", "vmset", "vid", "vmv_v_x",
@@ -916,11 +924,31 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
 
     assert False, "Unreachable"
 
+  def is_load_op(self, name):
+    # Load instruction intrinsics do not support overloading
+    load_ops = [
+        # Non-segment load
+        "vle",
+        "vlse",
+        "vluxei",
+        "vloxei",
+        # Segment load
+        "vlseg*",
+        "vlsseg",
+        "vluxseg",
+        "vloxseg"
+    ]
+    for load_op in load_ops:
+      if load_op in name:
+        return True
+
   def func(self, inst_info, name, return_type, **kwargs):
     if self.is_overloaded and not Generator.is_support_overloaded(
         name, **kwargs) and "vfmv_s" not in name and "vmv_s" not in name and\
         not (inst_info.extra_attr & ExtraAttr.IS_MASK and\
-         ("viota" in name or "vid" in name)):
+         ("viota" in name or "vid" in name)) and\
+        not (self.is_load_op(name) and\
+             inst_info.extra_attr & ExtraAttr.IS_MASK):
       # In v0.10, overloaded version of vid, vmv_s_x, and vfmv_s_f is
       # feasible because they have a default policy assumption of tail
       # undisturbed.
