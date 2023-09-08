@@ -20,11 +20,12 @@ For example, the v1.0 version should define the macro with value `1000000`.
 
 To leverage the intrinsics in the compiler, the header `<riscv_vector.h>` needs to be included. We suggest the inclusion to be guarded with the test macro of the intrinsics.
 
-```c
+[,c]
+----
 #ifdef __riscv_v_intrinsic
 #include <riscv_vector.h>
 #endif /* __riscv_v_intrinsic */
-```
+----
 
 == Availability
 
@@ -87,14 +88,15 @@ For the fixed-point intrinsics, representing the instructions under v-spec secti
 
 The `vxrm` operand is required to be an integer constant expression. The compiler should implement the following enum that maps to the defined rounding mode values under v-spec Table 4 ^8^.
 
-```c
+[,c]
+----
 enum __RISCV_VXRM {
   __RISCV_VXRM_RNU = 0,
   __RISCV_VXRM_RNE = 1,
   __RISCV_VXRM_RDN = 2,
   __RISCV_VXRM_ROD = 3,
 };
-```
+----
 
 NOTE: Computations of `vsadd`, `vsaddu`, `vssub`, and `vssubu` do not need the rounding mode, therefore the intrinsics of these instructions do not have the `vxrm` parameter.
 
@@ -120,7 +122,8 @@ The explicit-`frm` intrinsics contain the `frm` operand which indicates the roun
 
 The `frm` operand is required to be an integer constant expression. The compiler should implement the following enum that maps to the defined rounding mode values under RISC-V ISA Manual Table 8.1 ^8^.
 
-```c
+[,c]
+----
 enum __RISCV_FRM {
   __RISCV_FRM_RNE = 0,
   __RISCV_FRM_RTZ = 1,
@@ -128,7 +131,7 @@ enum __RISCV_FRM {
   __RISCV_FRM_RUP = 3,
   __RISCV_FRM_RMM = 4,
 };
-```
+----
 
 NOTE: The explicit-`frm` intrinsics are intended to be used when `FENV_ACCESS` is off, to enable more aggressive optimization while still providing the programmer with control over the rounding mode. Using explicit-`frm` intrinsics when `FENV_ACCESS`` is on will still work correctly, but is expected to lead to extra saving/restoring of `frm`, that could be avoided by using `fenv` functionality and implicit-`frm`.
 
@@ -159,7 +162,8 @@ With the default policy scheme mentioned under <<control-to-policy>>, each intri
 
 Using `vadd` with EEW=32 and EMUL=1 as an example, the variants are:
 
-```c
+[,c]
+----
 // vm=1, vta=1
 vint32m1_t __riscv_vadd_vv_i32m1(vint32m1_t op1, vint32m1_t op2, size_t vl);
 // vm=1, vta=0
@@ -178,7 +182,7 @@ vint32m1_t __riscv_vadd_vv_i32m1_mu(vbool32_t mask, vint32m1_t maskedoff,
 vint32m1_t __riscv_vadd_vv_i32m1_tumu(vbool32_t mask, vint32m1_t maskedoff,
                                       vint32m1_t op1, vint32m1_t op2,
                                       size_t vl);
-```
+----
 
 NOTE: When policy is set to "agnostic", there is no guarantee of what will be in the tail/masked-off elements. Under this policy users should not assume the values within to be deterministic. With no passthrough operand, the compiler can pick any register as the destination register.
 
@@ -224,18 +228,20 @@ This section enumerates the exceptions in the naming scheme.
 
 Only encoding the return type will cause naming collision for the permutation instruction intrinsics. The intrinsics encode the input vector type and the the output scalar type in the suffix.
 
-```c
+[,c]
+----
 int8_t vmv_x_s_i8m1_i8 (vint8m1_t vs2, size_t vl);
 int8_t vmv_x_s_i8m2_i8 (vint8m2_t vs2, size_t vl);
 int8_t vmv_x_s_i8m4_i8 (vint8m4_t vs2, size_t vl);
 int8_t vmv_x_s_i8m8_i8 (vint8m8_t vs2, size_t vl);
-```
+----
 
 ==== Reduction instructions
 
 Only encoding the return type will cause naming collision for the reduction instruction intrinsics. The intrinsics encode the input vector type and the output vector type in the suffix.
 
-```c
+[,c]
+----
 vint8m1_t vredsum_vs_i8m1_i8m1(vint8m1_t dest, vint8m1_t vs2, vint8m1_t vs1,
                                size_t vl);
 vint8m1_t vredsum_vs_i8m2_i8m1(vint8m1_t dest, vint8m2_t vs2, vint8m1_t vs1,
@@ -244,7 +250,7 @@ vint8m1_t vredsum_vs_i8m4_i8m1(vint8m1_t dest, vint8m4_t vs2, vint8m1_t vs1,
                                size_t vl);
 vint8m1_t vredsum_vs_i8m8_i8m1(vint8m1_t dest, vint8m8_t vs2, vint8m1_t vs1,
                                size_t vl);
-```
+----
 
 ==== `vreinterpret`, `vlmul_trunc`/`vlmul_ext`, and `vset`/`vget`
 
@@ -252,7 +258,8 @@ Only encoding the return type will cause naming collision for these pseudo instr
 
 The following shows an example with `__riscv_vreinterpret_v_i32m1_*`
 
-```c
+[,c]
+----
 vfloat32m1_t __riscv_vreinterpret_v_i32m1_f32m1 (vint32m1_t src);
 vuint32m1_t __riscv_vreinterpret_v_i32m1_u32m1 (vint32m1_t src);
 vint8m1_t __riscv_vreinterpret_v_i32m1_i8m1 (vint32m1_t src);
@@ -263,7 +270,7 @@ vbool32_t __riscv_vreinterpret_v_i32m1_b32 (vint32m1_t src);
 vbool16_t __riscv_vreinterpret_v_i32m1_b16 (vint32m1_t src);
 vbool8_t __riscv_vreinterpret_v_i32m1_b8 (vint32m1_t src);
 vbool4_t __riscv_vreinterpret_v_i32m1_b4 (vint32m1_t src);
-```
+----
 
 [[implicit-naming-scheme]]
 === Implicit (Overloaded) naming scheme
@@ -272,14 +279,16 @@ The overloaded interface aims to let users put values of different EEW and EMUL 
 
 Take the vector add (`vadd`) as an example, stripping off the operand mnemonics and encoded EEW, EMUL information, the intrinsics API provides the following overloaded interfaces.
 
-```c
+[,c]
+----
 vint32m1_t __riscv_vadd(vint32m1_t v0, vint32m1_t v1, size_t vl);
 vint16m4_t __riscv_vadd(vint16m4_t v0, vint16m4_t v1, size_t vl);
-```
+----
 
 Since the main intent is to let the users put different values of EEW and EMUL as input operand, the overloaded intrinsics do not hide the policy suffix. That is, suffix listed under <<chapter-control-to-policy>> is not hidden and is still encoded in the function name, except for the masked, tail-agnostic, mask-agnostic (`vm=0`, `vta=1`, `vma=1`) variant. Take the vector floating-point add (`vfadd`) as an example, the intrinsics API provides the following overloaded interfaces.
 
-```c
+[,c]
+----
 vfloat32m1_t __riscv_vfadd(vbool32_t mask, vfloat32m1_t op1, vfloat32m1_t op2,
                            unsigned int frm, size_t vl);
 vfloat16m4_t __riscv_vfadd(vbool4_t mask, vfloat16m4_t op1, vfloat16m4_t op2,
@@ -303,7 +312,7 @@ vfloat32m1_t __riscv_vfadd_tumu(vbool32_t mask, vfloat32m1_t maskedoff,
 vfloat32m1_t __riscv_vfadd_mu(vbool32_t mask, vfloat32m1_t maskedoff,
                               vfloat32m1_t op1, vfloat32m1_t op2,
                               unsigned int frm, size_t vl);
-```
+----
 
 The naming scheme does not cover all of intrinsics. Please see <<implicit-exception-naming>> for overloaded intrinsics with irregular naming patterns.
 
@@ -318,18 +327,20 @@ The following intrinsics have an irregular naming pattern.
 
 Widening intruction intrinsics (e.g. `vwadd`) have the same return type but different parameters. The operand mnemonics are encoded into their overloaded versions to help distinguish them.
 
-```c
+[,c]
+----
 vint32m1_t __riscv_vwadd_vv (vint16mf2_t op1, vint16mf2_t op2, size_t vl);
 vint32m1_t __riscv_vwadd_vx (vint16mf2_t op1, int16_t op2, size_t vl);
 vint32m1_t __riscv_vwadd_wv (vint32m1_t op1, vint16mf2_t op2, size_t vl);
 vint32m1_t __riscv_vwadd_wx (vint32m1_t op1, int16_t op2, size_t vl);
-```
+----
 
 ==== Type-convert instructions
 
 Type-convert instruction intrinsics (e.g. `vfcvt.f.x`) encode the returning value mnemonics (e.g. `vfcvt_f`) into their overloaded variant to help distinguish them.
 
-```c
+[,c]
+----
 vfloat32m1_t __riscv_vfcvt_f_tu(vfloat32m1_t maskedoff, vint32m1_t src,
                                 size_t vl);
 vfloat32m1_t __riscv_vfcvt_f_tum(vbool32_t mask, vfloat32m1_t maskedoff,
@@ -346,13 +357,14 @@ vfloat32m1_t __riscv_vfcvt_f_tumu(vbool32_t mask, vfloat32m1_t maskedoff,
                                   vint32m1_t src, unsigned int frm, size_t vl);
 vfloat32m1_t __riscv_vfcvt_f_mu(vbool32_t mask, vfloat32m1_t maskedoff,
                                 vint32m1_t src, unsigned int frm, size_t vl);
-```
+----
 
 ==== `vreinterpret`, LMUL truncate/extension, and `vset`/`vget`
 
 These pseudo intrinsics (e.g. `vreinterpret`) encode the return type (e.g. `__riscv_vreinterpret_b8`) into their overloaded variant to help distinguish them.
 
-```c
+[,c]
+----
 vbool8_t __riscv_vreinterpret_b8 (vint8m1_t src);
 vbool8_t __riscv_vreinterpret_b8 (vuint8m1_t src);
 vbool8_t __riscv_vreinterpret_b8 (vint16m1_t src);
@@ -361,7 +373,7 @@ vbool8_t __riscv_vreinterpret_b8 (vint32m1_t src);
 vbool8_t __riscv_vreinterpret_b8 (vuint32m1_t src);
 vbool8_t __riscv_vreinterpret_b8 (vint64m1_t src);
 vbool8_t __riscv_vreinterpret_b8 (vuint64m1_t src);
-```
+----
 
 [[unsupported-implicit-naming]]
 === Un-supported intrinsics for implicit (overloaded) naming scheme
@@ -387,18 +399,17 @@ The integer types have EEW and EMUL encoded into the type. The first row describ
 Type with bold font is only available when `ELEN >= 64` (that is, unavailable under `Zve32*`).
 
 .Integer types
-[cols="2,2,2,2,2,2,2,2"]
-[%autowidth]
+[options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
-| Types     | EMUL=1/8      | EMUL=1/4       | EMUL=1/ 2      | EMUL=1        | EMUL=2        | EMUL=4        | EMUL=8
-| int8_t    | *vint8mf8_t*  | vint8mf4_t     | vint8mf2_t     | vint8m1_t     | vint8m2_t     | vint8m4_t     | vint8m8_t
-| int16_t   | N/A           | *vint16mf4_t*  | vint16mf2_t    | vint16m1_t    | vint16m2_t    | vint16m4_t    | vint16m16_t
-| int32_t   | N/A           | N/A            | *vint32mf2_t*  | vint32m1_t    | vint32m2_t    | vint32m4_t    | vint32m32_t
-| int64_t   | N/A           | N/A            | N/A            | *vint64m1_t*  | *vint64m2_t*  | *vint64m4_t*  | *vint64m8_t*
-| uint8_t   | *vuint8mf8_t* | vuint8mf4_t    | vuint8mf2_t    | vuint8m1_t    | vuint8m2_t    | vuint8m4_t    | vuint8m8_t
-| uint16_t  | N/A           | *vuint16mf4_t* | vuint16mf2_t   | vuint16m1_t   | vuint16m2_t   | vuint16m4_t   | vuint16m8_t
-| uint32_t  | N/A           | N/A            | *vuint32mf2_t* | vuint32m1_t   | vuint32m2_t   | vuint32m4_t   | vuint32m8_t
-| uint64_t  | N/A           | N/A            | N/A            | *vuint64m1_t* | *vuint64m2_t* | *vuint64m4_t* | *vuint64m8_t*
+|Types|EMUL=1/8|EMUL=1/4|EMUL=1/ 2|EMUL=1|EMUL=2|EMUL=4|EMUL=8
+|int8_t s|vint8mf8_t|vint8mf4_t|vint8mf2_t|vint8m1_t|vint8m2_t|vint8m4_t|vint8m8_t
+|int16_t|N/A s|vint16mf4_t|vint16mf2_t|vint16m1_t|vint16m2_t|vint16m4_t|vint16m16_t
+|int32_t|N/A|N/A s|vint32mf2_t|vint32m1_t|vint32m2_t|vint32m4_t|vint32m32_t
+|int64_t|N/A|N/A|N/A s|vint64m1_t s|vint64m2_t s|vint64m4_t s|vint64m8_t
+|uint8_t s|vuint8mf8_t|vuint8mf4_t|vuint8mf2_t|vuint8m1_t|vuint8m2_t|vuint8m4_t|vuint8m8_t
+|uint16_t|N/A s|vuint16mf4_t|vuint16mf2_t|vuint16m1_t|vuint16m2_t|vuint16m4_t|vuint16m8_t
+|uint32_t|N/A|N/A s|vuint32mf2_t|vuint32m1_t|vuint32m2_t|vuint32m4_t|vuint32m8_t
+|uint64_t|N/A|N/A |N/A s|vuint64m1_t s|vuint64m2_t s|vuint64m4_t s|vuint64m8_t
 |===
 
 [[floating-point-type]]
@@ -413,8 +424,7 @@ Floating-point types with element widths of 32 requires the `zve32f` extension t
 Floating-point types with element widths of 64 requires the `zve64d` extension to be specified in the architecture.
 
 .Floating-point types
-[cols="2,2,2,2,2,2,2,2"]
-[%autowidth]
+[options="autowidth,header",float="center",align="center",cols="2,2,2,2,2,2,2,2"]
 |===
 | Types      | EMUL=1/8 | EMUL=1/4   | EMUL=1/ 2   | EMUL=1     | EMUL=2     | EMUL=4   | EMUL=8
 | float16_t  | N/A        | vfloat16m4_t | vfloat16mf2_t | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t
@@ -427,8 +437,7 @@ Floating-point types with element widths of 64 requires the `zve64d` extension t
 The mask types encode the ratio that is derived from `EEW`/`EMUL`. The mask types represent mask register values that follows the Mask Register Layout ^14^.
 
 .Mask types
-[cols="2,2,2,2,2,2,2,2"]
-[%autowidth]
+[options="autowidth,header",float="center",align="center",cols="2,2,2,2,2,2,2,2"]
 |===
 | Types | n = 1    | n = 2    | n = 4    | n = 8    | n = 16    | n = 32    | n = 64
 | bool  | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t
