@@ -564,6 +564,10 @@ The intrinsics provide extra utility functions to help users manipulate across t
 
 == Programming Notes
 
+=== Assumption of `vstart=0` for intrinsics users.
+
+The `vstart` CSR is currently not exposed to the intrinsics programmer, and the intrinsics have the semantics of `vstart = 0`. Support for positive `vstart` values is implementation defined, thus portable application software should not set `vstart > 0`.
+
 === Assembly generated from the intrinsics
 
 Some users may expect the intrinsics to directly translate and appear in the assembly, the intrinsics are the interfaces that expose the vector instruction semantics. The compiler is free to optimize them out if there is an opportunity.
@@ -633,3 +637,5 @@ The RVV intrinsics provides intrinsics with operand mnemonics of `vv` and `vx` b
 ^23^ Section 13 (Vector Floating-Point Instructions) in v-spec ^0^
 
 ^24^ Section 16.3.1 (Vector Slideup Instructions) in v-spec ^0^
+
+^25^ Section 3.7 (Vector Start Index CSR `vstart`) in v-spec ^0^
