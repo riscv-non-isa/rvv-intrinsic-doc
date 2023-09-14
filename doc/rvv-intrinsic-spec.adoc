@@ -538,20 +538,53 @@ Availability of the tuple types follows the availability of their corresponding 
 
 The intrinsics provide extra utility functions to help users manipulate across the RVV intrinsic types. These functions are called "pseudo intrinsics". These pseudo intrinsics do not represent any real instructions.
 
-[[pseudo-vsetvl-vsetvlmax]]
-=== `vsetvl`/`vsetvlmax`
+[[pseudo-vsetvl]]
+=== `vsetvl`
+
+The `vsetvl` intrinsics return `min(avl, VLMAX)` given the provided element width and LMUL in the suffix. Please refer to how VLMAX is defined in the v-spec ^5^.
+
+[[pseudo-vsetvlmax]]
+=== `vsetvlmax`
+
+The `vsetvl` intrinsics return `VLMAX` given the provided element width and LMUL in the suffix. Please refer to how VLMAX is defined in the v-spec ^5^.
 
 [[pseudo-vreinterpret]]
 === `vreinterpret`
 
+The `vreinterpret` intrinsics are provided for users to go across the strongly-typed scheme. The intrinsic is limited to conversion between types operating upon the same number of registers.
+
 [[pseudo-vundefined]]
 === `vundefined`
+The `vundefined` intrinsics are placeholders for `vset` and `vcreate` to represent agnostic values.
 
-[[pseudo-vget-vset]]
-=== `vget`/`vset`
+[[pseudo-vget]]
+=== `vget`
 
-[[pseudo-vlmul_trunc-vlmul_ext]]
-=== `vlmul_trunc`/`vlmul_ext`
+The `vget` intrinsics allow users to get smaller LMUL values from larger LMUL ones .The `vget` intrinsics also allows users to extract non-tuple (`NFIELD=1`) types from tuple (`NFIELD>1`) types after segment load intrinsics.
+
+The intrinsics does not map to any real instruction. Whether the compiler will generate vector move instructions is an optimization issue for the compiler.
+
+[[pseudo-vset]]
+=== `vset`
+
+The `vset` intrinsics allow users to combine small LMUL values into larges LMUL ones. The `vset` intrinsics also allows users to combine non-tuple (`NFIELD=1`) types to tuple (`NFIELD>1`) types for segment store intrinsics.
+
+The intrinsics does not map to any real instruction. Whether the compiler will generate vector move instructions is an optimization issue for the compiler.
+
+[[pseudo-vlmul_trunc]]
+=== `vlmul_trunc`
+
+The `vlmul_trunc` intrinsics are syntax sugars that essentially has the same semantic as `vget` with `idx=0`.
+
+[[pseudo-vlmul_ext]]
+=== `vlmul_ext`
+
+The `vlmul_ext` intrinsics are syntax sugars that essentially has the same semantic as `vset` with `idx=0`.
+
+[[pseudo-vcreate]]
+=== `vcreate`
+
+The `vcreate` intrinsics are syntax sugars for tuple types creation. They essentially has the same semantic as multiple `vset`-s filling in values accordingly into the tuple type.
 
 == Programming Notes
 
