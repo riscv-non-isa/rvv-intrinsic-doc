@@ -400,14 +400,14 @@ Type with bold font is only available when `ELEN >= 64` (that is, unavailable un
 [%autowidth]
 |===
 | Types     | EMUL=1/8      | EMUL=1/4       | EMUL=1/ 2      | EMUL=1        | EMUL=2        | EMUL=4        | EMUL=8
-| int8_t    | *vint8mf8_t*  | vint8mf4_t     | vint8mf2_t     | vint8m1_t     | vint8m2_t     | vint8m4_t     | vint8m8_t
-| int16_t   | N/A           | *vint16mf4_t*  | vint16mf2_t    | vint16m1_t    | vint16m2_t    | vint16m4_t    | vint16m16_t
-| int32_t   | N/A           | N/A            | *vint32mf2_t*  | vint32m1_t    | vint32m2_t    | vint32m4_t    | vint32m32_t
-| int64_t   | N/A           | N/A            | N/A            | *vint64m1_t*  | *vint64m2_t*  | *vint64m4_t*  | *vint64m8_t*
-| uint8_t   | *vuint8mf8_t* | vuint8mf4_t    | vuint8mf2_t    | vuint8m1_t    | vuint8m2_t    | vuint8m4_t    | vuint8m8_t
-| uint16_t  | N/A           | *vuint16mf4_t* | vuint16mf2_t   | vuint16m1_t   | vuint16m2_t   | vuint16m4_t   | vuint16m8_t
-| uint32_t  | N/A           | N/A            | *vuint32mf2_t* | vuint32m1_t   | vuint32m2_t   | vuint32m4_t   | vuint32m8_t
-| uint64_t  | N/A           | N/A            | N/A            | *vuint64m1_t* | *vuint64m2_t* | *vuint64m4_t* | *vuint64m8_t*
+| `int8_t`    | `*vint8mf8_t*`  | `vint8mf4_t`     | `vint8mf2_t`     | `vint8m1_t`     | `vint8m2_t`     | `vint8m4_t`     | `vint8m8_t`
+| `int16_t`   | N/A           | `*vint16mf4_t*`  | `vint16mf2_t`    | `vint16m1_t`    | `vint16m2_t`    | `vint16m4_t`    | `vint16m16_t`
+| `int32_t`   | N/A           | N/A            | `*vint32mf2_t*`  | `vint32m1_t`    | `vint32m2_t`    | `vint32m4_t`    | `vint32m32_t`
+| `int64_t`   | N/A           | N/A            | N/A            | `*vint64m1_t*`  | `*vint64m2_t*`  | `*vint64m4_t*`  | `*vint64m8_t*`
+| `uint8_t`   | `*vuint8mf8_t*` | `vuint8mf4_t`    | `vuint8mf2_t`    | `vuint8m1_t`    | `vuint8m2_t`    | `vuint8m4_t`    | `vuint8m8_t`
+| `uint16_t`  | N/A           | `*vuint16mf4_t*` | `vuint16mf2_t`   | `vuint16m1_t`   | `vuint16m2_t`   | `vuint16m4_t`   | `vuint16m8_t`
+| `uint32_t`  | N/A           | N/A            | `*vuint32mf2_t*` | `vuint32m1_t`   | `vuint32m2_t`   | `vuint32m4_t`   | `vuint32m8_t`
+| `uint64_t`  | N/A           | N/A            | N/A            | `*vuint64m1_t*` | `*vuint64m2_t*` | `*vuint64m4_t*` | `*vuint64m8_t*`
 |===
 
 [[floating-point-type]]
@@ -415,20 +415,20 @@ Type with bold font is only available when `ELEN >= 64` (that is, unavailable un
 
 The floating-point types have EEW and EMUL encoded into the type. The first row describes the EMUL and the first column describes the data type and element width of the scalar type.
 
-Floating-point types with element widths of 16 requires the `zvfh` and `zvfhmin` extension to be specified in the architecture.
+Floating-point types with element widths of 16 (Types=`float16_t`) requires the `zvfh` and `zvfhmin` extension to be specified in the architecture.
 
-Floating-point types with element widths of 32 requires the `zve32f` extension to be specified in the architecture.
+Floating-point types with element widths of 32 (Types=`float32_t`) requires the `zve32f` extension to be specified in the architecture.
 
-Floating-point types with element widths of 64 requires the `zve64d` extension to be specified in the architecture.
+Floating-point types with element widths of 64 (Types=`float64_t`) requires the `zve64d` extension to be specified in the architecture.
 
 .Floating-point types
 [cols="2,2,2,2,2,2,2,2"]
 [%autowidth]
 |===
 | Types      | EMUL=1/8 | EMUL=1/4   | EMUL=1/ 2   | EMUL=1     | EMUL=2     | EMUL=4   | EMUL=8
-| float16_t  | N/A        | vfloat16m4_t | vfloat16mf2_t | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t
-| float32_t  | N/A        | N/A          | vfloat32mf2_t | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t
-| float64_t  | N/A        | N/A          | N/A           | vfloat64m1_t | vfloat64m2_t | vfloat64m4_t | vfloat64m8_t
+| `float16_t`  | N/A        | `vfloat16m4_t` | `vfloat16mf2_t` | `vfloat16m1_t` | `vfloat16m2_t` | `vfloat16m4_t` | `vfloat16m8_t`
+| `float32_t`  | N/A        | N/A          | `vfloat32mf2_t` | `vfloat32m1_t` | `vfloat32m2_t` | `vfloat32m4_t` | `vfloat32m8_t`
+| `float64_t`  | N/A        | N/A          | N/A           | `vfloat64m1_t` | `vfloat64m2_t` | `vfloat64m4_t` | `vfloat64m8_t`
 |===
 
 === Mask types
@@ -440,16 +440,107 @@ The mask types encode the ratio that is derived from `EEW`/`EMUL`. The mask type
 [%autowidth]
 |===
 | Types | n = 1    | n = 2    | n = 4    | n = 8    | n = 16    | n = 32    | n = 64
-| bool  | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t
+| `bool`  | `vbool1_t` | `vbool2_t` | `vbool4_t` | `vbool8_t` | `vbool16_t` | `vbool32_t` | `vbool64_t`
 |===
 
 === Tuple type
 
 The tuple types encode `SEW`, `LMUL`, and `NFIELD`^16^ into the data type.
 
-These types are utilized for the segment load/store instruction intrinsics, the types listed in <<integer-type>> and <<floating-point-type>> all have tuple types. Types under the combination of `LMUL`, `NFIELD` follows the restriction by v-spec - EMUL * NFIELDS ≤ 8.
+These types are utilized for the segment load/store instruction intrinsics, the types listed in <<integer-type>> and <<floating-point-type>> all have tuple types. Types under the combination of `LMUL`, `NFIELD` follows the restriction by v-spec - EMUL * NFIELDS ≤ 8. 
 
-The full list of types is attached in the Appendix.
+Availability of the tuple types follows the availability of their corresponding non-tuple (`NFIELD=1`) types.
+
+.Tuple types (EMUL=1/8)
+[cols="2,2,2,2,2,2,2,2"]
+[%autowidth]
+|===
+| Non-tuple Types (NFILED=1) | NFIELD=2   | NFIELD=3    | NFIELD=4     | NFIELD=5     | NFIELD=6   | NFIELD=7 | NFIELD=8
+| `vint8mf8_t` | `vint8mf8x2_t` | `vint8mf8x3_t` | `vint8mf8x4_t` | `vint8mf8x5_t` | `vint8mf8x6_t` | `vint8mf8x7_t` | `vint8mf8x8_t`
+| `vuint8mf8_t` | `vuint8mf8x2_t` | `vuint8mf8x3_t` | `vuint8mf8x4_t` | `vuint8mf8x5_t` | `vuint8mf8x6_t` | `vuint8mf8x7_t` | `vuint8mf8x8_t`
+|===
+
+.Tuple types (EMUL=1/4)
+[cols="2,2,2,2,2,2,2,2"]
+[%autowidth]
+|===
+| Non-tuple Types (NFILED=1)| NFIELD=2   | NFIELD=3    | NFIELD=4     | NFIELD=5     | NFIELD=6   | NFIELD=7 | NFIELD=8
+| `vint8mf4_t` | `vint8mf4x2_t` | `vint8mf4x3_t` | `vint8mf4x4_t` | `vint8mf4x5_t` | `vint8mf4x6_t` | `vint8mf4x7_t` | `vint8mf4x8_t`
+| `vuint8mf4_t` | `vuint8mf4x2_t` | `vuint8mf4x3_t` | `vuint8mf4x4_t` | `vuint8mf4x5_t` | `vuint8mf4x6_t` | `vuint8mf4x7_t` | `vuint8mf4x8_t`
+| `vint16mf4_t` | `vint16mf4x2_t` | `vint16mf4x3_t` | `vint16mf4x4_t` | `vint16mf4x5_t` | `vint16mf4x6_t` | `vint16mf4x7_t` | `vint16mf4x8_t`
+| `vuint16mf4_t` | `vuint16mf4x2_t` | `vuint16mf4x3_t` | `vuint16mf4x4_t` | `vuint16mf4x5_t` | `vuint16mf4x6_t` | `vuint16mf4x7_t` | `vuint16mf4x8_t`
+| `vfloat16mf4_t` | `vfloat16mf4x2_t` | `vfloat16mf4x3_t` | `vfloat16mf4x4_t` | `vfloat16mf4x5_t` | `vfloat16mf4x6_t` | `vfloat16mf4x7_t` | `vfloat16mf4x8_t`
+|===
+
+.Tuple types (EMUL=1/2)
+[cols="2,2,2,2,2,2,2,2"]
+[%autowidth]
+|===
+| Non-tuple Types (NFILED=1) | NFIELD=2   | NFIELD=3    | NFIELD=4     | NFIELD=5     | NFIELD=6   | NFIELD=7 | NFIELD=8
+| `vint8mf2_t` | `vint8mf2x2_t` | `vint8mf2x3_t` | `vint8mf2x4_t` | `vint8mf2x5_t` | `vint8mf2x6_t` | `vint8mf2x7_t` | `vint8mf2x8_t`
+| `vuint8mf2_t` | `vuint8mf2x2_t` | `vuint8mf2x3_t` | `vuint8mf2x4_t` | `vuint8mf2x5_t` | `vuint8mf2x6_t` | `vuint8mf2x7_t` | `vuint8mf2x8_t`
+| `vint16mf2_t` | `vint16mf2x2_t` | `vint16mf2x3_t` | `vint16mf2x4_t` | `vint16mf2x5_t` | `vint16mf2x6_t` | `vint16mf2x7_t` | `vint16mf2x8_t`
+| `vuint16mf2_t` | `vuint16mf2x2_t` | `vuint16mf2x3_t` | `vuint16mf2x4_t` | `vuint16mf2x5_t` | `vuint16mf2x6_t` | `vuint16mf2x7_t` | `vuint16mf2x8_t`
+| `vint32mf2_t` | `vint32mf2x2_t` | `vint32mf2x3_t` | `vint32mf2x4_t` | `vint32mf2x5_t` | `vint32mf2x6_t` | `vint32mf2x7_t` | `vint32mf2x8_t`
+| `vuint32mf2_t` | `vuint32mf2x2_t` | `vuint32mf2x3_t` | `vuint32mf2x4_t` | `vuint32mf2x5_t` | `vuint32mf2x6_t` | `vuint32mf2x7_t` | `vuint32mf2x8_t`
+| `vfloat16mf2_t` | `vfloat16mf2x2_t` | `vfloat16mf2x3_t` | `vfloat16mf2x4_t` | `vfloat16mf2x5_t` | `vfloat16mf2x6_t` | `vfloat16mf2x7_t` | `vfloat16mf2x8_t`
+| `vfloat32mf2_t` | `vfloat32mf2x2_t` | `vfloat32mf2x3_t` | `vfloat32mf2x4_t` | `vfloat32mf2x5_t` | `vfloat32mf2x6_t` | `vfloat32mf2x7_t` | `vfloat32mf2x8_t`
+|===
+
+.Tuple types (EMUL=1)
+[cols="2,2,2,2,2,2,2,2"]
+[%autowidth]
+|===
+| Non-tuple Types (NFILED=1) | NFIELD=2   | NFIELD=3    | NFIELD=4     | NFIELD=5     | NFIELD=6   | NFIELD=7 | NFIELD=8
+| `vint8m1_t` | `vint8m1x2_t` | `vint8m1x3_t` | `vint8m1x4_t` | `vint8m1x5_t` | `vint8m1x6_t` | `vint8m1x7_t` | `vint8m1x8_t`
+| `vuint8m1_t` | `vuint8m1x2_t` | `vuint8m1x3_t` | `vuint8m1x4_t` | `vuint8m1x5_t` | `vuint8m1x6_t` | `vuint8m1x7_t` | `vuint8m1x8_t`
+| `vint16m1_t` | `vint16m1x2_t` | `vint16m1x3_t` | `vint16m1x4_t` | `vint16m1x5_t` | `vint16m1x6_t` | `vint16m1x7_t` | `vint16m1x8_t`
+| `vuint16m1_t` | `vuint16m1x2_t` | `vuint16m1x3_t` | `vuint16m1x4_t` | `vuint16m1x5_t` | `vuint16m1x6_t` | `vuint16m1x7_t` | `vuint16m1x8_t`
+| `vint32m1_t` | `vint32m1x2_t` | `vint32m1x3_t` | `vint32m1x4_t` | `vint32m1x5_t` | `vint32m1x6_t` | `vint32m1x7_t` | `vint32m1x8_t`
+| `vuint32m1_t` | `vuint32m1x2_t` | `vuint32m1x3_t` | `vuint32m1x4_t` | `vuint32m1x5_t` | `vuint32m1x6_t` | `vuint32m1x7_t` | `vuint32m1x8_t`
+| `vint64m1_t` | `vint64m1x2_t` | `vint64m1x3_t` | `vint64m1x4_t` | `vint64m1x5_t` | `vint64m1x6_t` | `vint64m1x7_t` | `vint64m1x8_t`
+| `vuint64m1_t` | `vuint64m1x2_t` | `vuint64m1x3_t` | `vuint64m1x4_t` | `vuint64m1x5_t` | `vuint64m1x6_t` | `vuint64m1x7_t` | `vuint64m1x8_t`
+| `vfloat16m1_t` | `vfloat16m1x2_t` | `vfloat16m1x3_t` | `vfloat16m1x4_t` | `vfloat16m1x5_t` | `vfloat16m1x6_t` | `vfloat16m1x7_t` | `vfloat16m1x8_t`
+| `vfloat32m1_t` | `vfloat32m1x2_t` | `vfloat32m1x3_t` | `vfloat32m1x4_t` | `vfloat32m1x5_t` | `vfloat32m1x6_t` | `vfloat32m1x7_t` | `vfloat32m1x8_t`
+| `vfloat64m1_t` | `vfloat64m1x2_t` | `vfloat64m1x3_t` | `vfloat64m1x4_t` | `vfloat64m1x5_t` | `vfloat64m1x6_t` | `vfloat64m1x7_t` | `vfloat64m1x8_t`
+|===
+
+.Tuple types (EMUL=2)
+[cols="2,2,2,2,2,2,2,2"]
+[%autowidth]
+|===
+| Non-tuple Types (NFILED=1) | NFIELD=2   | NFIELD=3    | NFIELD=4     | NFIELD=5     | NFIELD=6   | NFIELD=7 | NFIELD=8
+| `vint8m2_t` | `vint8m2x2_t` | `vint8m2x3_t` | `vint8m2x4_t` | N/A | N/A | N/A | N/A
+| `vuint8m2_t` | `vuint8m2x2_t` | `vuint8m2x3_t` | `vuint8m2x4_t` | N/A | N/A | N/A | N/A
+| `vint16m2_t` | `vint16m2x2_t` | `vint16m2x3_t` | `vint16m2x4_t` | N/A | N/A | N/A | N/A
+| `vuint16m2_t` | `vuint16m2x2_t` | `vuint16m2x3_t` | `vuint16m2x4_t` | N/A | N/A | N/A | N/A
+| `vint32m2_t` | `vint32m2x2_t` | `vint32m2x3_t` | `vint32m2x4_t` | N/A | N/A | N/A | N/A
+| `vuint32m2_t` | `vuint32m2x2_t` | `vuint32m2x3_t` | `vuint32m2x4_t` | N/A | N/A | N/A | N/A
+| `vint64m2_t` | `vint64m2x2_t` | `vint64m2x3_t` | `vint64m2x4_t` | N/A | N/A | N/A | N/A
+| `vuint64m2_t` | `vuint64m2x2_t` | `vuint64m2x3_t` | `vuint64m2x4_t` | N/A | N/A | N/A | N/A
+| `vfloat16m2_t` | `vfloat16m2x2_t` | `vfloat16m2x3_t` | `vfloat16m2x4_t` | N/A | N/A | N/A | N/A
+| `vfloat32m2_t` | `vfloat32m2x2_t` | `vfloat32m2x3_t` | `vfloat32m2x4_t` | N/A | N/A | N/A | N/A
+| `vfloat64m2_t` | `vfloat64m2x2_t` | `vfloat64m2x3_t` | `vfloat64m2x4_t` | N/A | N/A | N/A | N/A
+|===
+
+.Tuple types (EMUL=4)
+[cols="2,2,2,2,2,2,2,2"]
+[%autowidth]
+|===
+| Non-tuple Types (NFILED=1) | NFIELD=2   | NFIELD=3    | NFIELD=4     | NFIELD=5     | NFIELD=6   | NFIELD=7 | NFIELD=8
+| `vint8m4_t` | `vint8m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
+| `vuint8m4_t` | `vuint8m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
+| `vint16m4_t` | `vint16m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
+| `vuint16m4_t` | `vuint16m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
+| `vint32m4_t` | `vint32m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
+| `vuint32m4_t` | `vuint32m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
+| `vint64m4_t` | `vint64m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
+| `vuint64m4_t` | `vuint64m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
+| `vfloat16m4_t` | `vfloat16m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
+| `vfloat32m4_t` | `vfloat32m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
+| `vfloat64m4_t` | `vfloat64m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
+|===
+
 
 [[pseudo-intrinsics]]
 == Pseudo intrinsics
