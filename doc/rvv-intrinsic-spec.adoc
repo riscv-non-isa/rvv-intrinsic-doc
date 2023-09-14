@@ -188,18 +188,9 @@ vint32m1_t __riscv_vadd_vv_i32m1_tumu(vbool32_t mask, vint32m1_t maskedoff,
                                       size_t vl);
 ```
 
-NOTE: When policy is set to "agnostic", there is no guarantee of what will be in the tail/masked-off elements. Under this policy users should not assume the values within to be deterministic. For intrinsics with no `vd` operand, the compiler is free to pick any register as the destination register.
+NOTE: When policy is set to "agnostic", there is no guarantee of what will be in the tail/masked-off elements. Under this policy users should not assume the values within to be deterministic.
 
 NOTE: Pseudo intrinsics mentioned under <<pseudo-intrinsics>> do not map to real vector intsructions. Therefore these intrinsics are not affected by the policy setting, nor do they have intrinsic variants of the suffixes listed above.
-
-=== The `vd` parameters in the intrinsics
-
-Intrinsics whose computation is relevant to value held in `vd` have a passthrough operand in them. The following list enumerates the intrinsics that has a passthrough operand. Please see the appendix for the exact prototypes of these intrinsics.
-
-- Intrinsics with tail-undisturbed (`vta=0`)
-- Intrinsics with mask-undisturbed (`vma=0`)
-- Intrinsics representing Vector Multiply-Add Operations ^13^
-- Intrinsics representing Vector Slideup Instructions ^24^
 
 [[explicit-naming-scheme]]
 === Explicit (Non-overloaded) naming scheme
@@ -563,6 +554,17 @@ The intrinsics provide extra utility functions to help users manipulate across t
 === `vlmul_trunc`/`vlmul_ext`
 
 == Programming Notes
+
+=== The `vd` parameters in the intrinsics
+
+Intrinsics whose computation is relevant to value held in `vd` have a passthrough operand in them. The following list enumerates the intrinsics that has a passthrough operand. Please see the appendix for the exact prototypes of these intrinsics.
+
+- Intrinsics with tail-undisturbed (`vta=0`)
+- Intrinsics with mask-undisturbed (`vma=0`)
+- Intrinsics representing Vector Multiply-Add Operations ^13^
+- Intrinsics representing Vector Slideup Instructions ^24^
+
+For intrinsics with no `vd` operand, the compiler is free to pick any register as the destination register.
 
 === Assumption of `vstart=0` for intrinsics users.
 
