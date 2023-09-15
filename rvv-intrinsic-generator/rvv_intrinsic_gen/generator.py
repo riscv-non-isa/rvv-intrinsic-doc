@@ -318,6 +318,7 @@ class APITestGenerator(Generator):
     self.folder = f
     self.toolchain_type = toolchain_type
     self.has_tail_policy = has_tail_policy
+    self.march_mabi = " "
     if not os.path.exists(self.folder):
       os.makedirs(self.folder)
     if not os.path.isdir(self.folder):
@@ -327,6 +328,13 @@ class APITestGenerator(Generator):
     # test file name candidates which are declared in inst.py, it could have
     # different op name
     self.test_file_names = []
+
+  def gnu_header_add(self):
+    march_mabi = "-march=rv64gcv_zvfh -mabi=lp64d"
+    gnu_header_str = (r"""/* { dg-do compile } */
+/* { dg-options """ + '"' + march_mabi + r""" -Wno-psabi -O3 -fno-schedule-insns -fno-schedule-insns2" } */
+""")
+    return gnu_header_str
 
   def write_file_header(self, has_float_type):
     #pylint: disable=line-too-long
@@ -348,9 +356,15 @@ class APITestGenerator(Generator):
         self.fd.write(float_llvm_header)
       else:
         self.fd.write(int_llvm_header)
+    elif self.toolchain_type == ToolChainType.GNU:
+      gnu_header = self.gnu_header_add()
+      self.fd.write(gnu_header)
     else:
       self.fd.write("#include <stdint.h>\n")
-    self.fd.write("#include <riscv_vector.h>\n\n")
+    if self.toolchain_type == ToolChainType.GNU:
+      self.fd.write("#include \"riscv_vector.h\"\n\n")
+    else:
+      self.fd.write("#include <riscv_vector.h>\n\n")
     if self.toolchain_type != ToolChainType.LLVM:
       self.fd.write("typedef _Float16 float16_t;\n")
       self.fd.write("typedef float float32_t;\n")
