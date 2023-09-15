@@ -130,6 +130,86 @@ class Generator():
     return True
 
   @staticmethod
+  def adjust_gnu_api_count(api_count, test_file, has_policy):
+    if test_file == "vle8.c":
+      api_count = 62 if has_policy else api_count
+    if test_file == "vle8.C":
+      api_count = 48 if has_policy else api_count
+    if test_file == "vle16.c":
+      api_count = 52 if has_policy else api_count
+    if test_file == "vle16.C":
+      api_count = 40 if has_policy else api_count
+    if test_file == "vle32.c":
+      api_count = 63 if has_policy else api_count
+    if test_file == "vle32.C":
+      api_count = 48 if has_policy else api_count
+    return api_count
+
+  @staticmethod
+  def adjust_gnu_pattern_str(opcode):
+    # TODO: move to switch case if python version >= 3.10
+    if opcode in ["vlmul_ext_v", "vlmul_trunc_v", \
+                  "vreinterpret", "vundefined"]:
+      pattern_str = "vs[1248e][r123468]+"
+    elif opcode == "vmv":
+      pattern_str = "v[ml][s]*[ve][0-9]*"
+    elif opcode == "vwadd":
+      pattern_str = "v[w]?add"
+    elif opcode == "vwaddu":
+      pattern_str = "v[w]?add[u]?"
+    elif opcode == "vwsub":
+      pattern_str = "v[w]?sub"
+    elif opcode == "vwsubu":
+      pattern_str = "v[w]?sub[u]?"
+    elif opcode == "vnmsac" or opcode == "vnmsub":
+      pattern_str = "vnms[acub]+"
+    elif opcode == "vmadd" or opcode == "vmacc":
+      pattern_str = "vma[c-d][c-d]"
+    elif opcode == "vmsge" or opcode == "vmslt":
+      pattern_str = "vms[gl][et]"
+    elif opcode == "vmsgeu" or opcode == "vmsltu":
+      pattern_str = "vms[gl][et]u"
+    elif opcode == "vget":
+      pattern_str = "vl[124]re[0-9]*\.v\s+v[124],0\([a-z0-9]*\)\s+vs[124]r\.+"
+    elif opcode == "vset":
+      pattern_str = "vl[1248]re[0-9]*\.v\s+v[1248],0\([a-z0-9]*\)\s+vl[1248]re[0-9]*\.v\s+v[1248],0\([a-z0-9]*\)+"
+    else:
+      pattern_str = opcode
+
+    pattern_str = pattern_str.replace("_", "\.")
+
+    if not "\." in pattern_str:
+      pattern_str = "{PATTERN}\.[ivxfswum.]+".format(PATTERN=pattern_str)
+    else:
+      pattern_str = "{PATTERN}[ivxfswum.]*".format(PATTERN=pattern_str)
+
+    return pattern_str
+
+  @staticmethod
+  def gen_gnu_dg_pattern_str(opcode, pattern_str, api_count):
+    if opcode == "vsetvl":
+      #pylint: disable=line-too-long
+      return "/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+[a-x0-9]+,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count)
+    elif opcode == "vsetvlmax":
+      #pylint: disable=line-too-long
+      return "/* {{ dg-final {{ scan-assembler-times {{vsetvli\s+[a-x0-9]+,\s*zero,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count)
+    elif opcode in ["vlmul_ext_v", "vlmul_trunc_v", "vreinterpret", "vundefined", "vfmv"]:
+      #pylint: disable=line-too-long
+      return "/* {{ dg-final {{ scan-assembler-times {{{PATTERN}\s+[,\sa-x0-9()]+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
+    elif opcode in ["vmv", "vxor", "vsub", "vsbc", "vrsub", "vremu", "vrem", "vor", "vnmsub", "vnmsac", \
+                    "vmul", "vmsne", "vmsltu", "vmslt", "vmsleu", "vmsle", "vmsgtu", "vmsgt", "vmsgeu", \
+                    "vmsge", "vmseq", "vmsbc", "vminu", "vmin", "vmerge", "vmaxu", "vmax", "vmadd", "vmadc", \
+                    "vmacc", "vdivu", "vdiv", "vand", "vadd", "vadc"]:
+      return "/* {{ dg-final {{ scan-assembler-times {{{PATTERN}\s+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
+    elif opcode == "vget":
+      return "/* {{ dg-final {{ scan-assembler-times {{{PATTERN}\s+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
+    elif opcode == "vset":
+      return "/* {{ dg-final {{ scan-assembler-times {{{PATTERN}\s+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
+    else:
+      #pylint: disable=line-too-long
+      return "/* {{ dg-final {{ scan-assembler-times {{vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+{PATTERN}\s+}} {OCCURENCE} }} }} */\n".format(OCCURENCE=api_count,PATTERN=pattern_str)
+
+  @staticmethod
   def get_overloaded_op_name(name):
     sn = name.split("_")
     if name.startswith("sf_"):
@@ -467,6 +547,26 @@ class APITestGenerator(Generator):
     self.fd.write(");\n")
     self.fd.write("}\n\n")
     self.fd.flush() # To make sure the data flushed when post_gen.
+
+  def post_gen(self):
+    if self.toolchain_type == ToolChainType.GNU:
+      for test_file in set(self.test_files):
+        fd = open(os.path.join(self.folder, test_file), "r", encoding="utf-8")
+        api_count = fd.read().count("__riscv_")
+        fd.close()
+
+        api_count = Generator.adjust_gnu_api_count(api_count, test_file,
+                                                   self.has_tail_policy,)
+
+        opcode = test_file.removesuffix(".c").removesuffix(".C")
+        pattern_str = Generator.adjust_gnu_pattern_str(opcode)
+
+        fd = open(os.path.join(self.folder, test_file), "a", encoding="utf-8")
+        dg_pattern_str = Generator.gen_gnu_dg_pattern_str(opcode, pattern_str,
+                                                          api_count)
+
+        fd.write(dg_pattern_str)
+        fd.close()
 
   def set_flags(self):
     if self.toolchain_type == ToolChainType.GNU:
