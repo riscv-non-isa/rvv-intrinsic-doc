@@ -24,6 +24,12 @@ import re
 ELEN = 64
 
 
+IS_GNU_TOOLCHIAN = False
+
+def set_toolchain_type(gnu):
+  global IS_GNU_TOOLCHIAN
+  IS_GNU_TOOLCHIAN = gnu
+
 # ex. f8 -> 0.125
 def get_float_lmul(num):
   if isinstance(num, str) and num[0] == "f":

@@ -19,6 +19,7 @@ This file stores enum classes and InstInfo that collects them.
 """
 import enum
 
+from enum import unique
 
 # First letter of InstType is return type.
 class InstType(enum.Enum):
@@ -92,6 +93,15 @@ class MemType(enum.Enum):
   STORE = 2
   AMO = 3
 
+
+@unique
+class ToolChainType(enum.Enum):
+  """
+  Enum of the target toolchain of the intrinsic test files.
+  """
+  UNKNOWN = "unknown"
+  LLVM = "llvm"
+  GNU = "gnu"
 
 class ExtraAttr:
   """

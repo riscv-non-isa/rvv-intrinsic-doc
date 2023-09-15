@@ -22,6 +22,8 @@ import collections
 import re
 
 from enums import ExtraAttr
+from enums import ToolChainType
+from utils import set_toolchain_type
 
 
 class Generator():
@@ -310,11 +312,11 @@ class APITestGenerator(Generator):
   Derived generator for api unit tests.
   """
 
-  def __init__(self, f, is_overloaded, is_llvm, has_tail_policy):
+  def __init__(self, f, is_overloaded, toolchain_type, has_tail_policy):
     super().__init__()
     self.is_overloaded = is_overloaded
     self.folder = f
-    self.llvm = is_llvm
+    self.toolchain_type = toolchain_type
     self.has_tail_policy = has_tail_policy
     if not os.path.exists(self.folder):
       os.makedirs(self.folder)
@@ -341,7 +343,7 @@ class APITestGenerator(Generator):
 // RUN:   FileCheck --check-prefix=CHECK-RV64 %s
 
 """)
-    if self.llvm:
+    if self.toolchain_type == ToolChainType.LLVM:
       if has_float_type:
         self.fd.write(float_llvm_header)
       else:
@@ -349,7 +351,7 @@ class APITestGenerator(Generator):
     else:
       self.fd.write("#include <stdint.h>\n")
     self.fd.write("#include <riscv_vector.h>\n\n")
-    if not self.llvm:
+    if self.toolchain_type != ToolChainType.LLVM:
       self.fd.write("typedef _Float16 float16_t;\n")
       self.fd.write("typedef float float32_t;\n")
       self.fd.write("typedef double float64_t;\n")
@@ -361,7 +363,11 @@ class APITestGenerator(Generator):
 
     non_overloaded_func_name = Generator.func_name(name)
     overloaded_func_name = Generator.get_overloaded_op_name(name)
-    test_file_name = f"{inst_info.OP}.c"
+    if self.is_overloaded and self.toolchain_type == ToolChainType.GNU:
+      # GNU test suite requires *.C as test file suffix for overloaded API.
+      test_file_name = f"{inst_info.OP}.C"
+    else:
+      test_file_name = f"{inst_info.OP}.c"
 
     if self.is_overloaded:
       func_name = overloaded_func_name
@@ -446,10 +452,16 @@ class APITestGenerator(Generator):
     self.fd.write(call_args)
     self.fd.write(");\n")
     self.fd.write("}\n\n")
+    self.fd.flush() # To make sure the data flushed when post_gen.
+
+  def set_flags(self):
+    if self.toolchain_type == ToolChainType.GNU:
+      set_toolchain_type (True)
 
   def function_group(self, template, title, link, op_list, type_list, sew_list,
                      lmul_list, decorator_list):
     self.test_file_names = op_list
+    self.set_flags()
     template.render(
         G=self,
         op_list=op_list,
