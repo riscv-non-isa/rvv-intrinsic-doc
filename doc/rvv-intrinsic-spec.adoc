@@ -2,7 +2,7 @@
 
 The RISC-V vector C intrinsics provides users interfaces in the C language level to directly leverage the RISC-V "V" extension ^0^ (also abbreviated as "RVV"), with help from the compiler to handle instruction scheduling and register allocation. The RVV C intrinsics also aims to free users from responsibility to maintain the correct configuration setting ^18^ for the vector instruction executions.
 
-This document uses the term "v-spec" to indicate the RISC-V "V" extension specification ^0^. This document also uses the term "RVV" as an abbreviation for the RISC-V "V" extension.
+This document uses the term "RVV" as an abbreviation for the RISC-V "V" extension. This document uses the term "the specification" to indicate the RISC-V "V" extension specification.
 
 == Test macro
 
@@ -87,7 +87,7 @@ The RVV intrinsics fuse the control of vector masking (`vm`) together wuth the c
 
 For the fixed-point intrinsics, representing the fixed-point arithmetic instructions ^21^, the `vxrm` operand of the intrinsics indicates the rounding mode (`vxrm`) ^8^ control.
 
-The `vxrm` operand is required to be an constant integer expression. The compiler should implement the following `enum` that maps to the defined rounding mode values under v-spec Table 4 ^8^.
+The `vxrm` operand is required to be an constant integer expression. The compiler should implement the following `enum` that maps to the defined rounding mode values under Table 4 ^8^ of the specification.
 
 ```c
 enum __RISCV_VXRM {
@@ -438,7 +438,7 @@ The mask types encode the ratio that is derived from `EEW`/`EMUL`. The mask type
 
 The tuple types encode `SEW`, `LMUL`, and `NFIELD`^16^ into the data type.
 
-These types are utilized for the segment load/store instruction intrinsics, the types listed in <<integer-type>> and <<floating-point-type>> all have tuple types. Types under the combination of `LMUL`, `NFIELD` follows the restriction by v-spec - EMUL * NFIELDS ≤ 8. 
+These types are utilized for the segment load/store instruction intrinsics, the types listed in <<integer-type>> and <<floating-point-type>> all have tuple types. Types under the combination of `LMUL`, `NFIELD` follows the restriction by the specification, `EMUL * NFIELDS ≤ 8`.
 
 Availability of the tuple types follows the availability of their corresponding non-tuple (`NFIELD=1`) types.
 
@@ -541,12 +541,12 @@ The intrinsics provide extra utility functions to help users manipulate across t
 [[pseudo-vsetvl]]
 === `vsetvl`
 
-The `vsetvl` intrinsics return `min(avl, VLMAX)` given the provided element width and LMUL in the suffix. Please refer to how VLMAX is defined in the v-spec ^5^.
+The `vsetvl` intrinsics return `min(avl, VLMAX)` given the provided element width and LMUL in the suffix. Please refer to how VLMAX is defined in the specification ^5^.
 
 [[pseudo-vsetvlmax]]
 === `vsetvlmax`
 
-The `vsetvl` intrinsics return `VLMAX` given the provided element width and LMUL in the suffix. Please refer to how VLMAX is defined in the v-spec ^5^.
+The `vsetvl` intrinsics return `VLMAX` given the provided element width and LMUL in the suffix. Please refer to how VLMAX is defined in the specification ^5^.
 
 [[pseudo-vreinterpret]]
 === `vreinterpret`
@@ -613,7 +613,7 @@ Control to `vl`, `vtype`, `vxrm`, and `frm` is directly exposed to the user. The
 
 === Strided load/store with stride of 0
 
-The v-spec mentions ^15^ that the strided load/store instruction with stride of 0 could have different behaviors to perform all memory accesses or fewer memory operations. Since needing all memory accesses isn't likely to be common, the compiler implementation is allowed to generate fewer memory operations with strided load/store intrinsics.
+The specification mentions ^15^ that the strided load/store instruction with stride of 0 could have different behaviors to perform all memory accesses or fewer memory operations. Since needing all memory accesses isn't likely to be common, the compiler implementation is allowed to generate fewer memory operations with strided load/store intrinsics.
 
 In other words, the compiler does not guarantee generating the all memory accesses instruction in strided load/store intrinsics with stride of 0. If the user needs all memory accesses to be performed, they should use an indexed load/store intrinsics with all zero indices.
 
@@ -625,52 +625,56 @@ The RVV intrinsics provides intrinsics with operand mnemonics of `vv` and `vx` b
 
 ^0^https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc[Github - riscv/riscv-v-spec/v-spec.adoc]
 
+NOTE: Standard extensions are merged into `riscv/riscv-isa-manual` after ratification. There is an on-going pull request ^26^ for the "V" extension to be merge. At this moment this intrinsics specification still references the frozen draft ^0^. This reference will be updated in the future once the pull request has been merged.
+
 ^1^https://github.com/riscv-non-isa/riscv-c-api-doc/blob/master/riscv-c-api.md[Github - riscv-non-isa/riscv-c-api-doc/riscv-c-api.md]
 
 ^2^https://llvm.org/docs/RISCVUsage.html[User Guide for RISC-V Target]
 
 ^3^https://gcc.gnu.org/onlinedocs/gcc/RISC-V-Options.html[RISC-V Options (Using the GNU Compiler Collection (GCC))]
 
-^4^ Section 3.4.1 (Vector selected element width `vsew[2:0]`) in v-spec ^0^
+^4^ Section 3.4.1 (Vector selected element width `vsew[2:0]`) in the specification ^0^
 
-^5^ Section 3.4.2 (Vector Register Grouping (`vlmul[2:0]``)) in v-spec ^0^
+^5^ Section 3.4.2 (Vector Register Grouping (`vlmul[2:0]``)) in the specification ^0^
 
-^6^ Section 3.4.3 (Vector Tail Agnostic and Vector Mask Agnostic `vta` and `vma`) in v-spec ^0^
+^6^ Section 3.4.3 (Vector Tail Agnostic and Vector Mask Agnostic `vta` and `vma`) in the specification ^0^
 
-^7^ Section 5.3 (Vector Masking) in v-spec ^0^
+^7^ Section 5.3 (Vector Masking) in the specification ^0^
 
-^8^ Section 3.8 (Vector Fixed-Point Rounding Mode Register `vxrm`) in v-spec ^0^
+^8^ Section 3.8 (Vector Fixed-Point Rounding Mode Register `vxrm`) in the specification ^0^
 
 ^9^ https://github.com/riscv-non-isa/riscv-elf-psabi-doc/blob/master/riscv-cc.adoc#vector-register-convention[psABI: Vector Register Convention]
 
 ^10^ https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf[The RISC-V Instruction Set Manual: 8.2 Floating-Point Control and Status Register]
 
-^11^ Section 3.5 (Vector Length Register) in v-spec ^0^
+^11^ Section 3.5 (Vector Length Register) in the specification ^0^
 
-^12^ Section 3.4.2 in v-spec ^0^
+^12^ Section 3.4.2 in the specification ^0^
 
-^13^ Section 11.13, 11.14, 13.6, 13.7 in v-spec ^0^
+^13^ Section 11.13, 11.14, 13.6, 13.7 in the specification ^0^
 
-^14^ Section 4.5 (Mask Register Layout) in v-spec ^0^
+^14^ Section 4.5 (Mask Register Layout) in the specification ^0^
 
-^15^ Section 7.5 in v-spec ^0^
+^15^ Section 7.5 in the specification ^0^
 
-^16^ Section 7.8 in v-spec ^0^
+^16^ Section 7.8 in the specification ^0^
 
-^17^ Section 5.2 (Vector Operands) in v-spec ^0^
+^17^ Section 5.2 (Vector Operands) in the specification ^0^
 
-^18^ Section 6 (Configuration-Setting Instructions) in v-spec ^0^
+^18^ Section 6 (Configuration-Setting Instructions) in the specification ^0^
 
-^19^ Section 18 (Standrad Vector Extensions) in v-spec ^0^
+^19^ Section 18 (Standrad Vector Extensions) in the specification ^0^
 
-^20^ Section 18.2 (Zve*: Vector Extensions for Embedded Processors) in v-spec ^0^
+^20^ Section 18.2 (Zve*: Vector Extensions for Embedded Processors) in the specification ^0^
 
-^21^ Section 12 (Vector Fixed-Point Arithmetic Instructions) in v-spec ^0^
+^21^ Section 12 (Vector Fixed-Point Arithmetic Instructions) in the specification ^0^
 
-^22^ Section 3.9 (3.9. Vector Fixed-Point Saturation Flag vxsat) in v-spec ^0^
+^22^ Section 3.9 (3.9. Vector Fixed-Point Saturation Flag vxsat) in the specification ^0^
 
-^23^ Section 13 (Vector Floating-Point Instructions) in v-spec ^0^
+^23^ Section 13 (Vector Floating-Point Instructions) in the specification ^0^
 
-^24^ Section 16.3.1 (Vector Slideup Instructions) in v-spec ^0^
+^24^ Section 16.3.1 (Vector Slideup Instructions) in the specification ^0^
 
-^25^ Section 3.7 (Vector Start Index CSR `vstart`) in v-spec ^0^
+^25^ Section 3.7 (Vector Start Index CSR `vstart`) in the specification ^0^
+
+^26^ https://github.com/riscv/riscv-isa-manual/pull/1088[riscv/riscv-isa-manual#1088]
