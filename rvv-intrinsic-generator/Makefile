@@ -106,9 +106,9 @@ define gen_docs
 endef
 
 define gen_tests
-	rm -f $(1)/*.c
+	rm $(1)/*.c $(1)/*.C -f
 	$(PY3) -m $(MAIN) --gen $(2) \
-		--out $(1) $(3) \
+		--out $(1) $(3) $(4)\
 		$(TRIGGER_VENDOR_INST) $(TRIGGER_SKIP_DEFAULT_INST)
 endef
 
@@ -137,6 +137,7 @@ endif
 gen-document: non-overloaded-doc non-overloaded-docs overloaded-doc overloaded-docs
 gen-test: non-overloaded-test overloaded-test llvm-non-overloaded-test llvm-overloaded-test
 gen-compatible-header: non-policy-compatible-header policy-compatible-header non-policy-overloaded-compatible-header policy-overloaded-compatible-header
+gen-gnu-test: gnu-overloaded-test gnu-non-overloaded-test
 
 # Generate all-in-one document for non-overloaded intrinsics
 non-overloaded-doc:
@@ -170,18 +171,28 @@ overloaded-test:
 
 # Generate non-overloaded intrinsic testing C source files
 llvm-non-overloaded-test:
-	$(call gen_tests,$(DIR)/llvm-api-tests,non-overloaded-test,--llvm)
-	$(call gen_tests,$(POLICY_DIR)/llvm-api-tests,non-overloaded-test,--llvm --has-policy)
+	$(call gen_tests,$(DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm)
+	$(call gen_tests,$(POLICY_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --has-policy)
 	$(call replace_float, $(DIR)/llvm-api-tests)
 	$(call replace_float, $(POLICY_DIR)/llvm-api-tests)
 
 # Generate overloaded intrinsic testing C source files
 llvm-overloaded-test:
-	$(call gen_tests,$(DIR)/llvm-overloaded-tests,overloaded-test,--llvm)
-	$(call gen_tests,$(POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--llvm --has-policy)
+	$(call gen_tests,$(DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm)
+	$(call gen_tests,$(POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --has-policy)
 	$(call replace_float, $(DIR)/llvm-overloaded-tests)
 	$(call replace_float, $(POLICY_DIR)/llvm-overloaded-tests)
 
+# Generate GNU non-overloaded intrinsic testing source files
+gnu-non-overloaded-test:
+	$(call gen_tests,$(DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu)
+	$(call gen_tests,$(POLICY_DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu --has-policy)
+
+# Generate GNU overloaded intrinsic testing source files
+gnu-overloaded-test:
+	$(call gen_tests,$(DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu)
+	$(call gen_tests,$(POLICY_DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu --has-policy)
+	
 # Generate the adaptor header for v0.10
 non-policy-compatible-header:
 	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,non-policy.h,non-overloaded-compatible-header,)
