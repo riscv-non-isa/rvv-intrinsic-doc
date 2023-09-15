@@ -59,13 +59,14 @@ In the following example, the intrinsic will produce the semantic of a `vadd.vv`
 vint32m1_t __riscv_vwadd_vv_i32m1 (vint16mf2_t op1, vint16mf2_t op2, size_t vl);
 ```
 
+[[control-of-vl]]
 === Control of `vl`
 
 Direct control of `vl` (vector length register) ^11^  is not exposed at the C language level. The RVV C intrinsics provide intrinsics with a `vl` operand to indicate the active vector length valid during intrinsic execution. The compiler is responsible to set the correct value to `vl` given the informed active vector length.
 
 NOTE: Intrinsics for instructions that behave the same with different `vl` settings (e.g. `vmv.s.x`) do not have a `vl` operand.
 
-NOTE: Intrinsics will at most operate on `VLMAX` ^5^ elements.
+NOTE: The intrinsics follow the specification ^27^ and will at most operate on `VLMAX` ^5^ elements. If a value larger than `VLMAX` is provided to `vl`, the intrinsics will operate on `VLMAX` elements. Essentially the number of elements processed will match what is returned when provided to `__riscv_vsetvl_*` <<pseudo-vsetvl>>.
 
 [[control-of-masked]]
 === Control of `vm`
@@ -87,7 +88,7 @@ The RVV intrinsics fuse the control of vector masking (`vm`) together wuth the c
 
 For the fixed-point intrinsics, representing the fixed-point arithmetic instructions ^21^, the `vxrm` operand of the intrinsics indicates the rounding mode (`vxrm`) ^8^ control.
 
-The `vxrm` operand is required to be an constant integer expression. The compiler should implement the following `enum` that maps to the defined rounding mode values under Table 4 ^8^ of the specification.
+The `vxrm` operand is required to be a constant integer expression. The compiler should implement the following `enum` that maps to the defined rounding mode values under Table 4 ^8^ of the specification.
 
 ```c
 enum __RISCV_VXRM {
@@ -124,7 +125,7 @@ NOTE: The implicit-`frm` intrinsics are intended to be used regardless of `FENV_
 
 The explicit-`frm` intrinsics contain the `frm` operand which indicates the rounding mode (`frm`) ^10^ control. The floating-point intrinsics with the `frm` operand are followed by an `_rm` suffix in the function name.
 
-The `frm` operand is required to be an integer constant expression. The compiler should implement the following enum that maps to the defined rounding mode values under RISC-V ISA Manual Table 8.1 ^9^.
+The `frm` operand is required to be a constant integer expression. The compiler should implement the following enum that maps to the defined rounding mode values under RISC-V ISA Manual Table 8.1 ^9^.
 
 ```c
 enum __RISCV_FRM {
@@ -270,7 +271,7 @@ vbool4_t __riscv_vreinterpret_v_i32m1_b4 (vint32m1_t src);
 [[implicit-naming-scheme]]
 === Implicit (Overloaded) naming scheme
 
-The implicit (overloaded) interface aims to provide a generic interfaces taking values of different EEW and EMUL as the input. Therefore the implicit intrinsics hide the EEW and EMUL encoded in the function name. The `_rm` prefix for explicit-`frm` intrinsics (<<control-of-frm>>) is also hidden. The intrinsics under this scheme are the "overloaded intrinsics", which in parallel we have the "non-overloaded intrinsics" defined under <<explicit-naming-scheme>>.
+The implicit (overloaded) interface aims to provide a generic interface taking values of different EEW and EMUL as the input. Therefore the implicit intrinsics hide the EEW and EMUL encoded in the function name. The `_rm` prefix for explicit-`frm` intrinsics (<<control-of-frm>>) is also hidden. The intrinsics under this scheme are the "overloaded intrinsics", which in parallel we have the "non-overloaded intrinsics" defined under <<explicit-naming-scheme>>.
 
 Take the vector addition (`vadd`) instruction intrinsics as an example, stripping off the operand mnemonics and encoded EEW, EMUL information, the intrinsics API provides the following overloaded interfaces.
 
@@ -541,12 +542,16 @@ The intrinsics provide extra utility functions to help users manipulate across t
 [[pseudo-vsetvl]]
 === `vsetvl`
 
-The `vsetvl` intrinsics return `min(avl, VLMAX)` given the provided element width and LMUL in the suffix. Please refer to how VLMAX is defined in the specification ^5^.
+The `vsetvl` intrinsics return the number of elements processed in a stripmining loop given the provided element width and LMUL in the intrinsic suffix. Essentially, the intrinsics return `min(avl, VLMAX)` ^5^.
+
+NOTE: As mentioned in <<control-of-vl>>, the `vsetvl` intrinsics does not affect the compiler to emit `vsetvl` instructions and are intended to serve as utility functions for users to construct stripmining loops.
 
 [[pseudo-vsetvlmax]]
 === `vsetvlmax`
 
-The `vsetvl` intrinsics return `VLMAX` given the provided element width and LMUL in the suffix. Please refer to how VLMAX is defined in the specification ^5^.
+The `vsetvlmax` intrinsics return `VLMAX` ^5^ given the provided element width and LMUL in the suffix.
+
+NOTE: As mentioned in <<control-of-vl>>, the `vsetvlmax` intrinsics does not affect the compiler to emit `vsetvl` instructions.
 
 [[pseudo-vreinterpret]]
 === `vreinterpret`
@@ -560,7 +565,7 @@ The `vundefined` intrinsics are placeholders for `vset` and `vcreate` to represe
 [[pseudo-vget]]
 === `vget`
 
-The `vget` intrinsics allow users to get smaller LMUL values from larger LMUL ones .The `vget` intrinsics also allows users to extract non-tuple (`NFIELD=1`) types from tuple (`NFIELD>1`) types after segment load intrinsics.
+The `vget` intrinsics allow users to get smaller LMUL values from larger LMUL ones . The `vget` intrinsics also allows users to extract non-tuple (`NFIELD=1`) types from tuple (`NFIELD>1`) types after segment load intrinsics.
 
 The intrinsics does not map to any real instruction. Whether the compiler will generate vector move instructions is an optimization issue for the compiler.
 
@@ -678,3 +683,7 @@ NOTE: Standard extensions are merged into `riscv/riscv-isa-manual` after ratific
 ^25^ Section 3.7 (Vector Start Index CSR `vstart`) in the specification ^0^
 
 ^26^ https://github.com/riscv/riscv-isa-manual/pull/1088[riscv/riscv-isa-manual#1088]
+
+^27^ Section 6.3 (Constraints on Setting `vl`) in the specficiation ^0^
+
+^28^ Section 6.4 (Example of stripmining and changes to SEW) in the specification ^0^
