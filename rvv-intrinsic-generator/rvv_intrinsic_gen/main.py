@@ -26,6 +26,9 @@ import inspect
 import inst
 import generator
 
+from enums import ToolChainType
+from enums import MarchAbi
+
 
 def get_gen_from_vendor(vendor_inst_filepath):
   if vendor_inst_filepath is None:
@@ -96,7 +99,8 @@ def main():
           "overloaded-docs", "non-overloaded-test", "overloaded-test",
           "non-overloaded-compatible-header", "overloaded-compatible-header"
       ])
-  parser.add_argument("--llvm", default=False, action="store_true")
+  parser.add_argument("--toolchain-type", default=ToolChainType.UNKNOWN)
+  parser.add_argument("--march-mabi", default=MarchAbi.UNKNOWN)
   parser.add_argument("--has-policy", default=False, action="store_true")
   parser.add_argument("--vendor-inst")
   parser.add_argument("--skip-default-inst", default=False, action="store_true")
@@ -153,6 +157,7 @@ def main():
         print("Skipping default RVV instructions (--skip-default-inst)")
       if vendor_gen is not None:
         vendor_gen(g)
+      g.post_gen()
       g.report_summary()
       return
   elif mode == GenTypes.NON_OVERLOADED_DOCS:
@@ -160,10 +165,13 @@ def main():
   elif mode == GenTypes.OVERLOADED_DOCS:
     g = generator.OverloadedDocGenerator(args.out, False, args.has_policy)
   elif mode == GenTypes.NON_OVERLOADED_TEST:
-    g = generator.APITestGenerator(args.out, False, args.llvm, args.has_policy)
-
+    g = generator.APITestGenerator(args.out, False,
+                                   ToolChainType(args.toolchain_type),
+                                   args.has_policy, MarchAbi(args.march_mabi))
   elif mode == GenTypes.OVERLOADED_TEST:
-    g = generator.APITestGenerator(args.out, True, args.llvm, args.has_policy)
+    g = generator.APITestGenerator(args.out, True,
+                                   ToolChainType(args.toolchain_type),
+                                   args.has_policy, MarchAbi(args.march_mabi))
   else:
     assert False
   if not args.skip_default_inst:
@@ -172,6 +180,7 @@ def main():
     print("Skipping default RVV instructions (--skip-default-inst)")
   if vendor_gen is not None:
     vendor_gen(g)
+  g.post_gen()
   g.report_summary()
   return
 

@@ -1,0 +1,489 @@
+/* { dg-do compile } */
+/* { dg-options "-march=rv32gc_zve32f -mabi=ilp32d -Wno-psabi -O3 -fno-schedule-insns -fno-schedule-insns2" } */
+
+#include "riscv_vector.h"
+
+typedef _Float16 float16_t;
+typedef float float32_t;
+typedef double float64_t;
+vbool32_t test_vmseq_vv_i8mf4_b32(vint8mf4_t op1, vint8mf4_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vx_i8mf4_b32(vint8mf4_t op1, int8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vv_i8mf2_b16(vint8mf2_t op1, vint8mf2_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vx_i8mf2_b16(vint8mf2_t op1, int8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vv_i8m1_b8(vint8m1_t op1, vint8m1_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vx_i8m1_b8(vint8m1_t op1, int8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vv_i8m2_b4(vint8m2_t op1, vint8m2_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vx_i8m2_b4(vint8m2_t op1, int8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vv_i8m4_b2(vint8m4_t op1, vint8m4_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vx_i8m4_b2(vint8m4_t op1, int8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool1_t test_vmseq_vv_i8m8_b1(vint8m8_t op1, vint8m8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool1_t test_vmseq_vx_i8m8_b1(vint8m8_t op1, int8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vv_i16mf2_b32(vint16mf2_t op1, vint16mf2_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vx_i16mf2_b32(vint16mf2_t op1, int16_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vv_i16m1_b16(vint16m1_t op1, vint16m1_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vx_i16m1_b16(vint16m1_t op1, int16_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vv_i16m2_b8(vint16m2_t op1, vint16m2_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vx_i16m2_b8(vint16m2_t op1, int16_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vv_i16m4_b4(vint16m4_t op1, vint16m4_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vx_i16m4_b4(vint16m4_t op1, int16_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vv_i16m8_b2(vint16m8_t op1, vint16m8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vx_i16m8_b2(vint16m8_t op1, int16_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vv_i32m1_b32(vint32m1_t op1, vint32m1_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vx_i32m1_b32(vint32m1_t op1, int32_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vv_i32m2_b16(vint32m2_t op1, vint32m2_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vx_i32m2_b16(vint32m2_t op1, int32_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vv_i32m4_b8(vint32m4_t op1, vint32m4_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vx_i32m4_b8(vint32m4_t op1, int32_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vv_i32m8_b4(vint32m8_t op1, vint32m8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vx_i32m8_b4(vint32m8_t op1, int32_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vv_u8mf4_b32(vuint8mf4_t op1, vuint8mf4_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vx_u8mf4_b32(vuint8mf4_t op1, uint8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vv_u8mf2_b16(vuint8mf2_t op1, vuint8mf2_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vx_u8mf2_b16(vuint8mf2_t op1, uint8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vv_u8m1_b8(vuint8m1_t op1, vuint8m1_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vx_u8m1_b8(vuint8m1_t op1, uint8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vv_u8m2_b4(vuint8m2_t op1, vuint8m2_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vx_u8m2_b4(vuint8m2_t op1, uint8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vv_u8m4_b2(vuint8m4_t op1, vuint8m4_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vx_u8m4_b2(vuint8m4_t op1, uint8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool1_t test_vmseq_vv_u8m8_b1(vuint8m8_t op1, vuint8m8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool1_t test_vmseq_vx_u8m8_b1(vuint8m8_t op1, uint8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vv_u16mf2_b32(vuint16mf2_t op1, vuint16mf2_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vx_u16mf2_b32(vuint16mf2_t op1, uint16_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vv_u16m1_b16(vuint16m1_t op1, vuint16m1_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vx_u16m1_b16(vuint16m1_t op1, uint16_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vv_u16m2_b8(vuint16m2_t op1, vuint16m2_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vx_u16m2_b8(vuint16m2_t op1, uint16_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vv_u16m4_b4(vuint16m4_t op1, vuint16m4_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vx_u16m4_b4(vuint16m4_t op1, uint16_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vv_u16m8_b2(vuint16m8_t op1, vuint16m8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vx_u16m8_b2(vuint16m8_t op1, uint16_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vv_u32m1_b32(vuint32m1_t op1, vuint32m1_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vx_u32m1_b32(vuint32m1_t op1, uint32_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vv_u32m2_b16(vuint32m2_t op1, vuint32m2_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vx_u32m2_b16(vuint32m2_t op1, uint32_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vv_u32m4_b8(vuint32m4_t op1, vuint32m4_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vx_u32m4_b8(vuint32m4_t op1, uint32_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vv_u32m8_b4(vuint32m8_t op1, vuint32m8_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vx_u32m8_b4(vuint32m8_t op1, uint32_t op2, size_t vl) {
+  return __riscv_vmseq(op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vv_i8mf4_b32_m(vbool32_t mask, vint8mf4_t op1, vint8mf4_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vx_i8mf4_b32_m(vbool32_t mask, vint8mf4_t op1, int8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vv_i8mf2_b16_m(vbool16_t mask, vint8mf2_t op1, vint8mf2_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vx_i8mf2_b16_m(vbool16_t mask, vint8mf2_t op1, int8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vv_i8m1_b8_m(vbool8_t mask, vint8m1_t op1, vint8m1_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vx_i8m1_b8_m(vbool8_t mask, vint8m1_t op1, int8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vv_i8m2_b4_m(vbool4_t mask, vint8m2_t op1, vint8m2_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vx_i8m2_b4_m(vbool4_t mask, vint8m2_t op1, int8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vv_i8m4_b2_m(vbool2_t mask, vint8m4_t op1, vint8m4_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vx_i8m4_b2_m(vbool2_t mask, vint8m4_t op1, int8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool1_t test_vmseq_vv_i8m8_b1_m(vbool1_t mask, vint8m8_t op1, vint8m8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool1_t test_vmseq_vx_i8m8_b1_m(vbool1_t mask, vint8m8_t op1, int8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vv_i16mf2_b32_m(vbool32_t mask, vint16mf2_t op1, vint16mf2_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vx_i16mf2_b32_m(vbool32_t mask, vint16mf2_t op1, int16_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vv_i16m1_b16_m(vbool16_t mask, vint16m1_t op1, vint16m1_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vx_i16m1_b16_m(vbool16_t mask, vint16m1_t op1, int16_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vv_i16m2_b8_m(vbool8_t mask, vint16m2_t op1, vint16m2_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vx_i16m2_b8_m(vbool8_t mask, vint16m2_t op1, int16_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vv_i16m4_b4_m(vbool4_t mask, vint16m4_t op1, vint16m4_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vx_i16m4_b4_m(vbool4_t mask, vint16m4_t op1, int16_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vv_i16m8_b2_m(vbool2_t mask, vint16m8_t op1, vint16m8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vx_i16m8_b2_m(vbool2_t mask, vint16m8_t op1, int16_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vv_i32m1_b32_m(vbool32_t mask, vint32m1_t op1, vint32m1_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vx_i32m1_b32_m(vbool32_t mask, vint32m1_t op1, int32_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vv_i32m2_b16_m(vbool16_t mask, vint32m2_t op1, vint32m2_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vx_i32m2_b16_m(vbool16_t mask, vint32m2_t op1, int32_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vv_i32m4_b8_m(vbool8_t mask, vint32m4_t op1, vint32m4_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vx_i32m4_b8_m(vbool8_t mask, vint32m4_t op1, int32_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vv_i32m8_b4_m(vbool4_t mask, vint32m8_t op1, vint32m8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vx_i32m8_b4_m(vbool4_t mask, vint32m8_t op1, int32_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vv_u8mf4_b32_m(vbool32_t mask, vuint8mf4_t op1, vuint8mf4_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vx_u8mf4_b32_m(vbool32_t mask, vuint8mf4_t op1, uint8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vv_u8mf2_b16_m(vbool16_t mask, vuint8mf2_t op1, vuint8mf2_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vx_u8mf2_b16_m(vbool16_t mask, vuint8mf2_t op1, uint8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vv_u8m1_b8_m(vbool8_t mask, vuint8m1_t op1, vuint8m1_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vx_u8m1_b8_m(vbool8_t mask, vuint8m1_t op1, uint8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vv_u8m2_b4_m(vbool4_t mask, vuint8m2_t op1, vuint8m2_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vx_u8m2_b4_m(vbool4_t mask, vuint8m2_t op1, uint8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vv_u8m4_b2_m(vbool2_t mask, vuint8m4_t op1, vuint8m4_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vx_u8m4_b2_m(vbool2_t mask, vuint8m4_t op1, uint8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool1_t test_vmseq_vv_u8m8_b1_m(vbool1_t mask, vuint8m8_t op1, vuint8m8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool1_t test_vmseq_vx_u8m8_b1_m(vbool1_t mask, vuint8m8_t op1, uint8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vv_u16mf2_b32_m(vbool32_t mask, vuint16mf2_t op1, vuint16mf2_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vx_u16mf2_b32_m(vbool32_t mask, vuint16mf2_t op1, uint16_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vv_u16m1_b16_m(vbool16_t mask, vuint16m1_t op1, vuint16m1_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vx_u16m1_b16_m(vbool16_t mask, vuint16m1_t op1, uint16_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vv_u16m2_b8_m(vbool8_t mask, vuint16m2_t op1, vuint16m2_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vx_u16m2_b8_m(vbool8_t mask, vuint16m2_t op1, uint16_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vv_u16m4_b4_m(vbool4_t mask, vuint16m4_t op1, vuint16m4_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vx_u16m4_b4_m(vbool4_t mask, vuint16m4_t op1, uint16_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vv_u16m8_b2_m(vbool2_t mask, vuint16m8_t op1, vuint16m8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool2_t test_vmseq_vx_u16m8_b2_m(vbool2_t mask, vuint16m8_t op1, uint16_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vv_u32m1_b32_m(vbool32_t mask, vuint32m1_t op1, vuint32m1_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool32_t test_vmseq_vx_u32m1_b32_m(vbool32_t mask, vuint32m1_t op1, uint32_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vv_u32m2_b16_m(vbool16_t mask, vuint32m2_t op1, vuint32m2_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool16_t test_vmseq_vx_u32m2_b16_m(vbool16_t mask, vuint32m2_t op1, uint32_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vv_u32m4_b8_m(vbool8_t mask, vuint32m4_t op1, vuint32m4_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool8_t test_vmseq_vx_u32m4_b8_m(vbool8_t mask, vuint32m4_t op1, uint32_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vv_u32m8_b4_m(vbool4_t mask, vuint32m8_t op1, vuint32m8_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+vbool4_t test_vmseq_vx_u32m8_b4_m(vbool4_t mask, vuint32m8_t op1, uint32_t op2, size_t vl) {
+  return __riscv_vmseq(mask, op1, op2, vl);
+}
+
+/* { dg-final { scan-assembler-times {vmseq\.[ivxfswum.]+\s+} 120 } } */

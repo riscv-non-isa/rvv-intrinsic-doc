@@ -1,0 +1,25 @@
+/* { dg-do compile } */
+/* { dg-options "-march=rv32gc_zve64f -mabi=ilp32d -Wno-psabi -O3 -fno-schedule-insns -fno-schedule-insns2" } */
+
+#include "riscv_vector.h"
+
+typedef _Float16 float16_t;
+typedef float float32_t;
+typedef double float64_t;
+void test_vssseg8e64_v_i64m1x8(int64_t *base, ptrdiff_t bstride, vint64m1x8_t v_tuple, size_t vl) {
+  return __riscv_vssseg8e64_v_i64m1x8(base, bstride, v_tuple, vl);
+}
+
+void test_vssseg8e64_v_u64m1x8(uint64_t *base, ptrdiff_t bstride, vuint64m1x8_t v_tuple, size_t vl) {
+  return __riscv_vssseg8e64_v_u64m1x8(base, bstride, v_tuple, vl);
+}
+
+void test_vssseg8e64_v_i64m1x8_m(vbool64_t mask, int64_t *base, ptrdiff_t bstride, vint64m1x8_t v_tuple, size_t vl) {
+  return __riscv_vssseg8e64_v_i64m1x8_m(mask, base, bstride, v_tuple, vl);
+}
+
+void test_vssseg8e64_v_u64m1x8_m(vbool64_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m1x8_t v_tuple, size_t vl) {
+  return __riscv_vssseg8e64_v_u64m1x8_m(mask, base, bstride, v_tuple, vl);
+}
+
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vssseg8e64\.[ivxfswum.]+\s+} 4 } } */

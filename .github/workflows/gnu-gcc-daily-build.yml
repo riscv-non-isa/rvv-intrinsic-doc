@@ -1,0 +1,56 @@
+name: GNU GCC Testcases Daily Regression
+on:
+  schedule:
+  - cron: "0 18 * * 0-6"
+
+jobs:
+    test_script:
+      name: GNU GCC Testcases Dalily Regression
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v1
+      - name: prerequisites
+        run:
+          sudo apt-get install autoconf automake autotools-dev curl python3 python3-pip
+          libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf
+          libtool patchutils bc zlib1g-dev libexpat-dev ninja-build git cmake libglib2.0-dev dejagnu
+      - name: gen gnu testcases
+        run: |
+          cd rvv-intrinsic-generator && make gen-gnu-test
+      - name: download riscv gnu toolchain
+        run: |
+          cd ..
+          rm -rf riscv-gnu-toolchain
+          git clone --recursive https://github.com/riscv-collab/riscv-gnu-toolchain.git
+      - name: checkout gcc to branch origin/master
+        run: |
+          cd ../riscv-gnu-toolchain/gcc
+          git remote update
+          git reset --hard origin/master
+      - name: checkout qemu to branch staging-8.0
+        run: |
+          cd ../riscv-gnu-toolchain/qemu && git checkout staging-8.0 && git pull -p
+      - name: checkout spike to branch master
+        run: |
+          cd ../riscv-gnu-toolchain/spike && git checkout master && git pull -p
+      - name: checkout pk to branch master
+        run: |
+          cd ../riscv-gnu-toolchain/pk && git checkout master && git pull -p
+      - name: copy gnu-auto-generated.exp and testcases
+        run: |
+          cd ../riscv-gnu-toolchain
+          mkdir gcc/gcc/testsuite/gcc.target/riscv/rvv/gnu-auto-generated/
+          cp ../rvv-intrinsic-doc/gnu-auto-generated.exp gcc/gcc/testsuite/gcc.target/riscv/rvv/gnu-auto-generated/
+          cp -r  ../rvv-intrinsic-doc/gnu-auto-generated/*  gcc/gcc/testsuite/gcc.target/riscv/rvv/gnu-auto-generated/
+          sudo cp ./dejagnu/baseboards/riscv-sim.exp  /usr/share/dejagnu/baseboards/
+      - name: regression
+        run: |
+          cd ../riscv-gnu-toolchain
+          ./configure --prefix="$PWD/out" --with-arch=rv64gcv --with-abi=lp64d --with-isa-spec=20191213 --with-sim=qemu
+          make report -j $(nproc) RUNTESTFLAGS="gnu-auto-generated.exp"
+      - name: upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: gcc.log
+          path: /home/runner/work/rvv-intrinsic-doc/riscv-gnu-toolchain/build-gcc-newlib-stage2/gcc/testsuite/gcc/gcc.log
+
