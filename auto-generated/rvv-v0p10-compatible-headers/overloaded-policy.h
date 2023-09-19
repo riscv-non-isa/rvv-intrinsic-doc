@@ -1,8 +1,7 @@
 #ifndef __RVV_0P10_COMPATIBLE_HEADERS_OVERLOADED_POLICY_H
 #define __RVV_0P10_COMPATIBLE_HEADERS_OVERLOADED_POLICY_H
 
-
-#if __has_include ("riscv_vector.h")
+#if __has_include("riscv_vector.h")
 #include <riscv_vector.h>
 #endif
 #ifndef __RISCV_VECTOR_H
@@ -1257,7 +1256,8 @@
 #define vwmaccsu_tamu(...) __riscv_vwmaccsu_mu(__VA_ARGS__)
 #define vwmaccus_tamu(...) __riscv_vwmaccus_mu(__VA_ARGS__)
 #define vwmaccu_tamu(...) __riscv_vwmaccu_mu(__VA_ARGS__)
-#define vmerge_tu(mask, maskedoff, op1, op2, vl) __riscv_vmerge_tu((maskedoff), (op1), (op2), (mask), (vl))
+#define vmerge_tu(mask, maskedoff, op1, op2, vl)                               \
+  __riscv_vmerge_tu((maskedoff), (op1), (op2), (mask), (vl))
 #define vmerge_ta(mask, op1, op2, vl) __riscv_vmerge((op1), (op2), (mask), (vl))
 #define vmv_v_tu(...) __riscv_vmv_v_tu(__VA_ARGS__)
 #define vmv_v_ta(...) __riscv_vmv_v(__VA_ARGS__)
@@ -1653,8 +1653,10 @@
 #define vfclass_tama(...) __riscv_vfclass(__VA_ARGS__)
 // masked functions
 #define vfclass_tamu(...) __riscv_vfclass_mu(__VA_ARGS__)
-#define vfmerge_tu(mask, maskedoff, op1, op2, vl) __riscv_vfmerge_tu((maskedoff), (op1), (op2), (mask), (vl))
-#define vfmerge_ta(mask, op1, op2, vl) __riscv_vfmerge((op1), (op2), (mask), (vl))
+#define vfmerge_tu(mask, maskedoff, op1, op2, vl)                              \
+  __riscv_vfmerge_tu((maskedoff), (op1), (op2), (mask), (vl))
+#define vfmerge_ta(mask, op1, op2, vl)                                         \
+  __riscv_vfmerge((op1), (op2), (mask), (vl))
 #define vfmv_v_tu(...) __riscv_vfmv_v_tu(__VA_ARGS__)
 #define vfcvt_x_tu(...) __riscv_vfcvt_x_tu(__VA_ARGS__)
 #define vfcvt_rtz_x_tu(...) __riscv_vfcvt_rtz_x_tu(__VA_ARGS__)
@@ -1934,6 +1936,7 @@
 // masked functions
 #define vrgather_tamu(...) __riscv_vrgather_mu(__VA_ARGS__)
 #define vrgatherei16_tamu(...) __riscv_vrgatherei16_mu(__VA_ARGS__)
-#define vcompress_tu(mask, dest, src, vl) __riscv_vcompress_tu((dest), (src), (mask), (vl))
+#define vcompress_tu(mask, dest, src, vl)                                      \
+  __riscv_vcompress_tu((dest), (src), (mask), (vl))
 #define vcompress_ta(mask, src, vl) __riscv_vcompress((src), (mask), (vl))
 #endif
