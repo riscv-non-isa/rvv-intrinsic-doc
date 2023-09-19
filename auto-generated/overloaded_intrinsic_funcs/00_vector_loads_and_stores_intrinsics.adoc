@@ -1,10 +1,11 @@
 
-== Vector Loads and Stores Intrinsics
+=== Vector Loads and Stores Intrinsics
 
 [[overloaded-vector-unit-stride-load]]
-=== Vector Unit-Stride Load Intrinsics
+==== Vector Unit-Stride Load Intrinsics
 
-``` C
+[,c]
+----
 // masked functions
 vfloat16mf4_t __riscv_vle16 (vbool64_t mask, const float16_t *base, size_t vl);
 vfloat16mf2_t __riscv_vle16 (vbool32_t mask, const float16_t *base, size_t vl);
@@ -65,12 +66,13 @@ vuint64m1_t __riscv_vle64 (vbool64_t mask, const uint64_t *base, size_t vl);
 vuint64m2_t __riscv_vle64 (vbool32_t mask, const uint64_t *base, size_t vl);
 vuint64m4_t __riscv_vle64 (vbool16_t mask, const uint64_t *base, size_t vl);
 vuint64m8_t __riscv_vle64 (vbool8_t mask, const uint64_t *base, size_t vl);
-```
+----
 
 [[overloaded-vector-unit-stride-store]]
-=== Vector Unit-Stride Store Intrinsics
+==== Vector Unit-Stride Store Intrinsics
 
-``` C
+[,c]
+----
 void __riscv_vse16 (float16_t *base, vfloat16mf4_t value, size_t vl);
 void __riscv_vse16 (float16_t *base, vfloat16mf2_t value, size_t vl);
 void __riscv_vse16 (float16_t *base, vfloat16m1_t value, size_t vl);
@@ -190,12 +192,13 @@ void __riscv_vse64 (vbool64_t mask, uint64_t *base, vuint64m1_t value, size_t vl
 void __riscv_vse64 (vbool32_t mask, uint64_t *base, vuint64m2_t value, size_t vl);
 void __riscv_vse64 (vbool16_t mask, uint64_t *base, vuint64m4_t value, size_t vl);
 void __riscv_vse64 (vbool8_t mask, uint64_t *base, vuint64m8_t value, size_t vl);
-```
+----
 
 [[overloaded-vector-unit-stride]]
-=== Vector Mask Load/Store Intrinsics
+==== Vector Mask Load/Store Intrinsics
 
-``` C
+[,c]
+----
 void __riscv_vsm (uint8_t *base, vbool1_t value, size_t vl);
 void __riscv_vsm (uint8_t *base, vbool2_t value, size_t vl);
 void __riscv_vsm (uint8_t *base, vbool4_t value, size_t vl);
@@ -203,12 +206,13 @@ void __riscv_vsm (uint8_t *base, vbool8_t value, size_t vl);
 void __riscv_vsm (uint8_t *base, vbool16_t value, size_t vl);
 void __riscv_vsm (uint8_t *base, vbool32_t value, size_t vl);
 void __riscv_vsm (uint8_t *base, vbool64_t value, size_t vl);
-```
+----
 
 [[overloaded-vector-strided-load]]
-=== Vector Strided Load Intrinsics
+==== Vector Strided Load Intrinsics
 
-``` C
+[,c]
+----
 // masked functions
 vfloat16mf4_t __riscv_vlse16 (vbool64_t mask, const float16_t *base, ptrdiff_t bstride, size_t vl);
 vfloat16mf2_t __riscv_vlse16 (vbool32_t mask, const float16_t *base, ptrdiff_t bstride, size_t vl);
@@ -269,12 +273,13 @@ vuint64m1_t __riscv_vlse64 (vbool64_t mask, const uint64_t *base, ptrdiff_t bstr
 vuint64m2_t __riscv_vlse64 (vbool32_t mask, const uint64_t *base, ptrdiff_t bstride, size_t vl);
 vuint64m4_t __riscv_vlse64 (vbool16_t mask, const uint64_t *base, ptrdiff_t bstride, size_t vl);
 vuint64m8_t __riscv_vlse64 (vbool8_t mask, const uint64_t *base, ptrdiff_t bstride, size_t vl);
-```
+----
 
 [[overloaded-vector-strided-store]]
-=== Vector Strided Store Intrinsics
+==== Vector Strided Store Intrinsics
 
-``` C
+[,c]
+----
 void __riscv_vsse16 (float16_t *base, ptrdiff_t bstride, vfloat16mf4_t value, size_t vl);
 void __riscv_vsse16 (float16_t *base, ptrdiff_t bstride, vfloat16mf2_t value, size_t vl);
 void __riscv_vsse16 (float16_t *base, ptrdiff_t bstride, vfloat16m1_t value, size_t vl);
@@ -394,12 +399,13 @@ void __riscv_vsse64 (vbool64_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m
 void __riscv_vsse64 (vbool32_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m2_t value, size_t vl);
 void __riscv_vsse64 (vbool16_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m4_t value, size_t vl);
 void __riscv_vsse64 (vbool8_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m8_t value, size_t vl);
-```
+----
 
 [[overloaded-vector-indexed-load]]
-=== Vector Indexed Load Intrinsics
+==== Vector Indexed Load Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vloxei8 (const float16_t *base, vuint8mf8_t bindex, size_t vl);
 vfloat16mf2_t __riscv_vloxei8 (const float16_t *base, vuint8mf4_t bindex, size_t vl);
 vfloat16m1_t __riscv_vloxei8 (const float16_t *base, vuint8mf2_t bindex, size_t vl);
@@ -1249,12 +1255,13 @@ vuint64m1_t __riscv_vluxei64 (vbool64_t mask, const uint64_t *base, vuint64m1_t 
 vuint64m2_t __riscv_vluxei64 (vbool32_t mask, const uint64_t *base, vuint64m2_t bindex, size_t vl);
 vuint64m4_t __riscv_vluxei64 (vbool16_t mask, const uint64_t *base, vuint64m4_t bindex, size_t vl);
 vuint64m8_t __riscv_vluxei64 (vbool8_t mask, const uint64_t *base, vuint64m8_t bindex, size_t vl);
-```
+----
 
 [[overloaded-vector-indexed-store]]
-=== Vector Indexed Store Intrinsics
+==== Vector Indexed Store Intrinsics
 
-``` C
+[,c]
+----
 void __riscv_vsoxei8 (float16_t *base, vuint8mf8_t bindex, vfloat16mf4_t value, size_t vl);
 void __riscv_vsoxei8 (float16_t *base, vuint8mf4_t bindex, vfloat16mf2_t value, size_t vl);
 void __riscv_vsoxei8 (float16_t *base, vuint8mf2_t bindex, vfloat16m1_t value, size_t vl);
@@ -2104,12 +2111,13 @@ void __riscv_vsuxei64 (vbool64_t mask, uint64_t *base, vuint64m1_t bindex, vuint
 void __riscv_vsuxei64 (vbool32_t mask, uint64_t *base, vuint64m2_t bindex, vuint64m2_t value, size_t vl);
 void __riscv_vsuxei64 (vbool16_t mask, uint64_t *base, vuint64m4_t bindex, vuint64m4_t value, size_t vl);
 void __riscv_vsuxei64 (vbool8_t mask, uint64_t *base, vuint64m8_t bindex, vuint64m8_t value, size_t vl);
-```
+----
 
 [[overloaded-unit-stride-fault-only-first-loads]]
-=== Unit-stride Fault-Only-First Loads Intrinsics
+==== Unit-stride Fault-Only-First Loads Intrinsics
 
-``` C
+[,c]
+----
 // masked functions
 vfloat16mf4_t __riscv_vle16ff (vbool64_t mask, const float16_t *base, size_t *new_vl, size_t vl);
 vfloat16mf2_t __riscv_vle16ff (vbool32_t mask, const float16_t *base, size_t *new_vl, size_t vl);
@@ -2170,4 +2178,4 @@ vuint64m1_t __riscv_vle64ff (vbool64_t mask, const uint64_t *base, size_t *new_v
 vuint64m2_t __riscv_vle64ff (vbool32_t mask, const uint64_t *base, size_t *new_vl, size_t vl);
 vuint64m4_t __riscv_vle64ff (vbool16_t mask, const uint64_t *base, size_t *new_vl, size_t vl);
 vuint64m8_t __riscv_vle64ff (vbool8_t mask, const uint64_t *base, size_t *new_vl, size_t vl);
-```
+----

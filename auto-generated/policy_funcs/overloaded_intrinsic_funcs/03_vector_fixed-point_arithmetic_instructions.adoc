@@ -1,10 +1,11 @@
 
-== Vector Fixed-Point Arithmetic Instructions
+=== Vector Fixed-Point Arithmetic Instructions
 
 [[policy-variant-overloadedvector-single-width-saturating-add-and-subtract]]
-=== Vector Single-Width Saturating Add and Subtract Intrinsics
+==== Vector Single-Width Saturating Add and Subtract Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vsadd_tu (vint8mf8_t maskedoff, vint8mf8_t op1, vint8mf8_t op2, size_t vl);
 vint8mf8_t __riscv_vsadd_tu (vint8mf8_t maskedoff, vint8mf8_t op1, int8_t op2, size_t vl);
 vint8mf4_t __riscv_vsadd_tu (vint8mf4_t maskedoff, vint8mf4_t op1, vint8mf4_t op2, size_t vl);
@@ -712,12 +713,13 @@ vuint64m4_t __riscv_vssubu_mu (vbool16_t mask, vuint64m4_t maskedoff, vuint64m4_
 vuint64m4_t __riscv_vssubu_mu (vbool16_t mask, vuint64m4_t maskedoff, vuint64m4_t op1, uint64_t op2, size_t vl);
 vuint64m8_t __riscv_vssubu_mu (vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t op1, vuint64m8_t op2, size_t vl);
 vuint64m8_t __riscv_vssubu_mu (vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t op1, uint64_t op2, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-single-width-averaging-add-and-subtract]]
-=== Vector Single-Width Averaging Add and Subtract Intrinsics
+==== Vector Single-Width Averaging Add and Subtract Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vaadd_tu (vint8mf8_t maskedoff, vint8mf8_t op1, vint8mf8_t op2, unsigned int vxrm, size_t vl);
 vint8mf8_t __riscv_vaadd_tu (vint8mf8_t maskedoff, vint8mf8_t op1, int8_t op2, unsigned int vxrm, size_t vl);
 vint8mf4_t __riscv_vaadd_tu (vint8mf4_t maskedoff, vint8mf4_t op1, vint8mf4_t op2, unsigned int vxrm, size_t vl);
@@ -1425,12 +1427,13 @@ vuint64m4_t __riscv_vasubu_mu (vbool16_t mask, vuint64m4_t maskedoff, vuint64m4_
 vuint64m4_t __riscv_vasubu_mu (vbool16_t mask, vuint64m4_t maskedoff, vuint64m4_t op1, uint64_t op2, unsigned int vxrm, size_t vl);
 vuint64m8_t __riscv_vasubu_mu (vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t op1, vuint64m8_t op2, unsigned int vxrm, size_t vl);
 vuint64m8_t __riscv_vasubu_mu (vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t op1, uint64_t op2, unsigned int vxrm, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-single-width-fractional-multiply-with-rounding-and-saturation]]
-=== Vector Single-Width Fractional Multiply with Rounding and SaturationIntrinsics
+==== Vector Single-Width Fractional Multiply with Rounding and SaturationIntrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vsmul_tu (vint8mf8_t maskedoff, vint8mf8_t op1, vint8mf8_t op2, unsigned int vxrm, size_t vl);
 vint8mf8_t __riscv_vsmul_tu (vint8mf8_t maskedoff, vint8mf8_t op1, int8_t op2, unsigned int vxrm, size_t vl);
 vint8mf4_t __riscv_vsmul_tu (vint8mf4_t maskedoff, vint8mf4_t op1, vint8mf4_t op2, unsigned int vxrm, size_t vl);
@@ -1610,12 +1613,13 @@ vint64m4_t __riscv_vsmul_mu (vbool16_t mask, vint64m4_t maskedoff, vint64m4_t op
 vint64m4_t __riscv_vsmul_mu (vbool16_t mask, vint64m4_t maskedoff, vint64m4_t op1, int64_t op2, unsigned int vxrm, size_t vl);
 vint64m8_t __riscv_vsmul_mu (vbool8_t mask, vint64m8_t maskedoff, vint64m8_t op1, vint64m8_t op2, unsigned int vxrm, size_t vl);
 vint64m8_t __riscv_vsmul_mu (vbool8_t mask, vint64m8_t maskedoff, vint64m8_t op1, int64_t op2, unsigned int vxrm, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-single-width-scaling-shift]]
-=== Vector Single-Width Scaling Shift Intrinsics
+==== Vector Single-Width Scaling Shift Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vssra_tu (vint8mf8_t maskedoff, vint8mf8_t op1, vuint8mf8_t shift, unsigned int vxrm, size_t vl);
 vint8mf8_t __riscv_vssra_tu (vint8mf8_t maskedoff, vint8mf8_t op1, size_t shift, unsigned int vxrm, size_t vl);
 vint8mf4_t __riscv_vssra_tu (vint8mf4_t maskedoff, vint8mf4_t op1, vuint8mf4_t shift, unsigned int vxrm, size_t vl);
@@ -1971,12 +1975,13 @@ vuint64m4_t __riscv_vssrl_mu (vbool16_t mask, vuint64m4_t maskedoff, vuint64m4_t
 vuint64m4_t __riscv_vssrl_mu (vbool16_t mask, vuint64m4_t maskedoff, vuint64m4_t op1, size_t shift, unsigned int vxrm, size_t vl);
 vuint64m8_t __riscv_vssrl_mu (vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t op1, vuint64m8_t shift, unsigned int vxrm, size_t vl);
 vuint64m8_t __riscv_vssrl_mu (vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t op1, size_t shift, unsigned int vxrm, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-narrowing-fixed-point-clip]]
-=== Vector Narrowing Fixed-Point Clip Intrinsics
+==== Vector Narrowing Fixed-Point Clip Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vnclip_tu (vint8mf8_t maskedoff, vint16mf4_t op1, vuint8mf8_t shift, unsigned int vxrm, size_t vl);
 vint8mf8_t __riscv_vnclip_tu (vint8mf8_t maskedoff, vint16mf4_t op1, size_t shift, unsigned int vxrm, size_t vl);
 vint8mf4_t __riscv_vnclip_tu (vint8mf4_t maskedoff, vint16mf2_t op1, vuint8mf4_t shift, unsigned int vxrm, size_t vl);
@@ -2220,4 +2225,4 @@ vuint32m2_t __riscv_vnclipu_mu (vbool16_t mask, vuint32m2_t maskedoff, vuint64m4
 vuint32m2_t __riscv_vnclipu_mu (vbool16_t mask, vuint32m2_t maskedoff, vuint64m4_t op1, size_t shift, unsigned int vxrm, size_t vl);
 vuint32m4_t __riscv_vnclipu_mu (vbool8_t mask, vuint32m4_t maskedoff, vuint64m8_t op1, vuint32m4_t shift, unsigned int vxrm, size_t vl);
 vuint32m4_t __riscv_vnclipu_mu (vbool8_t mask, vuint32m4_t maskedoff, vuint64m8_t op1, size_t shift, unsigned int vxrm, size_t vl);
-```
+----

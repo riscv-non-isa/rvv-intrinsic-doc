@@ -1,10 +1,11 @@
 
-== Vector Integer Arithmetic Instructions
+=== Vector Integer Arithmetic Instructions
 
 [[overloaded-vector-single-width-integer-add-and-subtract]]
-=== Vector Single-Width Integer Add and Subtract Intrinsics
+==== Vector Single-Width Integer Add and Subtract Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vadd (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
 vint8mf8_t __riscv_vadd (vint8mf8_t op1, int8_t op2, size_t vl);
 vint8mf4_t __riscv_vadd (vint8mf4_t op1, vint8mf4_t op2, size_t vl);
@@ -490,12 +491,13 @@ vuint64m1_t __riscv_vrsub (vbool64_t mask, vuint64m1_t op1, uint64_t op2, size_t
 vuint64m2_t __riscv_vrsub (vbool32_t mask, vuint64m2_t op1, uint64_t op2, size_t vl);
 vuint64m4_t __riscv_vrsub (vbool16_t mask, vuint64m4_t op1, uint64_t op2, size_t vl);
 vuint64m8_t __riscv_vrsub (vbool8_t mask, vuint64m8_t op1, uint64_t op2, size_t vl);
-```
+----
 
 [[overloaded-vector-widening-integer-add-subtract]]
-=== Vector Widening Integer Add/Subtract Intrinsics
+==== Vector Widening Integer Add/Subtract Intrinsics
 
-``` C
+[,c]
+----
 vint16mf4_t __riscv_vwadd_vv (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
 vint16mf4_t __riscv_vwadd_vx (vint8mf8_t op1, int8_t op2, size_t vl);
 vint16mf4_t __riscv_vwadd_wv (vint16mf4_t op1, vint8mf8_t op2, size_t vl);
@@ -977,12 +979,13 @@ vuint64m8_t __riscv_vwsubu_vv (vbool8_t mask, vuint32m4_t op1, vuint32m4_t op2, 
 vuint64m8_t __riscv_vwsubu_vx (vbool8_t mask, vuint32m4_t op1, uint32_t op2, size_t vl);
 vuint64m8_t __riscv_vwsubu_wv (vbool8_t mask, vuint64m8_t op1, vuint32m4_t op2, size_t vl);
 vuint64m8_t __riscv_vwsubu_wx (vbool8_t mask, vuint64m8_t op1, uint32_t op2, size_t vl);
-```
+----
 
 [[overloaded-vector-integer-widening]]
-=== Vector Integer Widening Intrinsics
+==== Vector Integer Widening Intrinsics
 
-``` C
+[,c]
+----
 vint16mf4_t __riscv_vwcvt_x (vint8mf8_t src, size_t vl);
 vint16mf2_t __riscv_vwcvt_x (vint8mf4_t src, size_t vl);
 vint16m1_t __riscv_vwcvt_x (vint8mf2_t src, size_t vl);
@@ -1044,12 +1047,13 @@ vuint64m1_t __riscv_vwcvtu_x (vbool64_t mask, vuint32mf2_t src, size_t vl);
 vuint64m2_t __riscv_vwcvtu_x (vbool32_t mask, vuint32m1_t src, size_t vl);
 vuint64m4_t __riscv_vwcvtu_x (vbool16_t mask, vuint32m2_t src, size_t vl);
 vuint64m8_t __riscv_vwcvtu_x (vbool8_t mask, vuint32m4_t src, size_t vl);
-```
+----
 
 [[overloaded-vector-integer-extension]]
-=== Vector Integer Extension Intrinsics
+==== Vector Integer Extension Intrinsics
 
-``` C
+[,c]
+----
 vint16mf4_t __riscv_vsext_vf2 (vint8mf8_t op1, size_t vl);
 vint16mf2_t __riscv_vsext_vf2 (vint8mf4_t op1, size_t vl);
 vint16m1_t __riscv_vsext_vf2 (vint8mf2_t op1, size_t vl);
@@ -1163,12 +1167,13 @@ vuint64m1_t __riscv_vzext_vf2 (vbool64_t mask, vuint32mf2_t op1, size_t vl);
 vuint64m2_t __riscv_vzext_vf2 (vbool32_t mask, vuint32m1_t op1, size_t vl);
 vuint64m4_t __riscv_vzext_vf2 (vbool16_t mask, vuint32m2_t op1, size_t vl);
 vuint64m8_t __riscv_vzext_vf2 (vbool8_t mask, vuint32m4_t op1, size_t vl);
-```
+----
 
 [[overloaded-vector-integer-add-with-carry-subtract-with-borrow]]
-=== Vector Integer Add-with-Carry / Subtract-with-Borrow Intrinsics
+==== Vector Integer Add-with-Carry / Subtract-with-Borrow Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vadc (vint8mf8_t op1, vint8mf8_t op2, vbool64_t carryin, size_t vl);
 vint8mf8_t __riscv_vadc (vint8mf8_t op1, int8_t op2, vbool64_t carryin, size_t vl);
 vint8mf4_t __riscv_vadc (vint8mf4_t op1, vint8mf4_t op2, vbool32_t carryin, size_t vl);
@@ -1697,12 +1702,13 @@ vbool8_t __riscv_vmsbc (vuint64m8_t op1, vuint64m8_t op2, vbool8_t borrowin, siz
 vbool8_t __riscv_vmsbc (vuint64m8_t op1, uint64_t op2, vbool8_t borrowin, size_t vl);
 vbool8_t __riscv_vmsbc (vuint64m8_t op1, vuint64m8_t op2, size_t vl);
 vbool8_t __riscv_vmsbc (vuint64m8_t op1, uint64_t op2, size_t vl);
-```
+----
 
 [[overloaded-vector-bitwise-binary-logical]]
-=== Vector Bitwise Binary Logical Intrinsics
+==== Vector Bitwise Binary Logical Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vand (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
 vint8mf8_t __riscv_vand (vint8mf8_t op1, int8_t op2, size_t vl);
 vint8mf4_t __riscv_vand (vint8mf4_t op1, vint8mf4_t op2, size_t vl);
@@ -2232,12 +2238,13 @@ vuint64m4_t __riscv_vxor (vbool16_t mask, vuint64m4_t op1, vuint64m4_t op2, size
 vuint64m4_t __riscv_vxor (vbool16_t mask, vuint64m4_t op1, uint64_t op2, size_t vl);
 vuint64m8_t __riscv_vxor (vbool8_t mask, vuint64m8_t op1, vuint64m8_t op2, size_t vl);
 vuint64m8_t __riscv_vxor (vbool8_t mask, vuint64m8_t op1, uint64_t op2, size_t vl);
-```
+----
 
 [[overloaded-vector-bitwise-unary-logical]]
-=== Vector Bitwise Unary Logical Intrinsics
+==== Vector Bitwise Unary Logical Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vnot (vint8mf8_t op1, size_t vl);
 vint8mf4_t __riscv_vnot (vint8mf4_t op1, size_t vl);
 vint8mf2_t __riscv_vnot (vint8mf2_t op1, size_t vl);
@@ -2327,12 +2334,13 @@ vuint64m1_t __riscv_vnot (vbool64_t mask, vuint64m1_t op1, size_t vl);
 vuint64m2_t __riscv_vnot (vbool32_t mask, vuint64m2_t op1, size_t vl);
 vuint64m4_t __riscv_vnot (vbool16_t mask, vuint64m4_t op1, size_t vl);
 vuint64m8_t __riscv_vnot (vbool8_t mask, vuint64m8_t op1, size_t vl);
-```
+----
 
 [[overloaded-vector-single-width-bit-shift]]
-=== Vector Single-Width Bit Shift Intrinsics
+==== Vector Single-Width Bit Shift Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vsll (vint8mf8_t op1, vuint8mf8_t shift, size_t vl);
 vint8mf8_t __riscv_vsll (vint8mf8_t op1, size_t shift, size_t vl);
 vint8mf4_t __riscv_vsll (vint8mf4_t op1, vuint8mf4_t shift, size_t vl);
@@ -2686,12 +2694,13 @@ vuint64m4_t __riscv_vsrl (vbool16_t mask, vuint64m4_t op1, vuint64m4_t shift, si
 vuint64m4_t __riscv_vsrl (vbool16_t mask, vuint64m4_t op1, size_t shift, size_t vl);
 vuint64m8_t __riscv_vsrl (vbool8_t mask, vuint64m8_t op1, vuint64m8_t shift, size_t vl);
 vuint64m8_t __riscv_vsrl (vbool8_t mask, vuint64m8_t op1, size_t shift, size_t vl);
-```
+----
 
 [[overloaded-vector-narrowing-integer-right-shift]]
-=== Vector Narrowing Integer Right Shift Intrinsics
+==== Vector Narrowing Integer Right Shift Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vnsra (vint16mf4_t op1, vuint8mf8_t shift, size_t vl);
 vint8mf8_t __riscv_vnsra (vint16mf4_t op1, size_t shift, size_t vl);
 vint8mf4_t __riscv_vnsra (vint16mf2_t op1, vuint8mf4_t shift, size_t vl);
@@ -2813,12 +2822,13 @@ vuint32m2_t __riscv_vnsrl (vbool16_t mask, vuint64m4_t op1, vuint32m2_t shift, s
 vuint32m2_t __riscv_vnsrl (vbool16_t mask, vuint64m4_t op1, size_t shift, size_t vl);
 vuint32m4_t __riscv_vnsrl (vbool8_t mask, vuint64m8_t op1, vuint32m4_t shift, size_t vl);
 vuint32m4_t __riscv_vnsrl (vbool8_t mask, vuint64m8_t op1, size_t shift, size_t vl);
-```
+----
 
 [[overloaded-vector-integer-narrowing]]
-=== Vector Integer Narrowing Intrinsics
+==== Vector Integer Narrowing Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vncvt_x (vint16mf4_t src, size_t vl);
 vint8mf4_t __riscv_vncvt_x (vint16mf2_t src, size_t vl);
 vint8mf2_t __riscv_vncvt_x (vint16m1_t src, size_t vl);
@@ -2880,12 +2890,13 @@ vuint32mf2_t __riscv_vncvt_x (vbool64_t mask, vuint64m1_t src, size_t vl);
 vuint32m1_t __riscv_vncvt_x (vbool32_t mask, vuint64m2_t src, size_t vl);
 vuint32m2_t __riscv_vncvt_x (vbool16_t mask, vuint64m4_t src, size_t vl);
 vuint32m4_t __riscv_vncvt_x (vbool8_t mask, vuint64m8_t src, size_t vl);
-```
+----
 
 [[overloaded-vector-integer-comparison]]
-=== Vector Integer Compare Intrinsics
+==== Vector Integer Compare Intrinsics
 
-``` C
+[,c]
+----
 vbool64_t __riscv_vmseq (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
 vbool64_t __riscv_vmseq (vint8mf8_t op1, int8_t op2, size_t vl);
 vbool32_t __riscv_vmseq (vint8mf4_t op1, vint8mf4_t op2, size_t vl);
@@ -3943,12 +3954,13 @@ vbool16_t __riscv_vmsgeu (vbool16_t mask, vuint64m4_t op1, vuint64m4_t op2, size
 vbool16_t __riscv_vmsgeu (vbool16_t mask, vuint64m4_t op1, uint64_t op2, size_t vl);
 vbool8_t __riscv_vmsgeu (vbool8_t mask, vuint64m8_t op1, vuint64m8_t op2, size_t vl);
 vbool8_t __riscv_vmsgeu (vbool8_t mask, vuint64m8_t op1, uint64_t op2, size_t vl);
-```
+----
 
 [[overloaded-vector-integer-minmax]]
-=== Vector Integer Min/Max Intrinsics
+==== Vector Integer Min/Max Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vmin (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
 vint8mf8_t __riscv_vmin (vint8mf8_t op1, int8_t op2, size_t vl);
 vint8mf4_t __riscv_vmin (vint8mf4_t op1, vint8mf4_t op2, size_t vl);
@@ -4302,12 +4314,13 @@ vuint64m4_t __riscv_vmaxu (vbool16_t mask, vuint64m4_t op1, vuint64m4_t op2, siz
 vuint64m4_t __riscv_vmaxu (vbool16_t mask, vuint64m4_t op1, uint64_t op2, size_t vl);
 vuint64m8_t __riscv_vmaxu (vbool8_t mask, vuint64m8_t op1, vuint64m8_t op2, size_t vl);
 vuint64m8_t __riscv_vmaxu (vbool8_t mask, vuint64m8_t op1, uint64_t op2, size_t vl);
-```
+----
 
 [[overloaded-vector-single-width-integer-multiply]]
-=== Vector Single-Width Integer Multiply Intrinsics
+==== Vector Single-Width Integer Multiply Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vmul (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
 vint8mf8_t __riscv_vmul (vint8mf8_t op1, int8_t op2, size_t vl);
 vint8mf4_t __riscv_vmul (vint8mf4_t op1, vint8mf4_t op2, size_t vl);
@@ -4749,12 +4762,13 @@ vuint64m4_t __riscv_vmulhu (vbool16_t mask, vuint64m4_t op1, vuint64m4_t op2, si
 vuint64m4_t __riscv_vmulhu (vbool16_t mask, vuint64m4_t op1, uint64_t op2, size_t vl);
 vuint64m8_t __riscv_vmulhu (vbool8_t mask, vuint64m8_t op1, vuint64m8_t op2, size_t vl);
 vuint64m8_t __riscv_vmulhu (vbool8_t mask, vuint64m8_t op1, uint64_t op2, size_t vl);
-```
+----
 
 [[overloaded-vector-integer-divide]]
-=== Vector Integer Divide Intrinsics
+==== Vector Integer Divide Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vdiv (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
 vint8mf8_t __riscv_vdiv (vint8mf8_t op1, int8_t op2, size_t vl);
 vint8mf4_t __riscv_vdiv (vint8mf4_t op1, vint8mf4_t op2, size_t vl);
@@ -5108,12 +5122,13 @@ vuint64m4_t __riscv_vremu (vbool16_t mask, vuint64m4_t op1, vuint64m4_t op2, siz
 vuint64m4_t __riscv_vremu (vbool16_t mask, vuint64m4_t op1, uint64_t op2, size_t vl);
 vuint64m8_t __riscv_vremu (vbool8_t mask, vuint64m8_t op1, vuint64m8_t op2, size_t vl);
 vuint64m8_t __riscv_vremu (vbool8_t mask, vuint64m8_t op1, uint64_t op2, size_t vl);
-```
+----
 
 [[overloaded-vector-widening-integer-multiply]]
-=== Vector Widening Integer Multiply Intrinsics
+==== Vector Widening Integer Multiply Intrinsics
 
-``` C
+[,c]
+----
 vint16mf4_t __riscv_vwmul (vint8mf8_t op1, vint8mf8_t op2, size_t vl);
 vint16mf4_t __riscv_vwmul (vint8mf8_t op1, int8_t op2, size_t vl);
 vint16mf2_t __riscv_vwmul (vint8mf4_t op1, vint8mf4_t op2, size_t vl);
@@ -5295,12 +5310,13 @@ vuint64m4_t __riscv_vwmulu (vbool16_t mask, vuint32m2_t op1, vuint32m2_t op2, si
 vuint64m4_t __riscv_vwmulu (vbool16_t mask, vuint32m2_t op1, uint32_t op2, size_t vl);
 vuint64m8_t __riscv_vwmulu (vbool8_t mask, vuint32m4_t op1, vuint32m4_t op2, size_t vl);
 vuint64m8_t __riscv_vwmulu (vbool8_t mask, vuint32m4_t op1, uint32_t op2, size_t vl);
-```
+----
 
 [[overloaded-vector-single-width-integer-multiply-add]]
-=== Vector Single-Width Integer Multiply-Add Intrinsics
+==== Vector Single-Width Integer Multiply-Add Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vmacc (vint8mf8_t vd, vint8mf8_t vs1, vint8mf8_t vs2, size_t vl);
 vint8mf8_t __riscv_vmacc (vint8mf8_t vd, int8_t rs1, vint8mf8_t vs2, size_t vl);
 vint8mf4_t __riscv_vmacc (vint8mf4_t vd, vint8mf4_t vs1, vint8mf4_t vs2, size_t vl);
@@ -6006,12 +6022,13 @@ vuint64m4_t __riscv_vnmsub (vbool16_t mask, vuint64m4_t vd, vuint64m4_t vs1, vui
 vuint64m4_t __riscv_vnmsub (vbool16_t mask, vuint64m4_t vd, uint64_t rs1, vuint64m4_t vs2, size_t vl);
 vuint64m8_t __riscv_vnmsub (vbool8_t mask, vuint64m8_t vd, vuint64m8_t vs1, vuint64m8_t vs2, size_t vl);
 vuint64m8_t __riscv_vnmsub (vbool8_t mask, vuint64m8_t vd, uint64_t rs1, vuint64m8_t vs2, size_t vl);
-```
+----
 
 [[overloaded-vector-widening-integer-multiply-add]]
-=== Vector Widening Integer Multiply-Add Intrinsics
+==== Vector Widening Integer Multiply-Add Intrinsics
 
-``` C
+[,c]
+----
 vint16mf4_t __riscv_vwmacc (vint16mf4_t vd, vint8mf8_t vs1, vint8mf8_t vs2, size_t vl);
 vint16mf4_t __riscv_vwmacc (vint16mf4_t vd, int8_t rs1, vint8mf8_t vs2, size_t vl);
 vint16mf2_t __riscv_vwmacc (vint16mf2_t vd, vint8mf4_t vs1, vint8mf4_t vs2, size_t vl);
@@ -6223,12 +6240,13 @@ vuint64m4_t __riscv_vwmaccu (vbool16_t mask, vuint64m4_t vd, vuint32m2_t vs1, vu
 vuint64m4_t __riscv_vwmaccu (vbool16_t mask, vuint64m4_t vd, uint32_t rs1, vuint32m2_t vs2, size_t vl);
 vuint64m8_t __riscv_vwmaccu (vbool8_t mask, vuint64m8_t vd, vuint32m4_t vs1, vuint32m4_t vs2, size_t vl);
 vuint64m8_t __riscv_vwmaccu (vbool8_t mask, vuint64m8_t vd, uint32_t rs1, vuint32m4_t vs2, size_t vl);
-```
+----
 
 [[overloaded-vector-integer-merge]]
-=== Vector Integer Merge Intrinsics
+==== Vector Integer Merge Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vmerge (vint8mf8_t op1, vint8mf8_t op2, vbool64_t mask, size_t vl);
 vint8mf8_t __riscv_vmerge (vint8mf8_t op1, int8_t op2, vbool64_t mask, size_t vl);
 vint8mf4_t __riscv_vmerge (vint8mf4_t op1, vint8mf4_t op2, vbool32_t mask, size_t vl);
@@ -6317,12 +6335,13 @@ vuint64m4_t __riscv_vmerge (vuint64m4_t op1, vuint64m4_t op2, vbool16_t mask, si
 vuint64m4_t __riscv_vmerge (vuint64m4_t op1, uint64_t op2, vbool16_t mask, size_t vl);
 vuint64m8_t __riscv_vmerge (vuint64m8_t op1, vuint64m8_t op2, vbool8_t mask, size_t vl);
 vuint64m8_t __riscv_vmerge (vuint64m8_t op1, uint64_t op2, vbool8_t mask, size_t vl);
-```
+----
 
 [[overloaded-vector-integer-move]]
-=== Vector Integer Move Intrinsics
+==== Vector Integer Move Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vmv_v (vint8mf8_t src, size_t vl);
 vint8mf4_t __riscv_vmv_v (vint8mf4_t src, size_t vl);
 vint8mf2_t __riscv_vmv_v (vint8mf2_t src, size_t vl);
@@ -6367,4 +6386,4 @@ vuint64m1_t __riscv_vmv_v (vuint64m1_t src, size_t vl);
 vuint64m2_t __riscv_vmv_v (vuint64m2_t src, size_t vl);
 vuint64m4_t __riscv_vmv_v (vuint64m4_t src, size_t vl);
 vuint64m8_t __riscv_vmv_v (vuint64m8_t src, size_t vl);
-```
+----

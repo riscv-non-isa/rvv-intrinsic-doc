@@ -1,18 +1,19 @@
 
-== Miscellaneous Vector Utility Intrinsics
+=== Miscellaneous Vector Utility Intrinsics
 
 [[overloaded-set-vl-and-vtype]]
-=== Get `vl` with specific vtype
+==== Get `vl` with specific vtype
 Intrinsics here don't have an overloaded variant.
 
 [[overloaded-set-vl-to-vlmax-with-specific-vtype]]
-=== Get `VLMAX` with specific vtype
+==== Get `VLMAX` with specific vtype
 Intrinsics here don't have an overloaded variant.
 
 [[overloaded-reinterpret-cast-conversion]]
-=== Reinterpret Cast Conversion Intrinsics
+==== Reinterpret Cast Conversion Intrinsics
 
-``` C
+[,c]
+----
 // Reinterpret between different type under the same SEW/LMUL
 vuint8mf8_t __riscv_vreinterpret_u8mf8 (vint8mf8_t src);
 vuint8mf4_t __riscv_vreinterpret_u8mf4 (vint8mf4_t src);
@@ -320,12 +321,13 @@ vbool16_t __riscv_vreinterpret_b16 (vuint64m1_t src);
 vuint64m1_t __riscv_vreinterpret_u64m1 (vbool16_t src);
 vbool8_t __riscv_vreinterpret_b8 (vuint64m1_t src);
 vuint64m1_t __riscv_vreinterpret_u64m1 (vbool8_t src);
-```
+----
 
 [[overloaded-vector-lmul-extensionn]]
-=== Vector LMUL Extension Intrinsics
+==== Vector LMUL Extension Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf2_t __riscv_vlmul_ext_f16mf2 (vfloat16mf4_t op1);
 vfloat16m1_t __riscv_vlmul_ext_f16m1 (vfloat16mf4_t op1);
 vfloat16m2_t __riscv_vlmul_ext_f16m2 (vfloat16mf4_t op1);
@@ -461,12 +463,13 @@ vuint64m8_t __riscv_vlmul_ext_u64m8 (vuint64m1_t op1);
 vuint64m4_t __riscv_vlmul_ext_u64m4 (vuint64m2_t op1);
 vuint64m8_t __riscv_vlmul_ext_u64m8 (vuint64m2_t op1);
 vuint64m8_t __riscv_vlmul_ext_u64m8 (vuint64m4_t op1);
-```
+----
 
 [[overloaded-vector-lmul-truncation]]
-=== Vector LMUL Truncation Intrinsics
+==== Vector LMUL Truncation Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vlmul_trunc_f16mf4 (vfloat16mf2_t op1);
 vfloat16mf4_t __riscv_vlmul_trunc_f16mf4 (vfloat16m1_t op1);
 vfloat16mf2_t __riscv_vlmul_trunc_f16mf2 (vfloat16m1_t op1);
@@ -602,16 +605,17 @@ vuint64m2_t __riscv_vlmul_trunc_u64m2 (vuint64m4_t op1);
 vuint64m1_t __riscv_vlmul_trunc_u64m1 (vuint64m8_t op1);
 vuint64m2_t __riscv_vlmul_trunc_u64m2 (vuint64m8_t op1);
 vuint64m4_t __riscv_vlmul_trunc_u64m4 (vuint64m8_t op1);
-```
+----
 
 [[overloaded-vector-initialization]]
-=== Vector Initialization Intrinsics
+==== Vector Initialization Intrinsics
 Intrinsics here don't have an overloaded variant.
 
 [[overloaded-vector-insertion]]
-=== Vector Insertion Intrinsics
+==== Vector Insertion Intrinsics
 
-``` C
+[,c]
+----
 vfloat16m2_t __riscv_vset (vfloat16m2_t dest, size_t index, vfloat16m1_t val);
 vfloat16m4_t __riscv_vset (vfloat16m4_t dest, size_t index, vfloat16m1_t val);
 vfloat16m4_t __riscv_vset (vfloat16m4_t dest, size_t index, vfloat16m2_t val);
@@ -904,12 +908,13 @@ vuint64m2x2_t __riscv_vset (vuint64m2x2_t dest, size_t index, vuint64m2_t val);
 vuint64m2x3_t __riscv_vset (vuint64m2x3_t dest, size_t index, vuint64m2_t val);
 vuint64m2x4_t __riscv_vset (vuint64m2x4_t dest, size_t index, vuint64m2_t val);
 vuint64m4x2_t __riscv_vset (vuint64m4x2_t dest, size_t index, vuint64m4_t val);
-```
+----
 
 [[overloaded-vector-extraction]]
-=== Vector Extraction Intrinsics
+==== Vector Extraction Intrinsics
 
-``` C
+[,c]
+----
 vfloat16m1_t __riscv_vget_f16m1 (vfloat16m2_t src, size_t index);
 vfloat16m1_t __riscv_vget_f16m1 (vfloat16m4_t src, size_t index);
 vfloat16m1_t __riscv_vget_f16m1 (vfloat16m8_t src, size_t index);
@@ -1202,8 +1207,8 @@ vuint64m2_t __riscv_vget_u64m2 (vuint64m2x2_t src, size_t index);
 vuint64m2_t __riscv_vget_u64m2 (vuint64m2x3_t src, size_t index);
 vuint64m2_t __riscv_vget_u64m2 (vuint64m2x4_t src, size_t index);
 vuint64m4_t __riscv_vget_u64m4 (vuint64m4x2_t src, size_t index);
-```
+----
 
 [[overloaded-vector-tuple-creation]]
-=== Vector Tuple Creation Intrinsics
+==== Vector Tuple Creation Intrinsics
 Intrinsics here don't have an overloaded variant.

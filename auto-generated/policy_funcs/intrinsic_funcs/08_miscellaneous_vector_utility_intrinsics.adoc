@@ -1,5 +1,5 @@
 
-== Miscellaneous Vector Utility Intrinsics
+=== Miscellaneous Vector Utility Intrinsics
 
 [[policy-variant-set-vl-and-vtype]]
 === Get `vl` with specific vtype
