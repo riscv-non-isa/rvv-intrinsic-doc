@@ -51,7 +51,8 @@ Copyright 2023 by RISC-V International.
 
 include::rvv-intrinsic-spec.adoc[]
 
-= Appendix - Explicit (Non-overloaded) intrinsics
+[appendix]
+== Explicit (Non-overloaded) intrinsics
 include::../auto-generated/intrinsic_funcs/00_vector_loads_and_stores_intrinsics.adoc[]
 include::../auto-generated/intrinsic_funcs/01_vector_loads_and_stores_segment_instructions.adoc[]
 include::../auto-generated/intrinsic_funcs/02_vector_integer_arithmetic_instructions.adoc[]
@@ -62,7 +63,8 @@ include::../auto-generated/intrinsic_funcs/06_vector_mask_instructions.adoc[]
 include::../auto-generated/intrinsic_funcs/07_vector_permutation_instructions.adoc[]
 include::../auto-generated/intrinsic_funcs/08_miscellaneous_vector_utility_intrinsics.adoc[]
 
-= Appendix - Explicit (Non-overloaded) intrinsics, policy variants
+[appendix]
+== Explicit (Non-overloaded) intrinsics, policy variants
 include::../auto-generated/policy_funcs/intrinsic_funcs/00_vector_loads_and_stores_intrinsics.adoc[]
 include::../auto-generated/policy_funcs/intrinsic_funcs/01_vector_loads_and_stores_segment_instructions.adoc[]
 include::../auto-generated/policy_funcs/intrinsic_funcs/02_vector_integer_arithmetic_instructions.adoc[]
@@ -73,7 +75,8 @@ include::../auto-generated/policy_funcs/intrinsic_funcs/06_vector_mask_instructi
 include::../auto-generated/policy_funcs/intrinsic_funcs/07_vector_permutation_instructions.adoc[]
 include::../auto-generated/policy_funcs/intrinsic_funcs/08_miscellaneous_vector_utility_intrinsics.adoc[]
 
-= Appendix - Implicit (Overloaded) intrinsics
+[appendix]
+== Implicit (Overloaded) intrinsics
 include::../auto-generated/overloaded_intrinsic_funcs/00_vector_loads_and_stores_intrinsics.adoc[]
 include::../auto-generated/overloaded_intrinsic_funcs/01_vector_loads_and_stores_segment_instructions.adoc[]
 include::../auto-generated/overloaded_intrinsic_funcs/02_vector_integer_arithmetic_instructions.adoc[]
@@ -84,7 +87,8 @@ include::../auto-generated/overloaded_intrinsic_funcs/06_vector_mask_instruction
 include::../auto-generated/overloaded_intrinsic_funcs/07_vector_permutation_instructions.adoc[]
 include::../auto-generated/overloaded_intrinsic_funcs/08_miscellaneous_vector_utility_intrinsics.adoc[]
 
-= Appendix - Implicit (Overloaded) intrinsics, policy variants
+[appendix]
+== Implicit (Overloaded) intrinsics, policy variants
 include::../auto-generated/policy_funcs/overloaded_intrinsic_funcs/00_vector_loads_and_stores_intrinsics.adoc[]
 include::../auto-generated/policy_funcs/overloaded_intrinsic_funcs/01_vector_loads_and_stores_segment_instructions.adoc[]
 include::../auto-generated/policy_funcs/overloaded_intrinsic_funcs/02_vector_integer_arithmetic_instructions.adoc[]
