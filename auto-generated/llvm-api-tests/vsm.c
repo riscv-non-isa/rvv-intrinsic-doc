@@ -32,4 +32,3 @@ void test_vsm_v_b32(uint8_t *base, vbool32_t value, size_t vl) {
 void test_vsm_v_b64(uint8_t *base, vbool64_t value, size_t vl) {
   return __riscv_vsm_v_b64(base, value, vl);
 }
-

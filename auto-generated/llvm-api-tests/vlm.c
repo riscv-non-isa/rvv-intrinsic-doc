@@ -32,4 +32,3 @@ vbool32_t test_vlm_v_b32(const uint8_t *base, size_t vl) {
 vbool64_t test_vlm_v_b64(const uint8_t *base, size_t vl) {
   return __riscv_vlm_v_b64(base, vl);
 }
-
