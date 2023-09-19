@@ -1,10 +1,11 @@
 
-== Vector Mask Instructions
+=== Vector Mask Instructions
 
 [[vector-mask-register-logical]]
 === Vector Mask-Register Logical
 
-``` C
+[,c]
+----
 vbool1_t __riscv_vmand_mm_b1 (vbool1_t op1, vbool1_t op2, size_t vl);
 vbool2_t __riscv_vmand_mm_b2 (vbool2_t op1, vbool2_t op2, size_t vl);
 vbool4_t __riscv_vmand_mm_b4 (vbool4_t op1, vbool4_t op2, size_t vl);
@@ -89,12 +90,13 @@ vbool8_t __riscv_vmnot_m_b8 (vbool8_t op1, size_t vl);
 vbool16_t __riscv_vmnot_m_b16 (vbool16_t op1, size_t vl);
 vbool32_t __riscv_vmnot_m_b32 (vbool32_t op1, size_t vl);
 vbool64_t __riscv_vmnot_m_b64 (vbool64_t op1, size_t vl);
-```
+----
 
 [[vector-count-population-in-mask-vcpopm]]
 === Vector count population in mask `vcpop.m`
 
-``` C
+[,c]
+----
 unsigned long __riscv_vcpop_m_b1 (vbool1_t op1, size_t vl);
 unsigned long __riscv_vcpop_m_b2 (vbool2_t op1, size_t vl);
 unsigned long __riscv_vcpop_m_b4 (vbool4_t op1, size_t vl);
@@ -110,12 +112,13 @@ unsigned long __riscv_vcpop_m_b8_m (vbool8_t mask, vbool8_t op1, size_t vl);
 unsigned long __riscv_vcpop_m_b16_m (vbool16_t mask, vbool16_t op1, size_t vl);
 unsigned long __riscv_vcpop_m_b32_m (vbool32_t mask, vbool32_t op1, size_t vl);
 unsigned long __riscv_vcpop_m_b64_m (vbool64_t mask, vbool64_t op1, size_t vl);
-```
+----
 
 [[vfirst-find-first-set-mask-bit]]
 === `vfirst` find-first-set mask bit
 
-``` C
+[,c]
+----
 long __riscv_vfirst_m_b1 (vbool1_t op1, size_t vl);
 long __riscv_vfirst_m_b2 (vbool2_t op1, size_t vl);
 long __riscv_vfirst_m_b4 (vbool4_t op1, size_t vl);
@@ -131,12 +134,13 @@ long __riscv_vfirst_m_b8_m (vbool8_t mask, vbool8_t op1, size_t vl);
 long __riscv_vfirst_m_b16_m (vbool16_t mask, vbool16_t op1, size_t vl);
 long __riscv_vfirst_m_b32_m (vbool32_t mask, vbool32_t op1, size_t vl);
 long __riscv_vfirst_m_b64_m (vbool64_t mask, vbool64_t op1, size_t vl);
-```
+----
 
 [[vmsbfm-set-before-first-mask-bit]]
 === `vmsbf.m` set-before-first mask bit
 
-``` C
+[,c]
+----
 vbool1_t __riscv_vmsbf_m_b1 (vbool1_t op1, size_t vl);
 vbool2_t __riscv_vmsbf_m_b2 (vbool2_t op1, size_t vl);
 vbool4_t __riscv_vmsbf_m_b4 (vbool4_t op1, size_t vl);
@@ -152,12 +156,13 @@ vbool8_t __riscv_vmsbf_m_b8_m (vbool8_t mask, vbool8_t op1, size_t vl);
 vbool16_t __riscv_vmsbf_m_b16_m (vbool16_t mask, vbool16_t op1, size_t vl);
 vbool32_t __riscv_vmsbf_m_b32_m (vbool32_t mask, vbool32_t op1, size_t vl);
 vbool64_t __riscv_vmsbf_m_b64_m (vbool64_t mask, vbool64_t op1, size_t vl);
-```
+----
 
 [[vmsifm-set-including-first-mask-bit]]
 === `vmsif.m` set-including-first mask bit
 
-``` C
+[,c]
+----
 vbool1_t __riscv_vmsif_m_b1 (vbool1_t op1, size_t vl);
 vbool2_t __riscv_vmsif_m_b2 (vbool2_t op1, size_t vl);
 vbool4_t __riscv_vmsif_m_b4 (vbool4_t op1, size_t vl);
@@ -173,12 +178,13 @@ vbool8_t __riscv_vmsif_m_b8_m (vbool8_t mask, vbool8_t op1, size_t vl);
 vbool16_t __riscv_vmsif_m_b16_m (vbool16_t mask, vbool16_t op1, size_t vl);
 vbool32_t __riscv_vmsif_m_b32_m (vbool32_t mask, vbool32_t op1, size_t vl);
 vbool64_t __riscv_vmsif_m_b64_m (vbool64_t mask, vbool64_t op1, size_t vl);
-```
+----
 
 [[vmsofm-set-only-first-mask-bit]]
 === `vmsof.m` set-only-first mask bit
 
-``` C
+[,c]
+----
 vbool1_t __riscv_vmsof_m_b1 (vbool1_t op1, size_t vl);
 vbool2_t __riscv_vmsof_m_b2 (vbool2_t op1, size_t vl);
 vbool4_t __riscv_vmsof_m_b4 (vbool4_t op1, size_t vl);
@@ -194,12 +200,13 @@ vbool8_t __riscv_vmsof_m_b8_m (vbool8_t mask, vbool8_t op1, size_t vl);
 vbool16_t __riscv_vmsof_m_b16_m (vbool16_t mask, vbool16_t op1, size_t vl);
 vbool32_t __riscv_vmsof_m_b32_m (vbool32_t mask, vbool32_t op1, size_t vl);
 vbool64_t __riscv_vmsof_m_b64_m (vbool64_t mask, vbool64_t op1, size_t vl);
-```
+----
 
 [[vector-iota]]
 === Vector Iota Intrinsics
 
-``` C
+[,c]
+----
 vuint8mf8_t __riscv_viota_m_u8mf8 (vbool64_t op1, size_t vl);
 vuint8mf4_t __riscv_viota_m_u8mf4 (vbool32_t op1, size_t vl);
 vuint8mf2_t __riscv_viota_m_u8mf2 (vbool16_t op1, size_t vl);
@@ -245,12 +252,13 @@ vuint64m1_t __riscv_viota_m_u64m1_m (vbool64_t mask, vbool64_t op1, size_t vl);
 vuint64m2_t __riscv_viota_m_u64m2_m (vbool32_t mask, vbool32_t op1, size_t vl);
 vuint64m4_t __riscv_viota_m_u64m4_m (vbool16_t mask, vbool16_t op1, size_t vl);
 vuint64m8_t __riscv_viota_m_u64m8_m (vbool8_t mask, vbool8_t op1, size_t vl);
-```
+----
 
 [[vector-element-index]]
 === Vector Element Index Intrinsics
 
-``` C
+[,c]
+----
 vuint8mf8_t __riscv_vid_v_u8mf8 (size_t vl);
 vuint8mf4_t __riscv_vid_v_u8mf4 (size_t vl);
 vuint8mf2_t __riscv_vid_v_u8mf2 (size_t vl);
@@ -296,4 +304,4 @@ vuint64m1_t __riscv_vid_v_u64m1_m (vbool64_t mask, size_t vl);
 vuint64m2_t __riscv_vid_v_u64m2_m (vbool32_t mask, size_t vl);
 vuint64m4_t __riscv_vid_v_u64m4_m (vbool16_t mask, size_t vl);
 vuint64m8_t __riscv_vid_v_u64m8_m (vbool8_t mask, size_t vl);
-```
+----

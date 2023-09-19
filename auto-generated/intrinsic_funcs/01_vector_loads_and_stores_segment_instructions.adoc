@@ -1,10 +1,11 @@
 
-== Vector Loads and Stores Segment Instructions
+=== Vector Loads and Stores Segment Instructions
 
 [[vector-unit-stride-segment-load]]
 === Vector Unit-Stride Segment Load Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4x2_t __riscv_vlseg2e16_v_f16mf4x2 (const float16_t *base, size_t vl);
 vfloat16mf4x3_t __riscv_vlseg3e16_v_f16mf4x3 (const float16_t *base, size_t vl);
 vfloat16mf4x4_t __riscv_vlseg4e16_v_f16mf4x4 (const float16_t *base, size_t vl);
@@ -910,12 +911,13 @@ vuint64m2x2_t __riscv_vlseg2e64ff_v_u64m2x2_m (vbool32_t mask, const uint64_t *b
 vuint64m2x3_t __riscv_vlseg3e64ff_v_u64m2x3_m (vbool32_t mask, const uint64_t *base, size_t *new_vl, size_t vl);
 vuint64m2x4_t __riscv_vlseg4e64ff_v_u64m2x4_m (vbool32_t mask, const uint64_t *base, size_t *new_vl, size_t vl);
 vuint64m4x2_t __riscv_vlseg2e64ff_v_u64m4x2_m (vbool16_t mask, const uint64_t *base, size_t *new_vl, size_t vl);
-```
+----
 
 [[vecrtor-unit-stride-segment-store]]
 === Vector Unit-Stride Segment Store Intrinsics
 
-``` C
+[,c]
+----
 void __riscv_vsseg2e16_v_f16mf4x2 (float16_t *base, vfloat16mf4x2_t v_tuple, size_t vl);
 void __riscv_vsseg3e16_v_f16mf4x3 (float16_t *base, vfloat16mf4x3_t v_tuple, size_t vl);
 void __riscv_vsseg4e16_v_f16mf4x4 (float16_t *base, vfloat16mf4x4_t v_tuple, size_t vl);
@@ -1369,12 +1371,13 @@ void __riscv_vsseg2e64_v_u64m2x2_m (vbool32_t mask, uint64_t *base, vuint64m2x2_
 void __riscv_vsseg3e64_v_u64m2x3_m (vbool32_t mask, uint64_t *base, vuint64m2x3_t v_tuple, size_t vl);
 void __riscv_vsseg4e64_v_u64m2x4_m (vbool32_t mask, uint64_t *base, vuint64m2x4_t v_tuple, size_t vl);
 void __riscv_vsseg2e64_v_u64m4x2_m (vbool16_t mask, uint64_t *base, vuint64m4x2_t v_tuple, size_t vl);
-```
+----
 
 [[vector-strided-segment-load]]
 === Vector Strided Segment Load Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4x2_t __riscv_vlsseg2e16_v_f16mf4x2 (const float16_t *base, ptrdiff_t bstride, size_t vl);
 vfloat16mf4x3_t __riscv_vlsseg3e16_v_f16mf4x3 (const float16_t *base, ptrdiff_t bstride, size_t vl);
 vfloat16mf4x4_t __riscv_vlsseg4e16_v_f16mf4x4 (const float16_t *base, ptrdiff_t bstride, size_t vl);
@@ -1828,12 +1831,13 @@ vuint64m2x2_t __riscv_vlsseg2e64_v_u64m2x2_m (vbool32_t mask, const uint64_t *ba
 vuint64m2x3_t __riscv_vlsseg3e64_v_u64m2x3_m (vbool32_t mask, const uint64_t *base, ptrdiff_t bstride, size_t vl);
 vuint64m2x4_t __riscv_vlsseg4e64_v_u64m2x4_m (vbool32_t mask, const uint64_t *base, ptrdiff_t bstride, size_t vl);
 vuint64m4x2_t __riscv_vlsseg2e64_v_u64m4x2_m (vbool16_t mask, const uint64_t *base, ptrdiff_t bstride, size_t vl);
-```
+----
 
 [[vector-strided-segment-store]]
 === Vector Strided Segment Store Intrinsics
 
-``` C
+[,c]
+----
 void __riscv_vssseg2e16_v_f16mf4x2 (float16_t *base, ptrdiff_t bstride, vfloat16mf4x2_t v_tuple, size_t vl);
 void __riscv_vssseg3e16_v_f16mf4x3 (float16_t *base, ptrdiff_t bstride, vfloat16mf4x3_t v_tuple, size_t vl);
 void __riscv_vssseg4e16_v_f16mf4x4 (float16_t *base, ptrdiff_t bstride, vfloat16mf4x4_t v_tuple, size_t vl);
@@ -2287,12 +2291,13 @@ void __riscv_vssseg2e64_v_u64m2x2_m (vbool32_t mask, uint64_t *base, ptrdiff_t b
 void __riscv_vssseg3e64_v_u64m2x3_m (vbool32_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m2x3_t v_tuple, size_t vl);
 void __riscv_vssseg4e64_v_u64m2x4_m (vbool32_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m2x4_t v_tuple, size_t vl);
 void __riscv_vssseg2e64_v_u64m4x2_m (vbool16_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m4x2_t v_tuple, size_t vl);
-```
+----
 
 [[vector-indexed-segment-load]]
 === Vector Indexed Segment Load Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4x2_t __riscv_vloxseg2ei8_v_f16mf4x2 (const float16_t *base, vuint8mf8_t bindex, size_t vl);
 vfloat16mf4x3_t __riscv_vloxseg3ei8_v_f16mf4x3 (const float16_t *base, vuint8mf8_t bindex, size_t vl);
 vfloat16mf4x4_t __riscv_vloxseg4ei8_v_f16mf4x4 (const float16_t *base, vuint8mf8_t bindex, size_t vl);
@@ -5858,12 +5863,13 @@ vuint64m2x2_t __riscv_vluxseg2ei64_v_u64m2x2_m (vbool32_t mask, const uint64_t *
 vuint64m2x3_t __riscv_vluxseg3ei64_v_u64m2x3_m (vbool32_t mask, const uint64_t *base, vuint64m2_t bindex, size_t vl);
 vuint64m2x4_t __riscv_vluxseg4ei64_v_u64m2x4_m (vbool32_t mask, const uint64_t *base, vuint64m2_t bindex, size_t vl);
 vuint64m4x2_t __riscv_vluxseg2ei64_v_u64m4x2_m (vbool16_t mask, const uint64_t *base, vuint64m4_t bindex, size_t vl);
-```
+----
 
 [[vector-indexed-segment-store]]
 === Vector Indexed Segment Store Intrinsics
 
-``` C
+[,c]
+----
 void __riscv_vsoxseg2ei8_v_f16mf4x2 (float16_t *base, vuint8mf8_t bindex, vfloat16mf4x2_t v_tuple, size_t vl);
 void __riscv_vsoxseg3ei8_v_f16mf4x3 (float16_t *base, vuint8mf8_t bindex, vfloat16mf4x3_t v_tuple, size_t vl);
 void __riscv_vsoxseg4ei8_v_f16mf4x4 (float16_t *base, vuint8mf8_t bindex, vfloat16mf4x4_t v_tuple, size_t vl);
@@ -9429,4 +9435,4 @@ void __riscv_vsuxseg2ei64_v_u64m2x2_m (vbool32_t mask, uint64_t *base, vuint64m2
 void __riscv_vsuxseg3ei64_v_u64m2x3_m (vbool32_t mask, uint64_t *base, vuint64m2_t bindex, vuint64m2x3_t v_tuple, size_t vl);
 void __riscv_vsuxseg4ei64_v_u64m2x4_m (vbool32_t mask, uint64_t *base, vuint64m2_t bindex, vuint64m2x4_t v_tuple, size_t vl);
 void __riscv_vsuxseg2ei64_v_u64m4x2_m (vbool16_t mask, uint64_t *base, vuint64m4_t bindex, vuint64m4x2_t v_tuple, size_t vl);
-```
+----

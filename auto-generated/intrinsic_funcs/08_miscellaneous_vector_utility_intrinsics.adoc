@@ -1,10 +1,11 @@
 
-== Miscellaneous Vector Utility Intrinsics
+=== Miscellaneous Vector Utility Intrinsics
 
 [[set-vl-and-vtype]]
 === Get `vl` with specific vtype
 
-``` C
+[,c]
+----
 size_t __riscv_vsetvl_e8mf8 (size_t avl);
 size_t __riscv_vsetvl_e8mf4 (size_t avl);
 size_t __riscv_vsetvl_e8mf2 (size_t avl);
@@ -27,12 +28,13 @@ size_t __riscv_vsetvl_e64m1 (size_t avl);
 size_t __riscv_vsetvl_e64m2 (size_t avl);
 size_t __riscv_vsetvl_e64m4 (size_t avl);
 size_t __riscv_vsetvl_e64m8 (size_t avl);
-```
+----
 
 [[set-vl-to-vlmax-with-specific-vtype]]
 === Get `VLMAX` with specific vtype
 
-``` C
+[,c]
+----
 size_t __riscv_vsetvlmax_e8mf8 ();
 size_t __riscv_vsetvlmax_e8mf4 ();
 size_t __riscv_vsetvlmax_e8mf2 ();
@@ -55,12 +57,13 @@ size_t __riscv_vsetvlmax_e64m1 ();
 size_t __riscv_vsetvlmax_e64m2 ();
 size_t __riscv_vsetvlmax_e64m4 ();
 size_t __riscv_vsetvlmax_e64m8 ();
-```
+----
 
 [[reinterpret-cast-conversion]]
 === Reinterpret Cast Conversion Intrinsics
 
-``` C
+[,c]
+----
 // Reinterpret between different type under the same SEW/LMUL
 vuint8mf8_t __riscv_vreinterpret_v_i8mf8_u8mf8 (vint8mf8_t src);
 vuint8mf4_t __riscv_vreinterpret_v_i8mf4_u8mf4 (vint8mf4_t src);
@@ -368,12 +371,13 @@ vbool16_t __riscv_vreinterpret_v_u64m1_b16 (vuint64m1_t src);
 vuint64m1_t __riscv_vreinterpret_v_b16_u64m1 (vbool16_t src);
 vbool8_t __riscv_vreinterpret_v_u64m1_b8 (vuint64m1_t src);
 vuint64m1_t __riscv_vreinterpret_v_b8_u64m1 (vbool8_t src);
-```
+----
 
 [[vector-lmul-extensionn]]
 === Vector LMUL Extension Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf2_t __riscv_vlmul_ext_v_f16mf4_f16mf2 (vfloat16mf4_t op1);
 vfloat16m1_t __riscv_vlmul_ext_v_f16mf4_f16m1 (vfloat16mf4_t op1);
 vfloat16m2_t __riscv_vlmul_ext_v_f16mf4_f16m2 (vfloat16mf4_t op1);
@@ -509,12 +513,13 @@ vuint64m8_t __riscv_vlmul_ext_v_u64m1_u64m8 (vuint64m1_t op1);
 vuint64m4_t __riscv_vlmul_ext_v_u64m2_u64m4 (vuint64m2_t op1);
 vuint64m8_t __riscv_vlmul_ext_v_u64m2_u64m8 (vuint64m2_t op1);
 vuint64m8_t __riscv_vlmul_ext_v_u64m4_u64m8 (vuint64m4_t op1);
-```
+----
 
 [[vector-lmul-truncation]]
 === Vector LMUL Truncation Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vlmul_trunc_v_f16mf2_f16mf4 (vfloat16mf2_t op1);
 vfloat16mf4_t __riscv_vlmul_trunc_v_f16m1_f16mf4 (vfloat16m1_t op1);
 vfloat16mf2_t __riscv_vlmul_trunc_v_f16m1_f16mf2 (vfloat16m1_t op1);
@@ -650,12 +655,13 @@ vuint64m2_t __riscv_vlmul_trunc_v_u64m4_u64m2 (vuint64m4_t op1);
 vuint64m1_t __riscv_vlmul_trunc_v_u64m8_u64m1 (vuint64m8_t op1);
 vuint64m2_t __riscv_vlmul_trunc_v_u64m8_u64m2 (vuint64m8_t op1);
 vuint64m4_t __riscv_vlmul_trunc_v_u64m8_u64m4 (vuint64m8_t op1);
-```
+----
 
 [[vector-initialization]]
 === Vector Initialization Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vundefined_f16mf4 ();
 vfloat16mf2_t __riscv_vundefined_f16mf2 ();
 vfloat16m1_t __riscv_vundefined_f16m1 ();
@@ -715,12 +721,13 @@ vuint64m1_t __riscv_vundefined_u64m1 ();
 vuint64m2_t __riscv_vundefined_u64m2 ();
 vuint64m4_t __riscv_vundefined_u64m4 ();
 vuint64m8_t __riscv_vundefined_u64m8 ();
-```
+----
 
 [[vector-insertion]]
 === Vector Insertion Intrinsics
 
-``` C
+[,c]
+----
 vfloat16m2_t __riscv_vset_v_f16m1_f16m2 (vfloat16m2_t dest, size_t index, vfloat16m1_t val);
 vfloat16m4_t __riscv_vset_v_f16m1_f16m4 (vfloat16m4_t dest, size_t index, vfloat16m1_t val);
 vfloat16m4_t __riscv_vset_v_f16m2_f16m4 (vfloat16m4_t dest, size_t index, vfloat16m2_t val);
@@ -1013,12 +1020,13 @@ vuint64m2x2_t __riscv_vset_v_u64m2_u64m2x2 (vuint64m2x2_t dest, size_t index, vu
 vuint64m2x3_t __riscv_vset_v_u64m2_u64m2x3 (vuint64m2x3_t dest, size_t index, vuint64m2_t val);
 vuint64m2x4_t __riscv_vset_v_u64m2_u64m2x4 (vuint64m2x4_t dest, size_t index, vuint64m2_t val);
 vuint64m4x2_t __riscv_vset_v_u64m4_u64m4x2 (vuint64m4x2_t dest, size_t index, vuint64m4_t val);
-```
+----
 
 [[vector-extraction]]
 === Vector Extraction Intrinsics
 
-``` C
+[,c]
+----
 vfloat16m1_t __riscv_vget_v_f16m2_f16m1 (vfloat16m2_t src, size_t index);
 vfloat16m1_t __riscv_vget_v_f16m4_f16m1 (vfloat16m4_t src, size_t index);
 vfloat16m1_t __riscv_vget_v_f16m8_f16m1 (vfloat16m8_t src, size_t index);
@@ -1311,12 +1319,13 @@ vuint64m2_t __riscv_vget_v_u64m2x2_u64m2 (vuint64m2x2_t src, size_t index);
 vuint64m2_t __riscv_vget_v_u64m2x3_u64m2 (vuint64m2x3_t src, size_t index);
 vuint64m2_t __riscv_vget_v_u64m2x4_u64m2 (vuint64m2x4_t src, size_t index);
 vuint64m4_t __riscv_vget_v_u64m4x2_u64m4 (vuint64m4x2_t src, size_t index);
-```
+----
 
 [[vector-tuple-creation]]
 === Vector Tuple Creation Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4x2_t __riscv_vcreate_v_f16mf4x2 (vfloat16mf4_t v0, vfloat16mf4_t v1);
 vfloat16mf4x3_t __riscv_vcreate_v_f16mf4x3 (vfloat16mf4_t v0, vfloat16mf4_t v1, vfloat16mf4_t v2);
 vfloat16mf4x4_t __riscv_vcreate_v_f16mf4x4 (vfloat16mf4_t v0, vfloat16mf4_t v1, vfloat16mf4_t v2, vfloat16mf4_t v3);
@@ -1543,4 +1552,4 @@ vuint64m2x2_t __riscv_vcreate_v_u64m2x2 (vuint64m2_t v0, vuint64m2_t v1);
 vuint64m2x3_t __riscv_vcreate_v_u64m2x3 (vuint64m2_t v0, vuint64m2_t v1, vuint64m2_t v2);
 vuint64m2x4_t __riscv_vcreate_v_u64m2x4 (vuint64m2_t v0, vuint64m2_t v1, vuint64m2_t v2, vuint64m2_t v3);
 vuint64m4x2_t __riscv_vcreate_v_u64m4x2 (vuint64m4_t v0, vuint64m4_t v1);
-```
+----
