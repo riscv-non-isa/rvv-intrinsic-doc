@@ -1,4 +1,4 @@
-name: rvv-intrinsic
+name: rvv-intrinsic-generator
 
 on: [push]
 
