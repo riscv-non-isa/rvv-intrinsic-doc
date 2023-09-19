@@ -1,5 +1,5 @@
-#include <stdint.h>
 #include <riscv_vector.h>
+#include <stdint.h>
 
 typedef _Float16 float16_t;
 typedef float float32_t;
@@ -31,4 +31,3 @@ void test_vsm_v_b32(uint8_t *base, vbool32_t value, size_t vl) {
 void test_vsm_v_b64(uint8_t *base, vbool64_t value, size_t vl) {
   return __riscv_vsm(base, value, vl);
 }
-

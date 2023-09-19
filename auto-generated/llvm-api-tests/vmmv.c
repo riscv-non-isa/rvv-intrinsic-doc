@@ -33,4 +33,3 @@ vbool32_t test_vmmv_m_b32(vbool32_t op1, size_t vl) {
 vbool64_t test_vmmv_m_b64(vbool64_t op1, size_t vl) {
   return __riscv_vmmv_m_b64(op1, vl);
 }
-

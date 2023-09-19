@@ -1,5 +1,5 @@
-#include <stdint.h>
 #include <riscv_vector.h>
+#include <stdint.h>
 
 typedef _Float16 float16_t;
 typedef float float32_t;
@@ -88,7 +88,8 @@ vint16m8_t test_vsext_vf2_i16m8_m(vbool2_t mask, vint8m4_t op1, size_t vl) {
   return __riscv_vsext_vf2(mask, op1, vl);
 }
 
-vint32mf2_t test_vsext_vf2_i32mf2_m(vbool64_t mask, vint16mf4_t op1, size_t vl) {
+vint32mf2_t test_vsext_vf2_i32mf2_m(vbool64_t mask, vint16mf4_t op1,
+                                    size_t vl) {
   return __riscv_vsext_vf2(mask, op1, vl);
 }
 
@@ -123,4 +124,3 @@ vint64m4_t test_vsext_vf2_i64m4_m(vbool16_t mask, vint32m2_t op1, size_t vl) {
 vint64m8_t test_vsext_vf2_i64m8_m(vbool8_t mask, vint32m4_t op1, size_t vl) {
   return __riscv_vsext_vf2(mask, op1, vl);
 }
-

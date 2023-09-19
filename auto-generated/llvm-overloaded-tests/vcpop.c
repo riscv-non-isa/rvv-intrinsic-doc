@@ -61,4 +61,3 @@ unsigned long test_vcpop_m_b32_m(vbool32_t mask, vbool32_t op1, size_t vl) {
 unsigned long test_vcpop_m_b64_m(vbool64_t mask, vbool64_t op1, size_t vl) {
   return __riscv_vcpop(mask, op1, vl);
 }
-

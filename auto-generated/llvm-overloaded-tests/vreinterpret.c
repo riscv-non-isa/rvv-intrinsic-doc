@@ -1221,4 +1221,3 @@ vbool8_t test_vreinterpret_v_u64m1_b8(vuint64m1_t src) {
 vuint64m1_t test_vreinterpret_v_b8_u64m1(vbool8_t src) {
   return __riscv_vreinterpret_u64m1(src);
 }
-
