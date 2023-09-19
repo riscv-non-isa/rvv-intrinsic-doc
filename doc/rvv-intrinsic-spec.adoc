@@ -563,6 +563,8 @@ NOTE: As mentioned in <<control-of-vl>>, the `vsetvlmax` intrinsics do not neces
 
 The `vreinterpret` intrinsics are provided for users to transition across the strongly-typed scheme. The intrinsic is limited to conversion between types operating upon the same number of registers.
 
+The intrinsics do not alter values held within. Please use `vfcvt/v(f)wcvt/v(f)ncvt` intrinsics if you seek to extend, narrow, or perform real float/interger type conversions for the values.
+
 [[pseudo-vundefined]]
 === `vundefined`
 The `vundefined` intrinsics are placeholders for `vset` and `vcreate` to represent unspecified values.
@@ -572,14 +574,14 @@ The `vundefined` intrinsics are placeholders for `vset` and `vcreate` to represe
 
 The `vget` intrinsics allow users to obtain small LMUL values from larger LMUL ones. The `vget` intrinsics also allows users to extract non-tuple (`NFIELD=1`) types from tuple (`NFIELD>1`) types after segment load intrinsics.
 
-The intrinsics does not map to any real instruction. Whether if the implementation will generate vector move instructions is an optimization issue.
+The intrinsics do not map to any real instruction. Whether if the implementation will generate vector move instructions is an optimization issue.
 
 [[pseudo-vset]]
 === `vset`
 
 The `vset` intrinsics allow users to combine small LMUL values into larger LMUL ones. The `vset` intrinsics also allows users to combine non-tuple (`NFIELD=1`) types to tuple (`NFIELD>1`) types for segment store intrinsics.
 
-The intrinsics does not map to any real instruction. Whether if the implementation will generate vector move instructions is an optimization issue.
+The intrinsics do not map to any real instruction. Whether if the implementation will generate vector move instructions is an optimization issue.
 
 [[pseudo-vlmul_trunc]]
 === `vlmul_trunc`
