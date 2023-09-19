@@ -1173,4 +1173,3 @@ vuint64m2_t test_vget_v_u64m2x4_u64m2(vuint64m2x4_t src, size_t index) {
 vuint64m4_t test_vget_v_u64m4x2_u64m4(vuint64m4x2_t src, size_t index) {
   return __riscv_vget_v_u64m4x2_u64m4(src, 0);
 }
-

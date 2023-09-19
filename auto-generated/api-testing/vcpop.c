@@ -1,5 +1,5 @@
-#include <stdint.h>
 #include <riscv_vector.h>
+#include <stdint.h>
 
 typedef _Float16 float16_t;
 typedef float float32_t;
@@ -59,4 +59,3 @@ unsigned long test_vcpop_m_b32_m(vbool32_t mask, vbool32_t op1, size_t vl) {
 unsigned long test_vcpop_m_b64_m(vbool64_t mask, vbool64_t op1, size_t vl) {
   return __riscv_vcpop_m_b64_m(mask, op1, vl);
 }
-

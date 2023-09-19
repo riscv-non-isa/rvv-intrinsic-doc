@@ -1,5 +1,5 @@
-#include <stdint.h>
 #include <riscv_vector.h>
+#include <stdint.h>
 
 typedef _Float16 float16_t;
 typedef float float32_t;
@@ -63,4 +63,3 @@ float64_t test_vfmv_f_s_f64m4_f64(vfloat64m4_t src) {
 float64_t test_vfmv_f_s_f64m8_f64(vfloat64m8_t src) {
   return __riscv_vfmv_f(src);
 }
-

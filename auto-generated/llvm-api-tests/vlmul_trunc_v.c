@@ -545,4 +545,3 @@ vuint64m2_t test_vlmul_trunc_v_u64m8_u64m2(vuint64m8_t op1) {
 vuint64m4_t test_vlmul_trunc_v_u64m8_u64m4(vuint64m8_t op1) {
   return __riscv_vlmul_trunc_v_u64m8_u64m4(op1);
 }
-

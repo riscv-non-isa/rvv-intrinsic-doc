@@ -32,4 +32,3 @@ vbool32_t test_vmorn_mm_b32(vbool32_t op1, vbool32_t op2, size_t vl) {
 vbool64_t test_vmorn_mm_b64(vbool64_t op1, vbool64_t op2, size_t vl) {
   return __riscv_vmorn(op1, op2, vl);
 }
-

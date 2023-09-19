@@ -1,5 +1,5 @@
-#include <stdint.h>
 #include <riscv_vector.h>
+#include <stdint.h>
 
 typedef _Float16 float16_t;
 typedef float float32_t;
@@ -543,4 +543,3 @@ vuint64m8_t test_vlmul_ext_v_u64m2_u64m8(vuint64m2_t op1) {
 vuint64m8_t test_vlmul_ext_v_u64m4_u64m8(vuint64m4_t op1) {
   return __riscv_vlmul_ext_v_u64m4_u64m8(op1);
 }
-

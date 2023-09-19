@@ -769,4 +769,3 @@ uint64_t test_vmv_x_s_u64m8_u64(vuint64m8_t src) {
 vuint64m8_t test_vmv_s_x_u64m8(uint64_t src, size_t vl) {
   return __riscv_vmv_s_x_u64m8(src, vl);
 }
-

@@ -6,27 +6,32 @@
 
 #include <riscv_vector.h>
 
-vfloat64m1x5_t test_vlseg5e64ff_v_f64m1x5(const double *base, size_t *new_vl, size_t vl) {
+vfloat64m1x5_t test_vlseg5e64ff_v_f64m1x5(const double *base, size_t *new_vl,
+                                          size_t vl) {
   return __riscv_vlseg5e64ff_v_f64m1x5(base, new_vl, vl);
 }
 
-vint64m1x5_t test_vlseg5e64ff_v_i64m1x5(const int64_t *base, size_t *new_vl, size_t vl) {
+vint64m1x5_t test_vlseg5e64ff_v_i64m1x5(const int64_t *base, size_t *new_vl,
+                                        size_t vl) {
   return __riscv_vlseg5e64ff_v_i64m1x5(base, new_vl, vl);
 }
 
-vuint64m1x5_t test_vlseg5e64ff_v_u64m1x5(const uint64_t *base, size_t *new_vl, size_t vl) {
+vuint64m1x5_t test_vlseg5e64ff_v_u64m1x5(const uint64_t *base, size_t *new_vl,
+                                         size_t vl) {
   return __riscv_vlseg5e64ff_v_u64m1x5(base, new_vl, vl);
 }
 
-vfloat64m1x5_t test_vlseg5e64ff_v_f64m1x5_m(vbool64_t mask, const double *base, size_t *new_vl, size_t vl) {
+vfloat64m1x5_t test_vlseg5e64ff_v_f64m1x5_m(vbool64_t mask, const double *base,
+                                            size_t *new_vl, size_t vl) {
   return __riscv_vlseg5e64ff_v_f64m1x5_m(mask, base, new_vl, vl);
 }
 
-vint64m1x5_t test_vlseg5e64ff_v_i64m1x5_m(vbool64_t mask, const int64_t *base, size_t *new_vl, size_t vl) {
+vint64m1x5_t test_vlseg5e64ff_v_i64m1x5_m(vbool64_t mask, const int64_t *base,
+                                          size_t *new_vl, size_t vl) {
   return __riscv_vlseg5e64ff_v_i64m1x5_m(mask, base, new_vl, vl);
 }
 
-vuint64m1x5_t test_vlseg5e64ff_v_u64m1x5_m(vbool64_t mask, const uint64_t *base, size_t *new_vl, size_t vl) {
+vuint64m1x5_t test_vlseg5e64ff_v_u64m1x5_m(vbool64_t mask, const uint64_t *base,
+                                           size_t *new_vl, size_t vl) {
   return __riscv_vlseg5e64ff_v_u64m1x5_m(mask, base, new_vl, vl);
 }
-
