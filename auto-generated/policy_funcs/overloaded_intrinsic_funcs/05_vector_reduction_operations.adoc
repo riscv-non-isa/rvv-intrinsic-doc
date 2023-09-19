@@ -1,10 +1,11 @@
 
-== Vector Reduction Operations
+=== Vector Reduction Operations
 
 [[policy-variant-overloadedvector-single-width-integer-reduction]]
-=== Vector Single-Width Integer Reduction Intrinsics
+==== Vector Single-Width Integer Reduction Intrinsics
 
-``` C
+[,c]
+----
 vint8m1_t __riscv_vredsum_tu (vint8m1_t maskedoff, vint8mf8_t vector, vint8m1_t scalar, size_t vl);
 vint8m1_t __riscv_vredsum_tu (vint8m1_t maskedoff, vint8mf4_t vector, vint8m1_t scalar, size_t vl);
 vint8m1_t __riscv_vredsum_tu (vint8m1_t maskedoff, vint8mf2_t vector, vint8m1_t scalar, size_t vl);
@@ -534,12 +535,13 @@ vuint64m1_t __riscv_vredxor_tum (vbool64_t mask, vuint64m1_t maskedoff, vuint64m
 vuint64m1_t __riscv_vredxor_tum (vbool32_t mask, vuint64m1_t maskedoff, vuint64m2_t vector, vuint64m1_t scalar, size_t vl);
 vuint64m1_t __riscv_vredxor_tum (vbool16_t mask, vuint64m1_t maskedoff, vuint64m4_t vector, vuint64m1_t scalar, size_t vl);
 vuint64m1_t __riscv_vredxor_tum (vbool8_t mask, vuint64m1_t maskedoff, vuint64m8_t vector, vuint64m1_t scalar, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-widening-integer-reduction]]
-=== Vector Widening Integer Reduction Intrinsics
+==== Vector Widening Integer Reduction Intrinsics
 
-``` C
+[,c]
+----
 vint16m1_t __riscv_vwredsum_tu (vint16m1_t maskedoff, vint8mf8_t vector, vint16m1_t scalar, size_t vl);
 vint16m1_t __riscv_vwredsum_tu (vint16m1_t maskedoff, vint8mf4_t vector, vint16m1_t scalar, size_t vl);
 vint16m1_t __riscv_vwredsum_tu (vint16m1_t maskedoff, vint8mf2_t vector, vint16m1_t scalar, size_t vl);
@@ -613,12 +615,13 @@ vuint64m1_t __riscv_vwredsumu_tum (vbool32_t mask, vuint64m1_t maskedoff, vuint3
 vuint64m1_t __riscv_vwredsumu_tum (vbool16_t mask, vuint64m1_t maskedoff, vuint32m2_t vector, vuint64m1_t scalar, size_t vl);
 vuint64m1_t __riscv_vwredsumu_tum (vbool8_t mask, vuint64m1_t maskedoff, vuint32m4_t vector, vuint64m1_t scalar, size_t vl);
 vuint64m1_t __riscv_vwredsumu_tum (vbool4_t mask, vuint64m1_t maskedoff, vuint32m8_t vector, vuint64m1_t scalar, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-single-width-floating-point-reduction]]
-=== Vector Single-Width Floating-Point Reduction Intrinsics
+==== Vector Single-Width Floating-Point Reduction Intrinsics
 
-``` C
+[,c]
+----
 vfloat16m1_t __riscv_vfredosum_tu (vfloat16m1_t maskedoff, vfloat16mf4_t vector, vfloat16m1_t scalar, size_t vl);
 vfloat16m1_t __riscv_vfredosum_tu (vfloat16m1_t maskedoff, vfloat16mf2_t vector, vfloat16m1_t scalar, size_t vl);
 vfloat16m1_t __riscv_vfredosum_tu (vfloat16m1_t maskedoff, vfloat16m1_t vector, vfloat16m1_t scalar, size_t vl);
@@ -801,12 +804,13 @@ vfloat64m1_t __riscv_vfredusum_tum (vbool64_t mask, vfloat64m1_t maskedoff, vflo
 vfloat64m1_t __riscv_vfredusum_tum (vbool32_t mask, vfloat64m1_t maskedoff, vfloat64m2_t vector, vfloat64m1_t scalar, unsigned int frm, size_t vl);
 vfloat64m1_t __riscv_vfredusum_tum (vbool16_t mask, vfloat64m1_t maskedoff, vfloat64m4_t vector, vfloat64m1_t scalar, unsigned int frm, size_t vl);
 vfloat64m1_t __riscv_vfredusum_tum (vbool8_t mask, vfloat64m1_t maskedoff, vfloat64m8_t vector, vfloat64m1_t scalar, unsigned int frm, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-widening-floating-point-reduction]]
-=== Vector Widening Floating-Point Reduction Intrinsics
+==== Vector Widening Floating-Point Reduction Intrinsics
 
-``` C
+[,c]
+----
 vfloat32m1_t __riscv_vfwredosum_tu (vfloat32m1_t maskedoff, vfloat16mf4_t vector, vfloat32m1_t scalar, size_t vl);
 vfloat32m1_t __riscv_vfwredosum_tu (vfloat32m1_t maskedoff, vfloat16mf2_t vector, vfloat32m1_t scalar, size_t vl);
 vfloat32m1_t __riscv_vfwredosum_tu (vfloat32m1_t maskedoff, vfloat16m1_t vector, vfloat32m1_t scalar, size_t vl);
@@ -897,4 +901,4 @@ vfloat64m1_t __riscv_vfwredusum_tum (vbool32_t mask, vfloat64m1_t maskedoff, vfl
 vfloat64m1_t __riscv_vfwredusum_tum (vbool16_t mask, vfloat64m1_t maskedoff, vfloat32m2_t vector, vfloat64m1_t scalar, unsigned int frm, size_t vl);
 vfloat64m1_t __riscv_vfwredusum_tum (vbool8_t mask, vfloat64m1_t maskedoff, vfloat32m4_t vector, vfloat64m1_t scalar, unsigned int frm, size_t vl);
 vfloat64m1_t __riscv_vfwredusum_tum (vbool4_t mask, vfloat64m1_t maskedoff, vfloat32m8_t vector, vfloat64m1_t scalar, unsigned int frm, size_t vl);
-```
+----

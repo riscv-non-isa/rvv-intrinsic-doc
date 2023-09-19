@@ -1,10 +1,11 @@
 
-== Vector Loads and Stores Intrinsics
+=== Vector Loads and Stores Intrinsics
 
 [[vector-unit-stride-load]]
 === Vector Unit-Stride Load Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vle16_v_f16mf4 (const float16_t *base, size_t vl);
 vfloat16mf2_t __riscv_vle16_v_f16mf2 (const float16_t *base, size_t vl);
 vfloat16m1_t __riscv_vle16_v_f16m1 (const float16_t *base, size_t vl);
@@ -124,12 +125,13 @@ vuint64m1_t __riscv_vle64_v_u64m1_m (vbool64_t mask, const uint64_t *base, size_
 vuint64m2_t __riscv_vle64_v_u64m2_m (vbool32_t mask, const uint64_t *base, size_t vl);
 vuint64m4_t __riscv_vle64_v_u64m4_m (vbool16_t mask, const uint64_t *base, size_t vl);
 vuint64m8_t __riscv_vle64_v_u64m8_m (vbool8_t mask, const uint64_t *base, size_t vl);
-```
+----
 
 [[vector-unit-stride-store]]
 === Vector Unit-Stride Store Intrinsics
 
-``` C
+[,c]
+----
 void __riscv_vse16_v_f16mf4 (float16_t *base, vfloat16mf4_t value, size_t vl);
 void __riscv_vse16_v_f16mf2 (float16_t *base, vfloat16mf2_t value, size_t vl);
 void __riscv_vse16_v_f16m1 (float16_t *base, vfloat16m1_t value, size_t vl);
@@ -249,12 +251,13 @@ void __riscv_vse64_v_u64m1_m (vbool64_t mask, uint64_t *base, vuint64m1_t value,
 void __riscv_vse64_v_u64m2_m (vbool32_t mask, uint64_t *base, vuint64m2_t value, size_t vl);
 void __riscv_vse64_v_u64m4_m (vbool16_t mask, uint64_t *base, vuint64m4_t value, size_t vl);
 void __riscv_vse64_v_u64m8_m (vbool8_t mask, uint64_t *base, vuint64m8_t value, size_t vl);
-```
+----
 
 [[vector-unit-stride]]
 === Vector Mask Load/Store Intrinsics
 
-``` C
+[,c]
+----
 vbool1_t __riscv_vlm_v_b1 (const uint8_t *base, size_t vl);
 vbool2_t __riscv_vlm_v_b2 (const uint8_t *base, size_t vl);
 vbool4_t __riscv_vlm_v_b4 (const uint8_t *base, size_t vl);
@@ -269,12 +272,13 @@ void __riscv_vsm_v_b8 (uint8_t *base, vbool8_t value, size_t vl);
 void __riscv_vsm_v_b16 (uint8_t *base, vbool16_t value, size_t vl);
 void __riscv_vsm_v_b32 (uint8_t *base, vbool32_t value, size_t vl);
 void __riscv_vsm_v_b64 (uint8_t *base, vbool64_t value, size_t vl);
-```
+----
 
 [[vector-strided-load]]
 === Vector Strided Load Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vlse16_v_f16mf4 (const float16_t *base, ptrdiff_t bstride, size_t vl);
 vfloat16mf2_t __riscv_vlse16_v_f16mf2 (const float16_t *base, ptrdiff_t bstride, size_t vl);
 vfloat16m1_t __riscv_vlse16_v_f16m1 (const float16_t *base, ptrdiff_t bstride, size_t vl);
@@ -394,12 +398,13 @@ vuint64m1_t __riscv_vlse64_v_u64m1_m (vbool64_t mask, const uint64_t *base, ptrd
 vuint64m2_t __riscv_vlse64_v_u64m2_m (vbool32_t mask, const uint64_t *base, ptrdiff_t bstride, size_t vl);
 vuint64m4_t __riscv_vlse64_v_u64m4_m (vbool16_t mask, const uint64_t *base, ptrdiff_t bstride, size_t vl);
 vuint64m8_t __riscv_vlse64_v_u64m8_m (vbool8_t mask, const uint64_t *base, ptrdiff_t bstride, size_t vl);
-```
+----
 
 [[vector-strided-store]]
 === Vector Strided Store Intrinsics
 
-``` C
+[,c]
+----
 void __riscv_vsse16_v_f16mf4 (float16_t *base, ptrdiff_t bstride, vfloat16mf4_t value, size_t vl);
 void __riscv_vsse16_v_f16mf2 (float16_t *base, ptrdiff_t bstride, vfloat16mf2_t value, size_t vl);
 void __riscv_vsse16_v_f16m1 (float16_t *base, ptrdiff_t bstride, vfloat16m1_t value, size_t vl);
@@ -519,12 +524,13 @@ void __riscv_vsse64_v_u64m1_m (vbool64_t mask, uint64_t *base, ptrdiff_t bstride
 void __riscv_vsse64_v_u64m2_m (vbool32_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m2_t value, size_t vl);
 void __riscv_vsse64_v_u64m4_m (vbool16_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m4_t value, size_t vl);
 void __riscv_vsse64_v_u64m8_m (vbool8_t mask, uint64_t *base, ptrdiff_t bstride, vuint64m8_t value, size_t vl);
-```
+----
 
 [[vector-indexed-load]]
 === Vector Indexed Load Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vloxei8_v_f16mf4 (const float16_t *base, vuint8mf8_t bindex, size_t vl);
 vfloat16mf2_t __riscv_vloxei8_v_f16mf2 (const float16_t *base, vuint8mf4_t bindex, size_t vl);
 vfloat16m1_t __riscv_vloxei8_v_f16m1 (const float16_t *base, vuint8mf2_t bindex, size_t vl);
@@ -1374,12 +1380,13 @@ vuint64m1_t __riscv_vluxei64_v_u64m1_m (vbool64_t mask, const uint64_t *base, vu
 vuint64m2_t __riscv_vluxei64_v_u64m2_m (vbool32_t mask, const uint64_t *base, vuint64m2_t bindex, size_t vl);
 vuint64m4_t __riscv_vluxei64_v_u64m4_m (vbool16_t mask, const uint64_t *base, vuint64m4_t bindex, size_t vl);
 vuint64m8_t __riscv_vluxei64_v_u64m8_m (vbool8_t mask, const uint64_t *base, vuint64m8_t bindex, size_t vl);
-```
+----
 
 [[vector-indexed-store]]
 === Vector Indexed Store Intrinsics
 
-``` C
+[,c]
+----
 void __riscv_vsoxei8_v_f16mf4 (float16_t *base, vuint8mf8_t bindex, vfloat16mf4_t value, size_t vl);
 void __riscv_vsoxei8_v_f16mf2 (float16_t *base, vuint8mf4_t bindex, vfloat16mf2_t value, size_t vl);
 void __riscv_vsoxei8_v_f16m1 (float16_t *base, vuint8mf2_t bindex, vfloat16m1_t value, size_t vl);
@@ -2229,12 +2236,13 @@ void __riscv_vsuxei64_v_u64m1_m (vbool64_t mask, uint64_t *base, vuint64m1_t bin
 void __riscv_vsuxei64_v_u64m2_m (vbool32_t mask, uint64_t *base, vuint64m2_t bindex, vuint64m2_t value, size_t vl);
 void __riscv_vsuxei64_v_u64m4_m (vbool16_t mask, uint64_t *base, vuint64m4_t bindex, vuint64m4_t value, size_t vl);
 void __riscv_vsuxei64_v_u64m8_m (vbool8_t mask, uint64_t *base, vuint64m8_t bindex, vuint64m8_t value, size_t vl);
-```
+----
 
 [[unit-stride-fault-only-first-loads]]
 === Unit-stride Fault-Only-First Loads Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vle16ff_v_f16mf4 (const float16_t *base, size_t *new_vl, size_t vl);
 vfloat16mf2_t __riscv_vle16ff_v_f16mf2 (const float16_t *base, size_t *new_vl, size_t vl);
 vfloat16m1_t __riscv_vle16ff_v_f16m1 (const float16_t *base, size_t *new_vl, size_t vl);
@@ -2354,4 +2362,4 @@ vuint64m1_t __riscv_vle64ff_v_u64m1_m (vbool64_t mask, const uint64_t *base, siz
 vuint64m2_t __riscv_vle64ff_v_u64m2_m (vbool32_t mask, const uint64_t *base, size_t *new_vl, size_t vl);
 vuint64m4_t __riscv_vle64ff_v_u64m4_m (vbool16_t mask, const uint64_t *base, size_t *new_vl, size_t vl);
 vuint64m8_t __riscv_vle64ff_v_u64m8_m (vbool8_t mask, const uint64_t *base, size_t *new_vl, size_t vl);
-```
+----

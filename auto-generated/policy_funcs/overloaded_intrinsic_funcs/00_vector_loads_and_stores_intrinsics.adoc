@@ -1,10 +1,11 @@
 
-== Vector Loads and Stores Intrinsics
+=== Vector Loads and Stores Intrinsics
 
 [[policy-variant-overloadedvector-unit-stride-load]]
-=== Vector Unit-Stride Load Intrinsics
+==== Vector Unit-Stride Load Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vle16_tu (vfloat16mf4_t maskedoff, const float16_t *base, size_t vl);
 vfloat16mf2_t __riscv_vle16_tu (vfloat16mf2_t maskedoff, const float16_t *base, size_t vl);
 vfloat16m1_t __riscv_vle16_tu (vfloat16m1_t maskedoff, const float16_t *base, size_t vl);
@@ -244,20 +245,21 @@ vuint64m1_t __riscv_vle64_mu (vbool64_t mask, vuint64m1_t maskedoff, const uint6
 vuint64m2_t __riscv_vle64_mu (vbool32_t mask, vuint64m2_t maskedoff, const uint64_t *base, size_t vl);
 vuint64m4_t __riscv_vle64_mu (vbool16_t mask, vuint64m4_t maskedoff, const uint64_t *base, size_t vl);
 vuint64m8_t __riscv_vle64_mu (vbool8_t mask, vuint64m8_t maskedoff, const uint64_t *base, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-unit-stride-store]]
-=== Vector Unit-Stride Store Intrinsics
+==== Vector Unit-Stride Store Intrinsics
 Intrinsics here don't have a policy variant.
 
 [[policy-variant-overloadedvector-unit-stride]]
-=== Vector Mask Load/Store Intrinsics
+==== Vector Mask Load/Store Intrinsics
 Intrinsics here don't have a policy variant.
 
 [[policy-variant-overloadedvector-strided-load]]
-=== Vector Strided Load Intrinsics
+==== Vector Strided Load Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vlse16_tu (vfloat16mf4_t maskedoff, const float16_t *base, ptrdiff_t bstride, size_t vl);
 vfloat16mf2_t __riscv_vlse16_tu (vfloat16mf2_t maskedoff, const float16_t *base, ptrdiff_t bstride, size_t vl);
 vfloat16m1_t __riscv_vlse16_tu (vfloat16m1_t maskedoff, const float16_t *base, ptrdiff_t bstride, size_t vl);
@@ -497,16 +499,17 @@ vuint64m1_t __riscv_vlse64_mu (vbool64_t mask, vuint64m1_t maskedoff, const uint
 vuint64m2_t __riscv_vlse64_mu (vbool32_t mask, vuint64m2_t maskedoff, const uint64_t *base, ptrdiff_t bstride, size_t vl);
 vuint64m4_t __riscv_vlse64_mu (vbool16_t mask, vuint64m4_t maskedoff, const uint64_t *base, ptrdiff_t bstride, size_t vl);
 vuint64m8_t __riscv_vlse64_mu (vbool8_t mask, vuint64m8_t maskedoff, const uint64_t *base, ptrdiff_t bstride, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-strided-store]]
-=== Vector Strided Store Intrinsics
+==== Vector Strided Store Intrinsics
 Intrinsics here don't have a policy variant.
 
 [[policy-variant-overloadedvector-indexed-load]]
-=== Vector Indexed Load Intrinsics
+==== Vector Indexed Load Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vloxei8_tu (vfloat16mf4_t maskedoff, const float16_t *base, vuint8mf8_t bindex, size_t vl);
 vfloat16mf2_t __riscv_vloxei8_tu (vfloat16mf2_t maskedoff, const float16_t *base, vuint8mf4_t bindex, size_t vl);
 vfloat16m1_t __riscv_vloxei8_tu (vfloat16m1_t maskedoff, const float16_t *base, vuint8mf2_t bindex, size_t vl);
@@ -2206,16 +2209,17 @@ vuint64m1_t __riscv_vluxei64_mu (vbool64_t mask, vuint64m1_t maskedoff, const ui
 vuint64m2_t __riscv_vluxei64_mu (vbool32_t mask, vuint64m2_t maskedoff, const uint64_t *base, vuint64m2_t bindex, size_t vl);
 vuint64m4_t __riscv_vluxei64_mu (vbool16_t mask, vuint64m4_t maskedoff, const uint64_t *base, vuint64m4_t bindex, size_t vl);
 vuint64m8_t __riscv_vluxei64_mu (vbool8_t mask, vuint64m8_t maskedoff, const uint64_t *base, vuint64m8_t bindex, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-indexed-store]]
-=== Vector Indexed Store Intrinsics
+==== Vector Indexed Store Intrinsics
 Intrinsics here don't have a policy variant.
 
 [[policy-variant-overloadedunit-stride-fault-only-first-loads]]
-=== Unit-stride Fault-Only-First Loads Intrinsics
+==== Unit-stride Fault-Only-First Loads Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vle16ff_tu (vfloat16mf4_t maskedoff, const float16_t *base, size_t *new_vl, size_t vl);
 vfloat16mf2_t __riscv_vle16ff_tu (vfloat16mf2_t maskedoff, const float16_t *base, size_t *new_vl, size_t vl);
 vfloat16m1_t __riscv_vle16ff_tu (vfloat16m1_t maskedoff, const float16_t *base, size_t *new_vl, size_t vl);
@@ -2455,4 +2459,4 @@ vuint64m1_t __riscv_vle64ff_mu (vbool64_t mask, vuint64m1_t maskedoff, const uin
 vuint64m2_t __riscv_vle64ff_mu (vbool32_t mask, vuint64m2_t maskedoff, const uint64_t *base, size_t *new_vl, size_t vl);
 vuint64m4_t __riscv_vle64ff_mu (vbool16_t mask, vuint64m4_t maskedoff, const uint64_t *base, size_t *new_vl, size_t vl);
 vuint64m8_t __riscv_vle64ff_mu (vbool8_t mask, vuint64m8_t maskedoff, const uint64_t *base, size_t *new_vl, size_t vl);
-```
+----

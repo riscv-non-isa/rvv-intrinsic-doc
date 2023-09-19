@@ -1,10 +1,11 @@
 
-== Vector Floating-Point Instructions
+=== Vector Floating-Point Instructions
 
 [[policy-variant-overloadedvector-single-width-floating-point-add-subtract]]
-=== Vector Single-Width Floating-Point Add/Subtract Intrinsics
+==== Vector Single-Width Floating-Point Add/Subtract Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vfadd_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, vfloat16mf4_t op2, size_t vl);
 vfloat16mf4_t __riscv_vfadd_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, float16_t op2, size_t vl);
 vfloat16mf2_t __riscv_vfadd_tu (vfloat16mf2_t maskedoff, vfloat16mf2_t op1, vfloat16mf2_t op2, size_t vl);
@@ -671,12 +672,13 @@ vfloat64m1_t __riscv_vfrsub_mu (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64
 vfloat64m2_t __riscv_vfrsub_mu (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, float64_t op2, unsigned int frm, size_t vl);
 vfloat64m4_t __riscv_vfrsub_mu (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, float64_t op2, unsigned int frm, size_t vl);
 vfloat64m8_t __riscv_vfrsub_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, float64_t op2, unsigned int frm, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-widening-floating-point-add-subtract]]
-=== Vector Widening Floating-Point Add/Subtract Intrinsics
+==== Vector Widening Floating-Point Add/Subtract Intrinsics
 
-``` C
+[,c]
+----
 vfloat32mf2_t __riscv_vfwadd_vv_tu (vfloat32mf2_t maskedoff, vfloat16mf4_t op1, vfloat16mf4_t op2, size_t vl);
 vfloat32mf2_t __riscv_vfwadd_vf_tu (vfloat32mf2_t maskedoff, vfloat16mf4_t op1, float16_t op2, size_t vl);
 vfloat32mf2_t __riscv_vfwadd_wv_tu (vfloat32mf2_t maskedoff, vfloat32mf2_t op1, vfloat16mf4_t op2, size_t vl);
@@ -1259,12 +1261,13 @@ vfloat64m8_t __riscv_vfwsub_vv_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat
 vfloat64m8_t __riscv_vfwsub_vf_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat32m4_t op1, float32_t op2, unsigned int frm, size_t vl);
 vfloat64m8_t __riscv_vfwsub_wv_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, vfloat32m4_t op2, unsigned int frm, size_t vl);
 vfloat64m8_t __riscv_vfwsub_wf_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, float32_t op2, unsigned int frm, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-single-width-floating-point-multiply-divide]]
-=== Vector Single-Width Floating-Point Multiply/Divide Intrinsics
+==== Vector Single-Width Floating-Point Multiply/Divide Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vfmul_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, vfloat16mf4_t op2, size_t vl);
 vfloat16mf4_t __riscv_vfmul_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, float16_t op2, size_t vl);
 vfloat16mf2_t __riscv_vfmul_tu (vfloat16mf2_t maskedoff, vfloat16mf2_t op1, vfloat16mf2_t op2, size_t vl);
@@ -1871,12 +1874,13 @@ vfloat64m1_t __riscv_vfrdiv_mu (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64
 vfloat64m2_t __riscv_vfrdiv_mu (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, float64_t op2, unsigned int frm, size_t vl);
 vfloat64m4_t __riscv_vfrdiv_mu (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, float64_t op2, unsigned int frm, size_t vl);
 vfloat64m8_t __riscv_vfrdiv_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, float64_t op2, unsigned int frm, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-widening-floating-point-multiply]]
-=== Vector Widening Floating-Point Multiply Intrinsics
+==== Vector Widening Floating-Point Multiply Intrinsics
 
-``` C
+[,c]
+----
 vfloat32mf2_t __riscv_vfwmul_tu (vfloat32mf2_t maskedoff, vfloat16mf4_t op1, vfloat16mf4_t op2, size_t vl);
 vfloat32mf2_t __riscv_vfwmul_tu (vfloat32mf2_t maskedoff, vfloat16mf4_t op1, float16_t op2, size_t vl);
 vfloat32m1_t __riscv_vfwmul_tu (vfloat32m1_t maskedoff, vfloat16mf2_t op1, vfloat16mf2_t op2, size_t vl);
@@ -2027,12 +2031,13 @@ vfloat64m4_t __riscv_vfwmul_mu (vbool16_t mask, vfloat64m4_t maskedoff, vfloat32
 vfloat64m4_t __riscv_vfwmul_mu (vbool16_t mask, vfloat64m4_t maskedoff, vfloat32m2_t op1, float32_t op2, unsigned int frm, size_t vl);
 vfloat64m8_t __riscv_vfwmul_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat32m4_t op1, vfloat32m4_t op2, unsigned int frm, size_t vl);
 vfloat64m8_t __riscv_vfwmul_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat32m4_t op1, float32_t op2, unsigned int frm, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-single-width-floating-point-fused-multiply-add]]
-=== Vector Single-Width Floating-Point Fused Multiply-Add Intrinsics
+==== Vector Single-Width Floating-Point Fused Multiply-Add Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vfmacc_tu (vfloat16mf4_t vd, vfloat16mf4_t vs1, vfloat16mf4_t vs2, size_t vl);
 vfloat16mf4_t __riscv_vfmacc_tu (vfloat16mf4_t vd, float16_t rs1, vfloat16mf4_t vs2, size_t vl);
 vfloat16mf2_t __riscv_vfmacc_tu (vfloat16mf2_t vd, vfloat16mf2_t vs1, vfloat16mf2_t vs2, size_t vl);
@@ -3959,12 +3964,13 @@ vfloat64m4_t __riscv_vfnmsub_mu (vbool16_t mask, vfloat64m4_t vd, vfloat64m4_t v
 vfloat64m4_t __riscv_vfnmsub_mu (vbool16_t mask, vfloat64m4_t vd, float64_t rs1, vfloat64m4_t vs2, unsigned int frm, size_t vl);
 vfloat64m8_t __riscv_vfnmsub_mu (vbool8_t mask, vfloat64m8_t vd, vfloat64m8_t vs1, vfloat64m8_t vs2, unsigned int frm, size_t vl);
 vfloat64m8_t __riscv_vfnmsub_mu (vbool8_t mask, vfloat64m8_t vd, float64_t rs1, vfloat64m8_t vs2, unsigned int frm, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-widening-floating-point-fused-multiply-add]]
-=== Vector Widening Floating-Point Fused Multiply-Add Intrinsics
+==== Vector Widening Floating-Point Fused Multiply-Add Intrinsics
 
-``` C
+[,c]
+----
 vfloat32mf2_t __riscv_vfwmacc_tu (vfloat32mf2_t vd, vfloat16mf4_t vs1, vfloat16mf4_t vs2, size_t vl);
 vfloat32mf2_t __riscv_vfwmacc_tu (vfloat32mf2_t vd, float16_t vs1, vfloat16mf4_t vs2, size_t vl);
 vfloat32m1_t __riscv_vfwmacc_tu (vfloat32m1_t vd, vfloat16mf2_t vs1, vfloat16mf2_t vs2, size_t vl);
@@ -4547,12 +4553,13 @@ vfloat64m4_t __riscv_vfwnmsac_mu (vbool16_t mask, vfloat64m4_t vd, vfloat32m2_t 
 vfloat64m4_t __riscv_vfwnmsac_mu (vbool16_t mask, vfloat64m4_t vd, float32_t vs1, vfloat32m2_t vs2, unsigned int frm, size_t vl);
 vfloat64m8_t __riscv_vfwnmsac_mu (vbool8_t mask, vfloat64m8_t vd, vfloat32m4_t vs1, vfloat32m4_t vs2, unsigned int frm, size_t vl);
 vfloat64m8_t __riscv_vfwnmsac_mu (vbool8_t mask, vfloat64m8_t vd, float32_t vs1, vfloat32m4_t vs2, unsigned int frm, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-floating-point-square-root]]
-=== Vector Floating-Point Square-Root Intrinsics
+==== Vector Floating-Point Square-Root Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vfsqrt_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, size_t vl);
 vfloat16mf2_t __riscv_vfsqrt_tu (vfloat16mf2_t maskedoff, vfloat16mf2_t op1, size_t vl);
 vfloat16m1_t __riscv_vfsqrt_tu (vfloat16m1_t maskedoff, vfloat16m1_t op1, size_t vl);
@@ -4679,12 +4686,13 @@ vfloat64m1_t __riscv_vfsqrt_mu (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64
 vfloat64m2_t __riscv_vfsqrt_mu (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, unsigned int frm, size_t vl);
 vfloat64m4_t __riscv_vfsqrt_mu (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, unsigned int frm, size_t vl);
 vfloat64m8_t __riscv_vfsqrt_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, unsigned int frm, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-floating-point-reciprocal-square-root-estimate]]
-=== Vector Floating-Point Reciprocal Square-Root Estimate Intrinsics
+==== Vector Floating-Point Reciprocal Square-Root Estimate Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vfrsqrt7_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, size_t vl);
 vfloat16mf2_t __riscv_vfrsqrt7_tu (vfloat16mf2_t maskedoff, vfloat16mf2_t op1, size_t vl);
 vfloat16m1_t __riscv_vfrsqrt7_tu (vfloat16m1_t maskedoff, vfloat16m1_t op1, size_t vl);
@@ -4748,12 +4756,13 @@ vfloat64m1_t __riscv_vfrsqrt7_mu (vbool64_t mask, vfloat64m1_t maskedoff, vfloat
 vfloat64m2_t __riscv_vfrsqrt7_mu (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, size_t vl);
 vfloat64m4_t __riscv_vfrsqrt7_mu (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, size_t vl);
 vfloat64m8_t __riscv_vfrsqrt7_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, size_t vl);
-```
+----
 
 [[policy-variant-overloaded#1410-vector-floating-point-reciprocal-estimate]]
-=== Vector Floating-Point Reciprocal Estimate Intrinsics
+==== Vector Floating-Point Reciprocal Estimate Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vfrec7_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, size_t vl);
 vfloat16mf2_t __riscv_vfrec7_tu (vfloat16mf2_t maskedoff, vfloat16mf2_t op1, size_t vl);
 vfloat16m1_t __riscv_vfrec7_tu (vfloat16m1_t maskedoff, vfloat16m1_t op1, size_t vl);
@@ -4880,12 +4889,13 @@ vfloat64m1_t __riscv_vfrec7_mu (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64
 vfloat64m2_t __riscv_vfrec7_mu (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, unsigned int frm, size_t vl);
 vfloat64m4_t __riscv_vfrec7_mu (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, unsigned int frm, size_t vl);
 vfloat64m8_t __riscv_vfrec7_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, unsigned int frm, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-floating-point-minmax]]
-=== Vector Floating-Point MIN/MAX Intrinsics
+==== Vector Floating-Point MIN/MAX Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vfmin_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, vfloat16mf4_t op2, size_t vl);
 vfloat16mf4_t __riscv_vfmin_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, float16_t op2, size_t vl);
 vfloat16mf2_t __riscv_vfmin_tu (vfloat16mf2_t maskedoff, vfloat16mf2_t op1, vfloat16mf2_t op2, size_t vl);
@@ -5129,12 +5139,13 @@ vfloat64m4_t __riscv_vfmax_mu (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m
 vfloat64m4_t __riscv_vfmax_mu (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, float64_t op2, size_t vl);
 vfloat64m8_t __riscv_vfmax_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, vfloat64m8_t op2, size_t vl);
 vfloat64m8_t __riscv_vfmax_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, float64_t op2, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-floating-point-sign-injection]]
-=== Vector Floating-Point Sign-Injection Intrinsics
+==== Vector Floating-Point Sign-Injection Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vfsgnj_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, vfloat16mf4_t op2, size_t vl);
 vfloat16mf4_t __riscv_vfsgnj_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, float16_t op2, size_t vl);
 vfloat16mf2_t __riscv_vfsgnj_tu (vfloat16mf2_t maskedoff, vfloat16mf2_t op1, vfloat16mf2_t op2, size_t vl);
@@ -5498,12 +5509,13 @@ vfloat64m4_t __riscv_vfsgnjx_mu (vbool16_t mask, vfloat64m4_t maskedoff, vfloat6
 vfloat64m4_t __riscv_vfsgnjx_mu (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, float64_t op2, size_t vl);
 vfloat64m8_t __riscv_vfsgnjx_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, vfloat64m8_t op2, size_t vl);
 vfloat64m8_t __riscv_vfsgnjx_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, float64_t op2, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-floating-point-absolute-value]]
-=== Vector Floating-Point Absolute Value Intrinsics
+==== Vector Floating-Point Absolute Value Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vfabs_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, size_t vl);
 vfloat16mf2_t __riscv_vfabs_tu (vfloat16mf2_t maskedoff, vfloat16mf2_t op1, size_t vl);
 vfloat16m1_t __riscv_vfabs_tu (vfloat16m1_t maskedoff, vfloat16m1_t op1, size_t vl);
@@ -5567,12 +5579,13 @@ vfloat64m1_t __riscv_vfabs_mu (vbool64_t mask, vfloat64m1_t maskedoff, vfloat64m
 vfloat64m2_t __riscv_vfabs_mu (vbool32_t mask, vfloat64m2_t maskedoff, vfloat64m2_t op1, size_t vl);
 vfloat64m4_t __riscv_vfabs_mu (vbool16_t mask, vfloat64m4_t maskedoff, vfloat64m4_t op1, size_t vl);
 vfloat64m8_t __riscv_vfabs_mu (vbool8_t mask, vfloat64m8_t maskedoff, vfloat64m8_t op1, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-floating-point-compare]]
-=== Vector Floating-Point Compare Intrinsics
+==== Vector Floating-Point Compare Intrinsics
 
-``` C
+[,c]
+----
 // masked functions
 vbool64_t __riscv_vmfeq_mu (vbool64_t mask, vbool64_t maskedoff, vfloat16mf4_t op1, vfloat16mf4_t op2, size_t vl);
 vbool64_t __riscv_vmfeq_mu (vbool64_t mask, vbool64_t maskedoff, vfloat16mf4_t op1, float16_t op2, size_t vl);
@@ -5754,12 +5767,13 @@ vbool16_t __riscv_vmfge_mu (vbool16_t mask, vbool16_t maskedoff, vfloat64m4_t op
 vbool16_t __riscv_vmfge_mu (vbool16_t mask, vbool16_t maskedoff, vfloat64m4_t op1, float64_t op2, size_t vl);
 vbool8_t __riscv_vmfge_mu (vbool8_t mask, vbool8_t maskedoff, vfloat64m8_t op1, vfloat64m8_t op2, size_t vl);
 vbool8_t __riscv_vmfge_mu (vbool8_t mask, vbool8_t maskedoff, vfloat64m8_t op1, float64_t op2, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-floating-point-classify]]
-=== Vector Floating-Point Classify Intrinsics
+==== Vector Floating-Point Classify Intrinsics
 
-``` C
+[,c]
+----
 vuint16mf4_t __riscv_vfclass_tu (vuint16mf4_t maskedoff, vfloat16mf4_t op1, size_t vl);
 vuint16mf2_t __riscv_vfclass_tu (vuint16mf2_t maskedoff, vfloat16mf2_t op1, size_t vl);
 vuint16m1_t __riscv_vfclass_tu (vuint16m1_t maskedoff, vfloat16m1_t op1, size_t vl);
@@ -5823,12 +5837,13 @@ vuint64m1_t __riscv_vfclass_mu (vbool64_t mask, vuint64m1_t maskedoff, vfloat64m
 vuint64m2_t __riscv_vfclass_mu (vbool32_t mask, vuint64m2_t maskedoff, vfloat64m2_t op1, size_t vl);
 vuint64m4_t __riscv_vfclass_mu (vbool16_t mask, vuint64m4_t maskedoff, vfloat64m4_t op1, size_t vl);
 vuint64m8_t __riscv_vfclass_mu (vbool8_t mask, vuint64m8_t maskedoff, vfloat64m8_t op1, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-floating-point-merge]]
-=== Vector Floating-Point Merge Intrinsics
+==== Vector Floating-Point Merge Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vmerge_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, vfloat16mf4_t op2, vbool64_t mask, size_t vl);
 vfloat16mf4_t __riscv_vfmerge_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, float16_t op2, vbool64_t mask, size_t vl);
 vfloat16mf2_t __riscv_vmerge_tu (vfloat16mf2_t maskedoff, vfloat16mf2_t op1, vfloat16mf2_t op2, vbool32_t mask, size_t vl);
@@ -5859,12 +5874,13 @@ vfloat64m4_t __riscv_vmerge_tu (vfloat64m4_t maskedoff, vfloat64m4_t op1, vfloat
 vfloat64m4_t __riscv_vfmerge_tu (vfloat64m4_t maskedoff, vfloat64m4_t op1, float64_t op2, vbool16_t mask, size_t vl);
 vfloat64m8_t __riscv_vmerge_tu (vfloat64m8_t maskedoff, vfloat64m8_t op1, vfloat64m8_t op2, vbool8_t mask, size_t vl);
 vfloat64m8_t __riscv_vfmerge_tu (vfloat64m8_t maskedoff, vfloat64m8_t op1, float64_t op2, vbool8_t mask, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-floating-point-move]]
-=== Vector Floating-Point Move Intrinsics
+==== Vector Floating-Point Move Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vmv_v_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t src, size_t vl);
 vfloat16mf4_t __riscv_vfmv_v_tu (vfloat16mf4_t maskedoff, float16_t src, size_t vl);
 vfloat16mf2_t __riscv_vmv_v_tu (vfloat16mf2_t maskedoff, vfloat16mf2_t src, size_t vl);
@@ -5895,12 +5911,13 @@ vfloat64m4_t __riscv_vmv_v_tu (vfloat64m4_t maskedoff, vfloat64m4_t src, size_t 
 vfloat64m4_t __riscv_vfmv_v_tu (vfloat64m4_t maskedoff, float64_t src, size_t vl);
 vfloat64m8_t __riscv_vmv_v_tu (vfloat64m8_t maskedoff, vfloat64m8_t src, size_t vl);
 vfloat64m8_t __riscv_vfmv_v_tu (vfloat64m8_t maskedoff, float64_t src, size_t vl);
-```
+----
 
 [[policy-variant-overloadedsingle-width-floating-pointinteger-type-convert]]
-=== Single-Width Floating-Point/Integer Type-Convert Intrinsics
+==== Single-Width Floating-Point/Integer Type-Convert Intrinsics
 
-``` C
+[,c]
+----
 vint16mf4_t __riscv_vfcvt_x_tu (vint16mf4_t maskedoff, vfloat16mf4_t src, size_t vl);
 vint16mf4_t __riscv_vfcvt_rtz_x_tu (vint16mf4_t maskedoff, vfloat16mf4_t src, size_t vl);
 vint16mf2_t __riscv_vfcvt_x_tu (vint16mf2_t maskedoff, vfloat16mf2_t src, size_t vl);
@@ -6507,12 +6524,13 @@ vfloat64m1_t __riscv_vfcvt_f_mu (vbool64_t mask, vfloat64m1_t maskedoff, vuint64
 vfloat64m2_t __riscv_vfcvt_f_mu (vbool32_t mask, vfloat64m2_t maskedoff, vuint64m2_t src, unsigned int frm, size_t vl);
 vfloat64m4_t __riscv_vfcvt_f_mu (vbool16_t mask, vfloat64m4_t maskedoff, vuint64m4_t src, unsigned int frm, size_t vl);
 vfloat64m8_t __riscv_vfcvt_f_mu (vbool8_t mask, vfloat64m8_t maskedoff, vuint64m8_t src, unsigned int frm, size_t vl);
-```
+----
 
 [[policy-variant-overloadedwidening-floating-pointinteger-type-convert]]
-=== Widening Floating-Point/Integer Type-Convert Intrinsics
+==== Widening Floating-Point/Integer Type-Convert Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vfwcvt_f_tu (vfloat16mf4_t maskedoff, vint8mf8_t src, size_t vl);
 vfloat16mf2_t __riscv_vfwcvt_f_tu (vfloat16mf2_t maskedoff, vint8mf4_t src, size_t vl);
 vfloat16m1_t __riscv_vfwcvt_f_tu (vfloat16m1_t maskedoff, vint8mf2_t src, size_t vl);
@@ -6891,12 +6909,13 @@ vuint64m1_t __riscv_vfwcvt_xu_mu (vbool64_t mask, vuint64m1_t maskedoff, vfloat3
 vuint64m2_t __riscv_vfwcvt_xu_mu (vbool32_t mask, vuint64m2_t maskedoff, vfloat32m1_t src, unsigned int frm, size_t vl);
 vuint64m4_t __riscv_vfwcvt_xu_mu (vbool16_t mask, vuint64m4_t maskedoff, vfloat32m2_t src, unsigned int frm, size_t vl);
 vuint64m8_t __riscv_vfwcvt_xu_mu (vbool8_t mask, vuint64m8_t maskedoff, vfloat32m4_t src, unsigned int frm, size_t vl);
-```
+----
 
 [[policy-variant-overloadednarrowing-floating-pointinteger-type-convert]]
-=== Narrowing Floating-Point/Integer Type-Convert Intrinsics
+==== Narrowing Floating-Point/Integer Type-Convert Intrinsics
 
-``` C
+[,c]
+----
 vint8mf8_t __riscv_vfncvt_x_tu (vint8mf8_t maskedoff, vfloat16mf4_t src, size_t vl);
 vint8mf8_t __riscv_vfncvt_rtz_x_tu (vint8mf8_t maskedoff, vfloat16mf4_t src, size_t vl);
 vint8mf4_t __riscv_vfncvt_x_tu (vint8mf4_t maskedoff, vfloat16mf2_t src, size_t vl);
@@ -7515,4 +7534,4 @@ vfloat32mf2_t __riscv_vfncvt_f_mu (vbool64_t mask, vfloat32mf2_t maskedoff, vflo
 vfloat32m1_t __riscv_vfncvt_f_mu (vbool32_t mask, vfloat32m1_t maskedoff, vfloat64m2_t src, unsigned int frm, size_t vl);
 vfloat32m2_t __riscv_vfncvt_f_mu (vbool16_t mask, vfloat32m2_t maskedoff, vfloat64m4_t src, unsigned int frm, size_t vl);
 vfloat32m4_t __riscv_vfncvt_f_mu (vbool8_t mask, vfloat32m4_t maskedoff, vfloat64m8_t src, unsigned int frm, size_t vl);
-```
+----

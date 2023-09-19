@@ -1,10 +1,11 @@
 
-== Vector Permutation Instructions
+=== Vector Permutation Instructions
 
 [[overloaded-integer-scalar-move]]
-=== Integer and Floating-Point Scalar Move Intrinsics
+==== Integer and Floating-Point Scalar Move Intrinsics
 
-``` C
+[,c]
+----
 float16_t __riscv_vfmv_f (vfloat16mf4_t src);
 float16_t __riscv_vfmv_f (vfloat16mf2_t src);
 float16_t __riscv_vfmv_f (vfloat16m1_t src);
@@ -64,12 +65,13 @@ uint64_t __riscv_vmv_x (vuint64m1_t src);
 uint64_t __riscv_vmv_x (vuint64m2_t src);
 uint64_t __riscv_vmv_x (vuint64m4_t src);
 uint64_t __riscv_vmv_x (vuint64m8_t src);
-```
+----
 
 [[overloaded-vector-slideup]]
-=== Vector Slideup Intrinsics
+==== Vector Slideup Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vslideup (vfloat16mf4_t dest, vfloat16mf4_t src, size_t offset, size_t vl);
 vfloat16mf2_t __riscv_vslideup (vfloat16mf2_t dest, vfloat16mf2_t src, size_t offset, size_t vl);
 vfloat16m1_t __riscv_vslideup (vfloat16m1_t dest, vfloat16m1_t src, size_t offset, size_t vl);
@@ -189,12 +191,13 @@ vuint64m1_t __riscv_vslideup (vbool64_t mask, vuint64m1_t dest, vuint64m1_t src,
 vuint64m2_t __riscv_vslideup (vbool32_t mask, vuint64m2_t dest, vuint64m2_t src, size_t offset, size_t vl);
 vuint64m4_t __riscv_vslideup (vbool16_t mask, vuint64m4_t dest, vuint64m4_t src, size_t offset, size_t vl);
 vuint64m8_t __riscv_vslideup (vbool8_t mask, vuint64m8_t dest, vuint64m8_t src, size_t offset, size_t vl);
-```
+----
 
 [[overloaded-vector-slidedown]]
-=== Vector Slidedown Intrinsics
+==== Vector Slidedown Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vslidedown (vfloat16mf4_t src, size_t offset, size_t vl);
 vfloat16mf2_t __riscv_vslidedown (vfloat16mf2_t src, size_t offset, size_t vl);
 vfloat16m1_t __riscv_vslidedown (vfloat16m1_t src, size_t offset, size_t vl);
@@ -314,12 +317,13 @@ vuint64m1_t __riscv_vslidedown (vbool64_t mask, vuint64m1_t src, size_t offset, 
 vuint64m2_t __riscv_vslidedown (vbool32_t mask, vuint64m2_t src, size_t offset, size_t vl);
 vuint64m4_t __riscv_vslidedown (vbool16_t mask, vuint64m4_t src, size_t offset, size_t vl);
 vuint64m8_t __riscv_vslidedown (vbool8_t mask, vuint64m8_t src, size_t offset, size_t vl);
-```
+----
 
 [[overloaded-vector-slide1up-and-slide1down]]
-=== Vector Slide1up and Slide1down Intrinsics
+==== Vector Slide1up and Slide1down Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vfslide1up (vfloat16mf4_t src, float16_t value, size_t vl);
 vfloat16mf2_t __riscv_vfslide1up (vfloat16mf2_t src, float16_t value, size_t vl);
 vfloat16m1_t __riscv_vfslide1up (vfloat16m1_t src, float16_t value, size_t vl);
@@ -557,12 +561,13 @@ vuint64m1_t __riscv_vslide1down (vbool64_t mask, vuint64m1_t src, uint64_t value
 vuint64m2_t __riscv_vslide1down (vbool32_t mask, vuint64m2_t src, uint64_t value, size_t vl);
 vuint64m4_t __riscv_vslide1down (vbool16_t mask, vuint64m4_t src, uint64_t value, size_t vl);
 vuint64m8_t __riscv_vslide1down (vbool8_t mask, vuint64m8_t src, uint64_t value, size_t vl);
-```
+----
 
 [[overloaded-vector-register-gather]]
-=== Vector Register Gather Intrinsics
+==== Vector Register Gather Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vrgather (vfloat16mf4_t op1, vuint16mf4_t index, size_t vl);
 vfloat16mf4_t __riscv_vrgather (vfloat16mf4_t op1, size_t index, size_t vl);
 vfloat16mf2_t __riscv_vrgather (vfloat16mf2_t op1, vuint16mf2_t index, size_t vl);
@@ -914,12 +919,13 @@ vuint64m1_t __riscv_vrgatherei16 (vbool64_t mask, vuint64m1_t op1, vuint16mf4_t 
 vuint64m2_t __riscv_vrgatherei16 (vbool32_t mask, vuint64m2_t op1, vuint16mf2_t op2, size_t vl);
 vuint64m4_t __riscv_vrgatherei16 (vbool16_t mask, vuint64m4_t op1, vuint16m1_t op2, size_t vl);
 vuint64m8_t __riscv_vrgatherei16 (vbool8_t mask, vuint64m8_t op1, vuint16m2_t op2, size_t vl);
-```
+----
 
 [[overloaded-vector-compress]]
-=== Vector Compress Intrinsics
+==== Vector Compress Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vcompress (vfloat16mf4_t src, vbool64_t mask, size_t vl);
 vfloat16mf2_t __riscv_vcompress (vfloat16mf2_t src, vbool32_t mask, size_t vl);
 vfloat16m1_t __riscv_vcompress (vfloat16m1_t src, vbool16_t mask, size_t vl);
@@ -979,4 +985,4 @@ vuint64m1_t __riscv_vcompress (vuint64m1_t src, vbool64_t mask, size_t vl);
 vuint64m2_t __riscv_vcompress (vuint64m2_t src, vbool32_t mask, size_t vl);
 vuint64m4_t __riscv_vcompress (vuint64m4_t src, vbool16_t mask, size_t vl);
 vuint64m8_t __riscv_vcompress (vuint64m8_t src, vbool8_t mask, size_t vl);
-```
+----

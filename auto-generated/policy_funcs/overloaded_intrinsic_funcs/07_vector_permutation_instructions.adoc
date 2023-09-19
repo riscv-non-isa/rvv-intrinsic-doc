@@ -1,10 +1,11 @@
 
-== Vector Permutation Instructions
+=== Vector Permutation Instructions
 
 [[policy-variant-overloadedinteger-scalar-move]]
-=== Integer and Floating-Point Scalar Move Intrinsics
+==== Integer and Floating-Point Scalar Move Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vfmv_s_tu (vfloat16mf4_t maskedoff, float16_t src, size_t vl);
 vfloat16mf2_t __riscv_vfmv_s_tu (vfloat16mf2_t maskedoff, float16_t src, size_t vl);
 vfloat16m1_t __riscv_vfmv_s_tu (vfloat16m1_t maskedoff, float16_t src, size_t vl);
@@ -64,12 +65,13 @@ vuint64m1_t __riscv_vmv_s_tu (vuint64m1_t maskedoff, uint64_t src, size_t vl);
 vuint64m2_t __riscv_vmv_s_tu (vuint64m2_t maskedoff, uint64_t src, size_t vl);
 vuint64m4_t __riscv_vmv_s_tu (vuint64m4_t maskedoff, uint64_t src, size_t vl);
 vuint64m8_t __riscv_vmv_s_tu (vuint64m8_t maskedoff, uint64_t src, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-slideup]]
-=== Vector Slideup Intrinsics
+==== Vector Slideup Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vslideup_tu (vfloat16mf4_t dest, vfloat16mf4_t src, size_t offset, size_t vl);
 vfloat16mf2_t __riscv_vslideup_tu (vfloat16mf2_t dest, vfloat16mf2_t src, size_t offset, size_t vl);
 vfloat16m1_t __riscv_vslideup_tu (vfloat16m1_t dest, vfloat16m1_t src, size_t offset, size_t vl);
@@ -309,12 +311,13 @@ vuint64m1_t __riscv_vslideup_mu (vbool64_t mask, vuint64m1_t dest, vuint64m1_t s
 vuint64m2_t __riscv_vslideup_mu (vbool32_t mask, vuint64m2_t dest, vuint64m2_t src, size_t offset, size_t vl);
 vuint64m4_t __riscv_vslideup_mu (vbool16_t mask, vuint64m4_t dest, vuint64m4_t src, size_t offset, size_t vl);
 vuint64m8_t __riscv_vslideup_mu (vbool8_t mask, vuint64m8_t dest, vuint64m8_t src, size_t offset, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-slidedown]]
-=== Vector Slidedown Intrinsics
+==== Vector Slidedown Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vslidedown_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t src, size_t offset, size_t vl);
 vfloat16mf2_t __riscv_vslidedown_tu (vfloat16mf2_t maskedoff, vfloat16mf2_t src, size_t offset, size_t vl);
 vfloat16m1_t __riscv_vslidedown_tu (vfloat16m1_t maskedoff, vfloat16m1_t src, size_t offset, size_t vl);
@@ -554,12 +557,13 @@ vuint64m1_t __riscv_vslidedown_mu (vbool64_t mask, vuint64m1_t maskedoff, vuint6
 vuint64m2_t __riscv_vslidedown_mu (vbool32_t mask, vuint64m2_t maskedoff, vuint64m2_t src, size_t offset, size_t vl);
 vuint64m4_t __riscv_vslidedown_mu (vbool16_t mask, vuint64m4_t maskedoff, vuint64m4_t src, size_t offset, size_t vl);
 vuint64m8_t __riscv_vslidedown_mu (vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t src, size_t offset, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-slide1up-and-slide1down]]
-=== Vector Slide1up and Slide1down Intrinsics
+==== Vector Slide1up and Slide1down Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vfslide1up_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t src, float16_t value, size_t vl);
 vfloat16mf2_t __riscv_vfslide1up_tu (vfloat16mf2_t maskedoff, vfloat16mf2_t src, float16_t value, size_t vl);
 vfloat16m1_t __riscv_vfslide1up_tu (vfloat16m1_t maskedoff, vfloat16m1_t src, float16_t value, size_t vl);
@@ -1035,12 +1039,13 @@ vuint64m1_t __riscv_vslide1down_mu (vbool64_t mask, vuint64m1_t maskedoff, vuint
 vuint64m2_t __riscv_vslide1down_mu (vbool32_t mask, vuint64m2_t maskedoff, vuint64m2_t src, uint64_t value, size_t vl);
 vuint64m4_t __riscv_vslide1down_mu (vbool16_t mask, vuint64m4_t maskedoff, vuint64m4_t src, uint64_t value, size_t vl);
 vuint64m8_t __riscv_vslide1down_mu (vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t src, uint64_t value, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-register-gather]]
-=== Vector Register Gather Intrinsics
+==== Vector Register Gather Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vrgather_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, vuint16mf4_t index, size_t vl);
 vfloat16mf4_t __riscv_vrgather_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t op1, size_t index, size_t vl);
 vfloat16mf2_t __riscv_vrgather_tu (vfloat16mf2_t maskedoff, vfloat16mf2_t op1, vuint16mf2_t index, size_t vl);
@@ -1744,12 +1749,13 @@ vuint64m1_t __riscv_vrgatherei16_mu (vbool64_t mask, vuint64m1_t maskedoff, vuin
 vuint64m2_t __riscv_vrgatherei16_mu (vbool32_t mask, vuint64m2_t maskedoff, vuint64m2_t op1, vuint16mf2_t op2, size_t vl);
 vuint64m4_t __riscv_vrgatherei16_mu (vbool16_t mask, vuint64m4_t maskedoff, vuint64m4_t op1, vuint16m1_t op2, size_t vl);
 vuint64m8_t __riscv_vrgatherei16_mu (vbool8_t mask, vuint64m8_t maskedoff, vuint64m8_t op1, vuint16m2_t op2, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-compress]]
-=== Vector Compress Intrinsics
+==== Vector Compress Intrinsics
 
-``` C
+[,c]
+----
 vfloat16mf4_t __riscv_vcompress_tu (vfloat16mf4_t maskedoff, vfloat16mf4_t src, vbool64_t mask, size_t vl);
 vfloat16mf2_t __riscv_vcompress_tu (vfloat16mf2_t maskedoff, vfloat16mf2_t src, vbool32_t mask, size_t vl);
 vfloat16m1_t __riscv_vcompress_tu (vfloat16m1_t maskedoff, vfloat16m1_t src, vbool16_t mask, size_t vl);
@@ -1809,4 +1815,4 @@ vuint64m1_t __riscv_vcompress_tu (vuint64m1_t maskedoff, vuint64m1_t src, vbool6
 vuint64m2_t __riscv_vcompress_tu (vuint64m2_t maskedoff, vuint64m2_t src, vbool32_t mask, size_t vl);
 vuint64m4_t __riscv_vcompress_tu (vuint64m4_t maskedoff, vuint64m4_t src, vbool16_t mask, size_t vl);
 vuint64m8_t __riscv_vcompress_tu (vuint64m8_t maskedoff, vuint64m8_t src, vbool8_t mask, size_t vl);
-```
+----

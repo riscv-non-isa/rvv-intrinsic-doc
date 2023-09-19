@@ -1,22 +1,23 @@
 
-== Vector Mask Instructions
+=== Vector Mask Instructions
 
 [[policy-variant-overloadedvector-mask-register-logical]]
-=== Vector Mask-Register Logical
+==== Vector Mask-Register Logical
 Intrinsics here don't have a policy variant.
 
 [[policy-variant-overloadedvector-count-population-in-mask-vcpopm]]
-=== Vector count population in mask `vcpop.m`
+==== Vector count population in mask `vcpop.m`
 Intrinsics here don't have a policy variant.
 
 [[policy-variant-overloadedvfirst-find-first-set-mask-bit]]
-=== `vfirst` find-first-set mask bit
+==== `vfirst` find-first-set mask bit
 Intrinsics here don't have a policy variant.
 
 [[policy-variant-overloadedvmsbfm-set-before-first-mask-bit]]
-=== `vmsbf.m` set-before-first mask bit
+==== `vmsbf.m` set-before-first mask bit
 
-``` C
+[,c]
+----
 // masked functions
 vbool1_t __riscv_vmsbf_mu (vbool1_t mask, vbool1_t maskedoff, vbool1_t op1, size_t vl);
 vbool2_t __riscv_vmsbf_mu (vbool2_t mask, vbool2_t maskedoff, vbool2_t op1, size_t vl);
@@ -25,12 +26,13 @@ vbool8_t __riscv_vmsbf_mu (vbool8_t mask, vbool8_t maskedoff, vbool8_t op1, size
 vbool16_t __riscv_vmsbf_mu (vbool16_t mask, vbool16_t maskedoff, vbool16_t op1, size_t vl);
 vbool32_t __riscv_vmsbf_mu (vbool32_t mask, vbool32_t maskedoff, vbool32_t op1, size_t vl);
 vbool64_t __riscv_vmsbf_mu (vbool64_t mask, vbool64_t maskedoff, vbool64_t op1, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvmsifm-set-including-first-mask-bit]]
-=== `vmsif.m` set-including-first mask bit
+==== `vmsif.m` set-including-first mask bit
 
-``` C
+[,c]
+----
 // masked functions
 vbool1_t __riscv_vmsif_mu (vbool1_t mask, vbool1_t maskedoff, vbool1_t op1, size_t vl);
 vbool2_t __riscv_vmsif_mu (vbool2_t mask, vbool2_t maskedoff, vbool2_t op1, size_t vl);
@@ -39,12 +41,13 @@ vbool8_t __riscv_vmsif_mu (vbool8_t mask, vbool8_t maskedoff, vbool8_t op1, size
 vbool16_t __riscv_vmsif_mu (vbool16_t mask, vbool16_t maskedoff, vbool16_t op1, size_t vl);
 vbool32_t __riscv_vmsif_mu (vbool32_t mask, vbool32_t maskedoff, vbool32_t op1, size_t vl);
 vbool64_t __riscv_vmsif_mu (vbool64_t mask, vbool64_t maskedoff, vbool64_t op1, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvmsofm-set-only-first-mask-bit]]
-=== `vmsof.m` set-only-first mask bit
+==== `vmsof.m` set-only-first mask bit
 
-``` C
+[,c]
+----
 // masked functions
 vbool1_t __riscv_vmsof_mu (vbool1_t mask, vbool1_t maskedoff, vbool1_t op1, size_t vl);
 vbool2_t __riscv_vmsof_mu (vbool2_t mask, vbool2_t maskedoff, vbool2_t op1, size_t vl);
@@ -53,12 +56,13 @@ vbool8_t __riscv_vmsof_mu (vbool8_t mask, vbool8_t maskedoff, vbool8_t op1, size
 vbool16_t __riscv_vmsof_mu (vbool16_t mask, vbool16_t maskedoff, vbool16_t op1, size_t vl);
 vbool32_t __riscv_vmsof_mu (vbool32_t mask, vbool32_t maskedoff, vbool32_t op1, size_t vl);
 vbool64_t __riscv_vmsof_mu (vbool64_t mask, vbool64_t maskedoff, vbool64_t op1, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-iota]]
-=== Vector Iota Intrinsics
+==== Vector Iota Intrinsics
 
-``` C
+[,c]
+----
 vuint8mf8_t __riscv_viota_tu (vuint8mf8_t maskedoff, vbool64_t op1, size_t vl);
 vuint8mf4_t __riscv_viota_tu (vuint8mf4_t maskedoff, vbool32_t op1, size_t vl);
 vuint8mf2_t __riscv_viota_tu (vuint8mf2_t maskedoff, vbool16_t op1, size_t vl);
@@ -150,12 +154,13 @@ vuint64m1_t __riscv_viota_mu (vbool64_t mask, vuint64m1_t maskedoff, vbool64_t o
 vuint64m2_t __riscv_viota_mu (vbool32_t mask, vuint64m2_t maskedoff, vbool32_t op1, size_t vl);
 vuint64m4_t __riscv_viota_mu (vbool16_t mask, vuint64m4_t maskedoff, vbool16_t op1, size_t vl);
 vuint64m8_t __riscv_viota_mu (vbool8_t mask, vuint64m8_t maskedoff, vbool8_t op1, size_t vl);
-```
+----
 
 [[policy-variant-overloadedvector-element-index]]
-=== Vector Element Index Intrinsics
+==== Vector Element Index Intrinsics
 
-``` C
+[,c]
+----
 vuint8mf8_t __riscv_vid_tu (vuint8mf8_t maskedoff, size_t vl);
 vuint8mf4_t __riscv_vid_tu (vuint8mf4_t maskedoff, size_t vl);
 vuint8mf2_t __riscv_vid_tu (vuint8mf2_t maskedoff, size_t vl);
@@ -247,4 +252,4 @@ vuint64m1_t __riscv_vid_mu (vbool64_t mask, vuint64m1_t maskedoff, size_t vl);
 vuint64m2_t __riscv_vid_mu (vbool32_t mask, vuint64m2_t maskedoff, size_t vl);
 vuint64m4_t __riscv_vid_mu (vbool16_t mask, vuint64m4_t maskedoff, size_t vl);
 vuint64m8_t __riscv_vid_mu (vbool8_t mask, vuint64m8_t maskedoff, size_t vl);
-```
+----
