@@ -258,6 +258,22 @@ vint8m1_t vredsum_vs_i8m8_i8m1(vint8m1_t dest, vint8m8_t vs2, vint8m1_t vs1,
                                size_t vl);
 ----
 
+==== Add-with-carry / Subtract-with-borrow instructions
+
+Only encoding the return type will cause naming collisions for the reduction instruction intrinsics. The intrinsics encode the input vector type and the output mask vector type in the suffix.
+
+[,c]
+----
+vbool64_t __riscv_vmadc_vvm_i8mf8_b64(vint8mf8_t op1, vint8mf8_t op2,
+                                      vbool64_t carryin, size_t vl);
+vbool64_t __riscv_vmadc_vvm_i16mf4_b64(vint16mf4_t op1, vint16mf4_t op2,
+                                      vbool64_t carryin, size_t vl);
+vbool64_t __riscv_vmadc_vvm_i32mf2_b64(vint32mf2_t op1, vint32mf2_t op2,
+                                      vbool64_t carryin, size_t vl);
+vbool64_t __riscv_vmadc_vvm_i64m1_b64(vint64m1_t op1, vint64m1_t op2,
+                                      vbool64_t carryin, size_t vl);
+----
+
 ==== `vreinterpret`, `vlmul_trunc`/`vlmul_ext`, and `vset`/`vget`
 
 Only encoding the return type will cause naming collisions for these pseudo instructions. The intrinsics encode the input vector type before the return type in the suffix.
