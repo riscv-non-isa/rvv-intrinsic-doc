@@ -22,6 +22,7 @@ import collections
 import re
 
 from enums import ExtraAttr
+from enums import ToolChainType
 
 
 class Generator():
@@ -310,11 +311,11 @@ class APITestGenerator(Generator):
   Derived generator for api unit tests.
   """
 
-  def __init__(self, f, is_overloaded, is_llvm, has_tail_policy):
+  def __init__(self, f, is_overloaded, toolchain_type, has_tail_policy):
     super().__init__()
     self.is_overloaded = is_overloaded
     self.folder = f
-    self.llvm = is_llvm
+    self.toolchain_type = toolchain_type
     self.has_tail_policy = has_tail_policy
     if not os.path.exists(self.folder):
       os.makedirs(self.folder)
@@ -341,7 +342,7 @@ class APITestGenerator(Generator):
 // RUN:   FileCheck --check-prefix=CHECK-RV64 %s
 
 """)
-    if self.llvm:
+    if self.toolchain_type == ToolChainType.LLVM:
       if has_float_type:
         self.fd.write(float_llvm_header)
       else:
@@ -349,7 +350,7 @@ class APITestGenerator(Generator):
     else:
       self.fd.write("#include <stdint.h>\n")
     self.fd.write("#include <riscv_vector.h>\n\n")
-    if not self.llvm:
+    if self.toolchain_type != ToolChainType.LLVM:
       self.fd.write("typedef _Float16 float16_t;\n")
       self.fd.write("typedef float float32_t;\n")
       self.fd.write("typedef double float64_t;\n")
