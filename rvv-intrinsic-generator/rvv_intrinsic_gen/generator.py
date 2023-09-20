@@ -342,11 +342,19 @@ class APITestGenerator(Generator):
 // RUN:   FileCheck --check-prefix=CHECK-RV64 %s
 
 """)
+    gnu_header = (
+        r"""/* { dg-do compile } */
+/* { dg-options """ + '"' + "-march=rv64gcv_zvfh -mabi=lp64d" +
+        r""" -Wno-psabi -O3 -fno-schedule-insns -fno-schedule-insns2" } */
+
+""")
     if self.toolchain_type == ToolChainType.LLVM:
       if has_float_type:
         self.fd.write(float_llvm_header)
       else:
         self.fd.write(int_llvm_header)
+    elif self.toolchain_type == ToolChainType.GNU:
+      self.fd.write(gnu_header)
     else:
       self.fd.write("#include <stdint.h>\n")
     self.fd.write("#include <riscv_vector.h>\n\n")
