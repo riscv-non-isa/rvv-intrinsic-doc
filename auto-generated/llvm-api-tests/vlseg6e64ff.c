@@ -6,32 +6,32 @@
 
 #include <riscv_vector.h>
 
-vfloat64m1x6_t test_vlseg6e64ff_v_f64m1x6(const double *base, size_t *new_vl,
+vfloat64m1x6_t test_vlseg6e64ff_v_f64m1x6(const double *rs1, size_t *new_vl,
                                           size_t vl) {
-  return __riscv_vlseg6e64ff_v_f64m1x6(base, new_vl, vl);
+  return __riscv_vlseg6e64ff_v_f64m1x6(rs1, new_vl, vl);
 }
 
-vint64m1x6_t test_vlseg6e64ff_v_i64m1x6(const int64_t *base, size_t *new_vl,
+vint64m1x6_t test_vlseg6e64ff_v_i64m1x6(const int64_t *rs1, size_t *new_vl,
                                         size_t vl) {
-  return __riscv_vlseg6e64ff_v_i64m1x6(base, new_vl, vl);
+  return __riscv_vlseg6e64ff_v_i64m1x6(rs1, new_vl, vl);
 }
 
-vuint64m1x6_t test_vlseg6e64ff_v_u64m1x6(const uint64_t *base, size_t *new_vl,
+vuint64m1x6_t test_vlseg6e64ff_v_u64m1x6(const uint64_t *rs1, size_t *new_vl,
                                          size_t vl) {
-  return __riscv_vlseg6e64ff_v_u64m1x6(base, new_vl, vl);
+  return __riscv_vlseg6e64ff_v_u64m1x6(rs1, new_vl, vl);
 }
 
-vfloat64m1x6_t test_vlseg6e64ff_v_f64m1x6_m(vbool64_t mask, const double *base,
+vfloat64m1x6_t test_vlseg6e64ff_v_f64m1x6_m(vbool64_t vm, const double *rs1,
                                             size_t *new_vl, size_t vl) {
-  return __riscv_vlseg6e64ff_v_f64m1x6_m(mask, base, new_vl, vl);
+  return __riscv_vlseg6e64ff_v_f64m1x6_m(vm, rs1, new_vl, vl);
 }
 
-vint64m1x6_t test_vlseg6e64ff_v_i64m1x6_m(vbool64_t mask, const int64_t *base,
+vint64m1x6_t test_vlseg6e64ff_v_i64m1x6_m(vbool64_t vm, const int64_t *rs1,
                                           size_t *new_vl, size_t vl) {
-  return __riscv_vlseg6e64ff_v_i64m1x6_m(mask, base, new_vl, vl);
+  return __riscv_vlseg6e64ff_v_i64m1x6_m(vm, rs1, new_vl, vl);
 }
 
-vuint64m1x6_t test_vlseg6e64ff_v_u64m1x6_m(vbool64_t mask, const uint64_t *base,
+vuint64m1x6_t test_vlseg6e64ff_v_u64m1x6_m(vbool64_t vm, const uint64_t *rs1,
                                            size_t *new_vl, size_t vl) {
-  return __riscv_vlseg6e64ff_v_u64m1x6_m(mask, base, new_vl, vl);
+  return __riscv_vlseg6e64ff_v_u64m1x6_m(vm, rs1, new_vl, vl);
 }
