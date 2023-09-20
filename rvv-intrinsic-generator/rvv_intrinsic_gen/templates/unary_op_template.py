@@ -83,9 +83,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.tu_dest_args(type_helper.v),
-            op1=type_helper.v,
-            op2=type_helper.v,
-            mask=type_helper.m,
+            vs2=type_helper.v,
+            vs1=type_helper.v,
+            v0=type_helper.m,
             vl=type_helper.size_t)
         G.func(
             inst_info_vvsm,
@@ -93,9 +93,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.tu_dest_args(type_helper.v),
-            op1=type_helper.v,
-            op2=type_helper.s,
-            mask=type_helper.m,
+            vs2=type_helper.v,
+            rs1=type_helper.s,
+            v0=type_helper.m,
             vl=type_helper.size_t)
       elif op == "mv":
         G.func(
@@ -104,7 +104,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.tu_dest_args(type_helper.v),
-            src=type_helper.v,
+            vs1=type_helper.v,
             vl=type_helper.size_t)
         G.func(
             inst_info_vs,
@@ -112,7 +112,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             decorator.func_suffix,
             return_type=type_helper.v,
             **decorator.tu_dest_args(type_helper.v),
-            src=type_helper.s,
+            rs1=type_helper.s,
             vl=type_helper.size_t)
       elif op in ["sqrt", "rsqrt7", "rec7", "abs"]:
         assert data_type == "float"
@@ -123,7 +123,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             return_type=type_helper.v,
             **decorator.mask_args(type_helper.m, type_helper.v),
             **decorator.tu_dest_args(type_helper.v),
-            op1=type_helper.v,
+            vs2=type_helper.v,
             **decorator.extra_csr_args(type_helper.uint),
             vl=type_helper.size_t)
       elif op == "class":
@@ -135,7 +135,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             return_type=type_helper.uiv,
             **decorator.mask_args(type_helper.m, type_helper.uiv),
             **decorator.tu_dest_args(type_helper.uiv),
-            op1=type_helper.v,
+            vs2=type_helper.v,
             vl=type_helper.size_t)
       elif op == "not":
         G.func(
@@ -145,7 +145,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             return_type=type_helper.v,
             **decorator.mask_args(type_helper.m, type_helper.v),
             **decorator.tu_dest_args(type_helper.v),
-            op1=type_helper.v,
+            vs=type_helper.v,
             vl=type_helper.size_t)
       else:
         assert False, "Unknown instruction"
@@ -199,7 +199,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           return_type=rt_type,
           **decorator.mask_args(type_helper.m, rt_type),
           **decorator.tu_dest_args(rt_type),
-          op1=type_helper.v,
+          vs2=type_helper.v,
           vl=type_helper.size_t)
 
   G.inst_group_epilogue()

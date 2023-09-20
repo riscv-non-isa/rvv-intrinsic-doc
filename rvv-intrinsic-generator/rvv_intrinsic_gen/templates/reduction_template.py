@@ -75,8 +75,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
               return_type=s,
               **decorator.mask_args(type_helper.m, s),
               **decorator.dest_args(s),
-              vector=type_helper.v,
-              scalar=s,
+              vs2=type_helper.v,
+              vs1=s,
               **decorator.extra_csr_args(type_helper.uint),
               vl=type_helper.size_t)
         else:
@@ -87,8 +87,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
               return_type=s,
               **decorator.mask_args(type_helper.m, s),
               **decorator.dest_args(s),
-              vector=type_helper.v,
-              scalar=s,
+              vs2=type_helper.v,
+              vs1=s,
               **decorator.extra_csr_args(type_helper.uint),
               vl=type_helper.size_t)
 

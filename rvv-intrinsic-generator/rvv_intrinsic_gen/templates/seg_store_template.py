@@ -60,7 +60,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       extra_addr_args = collections.OrderedDict()
       inst_type = InstType.VX
       if op in ["vssseg"]:
-        extra_addr_args["bstride"] = "ptrdiff_t"
+        extra_addr_args["rs2"] = "ptrdiff_t"
         inst_type = InstType.VXX
 
       if op in ["vsoxseg", "vsuxseg"]:
@@ -68,7 +68,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         if elmul == 0:
           continue
         elmul_str = get_string_lmul(elmul, 1)
-        extra_addr_args["bindex"] = f"vuint{eew}m{elmul_str}_t"
+        extra_addr_args["vs2"] = f"vuint{eew}m{elmul_str}_t"
         args["OP"] = op + nf + "ei" + str(eew)
         inst_type = InstType.VV
       else:
@@ -83,7 +83,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             decorator.func_suffix,
             return_type=type_helper.void,
             **decorator.mask_args(type_helper.m, type_helper.v, int(nf)),
-            base="{TYPE}{SEW}_t *".format_map(args),
+            rs1="{TYPE}{SEW}_t *".format_map(args),
             **extra_addr_args,
             **seg_arg(type_helper.v, int(nf)),
             vl=type_helper.size_t)
@@ -101,7 +101,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
                 type_helper.v,
                 int(nf),
                 is_seg_load_store_tuple_type=True),
-            base="{TYPE}{SEW}_t *".format_map(args),
+            rs1="{TYPE}{SEW}_t *".format_map(args),
             **extra_addr_args,
             **seg_arg(
                 type_helper.v, int(nf), is_seg_load_store_tuple_type=True),
