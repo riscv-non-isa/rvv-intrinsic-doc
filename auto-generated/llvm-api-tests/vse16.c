@@ -6,164 +6,164 @@
 
 #include <riscv_vector.h>
 
-void test_vse16_v_f16mf4(_Float16 *base, vfloat16mf4_t value, size_t vl) {
-  return __riscv_vse16_v_f16mf4(base, value, vl);
+void test_vse16_v_f16mf4(_Float16 *rs1, vfloat16mf4_t vs3, size_t vl) {
+  return __riscv_vse16_v_f16mf4(rs1, vs3, vl);
 }
 
-void test_vse16_v_f16mf2(_Float16 *base, vfloat16mf2_t value, size_t vl) {
-  return __riscv_vse16_v_f16mf2(base, value, vl);
+void test_vse16_v_f16mf2(_Float16 *rs1, vfloat16mf2_t vs3, size_t vl) {
+  return __riscv_vse16_v_f16mf2(rs1, vs3, vl);
 }
 
-void test_vse16_v_f16m1(_Float16 *base, vfloat16m1_t value, size_t vl) {
-  return __riscv_vse16_v_f16m1(base, value, vl);
+void test_vse16_v_f16m1(_Float16 *rs1, vfloat16m1_t vs3, size_t vl) {
+  return __riscv_vse16_v_f16m1(rs1, vs3, vl);
 }
 
-void test_vse16_v_f16m2(_Float16 *base, vfloat16m2_t value, size_t vl) {
-  return __riscv_vse16_v_f16m2(base, value, vl);
+void test_vse16_v_f16m2(_Float16 *rs1, vfloat16m2_t vs3, size_t vl) {
+  return __riscv_vse16_v_f16m2(rs1, vs3, vl);
 }
 
-void test_vse16_v_f16m4(_Float16 *base, vfloat16m4_t value, size_t vl) {
-  return __riscv_vse16_v_f16m4(base, value, vl);
+void test_vse16_v_f16m4(_Float16 *rs1, vfloat16m4_t vs3, size_t vl) {
+  return __riscv_vse16_v_f16m4(rs1, vs3, vl);
 }
 
-void test_vse16_v_f16m8(_Float16 *base, vfloat16m8_t value, size_t vl) {
-  return __riscv_vse16_v_f16m8(base, value, vl);
+void test_vse16_v_f16m8(_Float16 *rs1, vfloat16m8_t vs3, size_t vl) {
+  return __riscv_vse16_v_f16m8(rs1, vs3, vl);
 }
 
-void test_vse16_v_i16mf4(int16_t *base, vint16mf4_t value, size_t vl) {
-  return __riscv_vse16_v_i16mf4(base, value, vl);
+void test_vse16_v_i16mf4(int16_t *rs1, vint16mf4_t vs3, size_t vl) {
+  return __riscv_vse16_v_i16mf4(rs1, vs3, vl);
 }
 
-void test_vse16_v_i16mf2(int16_t *base, vint16mf2_t value, size_t vl) {
-  return __riscv_vse16_v_i16mf2(base, value, vl);
+void test_vse16_v_i16mf2(int16_t *rs1, vint16mf2_t vs3, size_t vl) {
+  return __riscv_vse16_v_i16mf2(rs1, vs3, vl);
 }
 
-void test_vse16_v_i16m1(int16_t *base, vint16m1_t value, size_t vl) {
-  return __riscv_vse16_v_i16m1(base, value, vl);
+void test_vse16_v_i16m1(int16_t *rs1, vint16m1_t vs3, size_t vl) {
+  return __riscv_vse16_v_i16m1(rs1, vs3, vl);
 }
 
-void test_vse16_v_i16m2(int16_t *base, vint16m2_t value, size_t vl) {
-  return __riscv_vse16_v_i16m2(base, value, vl);
+void test_vse16_v_i16m2(int16_t *rs1, vint16m2_t vs3, size_t vl) {
+  return __riscv_vse16_v_i16m2(rs1, vs3, vl);
 }
 
-void test_vse16_v_i16m4(int16_t *base, vint16m4_t value, size_t vl) {
-  return __riscv_vse16_v_i16m4(base, value, vl);
+void test_vse16_v_i16m4(int16_t *rs1, vint16m4_t vs3, size_t vl) {
+  return __riscv_vse16_v_i16m4(rs1, vs3, vl);
 }
 
-void test_vse16_v_i16m8(int16_t *base, vint16m8_t value, size_t vl) {
-  return __riscv_vse16_v_i16m8(base, value, vl);
+void test_vse16_v_i16m8(int16_t *rs1, vint16m8_t vs3, size_t vl) {
+  return __riscv_vse16_v_i16m8(rs1, vs3, vl);
 }
 
-void test_vse16_v_u16mf4(uint16_t *base, vuint16mf4_t value, size_t vl) {
-  return __riscv_vse16_v_u16mf4(base, value, vl);
+void test_vse16_v_u16mf4(uint16_t *rs1, vuint16mf4_t vs3, size_t vl) {
+  return __riscv_vse16_v_u16mf4(rs1, vs3, vl);
 }
 
-void test_vse16_v_u16mf2(uint16_t *base, vuint16mf2_t value, size_t vl) {
-  return __riscv_vse16_v_u16mf2(base, value, vl);
+void test_vse16_v_u16mf2(uint16_t *rs1, vuint16mf2_t vs3, size_t vl) {
+  return __riscv_vse16_v_u16mf2(rs1, vs3, vl);
 }
 
-void test_vse16_v_u16m1(uint16_t *base, vuint16m1_t value, size_t vl) {
-  return __riscv_vse16_v_u16m1(base, value, vl);
+void test_vse16_v_u16m1(uint16_t *rs1, vuint16m1_t vs3, size_t vl) {
+  return __riscv_vse16_v_u16m1(rs1, vs3, vl);
 }
 
-void test_vse16_v_u16m2(uint16_t *base, vuint16m2_t value, size_t vl) {
-  return __riscv_vse16_v_u16m2(base, value, vl);
+void test_vse16_v_u16m2(uint16_t *rs1, vuint16m2_t vs3, size_t vl) {
+  return __riscv_vse16_v_u16m2(rs1, vs3, vl);
 }
 
-void test_vse16_v_u16m4(uint16_t *base, vuint16m4_t value, size_t vl) {
-  return __riscv_vse16_v_u16m4(base, value, vl);
+void test_vse16_v_u16m4(uint16_t *rs1, vuint16m4_t vs3, size_t vl) {
+  return __riscv_vse16_v_u16m4(rs1, vs3, vl);
 }
 
-void test_vse16_v_u16m8(uint16_t *base, vuint16m8_t value, size_t vl) {
-  return __riscv_vse16_v_u16m8(base, value, vl);
+void test_vse16_v_u16m8(uint16_t *rs1, vuint16m8_t vs3, size_t vl) {
+  return __riscv_vse16_v_u16m8(rs1, vs3, vl);
 }
 
-void test_vse16_v_f16mf4_m(vbool64_t mask, _Float16 *base, vfloat16mf4_t value,
+void test_vse16_v_f16mf4_m(vbool64_t vm, _Float16 *rs1, vfloat16mf4_t vs3,
                            size_t vl) {
-  return __riscv_vse16_v_f16mf4_m(mask, base, value, vl);
+  return __riscv_vse16_v_f16mf4_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_f16mf2_m(vbool32_t mask, _Float16 *base, vfloat16mf2_t value,
+void test_vse16_v_f16mf2_m(vbool32_t vm, _Float16 *rs1, vfloat16mf2_t vs3,
                            size_t vl) {
-  return __riscv_vse16_v_f16mf2_m(mask, base, value, vl);
+  return __riscv_vse16_v_f16mf2_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_f16m1_m(vbool16_t mask, _Float16 *base, vfloat16m1_t value,
+void test_vse16_v_f16m1_m(vbool16_t vm, _Float16 *rs1, vfloat16m1_t vs3,
                           size_t vl) {
-  return __riscv_vse16_v_f16m1_m(mask, base, value, vl);
+  return __riscv_vse16_v_f16m1_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_f16m2_m(vbool8_t mask, _Float16 *base, vfloat16m2_t value,
+void test_vse16_v_f16m2_m(vbool8_t vm, _Float16 *rs1, vfloat16m2_t vs3,
                           size_t vl) {
-  return __riscv_vse16_v_f16m2_m(mask, base, value, vl);
+  return __riscv_vse16_v_f16m2_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_f16m4_m(vbool4_t mask, _Float16 *base, vfloat16m4_t value,
+void test_vse16_v_f16m4_m(vbool4_t vm, _Float16 *rs1, vfloat16m4_t vs3,
                           size_t vl) {
-  return __riscv_vse16_v_f16m4_m(mask, base, value, vl);
+  return __riscv_vse16_v_f16m4_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_f16m8_m(vbool2_t mask, _Float16 *base, vfloat16m8_t value,
+void test_vse16_v_f16m8_m(vbool2_t vm, _Float16 *rs1, vfloat16m8_t vs3,
                           size_t vl) {
-  return __riscv_vse16_v_f16m8_m(mask, base, value, vl);
+  return __riscv_vse16_v_f16m8_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_i16mf4_m(vbool64_t mask, int16_t *base, vint16mf4_t value,
+void test_vse16_v_i16mf4_m(vbool64_t vm, int16_t *rs1, vint16mf4_t vs3,
                            size_t vl) {
-  return __riscv_vse16_v_i16mf4_m(mask, base, value, vl);
+  return __riscv_vse16_v_i16mf4_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_i16mf2_m(vbool32_t mask, int16_t *base, vint16mf2_t value,
+void test_vse16_v_i16mf2_m(vbool32_t vm, int16_t *rs1, vint16mf2_t vs3,
                            size_t vl) {
-  return __riscv_vse16_v_i16mf2_m(mask, base, value, vl);
+  return __riscv_vse16_v_i16mf2_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_i16m1_m(vbool16_t mask, int16_t *base, vint16m1_t value,
+void test_vse16_v_i16m1_m(vbool16_t vm, int16_t *rs1, vint16m1_t vs3,
                           size_t vl) {
-  return __riscv_vse16_v_i16m1_m(mask, base, value, vl);
+  return __riscv_vse16_v_i16m1_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_i16m2_m(vbool8_t mask, int16_t *base, vint16m2_t value,
+void test_vse16_v_i16m2_m(vbool8_t vm, int16_t *rs1, vint16m2_t vs3,
                           size_t vl) {
-  return __riscv_vse16_v_i16m2_m(mask, base, value, vl);
+  return __riscv_vse16_v_i16m2_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_i16m4_m(vbool4_t mask, int16_t *base, vint16m4_t value,
+void test_vse16_v_i16m4_m(vbool4_t vm, int16_t *rs1, vint16m4_t vs3,
                           size_t vl) {
-  return __riscv_vse16_v_i16m4_m(mask, base, value, vl);
+  return __riscv_vse16_v_i16m4_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_i16m8_m(vbool2_t mask, int16_t *base, vint16m8_t value,
+void test_vse16_v_i16m8_m(vbool2_t vm, int16_t *rs1, vint16m8_t vs3,
                           size_t vl) {
-  return __riscv_vse16_v_i16m8_m(mask, base, value, vl);
+  return __riscv_vse16_v_i16m8_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_u16mf4_m(vbool64_t mask, uint16_t *base, vuint16mf4_t value,
+void test_vse16_v_u16mf4_m(vbool64_t vm, uint16_t *rs1, vuint16mf4_t vs3,
                            size_t vl) {
-  return __riscv_vse16_v_u16mf4_m(mask, base, value, vl);
+  return __riscv_vse16_v_u16mf4_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_u16mf2_m(vbool32_t mask, uint16_t *base, vuint16mf2_t value,
+void test_vse16_v_u16mf2_m(vbool32_t vm, uint16_t *rs1, vuint16mf2_t vs3,
                            size_t vl) {
-  return __riscv_vse16_v_u16mf2_m(mask, base, value, vl);
+  return __riscv_vse16_v_u16mf2_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_u16m1_m(vbool16_t mask, uint16_t *base, vuint16m1_t value,
+void test_vse16_v_u16m1_m(vbool16_t vm, uint16_t *rs1, vuint16m1_t vs3,
                           size_t vl) {
-  return __riscv_vse16_v_u16m1_m(mask, base, value, vl);
+  return __riscv_vse16_v_u16m1_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_u16m2_m(vbool8_t mask, uint16_t *base, vuint16m2_t value,
+void test_vse16_v_u16m2_m(vbool8_t vm, uint16_t *rs1, vuint16m2_t vs3,
                           size_t vl) {
-  return __riscv_vse16_v_u16m2_m(mask, base, value, vl);
+  return __riscv_vse16_v_u16m2_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_u16m4_m(vbool4_t mask, uint16_t *base, vuint16m4_t value,
+void test_vse16_v_u16m4_m(vbool4_t vm, uint16_t *rs1, vuint16m4_t vs3,
                           size_t vl) {
-  return __riscv_vse16_v_u16m4_m(mask, base, value, vl);
+  return __riscv_vse16_v_u16m4_m(vm, rs1, vs3, vl);
 }
 
-void test_vse16_v_u16m8_m(vbool2_t mask, uint16_t *base, vuint16m8_t value,
+void test_vse16_v_u16m8_m(vbool2_t vm, uint16_t *rs1, vuint16m8_t vs3,
                           size_t vl) {
-  return __riscv_vse16_v_u16m8_m(mask, base, value, vl);
+  return __riscv_vse16_v_u16m8_m(vm, rs1, vs3, vl);
 }
