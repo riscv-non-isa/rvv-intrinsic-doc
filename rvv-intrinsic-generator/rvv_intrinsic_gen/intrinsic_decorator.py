@@ -69,28 +69,28 @@ class IntrinsicDecorator():
     if self.is_mask and self.need_maskedoff:
       assert maskoff_type is not None
       d = collections.OrderedDict()
-      d["mask"] = mask_type
+      d["vm"] = mask_type
       if nf is None:
-        d["maskedoff"] = maskoff_type
+        d["vd"] = maskoff_type
       else:
         if is_seg_load_store_tuple_type:
-          d["maskedoff_tuple"] = f"{maskoff_type.split('_')[0]}x{nf}_t"
+          d["vd"] = f"{maskoff_type.split('_')[0]}x{nf}_t"
         else:
           for i in range(nf):
-            d[f"maskedoff{i}"] = maskoff_type
+            d[f"vd_{i}"] = maskoff_type
       return d
     elif self.is_mask:
-      return {"mask": mask_type}
+      return {"vm": mask_type}
 
     return {}
 
   def dest_args(self, dest_type):
     if self.func_suffix in ["_ta", "_tama"] and self.has_maskedoff_name:
-      return {"dest": dest_type}
+      return {"vd": dest_type}
     if self.func_suffix in ["_ta", "_tama", "_tam"]:
       return {}
     elif self.has_maskedoff_name is True and not self.need_maskedoff:
-      return {"maskedoff": dest_type}
+      return {"vd": dest_type}
     else:  # Implicit functions without NEED_MERGE and NEED_MASKED_OFF
       return {}
 
@@ -102,13 +102,13 @@ class IntrinsicDecorator():
       assert dest_type is not None
       d = collections.OrderedDict()
       if nf is None:
-        d["maskedoff"] = dest_type
+        d["vd"] = dest_type
       else:
         if is_seg_load_store_tuple_type:
-          d["maskedoff_tuple"] = f"{dest_type.split('_')[0]}x{nf}_t"
+          d["vd"] = f"{dest_type.split('_')[0]}x{nf}_t"
         else:
           for i in range(nf):
-            d[f"maskedoff{i}"] = dest_type
+            d[f"vd_{i}"] = dest_type
       return d
     return {}
 
