@@ -35,7 +35,8 @@ test:
 	echo $(basename $(TEST_FILES))
 
 clean:
-	rm *.log -f
+	rm -f *.log
+	rm -f test_report.xml
 
 %.log: $(BASE_DIR)/%.c
 	-$(CC) $< -S -o /dev/null $(ARCH_FLAG) $(CFLAGS) $(EXTRA_CFLAGS) &> $@
