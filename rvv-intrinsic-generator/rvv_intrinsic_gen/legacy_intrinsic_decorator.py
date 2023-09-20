@@ -92,15 +92,15 @@ class LegacyIntrinsicDecorator():
     if self.is_mask and self.need_maskedoff:
       assert maskoff_type is not None
       d = collections.OrderedDict()
-      d["mask"] = mask_type
+      d["vm"] = mask_type
       if nf is None:
-        d["maskedoff"] = maskoff_type
+        d["vd"] = maskoff_type
       else:
         for i in range(nf):
-          d[f"maskedoff{i}"] = maskoff_type
+          d[f"vd_{i}"] = maskoff_type
       return d
     elif self.is_mask:
-      return {"mask": mask_type}
+      return {"vm": mask_type}
 
     return {}
 
@@ -113,25 +113,25 @@ class LegacyIntrinsicDecorator():
 
   def dest_args(self, dest_type):
     if self.func_suffix in ["_ta", "_tama"] and self.has_maskedoff_name:
-      return {"dest": dest_type}
+      return {"vd": dest_type}
     if self.func_suffix in ["_ta", "_tama", "_tam"]:
       return {}
     elif self.has_maskedoff_name is True and not self.need_maskedoff:
-      return {"maskedoff": dest_type}
+      return {"vd": dest_type}
     elif self.is_mask and self.need_maskedoff:
       # Don't repeatedly assign maskedoff/dest parameter
       return {}
-    return {"dest": dest_type}
+    return {"vd": dest_type}
 
   def tu_dest_args(self, dest_type, nf=None):
     if self.has_maskedoff_name and not self.need_maskedoff:
       assert dest_type is not None
       d = collections.OrderedDict()
       if nf is None:
-        d["maskedoff"] = dest_type
+        d["vd"] = dest_type
       else:
         for i in range(nf):
-          d[f"maskedoff{i}"] = dest_type
+          d[f"vd_{i}"] = dest_type
       return d
     return {}
 
