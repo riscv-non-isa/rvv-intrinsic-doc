@@ -616,9 +616,9 @@ The `vcreate` intrinsics are syntactic sugars for tuple types creation. They ess
 
 == Programming Notes
 
-=== The `vd` argument in the intrinsics
+=== The passthrough (`vd`) argument in the intrinsics
 
-Intrinsics whose computation is relevant to the -value held in `vd` have a passthrough argument in them. The following list enumerates the intrinsics that has a passthrough argument. Please see the appendix for the exact prototypes of these intrinsics.
+Intrinsics whose computation is relevant to the value held in destination register (assembly mnemonics `vd`) have a `vd` argument in them. The following list enumerates the intrinsics that have a `vd` argument. Please see the appendix for the exact prototypes of these intrinsics.
 
 - Intrinsics with tail-undisturbed (`vta=0`)
 - Intrinsics with mask-undisturbed (`vma=0`)
