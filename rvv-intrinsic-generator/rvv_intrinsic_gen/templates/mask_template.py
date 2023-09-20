@@ -51,7 +51,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             inst_info_m,
             name="{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
             return_type=type_helper.m,
-            op1=type_helper.m,
+            vs=type_helper.m,
             vl=type_helper.size_t)
       elif op in ["clr", "set"]:  # nullary operator
         G.func(
@@ -65,7 +65,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             name="{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
             return_type=type_helper.m,
             **decorator.mask_args(type_helper.m, type_helper.m),
-            op1=type_helper.m,
+            vs2=type_helper.m,
             vl=type_helper.size_t)
       elif op == "cpop":
         G.func(
@@ -73,7 +73,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             name="{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
             return_type=type_helper.ulong,
             **decorator.mask_args(type_helper.m),
-            op1=type_helper.m,
+            vs2=type_helper.m,
             vl=type_helper.size_t)
       elif op == "first":
         G.func(
@@ -81,7 +81,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             name="{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
             return_type=type_helper.long,
             **decorator.mask_args(type_helper.m),
-            op1=type_helper.m,
+            vs2=type_helper.m,
             vl=type_helper.size_t)
       else:  # binary operator
         G.func(
@@ -89,8 +89,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             name="{OP}_mm_b{MLEN}".format_map(args) + decorator.func_suffix,
             return_type=type_helper.m,
             **decorator.mask_args(type_helper.m),
-            op1=type_helper.m,
-            op2=type_helper.m,
+            vs2=type_helper.m,
+            vs1=type_helper.m,
             vl=type_helper.size_t)
 
     for args in prod(OP=op_list, TYPE=type_list, SEW=sew_list, LMUL=lmul_list):
@@ -107,7 +107,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             return_type=type_helper.uiv,
             **decorator.mask_args(type_helper.m, type_helper.uiv),
             **decorator.tu_dest_args(type_helper.uiv),
-            op1=type_helper.m,
+            vs2=type_helper.m,
             vl=type_helper.size_t)
       if op == "id":
         G.func(

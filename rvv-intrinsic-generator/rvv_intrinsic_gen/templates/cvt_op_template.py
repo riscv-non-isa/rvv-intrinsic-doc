@@ -118,7 +118,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           return_type=rt,
           **decorator.mask_args(type_helper.m, rt),
           **decorator.tu_dest_args(rt),
-          src=src_type,
+          vs2=src_type,
           **decorator.extra_csr_args(type_helper.uint),
           vl=type_helper.size_t)
 
@@ -141,7 +141,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             return_type=rt,
             **decorator.mask_args(type_helper.m, rt),
             **decorator.tu_dest_args(rt),
-            src=src_type,
+            vs2=src_type,
             vl=type_helper.size_t)
 
       if op == "ncvt" and args["TYPES1"] == "f" and args["TYPES3"] == "f":
@@ -157,7 +157,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             return_type=rt,
             **decorator.mask_args(type_helper.m, rt),
             **decorator.tu_dest_args(rt),
-            src=src_type,
+            vs2=src_type,
             vl=type_helper.size_t)
 
   G.inst_group_epilogue()

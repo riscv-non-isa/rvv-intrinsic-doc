@@ -84,7 +84,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           InstInfo.get(args, decorator, inst_type),
           name=func_name + decorator.func_suffix,
           return_type=dst_type,
-          op1=type_helper.v)
+          value=type_helper.v)
 
   nf_list = range(2, 9)
   for decorator in decorator_list:

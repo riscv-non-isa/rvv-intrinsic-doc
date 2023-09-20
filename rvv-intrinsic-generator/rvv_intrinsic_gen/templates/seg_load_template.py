@@ -61,14 +61,14 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       inst_type = InstType.VX
 
       if op in ["vlsseg"]:
-        extra_addr_args["bstride"] = "ptrdiff_t"
+        extra_addr_args["rs2"] = "ptrdiff_t"
         inst_type = InstType.VXX
       if op in ["vloxseg", "vluxseg"]:
         elmul = type_helper.get_elmul(eew, sew)
         if elmul == 0:
           continue
         elmul_str = get_string_lmul(elmul, 1)
-        extra_addr_args["bindex"] = f"vuint{eew}m{elmul_str}_t"
+        extra_addr_args["rs2"] = f"vuint{eew}m{elmul_str}_t"
         args["OP"] = op + nf + "ei" + str(eew)
         inst_type = InstType.VV
       elif op == "vlsegff":
@@ -88,7 +88,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             **seg_arg(type_helper.v, int(nf), ptr_t=True),
             **decorator.mask_args(type_helper.m, type_helper.v, int(nf)),
             **decorator.tu_dest_args(type_helper.v, int(nf)),
-            base="const {TYPE}{SEW}_t *".format_map(args),
+            rs1="const {TYPE}{SEW}_t *".format_map(args),
             **extra_addr_args,
             vl=type_helper.size_t)
 
@@ -107,7 +107,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
                 is_seg_load_store_tuple_type=True),
             **decorator.tu_dest_args(
                 type_helper.v, int(nf), is_seg_load_store_tuple_type=True),
-            base="const {TYPE}{SEW}_t *".format_map(args),
+            rs1="const {TYPE}{SEW}_t *".format_map(args),
             **extra_addr_args,
             vl=type_helper.size_t)
 
