@@ -49,7 +49,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             inst_info,
             name="vlm_v_b{MLEN}".format_map(args) + decorator.func_suffix,
             return_type=type_helper.m,
-            base=base_type,
+            rs1=base_type,
             vl=type_helper.size_t)
       else:
         base_type = "uint8_t *"
@@ -57,8 +57,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             inst_info,
             name="vsm_v_b{MLEN}".format_map(args) + decorator.func_suffix,
             return_type=type_helper.void,
-            base=base_type,
-            value=type_helper.m,
+            rs1=base_type,
+            vs3=type_helper.m,
             vl=type_helper.size_t)
 
   G.inst_group_epilogue()

@@ -45,14 +45,14 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       extra_addr_args = collections.OrderedDict()
       inst_type = InstType.VX
       if op in ["vsse"]:
-        extra_addr_args["bstride"] = "ptrdiff_t"
+        extra_addr_args["rs2"] = "ptrdiff_t"
         inst_type = InstType.VXX
       if op in ["vsoxei", "vsuxei"]:
         elmul = type_helper.get_elmul(eew, sew)
         if elmul == 0:
           continue
         elmul_str = get_string_lmul(elmul, 1)
-        extra_addr_args["bindex"] = f"vuint{eew}m{elmul_str}_t"
+        extra_addr_args["rs2"] = f"vuint{eew}m{elmul_str}_t"
         inst_type = InstType.VV
       args["OP"] = op + str(eew)
 
@@ -66,9 +66,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           decorator.func_suffix,
           return_type=type_helper.void,
           **decorator.mask_args(type_helper.m, type_helper.v),
-          base="{TYPE}{SEW}_t *".format_map(args),
+          rs1="{TYPE}{SEW}_t *".format_map(args),
           **extra_addr_args,
-          value=type_helper.v,
+          vs3=type_helper.v,
           vl=type_helper.size_t)
 
   G.inst_group_epilogue()

@@ -105,18 +105,31 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         raise Exception("Unknown op2 type.")
 
       if op in ["ssra", "sra", "ssrl", "srl", "sll"]:
-        G.func(
-            inst_info,
-            name="{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
-            decorator.func_suffix,
-            return_type=type_helper.v,
-            **decorator.mask_args(type_helper.m, type_helper.v),
-            **decorator.tu_dest_args(type_helper.v),
-            op1=type_helper.v,
-            shift=(f"vuint{args['SEW']}m{args['LMUL']}_t"
-                   if op2 == "v" else "size_t"),
-            **decorator.extra_csr_args(type_helper.uint),
-            vl=type_helper.size_t)
+        if args["OP2"] == "v":
+          G.func(
+              inst_info,
+              name="{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              decorator.func_suffix,
+              return_type=type_helper.v,
+              **decorator.mask_args(type_helper.m, type_helper.v),
+              **decorator.tu_dest_args(type_helper.v),
+              vs2=type_helper.v,
+              vs1=f"vuint{args['SEW']}m{args['LMUL']}_t",
+              **decorator.extra_csr_args(type_helper.uint),
+              vl=type_helper.size_t)
+        else:  # vx, vf
+          G.func(
+              inst_info,
+              name="{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              decorator.func_suffix,
+              return_type=type_helper.v,
+              **decorator.mask_args(type_helper.m, type_helper.v),
+              **decorator.tu_dest_args(type_helper.v),
+              vs2=type_helper.v,
+              rs1="size_t",
+              **decorator.extra_csr_args(type_helper.uint),
+              vl=type_helper.size_t)
+
       elif op in ["neg", "fneg"]:
         G.func(
             inst_info_v,
@@ -125,30 +138,55 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             return_type=type_helper.v,
             **decorator.mask_args(type_helper.m, type_helper.v),
             **decorator.tu_dest_args(type_helper.v),
-            op1=type_helper.v,
+            vs=type_helper.v,
             vl=type_helper.size_t)
       elif "rgather" == op:
-        G.func(
-            InstInfo.get(args, decorator, InstType.VVV),
-            name="{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
-            decorator.func_suffix,
-            return_type=type_helper.v,
-            **decorator.mask_args(type_helper.m, type_helper.v),
-            **decorator.tu_dest_args(type_helper.v),
-            op1=type_helper.v,
-            index=(v_op2 if op2 == "v" else s_op2),
-            vl=type_helper.size_t)
+        if op2 == "v":
+          G.func(
+              InstInfo.get(args, decorator, InstType.VVV),
+              name="{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              decorator.func_suffix,
+              return_type=type_helper.v,
+              **decorator.mask_args(type_helper.m, type_helper.v),
+              **decorator.tu_dest_args(type_helper.v),
+              vs2=type_helper.v,
+              vs1=v_op2,
+              vl=type_helper.size_t)
+        else:  # vx
+          G.func(
+              InstInfo.get(args, decorator, InstType.VVV),
+              name="{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              decorator.func_suffix,
+              return_type=type_helper.v,
+              **decorator.mask_args(type_helper.m, type_helper.v),
+              **decorator.tu_dest_args(type_helper.v),
+              vs2=type_helper.v,
+              vs1=s_op2,
+              vl=type_helper.size_t)
       else:
-        G.func(
-            inst_info,
-            name="{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
-            decorator.func_suffix,
-            return_type=type_helper.v,
-            **decorator.mask_args(type_helper.m, type_helper.v),
-            **decorator.tu_dest_args(type_helper.v),
-            op1=type_helper.v,
-            op2=(v_op2 if op2 == "v" else s_op2),
-            **decorator.extra_csr_args(type_helper.uint),
-            vl=type_helper.size_t)
+        if op2 == "v":
+          G.func(
+              inst_info,
+              name="{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              decorator.func_suffix,
+              return_type=type_helper.v,
+              **decorator.mask_args(type_helper.m, type_helper.v),
+              **decorator.tu_dest_args(type_helper.v),
+              vs2=type_helper.v,
+              vs1=v_op2,
+              **decorator.extra_csr_args(type_helper.uint),
+              vl=type_helper.size_t)
+        else:  # vx, vf
+          G.func(
+              inst_info,
+              name="{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              decorator.func_suffix,
+              return_type=type_helper.v,
+              **decorator.mask_args(type_helper.m, type_helper.v),
+              **decorator.tu_dest_args(type_helper.v),
+              vs2=type_helper.v,
+              rs1=s_op2,
+              **decorator.extra_csr_args(type_helper.uint),
+              vl=type_helper.size_t)
 
   G.inst_group_epilogue()
