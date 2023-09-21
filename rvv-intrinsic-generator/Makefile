@@ -135,8 +135,10 @@ all: gen-document gen-test gen-compatible-header
 endif
 
 gen-document: non-overloaded-doc non-overloaded-docs overloaded-doc overloaded-docs
-gen-test: non-overloaded-test overloaded-test llvm-non-overloaded-test llvm-overloaded-test
+gen-test: non-overloaded-test overloaded-test gen-llvm-test gen-gnu-test
 gen-compatible-header: non-policy-compatible-header policy-compatible-header non-policy-overloaded-compatible-header policy-overloaded-compatible-header
+gen-llvm-test: llvm-non-overloaded-test llvm-overloaded-test
+gen-gnu-test: gnu-overloaded-test gnu-non-overloaded-test
 
 # Generate all-in-one document for non-overloaded intrinsics
 non-overloaded-doc:
@@ -170,17 +172,27 @@ overloaded-test:
 
 # Generate non-overloaded intrinsic testing C source files
 llvm-non-overloaded-test:
-	$(call gen_tests,$(DIR)/llvm-api-tests,non-overloaded-test,--llvm)
-	$(call gen_tests,$(POLICY_DIR)/llvm-api-tests,non-overloaded-test,--llvm --has-policy)
+	$(call gen_tests,$(DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm)
+	$(call gen_tests,$(POLICY_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --has-policy)
 	$(call replace_float, $(DIR)/llvm-api-tests)
 	$(call replace_float, $(POLICY_DIR)/llvm-api-tests)
 
 # Generate overloaded intrinsic testing C source files
 llvm-overloaded-test:
-	$(call gen_tests,$(DIR)/llvm-overloaded-tests,overloaded-test,--llvm)
-	$(call gen_tests,$(POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--llvm --has-policy)
+	$(call gen_tests,$(DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm)
+	$(call gen_tests,$(POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --has-policy)
 	$(call replace_float, $(DIR)/llvm-overloaded-tests)
 	$(call replace_float, $(POLICY_DIR)/llvm-overloaded-tests)
+
+# Generate GNU non-overloaded intrinsic testing source files
+gnu-non-overloaded-test:
+	$(call gen_tests,$(DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu)
+	$(call gen_tests,$(POLICY_DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu --has-policy)
+
+# Generate GNU overloaded intrinsic testing source files
+gnu-overloaded-test:
+	$(call gen_tests,$(DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu)
+	$(call gen_tests,$(POLICY_DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu --has-policy)
 
 # Generate the adaptor header for v0.10
 non-policy-compatible-header:
