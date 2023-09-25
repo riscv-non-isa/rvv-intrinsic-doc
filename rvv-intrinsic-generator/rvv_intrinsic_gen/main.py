@@ -178,6 +178,8 @@ def main():
     print("Skipping default RVV instructions (--skip-default-inst)")
   if vendor_gen is not None:
     vendor_gen(g)
+  if mode in (GenTypes.NON_OVERLOADED_TEST, GenTypes.OVERLOADED_TEST):
+    g.post_gen()
   g.report_summary()
   return
 
