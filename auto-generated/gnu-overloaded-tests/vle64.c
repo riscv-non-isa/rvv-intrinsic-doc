@@ -54,3 +54,4 @@ vuint64m8_t test_vle64_v_u64m8_m(vbool8_t mask, const uint64_t *base, size_t vl)
   return __riscv_vle64(mask, base, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vle64\.[ivxfswum.]+\s+} 12 } } */

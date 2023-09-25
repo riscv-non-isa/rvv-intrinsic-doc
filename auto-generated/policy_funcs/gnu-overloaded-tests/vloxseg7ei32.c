@@ -422,3 +422,4 @@ vuint64m1x7_t test_vloxseg7ei32_v_u64m1x7_mu(vbool64_t mask, vuint64m1x7_t maske
   return __riscv_vloxseg7ei32_mu(mask, maskedoff_tuple, base, bindex, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vloxseg7ei32\.[ivxfswum.]+\s+} 104 } } */

@@ -102,3 +102,4 @@ vuint8m4x2_t test_vlseg2e8ff_v_u8m4x2_m(vbool2_t mask, const uint8_t *base, size
   return __riscv_vlseg2e8ff_v_u8m4x2_m(mask, base, new_vl, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlseg2e8ff\.[ivxfswum.]+\s+} 24 } } */

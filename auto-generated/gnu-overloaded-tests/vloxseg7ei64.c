@@ -214,3 +214,4 @@ vuint64m1x7_t test_vloxseg7ei64_v_u64m1x7_m(vbool64_t mask, const uint64_t *base
   return __riscv_vloxseg7ei64(mask, base, bindex, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vloxseg7ei64\.[ivxfswum.]+\s+} 52 } } */

@@ -486,3 +486,4 @@ vint64m8_t test_vwmacc_vx_i64m8_mu(vbool8_t mask, vint64m8_t vd, int32_t rs1, vi
   return __riscv_vwmacc_vx_i64m8_mu(mask, vd, rs1, vs2, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vwmacc\.[ivxfswum.]+\s+} 120 } } */

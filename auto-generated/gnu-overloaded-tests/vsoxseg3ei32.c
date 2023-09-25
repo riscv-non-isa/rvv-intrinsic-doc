@@ -302,3 +302,4 @@ void test_vsoxseg3ei32_v_u64m2x3_m(vbool32_t mask, uint64_t *base, vuint32m1_t b
   return __riscv_vsoxseg3ei32(mask, base, bindex, v_tuple, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsoxseg3ei32\.[ivxfswum.]+\s+} 74 } } */

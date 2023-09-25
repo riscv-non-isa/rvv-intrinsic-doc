@@ -710,3 +710,4 @@ vuint64m8_t test_vminu_vx_u64m8_mu(vbool8_t mask, vuint64m8_t maskedoff, vuint64
   return __riscv_vminu_vx_u64m8_mu(mask, maskedoff, op1, op2, vl);
 }
 
+/* { dg-final { scan-assembler-times {vminu\.[ivxfswum.]+\s+} 176 } } */

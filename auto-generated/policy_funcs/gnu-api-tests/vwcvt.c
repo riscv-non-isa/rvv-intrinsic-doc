@@ -246,3 +246,4 @@ vint64m8_t test_vwcvt_x_x_v_i64m8_mu(vbool8_t mask, vint64m8_t maskedoff, vint32
   return __riscv_vwcvt_x_x_v_i64m8_mu(mask, maskedoff, src, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vwcvt\.[ivxfswum.]+\s+} 60 } } */

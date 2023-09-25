@@ -166,3 +166,4 @@ vuint8m2x4_t test_vlseg4e8_v_u8m2x4_mu(vbool4_t mask, vuint8m2x4_t maskedoff_tup
   return __riscv_vlseg4e8_mu(mask, maskedoff_tuple, base, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlseg4e8\.[ivxfswum.]+\s+} 40 } } */

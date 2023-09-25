@@ -358,3 +358,4 @@ vuint64m1_t test_vredxor_vs_u64m8_u64m1_m(vbool8_t mask, vuint64m8_t vector, vui
   return __riscv_vredxor(mask, vector, scalar, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vredxor\.[ivxfswum.]+\s+} 88 } } */

@@ -710,3 +710,4 @@ vbool8_t test_vmadc_vx_u64m8_b8(vuint64m8_t op1, uint64_t op2, size_t vl) {
   return __riscv_vmadc(op1, op2, vl);
 }
 
+/* { dg-final { scan-assembler-times {vmadc\.[ivxfswum.]+\s+} 176 } } */

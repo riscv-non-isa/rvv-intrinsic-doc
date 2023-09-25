@@ -246,3 +246,4 @@ vint64m8_t test_vwmul_vx_i64m8_m(vbool8_t mask, vint32m4_t op1, int32_t op2, siz
   return __riscv_vwmul(mask, op1, op2, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vwmul\.[ivxfswum.]+\s+} 60 } } */

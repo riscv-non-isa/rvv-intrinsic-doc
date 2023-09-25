@@ -214,3 +214,4 @@ void test_vsoxseg7ei8_v_u64m1x7_m(vbool64_t mask, uint64_t *base, vuint8mf8_t bi
   return __riscv_vsoxseg7ei8(mask, base, bindex, v_tuple, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsoxseg7ei8\.[ivxfswum.]+\s+} 52 } } */

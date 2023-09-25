@@ -78,3 +78,4 @@ void test_vssseg7e16_v_u16m1x7_m(vbool16_t mask, uint16_t *base, ptrdiff_t bstri
   return __riscv_vssseg7e16_v_u16m1x7_m(mask, base, bstride, v_tuple, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vssseg7e16\.[ivxfswum.]+\s+} 18 } } */

@@ -710,3 +710,4 @@ vuint64m8_t test_vand_vx_u64m8_m(vbool8_t mask, vuint64m8_t op1, uint64_t op2, s
   return __riscv_vand_vx_u64m8_m(mask, op1, op2, vl);
 }
 
+/* { dg-final { scan-assembler-times {vand\.[ivxfswum.]+\s+} 176 } } */

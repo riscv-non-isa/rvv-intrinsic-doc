@@ -94,3 +94,4 @@ size_t test_vsetvl_e64m8(size_t avl) {
   return __riscv_vsetvl_e64m8(avl);
 }
 
+/* { dg-final { scan-assembler-times {vsetvli\s+[a-x0-9]+,\s*[a-x0-9]+,\s*e[0-9]+,\s*m[f]?[1248],\s*t[au],\s*m[au]} 22 } } */

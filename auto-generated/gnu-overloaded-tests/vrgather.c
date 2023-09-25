@@ -950,3 +950,4 @@ vuint64m8_t test_vrgather_vx_u64m8_m(vbool8_t mask, vuint64m8_t op1, size_t inde
   return __riscv_vrgather(mask, op1, index, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vrgather\.[ivxfswum.]+\s+} 236 } } */

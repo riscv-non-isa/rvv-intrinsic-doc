@@ -294,3 +294,4 @@ vfloat64m8_t test_vfwmul_vf_f64m8_rm_m(vbool8_t mask, vfloat32m4_t op1, float32_
   return __riscv_vfwmul(mask, op1, op2, __RISCV_FRM_RNE, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfwmul\.[ivxfswum.]+\s+} 72 } } */

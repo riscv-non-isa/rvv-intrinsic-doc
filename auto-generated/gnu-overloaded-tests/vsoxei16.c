@@ -462,3 +462,4 @@ void test_vsoxei16_v_u64m8_m(vbool8_t mask, uint64_t *base, vuint16m2_t bindex, 
   return __riscv_vsoxei16(mask, base, bindex, value, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsoxei16\.[ivxfswum.]+\s+} 114 } } */

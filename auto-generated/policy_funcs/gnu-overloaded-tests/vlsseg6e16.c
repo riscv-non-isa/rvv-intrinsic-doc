@@ -150,3 +150,4 @@ vuint16m1x6_t test_vlsseg6e16_v_u16m1x6_mu(vbool16_t mask, vuint16m1x6_t maskedo
   return __riscv_vlsseg6e16_mu(mask, maskedoff_tuple, base, bstride, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlsseg6e16\.[ivxfswum.]+\s+} 36 } } */

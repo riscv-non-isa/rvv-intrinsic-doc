@@ -54,3 +54,4 @@ vuint16m2x3_t test_vlseg3e16_v_u16m2x3_m(vbool8_t mask, const uint16_t *base, si
   return __riscv_vlseg3e16(mask, base, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlseg3e16\.[ivxfswum.]+\s+} 12 } } */

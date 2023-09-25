@@ -710,3 +710,4 @@ vbool8_t test_vmseq_vx_u64m8_b8_m(vbool8_t mask, vuint64m8_t op1, uint64_t op2, 
   return __riscv_vmseq_vx_u64m8_b8_m(mask, op1, op2, vl);
 }
 
+/* { dg-final { scan-assembler-times {vmseq\.[ivxfswum.]+\s+} 176 } } */

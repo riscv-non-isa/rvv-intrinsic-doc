@@ -118,3 +118,4 @@ void test_vse8_v_u8m8_m(vbool1_t mask, uint8_t *base, vuint8m8_t value, size_t v
   return __riscv_vse8_v_u8m8_m(mask, base, value, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vse8\.[ivxfswum.]+\s+} 28 } } */

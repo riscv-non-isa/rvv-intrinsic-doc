@@ -198,3 +198,4 @@ vuint16m2x3_t test_vlseg3e16ff_v_u16m2x3_mu(vbool8_t mask, vuint16m2x3_t maskedo
   return __riscv_vlseg3e16ff_v_u16m2x3_mu(mask, maskedoff_tuple, base, new_vl, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlseg3e16ff\.[ivxfswum.]+\s+} 48 } } */

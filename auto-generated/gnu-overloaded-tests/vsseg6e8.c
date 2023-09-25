@@ -70,3 +70,4 @@ void test_vsseg6e8_v_u8m1x6_m(vbool8_t mask, uint8_t *base, vuint8m1x6_t v_tuple
   return __riscv_vsseg6e8(mask, base, v_tuple, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsseg6e8\.[ivxfswum.]+\s+} 16 } } */

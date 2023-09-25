@@ -918,3 +918,4 @@ vuint64m8_t test_vloxei16_v_u64m8_mu(vbool8_t mask, vuint64m8_t maskedoff, const
   return __riscv_vloxei16_mu(mask, maskedoff, base, bindex, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vloxei16\.[ivxfswum.]+\s+} 228 } } */

@@ -294,3 +294,4 @@ vfloat64m8_t test_vfwnmsac_vf_f64m8_rm_m(vbool8_t mask, vfloat64m8_t vd, float32
   return __riscv_vfwnmsac(mask, vd, vs1, vs2, __RISCV_FRM_RNE, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfwnmsac\.[ivxfswum.]+\s+} 72 } } */

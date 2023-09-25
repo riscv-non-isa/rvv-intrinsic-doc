@@ -418,3 +418,4 @@ uint64_t test_vmv_x_s_u64m8_u64(vuint64m8_t src) {
   return __riscv_vmv_x(src);
 }
 
+/* { dg-final { scan-assembler-times {v[ml][s]*[ve][0-9]*\.[ivxfswum.]+\s+} 103 } } */

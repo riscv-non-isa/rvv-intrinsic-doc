@@ -246,3 +246,4 @@ vuint32m8_t test_vle32ff_v_u32m8_mu(vbool4_t mask, vuint32m8_t maskedoff, const 
   return __riscv_vle32ff_mu(mask, maskedoff, base, new_vl, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vle32ff\.[ivxfswum.]+\s+} 60 } } */

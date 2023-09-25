@@ -126,3 +126,4 @@ vfloat64m8_t test_vfmv_s_f_f64m8_tu(vfloat64m8_t maskedoff, float64_t src, size_
   return __riscv_vfmv_s_f_f64m8_tu(maskedoff, src, vl);
 }
 
+/* { dg-final { scan-assembler-times {vfmv\.[ivxfswum.]+\s+[,\sa-x0-9()]+} 30 } } */

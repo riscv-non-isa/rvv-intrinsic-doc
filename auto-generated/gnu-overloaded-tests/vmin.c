@@ -358,3 +358,4 @@ vint64m8_t test_vmin_vx_i64m8_m(vbool8_t mask, vint64m8_t op1, int64_t op2, size
   return __riscv_vmin(mask, op1, op2, vl);
 }
 
+/* { dg-final { scan-assembler-times {vmin\.[ivxfswum.]+\s+} 88 } } */

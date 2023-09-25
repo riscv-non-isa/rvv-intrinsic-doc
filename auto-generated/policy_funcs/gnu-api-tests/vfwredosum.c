@@ -182,3 +182,4 @@ vfloat64m1_t test_vfwredosum_vs_f32m8_f64m1_rm_tum(vbool4_t mask, vfloat64m1_t m
   return __riscv_vfwredosum_vs_f32m8_f64m1_rm_tum(mask, maskedoff, vector, scalar, __RISCV_FRM_RNE, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfwredosum\.[ivxfswum.]+\s+} 44 } } */

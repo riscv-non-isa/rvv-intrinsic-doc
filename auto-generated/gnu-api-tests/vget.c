@@ -1174,3 +1174,4 @@ vuint64m4_t test_vget_v_u64m4x2_u64m4(vuint64m4x2_t src, size_t index) {
   return __riscv_vget_v_u64m4x2_u64m4(src, 0);
 }
 
+/* { dg-final { scan-assembler-times {vl[124]re[0-9]*\.v\s+v[124],0\([a-z0-9]*\)\s+vs[124]r\.+[ivxfswum.]*\s+} 292 } } */

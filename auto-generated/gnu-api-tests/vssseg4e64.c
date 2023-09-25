@@ -54,3 +54,4 @@ void test_vssseg4e64_v_u64m2x4_m(vbool32_t mask, uint64_t *base, ptrdiff_t bstri
   return __riscv_vssseg4e64_v_u64m2x4_m(mask, base, bstride, v_tuple, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vssseg4e64\.[ivxfswum.]+\s+} 12 } } */

@@ -710,3 +710,4 @@ vuint64m8_t test_vmacc_vx_u64m8_m(vbool8_t mask, vuint64m8_t vd, uint64_t rs1, v
   return __riscv_vmacc(mask, vd, rs1, vs2, vl);
 }
 
+/* { dg-final { scan-assembler-times {vma[c-d][c-d]\.[ivxfswum.]+\s+} 176 } } */

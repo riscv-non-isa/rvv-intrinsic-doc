@@ -246,3 +246,4 @@ vuint32m4_t test_vfncvt_rtz_xu_f_w_u32m4_m(vbool8_t mask, vfloat64m8_t src, size
   return __riscv_vfncvt_rtz_xu_f_w_u32m4_m(mask, src, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfncvt\.rtz[ivxfswum.]*\s+} 60 } } */

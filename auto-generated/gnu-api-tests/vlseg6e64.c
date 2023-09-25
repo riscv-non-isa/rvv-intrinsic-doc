@@ -30,3 +30,4 @@ vuint64m1x6_t test_vlseg6e64_v_u64m1x6_m(vbool64_t mask, const uint64_t *base, s
   return __riscv_vlseg6e64_v_u64m1x6_m(mask, base, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlseg6e64\.[ivxfswum.]+\s+} 6 } } */

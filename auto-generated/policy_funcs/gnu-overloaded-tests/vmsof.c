@@ -34,3 +34,4 @@ vbool64_t test_vmsof_m_b64_mu(vbool64_t mask, vbool64_t maskedoff, vbool64_t op1
   return __riscv_vmsof_mu(mask, maskedoff, op1, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vmsof\.[ivxfswum.]+\s+} 7 } } */

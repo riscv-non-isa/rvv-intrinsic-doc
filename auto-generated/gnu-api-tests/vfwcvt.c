@@ -606,3 +606,4 @@ vuint64m8_t test_vfwcvt_xu_f_v_u64m8_rm_m(vbool8_t mask, vfloat32m4_t src, size_
   return __riscv_vfwcvt_xu_f_v_u64m8_rm_m(mask, src, __RISCV_FRM_RNE, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfwcvt\.[ivxfswum.]+\s+} 150 } } */
