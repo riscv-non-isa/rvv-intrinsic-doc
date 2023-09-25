@@ -150,3 +150,4 @@ vuint64m1_t test_vwredsumu_vs_u32m8_u64m1_tum(vbool4_t mask, vuint64m1_t maskedo
   return __riscv_vwredsumu_vs_u32m8_u64m1_tum(mask, maskedoff, vector, scalar, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vwredsumu\.[ivxfswum.]+\s+} 36 } } */

@@ -546,3 +546,4 @@ vuint64m4_t test_vlmul_trunc_v_u64m8_u64m4(vuint64m8_t op1) {
   return __riscv_vlmul_trunc_v_u64m8_u64m4(op1);
 }
 
+/* { dg-final { scan-assembler-times {vs[1248e][r123468]+\.[ivxfswum.]+\s+[,\sa-x0-9()]+} 135 } } */

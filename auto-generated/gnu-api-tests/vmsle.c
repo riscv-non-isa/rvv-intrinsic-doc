@@ -358,3 +358,4 @@ vbool8_t test_vmsle_vx_i64m8_b8_m(vbool8_t mask, vint64m8_t op1, int64_t op2, si
   return __riscv_vmsle_vx_i64m8_b8_m(mask, op1, op2, vl);
 }
 
+/* { dg-final { scan-assembler-times {vmsle\.[ivxfswum.]+\s+} 88 } } */

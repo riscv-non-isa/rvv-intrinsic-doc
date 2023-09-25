@@ -1414,3 +1414,4 @@ vuint64m8_t test_vor_vx_u64m8_mu(vbool8_t mask, vuint64m8_t maskedoff, vuint64m8
   return __riscv_vor_vx_u64m8_mu(mask, maskedoff, op1, op2, vl);
 }
 
+/* { dg-final { scan-assembler-times {vor\.[ivxfswum.]+\s+} 352 } } */

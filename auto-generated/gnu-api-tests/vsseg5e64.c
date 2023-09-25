@@ -30,3 +30,4 @@ void test_vsseg5e64_v_u64m1x5_m(vbool64_t mask, uint64_t *base, vuint64m1x5_t v_
   return __riscv_vsseg5e64_v_u64m1x5_m(mask, base, v_tuple, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsseg5e64\.[ivxfswum.]+\s+} 6 } } */

@@ -246,3 +246,4 @@ vfloat64m8_t test_vfrec7_v_f64m8_rm_m(vbool8_t mask, vfloat64m8_t op1, size_t vl
   return __riscv_vfrec7(mask, op1, __RISCV_FRM_RNE, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfrec7\.[ivxfswum.]+\s+} 60 } } */

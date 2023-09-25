@@ -246,3 +246,4 @@ vuint32m4_t test_vnsrl_wx_u32m4_m(vbool8_t mask, vuint64m8_t op1, size_t shift, 
   return __riscv_vnsrl(mask, op1, shift, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vnsrl\.[ivxfswum.]+\s+} 60 } } */

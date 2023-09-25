@@ -70,3 +70,4 @@ vuint8m1x7_t test_vlsseg7e8_v_u8m1x7_m(vbool8_t mask, const uint8_t *base, ptrdi
   return __riscv_vlsseg7e8_v_u8m1x7_m(mask, base, bstride, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlsseg7e8\.[ivxfswum.]+\s+} 16 } } */

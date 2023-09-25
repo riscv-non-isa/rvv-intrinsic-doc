@@ -150,3 +150,4 @@ vuint32m2x3_t test_vlsseg3e32_v_u32m2x3_mu(vbool16_t mask, vuint32m2x3_t maskedo
   return __riscv_vlsseg3e32_mu(mask, maskedoff_tuple, base, bstride, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlsseg3e32\.[ivxfswum.]+\s+} 36 } } */

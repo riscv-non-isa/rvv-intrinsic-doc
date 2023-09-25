@@ -710,3 +710,4 @@ vuint64m8_t test_vaaddu_vx_u64m8_mu(vbool8_t mask, vuint64m8_t maskedoff, vuint6
   return __riscv_vaaddu_mu(mask, maskedoff, op1, op2, __RISCV_VXRM_RNU, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vaaddu\.[ivxfswum.]+\s+} 176 } } */

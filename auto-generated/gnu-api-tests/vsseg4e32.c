@@ -78,3 +78,4 @@ void test_vsseg4e32_v_u32m2x4_m(vbool16_t mask, uint32_t *base, vuint32m2x4_t v_
   return __riscv_vsseg4e32_v_u32m2x4_m(mask, base, v_tuple, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsseg4e32\.[ivxfswum.]+\s+} 18 } } */

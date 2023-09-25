@@ -966,3 +966,4 @@ vfloat64m8_t test_vfcvt_f_xu_v_f64m8_rm_m(vbool8_t mask, vuint64m8_t src, size_t
   return __riscv_vfcvt_f(mask, src, __RISCV_FRM_RNE, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfcvt\.[ivxfswum.]+\s+} 240 } } */

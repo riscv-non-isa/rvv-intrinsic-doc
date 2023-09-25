@@ -198,3 +198,4 @@ vuint64m8_t test_vlse64_v_u64m8_mu(vbool8_t mask, vuint64m8_t maskedoff, const u
   return __riscv_vlse64_v_u64m8_mu(mask, maskedoff, base, bstride, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlse64\.[ivxfswum.]+\s+} 48 } } */

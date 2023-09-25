@@ -54,3 +54,4 @@ vuint64m1x6_t test_vlseg6e64ff_v_u64m1x6_mu(vbool64_t mask, vuint64m1x6_t masked
   return __riscv_vlseg6e64ff_v_u64m1x6_mu(mask, maskedoff_tuple, base, new_vl, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlseg6e64ff\.[ivxfswum.]+\s+} 12 } } */

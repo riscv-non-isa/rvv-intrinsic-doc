@@ -418,3 +418,4 @@ vfloat64m8_t test_vmerge_vvm_f64m8_tu(vfloat64m8_t maskedoff, vfloat64m8_t op1, 
   return __riscv_vmerge_vvm_f64m8_tu(maskedoff, op1, op2, mask, vl);
 }
 
+/* { dg-final { scan-assembler-times {vmerge\.[ivxfswum.]+\s+} 103 } } */

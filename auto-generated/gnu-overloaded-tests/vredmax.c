@@ -182,3 +182,4 @@ vint64m1_t test_vredmax_vs_i64m8_i64m1_m(vbool8_t mask, vint64m8_t vector, vint6
   return __riscv_vredmax(mask, vector, scalar, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vredmax\.[ivxfswum.]+\s+} 44 } } */

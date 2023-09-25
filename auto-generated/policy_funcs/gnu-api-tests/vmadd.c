@@ -1414,3 +1414,4 @@ vuint64m8_t test_vmadd_vx_u64m8_mu(vbool8_t mask, vuint64m8_t vd, uint64_t rs1, 
   return __riscv_vmadd_vx_u64m8_mu(mask, vd, rs1, vs2, vl);
 }
 
+/* { dg-final { scan-assembler-times {vma[c-d][c-d]\.[ivxfswum.]+\s+} 352 } } */

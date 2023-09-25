@@ -358,3 +358,4 @@ vuint64m8_t test_viota_m_u64m8_mu(vbool8_t mask, vuint64m8_t maskedoff, vbool8_t
   return __riscv_viota_mu(mask, maskedoff, op1, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+viota\.[ivxfswum.]+\s+} 88 } } */

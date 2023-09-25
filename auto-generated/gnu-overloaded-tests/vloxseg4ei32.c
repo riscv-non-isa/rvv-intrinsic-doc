@@ -302,3 +302,4 @@ vuint64m2x4_t test_vloxseg4ei32_v_u64m2x4_m(vbool32_t mask, const uint64_t *base
   return __riscv_vloxseg4ei32(mask, base, bindex, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vloxseg4ei32\.[ivxfswum.]+\s+} 74 } } */

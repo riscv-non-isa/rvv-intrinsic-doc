@@ -478,3 +478,4 @@ vuint64m8_t test_vslideup_vx_u64m8_m(vbool8_t mask, vuint64m8_t dest, vuint64m8_
   return __riscv_vslideup(mask, dest, src, offset, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vslideup\.[ivxfswum.]+\s+} 118 } } */

@@ -150,3 +150,4 @@ vint64m8_t test_vsext_vf4_i64m8_mu(vbool8_t mask, vint64m8_t maskedoff, vint16m2
   return __riscv_vsext_vf4_mu(mask, maskedoff, op1, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsext\.vf4[ivxfswum.]*\s+} 36 } } */

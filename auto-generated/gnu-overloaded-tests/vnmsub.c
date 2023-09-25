@@ -710,3 +710,4 @@ vuint64m8_t test_vnmsub_vx_u64m8_m(vbool8_t mask, vuint64m8_t vd, uint64_t rs1, 
   return __riscv_vnmsub(mask, vd, rs1, vs2, vl);
 }
 
+/* { dg-final { scan-assembler-times {vnms[acub]+\.[ivxfswum.]+\s+} 176 } } */

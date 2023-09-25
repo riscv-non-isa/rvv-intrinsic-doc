@@ -910,3 +910,4 @@ vuint64m4x2_t test_vcreate_v_u64m4x2(vuint64m4_t v0, vuint64m4_t v1) {
   return __riscv_vcreate_v_u64m4x2(v0, v1);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vcreate\.[ivxfswum.]+\s+} 226 } } */

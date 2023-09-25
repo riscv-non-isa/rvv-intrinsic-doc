@@ -358,3 +358,4 @@ vuint64m8_t test_vsbc_vxm_u64m8_tu(vuint64m8_t maskedoff, vuint64m8_t op1, uint6
   return __riscv_vsbc_vxm_u64m8_tu(maskedoff, op1, op2, borrowin, vl);
 }
 
+/* { dg-final { scan-assembler-times {vsbc\.[ivxfswum.]+\s+} 88 } } */

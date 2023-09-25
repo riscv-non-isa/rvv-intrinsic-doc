@@ -358,3 +358,4 @@ vuint64m8_t test_vadc_vxm_u64m8_tu(vuint64m8_t maskedoff, vuint64m8_t op1, uint6
   return __riscv_vadc_vxm_u64m8_tu(maskedoff, op1, op2, carryin, vl);
 }
 
+/* { dg-final { scan-assembler-times {vadc\.[ivxfswum.]+\s+} 88 } } */

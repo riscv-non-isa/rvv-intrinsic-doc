@@ -182,3 +182,4 @@ vbool8_t test_vmsgeu_vx_u64m8_b8_mu(vbool8_t mask, vbool8_t maskedoff, vuint64m8
   return __riscv_vmsgeu_mu(mask, maskedoff, op1, op2, vl);
 }
 
+/* { dg-final { scan-assembler-times {vms[gl][et]u\.[ivxfswum.]+\s+} 44 } } */

@@ -358,3 +358,4 @@ vbool8_t test_vmsgt_vx_i64m8_b8_m(vbool8_t mask, vint64m8_t op1, int64_t op2, si
   return __riscv_vmsgt_vx_i64m8_b8_m(mask, op1, op2, vl);
 }
 
+/* { dg-final { scan-assembler-times {vmsgt\.[ivxfswum.]+\s+} 88 } } */

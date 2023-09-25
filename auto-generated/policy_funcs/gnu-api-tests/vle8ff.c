@@ -230,3 +230,4 @@ vuint8m8_t test_vle8ff_v_u8m8_mu(vbool1_t mask, vuint8m8_t maskedoff, const uint
   return __riscv_vle8ff_v_u8m8_mu(mask, maskedoff, base, new_vl, vl);
 }
 
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vle8ff\.[ivxfswum.]+\s+} 56 } } */
