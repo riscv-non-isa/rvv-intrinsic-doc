@@ -1222,4 +1222,4 @@ vuint64m1_t test_vreinterpret_v_b8_u64m1(vbool8_t src) {
   return __riscv_vreinterpret_v_b8_u64m1(src);
 }
 
-/* { dg-final { scan-assembler-times {vs[1248e][r123468]+\.[ivxfswum.]+\s+[,\sa-x0-9()]+} 304 } } */
+/* { dg-final { scan-assembler-times {vs[1248e][r123468]+\.[ivxfswum.]+\s+[,\sa-x0-9()]+} 260 } } */

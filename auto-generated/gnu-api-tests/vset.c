@@ -1174,4 +1174,4 @@ vuint64m4x2_t test_vset_v_u64m4_u64m4x2(vuint64m4x2_t dest, size_t index, vuint6
   return __riscv_vset_v_u64m4_u64m4x2(dest, 0, val);
 }
 
-/* { dg-final { scan-assembler-times {vl[1248]re[0-9]*\.v\s+v[1248],0\([a-z0-9]*\)\s+vl[1248]re[0-9]*\.v\s+v[1248],0\([a-z0-9]*\)+[ivxfswum.]*\s+} 292 } } */
+/* { dg-final { scan-assembler-times {vl[1248]re[0-9]*\.v\s+v[1248],0\([a-z0-9]*\)\s+vl[1248]re[0-9]*\.v\s+v[1248],0\([a-z0-9]*\)+[ivxfswum.]*\s+} 66 } } */
