@@ -141,14 +141,38 @@ class Generator():
   # ________________________________
   # |      vle32     |     63      |
   # ________________________________
+  # |  vreinterpret  |     260     |
+  # ________________________________
+  # |      vget      |     187     |
+  # ________________________________
+  # |      vset      |     66      |
+  # ________________________________
+  # |    vcreate    |     506      |
+  # ________________________________
+  # |      vmv      |     218      |
+  # ________________________________
   @staticmethod
-  def adjust_gnu_api_count(api_count, test_file, has_policy):
+  def adjust_api_count_for_vle(api_count, test_file, has_policy, is_overloaded):
     if test_file == "vle8.c":
       api_count = 62 if has_policy else api_count
     if test_file == "vle16.c":
-      api_count = 52 if has_policy else api_count
+      api_count = 78 if has_policy else api_count
     if test_file == "vle32.c":
       api_count = 63 if has_policy else api_count
+    if test_file == "vreinterpret.c":
+      api_count = 260
+    if test_file == "vget.c":
+      api_count = 187
+    if test_file == "vset.c":
+      api_count = 66
+    if test_file == "vcreate.c":
+      api_count = 506
+    if test_file == "vmv.c":
+      api_count = 218
+      if is_overloaded and not has_policy:
+        api_count = 130
+      if has_policy:
+        api_count = 201
     return api_count
 
   @staticmethod
@@ -175,7 +199,7 @@ class Generator():
       pattern_str = "vms[gl][et]"
     elif opcode in ["vmsgeu", "vmsltu"]:
       pattern_str = "vms[gl][et]u"
-    elif opcode == "vget":
+    elif opcode in ["vget", "vcreate"]:
       pattern_str = r"vl[124]re[0-9]*\.v\s+v[124],0\([a-z0-9]*\)\s+vs[124]r\.+"
     elif opcode == "vset":
       pattern_str = r"vl[1248]re[0-9]*\.v\s+v[1248],0\([a-z0-9]*\)\s+" \
@@ -208,11 +232,7 @@ class Generator():
     elif opcode in ["vmv", "vxor", "vsub", "vsbc", "vrsub", "vremu", "vrem", "vor", "vnmsub", "vnmsac", \
                     "vmul", "vmsne", "vmsltu", "vmslt", "vmsleu", "vmsle", "vmsgtu", "vmsgt", "vmsgeu", \
                     "vmsge", "vmseq", "vmsbc", "vminu", "vmin", "vmerge", "vmaxu", "vmax", "vmadd", "vmadc", \
-                    "vmacc", "vdivu", "vdiv", "vand", "vadd", "vadc"]:
-      return rf"/* {{ dg-final {{ scan-assembler-times {{{pattern_str}\s+}} {api_count} }} }} */" + "\n"
-    elif opcode == "vget":
-      return rf"/* {{ dg-final {{ scan-assembler-times {{{pattern_str}\s+}} {api_count} }} }} */" + "\n"
-    elif opcode == "vset":
+                    "vmacc", "vdivu", "vdiv", "vand", "vadd", "vadc", "vget", "vset", "vcreate"]:
       return rf"/* {{ dg-final {{ scan-assembler-times {{{pattern_str}\s+}} {api_count} }} }} */" + "\n"
     else:
       #pylint: disable=line-too-long
@@ -559,10 +579,11 @@ class APITestGenerator(Generator):
           api_count = self.fd.read().count("__riscv_")
         self.fd.close()
 
-        api_count = Generator.adjust_gnu_api_count(
+        api_count = Generator.adjust_api_count_for_vle(
             api_count,
             test_file,
             self.has_tail_policy,
+            self.is_overloaded,
         )
 
         opcode = test_file[:-2]
