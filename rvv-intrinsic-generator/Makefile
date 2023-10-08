@@ -72,6 +72,12 @@ TRIGGER_SKIP_DEFAULT_INST := --skip-default-inst
 else
 TRIGGER_SKIP_DEFAULT_INST :=
 endif
+# Directory that stores the gnu toolchain
+GNU_TOOLCHAIN_DIR :=
+# Directory that stores the gcc cases
+GCC_CASES_DIR := $(GNU_TOOLCHAIN_DIR)/gcc/gcc/testsuite/gcc.target/riscv/rvv/gcc-auto-generated
+# Directory that stores the g++ cases
+G++_CASES_DIR := $(GNU_TOOLCHAIN_DIR)/gcc/gcc/testsuite/g++.target/riscv/rvv/g++-auto-generated
 
 ###############################################################################
 # Functions
@@ -322,6 +328,31 @@ run-test:
 		TESTING_REPORT_SCRIPT=${TESTING_REPORT_SCRIPT} \
 		CC=${COMPILER} \
 		-f ${API_MAKEFILE} -j${nproc}
+
+# Test gnu auto generaged overloaded-api-testing with testing-report
+report-gnu:
+	cd ${GNU_TOOLCHAIN_DIR} && ./configure --prefix="${GNU_TOOLCHAIN_DIR}/install" \
+						--with-arch=rv64gcv \
+						--with-abi=lp64d \
+						--with-isa-spec=20191213 \
+						--with-sim=qemu
+	cd ${GNU_TOOLCHAIN_DIR} && make distclean
+	cd ${GNU_TOOLCHAIN_DIR} && make -j 8
+	mkdir -p $(GCC_CASES_DIR)/gnu-api-tests
+	mkdir -p $(GCC_CASES_DIR)/policy_funcs/gnu-api-tests
+	cp $(DIR)/../gcc-auto-generated.exp $(GCC_CASES_DIR)/auto-generated.exp
+	cp -r $(DIR)/gnu-api-tests/* $(GCC_CASES_DIR)/gnu-api-tests/
+	cp -r $(DIR)/policy_funcs/gnu-api-tests/* $(GCC_CASES_DIR)/policy_funcs/gnu-api-tests/
+	mkdir -p $(G++_CASES_DIR)/gnu-api-tests
+	mkdir -p $(G++_CASES_DIR)/policy_funcs/gnu-api-tests
+	mkdir -p $(G++_CASES_DIR)/gnu-overloaded-tests
+	mkdir -p $(G++_CASES_DIR)/policy_funcs/gnu-overloaded-tests
+	cp $(DIR)/../g++-auto-generated.exp $(G++_CASES_DIR)/auto-generated.exp
+	cp -r $(DIR)/gnu-api-tests/* $(G++_CASES_DIR)/gnu-api-tests/
+	cp -r $(DIR)/policy_funcs/gnu-api-tests/* $(G++_CASES_DIR)/policy_funcs/gnu-api-tests/
+	cp -r $(DIR)/gnu-overloaded-tests/* $(G++_CASES_DIR)/gnu-overloaded-tests/
+	cp -r $(DIR)/policy_funcs/gnu-overloaded-tests/* $(G++_CASES_DIR)/policy_funcs/gnu-overloaded-tests/
+	cd ${GNU_TOOLCHAIN_DIR} && make report -j 8 RUNTESTFLAGS="auto-generated.exp"
 
 ###############################################################################
 # Custom Vendor Generator Target
