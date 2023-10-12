@@ -88,7 +88,7 @@ class Generator():
     return name
 
   # Some instructions don't have an overloaded version intrinsics because the
-  # reduced representation of the intrinsics is not expressable. Take vle8 as
+  # reduced representation of the intrinsics is not expressible. Take vle8 as
   # an example. Both intrinsics below share the same type of parameters, hence
   # the LMUL is not derivable through the function parameters and has to be
   # specified.
@@ -659,7 +659,7 @@ class Grouper(Generator):
 
 class CompatibleHeaderGenerator(Generator):
   """
-  This generator is resposible for the compatible header for 0.10 to v0.11
+  This generator is responsible for the compatible header for 0.10 to v0.11
   (or higher).
   """
 

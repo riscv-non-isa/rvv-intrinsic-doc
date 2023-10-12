@@ -508,7 +508,7 @@ enum __RISCV_VXRM {
 
 ## Rounding mode in floating-point intrinsics<a name="##frm-in-rvv-intrinsic"></a>
 
-The rounding mode for RVV floating-point intrinsics is controled by the same CSR `frm` of the [RISC-V standard "F" extension ([Chapter 8 of the RISC-V ISA Manual](https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf)). The RVV intrinsics provide variants for the floating-point intrinsics that has the `_rm` suffix which has an parameter for users to specify an immediate value to control the rounding mode.
+The rounding mode for RVV floating-point intrinsics is controlled by the same CSR `frm` of the [RISC-V standard "F" extension ([Chapter 8 of the RISC-V ISA Manual](https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf)). The RVV intrinsics provide variants for the floating-point intrinsics that has the `_rm` suffix which has an parameter for users to specify an immediate value to control the rounding mode.
 
 The compiler defines an enum to help express the rounding modes for `frm`.
 

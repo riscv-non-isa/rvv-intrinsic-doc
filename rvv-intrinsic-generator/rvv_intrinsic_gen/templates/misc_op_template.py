@@ -15,7 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 --------------------------------------------------------------------------------
 
-Template for rendering LMUL extension, LMUL truncation, and intitialization
+Template for rendering LMUL extension, LMUL truncation, and initialization
 function to their corresponding intrinsics.
 """
 
