@@ -367,7 +367,7 @@ vendor-generator:
 	--vendor-generator-name $(VENDOR_GENERATOR_NAME)
 
 ###############################################################################
-# Formating Targets
+# Formatting Targets
 ###############################################################################
 # Run pylint for all Python scripts
 lint:

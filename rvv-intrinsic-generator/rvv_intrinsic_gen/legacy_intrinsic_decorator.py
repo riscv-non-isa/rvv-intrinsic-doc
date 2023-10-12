@@ -47,7 +47,7 @@ class LegacyIntrinsicDecorator():
   policy suffix), depending on the provided attributes.
 
   This intrinsic decorator was used for the v0.10 intrinsic, which was now
-  not avaiable due to the update that happened in v0.11. This decorator is for
+  not available due to the update that happened in v0.11. This decorator is for
   the `AdaptorHeaderGenerator` (see generator.py and brief in this file) to
   generator an adaptor header for v0.10 users to v0.11 or higher.
   """
@@ -104,7 +104,7 @@ class LegacyIntrinsicDecorator():
 
     return {}
 
-  # The legacy intrinsics (v0.10) does not have any csr arugments. This method
+  # The legacy intrinsics (v0.10) does not have any csr arguments. This method
   # here appears for compatibility as callers of under templates may be a
   # IntrinsicDecorator or a LegacyIntrinsicDecorator
   def extra_csr_args(self, csr_type):

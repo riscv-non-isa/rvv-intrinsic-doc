@@ -75,7 +75,7 @@ The intrinsics fuse the control of vector masking (`vm`) together with the contr
 [[control-to-policy]]
 === Control of `vta`, `vma`
 
-The behavior of destination tail elements and destination inactive masked-off elements is controled by the `vta` and `vma` bits ^6^.
+The behavior of destination tail elements and destination inactive masked-off elements is controlled by the `vta` and `vma` bits ^6^.
 
 Given the general assumption that target audience of the RVV intrinsics are high performance cores, and an "undisturbed" policy will generally slow down an out-of-order core, the intrinsics have a default policy scheme of tail-agnostic and mask-agnostic (that is, `vta=1` and `vma=1`).
 
@@ -310,13 +310,13 @@ The naming scheme does not cover all of intrinsics. Please see <<implicit-except
 Due to the limitation of the C language (without the aid of features like C++ templates), some intrinsics do not have an overloaded version. Therefore these intrinsics do not possess a simplified, EEW/EMUL-hidden interface. Please see <<unsupported-implicit-naming>> for more detail.
 
 [[implicit-exception-naming]]
-=== Exceptions in the implicit (overloaded) naming sheme
+=== Exceptions in the implicit (overloaded) naming scheme
 
 The following intrinsics have an irregular naming pattern.
 
 ==== Widening instructions
 
-Widening intruction intrinsics (e.g. `vwadd`) have the same return type but different parameters. The operand mnemonics are encoded into their overloaded versions to help distinguish them.
+Widening instruction intrinsics (e.g. `vwadd`) have the same return type but different parameters. The operand mnemonics are encoded into their overloaded versions to help distinguish them.
 
 ```c
 vint32m1_t __riscv_vwadd_vv (vint16mf2_t op1, vint16mf2_t op2, size_t vl);

@@ -1,5 +1,5 @@
 // common.h
-// common utilites for the test code under exmaples/
+// common utilities for the test code under exmaples/
 
 #include <math.h>
 #include <stdbool.h>
