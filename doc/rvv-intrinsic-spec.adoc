@@ -40,7 +40,7 @@ For example, RVV type `vint64m1_t` and `__riscv_vle64_v_i64m1` are not available
 
 The intrinsics allow users to control the fields in `vtype`, as well as the rounding modes for fixed-point (`vxrm`) and floating-point (`frm`) vector computations.
 
-In this section, we cover how the intrinsics embed the control of `vtype` fields in the function names. Please see <<naming-scheme>> for the rules described in this section.
+In this chapter, we cover how the intrinsics embed the control of `vtype` fields in the function names. Please see <<naming-scheme>> for the rules described in this chapter.
 
 === Control of effective element width (EEW) and effective LMUL (EMUL)
 
@@ -120,7 +120,7 @@ NOTE: Control of the floating-point accrued exceptions flag fields (`fflag`) ^10
 
 The implicit-`frm` intrinsics behave like any C-language floating-point expressions, using the default rounding mode when `FENV_ACCESS` is off, and using the `fenv` dynamic rounding mode when `FENV_ACCESS` is on.
 
-NOTE: Both GNU and LLVM compilers generate scalar floating-point instructions using dynamic rounding mode, relying on the kernel initialization to set `frm` to `RNE` (specified as "roundTiesToEven" in IEEE-754 (a.k.a. IEC 60559)).
+NOTE: Both GNU and LLVM compilers generate scalar floating-point instructions using dynamic rounding mode, relying on the environment initialization to set `frm` to `RNE` (specified as "roundTiesToEven" in IEEE-754 (a.k.a. IEC 60559)).
 
 NOTE: The implicit-`frm` intrinsics are intended to be used regardless of `FENV_ACCESS`. They are provided when `FENV_ACCESS` is on for the (few) programmers who are already using fenv; and they are provided when `FENV_ACCESS` is off for the (vast majority of) programmers who prefer the default rounding mode.
 
@@ -155,7 +155,7 @@ The intrinsics can be split into two major types, called "explicit (non-overload
 
 The explicit (non-overloaded) intrinsics embed the control described in <<control-of-vector-programming-model>> in the function name. This scheme gives intrinsic codebase more readability as the execution states are explicitly specified in the code.
 
-The implicit (overloaded) intrinsics, on the contrary, hide the explicit specifications for `vtype` control. The implicit (overloaded) intrinsics aim to provide a generic interface to let users put values of different EEW ^17^ and EMUL ^17^ as the input argument.
+The implicit (overloaded) intrinsics, on the contrary, omit the explicit specifications for `vtype` control. The implicit (overloaded) intrinsics aim to provide a generic interface to let users put values of different EEW ^17^ and EMUL ^17^ as the input argument.
 
 This section covers the general naming rule of the two types of intrinsics accordingly. Then, this section also enumerates the exceptions and the rationales behind them in <<explicit-exception-naming>> and <<implicit-exception-naming>>.
 
@@ -211,7 +211,7 @@ The naming rules are as follows.
 __riscv_{V_INSTRUCTION_MNEMONIC}_{OPERAND_MNEMONIC}_{RETURN_TYPE}_{ROUND_MODE}_{POLICY}{(...)
 ----
 
-* `OPERAND_MNEMONIC` are like `vv`, `vx`, `vs`, `vvm`, `vxm`
+* `OPERAND_MNEMONIC` are like `v`, `vv`, `vx`, `vs`, `vvm`, `vxm`
 * `RETURN_TYPE` depends on whether the return type of the vector instruction is a mask register...
 ** For intrinsics that represents instructions with a non-mask destination register:
 *** `EEW` is one of `i8 | i16 | i32 | i64 | u8 | u16 | u32 | u64 | f16 | f32 | f64`.
@@ -236,10 +236,10 @@ Only encoding the return type will cause naming collisions for the permutation i
 
 [,c]
 ----
-int8_t vmv_x_s_i8m1_i8 (vint8m1_t vs2, size_t vl);
-int8_t vmv_x_s_i8m2_i8 (vint8m2_t vs2, size_t vl);
-int8_t vmv_x_s_i8m4_i8 (vint8m4_t vs2, size_t vl);
-int8_t vmv_x_s_i8m8_i8 (vint8m8_t vs2, size_t vl);
+int8_t __riscv_vmv_x_s_i8m1_i8 (vint8m1_t vs2, size_t vl);
+int8_t __riscv_vmv_x_s_i8m2_i8 (vint8m2_t vs2, size_t vl);
+int8_t __riscv_vmv_x_s_i8m4_i8 (vint8m4_t vs2, size_t vl);
+int8_t __riscv_vmv_x_s_i8m8_i8 (vint8m8_t vs2, size_t vl);
 ----
 
 ==== Reduction instructions
@@ -248,14 +248,14 @@ Only encoding the return type will cause naming collisions for the reduction ins
 
 [,c]
 ----
-vint8m1_t vredsum_vs_i8m1_i8m1(vint8m1_t dest, vint8m1_t vs2, vint8m1_t vs1,
-                               size_t vl);
-vint8m1_t vredsum_vs_i8m2_i8m1(vint8m1_t dest, vint8m2_t vs2, vint8m1_t vs1,
-                               size_t vl);
-vint8m1_t vredsum_vs_i8m4_i8m1(vint8m1_t dest, vint8m4_t vs2, vint8m1_t vs1,
-                               size_t vl);
-vint8m1_t vredsum_vs_i8m8_i8m1(vint8m1_t dest, vint8m8_t vs2, vint8m1_t vs1,
-                               size_t vl);
+vint8m1_t __riscv_vredsum_vs_i8m1_i8m1(vint8m1_t dest, vint8m1_t vs2,
+                                       vint8m1_t vs1, size_t vl);
+vint8m1_t __riscv_vredsum_vs_i8m2_i8m1(vint8m1_t dest, vint8m2_t vs2,
+                                       vint8m1_t vs1, size_t vl);
+vint8m1_t __riscv_vredsum_vs_i8m4_i8m1(vint8m1_t dest, vint8m4_t vs2,
+                                       vint8m1_t vs1, size_t vl);
+vint8m1_t __riscv_vredsum_vs_i8m8_i8m1(vint8m1_t dest, vint8m8_t vs2,
+                                       vint8m1_t vs1, size_t vl);
 ----
 
 ==== Add-with-carry / Subtract-with-borrow instructions
@@ -297,7 +297,7 @@ vbool4_t __riscv_vreinterpret_v_i32m1_b4 (vint32m1_t src);
 [[implicit-naming-scheme]]
 === Implicit (Overloaded) naming scheme
 
-The implicit (overloaded) interface aims to provide a generic interface that takes values of different EEW and EMUL as the input. Therefore, the implicit intrinsics hide the EEW and EMUL encoded in the function name. The `_rm` prefix for explicit-`frm` intrinsics (<<control-of-frm>>) is also hidden. The intrinsics under this scheme are the "overloaded intrinsics", which in parallel we have the "non-overloaded intrinsics" defined under <<explicit-naming-scheme>>.
+The implicit (overloaded) interface aims to provide a generic interface that takes values of different EEW and EMUL as the input. Therefore, the implicit intrinsics omit the EEW and EMUL encoded in the function name. The `_rm` prefix for explicit-`frm` intrinsics (<<control-of-frm>>) is also omitted. The intrinsics under this scheme are the "overloaded intrinsics", which in parallel we have the "non-overloaded intrinsics" defined under <<explicit-naming-scheme>>.
 
 Take the vector addition (`vadd`) instruction intrinsics as an example, stripping off the operand mnemonics and encoded EEW, EMUL information, the intrinsics provides the following overloaded interfaces.
 
@@ -307,7 +307,7 @@ vint32m1_t __riscv_vadd(vint32m1_t v0, vint32m1_t v1, size_t vl);
 vint16m4_t __riscv_vadd(vint16m4_t v0, vint16m4_t v1, size_t vl);
 ----
 
-Since the main intent is to let the users put different value(s) of EEW and EMUL as input argument(s), the overloaded intrinsics do not hide the policy suffix. That is, the suffix listed under <<control-of-policy>> is not hidden and is still encoded in the function name.
+Since the main intent is to let the users put different value(s) of EEW and EMUL as input argument(s), the overloaded intrinsics do not omit the policy suffix. That is, the suffix listed under <<control-of-policy>> is not omitted and is still encoded in the function name.
 
 The masked variants with the default policy shares the same interface with the unmasked variants with the default policy. They do not have any trailing suffixes.
 
@@ -342,7 +342,7 @@ vfloat32m1_t __riscv_vfadd_mu(vbool32_t mask, vfloat32m1_t maskedoff,
 
 The naming scheme to prune everything except the instruction mnemonics is not available for all the intrinsics. Please see <<implicit-exception-naming>> for overloaded intrinsics with irregular naming patterns.
 
-Due to the limitations of the C language (without the aid of features like C++ templates), some intrinsics do not have an overloaded version. Therefore these intrinsics do not possess a simplified, EEW/EMUL-hidden interface. Please see <<unsupported-implicit-naming>> for more detail.
+Due to the limitations of the C language (without the aid of features like C++ templates), some intrinsics do not have an overloaded version. Therefore these intrinsics do not possess a simplified, EEW/EMUL-omitted interface. Please see <<unsupported-implicit-naming>> for more detail.
 
 [[implicit-exception-naming]]
 === Exceptions in the implicit (overloaded) naming sheme
@@ -416,20 +416,20 @@ Non-mask (integer and floating-point) data types have SEW and LMUL encoded.
 
 Integer types have EEW and EMUL encoded into the type. The first row describes the EMUL and the first column describes the data type and element width of the scalar type.
 
-Type with bold font is only available when `ELEN >= 64` (that is, unavailable under `Zve32*` and require at least `Zve64x`).
+Types with subscript "^\*^" is available when `ELEN >= 64` (that is, unavailable under `Zve32*` and require at least `Zve64x`).
 
 .Integer types
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
 | Types | EMUL=1/8 | EMUL=1/4 | EMUL=1/ 2 | EMUL=1 | EMUL=2 | EMUL=4 | EMUL=8
-| `int8_t` | `*vint8mf8_t*` | `vint8mf4_t` | `vint8mf2_t` | `vint8m1_t` | `vint8m2_t` | `vint8m4_t` | `vint8m8_t`
-| `int16_t` | N/A | `*vint16mf4_t*` | `vint16mf2_t` | `vint16m1_t` | `vint16m2_t` | `vint16m4_t` | `vint16m16_t`
-| `int32_t` | N/A | N/A | `*vint32mf2_t*` | `vint32m1_t` | `vint32m2_t` | `vint32m4_t` | `vint32m32_t`
-| `int64_t` | N/A | N/A | N/A | `*vint64m1_t*` | `*vint64m2_t*` | `*vint64m4_t*` | `*vint64m8_t*`
-| `uint8_t` | `*vuint8mf8_t*` | `vuint8mf4_t` | `vuint8mf2_t` | `vuint8m1_t` | `vuint8m2_t` | `vuint8m4_t` | `vuint8m8_t`
-| `uint16_t` | N/A | `*vuint16mf4_t*` | `vuint16mf2_t` | `vuint16m1_t` | `vuint16m2_t` | `vuint16m4_t` | `vuint16m8_t`
-| `uint32_t` | N/A | N/A | `*vuint32mf2_t*` | `vuint32m1_t` | `vuint32m2_t` | `vuint32m4_t` | `vuint32m8_t`
-| `uint64_t` | N/A | N/A | N/A | `*vuint64m1_t*` | `*vuint64m2_t*` | `*vuint64m4_t*` | `*vuint64m8_t*`
+| int8_t | vint8mf8_t^*^ | vint8mf4_t | vint8mf2_t | vint8m1_t | vint8m2_t | vint8m4_t | vint8m8_t
+| int16_t | N/A | vint16mf4_t^*^ | vint16mf2_t | vint16m1_t | vint16m2_t | vint16m4_t | vint16m16_t
+| int32_t | N/A | N/A | vint32mf2_t^*^ | vint32m1_t | vint32m2_t | vint32m4_t | vint32m32_t
+| int64_t | N/A | N/A | N/A | vint64m1_t^*^ | vint64m2_t^*^ | vint64m4_t^*^ | vint64m8_t^*^
+| uint8_t | vuint8mf8_t^*^ | vuint8mf4_t | vuint8mf2_t | vuint8m1_t | vuint8m2_t | vuint8m4_t | vuint8m8_t
+| uint16_t | N/A | vuint16mf4_t^*^ | vuint16mf2_t | vuint16m1_t | vuint16m2_t | vuint16m4_t | vuint16m8_t
+| uint32_t | N/A | N/A | vuint32mf2_t^*^ | vuint32m1_t | vuint32m2_t | vuint32m4_t | vuint32m8_t
+| uint64_t | N/A | N/A | N/A | vuint64m1_t^*^ | vuint64m2_t^*^ | vuint64m4_t^*^ | vuint64m8_t^*^
 |===
 
 [[floating-point-type]]
@@ -447,9 +447,9 @@ Floating-point types with element widths of 64 (Types=`float64_t`) require the `
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
 | Types | EMUL=1/8 | EMUL=1/4 | EMUL=1/ 2 | EMUL=1 | EMUL=2 | EMUL=4 | EMUL=8
-| `float16_t` | N/A | `vfloat16m4_t` | `vfloat16mf2_t` | `vfloat16m1_t` | `vfloat16m2_t` | `vfloat16m4_t` | `vfloat16m8_t`
-| `float32_t` | N/A | N/A | `vfloat32mf2_t` | `vfloat32m1_t` | `vfloat32m2_t` | `vfloat32m4_t` | `vfloat32m8_t`
-| `float64_t` | N/A | N/A | N/A | `vfloat64m1_t` | `vfloat64m2_t` | `vfloat64m4_t` | `vfloat64m8_t`
+| float16_t | N/A | vfloat16m4_t | vfloat16mf2_t | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t
+| float32_t | N/A | N/A | vfloat32mf2_t | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t
+| float64_t | N/A | N/A | N/A | vfloat64m1_t | vfloat64m2_t | vfloat64m4_t | vfloat64m8_t
 |===
 
 === Mask types
@@ -460,7 +460,7 @@ Mask types have the ratio that is derived from `EEW`/`EMUL` encoded into the typ
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
 | Types | n = 1 | n = 2 | n = 4 | n = 8 | n = 16 | n = 32 | n = 64
-| `bool` | `vbool1_t` | `vbool2_t` | `vbool4_t` | `vbool8_t` | `vbool16_t` | `vbool32_t` | `vbool64_t`
+| bool | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t
 |===
 
 === Tuple type
@@ -475,84 +475,84 @@ Availability of the tuple types follows the availability of their corresponding 
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
 | Non-tuple Types (NFILED=1) | NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
-| `vint8mf8_t` | `vint8mf8x2_t` | `vint8mf8x3_t` | `vint8mf8x4_t` | `vint8mf8x5_t` | `vint8mf8x6_t` | `vint8mf8x7_t` | `vint8mf8x8_t`
-| `vuint8mf8_t` | `vuint8mf8x2_t` | `vuint8mf8x3_t` | `vuint8mf8x4_t` | `vuint8mf8x5_t` | `vuint8mf8x6_t` | `vuint8mf8x7_t` | `vuint8mf8x8_t`
+| vint8mf8_t | vint8mf8x2_t | vint8mf8x3_t | vint8mf8x4_t | vint8mf8x5_t | vint8mf8x6_t | vint8mf8x7_t | vint8mf8x8_t
+| vuint8mf8_t | vuint8mf8x2_t | vuint8mf8x3_t | vuint8mf8x4_t | vuint8mf8x5_t | vuint8mf8x6_t | vuint8mf8x7_t | vuint8mf8x8_t
 |===
 
 .Tuple types (EMUL=1/4)
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
 | Non-tuple Types (NFILED=1)| NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
-| `vint8mf4_t` | `vint8mf4x2_t` | `vint8mf4x3_t` | `vint8mf4x4_t` | `vint8mf4x5_t` | `vint8mf4x6_t` | `vint8mf4x7_t` | `vint8mf4x8_t`
-| `vuint8mf4_t` | `vuint8mf4x2_t` | `vuint8mf4x3_t` | `vuint8mf4x4_t` | `vuint8mf4x5_t` | `vuint8mf4x6_t` | `vuint8mf4x7_t` | `vuint8mf4x8_t`
-| `vint16mf4_t` | `vint16mf4x2_t` | `vint16mf4x3_t` | `vint16mf4x4_t` | `vint16mf4x5_t` | `vint16mf4x6_t` | `vint16mf4x7_t` | `vint16mf4x8_t`
-| `vuint16mf4_t` | `vuint16mf4x2_t` | `vuint16mf4x3_t` | `vuint16mf4x4_t` | `vuint16mf4x5_t` | `vuint16mf4x6_t` | `vuint16mf4x7_t` | `vuint16mf4x8_t`
-| `vfloat16mf4_t` | `vfloat16mf4x2_t` | `vfloat16mf4x3_t` | `vfloat16mf4x4_t` | `vfloat16mf4x5_t` | `vfloat16mf4x6_t` | `vfloat16mf4x7_t` | `vfloat16mf4x8_t`
+| vint8mf4_t | vint8mf4x2_t | vint8mf4x3_t | vint8mf4x4_t | vint8mf4x5_t | vint8mf4x6_t | vint8mf4x7_t | vint8mf4x8_t
+| vuint8mf4_t | vuint8mf4x2_t | vuint8mf4x3_t | vuint8mf4x4_t | vuint8mf4x5_t | vuint8mf4x6_t | vuint8mf4x7_t | vuint8mf4x8_t
+| vint16mf4_t | vint16mf4x2_t | vint16mf4x3_t | vint16mf4x4_t | vint16mf4x5_t | vint16mf4x6_t | vint16mf4x7_t | vint16mf4x8_t
+| vuint16mf4_t | vuint16mf4x2_t | vuint16mf4x3_t | vuint16mf4x4_t | vuint16mf4x5_t | vuint16mf4x6_t | vuint16mf4x7_t | vuint16mf4x8_t
+| vfloat16mf4_t | vfloat16mf4x2_t | vfloat16mf4x3_t | vfloat16mf4x4_t | vfloat16mf4x5_t | vfloat16mf4x6_t | vfloat16mf4x7_t | vfloat16mf4x8_t
 |===
 
 .Tuple types (EMUL=1/2)
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
 | Non-tuple Types (NFILED=1) | NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
-| `vint8mf2_t` | `vint8mf2x2_t` | `vint8mf2x3_t` | `vint8mf2x4_t` | `vint8mf2x5_t` | `vint8mf2x6_t` | `vint8mf2x7_t` | `vint8mf2x8_t`
-| `vuint8mf2_t` | `vuint8mf2x2_t` | `vuint8mf2x3_t` | `vuint8mf2x4_t` | `vuint8mf2x5_t` | `vuint8mf2x6_t` | `vuint8mf2x7_t` | `vuint8mf2x8_t`
-| `vint16mf2_t` | `vint16mf2x2_t` | `vint16mf2x3_t` | `vint16mf2x4_t` | `vint16mf2x5_t` | `vint16mf2x6_t` | `vint16mf2x7_t` | `vint16mf2x8_t`
-| `vuint16mf2_t` | `vuint16mf2x2_t` | `vuint16mf2x3_t` | `vuint16mf2x4_t` | `vuint16mf2x5_t` | `vuint16mf2x6_t` | `vuint16mf2x7_t` | `vuint16mf2x8_t`
-| `vint32mf2_t` | `vint32mf2x2_t` | `vint32mf2x3_t` | `vint32mf2x4_t` | `vint32mf2x5_t` | `vint32mf2x6_t` | `vint32mf2x7_t` | `vint32mf2x8_t`
-| `vuint32mf2_t` | `vuint32mf2x2_t` | `vuint32mf2x3_t` | `vuint32mf2x4_t` | `vuint32mf2x5_t` | `vuint32mf2x6_t` | `vuint32mf2x7_t` | `vuint32mf2x8_t`
-| `vfloat16mf2_t` | `vfloat16mf2x2_t` | `vfloat16mf2x3_t` | `vfloat16mf2x4_t` | `vfloat16mf2x5_t` | `vfloat16mf2x6_t` | `vfloat16mf2x7_t` | `vfloat16mf2x8_t`
-| `vfloat32mf2_t` | `vfloat32mf2x2_t` | `vfloat32mf2x3_t` | `vfloat32mf2x4_t` | `vfloat32mf2x5_t` | `vfloat32mf2x6_t` | `vfloat32mf2x7_t` | `vfloat32mf2x8_t`
+| vint8mf2_t | vint8mf2x2_t | vint8mf2x3_t | vint8mf2x4_t | vint8mf2x5_t | vint8mf2x6_t | vint8mf2x7_t | vint8mf2x8_t
+| vuint8mf2_t | vuint8mf2x2_t | vuint8mf2x3_t | vuint8mf2x4_t | vuint8mf2x5_t | vuint8mf2x6_t | vuint8mf2x7_t | vuint8mf2x8_t
+| vint16mf2_t | vint16mf2x2_t | vint16mf2x3_t | vint16mf2x4_t | vint16mf2x5_t | vint16mf2x6_t | vint16mf2x7_t | vint16mf2x8_t
+| vuint16mf2_t | vuint16mf2x2_t | vuint16mf2x3_t | vuint16mf2x4_t | vuint16mf2x5_t | vuint16mf2x6_t | vuint16mf2x7_t | vuint16mf2x8_t
+| vint32mf2_t | vint32mf2x2_t | vint32mf2x3_t | vint32mf2x4_t | vint32mf2x5_t | vint32mf2x6_t | vint32mf2x7_t | vint32mf2x8_t
+| vuint32mf2_t | vuint32mf2x2_t | vuint32mf2x3_t | vuint32mf2x4_t | vuint32mf2x5_t | vuint32mf2x6_t | vuint32mf2x7_t | vuint32mf2x8_t
+| vfloat16mf2_t | vfloat16mf2x2_t | vfloat16mf2x3_t | vfloat16mf2x4_t | vfloat16mf2x5_t | vfloat16mf2x6_t | vfloat16mf2x7_t | vfloat16mf2x8_t
+| vfloat32mf2_t | vfloat32mf2x2_t | vfloat32mf2x3_t | vfloat32mf2x4_t | vfloat32mf2x5_t | vfloat32mf2x6_t | vfloat32mf2x7_t | vfloat32mf2x8_t
 |===
 
 .Tuple types (EMUL=1)
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
 | Non-tuple Types (NFILED=1) | NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
-| `vint8m1_t` | `vint8m1x2_t` | `vint8m1x3_t` | `vint8m1x4_t` | `vint8m1x5_t` | `vint8m1x6_t` | `vint8m1x7_t` | `vint8m1x8_t`
-| `vuint8m1_t` | `vuint8m1x2_t` | `vuint8m1x3_t` | `vuint8m1x4_t` | `vuint8m1x5_t` | `vuint8m1x6_t` | `vuint8m1x7_t` | `vuint8m1x8_t`
-| `vint16m1_t` | `vint16m1x2_t` | `vint16m1x3_t` | `vint16m1x4_t` | `vint16m1x5_t` | `vint16m1x6_t` | `vint16m1x7_t` | `vint16m1x8_t`
-| `vuint16m1_t` | `vuint16m1x2_t` | `vuint16m1x3_t` | `vuint16m1x4_t` | `vuint16m1x5_t` | `vuint16m1x6_t` | `vuint16m1x7_t` | `vuint16m1x8_t`
-| `vint32m1_t` | `vint32m1x2_t` | `vint32m1x3_t` | `vint32m1x4_t` | `vint32m1x5_t` | `vint32m1x6_t` | `vint32m1x7_t` | `vint32m1x8_t`
-| `vuint32m1_t` | `vuint32m1x2_t` | `vuint32m1x3_t` | `vuint32m1x4_t` | `vuint32m1x5_t` | `vuint32m1x6_t` | `vuint32m1x7_t` | `vuint32m1x8_t`
-| `vint64m1_t` | `vint64m1x2_t` | `vint64m1x3_t` | `vint64m1x4_t` | `vint64m1x5_t` | `vint64m1x6_t` | `vint64m1x7_t` | `vint64m1x8_t`
-| `vuint64m1_t` | `vuint64m1x2_t` | `vuint64m1x3_t` | `vuint64m1x4_t` | `vuint64m1x5_t` | `vuint64m1x6_t` | `vuint64m1x7_t` | `vuint64m1x8_t`
-| `vfloat16m1_t` | `vfloat16m1x2_t` | `vfloat16m1x3_t` | `vfloat16m1x4_t` | `vfloat16m1x5_t` | `vfloat16m1x6_t` | `vfloat16m1x7_t` | `vfloat16m1x8_t`
-| `vfloat32m1_t` | `vfloat32m1x2_t` | `vfloat32m1x3_t` | `vfloat32m1x4_t` | `vfloat32m1x5_t` | `vfloat32m1x6_t` | `vfloat32m1x7_t` | `vfloat32m1x8_t`
-| `vfloat64m1_t` | `vfloat64m1x2_t` | `vfloat64m1x3_t` | `vfloat64m1x4_t` | `vfloat64m1x5_t` | `vfloat64m1x6_t` | `vfloat64m1x7_t` | `vfloat64m1x8_t`
+| vint8m1_t | vint8m1x2_t | vint8m1x3_t | vint8m1x4_t | vint8m1x5_t | vint8m1x6_t | vint8m1x7_t | vint8m1x8_t
+| vuint8m1_t | vuint8m1x2_t | vuint8m1x3_t | vuint8m1x4_t | vuint8m1x5_t | vuint8m1x6_t | vuint8m1x7_t | vuint8m1x8_t
+| vint16m1_t | vint16m1x2_t | vint16m1x3_t | vint16m1x4_t | vint16m1x5_t | vint16m1x6_t | vint16m1x7_t | vint16m1x8_t
+| vuint16m1_t | vuint16m1x2_t | vuint16m1x3_t | vuint16m1x4_t | vuint16m1x5_t | vuint16m1x6_t | vuint16m1x7_t | vuint16m1x8_t
+| vint32m1_t | vint32m1x2_t | vint32m1x3_t | vint32m1x4_t | vint32m1x5_t | vint32m1x6_t | vint32m1x7_t | vint32m1x8_t
+| vuint32m1_t | vuint32m1x2_t | vuint32m1x3_t | vuint32m1x4_t | vuint32m1x5_t | vuint32m1x6_t | vuint32m1x7_t | vuint32m1x8_t
+| vint64m1_t | vint64m1x2_t | vint64m1x3_t | vint64m1x4_t | vint64m1x5_t | vint64m1x6_t | vint64m1x7_t | vint64m1x8_t
+| vuint64m1_t | vuint64m1x2_t | vuint64m1x3_t | vuint64m1x4_t | vuint64m1x5_t | vuint64m1x6_t | vuint64m1x7_t | vuint64m1x8_t
+| vfloat16m1_t | vfloat16m1x2_t | vfloat16m1x3_t | vfloat16m1x4_t | vfloat16m1x5_t | vfloat16m1x6_t | vfloat16m1x7_t | vfloat16m1x8_t
+| vfloat32m1_t | vfloat32m1x2_t | vfloat32m1x3_t | vfloat32m1x4_t | vfloat32m1x5_t | vfloat32m1x6_t | vfloat32m1x7_t | vfloat32m1x8_t
+| vfloat64m1_t | vfloat64m1x2_t | vfloat64m1x3_t | vfloat64m1x4_t | vfloat64m1x5_t | vfloat64m1x6_t | vfloat64m1x7_t | vfloat64m1x8_t
 |===
 
 .Tuple types (EMUL=2)
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
 | Non-tuple Types (NFILED=1) | NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
-| `vint8m2_t` | `vint8m2x2_t` | `vint8m2x3_t` | `vint8m2x4_t` | N/A | N/A | N/A | N/A
-| `vuint8m2_t` | `vuint8m2x2_t` | `vuint8m2x3_t` | `vuint8m2x4_t` | N/A | N/A | N/A | N/A
-| `vint16m2_t` | `vint16m2x2_t` | `vint16m2x3_t` | `vint16m2x4_t` | N/A | N/A | N/A | N/A
-| `vuint16m2_t` | `vuint16m2x2_t` | `vuint16m2x3_t` | `vuint16m2x4_t` | N/A | N/A | N/A | N/A
-| `vint32m2_t` | `vint32m2x2_t` | `vint32m2x3_t` | `vint32m2x4_t` | N/A | N/A | N/A | N/A
-| `vuint32m2_t` | `vuint32m2x2_t` | `vuint32m2x3_t` | `vuint32m2x4_t` | N/A | N/A | N/A | N/A
-| `vint64m2_t` | `vint64m2x2_t` | `vint64m2x3_t` | `vint64m2x4_t` | N/A | N/A | N/A | N/A
-| `vuint64m2_t` | `vuint64m2x2_t` | `vuint64m2x3_t` | `vuint64m2x4_t` | N/A | N/A | N/A | N/A
-| `vfloat16m2_t` | `vfloat16m2x2_t` | `vfloat16m2x3_t` | `vfloat16m2x4_t` | N/A | N/A | N/A | N/A
-| `vfloat32m2_t` | `vfloat32m2x2_t` | `vfloat32m2x3_t` | `vfloat32m2x4_t` | N/A | N/A | N/A | N/A
-| `vfloat64m2_t` | `vfloat64m2x2_t` | `vfloat64m2x3_t` | `vfloat64m2x4_t` | N/A | N/A | N/A | N/A
+| vint8m2_t | vint8m2x2_t | vint8m2x3_t | vint8m2x4_t | N/A | N/A | N/A | N/A
+| vuint8m2_t | vuint8m2x2_t | vuint8m2x3_t | vuint8m2x4_t | N/A | N/A | N/A | N/A
+| vint16m2_t | vint16m2x2_t | vint16m2x3_t | vint16m2x4_t | N/A | N/A | N/A | N/A
+| vuint16m2_t | vuint16m2x2_t | vuint16m2x3_t | vuint16m2x4_t | N/A | N/A | N/A | N/A
+| vint32m2_t | vint32m2x2_t | vint32m2x3_t | vint32m2x4_t | N/A | N/A | N/A | N/A
+| vuint32m2_t | vuint32m2x2_t | vuint32m2x3_t | vuint32m2x4_t | N/A | N/A | N/A | N/A
+| vint64m2_t | vint64m2x2_t | vint64m2x3_t | vint64m2x4_t | N/A | N/A | N/A | N/A
+| vuint64m2_t | vuint64m2x2_t | vuint64m2x3_t | vuint64m2x4_t | N/A | N/A | N/A | N/A
+| vfloat16m2_t | vfloat16m2x2_t | vfloat16m2x3_t | vfloat16m2x4_t | N/A | N/A | N/A | N/A
+| vfloat32m2_t | vfloat32m2x2_t | vfloat32m2x3_t | vfloat32m2x4_t | N/A | N/A | N/A | N/A
+| vfloat64m2_t | vfloat64m2x2_t | vfloat64m2x3_t | vfloat64m2x4_t | N/A | N/A | N/A | N/A
 |===
 
 .Tuple types (EMUL=4)
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
 | Non-tuple Types (NFILED=1) | NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
-| `vint8m4_t` | `vint8m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
-| `vuint8m4_t` | `vuint8m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
-| `vint16m4_t` | `vint16m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
-| `vuint16m4_t` | `vuint16m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
-| `vint32m4_t` | `vint32m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
-| `vuint32m4_t` | `vuint32m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
-| `vint64m4_t` | `vint64m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
-| `vuint64m4_t` | `vuint64m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
-| `vfloat16m4_t` | `vfloat16m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
-| `vfloat32m4_t` | `vfloat32m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
-| `vfloat64m4_t` | `vfloat64m4x2_t` | N/A | N/A | N/A | N/A | N/A | N/A
+| vint8m4_t | vint8m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
+| vuint8m4_t | vuint8m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
+| vint16m4_t | vint16m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
+| vuint16m4_t | vuint16m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
+| vint32m4_t | vint32m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
+| vuint32m4_t | vuint32m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
+| vint64m4_t | vint64m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
+| vuint64m4_t | vuint64m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
+| vfloat16m4_t | vfloat16m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
+| vfloat32m4_t | vfloat32m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
+| vfloat64m4_t | vfloat64m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
 |===
 
 [[pseudo-intrinsics]]
@@ -602,17 +602,17 @@ The intrinsics do not map to any real instruction. Whether if the implementation
 [[pseudo-vlmul_trunc]]
 === `vlmul_trunc`
 
-The `vlmul_trunc` intrinsics are syntactic sugars that essentially have the same semantic as `vget` with `idx=0`.
+The `vlmul_trunc` intrinsics are syntactic sugars that have the same semantic as `vget` with `idx=0`.
 
 [[pseudo-vlmul_ext]]
 === `vlmul_ext`
 
-The `vlmul_ext` intrinsics are syntactic sugars that essentially have the same semantic as `vset` with `idx=0`.
+The `vlmul_ext` intrinsics are syntactic sugars that have the same semantic as `vset` with `idx=0`.
 
 [[pseudo-vcreate]]
 === `vcreate`
 
-The `vcreate` intrinsics are syntactic sugars for tuple types creation. They essentially have the same semantic as multiple `vset`-s filling in values accordingly into the tuple type.
+The `vcreate` intrinsics are syntactic sugars for tuple types creation. They have the same semantic as multiple `vset`-s filling in values accordingly into the tuple type.
 
 == Programming Notes
 
@@ -647,7 +647,9 @@ In other words, the compiler does not guarantee generating the instruction for a
 
 === Leveraging instructions with operand mnemonics of `vi`
 
-The intrinsics provide variants with operand mnemonics of `vv` and `vx`, but not `vi`. This was an intentional design to reduce the total amount of out-going intrinsics. The implementation is responsible to emit instructions with operand mnemonics of `vi` when an immediate that can be expressed within 5-bit is provided to the intrinsics.
+The intrinsics provide variants with operand mnemonics of `vv` and `vx`, but not `vi`. This was an intentional design to reduce the total amount of out-going intrinsics.
+
+It is an optimization issue for the implementation to emit instructions with operand mnemonics of `vi` when an immediate that can be expressed within 5-bit is provided to the intrinsics.
 
 == References
 
