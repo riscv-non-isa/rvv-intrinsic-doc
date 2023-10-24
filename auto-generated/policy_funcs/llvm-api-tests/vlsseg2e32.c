@@ -197,4 +197,3 @@ vuint32m2x2_t test_vlsseg2e32_v_u32m2x2_mu(vbool16_t vm, vuint32m2x2_t vd, const
 vuint32m4x2_t test_vlsseg2e32_v_u32m4x2_mu(vbool8_t vm, vuint32m4x2_t vd, const uint32_t *rs1, ptrdiff_t rs2, size_t vl) {
   return __riscv_vlsseg2e32_v_u32m4x2_mu(vm, vd, rs1, rs2, vl);
 }
-

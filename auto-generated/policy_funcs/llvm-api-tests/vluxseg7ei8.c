@@ -421,4 +421,3 @@ vuint32m1x7_t test_vluxseg7ei8_v_u32m1x7_mu(vbool32_t vm, vuint32m1x7_t vd, cons
 vuint64m1x7_t test_vluxseg7ei8_v_u64m1x7_mu(vbool64_t vm, vuint64m1x7_t vd, const uint64_t *rs1, vuint8mf8_t rs2, size_t vl) {
   return __riscv_vluxseg7ei8_v_u64m1x7_mu(vm, vd, rs1, rs2, vl);
 }
-

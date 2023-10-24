@@ -244,4 +244,3 @@ vuint64m4_t test_vwcvtu_x_x_v_u64m4_mu(vbool16_t vm, vuint64m4_t vd, vuint32m2_t
 vuint64m8_t test_vwcvtu_x_x_v_u64m8_mu(vbool8_t vm, vuint64m8_t vd, vuint32m4_t vs2, size_t vl) {
   return __riscv_vwcvtu_x_x_v_u64m8_mu(vm, vd, vs2, vl);
 }
-

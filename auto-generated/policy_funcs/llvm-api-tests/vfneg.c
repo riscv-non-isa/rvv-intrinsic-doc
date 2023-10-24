@@ -245,4 +245,3 @@ vfloat64m4_t test_vfneg_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd, vfloat64m4_t v
 vfloat64m8_t test_vfneg_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd, vfloat64m8_t vs, size_t vl) {
   return __riscv_vfneg_v_f64m8_mu(vm, vd, vs, vl);
 }
-

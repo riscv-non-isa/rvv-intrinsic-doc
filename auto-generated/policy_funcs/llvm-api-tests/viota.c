@@ -356,4 +356,3 @@ vuint64m4_t test_viota_m_u64m4_mu(vbool16_t vm, vuint64m4_t vd, vbool16_t vs2, s
 vuint64m8_t test_viota_m_u64m8_mu(vbool8_t vm, vuint64m8_t vd, vbool8_t vs2, size_t vl) {
   return __riscv_viota_m_u64m8_mu(vm, vd, vs2, vl);
 }
-

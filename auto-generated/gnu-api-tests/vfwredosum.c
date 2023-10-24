@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat32m1_t test_vfwredosum_vs_f16mf4_f32m1(vfloat16mf4_t vs2, vfloat32m1_t vs1, size_t vl) {
   return __riscv_vfwredosum_vs_f16mf4_f32m1(vs2, vs1, vl);
 }
@@ -181,5 +182,4 @@ vfloat64m1_t test_vfwredosum_vs_f32m4_f64m1_rm_m(vbool8_t vm, vfloat32m4_t vs2, 
 vfloat64m1_t test_vfwredosum_vs_f32m8_f64m1_rm_m(vbool4_t vm, vfloat32m8_t vs2, vfloat64m1_t vs1, size_t vl) {
   return __riscv_vfwredosum_vs_f32m8_f64m1_rm_m(vm, vs2, vs1, __RISCV_FRM_RNE, vl);
 }
-
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfwredosum\.[ivxfswum.]+\s+} 44 } } */

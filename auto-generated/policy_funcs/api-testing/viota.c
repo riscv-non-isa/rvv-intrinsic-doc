@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vuint8mf8_t test_viota_m_u8mf8_tu(vuint8mf8_t vd, vbool64_t vs2, size_t vl) {
   return __riscv_viota_m_u8mf8_tu(vd, vs2, vl);
 }

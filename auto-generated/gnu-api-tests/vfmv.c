@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf4_t test_vfmv_v_f_f16mf4(float16_t rs1, size_t vl) {
   return __riscv_vfmv_v_f_f16mf4(rs1, vl);
 }
@@ -185,5 +186,4 @@ float64_t test_vfmv_f_s_f64m8_f64(vfloat64m8_t vs1) {
 vfloat64m8_t test_vfmv_s_f_f64m8(float64_t rs1, size_t vl) {
   return __riscv_vfmv_s_f_f64m8(rs1, vl);
 }
-
 /* { dg-final { scan-assembler-times {vfmv\.[ivxfswum.]+\s+[,\sa-x0-9()]+} 45 } } */

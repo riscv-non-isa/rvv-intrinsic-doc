@@ -148,4 +148,3 @@ vint64m1_t test_vwredsum_vs_i32m4_i64m1_tum(vbool8_t vm, vint64m1_t vd, vint32m4
 vint64m1_t test_vwredsum_vs_i32m8_i64m1_tum(vbool4_t vm, vint64m1_t vd, vint32m8_t vs2, vint64m1_t vs1, size_t vl) {
   return __riscv_vwredsum_vs_i32m8_i64m1_tum(vm, vd, vs2, vs1, vl);
 }
-

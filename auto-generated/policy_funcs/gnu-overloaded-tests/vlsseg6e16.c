@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf4x6_t test_vlsseg6e16_v_f16mf4x6_tu(vfloat16mf4x6_t vd, const float16_t *rs1, ptrdiff_t rs2, size_t vl) {
   return __riscv_vlsseg6e16_tu(vd, rs1, rs2, vl);
 }
@@ -149,5 +150,4 @@ vuint16mf2x6_t test_vlsseg6e16_v_u16mf2x6_mu(vbool32_t vm, vuint16mf2x6_t vd, co
 vuint16m1x6_t test_vlsseg6e16_v_u16m1x6_mu(vbool16_t vm, vuint16m1x6_t vd, const uint16_t *rs1, ptrdiff_t rs2, size_t vl) {
   return __riscv_vlsseg6e16_mu(vm, vd, rs1, rs2, vl);
 }
-
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlsseg6e16\.[ivxfswum.]+\s+} 36 } } */

@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf4_t test_vfmerge_vfm_f16mf4(vfloat16mf4_t vs2, float16_t rs1,
                                       vbool64_t v0, size_t vl) {
   return __riscv_vfmerge_vfm_f16mf4(vs2, rs1, v0, vl);

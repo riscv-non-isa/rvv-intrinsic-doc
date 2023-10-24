@@ -357,4 +357,3 @@ vint64m4_t test_vneg_v_i64m4_mu(vbool16_t vm, vint64m4_t vd, vint64m4_t vs, size
 vint64m8_t test_vneg_v_i64m8_mu(vbool8_t vm, vint64m8_t vd, vint64m8_t vs, size_t vl) {
   return __riscv_vneg_v_i64m8_mu(vm, vd, vs, vl);
 }
-

@@ -357,4 +357,3 @@ vbool8_t test_vmsne_vv_u64m8_b8_mu(vbool8_t vm, vbool8_t vd, vuint64m8_t vs2, vu
 vbool8_t test_vmsne_vx_u64m8_b8_mu(vbool8_t vm, vbool8_t vd, vuint64m8_t vs2, uint64_t rs1, size_t vl) {
   return __riscv_vmsne_vx_u64m8_b8_mu(vm, vd, vs2, rs1, vl);
 }
-

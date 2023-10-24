@@ -148,4 +148,3 @@ vuint64m1_t test_vwredsumu_vs_u32m4_u64m1_tum(vbool8_t vm, vuint64m1_t vd, vuint
 vuint64m1_t test_vwredsumu_vs_u32m8_u64m1_tum(vbool4_t vm, vuint64m1_t vd, vuint32m8_t vs2, vuint64m1_t vs1, size_t vl) {
   return __riscv_vwredsumu_vs_u32m8_u64m1_tum(vm, vd, vs2, vs1, vl);
 }
-

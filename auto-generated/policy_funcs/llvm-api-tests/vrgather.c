@@ -1893,4 +1893,3 @@ vuint64m8_t test_vrgather_vv_u64m8_mu(vbool8_t vm, vuint64m8_t vd, vuint64m8_t v
 vuint64m8_t test_vrgather_vx_u64m8_mu(vbool8_t vm, vuint64m8_t vd, vuint64m8_t vs2, size_t vs1, size_t vl) {
   return __riscv_vrgather_vx_u64m8_mu(vm, vd, vs2, vs1, vl);
 }
-

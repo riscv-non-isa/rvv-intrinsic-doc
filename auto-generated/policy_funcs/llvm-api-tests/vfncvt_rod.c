@@ -149,4 +149,3 @@ vfloat32m2_t test_vfncvt_rod_f_f_w_f32m2_mu(vbool16_t vm, vfloat32m2_t vd, vfloa
 vfloat32m4_t test_vfncvt_rod_f_f_w_f32m4_mu(vbool8_t vm, vfloat32m4_t vd, vfloat64m8_t vs2, size_t vl) {
   return __riscv_vfncvt_rod_f_f_w_f32m4_mu(vm, vd, vs2, vl);
 }
-

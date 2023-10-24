@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf4_t test_vcompress_vm_f16mf4_tu(vfloat16mf4_t vd, vfloat16mf4_t vs2,
                                           vbool64_t vs1, size_t vl) {
   return __riscv_vcompress_tu(vd, vs2, vs1, vl);

@@ -149,4 +149,3 @@ vuint16mf2x6_t test_vlseg6e16ff_v_u16mf2x6_mu(vbool32_t vm, vuint16mf2x6_t vd, c
 vuint16m1x6_t test_vlseg6e16ff_v_u16m1x6_mu(vbool16_t vm, vuint16m1x6_t vd, const uint16_t *rs1, size_t *new_vl, size_t vl) {
   return __riscv_vlseg6e16ff_v_u16m1x6_mu(vm, vd, rs1, new_vl, vl);
 }
-

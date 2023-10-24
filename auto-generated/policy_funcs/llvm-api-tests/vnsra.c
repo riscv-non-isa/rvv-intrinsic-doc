@@ -484,4 +484,3 @@ vint32m4_t test_vnsra_wv_i32m4_mu(vbool8_t vm, vint32m4_t vd, vint64m8_t vs2, vu
 vint32m4_t test_vnsra_wx_i32m4_mu(vbool8_t vm, vint32m4_t vd, vint64m8_t vs2, size_t rs1, size_t vl) {
   return __riscv_vnsra_wx_i32m4_mu(vm, vd, vs2, rs1, vl);
 }
-

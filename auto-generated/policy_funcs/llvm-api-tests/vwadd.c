@@ -964,4 +964,3 @@ vint64m8_t test_vwadd_wv_i64m8_mu(vbool8_t vm, vint64m8_t vd, vint64m8_t vs2, vi
 vint64m8_t test_vwadd_wx_i64m8_mu(vbool8_t vm, vint64m8_t vd, vint64m8_t vs2, int32_t rs1, size_t vl) {
   return __riscv_vwadd_wx_i64m8_mu(vm, vd, vs2, rs1, vl);
 }
-

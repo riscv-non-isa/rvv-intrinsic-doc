@@ -245,4 +245,3 @@ vuint32m4_t test_vlse32_v_u32m4_mu(vbool8_t vm, vuint32m4_t vd, const uint32_t *
 vuint32m8_t test_vlse32_v_u32m8_mu(vbool4_t vm, vuint32m8_t vd, const uint32_t *rs1, ptrdiff_t rs2, size_t vl) {
   return __riscv_vlse32_v_u32m8_mu(vm, vd, rs1, rs2, vl);
 }
-

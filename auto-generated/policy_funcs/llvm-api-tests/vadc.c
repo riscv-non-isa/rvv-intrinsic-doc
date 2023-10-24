@@ -356,4 +356,3 @@ vuint64m8_t test_vadc_vvm_u64m8_tu(vuint64m8_t vd, vuint64m8_t vs2, vuint64m8_t 
 vuint64m8_t test_vadc_vxm_u64m8_tu(vuint64m8_t vd, vuint64m8_t vs2, uint64_t rs1, vbool8_t v0, size_t vl) {
   return __riscv_vadc_vxm_u64m8_tu(vd, vs2, rs1, v0, vl);
 }
-

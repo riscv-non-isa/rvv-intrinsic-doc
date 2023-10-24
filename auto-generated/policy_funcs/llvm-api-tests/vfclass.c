@@ -245,4 +245,3 @@ vuint64m4_t test_vfclass_v_u64m4_mu(vbool16_t vm, vuint64m4_t vd, vfloat64m4_t v
 vuint64m8_t test_vfclass_v_u64m8_mu(vbool8_t vm, vuint64m8_t vd, vfloat64m8_t vs2, size_t vl) {
   return __riscv_vfclass_v_u64m8_mu(vm, vd, vs2, vl);
 }
-

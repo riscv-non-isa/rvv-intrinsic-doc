@@ -229,4 +229,3 @@ vuint8m4_t test_vle8_v_u8m4_mu(vbool2_t vm, vuint8m4_t vd, const uint8_t *rs1, s
 vuint8m8_t test_vle8_v_u8m8_mu(vbool1_t vm, vuint8m8_t vd, const uint8_t *rs1, size_t vl) {
   return __riscv_vle8_v_u8m8_mu(vm, vd, rs1, vl);
 }
-

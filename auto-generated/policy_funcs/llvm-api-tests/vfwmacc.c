@@ -581,4 +581,3 @@ vfloat64m8_t test_vfwmacc_vv_f64m8_rm_mu(vbool8_t vm, vfloat64m8_t vd, vfloat32m
 vfloat64m8_t test_vfwmacc_vf_f64m8_rm_mu(vbool8_t vm, vfloat64m8_t vd, float vs1, vfloat32m4_t vs2, size_t vl) {
   return __riscv_vfwmacc_vf_f64m8_rm_mu(vm, vd, vs1, vs2, __RISCV_FRM_RNE, vl);
 }
-

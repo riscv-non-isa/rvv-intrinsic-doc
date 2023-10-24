@@ -484,4 +484,3 @@ vuint64m8_t test_vwmulu_vv_u64m8_mu(vbool8_t vm, vuint64m8_t vd, vuint32m4_t vs2
 vuint64m8_t test_vwmulu_vx_u64m8_mu(vbool8_t vm, vuint64m8_t vd, vuint32m4_t vs2, uint32_t rs1, size_t vl) {
   return __riscv_vwmulu_vx_u64m8_mu(vm, vd, vs2, rs1, vl);
 }
-

@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf4x2_t test_vcreate_v_f16mf4x2(vfloat16mf4_t v0, vfloat16mf4_t v1) {
   return __riscv_vcreate_v_f16mf4x2(v0, v1);
 }
@@ -909,5 +910,4 @@ vuint64m2x4_t test_vcreate_v_u64m2x4(vuint64m2_t v0, vuint64m2_t v1, vuint64m2_t
 vuint64m4x2_t test_vcreate_v_u64m4x2(vuint64m4_t v0, vuint64m4_t v1) {
   return __riscv_vcreate_v_u64m4x2(v0, v1);
 }
-
 /* { dg-final { scan-assembler-times {vl[124]re[0-9]*\.v\s+v[124],0\([a-z0-9]*\)\s+vs[124]r\.+[ivxfswum.]*\s+} 506 } } */

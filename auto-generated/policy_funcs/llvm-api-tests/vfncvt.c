@@ -1829,4 +1829,3 @@ vfloat32m2_t test_vfncvt_f_f_w_f32m2_rm_mu(vbool16_t vm, vfloat32m2_t vd, vfloat
 vfloat32m4_t test_vfncvt_f_f_w_f32m4_rm_mu(vbool8_t vm, vfloat32m4_t vd, vfloat64m8_t vs2, size_t vl) {
   return __riscv_vfncvt_f_f_w_f32m4_rm_mu(vm, vd, vs2, __RISCV_FRM_RNE, vl);
 }
-

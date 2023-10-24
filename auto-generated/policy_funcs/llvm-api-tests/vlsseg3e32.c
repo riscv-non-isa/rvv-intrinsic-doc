@@ -149,4 +149,3 @@ vuint32m1x3_t test_vlsseg3e32_v_u32m1x3_mu(vbool32_t vm, vuint32m1x3_t vd, const
 vuint32m2x3_t test_vlsseg3e32_v_u32m2x3_mu(vbool16_t vm, vuint32m2x3_t vd, const uint32_t *rs1, ptrdiff_t rs2, size_t vl) {
   return __riscv_vlsseg3e32_v_u32m2x3_mu(vm, vd, rs1, rs2, vl);
 }
-

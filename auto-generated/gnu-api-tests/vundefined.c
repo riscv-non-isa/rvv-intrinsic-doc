@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf4_t test_vundefined_f16mf4() {
   return __riscv_vundefined_f16mf4();
 }
@@ -241,5 +242,4 @@ vuint64m4_t test_vundefined_u64m4() {
 vuint64m8_t test_vundefined_u64m8() {
   return __riscv_vundefined_u64m8();
 }
-
 /* { dg-final { scan-assembler-times {vs[1248e][r123468]+\.[ivxfswum.]+\s+[,\sa-x0-9()]+} 59 } } */

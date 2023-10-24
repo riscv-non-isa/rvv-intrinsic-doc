@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf4x4_t test_vloxseg4ei64_v_f16mf4x4_tu(vfloat16mf4x4_t vd,
                                                 const float16_t *rs1,
                                                 vuint64m1_t rs2, size_t vl) {

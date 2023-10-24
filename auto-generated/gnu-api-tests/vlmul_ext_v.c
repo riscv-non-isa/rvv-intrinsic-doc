@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf2_t test_vlmul_ext_v_f16mf4_f16mf2(vfloat16mf4_t value) {
   return __riscv_vlmul_ext_v_f16mf4_f16mf2(value);
 }
@@ -545,5 +546,4 @@ vuint64m8_t test_vlmul_ext_v_u64m2_u64m8(vuint64m2_t value) {
 vuint64m8_t test_vlmul_ext_v_u64m4_u64m8(vuint64m4_t value) {
   return __riscv_vlmul_ext_v_u64m4_u64m8(value);
 }
-
 /* { dg-final { scan-assembler-times {vs[1248e][r123468]+\.[ivxfswum.]+\s+[,\sa-x0-9()]+} 135 } } */

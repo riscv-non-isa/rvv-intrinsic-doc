@@ -708,4 +708,3 @@ vuint64m4_t test_vnot_v_u64m4_mu(vbool16_t vm, vuint64m4_t vd, vuint64m4_t vs, s
 vuint64m8_t test_vnot_v_u64m8_mu(vbool8_t vm, vuint64m8_t vd, vuint64m8_t vs, size_t vl) {
   return __riscv_vnot_v_u64m8_mu(vm, vd, vs, vl);
 }
-

@@ -245,4 +245,3 @@ vint64m4_t test_vwmaccus_vx_i64m4_mu(vbool16_t vm, vint64m4_t vd, uint32_t rs1, 
 vint64m8_t test_vwmaccus_vx_i64m8_mu(vbool8_t vm, vint64m8_t vd, uint32_t rs1, vint32m4_t vs2, size_t vl) {
   return __riscv_vwmaccus_vx_i64m8_mu(vm, vd, rs1, vs2, vl);
 }
-

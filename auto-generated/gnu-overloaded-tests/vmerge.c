@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vint8mf8_t test_vmerge_vvm_i8mf8(vint8mf8_t vs2, vint8mf8_t vs1, vbool64_t v0, size_t vl) {
   return __riscv_vmerge(vs2, vs1, v0, vl);
 }
@@ -417,5 +418,4 @@ vfloat64m4_t test_vmerge_vvm_f64m4(vfloat64m4_t vs2, vfloat64m4_t vs1, vbool16_t
 vfloat64m8_t test_vmerge_vvm_f64m8(vfloat64m8_t vs2, vfloat64m8_t vs1, vbool8_t v0, size_t vl) {
   return __riscv_vmerge(vs2, vs1, v0, vl);
 }
-
 /* { dg-final { scan-assembler-times {vmerge\.[ivxfswum.]+\s+} 103 } } */

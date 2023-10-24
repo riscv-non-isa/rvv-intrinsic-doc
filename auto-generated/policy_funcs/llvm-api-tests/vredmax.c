@@ -180,4 +180,3 @@ vint64m1_t test_vredmax_vs_i64m4_i64m1_tum(vbool16_t vm, vint64m1_t vd, vint64m4
 vint64m1_t test_vredmax_vs_i64m8_i64m1_tum(vbool8_t vm, vint64m1_t vd, vint64m8_t vs2, vint64m1_t vs1, size_t vl) {
   return __riscv_vredmax_vs_i64m8_i64m1_tum(vm, vd, vs2, vs1, vl);
 }
-

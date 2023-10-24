@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf4_t test_vfneg_v_f16mf4_tu(vfloat16mf4_t vd, vfloat16mf4_t vs, size_t vl) {
   return __riscv_vfneg_tu(vd, vs, vl);
 }
@@ -245,5 +246,4 @@ vfloat64m4_t test_vfneg_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd, vfloat64m4_t v
 vfloat64m8_t test_vfneg_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd, vfloat64m8_t vs, size_t vl) {
   return __riscv_vfneg_mu(vm, vd, vs, vl);
 }
-
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfneg\.[ivxfswum.]+\s+} 60 } } */

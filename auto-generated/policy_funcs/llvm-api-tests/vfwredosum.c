@@ -181,4 +181,3 @@ vfloat64m1_t test_vfwredosum_vs_f32m4_f64m1_rm_tum(vbool8_t vm, vfloat64m1_t vd,
 vfloat64m1_t test_vfwredosum_vs_f32m8_f64m1_rm_tum(vbool4_t vm, vfloat64m1_t vd, vfloat32m8_t vs2, vfloat64m1_t vs1, size_t vl) {
   return __riscv_vfwredosum_vs_f32m8_f64m1_rm_tum(vm, vd, vs2, vs1, __RISCV_FRM_RNE, vl);
 }
-

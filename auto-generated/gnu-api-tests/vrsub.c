@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vint8mf8_t test_vrsub_vx_i8mf8(vint8mf8_t vs2, int8_t rs1, size_t vl) {
   return __riscv_vrsub_vx_i8mf8(vs2, rs1, vl);
 }
@@ -357,5 +358,4 @@ vuint64m4_t test_vrsub_vx_u64m4_m(vbool16_t vm, vuint64m4_t vs2, uint64_t rs1, s
 vuint64m8_t test_vrsub_vx_u64m8_m(vbool8_t vm, vuint64m8_t vs2, uint64_t rs1, size_t vl) {
   return __riscv_vrsub_vx_u64m8_m(vm, vs2, rs1, vl);
 }
-
 /* { dg-final { scan-assembler-times {vrsub\.[ivxfswum.]+\s+} 88 } } */

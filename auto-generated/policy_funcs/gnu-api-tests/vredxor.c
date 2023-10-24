@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vint8m1_t test_vredxor_vs_i8mf8_i8m1_tu(vint8m1_t vd, vint8mf8_t vs2, vint8m1_t vs1, size_t vl) {
   return __riscv_vredxor_vs_i8mf8_i8m1_tu(vd, vs2, vs1, vl);
 }
@@ -357,5 +358,4 @@ vuint64m1_t test_vredxor_vs_u64m4_u64m1_tum(vbool16_t vm, vuint64m1_t vd, vuint6
 vuint64m1_t test_vredxor_vs_u64m8_u64m1_tum(vbool8_t vm, vuint64m1_t vd, vuint64m8_t vs2, vuint64m1_t vs1, size_t vl) {
   return __riscv_vredxor_vs_u64m8_u64m1_tum(vm, vd, vs2, vs1, vl);
 }
-
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vredxor\.[ivxfswum.]+\s+} 88 } } */

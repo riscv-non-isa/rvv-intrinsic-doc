@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vint16m1_t test_vwredsum_vs_i8mf8_i16m1_tu(vint16m1_t vd, vint8mf8_t vs2,
                                            vint16m1_t vs1, size_t vl) {
   return __riscv_vwredsum_tu(vd, vs2, vs1, vl);

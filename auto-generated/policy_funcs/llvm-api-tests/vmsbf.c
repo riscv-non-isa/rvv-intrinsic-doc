@@ -32,4 +32,3 @@ vbool32_t test_vmsbf_m_b32_mu(vbool32_t vm, vbool32_t vd, vbool32_t vs2, size_t 
 vbool64_t test_vmsbf_m_b64_mu(vbool64_t vm, vbool64_t vd, vbool64_t vs2, size_t vl) {
   return __riscv_vmsbf_m_b64_mu(vm, vd, vs2, vl);
 }
-

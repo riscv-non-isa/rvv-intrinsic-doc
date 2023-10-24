@@ -965,4 +965,3 @@ vfloat64m8_t test_vfmsub_vv_f64m8_rm_mu(vbool8_t vm, vfloat64m8_t vd, vfloat64m8
 vfloat64m8_t test_vfmsub_vf_f64m8_rm_mu(vbool8_t vm, vfloat64m8_t vd, double rs1, vfloat64m8_t vs2, size_t vl) {
   return __riscv_vfmsub_vf_f64m8_rm_mu(vm, vd, rs1, vs2, __RISCV_FRM_RNE, vl);
 }
-

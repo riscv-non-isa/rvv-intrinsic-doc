@@ -485,4 +485,3 @@ vfloat64m8_t test_vfsgnjx_vv_f64m8_mu(vbool8_t vm, vfloat64m8_t vd, vfloat64m8_t
 vfloat64m8_t test_vfsgnjx_vf_f64m8_mu(vbool8_t vm, vfloat64m8_t vd, vfloat64m8_t vs2, double rs1, size_t vl) {
   return __riscv_vfsgnjx_vf_f64m8_mu(vm, vd, vs2, rs1, vl);
 }
-

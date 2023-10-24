@@ -181,4 +181,3 @@ vbool8_t test_vmsle_vv_i64m8_b8_mu(vbool8_t vm, vbool8_t vd, vint64m8_t vs2, vin
 vbool8_t test_vmsle_vx_i64m8_b8_mu(vbool8_t vm, vbool8_t vd, vint64m8_t vs2, int64_t rs1, size_t vl) {
   return __riscv_vmsle_vx_i64m8_b8_mu(vm, vd, vs2, rs1, vl);
 }
-

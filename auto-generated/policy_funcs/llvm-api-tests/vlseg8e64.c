@@ -53,4 +53,3 @@ vint64m1x8_t test_vlseg8e64_v_i64m1x8_mu(vbool64_t vm, vint64m1x8_t vd, const in
 vuint64m1x8_t test_vlseg8e64_v_u64m1x8_mu(vbool64_t vm, vuint64m1x8_t vd, const uint64_t *rs1, size_t vl) {
   return __riscv_vlseg8e64_v_u64m1x8_mu(vm, vd, rs1, vl);
 }
-

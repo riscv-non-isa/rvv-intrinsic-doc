@@ -165,4 +165,3 @@ vuint8m1x4_t test_vlseg4e8ff_v_u8m1x4_mu(vbool8_t vm, vuint8m1x4_t vd, const uin
 vuint8m2x4_t test_vlseg4e8ff_v_u8m2x4_mu(vbool4_t vm, vuint8m2x4_t vd, const uint8_t *rs1, size_t *new_vl, size_t vl) {
   return __riscv_vlseg4e8ff_v_u8m2x4_mu(vm, vd, rs1, new_vl, vl);
 }
-

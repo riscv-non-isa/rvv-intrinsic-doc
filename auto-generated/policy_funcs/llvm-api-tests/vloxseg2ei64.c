@@ -661,4 +661,3 @@ vuint64m2x2_t test_vloxseg2ei64_v_u64m2x2_mu(vbool32_t vm, vuint64m2x2_t vd, con
 vuint64m4x2_t test_vloxseg2ei64_v_u64m4x2_mu(vbool16_t vm, vuint64m4x2_t vd, const uint64_t *rs1, vuint64m4_t rs2, size_t vl) {
   return __riscv_vloxseg2ei64_v_u64m4x2_mu(vm, vd, rs1, rs2, vl);
 }
-

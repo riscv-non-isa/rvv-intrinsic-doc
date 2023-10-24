@@ -708,4 +708,3 @@ vint64m8_t test_vmulh_vv_i64m8_mu(vbool8_t vm, vint64m8_t vd, vint64m8_t vs2, vi
 vint64m8_t test_vmulh_vx_i64m8_mu(vbool8_t vm, vint64m8_t vd, vint64m8_t vs2, int64_t rs1, size_t vl) {
   return __riscv_vmulh_vx_i64m8_mu(vm, vd, vs2, rs1, vl);
 }
-

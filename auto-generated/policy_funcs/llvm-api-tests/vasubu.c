@@ -708,4 +708,3 @@ vuint64m8_t test_vasubu_vv_u64m8_mu(vbool8_t vm, vuint64m8_t vd, vuint64m8_t vs2
 vuint64m8_t test_vasubu_vx_u64m8_mu(vbool8_t vm, vuint64m8_t vd, vuint64m8_t vs2, uint64_t rs1, size_t vl) {
   return __riscv_vasubu_vx_u64m8_mu(vm, vd, vs2, rs1, __RISCV_VXRM_RNU, vl);
 }
-

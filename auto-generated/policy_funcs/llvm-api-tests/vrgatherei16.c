@@ -917,4 +917,3 @@ vuint64m4_t test_vrgatherei16_vv_u64m4_mu(vbool16_t vm, vuint64m4_t vd, vuint64m
 vuint64m8_t test_vrgatherei16_vv_u64m8_mu(vbool8_t vm, vuint64m8_t vd, vuint64m8_t vs2, vuint16m2_t vs1, size_t vl) {
   return __riscv_vrgatherei16_vv_u64m8_mu(vm, vd, vs2, vs1, vl);
 }
-

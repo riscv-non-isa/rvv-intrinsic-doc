@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vint8mf8_t test_vxor_vv_i8mf8(vint8mf8_t vs2, vint8mf8_t vs1, size_t vl) {
   return __riscv_vxor_vv_i8mf8(vs2, vs1, vl);
 }
@@ -709,5 +710,4 @@ vuint64m8_t test_vxor_vv_u64m8_m(vbool8_t vm, vuint64m8_t vs2, vuint64m8_t vs1, 
 vuint64m8_t test_vxor_vx_u64m8_m(vbool8_t vm, vuint64m8_t vs2, uint64_t rs1, size_t vl) {
   return __riscv_vxor_vx_u64m8_m(vm, vs2, rs1, vl);
 }
-
 /* { dg-final { scan-assembler-times {vxor\.[ivxfswum.]+\s+} 176 } } */

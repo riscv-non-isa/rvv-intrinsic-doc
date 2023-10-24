@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat32mf2_t test_vle32_v_f32mf2_tu(vfloat32mf2_t vd, const float32_t *rs1, size_t vl) {
   return __riscv_vle32_v_f32mf2_tu(vd, rs1, vl);
 }
@@ -245,5 +246,4 @@ vuint32m4_t test_vle32_v_u32m4_mu(vbool8_t vm, vuint32m4_t vd, const uint32_t *r
 vuint32m8_t test_vle32_v_u32m8_mu(vbool4_t vm, vuint32m8_t vd, const uint32_t *rs1, size_t vl) {
   return __riscv_vle32_v_u32m8_mu(vm, vd, rs1, vl);
 }
-
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vle32\.[ivxfswum.]+\s+} 63 } } */

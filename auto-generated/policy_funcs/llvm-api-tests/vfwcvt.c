@@ -1205,4 +1205,3 @@ vuint64m4_t test_vfwcvt_xu_f_v_u64m4_rm_mu(vbool16_t vm, vuint64m4_t vd, vfloat3
 vuint64m8_t test_vfwcvt_xu_f_v_u64m8_rm_mu(vbool8_t vm, vuint64m8_t vd, vfloat32m4_t vs2, size_t vl) {
   return __riscv_vfwcvt_xu_f_v_u64m8_rm_mu(vm, vd, vs2, __RISCV_FRM_RNE, vl);
 }
-

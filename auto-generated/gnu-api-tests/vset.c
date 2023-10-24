@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16m2_t test_vset_v_f16m1_f16m2(vfloat16m2_t dest, size_t index, vfloat16m1_t value) {
   return __riscv_vset_v_f16m1_f16m2(dest, 0, value);
 }
@@ -1173,5 +1174,4 @@ vuint64m2x4_t test_vset_v_u64m2_u64m2x4(vuint64m2x4_t dest, size_t index, vuint6
 vuint64m4x2_t test_vset_v_u64m4_u64m4x2(vuint64m4x2_t dest, size_t index, vuint64m4_t value) {
   return __riscv_vset_v_u64m4_u64m4x2(dest, 0, value);
 }
-
 /* { dg-final { scan-assembler-times {vl[1248]re[0-9]*\.v\s+v[1248],0\([a-z0-9]*\)\s+vl[1248]re[0-9]*\.v\s+v[1248],0\([a-z0-9]*\)+[ivxfswum.]*\s+} 66 } } */

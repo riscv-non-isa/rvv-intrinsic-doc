@@ -65,4 +65,3 @@ vfloat64m4_t test_vfmerge_vfm_f64m4_tu(vfloat64m4_t vd, vfloat64m4_t vs2, double
 vfloat64m8_t test_vfmerge_vfm_f64m8_tu(vfloat64m8_t vd, vfloat64m8_t vs2, double rs1, vbool8_t v0, size_t vl) {
   return __riscv_vfmerge_vfm_f64m8_tu(vd, vs2, rs1, v0, vl);
 }
-

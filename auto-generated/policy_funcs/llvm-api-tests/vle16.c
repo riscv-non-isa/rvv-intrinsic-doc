@@ -293,4 +293,3 @@ vuint16m4_t test_vle16_v_u16m4_mu(vbool4_t vm, vuint16m4_t vd, const uint16_t *r
 vuint16m8_t test_vle16_v_u16m8_mu(vbool2_t vm, vuint16m8_t vd, const uint16_t *rs1, size_t vl) {
   return __riscv_vle16_v_u16m8_mu(vm, vd, rs1, vl);
 }
-

@@ -241,4 +241,3 @@ vuint64m4_t test_vcompress_vm_u64m4_tu(vuint64m4_t vd, vuint64m4_t vs2, vbool16_
 vuint64m8_t test_vcompress_vm_u64m8_tu(vuint64m8_t vd, vuint64m8_t vs2, vbool8_t vs1, size_t vl) {
   return __riscv_vcompress_vm_u64m8_tu(vd, vs2, vs1, vl);
 }
-

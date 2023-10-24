@@ -485,4 +485,3 @@ vfloat64m8_t test_vfmax_vv_f64m8_mu(vbool8_t vm, vfloat64m8_t vd, vfloat64m8_t v
 vfloat64m8_t test_vfmax_vf_f64m8_mu(vbool8_t vm, vfloat64m8_t vd, vfloat64m8_t vs2, double rs1, size_t vl) {
   return __riscv_vfmax_vf_f64m8_mu(vm, vd, vs2, rs1, vl);
 }
-

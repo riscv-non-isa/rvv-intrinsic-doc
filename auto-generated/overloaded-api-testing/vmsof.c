@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vbool1_t test_vmsof_m_b1(vbool1_t vs2, size_t vl) {
   return __riscv_vmsof(vs2, vl);
 }

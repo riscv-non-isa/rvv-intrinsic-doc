@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vint16mf4_t test_vwsub_vv_i16mf4(vint8mf8_t vs2, vint8mf8_t vs1, size_t vl) {
   return __riscv_vwsub_vv(vs2, vs1, vl);
 }
@@ -485,5 +486,4 @@ vint64m8_t test_vwsub_wv_i64m8_m(vbool8_t vm, vint64m8_t vs2, vint32m4_t vs1, si
 vint64m8_t test_vwsub_wx_i64m8_m(vbool8_t vm, vint64m8_t vs2, int32_t rs1, size_t vl) {
   return __riscv_vwsub_wx(vm, vs2, rs1, vl);
 }
-
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+v[w]?sub\.[ivxfswum.]+\s+} 120 } } */

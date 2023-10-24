@@ -244,4 +244,3 @@ vint64m4_t test_vwcvt_x_x_v_i64m4_mu(vbool16_t vm, vint64m4_t vd, vint32m2_t vs2
 vint64m8_t test_vwcvt_x_x_v_i64m8_mu(vbool8_t vm, vint64m8_t vd, vint32m4_t vs2, size_t vl) {
   return __riscv_vwcvt_x_x_v_i64m8_mu(vm, vd, vs2, vl);
 }
-

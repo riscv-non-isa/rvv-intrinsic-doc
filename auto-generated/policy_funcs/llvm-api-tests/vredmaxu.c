@@ -180,4 +180,3 @@ vuint64m1_t test_vredmaxu_vs_u64m4_u64m1_tum(vbool16_t vm, vuint64m1_t vd, vuint
 vuint64m1_t test_vredmaxu_vs_u64m8_u64m1_tum(vbool8_t vm, vuint64m1_t vd, vuint64m8_t vs2, vuint64m1_t vs1, size_t vl) {
   return __riscv_vredmaxu_vs_u64m8_u64m1_tum(vm, vd, vs2, vs1, vl);
 }
-

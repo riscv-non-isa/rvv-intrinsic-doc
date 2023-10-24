@@ -484,4 +484,3 @@ vint64m8_t test_vwmulsu_vv_i64m8_mu(vbool8_t vm, vint64m8_t vd, vint32m4_t vs2, 
 vint64m8_t test_vwmulsu_vx_i64m8_mu(vbool8_t vm, vint64m8_t vd, vint32m4_t vs2, uint32_t rs1, size_t vl) {
   return __riscv_vwmulsu_vx_i64m8_mu(vm, vd, vs2, rs1, vl);
 }
-

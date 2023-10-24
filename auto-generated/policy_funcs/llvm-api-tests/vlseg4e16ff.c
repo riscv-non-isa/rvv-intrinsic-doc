@@ -197,4 +197,3 @@ vuint16m1x4_t test_vlseg4e16ff_v_u16m1x4_mu(vbool16_t vm, vuint16m1x4_t vd, cons
 vuint16m2x4_t test_vlseg4e16ff_v_u16m2x4_mu(vbool8_t vm, vuint16m2x4_t vd, const uint16_t *rs1, size_t *new_vl, size_t vl) {
   return __riscv_vlseg4e16ff_v_u16m2x4_mu(vm, vd, rs1, new_vl, vl);
 }
-

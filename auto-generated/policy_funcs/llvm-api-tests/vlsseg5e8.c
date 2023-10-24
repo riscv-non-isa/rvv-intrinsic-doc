@@ -132,4 +132,3 @@ vuint8mf2x5_t test_vlsseg5e8_v_u8mf2x5_mu(vbool16_t vm, vuint8mf2x5_t vd, const 
 vuint8m1x5_t test_vlsseg5e8_v_u8m1x5_mu(vbool8_t vm, vuint8m1x5_t vd, const uint8_t *rs1, ptrdiff_t rs2, size_t vl) {
   return __riscv_vlsseg5e8_v_u8m1x5_mu(vm, vd, rs1, rs2, vl);
 }
-

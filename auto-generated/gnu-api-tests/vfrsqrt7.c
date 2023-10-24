@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf4_t test_vfrsqrt7_v_f16mf4(vfloat16mf4_t vs2, size_t vl) {
   return __riscv_vfrsqrt7_v_f16mf4(vs2, vl);
 }
@@ -125,5 +126,4 @@ vfloat64m4_t test_vfrsqrt7_v_f64m4_m(vbool16_t vm, vfloat64m4_t vs2, size_t vl) 
 vfloat64m8_t test_vfrsqrt7_v_f64m8_m(vbool8_t vm, vfloat64m8_t vs2, size_t vl) {
   return __riscv_vfrsqrt7_v_f64m8_m(vm, vs2, vl);
 }
-
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfrsqrt7\.[ivxfswum.]+\s+} 30 } } */

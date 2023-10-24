@@ -565,4 +565,3 @@ vuint64m1x3_t test_vluxseg3ei64_v_u64m1x3_mu(vbool64_t vm, vuint64m1x3_t vd, con
 vuint64m2x3_t test_vluxseg3ei64_v_u64m2x3_mu(vbool32_t vm, vuint64m2x3_t vd, const uint64_t *rs1, vuint64m2_t rs2, size_t vl) {
   return __riscv_vluxseg3ei64_v_u64m2x3_mu(vm, vd, rs1, rs2, vl);
 }
-

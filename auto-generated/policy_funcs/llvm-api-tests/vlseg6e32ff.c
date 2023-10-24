@@ -101,4 +101,3 @@ vuint32mf2x6_t test_vlseg6e32ff_v_u32mf2x6_mu(vbool64_t vm, vuint32mf2x6_t vd, c
 vuint32m1x6_t test_vlseg6e32ff_v_u32m1x6_mu(vbool32_t vm, vuint32m1x6_t vd, const uint32_t *rs1, size_t *new_vl, size_t vl) {
   return __riscv_vlseg6e32ff_v_u32m1x6_mu(vm, vd, rs1, new_vl, vl);
 }
-

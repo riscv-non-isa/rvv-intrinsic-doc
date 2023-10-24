@@ -101,4 +101,3 @@ vuint32mf2x7_t test_vlseg7e32_v_u32mf2x7_mu(vbool64_t vm, vuint32mf2x7_t vd, con
 vuint32m1x7_t test_vlseg7e32_v_u32m1x7_mu(vbool32_t vm, vuint32m1x7_t vd, const uint32_t *rs1, size_t vl) {
   return __riscv_vlseg7e32_v_u32m1x7_mu(vm, vd, rs1, vl);
 }
-

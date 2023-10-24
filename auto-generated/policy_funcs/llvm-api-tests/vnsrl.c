@@ -484,4 +484,3 @@ vuint32m4_t test_vnsrl_wv_u32m4_mu(vbool8_t vm, vuint32m4_t vd, vuint64m8_t vs2,
 vuint32m4_t test_vnsrl_wx_u32m4_mu(vbool8_t vm, vuint32m4_t vd, vuint64m8_t vs2, size_t rs1, size_t vl) {
   return __riscv_vnsrl_wx_u32m4_mu(vm, vd, vs2, rs1, vl);
 }
-

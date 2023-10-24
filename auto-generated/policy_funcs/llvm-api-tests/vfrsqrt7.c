@@ -245,4 +245,3 @@ vfloat64m4_t test_vfrsqrt7_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd, vfloat64m4_
 vfloat64m8_t test_vfrsqrt7_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd, vfloat64m8_t vs2, size_t vl) {
   return __riscv_vfrsqrt7_v_f64m8_mu(vm, vd, vs2, vl);
 }
-

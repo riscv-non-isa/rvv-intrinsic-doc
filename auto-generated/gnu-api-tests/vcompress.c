@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16mf4_t test_vcompress_vm_f16mf4(vfloat16mf4_t vs2, vbool64_t vs1, size_t vl) {
   return __riscv_vcompress_vm_f16mf4(vs2, vs1, vl);
 }
@@ -241,5 +242,4 @@ vuint64m4_t test_vcompress_vm_u64m4(vuint64m4_t vs2, vbool16_t vs1, size_t vl) {
 vuint64m8_t test_vcompress_vm_u64m8(vuint64m8_t vs2, vbool8_t vs1, size_t vl) {
   return __riscv_vcompress_vm_u64m8(vs2, vs1, vl);
 }
-
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vcompress\.[ivxfswum.]+\s+} 59 } } */

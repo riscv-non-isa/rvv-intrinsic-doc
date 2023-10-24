@@ -485,4 +485,3 @@ vfloat64m4_t test_vfrec7_v_f64m4_rm_mu(vbool16_t vm, vfloat64m4_t vd, vfloat64m4
 vfloat64m8_t test_vfrec7_v_f64m8_rm_mu(vbool8_t vm, vfloat64m8_t vd, vfloat64m8_t vs2, size_t vl) {
   return __riscv_vfrec7_v_f64m8_rm_mu(vm, vd, vs2, __RISCV_FRM_RNE, vl);
 }
-

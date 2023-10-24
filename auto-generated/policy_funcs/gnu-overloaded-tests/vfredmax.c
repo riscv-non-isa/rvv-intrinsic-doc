@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vfloat16m1_t test_vfredmax_vs_f16mf4_f16m1_tu(vfloat16m1_t vd, vfloat16mf4_t vs2, vfloat16m1_t vs1, size_t vl) {
   return __riscv_vfredmax_tu(vd, vs2, vs1, vl);
 }
@@ -125,5 +126,4 @@ vfloat64m1_t test_vfredmax_vs_f64m4_f64m1_tum(vbool16_t vm, vfloat64m1_t vd, vfl
 vfloat64m1_t test_vfredmax_vs_f64m8_f64m1_tum(vbool8_t vm, vfloat64m1_t vd, vfloat64m8_t vs2, vfloat64m1_t vs1, size_t vl) {
   return __riscv_vfredmax_tum(vm, vd, vs2, vs1, vl);
 }
-
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfredmax\.[ivxfswum.]+\s+} 30 } } */

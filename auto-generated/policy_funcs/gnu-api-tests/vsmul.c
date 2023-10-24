@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vint8mf8_t test_vsmul_vv_i8mf8_tu(vint8mf8_t vd, vint8mf8_t vs2, vint8mf8_t vs1, size_t vl) {
   return __riscv_vsmul_vv_i8mf8_tu(vd, vs2, vs1, __RISCV_VXRM_RNU, vl);
 }
@@ -709,5 +710,4 @@ vint64m8_t test_vsmul_vv_i64m8_mu(vbool8_t vm, vint64m8_t vd, vint64m8_t vs2, vi
 vint64m8_t test_vsmul_vx_i64m8_mu(vbool8_t vm, vint64m8_t vd, vint64m8_t vs2, int64_t rs1, size_t vl) {
   return __riscv_vsmul_vx_i64m8_mu(vm, vd, vs2, rs1, __RISCV_VXRM_RNU, vl);
 }
-
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsmul\.[ivxfswum.]+\s+} 176 } } */

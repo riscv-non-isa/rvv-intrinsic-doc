@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vbool1_t test_vmandn_mm_b1(vbool1_t vs2, vbool1_t vs1, size_t vl) {
   return __riscv_vmandn(vs2, vs1, vl);
 }
@@ -33,5 +34,4 @@ vbool32_t test_vmandn_mm_b32(vbool32_t vs2, vbool32_t vs1, size_t vl) {
 vbool64_t test_vmandn_mm_b64(vbool64_t vs2, vbool64_t vs1, size_t vl) {
   return __riscv_vmandn(vs2, vs1, vl);
 }
-
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vmandn\.[ivxfswum.]+\s+} 7 } } */

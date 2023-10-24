@@ -101,4 +101,3 @@ vuint32mf2x8_t test_vlsseg8e32_v_u32mf2x8_mu(vbool64_t vm, vuint32mf2x8_t vd, co
 vuint32m1x8_t test_vlsseg8e32_v_u32m1x8_mu(vbool32_t vm, vuint32m1x8_t vd, const uint32_t *rs1, ptrdiff_t rs2, size_t vl) {
   return __riscv_vlsseg8e32_v_u32m1x8_mu(vm, vd, rs1, rs2, vl);
 }
-

@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 long test_vfirst_m_b1(vbool1_t vs2, size_t vl) {
   return __riscv_vfirst(vs2, vl);
 }

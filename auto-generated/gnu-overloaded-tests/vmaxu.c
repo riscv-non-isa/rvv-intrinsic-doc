@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vuint8mf8_t test_vmaxu_vv_u8mf8(vuint8mf8_t vs2, vuint8mf8_t vs1, size_t vl) {
   return __riscv_vmaxu(vs2, vs1, vl);
 }
@@ -357,5 +358,4 @@ vuint64m8_t test_vmaxu_vv_u64m8_m(vbool8_t vm, vuint64m8_t vs2, vuint64m8_t vs1,
 vuint64m8_t test_vmaxu_vx_u64m8_m(vbool8_t vm, vuint64m8_t vs2, uint64_t rs1, size_t vl) {
   return __riscv_vmaxu(vm, vs2, rs1, vl);
 }
-
 /* { dg-final { scan-assembler-times {vmaxu\.[ivxfswum.]+\s+} 88 } } */

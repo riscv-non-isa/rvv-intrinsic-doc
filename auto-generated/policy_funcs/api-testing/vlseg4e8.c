@@ -4,6 +4,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vint8mf8x4_t test_vlseg4e8_v_i8mf8x4_tu(vint8mf8x4_t vd, const int8_t *rs1,
                                         size_t vl) {
   return __riscv_vlseg4e8_v_i8mf8x4_tu(vd, rs1, vl);

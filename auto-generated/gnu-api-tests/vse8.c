@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 void test_vse8_v_i8mf8(int8_t *rs1, vint8mf8_t vs3, size_t vl) {
   return __riscv_vse8_v_i8mf8(rs1, vs3, vl);
 }
@@ -117,5 +118,4 @@ void test_vse8_v_u8m4_m(vbool2_t vm, uint8_t *rs1, vuint8m4_t vs3, size_t vl) {
 void test_vse8_v_u8m8_m(vbool1_t vm, uint8_t *rs1, vuint8m8_t vs3, size_t vl) {
   return __riscv_vse8_v_u8m8_m(vm, rs1, vs3, vl);
 }
-
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vse8\.[ivxfswum.]+\s+} 28 } } */

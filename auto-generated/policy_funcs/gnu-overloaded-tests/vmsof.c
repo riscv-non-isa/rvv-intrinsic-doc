@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vbool1_t test_vmsof_m_b1_mu(vbool1_t vm, vbool1_t vd, vbool1_t vs2, size_t vl) {
   return __riscv_vmsof_mu(vm, vd, vs2, vl);
 }
@@ -33,5 +34,4 @@ vbool32_t test_vmsof_m_b32_mu(vbool32_t vm, vbool32_t vd, vbool32_t vs2, size_t 
 vbool64_t test_vmsof_m_b64_mu(vbool64_t vm, vbool64_t vd, vbool64_t vs2, size_t vl) {
   return __riscv_vmsof_mu(vm, vd, vs2, vl);
 }
-
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vmsof\.[ivxfswum.]+\s+} 7 } } */

@@ -6,6 +6,7 @@
 typedef _Float16 float16_t;
 typedef float float32_t;
 typedef double float64_t;
+
 vint8m1_t test_vredmin_vs_i8mf8_i8m1(vint8mf8_t vs2, vint8m1_t vs1, size_t vl) {
   return __riscv_vredmin_vs_i8mf8_i8m1(vs2, vs1, vl);
 }
@@ -181,5 +182,4 @@ vint64m1_t test_vredmin_vs_i64m4_i64m1_m(vbool16_t vm, vint64m4_t vs2, vint64m1_
 vint64m1_t test_vredmin_vs_i64m8_i64m1_m(vbool8_t vm, vint64m8_t vs2, vint64m1_t vs1, size_t vl) {
   return __riscv_vredmin_vs_i64m8_i64m1_m(vm, vs2, vs1, vl);
 }
-
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vredmin\.[ivxfswum.]+\s+} 44 } } */

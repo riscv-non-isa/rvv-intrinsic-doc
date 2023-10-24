@@ -53,4 +53,3 @@ vint64m1x5_t test_vlseg5e64ff_v_i64m1x5_mu(vbool64_t vm, vint64m1x5_t vd, const 
 vuint64m1x5_t test_vlseg5e64ff_v_u64m1x5_mu(vbool64_t vm, vuint64m1x5_t vd, const uint64_t *rs1, size_t *new_vl, size_t vl) {
   return __riscv_vlseg5e64ff_v_u64m1x5_mu(vm, vd, rs1, new_vl, vl);
 }
-

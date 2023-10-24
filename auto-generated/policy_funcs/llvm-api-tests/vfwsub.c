@@ -1157,4 +1157,3 @@ vfloat64m8_t test_vfwsub_wv_f64m8_rm_mu(vbool8_t vm, vfloat64m8_t vd, vfloat64m8
 vfloat64m8_t test_vfwsub_wf_f64m8_rm_mu(vbool8_t vm, vfloat64m8_t vd, vfloat64m8_t vs2, float rs1, size_t vl) {
   return __riscv_vfwsub_wf_f64m8_rm_mu(vm, vd, vs2, rs1, __RISCV_FRM_RNE, vl);
 }
-

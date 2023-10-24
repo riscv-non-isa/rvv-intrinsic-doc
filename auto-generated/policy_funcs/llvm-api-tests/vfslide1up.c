@@ -245,4 +245,3 @@ vfloat64m4_t test_vfslide1up_vf_f64m4_mu(vbool16_t vm, vfloat64m4_t vd, vfloat64
 vfloat64m8_t test_vfslide1up_vf_f64m8_mu(vbool8_t vm, vfloat64m8_t vd, vfloat64m8_t vs2, double rs1, size_t vl) {
   return __riscv_vfslide1up_vf_f64m8_mu(vm, vd, vs2, rs1, vl);
 }
-

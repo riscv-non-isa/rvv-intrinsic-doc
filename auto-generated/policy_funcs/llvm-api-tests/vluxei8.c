@@ -949,4 +949,3 @@ vuint64m4_t test_vluxei8_v_u64m4_mu(vbool16_t vm, vuint64m4_t vd, const uint64_t
 vuint64m8_t test_vluxei8_v_u64m8_mu(vbool8_t vm, vuint64m8_t vd, const uint64_t *rs1, vuint8m1_t rs2, size_t vl) {
   return __riscv_vluxei8_v_u64m8_mu(vm, vd, rs1, rs2, vl);
 }
-
