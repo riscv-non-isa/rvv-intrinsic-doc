@@ -130,6 +130,8 @@ class TypeHelper:
 
   @property
   def s(self):
+    if self.args["TYPE"] == "float" and self.args["SEW"] == 16:
+      return "_Float16"
     return "{TYPE}{SEW}_t".format_map(self.args)
 
   @property
