@@ -409,7 +409,7 @@ Due to the limitation of the C language (without the aid of features like C++ te
 
 The intrinsics are designed to be strongly-typed. The intrinsics provide `vreinterpret` intrinsics to help users go across the strongly-typed scheme if necessary.
 
-Non-mask (integer and floating-point) data types have SEW and LMUL encoded. 
+Non-mask (integer and floating-point) data types have SEW and LMUL encoded.
 
 [[integer-type]]
 === Integer types
@@ -588,14 +588,14 @@ The `vundefined` intrinsics are placeholders for `vset` and `vcreate` to represe
 [[pseudo-vget]]
 === `vget`
 
-The `vget` intrinsics allow users to obtain small LMUL values from larger LMUL ones. The `vget` intrinsics also allows users to extract non-tuple (`NFIELD=1`) types from tuple (`NFIELD>1`) types after segment load intrinsics.
+The `vget` intrinsics allow users to obtain small LMUL values from larger LMUL ones. The `vget` intrinsics also allows users to extract non-tuple (`NFIELD=1`) types from tuple (`NFIELD>1`) types after segment load intrinsics. The index provided must be a constant known at compile time.
 
 The intrinsics do not map to any real instruction. Whether if the implementation will generate vector move instructions is an optimization issue.
 
 [[pseudo-vset]]
 === `vset`
 
-The `vset` intrinsics allow users to combine small LMUL values into larger LMUL ones. The `vset` intrinsics also allows users to combine non-tuple (`NFIELD=1`) types to tuple (`NFIELD>1`) types for segment store intrinsics.
+The `vset` intrinsics allow users to combine small LMUL values into larger LMUL ones. The `vset` intrinsics also allows users to combine non-tuple (`NFIELD=1`) types to tuple (`NFIELD>1`) types for segment store intrinsics. The index provided must be a constant known at compile time.
 
 The intrinsics do not map to any real instruction. Whether if the implementation will generate vector move instructions is an optimization issue.
 
@@ -614,7 +614,21 @@ The `vlmul_ext` intrinsics are syntactic sugars that have the same semantic as `
 
 The `vcreate` intrinsics are syntactic sugars for tuple types creation. They have the same semantic as multiple `vset`-s filling in values accordingly into the tuple type.
 
+[[pseudo-vlenb]]
+=== `vlenb`
+
+The `vlenb` intrinsic returns what is held inside the read-only CSR `vlenb` ^29^, which is the vector register length in bytes.
+
+[,c]
+----
+unsigned vlenb();
+----
+
 == Programming Notes
+
+=== Semantic of assignment (`=`) in the C language
+
+Without optimizations, the compiler is conservative and assumes an object of RVV type to represent an allocated space on the stack. The assignment operator (`=`) represents a whole register store for the object on the right hand side, and a load for the object on the left hand side.
 
 === The passthrough (`vd`) argument in the intrinsics
 
@@ -650,6 +664,14 @@ In other words, the compiler does not guarantee generating the instruction for a
 The intrinsics provide variants with operand mnemonics of `vv` and `vx`, but not `vi`. This was an intentional design to reduce the total amount of out-going intrinsics.
 
 It is an optimization issue for the implementation to emit instructions with operand mnemonics of `vi` when an immediate that can be expressed within 5-bit is provided to the intrinsics.
+
+=== Mixing inline assembly and intrinsics
+
+The compiler will be conservative to registers (`vtype`, `vxrm`, `frm`) when encountering inline assembly. Users should be aware that mixing uses of intrinsics and inline assembly will result in extra save and restore.
+
+=== The `new_vl` argument in fault-only-first load intrinsics
+
+The fault-only-first load intrinsics write the new value inside the `vl` register into the address of the `new_vl` argument. Providing an illegal memory location will result in a memory access violation.
 
 == References
 
@@ -712,3 +734,5 @@ NOTE: Standard extensions are merged into `riscv/riscv-isa-manual` after ratific
 ^27^Section 6.3 (Constraints on Setting `vl`) in the specficiation ^0^
 
 ^28^Section 6.4 (Example of stripmining and changes to SEW) in the specification ^0^
+
+^29^Section 3.6 (Vector Byte Length `vlenb`) in the specification ^0^
