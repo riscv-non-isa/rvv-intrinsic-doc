@@ -621,14 +621,20 @@ The `vlenb` intrinsic returns what is held inside the read-only CSR `vlenb` ^29^
 
 [,c]
 ----
-unsigned vlenb();
+unsigned __riscv_vlenb();
 ----
 
 == Programming Notes
 
-=== Semantic of assignment (`=`) in the C language
+=== Copying vector register group contents
 
-Without optimizations, the compiler is conservative and assumes an object of RVV type to represent an allocated space on the stack. The assignment operator (`=`) represents a whole register store for the object on the right hand side, and a load for the object on the left hand side.
+There is no intrinsic that directly maps to the whole vector register move instructions (`vmv<nr>r.v`) ^30^.
+
+For copying of the vector contents in whole, we encourage the users to use the assignment operator (`=`).
+
+The assignment operator (`=`) represents the semantic of a whole vector register (group) copy for the expression on the right hand side to the RVV type object on the left hand side. The semantic will still maintain a whole vector register content copy for fractional LMUL types. This enables the compiler to coalesce register usage when possible.
+
+Users may leverage the vector move intrinsics (`vmv_v_v`) intrinsics if they hope to copy vector register groups with `vl != VLMAX`.
 
 === The passthrough (`vd`) argument in the intrinsics
 
@@ -671,7 +677,7 @@ The compiler will be conservative to registers (`vtype`, `vxrm`, `frm`) when enc
 
 === The `new_vl` argument in fault-only-first load intrinsics
 
-The fault-only-first load intrinsics write the new value inside the `vl` register into the address of the `new_vl` argument. Providing an illegal memory location will result in a memory access violation.
+The fault-only-first load intrinsics write the new value inside the `vl` register into the address of the `new_vl` argument. Providing an illegal memory location is undefined behavior.
 
 == References
 
@@ -736,3 +742,5 @@ NOTE: Standard extensions are merged into `riscv/riscv-isa-manual` after ratific
 ^28^Section 6.4 (Example of stripmining and changes to SEW) in the specification ^0^
 
 ^29^Section 3.6 (Vector Byte Length `vlenb`) in the specification ^0^
+
+^30^Section 16.6 (Whole Vector Register Move) in the specification ^0^
