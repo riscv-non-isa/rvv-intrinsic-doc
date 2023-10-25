@@ -612,7 +612,7 @@ The `vlmul_ext` intrinsics are syntactic sugars that have the same semantic as `
 [[pseudo-vcreate]]
 === `vcreate`
 
-The `vcreate` intrinsics are syntactic sugars for tuple types creation. They have the same semantic as multiple `vset`-s filling in values accordingly into the tuple type.
+The `vcreate` intrinsics are syntactic sugars for RVV types creation. They have the same semantic as multiple `vset`-s filling in values accordingly.
 
 [[pseudo-vlenb]]
 === `vlenb`
