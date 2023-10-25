@@ -35,7 +35,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
   # FIXME: Renaming 'G' to 'g' all in once later.
   G.inst_group_prologue()
   for decorator in decorator_list:
-    if "vlmul_ext_v" in op_list or "vlmul_trunc_v" in op_list:
+    if "vundefined" not in op_list:
       break
     decorator.write_text_header(G)
 
@@ -86,6 +86,42 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           return_type=dst_type,
           value=type_helper.v)
 
+  # vcreate for non-tuple
+  for decorator in decorator_list:
+    if not "vcreate" in op_list:
+      break
+    for args in prod(
+        OP=op_list,
+        TYPE=type_list,
+        SEW=sew_list,
+        LMUL=lmul_list,
+        DST_LMUL=lmul_list):
+
+      type_helper = TypeHelper(**args)
+
+      # This intrinsic appears after v0.12
+      if isinstance(G, CompatibleHeaderGenerator):
+        continue
+
+      src_lmul = get_float_lmul(args["LMUL"])
+      dst_lmul = get_float_lmul(args["DST_LMUL"])
+      if dst_lmul < 1 or src_lmul < 1 or dst_lmul <= src_lmul:
+        continue
+
+      args_for_vcreate = collections.OrderedDict()
+      for i in range(0, int(dst_lmul / src_lmul)):
+        arg_name = "v" + str(i)
+        args_for_vcreate[arg_name] = type_helper.v
+
+      dst_type = "v{TYPE}{SEW}m{DST_LMUL}_t".format_map(args)
+      G.func(
+          InstInfo.get(args, decorator, InstType.VCREATE),
+          name="{OP}_v_{TYPE}{SEW}m{LMUL}_{TYPE}{SEW}m{DST_LMUL}".format_map(
+              args),
+          return_type=dst_type,
+          **args_for_vcreate)
+
+  # vcreate for tuple
   nf_list = range(2, 9)
   for decorator in decorator_list:
     if not "vcreate" in op_list:
