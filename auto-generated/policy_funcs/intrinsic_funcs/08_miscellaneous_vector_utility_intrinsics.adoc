@@ -33,6 +33,6 @@ Intrinsics here don't have a policy variant.
 === Vector Extraction Intrinsics
 Intrinsics here don't have a policy variant.
 
-[[policy-variant-vector-tuple-creation]]
-=== Vector Tuple Creation Intrinsics
+[[policy-variant-vector-creation]]
+=== Vector Creation Intrinsics
 Intrinsics here don't have a policy variant.
