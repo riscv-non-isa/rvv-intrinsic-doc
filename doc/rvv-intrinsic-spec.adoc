@@ -583,7 +583,7 @@ The intrinsics do not alter values held within. Please use `vfcvt/v(f)wcvt/v(f)n
 
 [[pseudo-vundefined]]
 === `vundefined`
-The `vundefined` intrinsics are placeholders for `vset` and `vcreate` to represent unspecified values.
+The `vundefined` intrinsics are placeholders to represent unspecified values in variable initialization, or as arguments of `vset` and `vcreate`.
 
 [[pseudo-vget]]
 === `vget`
