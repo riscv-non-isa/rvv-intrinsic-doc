@@ -34,6 +34,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
   G.inst_group_prologue()
+  # vundefine for non-tuple
   for decorator in decorator_list:
     if "vundefined" not in op_list:
       break
@@ -52,6 +53,36 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           name="{OP}_{TYPE}{SEW}m{LMUL}".format_map(args) +
           decorator.func_suffix,
           return_type=type_helper.v)
+  # vundefine for tuple
+  nf_list = range(2, 9)
+  for decorator in decorator_list:
+    if "vundefined" not in op_list:
+      break
+    decorator.write_text_header(G)
+
+    # This intrinsic appears after v0.12
+    if isinstance(G, CompatibleHeaderGenerator):
+      continue
+
+    for args in prod(
+        constraint=seg_constraint,
+        OP=op_list,
+        TYPE=type_list,
+        SEW=sew_list,
+        LMUL=lmul_list,
+        NF=nf_list):
+      type_helper = TypeHelper(**args)
+      if args["OP"] not in ["vundefined"]:
+        break
+      if args["TYPE"] == "float" and args["SEW"] == 8:
+        continue
+      if args["OP"] == "vundefined":
+        inst_type = InstType.VUNDEF
+      G.func(
+          InstInfo.get(args, decorator, inst_type),
+          name="{OP}_{TYPE}{SEW}m{LMUL}x{NF}".format_map(args) +
+          decorator.func_suffix,
+          return_type=type_helper.tuple_v)
 
   for decorator in decorator_list:
     if not ("vlmul_ext_v" in op_list or "vlmul_trunc_v" in op_list):
