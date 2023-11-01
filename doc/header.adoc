@@ -46,6 +46,10 @@ may not conform to the future standard.
 include::preface.adoc[]
 
 include::rvv-intrinsic-spec.adoc[]
+include::vector-bfloat16-spec.adoc[]
+
+include::references.adoc[]
+
 
 include::rvv-intrinsic-examples.adoc[]
 

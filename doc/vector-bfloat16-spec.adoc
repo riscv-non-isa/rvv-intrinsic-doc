@@ -1,0 +1,32 @@
+== Intrinsics for BFloat16 (Brain Float 16) instruction set extensions
+
+The RISC-V vector C intrinsics supports intrinsics that exposes the control of BFloat16 (Brain Float 16) instruction set extensions ^31^.
+
+[[bf16-naming-scheme]]
+=== Naming scheme
+
+The BFloat16 intrinsics follows the naming scheme defined under <<naming-scheme>>, with `bf` as the abbreviation for BFloat16 types in the function suffix.
+
+[[bf16-vector-programming-model]]
+=== Control of the vector extension programming model
+
+The BFloat16 intrinsics follows provides the same control of the vector programming model defined under <<control-of-vector-programming-model>>. Intrinsics that represents BFloat16 instructions that are affected by `frm` (`vfncvtbf16.f.f.w` and `vfwmaccbf16`) follow what is defined under <<control-of-frm>> and provides variants of <<implicit-frm>> and <<explicit-frm>>.
+
+[[bf16-type-system]]
+=== Type system
+
+Floating-point types have EEW and EMUL encoded into the type. The first row describes the EMUL and the first column describes the data type and element width of the scalar type.
+
+Floating-point types with element widths of 16 (Types=`bfloat16_t`) require the `zfbfmin` and `zvfbfmin` extension to be specified in the architecture.
+
+.BFloat16 types
+[options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
+|===
+| Types | EMUL=1/8 | EMUL=1/4 | EMUL=1/ 2 | EMUL=1 | EMUL=2 | EMUL=4 | EMUL=8
+| bfloat16_t | N/A | vbfloat16m4_t | vbfloat16mf2_t | vbfloat16m1_t | vbfloat16m2_t | vbfloat16m4_t | vbfloat16m8_t
+|===
+
+[[bf16-pseudo-intrinsics]]
+=== Psuedo intrinsics
+
+The RISC-V vector BFloat16 types (provided under <<bf16-type-system>>) also have pseudo intrinsics variants from <<pseudo-intrinsics>> to help variable declaration and manipulation across intrinsic types.
