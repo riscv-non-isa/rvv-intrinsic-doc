@@ -17,13 +17,15 @@ The BFloat16 intrinsics follows provides the same control of the vector programm
 
 Floating-point types have EEW and EMUL encoded into the type. The first row describes the EMUL and the first column describes the data type and element width of the scalar type.
 
-Floating-point types with element widths of 16 (Types=`bfloat16_t`) require the `zfbfmin` and `zvfbfmin` extension to be specified in the architecture.
+Floating-point types with element widths of 16 (Types=`__bf16`) require the `zfbfmin` and `zvfbfmin` extension to be specified in the architecture.
+
+NOTE: Although C++23 introduces `<stdfloat>` for fixed-width floating-point types, this latest standard is not yet supported in the upstream RISC-V compiler. The specification (along with the prototype lists in appendix) uses `__bf16` to represent the BFloat16 floating-point type.
 
 .BFloat16 types
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
 | Types | EMUL=1/8 | EMUL=1/4 | EMUL=1/ 2 | EMUL=1 | EMUL=2 | EMUL=4 | EMUL=8
-| bfloat16_t | N/A | vbfloat16m4_t | vbfloat16mf2_t | vbfloat16m1_t | vbfloat16m2_t | vbfloat16m4_t | vbfloat16m8_t
+| __bf16 | N/A | vbfloat16m4_t | vbfloat16mf2_t | vbfloat16m1_t | vbfloat16m2_t | vbfloat16m4_t | vbfloat16m8_t
 |===
 
 [[bf16-pseudo-intrinsics]]
