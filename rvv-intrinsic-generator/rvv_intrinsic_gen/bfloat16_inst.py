@@ -30,6 +30,7 @@ from templates import reint_op_template
 from templates import get_set_diff_lmul_op_template
 from templates import misc_op_template
 from templates import cvt_op_template
+from templates import mac_template
 from constants import LMULS, WLMULS, NCVTLMULS
 
 SEWS = [16]
@@ -116,6 +117,14 @@ def gen(g):
   g.function_group(cvt_op_template, "Vector Widening Convert Intrinsics",
                    "bf16-vector-widening-convert", ["wcvtbf16"], "bfloat16",
                    SEWS, WLMULS, decorators.has_masking_maskedoff_policy)
+
+  ####################################################################
+  g.start_group("BFloat16 Arithmetic Intrinsics")
+
+  g.function_group(mac_template,
+                   "Vector Widening Multiply-Accumulate Intrinsics",
+                   "bf16-widening-multiply-accumulate", ["wmaccbf16"], TYPES,
+                   SEWS, WLMULS, decorators.has_masking_no_maskedoff_policy_frm)
 
   ####################################################################
   g.start_group("BFloat16 Miscellaneous Vector Utility Intrinsics")
