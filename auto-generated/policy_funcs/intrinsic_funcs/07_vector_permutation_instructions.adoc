@@ -2,7 +2,7 @@
 === Vector Permutation Instructions
 
 [[policy-variant-integer-scalar-move]]
-=== Integer and Floating-Point Scalar Move Intrinsics
+==== Integer and Floating-Point Scalar Move Intrinsics
 
 [,c]
 ----
@@ -86,7 +86,7 @@ vuint64m8_t __riscv_vmv_s_x_u64m8_tu(vuint64m8_t vd, uint64_t rs1, size_t vl);
 ----
 
 [[policy-variant-vector-slideup]]
-=== Vector Slideup Intrinsics
+==== Vector Slideup Intrinsics
 
 [,c]
 ----
@@ -691,7 +691,7 @@ vuint64m8_t __riscv_vslideup_vx_u64m8_mu(vbool8_t vm, vuint64m8_t vd,
 ----
 
 [[policy-variant-vector-slidedown]]
-=== Vector Slidedown Intrinsics
+==== Vector Slidedown Intrinsics
 
 [,c]
 ----
@@ -1337,7 +1337,7 @@ vuint64m8_t __riscv_vslidedown_vx_u64m8_mu(vbool8_t vm, vuint64m8_t vd,
 ----
 
 [[policy-variant-vector-slide1up-and-slide1down]]
-=== Vector Slide1up and Slide1down Intrinsics
+==== Vector Slide1up and Slide1down Intrinsics
 
 [,c]
 ----
@@ -2627,7 +2627,7 @@ vuint64m8_t __riscv_vslide1down_vx_u64m8_mu(vbool8_t vm, vuint64m8_t vd,
 ----
 
 [[policy-variant-vector-register-gather]]
-=== Vector Register Gather Intrinsics
+==== Vector Register Gather Intrinsics
 
 [,c]
 ----
@@ -4509,7 +4509,7 @@ vuint64m8_t __riscv_vrgatherei16_vv_u64m8_mu(vbool8_t vm, vuint64m8_t vd,
 ----
 
 [[policy-variant-vector-compress]]
-=== Vector Compress Intrinsics
+==== Vector Compress Intrinsics
 
 [,c]
 ----
