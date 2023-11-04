@@ -30,8 +30,6 @@ from generator import CompatibleHeaderGenerator
 def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
   #pylint: disable=invalid-name, unused-argument
   # FIXME: Renaming 'G' to 'g' all in once later.
-  # FIXME: Argument 'type_list' is unused but required for interface
-  # consistency. We can prune it in the future.
   G.inst_group_prologue()
   for decorator in decorator_list:
     decorator.write_text_header(G)
@@ -39,9 +37,15 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
     G.write("// Reinterpret between different type under the same SEW/LMUL\n")
     # Variable in list means
     # [dst type, dst short type, src type, src short type]
-    convert_set = [["float", "f", "int", "i"], ["float", "f", "uint", "u"],
-                   ["uint", "u", "int", "i"], ["int", "i", "uint", "u"],
-                   ["int", "i", "float", "f"], ["uint", "u", "float", "f"]]
+    if type_list == "bfloat16":
+      convert_set = [["bfloat", "bf", "int",
+                      "i"], ["bfloat", "bf", "uint", "ui"],
+                     ["int", "i", "bfloat", "bf"],
+                     ["uint", "ui", "bfloat", "bf"]]
+    else:
+      convert_set = [["float", "f", "int", "i"], ["float", "f", "uint", "u"],
+                     ["uint", "u", "int", "i"], ["int", "i", "uint", "u"],
+                     ["int", "i", "float", "f"], ["uint", "u", "float", "f"]]
 
     for args in prod(
         OP=op_list, SEW=sew_list, TYPES=convert_set, LMUL=lmul_list):
@@ -74,6 +78,10 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           return_type=rt,
           **decorator.mask_args(type_helper.m, rt),
           src=src_type)
+
+    # Bfloat16 reinterpretations do not have variants below
+    if type_list == "bfloat16":
+      continue
 
     G.write("// Reinterpret between different SEW under the same LMUL\n")
     # Variable in list means
