@@ -42,6 +42,13 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
     # [dst_type, dst_type_short, src_type, src_type_short]
     if type_list == ITYPES:
       convert_set = [["int", "x", "int", "x"], ["uint", "x", "uint", "x"]]
+    elif type_list == "bfloat16":
+      if "ncvtbf16" in op_list:
+        convert_set = [["bfloat", "bf", "float", "f"]]
+      elif "wcvtbf16" in op_list:
+        convert_set = [["float", "f", "bfloat", "bf"]]
+      else:
+        assert False, "Unhandled instruction with type_list = 'bfloat16'"
     else:
       convert_set = [["int", "x", "float", "f"], ["uint", "xu", "float", "f"],
                      ["float", "f", "int", "x"], ["float", "f", "uint", "xu"],
@@ -65,7 +72,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       # A double-width IEEE floating-point value can always represent a
       # single-width IEEE floating-point value exactly.
       # So we don't need frm variant for vfwcvt.f.f, and vfwcvt.f.x(u) here
-      if op == "wcvt" and decorator.flags & ExtraAttr.HAS_FRM and\
+      if "wcvt" in op and decorator.flags & ExtraAttr.HAS_FRM and\
          (args["TYPES0"] == args["TYPES2"] or\
           ("float" in args["TYPES0"] and "int" in args["TYPES2"])):
         continue
@@ -77,16 +84,16 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
 
       args["MIDDLE"] = "v"
       factor = ""
-      if op == "wcvt":
+      if "wcvt" in op:
         factor = "W"
-      if op == "ncvt":
+      if "ncvt" in op:
         factor = "N"
         args["MIDDLE"] = "w"
 
       args["LLMUL"] = args[factor + "LMUL"]
       args["LSEW"] = args[factor + "SEW"]
 
-      if args["TYPES1"] == "f" or args["TYPES3"] == "f":
+      if "f" in args["TYPES1"] or "f" in args["TYPES3"]:
         args["OP"] = "f" + args["OP"]
 
       if args["TYPES0"] == "uint":
@@ -117,9 +124,17 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       if not type_helper.valid_vtype(dst_type) or\
          not type_helper.valid_vtype(src_type):
         continue
-      func_name = \
-        "{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}".format_map\
-        (args)
+      if type_list == "bfloat16":
+        if "ncvt" in args["OP"]:
+          func_name = "{OP}_f_f_w_bf{LSEW}m{LLMUL}".format_map(args)
+        elif "wcvt" in args["OP"]:
+          func_name = "{OP}_f_f_v_f{LSEW}m{LLMUL}".format_map(args)
+        else:
+          assert False, "Unhandled instruction for bfloat16 type"
+      else:
+        func_name = \
+          "{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}".format_map\
+          (args)
       G.func(
           inst_info,
           name=func_name + decorator.func_suffix,
@@ -134,6 +149,10 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       # instruction, and not affected by the dynamic rounding mode.
       # Skip generation for decorator that has a rounding mode attribute.
       if decorator.flags & ExtraAttr.HAS_FRM:
+        continue
+
+      # BFloat16 converts do not have `_rod`/`_rtz` instructions
+      if type_list == "bfloat16":
         continue
 
       if args["TYPES1"] != args["TYPES3"] and args["TYPES3"] == "f":

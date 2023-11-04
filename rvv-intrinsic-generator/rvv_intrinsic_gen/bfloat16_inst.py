@@ -29,9 +29,11 @@ from templates import seg_store_template
 from templates import reint_op_template
 from templates import get_set_diff_lmul_op_template
 from templates import misc_op_template
-from constants import LMULS
+from templates import cvt_op_template
+from constants import LMULS, WLMULS, NCVTLMULS
 
 SEWS = [16]
+NSEWS = [32]
 TYPES = ["bfloat"]
 
 
@@ -102,6 +104,18 @@ def gen(g):
                    "Vector Indexed Segment Store Intrinsics",
                    "vector-indexed-segment-store", ["vsoxseg", "vsuxseg"],
                    TYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff)
+
+  ####################################################################
+  g.start_group("BFloat16 Convert Intrinsics")
+
+  g.function_group(cvt_op_template, "Vector Narrowing Convert Intrinsics",
+                   "bf16-vector-narrow-convert", ["ncvtbf16"], "bfloat16",
+                   NSEWS, NCVTLMULS,
+                   decorators.has_masking_maskedoff_policy_frm)
+
+  g.function_group(cvt_op_template, "Vector Widening Convert Intrinsics",
+                   "bf16-vector-widening-convert", ["wcvtbf16"], "bfloat16",
+                   SEWS, WLMULS, decorators.has_masking_maskedoff_policy)
 
   ####################################################################
   g.start_group("BFloat16 Miscellaneous Vector Utility Intrinsics")
