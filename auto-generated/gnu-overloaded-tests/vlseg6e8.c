@@ -3,10 +3,6 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vint8mf8x6_t test_vlseg6e8_v_i8mf8x6_m(vbool64_t vm, const int8_t *rs1, size_t vl) {
   return __riscv_vlseg6e8(vm, rs1, vl);
 }

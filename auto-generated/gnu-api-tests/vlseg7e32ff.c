@@ -3,15 +3,11 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
-vfloat32mf2x7_t test_vlseg7e32ff_v_f32mf2x7(const float32_t *rs1, size_t *new_vl, size_t vl) {
+vfloat32mf2x7_t test_vlseg7e32ff_v_f32mf2x7(const float *rs1, size_t *new_vl, size_t vl) {
   return __riscv_vlseg7e32ff_v_f32mf2x7(rs1, new_vl, vl);
 }
 
-vfloat32m1x7_t test_vlseg7e32ff_v_f32m1x7(const float32_t *rs1, size_t *new_vl, size_t vl) {
+vfloat32m1x7_t test_vlseg7e32ff_v_f32m1x7(const float *rs1, size_t *new_vl, size_t vl) {
   return __riscv_vlseg7e32ff_v_f32m1x7(rs1, new_vl, vl);
 }
 
@@ -31,11 +27,11 @@ vuint32m1x7_t test_vlseg7e32ff_v_u32m1x7(const uint32_t *rs1, size_t *new_vl, si
   return __riscv_vlseg7e32ff_v_u32m1x7(rs1, new_vl, vl);
 }
 
-vfloat32mf2x7_t test_vlseg7e32ff_v_f32mf2x7_m(vbool64_t vm, const float32_t *rs1, size_t *new_vl, size_t vl) {
+vfloat32mf2x7_t test_vlseg7e32ff_v_f32mf2x7_m(vbool64_t vm, const float *rs1, size_t *new_vl, size_t vl) {
   return __riscv_vlseg7e32ff_v_f32mf2x7_m(vm, rs1, new_vl, vl);
 }
 
-vfloat32m1x7_t test_vlseg7e32ff_v_f32m1x7_m(vbool32_t vm, const float32_t *rs1, size_t *new_vl, size_t vl) {
+vfloat32m1x7_t test_vlseg7e32ff_v_f32m1x7_m(vbool32_t vm, const float *rs1, size_t *new_vl, size_t vl) {
   return __riscv_vlseg7e32ff_v_f32m1x7_m(vm, rs1, new_vl, vl);
 }
 

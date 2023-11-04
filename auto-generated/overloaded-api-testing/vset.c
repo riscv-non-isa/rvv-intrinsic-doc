@@ -1,10 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vfloat16m2_t test_vset_v_f16m1_f16m2(vfloat16m2_t dest, size_t index,
                                      vfloat16m1_t value) {
   return __riscv_vset(dest, 0, value);

@@ -3,10 +3,6 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vbool64_t test_vmsne_vv_i8mf8_b64_mu(vbool64_t vm, vbool64_t vd, vint8mf8_t vs2, vint8mf8_t vs1, size_t vl) {
   return __riscv_vmsne_mu(vm, vd, vs2, vs1, vl);
 }

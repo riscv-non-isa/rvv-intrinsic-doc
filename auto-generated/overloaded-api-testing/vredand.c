@@ -1,10 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vint8m1_t test_vredand_vs_i8mf8_i8m1(vint8mf8_t vs2, vint8m1_t vs1, size_t vl) {
   return __riscv_vredand(vs2, vs1, vl);
 }

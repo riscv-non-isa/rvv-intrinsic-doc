@@ -1,10 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vbool64_t test_vmseq_vv_i8mf8_b64(vint8mf8_t vs2, vint8mf8_t vs1, size_t vl) {
   return __riscv_vmseq(vs2, vs1, vl);
 }

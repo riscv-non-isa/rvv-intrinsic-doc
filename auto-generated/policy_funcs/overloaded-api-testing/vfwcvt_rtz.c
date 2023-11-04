@@ -1,10 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vint32mf2_t test_vfwcvt_rtz_x_f_v_i32mf2_tu(vint32mf2_t vd, vfloat16mf4_t vs2,
                                             size_t vl) {
   return __riscv_vfwcvt_rtz_x_tu(vd, vs2, vl);

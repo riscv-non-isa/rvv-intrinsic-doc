@@ -3,10 +3,6 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vint8m1_t test_vredxor_vs_i8mf8_i8m1_tu(vint8m1_t vd, vint8mf8_t vs2, vint8m1_t vs1, size_t vl) {
   return __riscv_vredxor_tu(vd, vs2, vs1, vl);
 }

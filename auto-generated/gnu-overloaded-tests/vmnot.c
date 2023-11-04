@@ -3,10 +3,6 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vbool1_t test_vmnot_m_b1(vbool1_t vs, size_t vl) {
   return __riscv_vmnot(vs, vl);
 }

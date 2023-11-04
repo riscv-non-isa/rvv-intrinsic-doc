@@ -1,10 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vuint32mf2_t test_vzext_vf4_u32mf2(vuint8mf8_t vs2, size_t vl) {
   return __riscv_vzext_vf4_u32mf2(vs2, vl);
 }

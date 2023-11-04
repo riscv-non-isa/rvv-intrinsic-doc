@@ -3,10 +3,6 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vbool1_t test_vmsbf_m_b1_mu(vbool1_t vm, vbool1_t vd, vbool1_t vs2, size_t vl) {
   return __riscv_vmsbf_mu(vm, vd, vs2, vl);
 }

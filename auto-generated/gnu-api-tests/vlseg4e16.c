@@ -3,23 +3,19 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
-vfloat16mf4x4_t test_vlseg4e16_v_f16mf4x4(const float16_t *rs1, size_t vl) {
+vfloat16mf4x4_t test_vlseg4e16_v_f16mf4x4(const _Float16 *rs1, size_t vl) {
   return __riscv_vlseg4e16_v_f16mf4x4(rs1, vl);
 }
 
-vfloat16mf2x4_t test_vlseg4e16_v_f16mf2x4(const float16_t *rs1, size_t vl) {
+vfloat16mf2x4_t test_vlseg4e16_v_f16mf2x4(const _Float16 *rs1, size_t vl) {
   return __riscv_vlseg4e16_v_f16mf2x4(rs1, vl);
 }
 
-vfloat16m1x4_t test_vlseg4e16_v_f16m1x4(const float16_t *rs1, size_t vl) {
+vfloat16m1x4_t test_vlseg4e16_v_f16m1x4(const _Float16 *rs1, size_t vl) {
   return __riscv_vlseg4e16_v_f16m1x4(rs1, vl);
 }
 
-vfloat16m2x4_t test_vlseg4e16_v_f16m2x4(const float16_t *rs1, size_t vl) {
+vfloat16m2x4_t test_vlseg4e16_v_f16m2x4(const _Float16 *rs1, size_t vl) {
   return __riscv_vlseg4e16_v_f16m2x4(rs1, vl);
 }
 
@@ -55,19 +51,19 @@ vuint16m2x4_t test_vlseg4e16_v_u16m2x4(const uint16_t *rs1, size_t vl) {
   return __riscv_vlseg4e16_v_u16m2x4(rs1, vl);
 }
 
-vfloat16mf4x4_t test_vlseg4e16_v_f16mf4x4_m(vbool64_t vm, const float16_t *rs1, size_t vl) {
+vfloat16mf4x4_t test_vlseg4e16_v_f16mf4x4_m(vbool64_t vm, const _Float16 *rs1, size_t vl) {
   return __riscv_vlseg4e16_v_f16mf4x4_m(vm, rs1, vl);
 }
 
-vfloat16mf2x4_t test_vlseg4e16_v_f16mf2x4_m(vbool32_t vm, const float16_t *rs1, size_t vl) {
+vfloat16mf2x4_t test_vlseg4e16_v_f16mf2x4_m(vbool32_t vm, const _Float16 *rs1, size_t vl) {
   return __riscv_vlseg4e16_v_f16mf2x4_m(vm, rs1, vl);
 }
 
-vfloat16m1x4_t test_vlseg4e16_v_f16m1x4_m(vbool16_t vm, const float16_t *rs1, size_t vl) {
+vfloat16m1x4_t test_vlseg4e16_v_f16m1x4_m(vbool16_t vm, const _Float16 *rs1, size_t vl) {
   return __riscv_vlseg4e16_v_f16m1x4_m(vm, rs1, vl);
 }
 
-vfloat16m2x4_t test_vlseg4e16_v_f16m2x4_m(vbool8_t vm, const float16_t *rs1, size_t vl) {
+vfloat16m2x4_t test_vlseg4e16_v_f16m2x4_m(vbool8_t vm, const _Float16 *rs1, size_t vl) {
   return __riscv_vlseg4e16_v_f16m2x4_m(vm, rs1, vl);
 }
 

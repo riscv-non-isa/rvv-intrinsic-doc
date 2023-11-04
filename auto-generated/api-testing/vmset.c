@@ -1,10 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vbool1_t test_vmset_m_b1(size_t vl) { return __riscv_vmset_m_b1(vl); }
 
 vbool2_t test_vmset_m_b2(size_t vl) { return __riscv_vmset_m_b2(vl); }

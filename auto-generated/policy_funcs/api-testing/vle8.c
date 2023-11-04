@@ -1,10 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vint8mf8_t test_vle8_v_i8mf8_tu(vint8mf8_t vd, const int8_t *rs1, size_t vl) {
   return __riscv_vle8_v_i8mf8_tu(vd, rs1, vl);
 }

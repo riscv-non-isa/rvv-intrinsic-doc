@@ -3,19 +3,15 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
-void test_vsseg4e32_v_f32mf2x4(float32_t *rs1, vfloat32mf2x4_t vs3, size_t vl) {
+void test_vsseg4e32_v_f32mf2x4(float *rs1, vfloat32mf2x4_t vs3, size_t vl) {
   return __riscv_vsseg4e32_v_f32mf2x4(rs1, vs3, vl);
 }
 
-void test_vsseg4e32_v_f32m1x4(float32_t *rs1, vfloat32m1x4_t vs3, size_t vl) {
+void test_vsseg4e32_v_f32m1x4(float *rs1, vfloat32m1x4_t vs3, size_t vl) {
   return __riscv_vsseg4e32_v_f32m1x4(rs1, vs3, vl);
 }
 
-void test_vsseg4e32_v_f32m2x4(float32_t *rs1, vfloat32m2x4_t vs3, size_t vl) {
+void test_vsseg4e32_v_f32m2x4(float *rs1, vfloat32m2x4_t vs3, size_t vl) {
   return __riscv_vsseg4e32_v_f32m2x4(rs1, vs3, vl);
 }
 
@@ -43,15 +39,15 @@ void test_vsseg4e32_v_u32m2x4(uint32_t *rs1, vuint32m2x4_t vs3, size_t vl) {
   return __riscv_vsseg4e32_v_u32m2x4(rs1, vs3, vl);
 }
 
-void test_vsseg4e32_v_f32mf2x4_m(vbool64_t vm, float32_t *rs1, vfloat32mf2x4_t vs3, size_t vl) {
+void test_vsseg4e32_v_f32mf2x4_m(vbool64_t vm, float *rs1, vfloat32mf2x4_t vs3, size_t vl) {
   return __riscv_vsseg4e32_v_f32mf2x4_m(vm, rs1, vs3, vl);
 }
 
-void test_vsseg4e32_v_f32m1x4_m(vbool32_t vm, float32_t *rs1, vfloat32m1x4_t vs3, size_t vl) {
+void test_vsseg4e32_v_f32m1x4_m(vbool32_t vm, float *rs1, vfloat32m1x4_t vs3, size_t vl) {
   return __riscv_vsseg4e32_v_f32m1x4_m(vm, rs1, vs3, vl);
 }
 
-void test_vsseg4e32_v_f32m2x4_m(vbool16_t vm, float32_t *rs1, vfloat32m2x4_t vs3, size_t vl) {
+void test_vsseg4e32_v_f32m2x4_m(vbool16_t vm, float *rs1, vfloat32m2x4_t vs3, size_t vl) {
   return __riscv_vsseg4e32_v_f32m2x4_m(vm, rs1, vs3, vl);
 }
 
