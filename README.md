@@ -6,8 +6,7 @@ Working draft for the RISC-V vector specification are under [doc/](doc/), intrin
 Please check out the latest intrinsics specification under
 [Releases](https://github.com/riscv-non-isa/rvv-intrinsic-doc/releases).
 
-Upcoming LLVM 17 and GCC trunk supports [v0.12](https://github.com/riscv-non-isa/rvv-intrinsic-doc/releases/tag/v0.12.0), which is
-expected to be identical to the to-be-frozen intrinsic specification.
+[Clang 17](https://releases.llvm.org/17.0.1/tools/clang/docs/ReleaseNotes.html) and [GCC trunk](https://github.com/gcc-mirror/gcc/tree/master) supports the [v0.12](https://github.com/riscv-non-isa/rvv-intrinsic-doc/releases/tag/v0.12.0) version, no more incompatibility will be introduced.
 
 [Clang 16](https://releases.llvm.org/16.0.0/tools/clang/docs/ReleaseNotes.html) and
 [GCC 13](https://gcc.gnu.org/gcc-13/changes.html) supports the
