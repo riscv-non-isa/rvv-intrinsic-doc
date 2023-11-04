@@ -139,6 +139,9 @@ class TypeHelper:
         return "double"
       else:
         assert False, "Unhandled SEW under float type"
+    if self.args["TYPE"] == "bfloat":
+      assert self.args["SEW"] == 16, "BFloat16 only, no other SEW allowed"
+      return "__bf16"
     return "{TYPE}{SEW}_t".format_map(self.args)
 
   @property
