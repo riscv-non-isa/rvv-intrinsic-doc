@@ -105,14 +105,19 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         if get_float_lmul(src_lmul) >= get_float_lmul(dst_lmul):
           continue
       type_helper = TypeHelper(**args)
-      dst_type = "v{TYPE}{SEW}m{DST_LMUL}_t".format_map(args)
-      if not type_helper.valid_vtype(dst_type):
-        continue
+      inst_info = InstInfo.get(args, decorator, inst_type)
       args["TYPE1"] = args["TYPE"][0]
       func_name = "{OP}_{TYPE1}{SEW}m{LMUL}_{TYPE1}{SEW}m{DST_LMUL}".format_map(
           args)
+
+      args["LMUL"] = args["DST_LMUL"]
+      dst_type_helper = TypeHelper(**args)
+      dst_type = dst_type_helper.v
+      if not type_helper.valid_vtype(dst_type):
+        continue
+
       G.func(
-          InstInfo.get(args, decorator, inst_type),
+          inst_info,
           name=func_name + decorator.func_suffix,
           return_type=dst_type,
           value=type_helper.v)
@@ -129,6 +134,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         DST_LMUL=lmul_list):
 
       type_helper = TypeHelper(**args)
+      inst_info = InstInfo.get(args, decorator, InstType.VCREATE)
+      func_name = "{OP}_v_{TYPE}{SEW}m{LMUL}_{TYPE}{SEW}m{DST_LMUL}".format_map(
+          args)
 
       # This intrinsic appears after v0.12
       if isinstance(G, CompatibleHeaderGenerator):
@@ -144,13 +152,11 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         arg_name = "v" + str(i)
         args_for_vcreate[arg_name] = type_helper.v
 
-      dst_type = "v{TYPE}{SEW}m{DST_LMUL}_t".format_map(args)
+      args["LMUL"] = args["DST_LMUL"]
+      dst_type_helper = TypeHelper(**args)
+      dst_type = dst_type_helper.v
       G.func(
-          InstInfo.get(args, decorator, InstType.VCREATE),
-          name="{OP}_v_{TYPE}{SEW}m{LMUL}_{TYPE}{SEW}m{DST_LMUL}".format_map(
-              args),
-          return_type=dst_type,
-          **args_for_vcreate)
+          inst_info, name=func_name, return_type=dst_type, **args_for_vcreate)
 
   # vcreate for tuple
   nf_list = range(2, 9)

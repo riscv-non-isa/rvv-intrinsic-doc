@@ -473,11 +473,6 @@ class APITestGenerator(Generator):
     else:
       self.fd.write("#include <stdint.h>\n")
     self.fd.write("#include <riscv_vector.h>\n")
-    if self.toolchain_type != ToolChainType.LLVM:
-      self.fd.write("\n")
-      self.fd.write("typedef _Float16 float16_t;\n")
-      self.fd.write("typedef float float32_t;\n")
-      self.fd.write("typedef double float64_t;\n")
 
   def func(self, inst_info, name, return_type, **kwargs):
     if self.is_overloaded and not Generator.is_support_overloaded(

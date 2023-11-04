@@ -104,9 +104,15 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       inst_info = InstInfo.get(
           args, decorator, InstType.VV, extra_attr=extra_attr)
 
-      src_type = "v{TYPES2}{SEW}m{LMUL}_t".format_map(args)
-      rt = "v{TYPES0}{LSEW}m{LLMUL}_t".format_map(args)
-      if not type_helper.valid_vtype(rt) or\
+      args["TYPE"] = args["TYPES2"]
+      src_type_helper = TypeHelper(**args)
+      args["TYPE"] = args["TYPES0"]  # destination type
+      args["SEW"] = args["LSEW"]  # destination sew
+      args["LMUL"] = args["LLMUL"]  # destination lmul
+      dst_type_helper = TypeHelper(**args)
+      src_type = src_type_helper.v
+      dst_type = dst_type_helper.v
+      if not type_helper.valid_vtype(dst_type) or\
          not type_helper.valid_vtype(src_type):
         continue
       func_name = \
@@ -115,9 +121,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       G.func(
           inst_info,
           name=func_name + decorator.func_suffix,
-          return_type=rt,
-          **decorator.mask_args(type_helper.m, rt),
-          **decorator.tu_dest_args(rt),
+          return_type=dst_type,
+          **decorator.mask_args(type_helper.m, dst_type),
+          **decorator.tu_dest_args(dst_type),
           vs2=src_type,
           **decorator.extra_csr_args(type_helper.uint),
           vl=type_helper.size_t)
@@ -138,9 +144,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         G.func(
             inst_info,
             name=func_name + decorator.func_suffix,
-            return_type=rt,
-            **decorator.mask_args(type_helper.m, rt),
-            **decorator.tu_dest_args(rt),
+            return_type=dst_type,
+            **decorator.mask_args(type_helper.m, dst_type),
+            **decorator.tu_dest_args(dst_type),
             vs2=src_type,
             vl=type_helper.size_t)
 
@@ -154,9 +160,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         G.func(
             inst_info,
             name=func_name + decorator.func_suffix,
-            return_type=rt,
-            **decorator.mask_args(type_helper.m, rt),
-            **decorator.tu_dest_args(rt),
+            return_type=dst_type,
+            **decorator.mask_args(type_helper.m, dst_type),
+            **decorator.tu_dest_args(dst_type),
             vs2=src_type,
             vl=type_helper.size_t)
 
