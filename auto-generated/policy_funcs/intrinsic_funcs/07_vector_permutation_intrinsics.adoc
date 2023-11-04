@@ -1,5 +1,5 @@
 
-=== Vector Permutation Instructions
+=== Vector Permutation Intrinsics
 
 [[policy-variant-integer-scalar-move]]
 ==== Integer and Floating-Point Scalar Move Intrinsics

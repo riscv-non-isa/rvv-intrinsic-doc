@@ -1,5 +1,5 @@
 
-=== Vector Integer Arithmetic Instructions
+=== Vector Integer Arithmetic Intrinsics
 
 [[vector-single-width-integer-add-and-subtract]]
 ==== Vector Single-Width Integer Add and Subtract Intrinsics

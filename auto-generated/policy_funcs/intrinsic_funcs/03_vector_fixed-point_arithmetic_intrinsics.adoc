@@ -1,5 +1,5 @@
 
-=== Vector Fixed-Point Arithmetic Instructions
+=== Vector Fixed-Point Arithmetic Intrinsics
 
 [[policy-variant-vector-single-width-saturating-add-and-subtract]]
 ==== Vector Single-Width Saturating Add and Subtract Intrinsics
