@@ -92,7 +92,7 @@ def gen(g):
 
   ####################################################################
 
-  g.start_group("Vector Loads and Stores Segment Instructions")
+  g.start_group("Vector Loads and Stores Segment Intrinsics")
 
   g.function_group(seg_load_template,
                    "Vector Unit-Stride Segment Load Intrinsics",
@@ -124,7 +124,7 @@ def gen(g):
 
   ####################################################################
 
-  g.start_group("Vector Integer Arithmetic Instructions")
+  g.start_group("Vector Integer Arithmetic Intrinsics")
 
   g.function_group(binary_op_template,
                    "Vector Single-Width Integer Add and Subtract Intrinsics",
@@ -235,7 +235,7 @@ def gen(g):
                    decorators.has_no_masking_policy)
 
   ####################################################################
-  g.start_group("Vector Fixed-Point Arithmetic Instructions")
+  g.start_group("Vector Fixed-Point Arithmetic Intrinsics")
 
   g.function_group(
       binary_op_template,
@@ -269,7 +269,7 @@ def gen(g):
                    WSEWS, WLMULS, decorators.has_masking_maskedoff_policy_vxrm)
 
   ####################################################################
-  g.start_group("Vector Floating-Point Instructions")
+  g.start_group("Vector Floating-Point Intrinsics")
 
   g.function_group(
       binary_op_template,
@@ -408,7 +408,7 @@ def gen(g):
                    decorators.has_masking_no_maskedoff_reduction_policy_frm)
 
   ####################################################################
-  g.start_group("Vector Mask Instructions")
+  g.start_group("Vector Mask Intrinsics")
 
   g.function_group(mask_template, "Vector Mask-Register Logical",
                    "vector-mask-register-logical", [
@@ -445,7 +445,7 @@ def gen(g):
                    decorators.has_masking_maskedoff_policy)
 
   ####################################################################
-  g.start_group("Vector Permutation Instructions")
+  g.start_group("Vector Permutation Intrinsics")
 
   g.function_group(permute_template,
                    "Integer and Floating-Point Scalar Move Intrinsics",
