@@ -83,7 +83,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             decorator.func_suffix,
             return_type=type_helper.void,
             **decorator.mask_args(type_helper.m, type_helper.v, int(nf)),
-            rs1="{TYPE}{SEW}_t *".format_map(args),
+            rs1=f"{type_helper.s} *",
             **extra_addr_args,
             **seg_arg(type_helper.v, int(nf)),
             vl=type_helper.size_t)
@@ -101,7 +101,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
                 type_helper.v,
                 int(nf),
                 is_seg_load_store_tuple_type=True),
-            rs1="{TYPE}{SEW}_t *".format_map(args),
+            rs1=f"{type_helper.s} *",
             **extra_addr_args,
             **seg_arg(
                 type_helper.v, int(nf), is_seg_load_store_tuple_type=True),

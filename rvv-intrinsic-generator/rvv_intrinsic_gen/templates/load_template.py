@@ -75,7 +75,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           return_type=type_helper.v,
           **decorator.mask_args(type_helper.m, type_helper.v),
           **decorator.tu_dest_args(type_helper.v),
-          rs1="const {TYPE}{SEW}_t *".format_map(args),
+          rs1=f"const {type_helper.s} *",
           **extra_addr_args,
           vl=type_helper.size_t)
 

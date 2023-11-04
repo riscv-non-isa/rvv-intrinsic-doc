@@ -114,7 +114,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
               **decorator.mask_args(type_helper.m, type_helper.v),
               **decorator.tu_dest_args(type_helper.v),
               vs2=type_helper.v,
-              vs1=f"vuint{args['SEW']}m{args['LMUL']}_t",
+              vs1=type_helper.uiv,
               **decorator.extra_csr_args(type_helper.uint),
               vl=type_helper.size_t)
         else:  # vx, vf
