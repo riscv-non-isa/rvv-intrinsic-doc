@@ -18,24 +18,24 @@ _Float16 __riscv_vfmv_f_s_f16m4_f16(vfloat16m4_t vs1);
 vfloat16m4_t __riscv_vfmv_s_f_f16m4(_Float16 rs1, size_t vl);
 _Float16 __riscv_vfmv_f_s_f16m8_f16(vfloat16m8_t vs1);
 vfloat16m8_t __riscv_vfmv_s_f_f16m8(_Float16 rs1, size_t vl);
-float32_t __riscv_vfmv_f_s_f32mf2_f32(vfloat32mf2_t vs1);
-vfloat32mf2_t __riscv_vfmv_s_f_f32mf2(float32_t rs1, size_t vl);
-float32_t __riscv_vfmv_f_s_f32m1_f32(vfloat32m1_t vs1);
-vfloat32m1_t __riscv_vfmv_s_f_f32m1(float32_t rs1, size_t vl);
-float32_t __riscv_vfmv_f_s_f32m2_f32(vfloat32m2_t vs1);
-vfloat32m2_t __riscv_vfmv_s_f_f32m2(float32_t rs1, size_t vl);
-float32_t __riscv_vfmv_f_s_f32m4_f32(vfloat32m4_t vs1);
-vfloat32m4_t __riscv_vfmv_s_f_f32m4(float32_t rs1, size_t vl);
-float32_t __riscv_vfmv_f_s_f32m8_f32(vfloat32m8_t vs1);
-vfloat32m8_t __riscv_vfmv_s_f_f32m8(float32_t rs1, size_t vl);
-float64_t __riscv_vfmv_f_s_f64m1_f64(vfloat64m1_t vs1);
-vfloat64m1_t __riscv_vfmv_s_f_f64m1(float64_t rs1, size_t vl);
-float64_t __riscv_vfmv_f_s_f64m2_f64(vfloat64m2_t vs1);
-vfloat64m2_t __riscv_vfmv_s_f_f64m2(float64_t rs1, size_t vl);
-float64_t __riscv_vfmv_f_s_f64m4_f64(vfloat64m4_t vs1);
-vfloat64m4_t __riscv_vfmv_s_f_f64m4(float64_t rs1, size_t vl);
-float64_t __riscv_vfmv_f_s_f64m8_f64(vfloat64m8_t vs1);
-vfloat64m8_t __riscv_vfmv_s_f_f64m8(float64_t rs1, size_t vl);
+float __riscv_vfmv_f_s_f32mf2_f32(vfloat32mf2_t vs1);
+vfloat32mf2_t __riscv_vfmv_s_f_f32mf2(float rs1, size_t vl);
+float __riscv_vfmv_f_s_f32m1_f32(vfloat32m1_t vs1);
+vfloat32m1_t __riscv_vfmv_s_f_f32m1(float rs1, size_t vl);
+float __riscv_vfmv_f_s_f32m2_f32(vfloat32m2_t vs1);
+vfloat32m2_t __riscv_vfmv_s_f_f32m2(float rs1, size_t vl);
+float __riscv_vfmv_f_s_f32m4_f32(vfloat32m4_t vs1);
+vfloat32m4_t __riscv_vfmv_s_f_f32m4(float rs1, size_t vl);
+float __riscv_vfmv_f_s_f32m8_f32(vfloat32m8_t vs1);
+vfloat32m8_t __riscv_vfmv_s_f_f32m8(float rs1, size_t vl);
+double __riscv_vfmv_f_s_f64m1_f64(vfloat64m1_t vs1);
+vfloat64m1_t __riscv_vfmv_s_f_f64m1(double rs1, size_t vl);
+double __riscv_vfmv_f_s_f64m2_f64(vfloat64m2_t vs1);
+vfloat64m2_t __riscv_vfmv_s_f_f64m2(double rs1, size_t vl);
+double __riscv_vfmv_f_s_f64m4_f64(vfloat64m4_t vs1);
+vfloat64m4_t __riscv_vfmv_s_f_f64m4(double rs1, size_t vl);
+double __riscv_vfmv_f_s_f64m8_f64(vfloat64m8_t vs1);
+vfloat64m8_t __riscv_vfmv_s_f_f64m8(double rs1, size_t vl);
 int8_t __riscv_vmv_x_s_i8mf8_i8(vint8mf8_t vs1);
 vint8mf8_t __riscv_vmv_s_x_i8mf8(int8_t rs1, size_t vl);
 int8_t __riscv_vmv_x_s_i8mf4_i8(vint8mf4_t vs1);
@@ -614,23 +614,23 @@ vfloat16m4_t __riscv_vfslide1up_vf_f16m4(vfloat16m4_t vs2, _Float16 rs1,
                                          size_t vl);
 vfloat16m8_t __riscv_vfslide1up_vf_f16m8(vfloat16m8_t vs2, _Float16 rs1,
                                          size_t vl);
-vfloat32mf2_t __riscv_vfslide1up_vf_f32mf2(vfloat32mf2_t vs2, float32_t rs1,
+vfloat32mf2_t __riscv_vfslide1up_vf_f32mf2(vfloat32mf2_t vs2, float rs1,
                                            size_t vl);
-vfloat32m1_t __riscv_vfslide1up_vf_f32m1(vfloat32m1_t vs2, float32_t rs1,
+vfloat32m1_t __riscv_vfslide1up_vf_f32m1(vfloat32m1_t vs2, float rs1,
                                          size_t vl);
-vfloat32m2_t __riscv_vfslide1up_vf_f32m2(vfloat32m2_t vs2, float32_t rs1,
+vfloat32m2_t __riscv_vfslide1up_vf_f32m2(vfloat32m2_t vs2, float rs1,
                                          size_t vl);
-vfloat32m4_t __riscv_vfslide1up_vf_f32m4(vfloat32m4_t vs2, float32_t rs1,
+vfloat32m4_t __riscv_vfslide1up_vf_f32m4(vfloat32m4_t vs2, float rs1,
                                          size_t vl);
-vfloat32m8_t __riscv_vfslide1up_vf_f32m8(vfloat32m8_t vs2, float32_t rs1,
+vfloat32m8_t __riscv_vfslide1up_vf_f32m8(vfloat32m8_t vs2, float rs1,
                                          size_t vl);
-vfloat64m1_t __riscv_vfslide1up_vf_f64m1(vfloat64m1_t vs2, float64_t rs1,
+vfloat64m1_t __riscv_vfslide1up_vf_f64m1(vfloat64m1_t vs2, double rs1,
                                          size_t vl);
-vfloat64m2_t __riscv_vfslide1up_vf_f64m2(vfloat64m2_t vs2, float64_t rs1,
+vfloat64m2_t __riscv_vfslide1up_vf_f64m2(vfloat64m2_t vs2, double rs1,
                                          size_t vl);
-vfloat64m4_t __riscv_vfslide1up_vf_f64m4(vfloat64m4_t vs2, float64_t rs1,
+vfloat64m4_t __riscv_vfslide1up_vf_f64m4(vfloat64m4_t vs2, double rs1,
                                          size_t vl);
-vfloat64m8_t __riscv_vfslide1up_vf_f64m8(vfloat64m8_t vs2, float64_t rs1,
+vfloat64m8_t __riscv_vfslide1up_vf_f64m8(vfloat64m8_t vs2, double rs1,
                                          size_t vl);
 vfloat16mf4_t __riscv_vfslide1down_vf_f16mf4(vfloat16mf4_t vs2, _Float16 rs1,
                                              size_t vl);
@@ -644,23 +644,23 @@ vfloat16m4_t __riscv_vfslide1down_vf_f16m4(vfloat16m4_t vs2, _Float16 rs1,
                                            size_t vl);
 vfloat16m8_t __riscv_vfslide1down_vf_f16m8(vfloat16m8_t vs2, _Float16 rs1,
                                            size_t vl);
-vfloat32mf2_t __riscv_vfslide1down_vf_f32mf2(vfloat32mf2_t vs2, float32_t rs1,
+vfloat32mf2_t __riscv_vfslide1down_vf_f32mf2(vfloat32mf2_t vs2, float rs1,
                                              size_t vl);
-vfloat32m1_t __riscv_vfslide1down_vf_f32m1(vfloat32m1_t vs2, float32_t rs1,
+vfloat32m1_t __riscv_vfslide1down_vf_f32m1(vfloat32m1_t vs2, float rs1,
                                            size_t vl);
-vfloat32m2_t __riscv_vfslide1down_vf_f32m2(vfloat32m2_t vs2, float32_t rs1,
+vfloat32m2_t __riscv_vfslide1down_vf_f32m2(vfloat32m2_t vs2, float rs1,
                                            size_t vl);
-vfloat32m4_t __riscv_vfslide1down_vf_f32m4(vfloat32m4_t vs2, float32_t rs1,
+vfloat32m4_t __riscv_vfslide1down_vf_f32m4(vfloat32m4_t vs2, float rs1,
                                            size_t vl);
-vfloat32m8_t __riscv_vfslide1down_vf_f32m8(vfloat32m8_t vs2, float32_t rs1,
+vfloat32m8_t __riscv_vfslide1down_vf_f32m8(vfloat32m8_t vs2, float rs1,
                                            size_t vl);
-vfloat64m1_t __riscv_vfslide1down_vf_f64m1(vfloat64m1_t vs2, float64_t rs1,
+vfloat64m1_t __riscv_vfslide1down_vf_f64m1(vfloat64m1_t vs2, double rs1,
                                            size_t vl);
-vfloat64m2_t __riscv_vfslide1down_vf_f64m2(vfloat64m2_t vs2, float64_t rs1,
+vfloat64m2_t __riscv_vfslide1down_vf_f64m2(vfloat64m2_t vs2, double rs1,
                                            size_t vl);
-vfloat64m4_t __riscv_vfslide1down_vf_f64m4(vfloat64m4_t vs2, float64_t rs1,
+vfloat64m4_t __riscv_vfslide1down_vf_f64m4(vfloat64m4_t vs2, double rs1,
                                            size_t vl);
-vfloat64m8_t __riscv_vfslide1down_vf_f64m8(vfloat64m8_t vs2, float64_t rs1,
+vfloat64m8_t __riscv_vfslide1down_vf_f64m8(vfloat64m8_t vs2, double rs1,
                                            size_t vl);
 vint8mf8_t __riscv_vslide1up_vx_i8mf8(vint8mf8_t vs2, int8_t rs1, size_t vl);
 vint8mf4_t __riscv_vslide1up_vx_i8mf4(vint8mf4_t vs2, int8_t rs1, size_t vl);
@@ -803,23 +803,23 @@ vfloat16m4_t __riscv_vfslide1up_vf_f16m4_m(vbool4_t vm, vfloat16m4_t vs2,
 vfloat16m8_t __riscv_vfslide1up_vf_f16m8_m(vbool2_t vm, vfloat16m8_t vs2,
                                            _Float16 rs1, size_t vl);
 vfloat32mf2_t __riscv_vfslide1up_vf_f32mf2_m(vbool64_t vm, vfloat32mf2_t vs2,
-                                             float32_t rs1, size_t vl);
+                                             float rs1, size_t vl);
 vfloat32m1_t __riscv_vfslide1up_vf_f32m1_m(vbool32_t vm, vfloat32m1_t vs2,
-                                           float32_t rs1, size_t vl);
+                                           float rs1, size_t vl);
 vfloat32m2_t __riscv_vfslide1up_vf_f32m2_m(vbool16_t vm, vfloat32m2_t vs2,
-                                           float32_t rs1, size_t vl);
+                                           float rs1, size_t vl);
 vfloat32m4_t __riscv_vfslide1up_vf_f32m4_m(vbool8_t vm, vfloat32m4_t vs2,
-                                           float32_t rs1, size_t vl);
+                                           float rs1, size_t vl);
 vfloat32m8_t __riscv_vfslide1up_vf_f32m8_m(vbool4_t vm, vfloat32m8_t vs2,
-                                           float32_t rs1, size_t vl);
+                                           float rs1, size_t vl);
 vfloat64m1_t __riscv_vfslide1up_vf_f64m1_m(vbool64_t vm, vfloat64m1_t vs2,
-                                           float64_t rs1, size_t vl);
+                                           double rs1, size_t vl);
 vfloat64m2_t __riscv_vfslide1up_vf_f64m2_m(vbool32_t vm, vfloat64m2_t vs2,
-                                           float64_t rs1, size_t vl);
+                                           double rs1, size_t vl);
 vfloat64m4_t __riscv_vfslide1up_vf_f64m4_m(vbool16_t vm, vfloat64m4_t vs2,
-                                           float64_t rs1, size_t vl);
+                                           double rs1, size_t vl);
 vfloat64m8_t __riscv_vfslide1up_vf_f64m8_m(vbool8_t vm, vfloat64m8_t vs2,
-                                           float64_t rs1, size_t vl);
+                                           double rs1, size_t vl);
 vfloat16mf4_t __riscv_vfslide1down_vf_f16mf4_m(vbool64_t vm, vfloat16mf4_t vs2,
                                                _Float16 rs1, size_t vl);
 vfloat16mf2_t __riscv_vfslide1down_vf_f16mf2_m(vbool32_t vm, vfloat16mf2_t vs2,
@@ -833,23 +833,23 @@ vfloat16m4_t __riscv_vfslide1down_vf_f16m4_m(vbool4_t vm, vfloat16m4_t vs2,
 vfloat16m8_t __riscv_vfslide1down_vf_f16m8_m(vbool2_t vm, vfloat16m8_t vs2,
                                              _Float16 rs1, size_t vl);
 vfloat32mf2_t __riscv_vfslide1down_vf_f32mf2_m(vbool64_t vm, vfloat32mf2_t vs2,
-                                               float32_t rs1, size_t vl);
+                                               float rs1, size_t vl);
 vfloat32m1_t __riscv_vfslide1down_vf_f32m1_m(vbool32_t vm, vfloat32m1_t vs2,
-                                             float32_t rs1, size_t vl);
+                                             float rs1, size_t vl);
 vfloat32m2_t __riscv_vfslide1down_vf_f32m2_m(vbool16_t vm, vfloat32m2_t vs2,
-                                             float32_t rs1, size_t vl);
+                                             float rs1, size_t vl);
 vfloat32m4_t __riscv_vfslide1down_vf_f32m4_m(vbool8_t vm, vfloat32m4_t vs2,
-                                             float32_t rs1, size_t vl);
+                                             float rs1, size_t vl);
 vfloat32m8_t __riscv_vfslide1down_vf_f32m8_m(vbool4_t vm, vfloat32m8_t vs2,
-                                             float32_t rs1, size_t vl);
+                                             float rs1, size_t vl);
 vfloat64m1_t __riscv_vfslide1down_vf_f64m1_m(vbool64_t vm, vfloat64m1_t vs2,
-                                             float64_t rs1, size_t vl);
+                                             double rs1, size_t vl);
 vfloat64m2_t __riscv_vfslide1down_vf_f64m2_m(vbool32_t vm, vfloat64m2_t vs2,
-                                             float64_t rs1, size_t vl);
+                                             double rs1, size_t vl);
 vfloat64m4_t __riscv_vfslide1down_vf_f64m4_m(vbool16_t vm, vfloat64m4_t vs2,
-                                             float64_t rs1, size_t vl);
+                                             double rs1, size_t vl);
 vfloat64m8_t __riscv_vfslide1down_vf_f64m8_m(vbool8_t vm, vfloat64m8_t vs2,
-                                             float64_t rs1, size_t vl);
+                                             double rs1, size_t vl);
 vint8mf8_t __riscv_vslide1up_vx_i8mf8_m(vbool64_t vm, vint8mf8_t vs2,
                                         int8_t rs1, size_t vl);
 vint8mf4_t __riscv_vslide1up_vx_i8mf4_m(vbool32_t vm, vint8mf4_t vs2,
