@@ -1,5 +1,5 @@
 
-=== Vector Mask Instructions
+=== Vector Mask Intrinsics
 
 [[policy-variant-overloadedvector-mask-register-logical]]
 ==== Vector Mask-Register Logical

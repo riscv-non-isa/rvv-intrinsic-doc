@@ -1,5 +1,5 @@
 
-=== Vector Loads and Stores Segment Instructions
+=== Vector Loads and Stores Segment Intrinsics
 
 [[policy-variant-vector-unit-stride-segment-load]]
 ==== Vector Unit-Stride Segment Load Intrinsics

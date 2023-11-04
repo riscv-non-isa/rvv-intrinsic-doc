@@ -1,5 +1,5 @@
 
-=== Vector Floating-Point Instructions
+=== Vector Floating-Point Intrinsics
 
 [[overloaded-vector-single-width-floating-point-add-subtract]]
 ==== Vector Single-Width Floating-Point Add/Subtract Intrinsics

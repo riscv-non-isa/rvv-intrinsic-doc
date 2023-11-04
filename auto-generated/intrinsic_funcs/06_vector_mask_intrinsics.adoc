@@ -1,5 +1,5 @@
 
-=== Vector Mask Instructions
+=== Vector Mask Intrinsics
 
 [[vector-mask-register-logical]]
 ==== Vector Mask-Register Logical

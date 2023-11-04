@@ -3429,7 +3429,7 @@ vuint64m8_t __riscv_vle64ff(vbool8_t vm, const uint64_t *rs1, size_t *new_vl,
                             size_t vl);
 ----
 
-=== Vector Loads and Stores Segment Instructions
+=== Vector Loads and Stores Segment Intrinsics
 
 [[overloaded-vector-unit-stride-segment-load]]
 ==== Vector Unit-Stride Segment Load Intrinsics
@@ -20153,7 +20153,7 @@ void __riscv_vsuxseg2ei64(vbool16_t vm, uint64_t *rs1, vuint64m4_t vs2,
                           vuint64m4x2_t vs3, size_t vl);
 ----
 
-=== Vector Integer Arithmetic Instructions
+=== Vector Integer Arithmetic Intrinsics
 
 [[overloaded-vector-single-width-integer-add-and-subtract]]
 ==== Vector Single-Width Integer Add and Subtract Intrinsics
@@ -28757,7 +28757,7 @@ vuint64m4_t __riscv_vmv_v(vuint64m4_t vs1, size_t vl);
 vuint64m8_t __riscv_vmv_v(vuint64m8_t vs1, size_t vl);
 ----
 
-=== Vector Fixed-Point Arithmetic Instructions
+=== Vector Fixed-Point Arithmetic Intrinsics
 
 [[overloaded-vector-single-width-saturating-add-and-subtract]]
 ==== Vector Single-Width Saturating Add and Subtract Intrinsics
@@ -30745,7 +30745,7 @@ vuint32m4_t __riscv_vnclipu(vbool8_t vm, vuint64m8_t vs2, size_t rs1,
                             unsigned int vxrm, size_t vl);
 ----
 
-=== Vector Floating-Point Instructions
+=== Vector Floating-Point Intrinsics
 
 [[overloaded-vector-single-width-floating-point-add-subtract]]
 ==== Vector Single-Width Floating-Point Add/Subtract Intrinsics
@@ -38634,7 +38634,7 @@ vfloat64m1_t __riscv_vfwredusum(vbool4_t vm, vfloat32m8_t vs2, vfloat64m1_t vs1,
                                 unsigned int frm, size_t vl);
 ----
 
-=== Vector Mask Instructions
+=== Vector Mask Intrinsics
 
 [[overloaded-vector-mask-register-logical]]
 ==== Vector Mask-Register Logical
@@ -38839,7 +38839,7 @@ vbool64_t __riscv_vmsof(vbool64_t vm, vbool64_t vs2, size_t vl);
 // masked functions
 ----
 
-=== Vector Permutation Instructions
+=== Vector Permutation Intrinsics
 
 [[overloaded-integer-scalar-move]]
 ==== Integer and Floating-Point Scalar Move Intrinsics
