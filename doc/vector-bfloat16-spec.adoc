@@ -25,7 +25,18 @@ NOTE: Although C++23 introduces `<stdfloat>` for fixed-width floating-point type
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
 | Types | EMUL=1/8 | EMUL=1/4 | EMUL=1/ 2 | EMUL=1 | EMUL=2 | EMUL=4 | EMUL=8
-| __bf16 | N/A | vbfloat16m4_t | vbfloat16mf2_t | vbfloat16m1_t | vbfloat16m2_t | vbfloat16m4_t | vbfloat16m8_t
+| __bf16 | N/A | vbfloat16mf4_t | vbfloat16mf2_t | vbfloat16m1_t | vbfloat16m2_t | vbfloat16m4_t | vbfloat16m8_t
+|===
+
+.Tuple types
+[options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
+|===
+| Non-tuple Types (NFILED=1)| NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
+| vbfloat16mf4_t | vbfloat16mf4x2_t | vbfloat16mf4x3_t | vbfloat16mf4x4_t | vbfloat16mf4x5_t | vbfloat16mf4x6_t | vbfloat16mf4x7_t | vbfloat16mf4x8_t
+| vbfloat16mf2_t | vbfloat16mf2x2_t | vbfloat16mf2x3_t | vbfloat16mf2x4_t | vbfloat16mf2x5_t | vbfloat16mf2x6_t | vbfloat16mf2x7_t | vbfloat16mf2x8_t
+| vbfloat16m1_t | vbfloat16m1x2_t | vbfloat16m1x3_t | vbfloat16m1x4_t | vbfloat16m1x5_t | vbfloat16m1x6_t | vbfloat16m1x7_t | vbfloat16m1x8_t
+| vbfloat16m2_t | vbfloat16m2x2_t | vbfloat16m2x3_t | vbfloat16m2x4_t | N/A | N/A | N/A | N/A
+| vbfloat16m4_t | vbfloat16m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
 |===
 
 [[bf16-pseudo-intrinsics]]
