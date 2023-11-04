@@ -327,9 +327,9 @@ class DocGenerator(Generator):
 
   def write_title(self, text, link):
     if self.has_tail_policy:
-      self.fd.write("\n[[policy-variant-" + link + "]]\n=== " + text + "\n")
+      self.fd.write("\n[[policy-variant-" + link + "]]\n==== " + text + "\n")
     else:
-      self.fd.write("\n[[" + link + "]]\n=== " + text + "\n")
+      self.fd.write("\n[[" + link + "]]\n==== " + text + "\n")
 
   def inst_group_prologue(self):
     s = "\n[,c]\n----\n"
