@@ -3,11 +3,7 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
-vfloat64m1x6_t test_vlsseg6e64_v_f64m1x6_m(vbool64_t vm, const float64_t *rs1, ptrdiff_t rs2, size_t vl) {
+vfloat64m1x6_t test_vlsseg6e64_v_f64m1x6_m(vbool64_t vm, const double *rs1, ptrdiff_t rs2, size_t vl) {
   return __riscv_vlsseg6e64(vm, rs1, rs2, vl);
 }
 

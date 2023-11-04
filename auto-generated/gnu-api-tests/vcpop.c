@@ -3,10 +3,6 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 unsigned int test_vcpop_m_b1(vbool1_t vs2, size_t vl) {
   return __riscv_vcpop_m_b1(vs2, vl);
 }

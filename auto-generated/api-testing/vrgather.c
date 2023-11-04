@@ -1,10 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vfloat16mf4_t test_vrgather_vv_f16mf4(vfloat16mf4_t vs2, vuint16mf4_t vs1,
                                       size_t vl) {
   return __riscv_vrgather_vv_f16mf4(vs2, vs1, vl);

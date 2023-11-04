@@ -1,10 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vfloat16mf4_t test_vfneg_v_f16mf4_tu(vfloat16mf4_t vd, vfloat16mf4_t vs,
                                      size_t vl) {
   return __riscv_vfneg_v_f16mf4_tu(vd, vs, vl);

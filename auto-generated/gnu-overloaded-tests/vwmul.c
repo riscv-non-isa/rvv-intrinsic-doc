@@ -3,10 +3,6 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vint16mf4_t test_vwmul_vv_i16mf4(vint8mf8_t vs2, vint8mf8_t vs1, size_t vl) {
   return __riscv_vwmul(vs2, vs1, vl);
 }

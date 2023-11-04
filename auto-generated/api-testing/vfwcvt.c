@@ -1,10 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vfloat16mf4_t test_vfwcvt_f_x_v_f16mf4(vint8mf8_t vs2, size_t vl) {
   return __riscv_vfwcvt_f_x_v_f16mf4(vs2, vl);
 }

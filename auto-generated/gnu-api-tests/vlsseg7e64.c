@@ -3,11 +3,7 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
-vfloat64m1x7_t test_vlsseg7e64_v_f64m1x7(const float64_t *rs1, ptrdiff_t rs2, size_t vl) {
+vfloat64m1x7_t test_vlsseg7e64_v_f64m1x7(const double *rs1, ptrdiff_t rs2, size_t vl) {
   return __riscv_vlsseg7e64_v_f64m1x7(rs1, rs2, vl);
 }
 
@@ -19,7 +15,7 @@ vuint64m1x7_t test_vlsseg7e64_v_u64m1x7(const uint64_t *rs1, ptrdiff_t rs2, size
   return __riscv_vlsseg7e64_v_u64m1x7(rs1, rs2, vl);
 }
 
-vfloat64m1x7_t test_vlsseg7e64_v_f64m1x7_m(vbool64_t vm, const float64_t *rs1, ptrdiff_t rs2, size_t vl) {
+vfloat64m1x7_t test_vlsseg7e64_v_f64m1x7_m(vbool64_t vm, const double *rs1, ptrdiff_t rs2, size_t vl) {
   return __riscv_vlsseg7e64_v_f64m1x7_m(vm, rs1, rs2, vl);
 }
 

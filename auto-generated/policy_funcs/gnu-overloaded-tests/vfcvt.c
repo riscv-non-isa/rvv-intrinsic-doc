@@ -3,10 +3,6 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vint16mf4_t test_vfcvt_x_f_v_i16mf4_tu(vint16mf4_t vd, vfloat16mf4_t vs2, size_t vl) {
   return __riscv_vfcvt_x_tu(vd, vs2, vl);
 }

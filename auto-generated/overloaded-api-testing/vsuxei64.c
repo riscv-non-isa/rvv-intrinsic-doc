@@ -1,66 +1,62 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
-void test_vsuxei64_v_f16mf4(float16_t *rs1, vuint64m1_t rs2, vfloat16mf4_t vs3,
+void test_vsuxei64_v_f16mf4(_Float16 *rs1, vuint64m1_t rs2, vfloat16mf4_t vs3,
                             size_t vl) {
   return __riscv_vsuxei64(rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f16mf2(float16_t *rs1, vuint64m2_t rs2, vfloat16mf2_t vs3,
+void test_vsuxei64_v_f16mf2(_Float16 *rs1, vuint64m2_t rs2, vfloat16mf2_t vs3,
                             size_t vl) {
   return __riscv_vsuxei64(rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f16m1(float16_t *rs1, vuint64m4_t rs2, vfloat16m1_t vs3,
+void test_vsuxei64_v_f16m1(_Float16 *rs1, vuint64m4_t rs2, vfloat16m1_t vs3,
                            size_t vl) {
   return __riscv_vsuxei64(rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f16m2(float16_t *rs1, vuint64m8_t rs2, vfloat16m2_t vs3,
+void test_vsuxei64_v_f16m2(_Float16 *rs1, vuint64m8_t rs2, vfloat16m2_t vs3,
                            size_t vl) {
   return __riscv_vsuxei64(rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f32mf2(float32_t *rs1, vuint64m1_t rs2, vfloat32mf2_t vs3,
+void test_vsuxei64_v_f32mf2(float *rs1, vuint64m1_t rs2, vfloat32mf2_t vs3,
                             size_t vl) {
   return __riscv_vsuxei64(rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f32m1(float32_t *rs1, vuint64m2_t rs2, vfloat32m1_t vs3,
+void test_vsuxei64_v_f32m1(float *rs1, vuint64m2_t rs2, vfloat32m1_t vs3,
                            size_t vl) {
   return __riscv_vsuxei64(rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f32m2(float32_t *rs1, vuint64m4_t rs2, vfloat32m2_t vs3,
+void test_vsuxei64_v_f32m2(float *rs1, vuint64m4_t rs2, vfloat32m2_t vs3,
                            size_t vl) {
   return __riscv_vsuxei64(rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f32m4(float32_t *rs1, vuint64m8_t rs2, vfloat32m4_t vs3,
+void test_vsuxei64_v_f32m4(float *rs1, vuint64m8_t rs2, vfloat32m4_t vs3,
                            size_t vl) {
   return __riscv_vsuxei64(rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f64m1(float64_t *rs1, vuint64m1_t rs2, vfloat64m1_t vs3,
+void test_vsuxei64_v_f64m1(double *rs1, vuint64m1_t rs2, vfloat64m1_t vs3,
                            size_t vl) {
   return __riscv_vsuxei64(rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f64m2(float64_t *rs1, vuint64m2_t rs2, vfloat64m2_t vs3,
+void test_vsuxei64_v_f64m2(double *rs1, vuint64m2_t rs2, vfloat64m2_t vs3,
                            size_t vl) {
   return __riscv_vsuxei64(rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f64m4(float64_t *rs1, vuint64m4_t rs2, vfloat64m4_t vs3,
+void test_vsuxei64_v_f64m4(double *rs1, vuint64m4_t rs2, vfloat64m4_t vs3,
                            size_t vl) {
   return __riscv_vsuxei64(rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f64m8(float64_t *rs1, vuint64m8_t rs2, vfloat64m8_t vs3,
+void test_vsuxei64_v_f64m8(double *rs1, vuint64m8_t rs2, vfloat64m8_t vs3,
                            size_t vl) {
   return __riscv_vsuxei64(rs1, rs2, vs3, vl);
 }
@@ -225,62 +221,62 @@ void test_vsuxei64_v_u64m8(uint64_t *rs1, vuint64m8_t rs2, vuint64m8_t vs3,
   return __riscv_vsuxei64(rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f16mf4_m(vbool64_t vm, float16_t *rs1, vuint64m1_t rs2,
+void test_vsuxei64_v_f16mf4_m(vbool64_t vm, _Float16 *rs1, vuint64m1_t rs2,
                               vfloat16mf4_t vs3, size_t vl) {
   return __riscv_vsuxei64(vm, rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f16mf2_m(vbool32_t vm, float16_t *rs1, vuint64m2_t rs2,
+void test_vsuxei64_v_f16mf2_m(vbool32_t vm, _Float16 *rs1, vuint64m2_t rs2,
                               vfloat16mf2_t vs3, size_t vl) {
   return __riscv_vsuxei64(vm, rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f16m1_m(vbool16_t vm, float16_t *rs1, vuint64m4_t rs2,
+void test_vsuxei64_v_f16m1_m(vbool16_t vm, _Float16 *rs1, vuint64m4_t rs2,
                              vfloat16m1_t vs3, size_t vl) {
   return __riscv_vsuxei64(vm, rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f16m2_m(vbool8_t vm, float16_t *rs1, vuint64m8_t rs2,
+void test_vsuxei64_v_f16m2_m(vbool8_t vm, _Float16 *rs1, vuint64m8_t rs2,
                              vfloat16m2_t vs3, size_t vl) {
   return __riscv_vsuxei64(vm, rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f32mf2_m(vbool64_t vm, float32_t *rs1, vuint64m1_t rs2,
+void test_vsuxei64_v_f32mf2_m(vbool64_t vm, float *rs1, vuint64m1_t rs2,
                               vfloat32mf2_t vs3, size_t vl) {
   return __riscv_vsuxei64(vm, rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f32m1_m(vbool32_t vm, float32_t *rs1, vuint64m2_t rs2,
+void test_vsuxei64_v_f32m1_m(vbool32_t vm, float *rs1, vuint64m2_t rs2,
                              vfloat32m1_t vs3, size_t vl) {
   return __riscv_vsuxei64(vm, rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f32m2_m(vbool16_t vm, float32_t *rs1, vuint64m4_t rs2,
+void test_vsuxei64_v_f32m2_m(vbool16_t vm, float *rs1, vuint64m4_t rs2,
                              vfloat32m2_t vs3, size_t vl) {
   return __riscv_vsuxei64(vm, rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f32m4_m(vbool8_t vm, float32_t *rs1, vuint64m8_t rs2,
+void test_vsuxei64_v_f32m4_m(vbool8_t vm, float *rs1, vuint64m8_t rs2,
                              vfloat32m4_t vs3, size_t vl) {
   return __riscv_vsuxei64(vm, rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f64m1_m(vbool64_t vm, float64_t *rs1, vuint64m1_t rs2,
+void test_vsuxei64_v_f64m1_m(vbool64_t vm, double *rs1, vuint64m1_t rs2,
                              vfloat64m1_t vs3, size_t vl) {
   return __riscv_vsuxei64(vm, rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f64m2_m(vbool32_t vm, float64_t *rs1, vuint64m2_t rs2,
+void test_vsuxei64_v_f64m2_m(vbool32_t vm, double *rs1, vuint64m2_t rs2,
                              vfloat64m2_t vs3, size_t vl) {
   return __riscv_vsuxei64(vm, rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f64m4_m(vbool16_t vm, float64_t *rs1, vuint64m4_t rs2,
+void test_vsuxei64_v_f64m4_m(vbool16_t vm, double *rs1, vuint64m4_t rs2,
                              vfloat64m4_t vs3, size_t vl) {
   return __riscv_vsuxei64(vm, rs1, rs2, vs3, vl);
 }
 
-void test_vsuxei64_v_f64m8_m(vbool8_t vm, float64_t *rs1, vuint64m8_t rs2,
+void test_vsuxei64_v_f64m8_m(vbool8_t vm, double *rs1, vuint64m8_t rs2,
                              vfloat64m8_t vs3, size_t vl) {
   return __riscv_vsuxei64(vm, rs1, rs2, vs3, vl);
 }

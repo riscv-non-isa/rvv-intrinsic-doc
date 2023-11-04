@@ -3,31 +3,27 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
-void test_vsoxseg7ei64_v_f16mf4x7(float16_t *rs1, vuint64m1_t vs2, vfloat16mf4x7_t vs3, size_t vl) {
+void test_vsoxseg7ei64_v_f16mf4x7(_Float16 *rs1, vuint64m1_t vs2, vfloat16mf4x7_t vs3, size_t vl) {
   return __riscv_vsoxseg7ei64_v_f16mf4x7(rs1, vs2, vs3, vl);
 }
 
-void test_vsoxseg7ei64_v_f16mf2x7(float16_t *rs1, vuint64m2_t vs2, vfloat16mf2x7_t vs3, size_t vl) {
+void test_vsoxseg7ei64_v_f16mf2x7(_Float16 *rs1, vuint64m2_t vs2, vfloat16mf2x7_t vs3, size_t vl) {
   return __riscv_vsoxseg7ei64_v_f16mf2x7(rs1, vs2, vs3, vl);
 }
 
-void test_vsoxseg7ei64_v_f16m1x7(float16_t *rs1, vuint64m4_t vs2, vfloat16m1x7_t vs3, size_t vl) {
+void test_vsoxseg7ei64_v_f16m1x7(_Float16 *rs1, vuint64m4_t vs2, vfloat16m1x7_t vs3, size_t vl) {
   return __riscv_vsoxseg7ei64_v_f16m1x7(rs1, vs2, vs3, vl);
 }
 
-void test_vsoxseg7ei64_v_f32mf2x7(float32_t *rs1, vuint64m1_t vs2, vfloat32mf2x7_t vs3, size_t vl) {
+void test_vsoxseg7ei64_v_f32mf2x7(float *rs1, vuint64m1_t vs2, vfloat32mf2x7_t vs3, size_t vl) {
   return __riscv_vsoxseg7ei64_v_f32mf2x7(rs1, vs2, vs3, vl);
 }
 
-void test_vsoxseg7ei64_v_f32m1x7(float32_t *rs1, vuint64m2_t vs2, vfloat32m1x7_t vs3, size_t vl) {
+void test_vsoxseg7ei64_v_f32m1x7(float *rs1, vuint64m2_t vs2, vfloat32m1x7_t vs3, size_t vl) {
   return __riscv_vsoxseg7ei64_v_f32m1x7(rs1, vs2, vs3, vl);
 }
 
-void test_vsoxseg7ei64_v_f64m1x7(float64_t *rs1, vuint64m1_t vs2, vfloat64m1x7_t vs3, size_t vl) {
+void test_vsoxseg7ei64_v_f64m1x7(double *rs1, vuint64m1_t vs2, vfloat64m1x7_t vs3, size_t vl) {
   return __riscv_vsoxseg7ei64_v_f64m1x7(rs1, vs2, vs3, vl);
 }
 
@@ -111,27 +107,27 @@ void test_vsoxseg7ei64_v_u64m1x7(uint64_t *rs1, vuint64m1_t vs2, vuint64m1x7_t v
   return __riscv_vsoxseg7ei64_v_u64m1x7(rs1, vs2, vs3, vl);
 }
 
-void test_vsoxseg7ei64_v_f16mf4x7_m(vbool64_t vm, float16_t *rs1, vuint64m1_t vs2, vfloat16mf4x7_t vs3, size_t vl) {
+void test_vsoxseg7ei64_v_f16mf4x7_m(vbool64_t vm, _Float16 *rs1, vuint64m1_t vs2, vfloat16mf4x7_t vs3, size_t vl) {
   return __riscv_vsoxseg7ei64_v_f16mf4x7_m(vm, rs1, vs2, vs3, vl);
 }
 
-void test_vsoxseg7ei64_v_f16mf2x7_m(vbool32_t vm, float16_t *rs1, vuint64m2_t vs2, vfloat16mf2x7_t vs3, size_t vl) {
+void test_vsoxseg7ei64_v_f16mf2x7_m(vbool32_t vm, _Float16 *rs1, vuint64m2_t vs2, vfloat16mf2x7_t vs3, size_t vl) {
   return __riscv_vsoxseg7ei64_v_f16mf2x7_m(vm, rs1, vs2, vs3, vl);
 }
 
-void test_vsoxseg7ei64_v_f16m1x7_m(vbool16_t vm, float16_t *rs1, vuint64m4_t vs2, vfloat16m1x7_t vs3, size_t vl) {
+void test_vsoxseg7ei64_v_f16m1x7_m(vbool16_t vm, _Float16 *rs1, vuint64m4_t vs2, vfloat16m1x7_t vs3, size_t vl) {
   return __riscv_vsoxseg7ei64_v_f16m1x7_m(vm, rs1, vs2, vs3, vl);
 }
 
-void test_vsoxseg7ei64_v_f32mf2x7_m(vbool64_t vm, float32_t *rs1, vuint64m1_t vs2, vfloat32mf2x7_t vs3, size_t vl) {
+void test_vsoxseg7ei64_v_f32mf2x7_m(vbool64_t vm, float *rs1, vuint64m1_t vs2, vfloat32mf2x7_t vs3, size_t vl) {
   return __riscv_vsoxseg7ei64_v_f32mf2x7_m(vm, rs1, vs2, vs3, vl);
 }
 
-void test_vsoxseg7ei64_v_f32m1x7_m(vbool32_t vm, float32_t *rs1, vuint64m2_t vs2, vfloat32m1x7_t vs3, size_t vl) {
+void test_vsoxseg7ei64_v_f32m1x7_m(vbool32_t vm, float *rs1, vuint64m2_t vs2, vfloat32m1x7_t vs3, size_t vl) {
   return __riscv_vsoxseg7ei64_v_f32m1x7_m(vm, rs1, vs2, vs3, vl);
 }
 
-void test_vsoxseg7ei64_v_f64m1x7_m(vbool64_t vm, float64_t *rs1, vuint64m1_t vs2, vfloat64m1x7_t vs3, size_t vl) {
+void test_vsoxseg7ei64_v_f64m1x7_m(vbool64_t vm, double *rs1, vuint64m1_t vs2, vfloat64m1x7_t vs3, size_t vl) {
   return __riscv_vsoxseg7ei64_v_f64m1x7_m(vm, rs1, vs2, vs3, vl);
 }
 

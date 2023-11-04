@@ -1,10 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vint16mf4_t test_vwmaccus_vx_i16mf4_tu(vint16mf4_t vd, uint8_t rs1,
                                        vint8mf8_t vs2, size_t vl) {
   return __riscv_vwmaccus_vx_i16mf4_tu(vd, rs1, vs2, vl);

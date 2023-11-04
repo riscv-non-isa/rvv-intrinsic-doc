@@ -1,10 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vuint8mf8_t test_vid_v_u8mf8_tu(vuint8mf8_t vd, size_t vl) {
   return __riscv_vid_tu(vd, vl);
 }

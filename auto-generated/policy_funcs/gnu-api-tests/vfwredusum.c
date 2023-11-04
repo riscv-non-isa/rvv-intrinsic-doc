@@ -3,10 +3,6 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vfloat32m1_t test_vfwredusum_vs_f16mf4_f32m1_tu(vfloat32m1_t vd, vfloat16mf4_t vs2, vfloat32m1_t vs1, size_t vl) {
   return __riscv_vfwredusum_vs_f16mf4_f32m1_tu(vd, vs2, vs1, vl);
 }

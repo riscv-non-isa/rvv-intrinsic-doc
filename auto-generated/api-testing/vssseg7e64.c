@@ -1,12 +1,8 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
-void test_vssseg7e64_v_f64m1x7(float64_t *rs1, ptrdiff_t rs2,
-                               vfloat64m1x7_t vs3, size_t vl) {
+void test_vssseg7e64_v_f64m1x7(double *rs1, ptrdiff_t rs2, vfloat64m1x7_t vs3,
+                               size_t vl) {
   return __riscv_vssseg7e64_v_f64m1x7(rs1, rs2, vs3, vl);
 }
 
@@ -20,7 +16,7 @@ void test_vssseg7e64_v_u64m1x7(uint64_t *rs1, ptrdiff_t rs2, vuint64m1x7_t vs3,
   return __riscv_vssseg7e64_v_u64m1x7(rs1, rs2, vs3, vl);
 }
 
-void test_vssseg7e64_v_f64m1x7_m(vbool64_t vm, float64_t *rs1, ptrdiff_t rs2,
+void test_vssseg7e64_v_f64m1x7_m(vbool64_t vm, double *rs1, ptrdiff_t rs2,
                                  vfloat64m1x7_t vs3, size_t vl) {
   return __riscv_vssseg7e64_v_f64m1x7_m(vm, rs1, rs2, vs3, vl);
 }

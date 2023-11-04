@@ -1,10 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vfloat16m1_t test_vfredmax_vs_f16mf4_f16m1_tu(vfloat16m1_t vd,
                                               vfloat16mf4_t vs2,
                                               vfloat16m1_t vs1, size_t vl) {

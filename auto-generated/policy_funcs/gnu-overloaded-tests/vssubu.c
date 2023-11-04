@@ -3,10 +3,6 @@
 
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vuint8mf8_t test_vssubu_vv_u8mf8_tu(vuint8mf8_t vd, vuint8mf8_t vs2, vuint8mf8_t vs1, size_t vl) {
   return __riscv_vssubu_tu(vd, vs2, vs1, vl);
 }

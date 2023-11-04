@@ -1,10 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vfloat32mf2_t test_vfwmul_vv_f32mf2(vfloat16mf4_t vs2, vfloat16mf4_t vs1,
                                     size_t vl) {
   return __riscv_vfwmul(vs2, vs1, vl);
@@ -56,7 +52,7 @@ vfloat64m1_t test_vfwmul_vv_f64m1(vfloat32mf2_t vs2, vfloat32mf2_t vs1,
   return __riscv_vfwmul(vs2, vs1, vl);
 }
 
-vfloat64m1_t test_vfwmul_vf_f64m1(vfloat32mf2_t vs2, float32_t rs1, size_t vl) {
+vfloat64m1_t test_vfwmul_vf_f64m1(vfloat32mf2_t vs2, float rs1, size_t vl) {
   return __riscv_vfwmul(vs2, rs1, vl);
 }
 
@@ -65,7 +61,7 @@ vfloat64m2_t test_vfwmul_vv_f64m2(vfloat32m1_t vs2, vfloat32m1_t vs1,
   return __riscv_vfwmul(vs2, vs1, vl);
 }
 
-vfloat64m2_t test_vfwmul_vf_f64m2(vfloat32m1_t vs2, float32_t rs1, size_t vl) {
+vfloat64m2_t test_vfwmul_vf_f64m2(vfloat32m1_t vs2, float rs1, size_t vl) {
   return __riscv_vfwmul(vs2, rs1, vl);
 }
 
@@ -74,7 +70,7 @@ vfloat64m4_t test_vfwmul_vv_f64m4(vfloat32m2_t vs2, vfloat32m2_t vs1,
   return __riscv_vfwmul(vs2, vs1, vl);
 }
 
-vfloat64m4_t test_vfwmul_vf_f64m4(vfloat32m2_t vs2, float32_t rs1, size_t vl) {
+vfloat64m4_t test_vfwmul_vf_f64m4(vfloat32m2_t vs2, float rs1, size_t vl) {
   return __riscv_vfwmul(vs2, rs1, vl);
 }
 
@@ -83,7 +79,7 @@ vfloat64m8_t test_vfwmul_vv_f64m8(vfloat32m4_t vs2, vfloat32m4_t vs1,
   return __riscv_vfwmul(vs2, vs1, vl);
 }
 
-vfloat64m8_t test_vfwmul_vf_f64m8(vfloat32m4_t vs2, float32_t rs1, size_t vl) {
+vfloat64m8_t test_vfwmul_vf_f64m8(vfloat32m4_t vs2, float rs1, size_t vl) {
   return __riscv_vfwmul(vs2, rs1, vl);
 }
 
@@ -142,8 +138,8 @@ vfloat64m1_t test_vfwmul_vv_f64m1_m(vbool64_t vm, vfloat32mf2_t vs2,
   return __riscv_vfwmul(vm, vs2, vs1, vl);
 }
 
-vfloat64m1_t test_vfwmul_vf_f64m1_m(vbool64_t vm, vfloat32mf2_t vs2,
-                                    float32_t rs1, size_t vl) {
+vfloat64m1_t test_vfwmul_vf_f64m1_m(vbool64_t vm, vfloat32mf2_t vs2, float rs1,
+                                    size_t vl) {
   return __riscv_vfwmul(vm, vs2, rs1, vl);
 }
 
@@ -152,8 +148,8 @@ vfloat64m2_t test_vfwmul_vv_f64m2_m(vbool32_t vm, vfloat32m1_t vs2,
   return __riscv_vfwmul(vm, vs2, vs1, vl);
 }
 
-vfloat64m2_t test_vfwmul_vf_f64m2_m(vbool32_t vm, vfloat32m1_t vs2,
-                                    float32_t rs1, size_t vl) {
+vfloat64m2_t test_vfwmul_vf_f64m2_m(vbool32_t vm, vfloat32m1_t vs2, float rs1,
+                                    size_t vl) {
   return __riscv_vfwmul(vm, vs2, rs1, vl);
 }
 
@@ -162,8 +158,8 @@ vfloat64m4_t test_vfwmul_vv_f64m4_m(vbool16_t vm, vfloat32m2_t vs2,
   return __riscv_vfwmul(vm, vs2, vs1, vl);
 }
 
-vfloat64m4_t test_vfwmul_vf_f64m4_m(vbool16_t vm, vfloat32m2_t vs2,
-                                    float32_t rs1, size_t vl) {
+vfloat64m4_t test_vfwmul_vf_f64m4_m(vbool16_t vm, vfloat32m2_t vs2, float rs1,
+                                    size_t vl) {
   return __riscv_vfwmul(vm, vs2, rs1, vl);
 }
 
@@ -172,8 +168,8 @@ vfloat64m8_t test_vfwmul_vv_f64m8_m(vbool8_t vm, vfloat32m4_t vs2,
   return __riscv_vfwmul(vm, vs2, vs1, vl);
 }
 
-vfloat64m8_t test_vfwmul_vf_f64m8_m(vbool8_t vm, vfloat32m4_t vs2,
-                                    float32_t rs1, size_t vl) {
+vfloat64m8_t test_vfwmul_vf_f64m8_m(vbool8_t vm, vfloat32m4_t vs2, float rs1,
+                                    size_t vl) {
   return __riscv_vfwmul(vm, vs2, rs1, vl);
 }
 
@@ -232,8 +228,7 @@ vfloat64m1_t test_vfwmul_vv_f64m1_rm(vfloat32mf2_t vs2, vfloat32mf2_t vs1,
   return __riscv_vfwmul(vs2, vs1, __RISCV_FRM_RNE, vl);
 }
 
-vfloat64m1_t test_vfwmul_vf_f64m1_rm(vfloat32mf2_t vs2, float32_t rs1,
-                                     size_t vl) {
+vfloat64m1_t test_vfwmul_vf_f64m1_rm(vfloat32mf2_t vs2, float rs1, size_t vl) {
   return __riscv_vfwmul(vs2, rs1, __RISCV_FRM_RNE, vl);
 }
 
@@ -242,8 +237,7 @@ vfloat64m2_t test_vfwmul_vv_f64m2_rm(vfloat32m1_t vs2, vfloat32m1_t vs1,
   return __riscv_vfwmul(vs2, vs1, __RISCV_FRM_RNE, vl);
 }
 
-vfloat64m2_t test_vfwmul_vf_f64m2_rm(vfloat32m1_t vs2, float32_t rs1,
-                                     size_t vl) {
+vfloat64m2_t test_vfwmul_vf_f64m2_rm(vfloat32m1_t vs2, float rs1, size_t vl) {
   return __riscv_vfwmul(vs2, rs1, __RISCV_FRM_RNE, vl);
 }
 
@@ -252,8 +246,7 @@ vfloat64m4_t test_vfwmul_vv_f64m4_rm(vfloat32m2_t vs2, vfloat32m2_t vs1,
   return __riscv_vfwmul(vs2, vs1, __RISCV_FRM_RNE, vl);
 }
 
-vfloat64m4_t test_vfwmul_vf_f64m4_rm(vfloat32m2_t vs2, float32_t rs1,
-                                     size_t vl) {
+vfloat64m4_t test_vfwmul_vf_f64m4_rm(vfloat32m2_t vs2, float rs1, size_t vl) {
   return __riscv_vfwmul(vs2, rs1, __RISCV_FRM_RNE, vl);
 }
 
@@ -262,8 +255,7 @@ vfloat64m8_t test_vfwmul_vv_f64m8_rm(vfloat32m4_t vs2, vfloat32m4_t vs1,
   return __riscv_vfwmul(vs2, vs1, __RISCV_FRM_RNE, vl);
 }
 
-vfloat64m8_t test_vfwmul_vf_f64m8_rm(vfloat32m4_t vs2, float32_t rs1,
-                                     size_t vl) {
+vfloat64m8_t test_vfwmul_vf_f64m8_rm(vfloat32m4_t vs2, float rs1, size_t vl) {
   return __riscv_vfwmul(vs2, rs1, __RISCV_FRM_RNE, vl);
 }
 
@@ -323,7 +315,7 @@ vfloat64m1_t test_vfwmul_vv_f64m1_rm_m(vbool64_t vm, vfloat32mf2_t vs2,
 }
 
 vfloat64m1_t test_vfwmul_vf_f64m1_rm_m(vbool64_t vm, vfloat32mf2_t vs2,
-                                       float32_t rs1, size_t vl) {
+                                       float rs1, size_t vl) {
   return __riscv_vfwmul(vm, vs2, rs1, __RISCV_FRM_RNE, vl);
 }
 
@@ -333,7 +325,7 @@ vfloat64m2_t test_vfwmul_vv_f64m2_rm_m(vbool32_t vm, vfloat32m1_t vs2,
 }
 
 vfloat64m2_t test_vfwmul_vf_f64m2_rm_m(vbool32_t vm, vfloat32m1_t vs2,
-                                       float32_t rs1, size_t vl) {
+                                       float rs1, size_t vl) {
   return __riscv_vfwmul(vm, vs2, rs1, __RISCV_FRM_RNE, vl);
 }
 
@@ -343,7 +335,7 @@ vfloat64m4_t test_vfwmul_vv_f64m4_rm_m(vbool16_t vm, vfloat32m2_t vs2,
 }
 
 vfloat64m4_t test_vfwmul_vf_f64m4_rm_m(vbool16_t vm, vfloat32m2_t vs2,
-                                       float32_t rs1, size_t vl) {
+                                       float rs1, size_t vl) {
   return __riscv_vfwmul(vm, vs2, rs1, __RISCV_FRM_RNE, vl);
 }
 
@@ -352,7 +344,7 @@ vfloat64m8_t test_vfwmul_vv_f64m8_rm_m(vbool8_t vm, vfloat32m4_t vs2,
   return __riscv_vfwmul(vm, vs2, vs1, __RISCV_FRM_RNE, vl);
 }
 
-vfloat64m8_t test_vfwmul_vf_f64m8_rm_m(vbool8_t vm, vfloat32m4_t vs2,
-                                       float32_t rs1, size_t vl) {
+vfloat64m8_t test_vfwmul_vf_f64m8_rm_m(vbool8_t vm, vfloat32m4_t vs2, float rs1,
+                                       size_t vl) {
   return __riscv_vfwmul(vm, vs2, rs1, __RISCV_FRM_RNE, vl);
 }

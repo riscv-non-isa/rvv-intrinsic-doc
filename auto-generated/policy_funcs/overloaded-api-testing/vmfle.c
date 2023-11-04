@@ -1,10 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
-
 vbool64_t test_vmfle_vv_f16mf4_b64_mu(vbool64_t vm, vbool64_t vd,
                                       vfloat16mf4_t vs2, vfloat16mf4_t vs1,
                                       size_t vl) {
@@ -78,8 +74,7 @@ vbool64_t test_vmfle_vv_f32mf2_b64_mu(vbool64_t vm, vbool64_t vd,
 }
 
 vbool64_t test_vmfle_vf_f32mf2_b64_mu(vbool64_t vm, vbool64_t vd,
-                                      vfloat32mf2_t vs2, float32_t rs1,
-                                      size_t vl) {
+                                      vfloat32mf2_t vs2, float rs1, size_t vl) {
   return __riscv_vmfle_mu(vm, vd, vs2, rs1, vl);
 }
 
@@ -90,8 +85,7 @@ vbool32_t test_vmfle_vv_f32m1_b32_mu(vbool32_t vm, vbool32_t vd,
 }
 
 vbool32_t test_vmfle_vf_f32m1_b32_mu(vbool32_t vm, vbool32_t vd,
-                                     vfloat32m1_t vs2, float32_t rs1,
-                                     size_t vl) {
+                                     vfloat32m1_t vs2, float rs1, size_t vl) {
   return __riscv_vmfle_mu(vm, vd, vs2, rs1, vl);
 }
 
@@ -102,8 +96,7 @@ vbool16_t test_vmfle_vv_f32m2_b16_mu(vbool16_t vm, vbool16_t vd,
 }
 
 vbool16_t test_vmfle_vf_f32m2_b16_mu(vbool16_t vm, vbool16_t vd,
-                                     vfloat32m2_t vs2, float32_t rs1,
-                                     size_t vl) {
+                                     vfloat32m2_t vs2, float rs1, size_t vl) {
   return __riscv_vmfle_mu(vm, vd, vs2, rs1, vl);
 }
 
@@ -113,7 +106,7 @@ vbool8_t test_vmfle_vv_f32m4_b8_mu(vbool8_t vm, vbool8_t vd, vfloat32m4_t vs2,
 }
 
 vbool8_t test_vmfle_vf_f32m4_b8_mu(vbool8_t vm, vbool8_t vd, vfloat32m4_t vs2,
-                                   float32_t rs1, size_t vl) {
+                                   float rs1, size_t vl) {
   return __riscv_vmfle_mu(vm, vd, vs2, rs1, vl);
 }
 
@@ -123,7 +116,7 @@ vbool4_t test_vmfle_vv_f32m8_b4_mu(vbool4_t vm, vbool4_t vd, vfloat32m8_t vs2,
 }
 
 vbool4_t test_vmfle_vf_f32m8_b4_mu(vbool4_t vm, vbool4_t vd, vfloat32m8_t vs2,
-                                   float32_t rs1, size_t vl) {
+                                   float rs1, size_t vl) {
   return __riscv_vmfle_mu(vm, vd, vs2, rs1, vl);
 }
 
@@ -134,8 +127,7 @@ vbool64_t test_vmfle_vv_f64m1_b64_mu(vbool64_t vm, vbool64_t vd,
 }
 
 vbool64_t test_vmfle_vf_f64m1_b64_mu(vbool64_t vm, vbool64_t vd,
-                                     vfloat64m1_t vs2, float64_t rs1,
-                                     size_t vl) {
+                                     vfloat64m1_t vs2, double rs1, size_t vl) {
   return __riscv_vmfle_mu(vm, vd, vs2, rs1, vl);
 }
 
@@ -146,8 +138,7 @@ vbool32_t test_vmfle_vv_f64m2_b32_mu(vbool32_t vm, vbool32_t vd,
 }
 
 vbool32_t test_vmfle_vf_f64m2_b32_mu(vbool32_t vm, vbool32_t vd,
-                                     vfloat64m2_t vs2, float64_t rs1,
-                                     size_t vl) {
+                                     vfloat64m2_t vs2, double rs1, size_t vl) {
   return __riscv_vmfle_mu(vm, vd, vs2, rs1, vl);
 }
 
@@ -158,8 +149,7 @@ vbool16_t test_vmfle_vv_f64m4_b16_mu(vbool16_t vm, vbool16_t vd,
 }
 
 vbool16_t test_vmfle_vf_f64m4_b16_mu(vbool16_t vm, vbool16_t vd,
-                                     vfloat64m4_t vs2, float64_t rs1,
-                                     size_t vl) {
+                                     vfloat64m4_t vs2, double rs1, size_t vl) {
   return __riscv_vmfle_mu(vm, vd, vs2, rs1, vl);
 }
 
@@ -169,6 +159,6 @@ vbool8_t test_vmfle_vv_f64m8_b8_mu(vbool8_t vm, vbool8_t vd, vfloat64m8_t vs2,
 }
 
 vbool8_t test_vmfle_vf_f64m8_b8_mu(vbool8_t vm, vbool8_t vd, vfloat64m8_t vs2,
-                                   float64_t rs1, size_t vl) {
+                                   double rs1, size_t vl) {
   return __riscv_vmfle_mu(vm, vd, vs2, rs1, vl);
 }
