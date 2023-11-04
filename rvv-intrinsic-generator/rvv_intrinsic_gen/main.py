@@ -92,7 +92,7 @@ def main():
   parser = argparse.ArgumentParser()
   parser.add_argument(
       "--gen",
-      default="doc",
+      default="non-overloaded-doc",
       choices=[
           "non-overloaded-doc", "non-overloaded-docs", "overloaded-doc",
           "overloaded-docs", "non-overloaded-test", "overloaded-test",
