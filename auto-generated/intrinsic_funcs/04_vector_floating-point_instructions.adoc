@@ -2,7 +2,7 @@
 === Vector Floating-Point Instructions
 
 [[vector-single-width-floating-point-add-subtract]]
-=== Vector Single-Width Floating-Point Add/Subtract Intrinsics
+==== Vector Single-Width Floating-Point Add/Subtract Intrinsics
 
 [,c]
 ----
@@ -691,7 +691,7 @@ vfloat64m8_t __riscv_vfrsub_vf_f64m8_rm_m(vbool8_t vm, vfloat64m8_t vs2,
 ----
 
 [[vector-widening-floating-point-add-subtract]]
-=== Vector Widening Floating-Point Add/Subtract Intrinsics
+==== Vector Widening Floating-Point Add/Subtract Intrinsics
 
 [,c]
 ----
@@ -1334,7 +1334,7 @@ vfloat64m8_t __riscv_vfwsub_wf_f64m8_rm_m(vbool8_t vm, vfloat64m8_t vs2,
 ----
 
 [[vector-single-width-floating-point-multiply-divide]]
-=== Vector Single-Width Floating-Point Multiply/Divide Intrinsics
+==== Vector Single-Width Floating-Point Multiply/Divide Intrinsics
 
 [,c]
 ----
@@ -1990,7 +1990,7 @@ vfloat64m8_t __riscv_vfrdiv_vf_f64m8_rm_m(vbool8_t vm, vfloat64m8_t vs2,
 ----
 
 [[vector-widening-floating-point-multiply]]
-=== Vector Widening Floating-Point Multiply Intrinsics
+==== Vector Widening Floating-Point Multiply Intrinsics
 
 [,c]
 ----
@@ -2158,7 +2158,7 @@ vfloat64m8_t __riscv_vfwmul_vf_f64m8_rm_m(vbool8_t vm, vfloat32m4_t vs2,
 ----
 
 [[vector-single-width-floating-point-fused-multiply-add]]
-=== Vector Single-Width Floating-Point Fused Multiply-Add Intrinsics
+==== Vector Single-Width Floating-Point Fused Multiply-Add Intrinsics
 
 [,c]
 ----
@@ -4831,7 +4831,7 @@ vfloat64m8_t __riscv_vfnmsub_vf_f64m8_rm_m(vbool8_t vm, vfloat64m8_t vd,
 ----
 
 [[vector-widening-floating-point-fused-multiply-add]]
-=== Vector Widening Floating-Point Fused Multiply-Add Intrinsics
+==== Vector Widening Floating-Point Fused Multiply-Add Intrinsics
 
 [,c]
 ----
@@ -5640,7 +5640,7 @@ vfloat64m8_t __riscv_vfwnmsac_vf_f64m8_rm_m(vbool8_t vm, vfloat64m8_t vd,
 ----
 
 [[vector-floating-point-square-root]]
-=== Vector Floating-Point Square-Root Intrinsics
+==== Vector Floating-Point Square-Root Intrinsics
 
 [,c]
 ----
@@ -5748,7 +5748,7 @@ vfloat64m8_t __riscv_vfsqrt_v_f64m8_rm_m(vbool8_t vm, vfloat64m8_t vs2,
 ----
 
 [[vector-floating-point-reciprocal-square-root-estimate]]
-=== Vector Floating-Point Reciprocal Square-Root Estimate Intrinsics
+==== Vector Floating-Point Reciprocal Square-Root Estimate Intrinsics
 
 [,c]
 ----
@@ -5801,7 +5801,7 @@ vfloat64m8_t __riscv_vfrsqrt7_v_f64m8_m(vbool8_t vm, vfloat64m8_t vs2,
 ----
 
 [[#1410-vector-floating-point-reciprocal-estimate]]
-=== Vector Floating-Point Reciprocal Estimate Intrinsics
+==== Vector Floating-Point Reciprocal Estimate Intrinsics
 
 [,c]
 ----
@@ -5909,7 +5909,7 @@ vfloat64m8_t __riscv_vfrec7_v_f64m8_rm_m(vbool8_t vm, vfloat64m8_t vs2,
 ----
 
 [[vector-floating-point-minmax]]
-=== Vector Floating-Point MIN/MAX Intrinsics
+==== Vector Floating-Point MIN/MAX Intrinsics
 
 [,c]
 ----
@@ -6133,7 +6133,7 @@ vfloat64m8_t __riscv_vfmax_vf_f64m8_m(vbool8_t vm, vfloat64m8_t vs2,
 ----
 
 [[vector-floating-point-sign-injection]]
-=== Vector Floating-Point Sign-Injection Intrinsics
+==== Vector Floating-Point Sign-Injection Intrinsics
 
 [,c]
 ----
@@ -6497,7 +6497,7 @@ vfloat64m8_t __riscv_vfsgnjx_vf_f64m8_m(vbool8_t vm, vfloat64m8_t vs2,
 ----
 
 [[vector-floating-point-absolute-value]]
-=== Vector Floating-Point Absolute Value Intrinsics
+==== Vector Floating-Point Absolute Value Intrinsics
 
 [,c]
 ----
@@ -6538,7 +6538,7 @@ vfloat64m8_t __riscv_vfabs_v_f64m8_m(vbool8_t vm, vfloat64m8_t vs2, size_t vl);
 ----
 
 [[vector-floating-point-compare]]
-=== Vector Floating-Point Compare Intrinsics
+==== Vector Floating-Point Compare Intrinsics
 
 [,c]
 ----
@@ -7224,7 +7224,7 @@ vbool8_t __riscv_vmfge_vf_f64m8_b8_m(vbool8_t vm, vfloat64m8_t vs2,
 ----
 
 [[vector-floating-point-classify]]
-=== Vector Floating-Point Classify Intrinsics
+==== Vector Floating-Point Classify Intrinsics
 
 [,c]
 ----
@@ -7271,7 +7271,7 @@ vuint64m8_t __riscv_vfclass_v_u64m8_m(vbool8_t vm, vfloat64m8_t vs2, size_t vl);
 ----
 
 [[vector-floating-point-merge]]
-=== Vector Floating-Point Merge Intrinsics
+==== Vector Floating-Point Merge Intrinsics
 
 [,c]
 ----
@@ -7338,7 +7338,7 @@ vfloat64m8_t __riscv_vfmerge_vfm_f64m8(vfloat64m8_t vs2, float64_t rs1,
 ----
 
 [[vector-floating-point-move]]
-=== Vector Floating-Point Move Intrinsics
+==== Vector Floating-Point Move Intrinsics
 
 [,c]
 ----
@@ -7375,7 +7375,7 @@ vfloat64m8_t __riscv_vfmv_v_f_f64m8(float64_t rs1, size_t vl);
 ----
 
 [[single-width-floating-pointinteger-type-convert]]
-=== Single-Width Floating-Point/Integer Type-Convert Intrinsics
+==== Single-Width Floating-Point/Integer Type-Convert Intrinsics
 
 [,c]
 ----
@@ -7894,7 +7894,7 @@ vfloat64m8_t __riscv_vfcvt_f_xu_v_f64m8_rm_m(vbool8_t vm, vuint64m8_t vs2,
 ----
 
 [[widening-floating-pointinteger-type-convert]]
-=== Widening Floating-Point/Integer Type-Convert Intrinsics
+==== Widening Floating-Point/Integer Type-Convert Intrinsics
 
 [,c]
 ----
@@ -8200,7 +8200,7 @@ vuint64m8_t __riscv_vfwcvt_xu_f_v_u64m8_rm_m(vbool8_t vm, vfloat32m4_t vs2,
 ----
 
 [[narrowing-floating-pointinteger-type-convert]]
-=== Narrowing Floating-Point/Integer Type-Convert Intrinsics
+==== Narrowing Floating-Point/Integer Type-Convert Intrinsics
 
 [,c]
 ----
