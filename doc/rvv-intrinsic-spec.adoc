@@ -437,19 +437,21 @@ Types with subscript "^\*^" is available when `ELEN >= 64` (that is, unavailable
 
 Floating-point types have EEW and EMUL encoded into the type. The first row describes the EMUL and the first column describes the data type and element width of the scalar type.
 
-Floating-point types with element widths of 16 (Types=`float16_t`) require the `zvfh` and `zvfhmin` extension to be specified in the architecture.
+Floating-point types with element widths of 16 (Types=`_Float16`) require the `zvfh` and `zvfhmin` extension to be specified in the architecture.
 
-Floating-point types with element widths of 32 (Types=`float32_t`) require the `zve32f` extension to be specified in the architecture.
+Floating-point types with element widths of 32 (Types=`float`) require the `zve32f` extension to be specified in the architecture.
 
-Floating-point types with element widths of 64 (Types=`float64_t`) require the `zve64d` extension to be specified in the architecture.
+Floating-point types with element widths of 64 (Types=`double`) require the `zve64d` extension to be specified in the architecture.
+
+NOTE: Although C++23 introduces `<stdfloat>` for fixed-width floating-point types, this latest standard is not yet supported in the upstream RISC-V compiler. The specification (along with the prototype lists in appendix) uses `Float16`/`float`/`double` to represent the floating-point type with element width of 16/32/64.
 
 .Floating-point types
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
 | Types | EMUL=1/8 | EMUL=1/4 | EMUL=1/ 2 | EMUL=1 | EMUL=2 | EMUL=4 | EMUL=8
-| float16_t | N/A | vfloat16mf4_t | vfloat16mf2_t | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t
-| float32_t | N/A | N/A | vfloat32mf2_t | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t
-| float64_t | N/A | N/A | N/A | vfloat64m1_t | vfloat64m2_t | vfloat64m4_t | vfloat64m8_t
+| _Float16 | N/A | vfloat16mf4_t | vfloat16mf2_t | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t
+| float | N/A | N/A | vfloat32mf2_t | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t
+| double | N/A | N/A | N/A | vfloat64m1_t | vfloat64m2_t | vfloat64m4_t | vfloat64m8_t
 |===
 
 === Mask types
