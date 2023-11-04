@@ -82,6 +82,7 @@ class Generator():
     name = name.replace("_int", "_i")
     name = name.replace("_float", "_f")
     name = name.replace("_bool", "_b")
+    name = name.replace("_bfloat", "_bf")
     # Follows the naming guideline under riscv-c-api-doc to add the `__riscv_`
     # suffix for all RVV intrinsics.
     name = "__riscv_" + name
