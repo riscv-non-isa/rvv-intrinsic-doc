@@ -52,14 +52,14 @@ In the following example, the intrinsic will produce the semantic of a `vadd.vv`
 
 [,c]
 ----
-vint32m1_t __riscv_vadd_vv_i32m1 (vint32m1_t op1, vint32m1_t op2, size_t vl);
+vint32m1_t __riscv_vadd_vv_i32m1(vint32m1_t vs2, vint32m1_t vs1, size_t vl);
 ----
 
 In the following example, the intrinsic will produce the semantic of a `vadd.vv` instruction, with source vector operands of `EEW=16` and `EMUL=1/2`, which can be observed through provided RVV data type; and produce results for the destination vector operand with `EEW=32` and `EMUL=1`.
 
 [,c]
 ----
-vint32m1_t __riscv_vwadd_vv_i32m1 (vint16mf2_t op1, vint16mf2_t op2, size_t vl);
+vint32m1_t __riscv_vwadd_vv_i32m1(vint16mf2_t vs2, vint16mf2_t vs1, size_t vl);
 ----
 
 [[control-of-vl]]
@@ -176,22 +176,22 @@ Using `vadd` with EEW=32 and EMUL=1 as an example, the variants are:
 [,c]
 ----
 // vm=1, vta=1
-vint32m1_t __riscv_vadd_vv_i32m1(vint32m1_t op1, vint32m1_t op2, size_t vl);
+vint32m1_t __riscv_vadd_vv_i32m1(vint32m1_t vs2, vint32m1_t vs1, size_t vl);
 // vm=1, vta=0
-vint32m1_t __riscv_vadd_vv_i32m1_tu(vint32m1_t maskedoff, vint32m1_t op1,
-                                    vint32m1_t op2, size_t vl);
+vint32m1_t __riscv_vadd_vv_i32m1_tu(vint32m1_t vd, vint32m1_t vs2,
+                                    vint32m1_t vs1, size_t vl);
 // vm=0, vta=1, vma=1
-vint32m1_t __riscv_vadd_vv_i32m1_m(vbool32_t mask, vint32m1_t op1,
-                                   vint32m1_t op2, size_t vl);
+vint32m1_t __riscv_vadd_vv_i32m1_m(vbool32_t vm, vint32m1_t vs2, vint32m1_t vs1,
+                                   size_t vl);
 // vm=0, vta=0, vma=1
-vint32m1_t __riscv_vadd_vv_i32m1_tum(vbool32_t mask, vint32m1_t maskedoff,
-                                     vint32m1_t op1, vint32m1_t op2, size_t vl);
+vint32m1_t __riscv_vadd_vv_i32m1_tum(vbool32_t vm, vint32m1_t vd,
+                                     vint32m1_t vs2, vint32m1_t vs1, size_t vl);
 // vm=0, vta=1, vma=0
-vint32m1_t __riscv_vadd_vv_i32m1_mu(vbool32_t mask, vint32m1_t maskedoff,
-                                    vint32m1_t op1, vint32m1_t op2, size_t vl);
+vint32m1_t __riscv_vadd_vv_i32m1_mu(vbool32_t vm, vint32m1_t vd, vint32m1_t vs2,
+                                    vint32m1_t vs1, size_t vl);
 // vm=0, vta=0, vma=0
-vint32m1_t __riscv_vadd_vv_i32m1_tumu(vbool32_t mask, vint32m1_t maskedoff,
-                                      vint32m1_t op1, vint32m1_t op2,
+vint32m1_t __riscv_vadd_vv_i32m1_tumu(vbool32_t vm, vint32m1_t vd,
+                                      vint32m1_t vs2, vint32m1_t vs1,
                                       size_t vl);
 ----
 
@@ -248,14 +248,10 @@ Only encoding the return type will cause naming collisions for the reduction ins
 
 [,c]
 ----
-vint8m1_t __riscv_vredsum_vs_i8m1_i8m1(vint8m1_t dest, vint8m1_t vs2,
-                                       vint8m1_t vs1, size_t vl);
-vint8m1_t __riscv_vredsum_vs_i8m2_i8m1(vint8m1_t dest, vint8m2_t vs2,
-                                       vint8m1_t vs1, size_t vl);
-vint8m1_t __riscv_vredsum_vs_i8m4_i8m1(vint8m1_t dest, vint8m4_t vs2,
-                                       vint8m1_t vs1, size_t vl);
-vint8m1_t __riscv_vredsum_vs_i8m8_i8m1(vint8m1_t dest, vint8m8_t vs2,
-                                       vint8m1_t vs1, size_t vl);
+vint8m1_t __riscv_vredsum_vs_i8m1_i8m1(vint8m1_t vs2, vint8m1_t vs1, size_t vl);
+vint8m1_t __riscv_vredsum_vs_i8m2_i8m1(vint8m2_t vs2, vint8m1_t vs1, size_t vl);
+vint8m1_t __riscv_vredsum_vs_i8m4_i8m1(vint8m4_t vs2, vint8m1_t vs1, size_t vl);
+vint8m1_t __riscv_vredsum_vs_i8m8_i8m1(vint8m8_t vs2, vint8m1_t vs1, size_t vl);
 ----
 
 ==== Add-with-carry / Subtract-with-borrow instructions
@@ -264,14 +260,14 @@ Only encoding the return type will cause naming collisions for the reduction ins
 
 [,c]
 ----
-vbool64_t __riscv_vmadc_vvm_i8mf8_b64(vint8mf8_t op1, vint8mf8_t op2,
-                                      vbool64_t carryin, size_t vl);
-vbool64_t __riscv_vmadc_vvm_i16mf4_b64(vint16mf4_t op1, vint16mf4_t op2,
-                                      vbool64_t carryin, size_t vl);
-vbool64_t __riscv_vmadc_vvm_i32mf2_b64(vint32mf2_t op1, vint32mf2_t op2,
-                                      vbool64_t carryin, size_t vl);
-vbool64_t __riscv_vmadc_vvm_i64m1_b64(vint64m1_t op1, vint64m1_t op2,
-                                      vbool64_t carryin, size_t vl);
+vbool64_t __riscv_vmadc_vvm_i8mf8_b64(vint8mf8_t vs2, vint8mf8_t vs1,
+                                      vbool64_t v0, size_t vl);
+vbool64_t __riscv_vmadc_vvm_i16mf4_b64(vint16mf4_t vs2, vint16mf4_t vs1,
+                                       vbool64_t v0, size_t vl);
+vbool64_t __riscv_vmadc_vvm_i32mf2_b64(vint32mf2_t vs2, vint32mf2_t vs1,
+                                       vbool64_t v0, size_t vl);
+vbool64_t __riscv_vmadc_vvm_i64m1_b64(vint64m1_t vs2, vint64m1_t vs1,
+                                      vbool64_t v0, size_t vl);
 ----
 
 ==== `vreinterpret`, `vlmul_trunc`/`vlmul_ext`, and `vset`/`vget`
@@ -315,29 +311,29 @@ Take the vector floating-point add (`vfadd`) as an example, the intrinsics provi
 
 [,c]
 ----
-vfloat32m1_t __riscv_vfadd(vbool32_t mask, vfloat32m1_t op1, vfloat32m1_t op2,
+vfloat32m1_t __riscv_vfadd(vfloat32m1_t vs2, vfloat32m1_t vs1, size_t vl);
+vfloat32m1_t __riscv_vfadd(vbool32_t vm, vfloat32m1_t vs2, vfloat32m1_t vs1,
+                           size_t vl);
+vfloat32m1_t __riscv_vfadd(vfloat32m1_t vs2, vfloat32m1_t vs1, unsigned int frm,
+                           size_t vl);
+vfloat32m1_t __riscv_vfadd(vbool32_t vm, vfloat32m1_t vs2, vfloat32m1_t vs1,
                            unsigned int frm, size_t vl);
-vfloat16m4_t __riscv_vfadd(vbool4_t mask, vfloat16m4_t op1, vfloat16m4_t op2,
-                           unsigned int frm, size_t vl);
-vfloat32m1_t __riscv_vfadd_tu(vfloat32m1_t maskedoff, vfloat32m1_t op1,
-                              vfloat32m1_t op2, size_t vl);
-vfloat32m1_t __riscv_vfadd_tum(vbool32_t mask, vfloat32m1_t maskedoff,
-                               vfloat32m1_t op1, vfloat32m1_t op2, size_t vl);
-vfloat32m1_t __riscv_vfadd_tumu(vbool32_t mask, vfloat32m1_t maskedoff,
-                                vfloat32m1_t op1, vfloat32m1_t op2, size_t vl);
-vfloat32m1_t __riscv_vfadd_mu(vbool32_t mask, vfloat32m1_t maskedoff,
-                              vfloat32m1_t op1, vfloat32m1_t op2, size_t vl);
-vfloat32m1_t __riscv_vfadd_tu(vfloat32m1_t maskedoff, vfloat32m1_t op1,
-                              vfloat32m1_t op2, unsigned int frm, size_t vl);
-vfloat32m1_t __riscv_vfadd_tum(vbool32_t mask, vfloat32m1_t maskedoff,
-                               vfloat32m1_t op1, vfloat32m1_t op2,
-                               unsigned int frm, size_t vl);
-vfloat32m1_t __riscv_vfadd_tumu(vbool32_t mask, vfloat32m1_t maskedoff,
-                                vfloat32m1_t op1, vfloat32m1_t op2,
-                                unsigned int frm, size_t vl);
-vfloat32m1_t __riscv_vfadd_mu(vbool32_t mask, vfloat32m1_t maskedoff,
-                              vfloat32m1_t op1, vfloat32m1_t op2,
-                              unsigned int frm, size_t vl);
+vfloat32m1_t __riscv_vfadd_tu(vfloat32m1_t vd, vfloat32m1_t vs2,
+                              vfloat32m1_t vs1, size_t vl);
+vfloat32m1_t __riscv_vfadd_tum(vbool32_t vm, vfloat32m1_t vd, vfloat32m1_t vs2,
+                               vfloat32m1_t vs1, size_t vl);
+vfloat32m1_t __riscv_vfadd_tumu(vbool32_t vm, vfloat32m1_t vd, vfloat32m1_t vs2,
+                                vfloat32m1_t vs1, size_t vl);
+vfloat32m1_t __riscv_vfadd_mu(vbool32_t vm, vfloat32m1_t vd, vfloat32m1_t vs2,
+                              vfloat32m1_t vs1, size_t vl);
+vfloat32m1_t __riscv_vfadd_tu(vfloat32m1_t vd, vfloat32m1_t vs2,
+                              vfloat32m1_t vs1, unsigned int frm, size_t vl);
+vfloat32m1_t __riscv_vfadd_tum(vbool32_t vm, vfloat32m1_t vd, vfloat32m1_t vs2,
+                               vfloat32m1_t vs1, unsigned int frm, size_t vl);
+vfloat32m1_t __riscv_vfadd_tumu(vbool32_t vm, vfloat32m1_t vd, vfloat32m1_t vs2,
+                                vfloat32m1_t vs1, unsigned int frm, size_t vl);
+vfloat32m1_t __riscv_vfadd_mu(vbool32_t vm, vfloat32m1_t vd, vfloat32m1_t vs2,
+                              vfloat32m1_t vs1, unsigned int frm, size_t vl);
 ----
 
 The naming scheme to prune everything except the instruction mnemonics is not available for all the intrinsics. Please see <<implicit-exception-naming>> for overloaded intrinsics with irregular naming patterns.
@@ -355,10 +351,10 @@ Widening instruction intrinsics (e.g. `vwadd`) have the same return type but dif
 
 [,c]
 ----
-vint32m1_t __riscv_vwadd_vv (vint16mf2_t op1, vint16mf2_t op2, size_t vl);
-vint32m1_t __riscv_vwadd_vx (vint16mf2_t op1, int16_t op2, size_t vl);
-vint32m1_t __riscv_vwadd_wv (vint32m1_t op1, vint16mf2_t op2, size_t vl);
-vint32m1_t __riscv_vwadd_wx (vint32m1_t op1, int16_t op2, size_t vl);
+vint32m1_t __riscv_vwadd_vv(vint16mf2_t vs2, vint16mf2_t vs1, size_t vl);
+vint32m1_t __riscv_vwadd_vx(vint16mf2_t vs2, int16_t rs1, size_t vl);
+vint32m1_t __riscv_vwadd_wv(vint32m1_t vs2, vint16mf2_t vs1, size_t vl);
+vint32m1_t __riscv_vwadd_wx(vint32m1_t vs2, int16_t rs1, size_t vl);
 ----
 
 ==== Type-convert instructions
