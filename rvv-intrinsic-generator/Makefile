@@ -364,9 +364,13 @@ report-gnu:
 	cd ${GNU_TOOLCHAIN_DIR} && make -j 8
 	mkdir -p $(GCC_CASES_DIR)/gnu-api-tests
 	mkdir -p $(GCC_CASES_DIR)/policy_funcs/gnu-api-tests
+	mkdir -p $(GCC_CASES_DIR)/gnu-overloaded-tests
+	mkdir -p $(GCC_CASES_DIR)/policy_funcs/gnu-overloaded-tests
 	cp $(DIR)/../gcc-auto-generated.exp $(GCC_CASES_DIR)/auto-generated.exp
 	cp -r $(DIR)/gnu-api-tests/* $(GCC_CASES_DIR)/gnu-api-tests/
 	cp -r $(DIR)/policy_funcs/gnu-api-tests/* $(GCC_CASES_DIR)/policy_funcs/gnu-api-tests/
+	cp -r $(DIR)/gnu-overloaded-tests/* $(GCC_CASES_DIR)/gnu-overloaded-tests/
+	cp -r $(DIR)/policy_funcs/gnu-overloaded-tests/* $(GCC_CASES_DIR)/policy_funcs/gnu-overloaded-tests/
 	mkdir -p $(G++_CASES_DIR)/gnu-api-tests
 	mkdir -p $(G++_CASES_DIR)/policy_funcs/gnu-api-tests
 	mkdir -p $(G++_CASES_DIR)/gnu-overloaded-tests

@@ -167,6 +167,8 @@ class Generator():
       api_count = 66
     if test_file == "vcreate.c":
       api_count = 506
+    if test_file == "vundefined.c":
+      api_count = 619
     if test_file == "vmv.c":
       api_count = 218
       if is_overloaded and not has_policy:
