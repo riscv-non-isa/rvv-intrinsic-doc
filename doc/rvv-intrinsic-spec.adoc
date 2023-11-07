@@ -216,7 +216,7 @@ __riscv_{V_INSTRUCTION_MNEMONIC}_{OPERAND_MNEMONIC}_{RETURN_TYPE}_{ROUND_MODE}_{
 ** For intrinsics that represents instructions with a non-mask destination register:
 *** `EEW` is one of `i8 | i16 | i32 | i64 | u8 | u16 | u32 | u64 | f16 | f32 | f64`.
 *** `EMUL` is one of `m1 | m2 | m4 | m8 | mf2 | mf4 | mf8`.
-*** <<type-system>> explains the limited enumeration of EEW, LEUL pair.
+*** <<type-system>> explains the limited enumeration of EEW-EMUL pairs.
 ** For intrinsics that represent intrinsics with a mask destination register:
 *** `RETURN_TYPE` is one of `b1 | b2 | b4 | b8 | b16 | b32 | b64`, which is derived from the ratio `EEW`/`EMUL`.
 * `V_INSTRUCTION_MNEMONIC` are like `vadd`, `vfmacc`, `vsadd`.
@@ -423,8 +423,8 @@ Types with subscript "^\*^" is available when `ELEN >= 64` (that is, unavailable
 |===
 | Types | EMUL=1/8 | EMUL=1/4 | EMUL=1/ 2 | EMUL=1 | EMUL=2 | EMUL=4 | EMUL=8
 | int8_t | vint8mf8_t^*^ | vint8mf4_t | vint8mf2_t | vint8m1_t | vint8m2_t | vint8m4_t | vint8m8_t
-| int16_t | N/A | vint16mf4_t^*^ | vint16mf2_t | vint16m1_t | vint16m2_t | vint16m4_t | vint16m16_t
-| int32_t | N/A | N/A | vint32mf2_t^*^ | vint32m1_t | vint32m2_t | vint32m4_t | vint32m32_t
+| int16_t | N/A | vint16mf4_t^*^ | vint16mf2_t | vint16m1_t | vint16m2_t | vint16m4_t | vint16m8_t
+| int32_t | N/A | N/A | vint32mf2_t^*^ | vint32m1_t | vint32m2_t | vint32m4_t | vint32m8_t
 | int64_t | N/A | N/A | N/A | vint64m1_t^*^ | vint64m2_t^*^ | vint64m4_t^*^ | vint64m8_t^*^
 | uint8_t | vuint8mf8_t^*^ | vuint8mf4_t | vuint8mf2_t | vuint8m1_t | vuint8m2_t | vuint8m4_t | vuint8m8_t
 | uint16_t | N/A | vuint16mf4_t^*^ | vuint16mf2_t | vuint16m1_t | vuint16m2_t | vuint16m4_t | vuint16m8_t
@@ -447,7 +447,7 @@ Floating-point types with element widths of 64 (Types=`float64_t`) require the `
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
 | Types | EMUL=1/8 | EMUL=1/4 | EMUL=1/ 2 | EMUL=1 | EMUL=2 | EMUL=4 | EMUL=8
-| float16_t | N/A | vfloat16m4_t | vfloat16mf2_t | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t
+| float16_t | N/A | vfloat16mf4_t | vfloat16mf2_t | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t
 | float32_t | N/A | N/A | vfloat32mf2_t | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t
 | float64_t | N/A | N/A | N/A | vfloat64m1_t | vfloat64m2_t | vfloat64m4_t | vfloat64m8_t
 |===
