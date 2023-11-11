@@ -626,9 +626,9 @@ unsigned __riscv_vlenb();
 
 === Uninitialized variables with RVV types and `vundefined`
 
-Object created in the declaration of an RVV type represents a scalable-sized object that corresponds to a memory address. The default values inside such uninitialized values, and also to variables being assigned to the `vundefined` intrinsics represent non-deterministic values. Users should be aware to not rely on the result of these values.
+Variables created in the declaration of an RVV type represents a scalable-sized object that corresponds to a memory address. The default values inside such uninitialized variables, and also to variables being assigned to the `vundefined` intrinsics, represent non-deterministic values. Users should be aware to not rely on the result of these values.
 
-For example, a `vxor` operation to two either uninitialized or `vundefined` call will not yield a zero.
+For example, a `vxor` operation whose operands are either two uninitialized variables or two function calls to `vundefined` may not yield a zero.
 
 === Copying vector register group contents
 
