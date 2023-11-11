@@ -1149,12 +1149,12 @@ vint16m1_t __riscv_vreinterpret_i16m1(vbfloat16m1_t src);
 vint16m2_t __riscv_vreinterpret_i16m2(vbfloat16m2_t src);
 vint16m4_t __riscv_vreinterpret_i16m4(vbfloat16m4_t src);
 vint16m8_t __riscv_vreinterpret_i16m8(vbfloat16m8_t src);
-vuint16mf4_t __riscv_vreinterpret_ui16mf4(vbfloat16mf4_t src);
-vuint16mf2_t __riscv_vreinterpret_ui16mf2(vbfloat16mf2_t src);
-vuint16m1_t __riscv_vreinterpret_ui16m1(vbfloat16m1_t src);
-vuint16m2_t __riscv_vreinterpret_ui16m2(vbfloat16m2_t src);
-vuint16m4_t __riscv_vreinterpret_ui16m4(vbfloat16m4_t src);
-vuint16m8_t __riscv_vreinterpret_ui16m8(vbfloat16m8_t src);
+vuint16mf4_t __riscv_vreinterpret_u16mf4(vbfloat16mf4_t src);
+vuint16mf2_t __riscv_vreinterpret_u16mf2(vbfloat16mf2_t src);
+vuint16m1_t __riscv_vreinterpret_u16m1(vbfloat16m1_t src);
+vuint16m2_t __riscv_vreinterpret_u16m2(vbfloat16m2_t src);
+vuint16m4_t __riscv_vreinterpret_u16m4(vbfloat16m4_t src);
+vuint16m8_t __riscv_vreinterpret_u16m8(vbfloat16m8_t src);
 ----
 
 [[overloaded-vector-lmul-extensionn]]
