@@ -43,9 +43,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
     # [dst type, dst short type, src type, src short type]
     if type_list == "bfloat16":
       convert_set = [["bfloat", "bf", "int",
-                      "i"], ["bfloat", "bf", "uint", "ui"],
+                      "i"], ["bfloat", "bf", "uint", "u"],
                      ["int", "i", "bfloat", "bf"],
-                     ["uint", "ui", "bfloat", "bf"]]
+                     ["uint", "u", "bfloat", "bf"]]
     else:
       convert_set = [["float", "f", "int", "i"], ["float", "f", "uint", "u"],
                      ["uint", "u", "int", "i"], ["int", "i", "uint", "u"],
