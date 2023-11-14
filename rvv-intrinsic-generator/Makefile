@@ -51,6 +51,8 @@ PYTHONPATHS = $(RVV_INTRINSIC_GEN_PATH):$(ABS_VENDOR_PATH)
 PY3 := PYTHONPATH=$$PYTHONPATH:$(PYTHONPATHS) python3
 # Main entry script of the generator
 MAIN := rvv_intrinsic_gen.main
+# BFloat16 instruction scripts
+BF16_INST := $(RVV_INTRINSIC_GEN_PATH)/bfloat16_inst.py
 # Script to clang-format the auto-generated adoc files
 CLANG_FORMAT_ADOC = clang_format_autogen
 # Main output directory is default to auto-generated
@@ -60,6 +62,10 @@ OUTPUT_DIR := ../auto-generated
 DIR := $(abspath $(OUTPUT_DIR))
 # Output directory for policy intrinsics
 POLICY_DIR := $(DIR)/policy_funcs
+# Output directory for bfloat16 non-policy intrinsics
+BF16_DIR := $(DIR)/bfloat16
+# Output directory for bfloat16 policy intrinsics
+BF16_POLICY_DIR := $(BF16_DIR)/policy_funcs
 # Directory that stores the v0.10 unit tests
 LEGACY_API_TESTS_DIR := $(abspath ../legacy-api-unit-tests)
 # Derived variable to trigger option --vendor-inst
@@ -140,15 +146,20 @@ endef
 # If VENDOR_GENERATOR_SCRIPT is defined, also trigger it in all.
 # NOTE: A possible enhancement to this is allow multiple targets be added here
 ifdef VENDOR_GENERATOR_SCRIPT
-all: gen-document gen-test gen-compatible-header vendor-generator
+all: gen-document gen-test gen-compatible-header bf16-all vendor-generator
 else
-all: gen-document gen-test gen-compatible-header
+all: gen-document gen-test gen-compatible-header bf16-all
 endif
 
+bf16-all: gen-bf16-document gen-bf16-test
+
 gen-document: non-overloaded-doc non-overloaded-docs overloaded-doc overloaded-docs
+gen-bf16-document: bf16-non-overloaded-doc bf16-non-overloaded-docs bf16-overloaded-doc bf16-overloaded-docs
 gen-test: non-overloaded-test overloaded-test gen-llvm-test gen-gnu-test
+gen-bf16-test: bf16-non-overloaded-test bf16-overloaded-test gen-bf16-llvm-test
 gen-compatible-header: non-policy-compatible-header policy-compatible-header non-policy-overloaded-compatible-header policy-overloaded-compatible-header
 gen-llvm-test: llvm-non-overloaded-test llvm-overloaded-test
+gen-bf16-llvm-test: bf16-llvm-non-overloaded-test bf16-llvm-overloaded-test
 gen-gnu-test: gnu-overloaded-test gnu-non-overloaded-test
 
 # Generate all-in-one document for non-overloaded intrinsics
@@ -221,6 +232,64 @@ gnu-overloaded-test:
 	$(call gen_tests,$(DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu)
 	$(call gen_tests,$(POLICY_DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu --has-policy)
 
+# BFloat16 documents
+bf16-non-overloaded-doc:
+	$(call gen_doc, $(BF16_DIR),intrinsic_funcs.adoc,non-overloaded-doc,--skip-default-inst --vendor-inst $(BF16_INST))
+	$(call gen_doc, $(BF16_POLICY_DIR),intrinsic_funcs.adoc,non-overloaded-doc,--has-policy --skip-default-inst --vendor-inst $(BF16_INST))
+	$(call clang_format_adoc, --file, $(BF16_DIR)/intrinsic_funcs.adoc)
+	$(call clang_format_adoc, --file, $(BF16_POLICY_DIR)/intrinsic_funcs.adoc)
+
+bf16-non-overloaded-docs:
+	$(call gen_doc, $(BF16_DIR),intrinsic_funcs,non-overloaded-docs,--skip-default-inst --vendor-inst $(BF16_INST))
+	$(call gen_doc, $(BF16_POLICY_DIR),intrinsic_funcs,non-overloaded-docs,--has-policy --skip-default-inst --vendor-inst $(BF16_INST))
+	$(call clang_format_adoc, --folder, $(BF16_DIR)/intrinsic_funcs)
+	$(call clang_format_adoc, --folder, $(BF16_POLICY_DIR)/intrinsic_funcs)
+
+bf16-overloaded-doc:
+	$(call gen_doc, $(BF16_DIR),overloaded_intrinsic_funcs.adoc,overloaded-doc,--skip-default-inst --vendor-inst $(BF16_INST))
+	$(call gen_doc, $(BF16_POLICY_DIR),overloaded_intrinsic_funcs.adoc,overloaded-doc,--has-policy --skip-default-inst --vendor-inst $(BF16_INST))
+	$(call clang_format_adoc, --file, $(BF16_DIR)/overloaded_intrinsic_funcs.adoc)
+	$(call clang_format_adoc, --file, $(BF16_POLICY_DIR)/overloaded_intrinsic_funcs.adoc)
+
+bf16-overloaded-docs:
+	$(call gen_doc, $(BF16_DIR),overloaded_intrinsic_funcs,overloaded-docs,--skip-default-inst --vendor-inst $(BF16_INST))
+	$(call gen_doc, $(BF16_POLICY_DIR),overloaded_intrinsic_funcs,overloaded-docs,--has-policy --skip-default-inst --vendor-inst $(BF16_INST))
+	$(call clang_format_adoc, --folder, $(BF16_DIR)/overloaded_intrinsic_funcs)
+	$(call clang_format_adoc, --folder, $(BF16_POLICY_DIR)/overloaded_intrinsic_funcs)
+
+# BFloat16 tests
+# Generate non-overloaded intrinsic testing C source files
+bf16-non-overloaded-test:
+	$(call gen_tests,$(BF16_DIR)/api-testing,non-overloaded-test,--skip-default-inst --vendor-inst $(BF16_INST))
+	$(call gen_tests,$(BF16_POLICY_DIR)/api-testing,non-overloaded-test,--has-policy --skip-default-inst --vendor-inst $(BF16_INST))
+	clang-format -i $(BF16_DIR)/api-testing/*
+	clang-format -i $(BF16_POLICY_DIR)/api-testing/*
+
+# Generate overloaded intrinsic testing C source files
+bf16-overloaded-test:
+	$(call gen_tests,$(BF16_DIR)/overloaded-api-testing,overloaded-test,--skip-default-inst --vendor-inst $(BF16_INST))
+	$(call gen_tests,$(BF16_POLICY_DIR)/overloaded-api-testing,overloaded-test,--has-policy --skip-default-inst --vendor-inst $(BF16_INST))
+	clang-format -i $(BF16_DIR)/overloaded-api-testing/*
+	clang-format -i $(BF16_POLICY_DIR)/overloaded-api-testing/*
+
+# Generate non-overloaded intrinsic testing C source files
+bf16-llvm-non-overloaded-test:
+	$(call gen_tests,$(BF16_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --skip-default-inst --vendor-inst $(BF16_INST))
+	$(call gen_tests,$(BF16_POLICY_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --has-policy --skip-default-inst --vendor-inst $(BF16_INST))
+	$(call replace_float, $(BF16_DIR)/llvm-api-tests)
+	$(call replace_float, $(BF16_POLICY_DIR)/llvm-api-tests)
+	clang-format -i $(BF16_DIR)/llvm-api-tests/*
+	clang-format -i $(BF16_POLICY_DIR)/overloaded-api-testing/*
+
+# Generate overloaded intrinsic testing C source files
+bf16-llvm-overloaded-test:
+	$(call gen_tests,$(BF16_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --skip-default-inst --vendor-inst $(BF16_INST))
+	$(call gen_tests,$(BF16_POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --has-policy --skip-default-inst --vendor-inst $(BF16_INST))
+	$(call replace_float, $(BF16_DIR)/llvm-overloaded-tests)
+	$(call replace_float, $(BF16_POLICY_DIR)/llvm-overloaded-tests)
+	clang-format -i $(BF16_DIR)/llvm-overloaded-tests/*
+	clang-format -i $(BF16_POLICY_DIR)/llvm-overloaded-tests/*
+
 # Generate the adaptor header for v0.10
 non-policy-compatible-header:
 	$(call gen_doc,$(DIR)/rvv-v0p10-compatible-headers,non-policy.h,non-overloaded-compatible-header,)
@@ -251,17 +320,31 @@ git-commit-all:
 	make git-commit-autogen-doc OUTPUT_DIR=${OUTPUT_DIR}
 	make git-commit-autogen-test OUTPUT_DIR=${OUTPUT_DIR}
 
+git-commit-bf16-all:
+	make git-commit-autogen-bf16-doc OUTPUT_DIR=${OUTPUT_DIR}
+	make git-commit-autogen-bf16-test OUTPUT_DIR=${OUTPUT_DIR}
+
 # Update and commit all documents under auto-generated
 git-commit-autogen-doc:
 	make gen-document OUTPUT_DIR=${OUTPUT_DIR}
 	git add ${DIR}/*
 	git commit -m "[Auto-gen] Update documents under ${OUTPUT_DIR}. (make git-commit-autogen-doc)"
 
+git-commit-autogen-bf16-doc:
+	make gen-bf16-document OUTPUT_DIR=${OUTPUT_DIR}
+	git add ${BF16_DIR}/*
+	git commit -m "[Auto-gen] Update bfloat16 documents under ${OUTPUT_DIR}. (make git-commit-autogen-bf16-doc)"
+
 # Update and commit all testing C source files under auto-generated
 git-commit-autogen-test:
 	make gen-test
 	git add ${DIR}/*
 	git commit -m "[Auto-gen] Update tests under ${OUTPUT_DIR}. (make git-commit-autogen-test)"
+
+git-commit-autogen-bf16-test:
+	make gen-bf16-test
+	git add ${BF16_DIR}/*
+	git commit -m "[Auto-gen] Update bfloat16 tests under ${OUTPUT_DIR}. (make git-commit-autogen-bf16-test)"
 
 # Update and commit compatible headers under auto-generated
 git-commit-autogen-compatible-header:

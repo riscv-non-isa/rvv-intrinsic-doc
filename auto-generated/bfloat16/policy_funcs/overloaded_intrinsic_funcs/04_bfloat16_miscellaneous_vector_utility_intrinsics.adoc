@@ -1,0 +1,30 @@
+
+=== BFloat16 Miscellaneous Vector Utility Intrinsics
+
+[[policy-variant-overloadedreinterpret-cast-conversion]]
+==== Reinterpret Cast Conversion Intrinsics
+Intrinsics here don't have a policy variant.
+
+[[policy-variant-overloadedvector-lmul-extensionn]]
+==== Vector LMUL Extension Intrinsics
+Intrinsics here don't have a policy variant.
+
+[[policy-variant-overloadedvector-lmul-truncation]]
+==== Vector LMUL Truncation Intrinsics
+Intrinsics here don't have a policy variant.
+
+[[policy-variant-overloadedvector-initialization]]
+==== Vector Initialization Intrinsics
+Intrinsics here don't have a policy variant.
+
+[[policy-variant-overloadedvector-insertion]]
+==== Vector Insertion Intrinsics
+Intrinsics here don't have a policy variant.
+
+[[policy-variant-overloadedvector-extraction]]
+==== Vector Extraction Intrinsics
+Intrinsics here don't have a policy variant.
+
+[[policy-variant-overloadedvector-creation]]
+==== Vector Creation Intrinsics
+Intrinsics here don't have a policy variant.

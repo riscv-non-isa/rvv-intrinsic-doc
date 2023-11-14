@@ -51,6 +51,10 @@ Copyright 2023 by RISC-V International.
 
 include::rvv-intrinsic-spec.adoc[]
 
+include::vector-bfloat16-spec.adoc[]
+
+include::references.adoc[]
+
 [appendix]
 == Explicit (Non-overloaded) intrinsics
 include::../auto-generated/intrinsic_funcs/00_vector_loads_and_stores_intrinsics.adoc[]
