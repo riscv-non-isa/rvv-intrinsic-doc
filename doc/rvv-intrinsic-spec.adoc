@@ -624,11 +624,16 @@ unsigned __riscv_vlenb();
 
 == Programming Notes
 
-=== Uninitialized variables with RVV types and `vundefined`
+=== Agnostic value in the RVV C intrinsics
 
-Variables created in the declaration of an RVV type represents a scalable-sized object that corresponds to a memory address. The default values inside such uninitialized variables, and also to variables being assigned to the `vundefined` intrinsics, represent non-deterministic values. Users should be aware to not rely on the result of these values.
+An agnostic value is in the granularity of "element" contained in an RVV type. Agnostic values are either:
 
-For example, a `vxor` operation whose operands are either two uninitialized variables or two function calls to `vundefined` may not yield a zero.
+- Tail element(s) of an RVV value produced through a `ta` instruction
+- Masked-off element(s) of an RVV value produced through a `ma` instruction
+- All elements in an uninitialized value
+- A value assigned with the `vundefined` intrinsics
+
+An agnostic value is an indeterminate value and evaluation of an agnostic value is undefined behavior. Users should not rely on any evaluation to an agnostic value.
 
 === Copying vector register group contents
 
