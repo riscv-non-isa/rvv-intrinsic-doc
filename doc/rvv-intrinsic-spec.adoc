@@ -753,3 +753,53 @@ NOTE: Standard extensions are merged into `riscv/riscv-isa-manual` after ratific
 ^29^Section 3.6 (Vector Byte Length `vlenb`) in the specification ^0^
 
 ^30^Section 16.6 (Whole Vector Register Move) in the specification ^0^
+
+
+== Vendor extension support
+=== Introduction
+
+The RISC-V XTheadVector C intrinsics provide users interfaces in the C language level to directly leverage https://github.com/T-head-Semi/thead-extension-spec/[XTheadVector specification], with assistance from the compiler in handling instruction scheduling and register allocation. The intrinsics also aim to free users from responsibility of maintaining the correct configuration settings ^18^ for the xtheadvector instruction executions.
+
+The XTheadVector intrinsics support all RVV intrinsic functions with the restriction of missing support for fractional LMUL values. Additionally, the XTheadVector extension intrinsics API extends the RVV intrinsics API by new load and store functions.
+
+=== Test macro
+
+The `__riscv_th_v_intrinsic` macro is the C macro to test the compiler's support for the RISC-V "XTheadVector" extension intrinsics. The API extension is optional and targeting the vendor extension XTheadVector.
+
+The value of the test macro is defined as its version, which is computed using the following formula. The formula is identical to what is defined in the RISC-V C API specification ^1^ .
+
+----
+<MAJOR_VERSION> * 1,000,000 + <MINOR_VERSION> * 1,000 + <REVISION_VERSION>
+----
+
+For example, the v1.0 version should define the macro with value `1000000`.
+
+=== Availability
+
+With `<riscv_th_vector.h>` included, availability of intrinsic variants depends on the required architecture of their corresponding xtheadvector instructions. The supported architecture is specified to the compiler using the `-march` option ^2,3^.
+
+We suggest guarding the inclusion with the test macro.
+
+[,c]
+----
+#if defined(__riscv_vector) && defined(__riscv_v_intrinsics)
+#include <riscv_vector.h>
+#elif defined (__riscv_xtheadvector) && defined (__riscv_th_v_intrinsics)
+#include <riscv_th_vector.h>
+#else
+#error This file requires either RVV intrinsics or XTheadVector intrinsics
+#endif
+----
+
+=== Example
+[,c]
+----
+void function (void * in, void *out)
+{
+    vint32m1_t v = __riscv_th_vlb_v_i32m1 (in, 4);
+    vint32m1_t v2 = __riscv_th_vlb_v_i32m1_tu (v, in, 4);
+    vint32m1_t v3 = __riscv_vadd_vv_i32m1 (v2, v2, 4);
+    vint32m1_t v4 = __riscv_vadd_vv_i32m1_tu (v3, v2, v2, 4);
+    __riscv_th_vsb_v_i32m1 (out, v4, 4);
+}
+----
