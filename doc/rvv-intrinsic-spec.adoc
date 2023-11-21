@@ -412,7 +412,7 @@ Non-mask (integer and floating-point) data types have SEW and LMUL encoded.
 
 Integer types have EEW and EMUL encoded into the type. The first row describes the EMUL and the first column describes the data type and element width of the scalar type.
 
-Types with subscript "^\*^" is available when `ELEN >= 64` (that is, unavailable under `Zve32*` and require at least `Zve64x`).
+Types with subscript "^\*^" are available when `ELEN >= 64` (that is, unavailable under `Zve32*` and require at least `Zve64x`).
 
 .Integer types
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
@@ -441,12 +441,14 @@ Floating-point types with element widths of 64 (Types=`double`) require the `zve
 
 NOTE: Although C++23 introduces `<stdfloat>` for fixed-width floating-point types, this latest standard is not yet supported in the upstream RISC-V compiler. The specification (along with the prototype lists in appendix) uses `Float16`/`float`/`double` to represent the floating-point type with element width of 16/32/64.
 
+Types with subscript "^\*^" are available when `ELEN >= 64` (that is, unavailable under `Zve32f` and require at least `Zve64f`).
+
 .Floating-point types
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
 | Types | EMUL=1/8 | EMUL=1/4 | EMUL=1/ 2 | EMUL=1 | EMUL=2 | EMUL=4 | EMUL=8
-| _Float16 | N/A | vfloat16mf4_t | vfloat16mf2_t | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t
-| float | N/A | N/A | vfloat32mf2_t | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t
+| _Float16 | N/A | vfloat16mf4_t^*^ | vfloat16mf2_t | vfloat16m1_t | vfloat16m2_t | vfloat16m4_t | vfloat16m8_t
+| float | N/A | N/A | vfloat32mf2_t^*^ | vfloat32m1_t | vfloat32m2_t | vfloat32m4_t | vfloat32m8_t
 | double | N/A | N/A | N/A | vfloat64m1_t | vfloat64m2_t | vfloat64m4_t | vfloat64m8_t
 |===
 
