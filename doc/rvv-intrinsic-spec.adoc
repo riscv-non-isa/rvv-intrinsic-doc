@@ -456,11 +456,13 @@ Types with subscript "^\*^" are available when `ELEN >= 64` (that is, unavailabl
 
 Mask types have the ratio that is derived from `EEW`/`EMUL` encoded into the type. The mask types represent mask register values that follows the Mask Register Layout ^14^.
 
+Types with subscript "^\*^" are available when `ELEN >= 64` (that is, unavailable under `Zve32x` and require at least `Zve64x`).
+
 .Mask types
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
 | Types | n = 1 | n = 2 | n = 4 | n = 8 | n = 16 | n = 32 | n = 64
-| bool | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t
+| bool | vbool1_t | vbool2_t | vbool4_t | vbool8_t | vbool16_t | vbool32_t | vbool64_t^*^
 |===
 
 === Tuple type
