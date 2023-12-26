@@ -488,11 +488,11 @@ def gen(g):
                    LMULS, decorators.has_no_masking)
 
   g.function_group(misc_op_template, "Vector LMUL Extension Intrinsics",
-                   "vector-lmul-extensionn", ["vlmul_ext_v"], TYPES, SEWS,
+                   "vector-lmul-extensionn", ["vlmul_ext"], TYPES, SEWS,
                    LMULS, decorators.has_no_masking)
 
   g.function_group(misc_op_template, "Vector LMUL Truncation Intrinsics",
-                   "vector-lmul-truncation", ["vlmul_trunc_v"], TYPES, SEWS,
+                   "vector-lmul-truncation", ["vlmul_trunc"], TYPES, SEWS,
                    LMULS, decorators.has_no_masking)
 
   g.function_group(misc_op_template, "Vector Initialization Intrinsics",

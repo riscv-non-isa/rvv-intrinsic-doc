@@ -85,7 +85,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           return_type=type_helper.tuple_v)
 
   for decorator in decorator_list:
-    if not ("vlmul_ext_v" in op_list or "vlmul_trunc_v" in op_list):
+    if not ("vlmul_ext" in op_list or "vlmul_trunc" in op_list):
       break
     for args in prod(
         OP=op_list,
@@ -96,11 +96,11 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       op = args["OP"]
       src_lmul = args["LMUL"]
       dst_lmul = args["DST_LMUL"]
-      if op == "vlmul_trunc_v":
+      if op == "vlmul_trunc":
         inst_type = InstType.LMUL_TRUNC
         if get_float_lmul(src_lmul) <= get_float_lmul(dst_lmul):
           continue
-      if op == "vlmul_ext_v":
+      if op == "vlmul_ext":
         inst_type = InstType.LMUL_EXT
         if get_float_lmul(src_lmul) >= get_float_lmul(dst_lmul):
           continue
