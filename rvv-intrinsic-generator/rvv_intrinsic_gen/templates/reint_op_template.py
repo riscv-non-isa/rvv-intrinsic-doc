@@ -63,8 +63,6 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if not type_helper.valid_vtype(rt):
         continue
 
-      args["OP"] = "v" + args["OP"]
-
       func_name =\
         "{OP}_v_{TYPES3}{SEW}m{LMUL}_{TYPES1}{SEW}m{LMUL}".format_map(args)
       src_type = "v{TYPES2}{SEW}m{LMUL}_t".format_map(args)
@@ -101,8 +99,6 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if not type_helper.valid_vtype(rt):
         continue
 
-      args["OP"] = "v" + args["OP"]
-
       func_name =\
         "{OP}_v_{TYPES3}{SEW}m{LMUL}_{TYPES1}{DST_SEW}m{LMUL}".format_map(args)
       src_type = "v{TYPES2}{SEW}m{LMUL}_t".format_map(args)
@@ -124,8 +120,6 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
     convert_set = [["int", "i"], ["uint", "u"]]
     for args in prod(
         OP=op_list, SEW=sew_list, TYPES=convert_set, LMUL=lmul_list):
-
-      args["OP"] = "v" + args["OP"]
 
       type_helper = TypeHelper(**args)
       args["TYPES0"] = args["TYPES"][0]
