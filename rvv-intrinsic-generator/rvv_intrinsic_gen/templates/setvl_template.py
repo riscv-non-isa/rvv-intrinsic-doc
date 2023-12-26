@@ -32,8 +32,6 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
   # interface consistency. We can prune it in the future.
   G.inst_group_prologue()
   for args in prod(OP=op_list, SEW=sew_list, LMUL=lmul_list):
-    args["OP"] = "v" + args["OP"]
-
     type_helper = TypeHelper(**args)
 
     if args["OP"] == "vsetvlmax":

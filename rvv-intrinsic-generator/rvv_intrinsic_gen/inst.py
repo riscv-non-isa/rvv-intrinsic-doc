@@ -477,14 +477,14 @@ def gen(g):
   g.start_group("Miscellaneous Vector Utility Intrinsics")
 
   g.function_group(setvl_template, "Get `vl` with specific vtype",
-                   "set-vl-and-vtype", ["setvl"], [], SEWS, LMULS, [])
+                   "set-vl-and-vtype", ["vsetvl"], [], SEWS, LMULS, [])
 
   g.function_group(setvl_template, "Get `VLMAX` with specific vtype",
-                   "set-vl-to-vlmax-with-specific-vtype", ["setvlmax"], [],
+                   "set-vl-to-vlmax-with-specific-vtype", ["vsetvlmax"], [],
                    SEWS, LMULS, [])
 
   g.function_group(reint_op_template, "Reinterpret Cast Conversion Intrinsics",
-                   "reinterpret-cast-conversion", ["reinterpret"], "", SEWS,
+                   "reinterpret-cast-conversion", ["vreinterpret"], "", SEWS,
                    LMULS, decorators.has_no_masking)
 
   g.function_group(misc_op_template, "Vector LMUL Extension Intrinsics",
