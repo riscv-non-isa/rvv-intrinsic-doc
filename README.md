@@ -12,7 +12,7 @@ Please check out the latest intrinsics specification under
 [GCC 13](https://gcc.gnu.org/gcc-13/changes.html) supports the
 [v0.11](https://github.com/riscv-non-isa/rvv-intrinsic-doc/releases/tag/v0.11.1) version, which does not have tuple type
 segment load/store intrinsics, fixed-point intrinsics with rounding mode parameter, and floating-point intrinsics
-with rounding mdoe parameter.
+with rounding mode parameter.
 
 [The RISC-V Vector C intrinsics TG mailing list](https://lists.riscv.org/g/tech-rvv-intrinsics)
 
