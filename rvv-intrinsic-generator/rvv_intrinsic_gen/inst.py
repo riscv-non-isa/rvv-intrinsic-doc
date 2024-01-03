@@ -42,8 +42,8 @@ from templates import reduction_template
 from templates import mask_template
 from templates import mask_load_store_template
 from templates import permute_template
-from constants import LMULS,WLMULS,NCVTLMULS,SEWS,WSEWS,FSEWS,WFSEWS,NSEWS,\
-  TYPES,ITYPES,FTYPES,MTYPES,MLENS
+from constants import LMULS,ILMULS,WLMULS,NCVTLMULS,SEWS,WSEWS,FSEWS,FFSEWS,WFSEWS,\
+  WFFSEWS,NSEWS,TYPES,ITYPES,SITYPES,UITYPES,FTYPES,MTYPES,MLENS
 from generator import CompatibleHeaderGenerator
 
 
@@ -510,6 +510,91 @@ def gen(g):
   g.function_group(misc_op_template, "Vector Creation Intrinsics",
                    "vector-creation", ["vcreate"], TYPES, SEWS, LMULS,
                    decorators.has_no_masking)
+
+  ####################################################################
+  g.start_group("Additional Intrinsic Functions for XTheadVector")
+
+  g.function_group(load_template, "XTheadVector Unit-Stride Load Intrinsics",
+                   "xtheadvector-unit-stride-load", ["th_vlb"],
+                   SITYPES, SEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template, "XTheadVector Unit-Stride Load Intrinsics",
+                   "xtheadvector-unit-stride-load", ["th_vlh"],
+                   SITYPES, FSEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template, "XTheadVector Unit-Stride Load Intrinsics",
+                   "xtheadvector-unit-stride-load", ["th_vlw"],
+                   SITYPES, FFSEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template, "XTheadVector Unit-Stride Load Intrinsics",
+                   "xtheadvector-unit-stride-load", ["th_vlbu"],
+                   UITYPES, SEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template, "XTheadVector Unit-Stride Load Intrinsics",
+                   "xtheadvector-unit-stride-load", ["th_vlhu"],
+                   UITYPES, FSEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template, "XTheadVector Unit-Stride Load Intrinsics",
+                   "xtheadvector-unit-stride-load", ["th_vlwu"],
+                   UITYPES, FFSEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(store_template, "XTheadVector Unit-Stride Store Intrinsics",
+                   "xtheadvector-unit-stride-store", ["th_vsb"],
+                   ITYPES, WSEWS, ILMULS, decorators.has_masking_no_maskedoff)
+  g.function_group(store_template, "XTheadVector Unit-Stride Store Intrinsics",
+                   "xtheadvector-unit-stride-store", ["th_vsh"],
+                   ITYPES, WFSEWS, ILMULS, decorators.has_masking_no_maskedoff)
+  g.function_group(store_template, "XTheadVector Unit-Stride Store Intrinsics",
+                   "xtheadvector-unit-stride-store", ["th_vsw"],
+                   ITYPES, WFFSEWS, ILMULS, decorators.has_masking_no_maskedoff)
+  g.function_group(load_template, "XTheadVector Strided Load Intrinsics",
+                   "xtheadvector-strided-load", ["th_vlsb"],
+                   SITYPES, SEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template, "XTheadVector Strided Load Intrinsics",
+                   "xtheadvector-strided-load", ["th_vlsh"],
+                   SITYPES, FSEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template, "XTheadVector Strided Load Intrinsics",
+                   "xtheadvector-strided-load", ["th_vlsw"],
+                   SITYPES, FFSEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template, "XTheadVector Strided Load Intrinsics",
+                   "xtheadvector-strided-load", ["th_vlsbu"],
+                   UITYPES, SEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template, "XTheadVector Strided Load Intrinsics",
+                   "xtheadvector-strided-load", ["th_vlshu"],
+                   UITYPES, FSEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template, "XTheadVector Strided Load Intrinsics",
+                   "xtheadvector-strided-load", ["th_vlswu"],
+                   UITYPES, FFSEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(store_template, "XTheadVector Strided Store Intrinsics",
+                   "xtheadvector-strided-store", ["th_vssb"],
+                   ITYPES, WSEWS, ILMULS, decorators.has_masking_no_maskedoff)
+  g.function_group(store_template, "XTheadVector Strided Store Intrinsics",
+                   "xtheadvector-strided-store", ["th_vssh"],
+                   ITYPES, WFSEWS, ILMULS, decorators.has_masking_no_maskedoff)
+  g.function_group(store_template, "XTheadVector Strided Store Intrinsics",
+                   "xtheadvector-strided-store", ["th_vssw"],
+                   ITYPES, WFFSEWS, ILMULS, decorators.has_masking_no_maskedoff)
+  g.function_group(load_template, "XTheadVector Indexed Load Intrinsics",
+                   "xtheadvector-indexed-load", ["th_vlxb"],
+                   SITYPES, SEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template, "XTheadVector Indexed Load Intrinsics",
+                   "xtheadvector-indexed-load", ["th_vlxh"],
+                   SITYPES, FSEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template, "XTheadVector Indexed Load Intrinsics",
+                   "xtheadvector-indexed-load", ["th_vlxw"],
+                   SITYPES, FFSEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template, "XTheadVector Indexed Load Intrinsics",
+                   "xtheadvector-indexed-load", ["th_vlxbu"],
+                   UITYPES, SEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template, "XTheadVector Indexed Load Intrinsics",
+                   "xtheadvector-indexed-load", ["th_vlxhu"],
+                   UITYPES, FSEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(load_template, "XTheadVector Indexed Load Intrinsics",
+                   "xtheadvector-indexed-load", ["th_vlxwu"],
+                   UITYPES, FFSEWS, ILMULS, decorators.has_masking_maskedoff_policy)
+  g.function_group(store_template, "XTheadVector Indexed Store Intrinsics",
+                   "xtheadvector-indexed-store", ["th_vsxb", "th_vsuxb"],
+                   ITYPES, WSEWS, ILMULS, decorators.has_masking_no_maskedoff)
+  g.function_group(store_template, "XTheadVector Indexed Store Intrinsics",
+                   "xtheadvector-indexed-store", ["th_vsxh", "th_vsuxh"],
+                   ITYPES, WFSEWS, ILMULS, decorators.has_masking_no_maskedoff)
+  g.function_group(store_template, "XTheadVector Indexed Store Intrinsics",
+                   "xtheadvector-indexed-store", ["th_vsxw", "th_vsuxw"],
+                   ITYPES, WFFSEWS, ILMULS, decorators.has_masking_no_maskedoff)
 
   ####################################################################
   g.gen_prologue()
