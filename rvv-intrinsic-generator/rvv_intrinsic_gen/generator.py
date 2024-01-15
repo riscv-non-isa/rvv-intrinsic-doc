@@ -24,6 +24,32 @@ import re
 from enums import ExtraAttr
 from enums import ToolChainType
 
+class VendorIntrinsicInfo:
+  """
+    Return true if handled by this VendorIntrinsicInfo instance.
+  """
+  def claim(self, name):
+    return False
+
+  """
+    Return true if this vendor intrinsic is support overloaded.
+  """
+  def is_support_overloaded(self, name, **kwargs):
+    return True
+
+  """
+    Return None if this vendor intrinsic should handle by generic logic,
+    otherwise return the function name of the overloaded version.
+  """
+  def get_overloaded_op_name(self, name):
+    return None
+
+  """
+    Return a generator function for generating intrinsic function list.
+    Return None if using legacy --vendor-inst interface
+  """
+  def gen_function(self):
+    return None
 
 class Generator():
   """
@@ -33,6 +59,7 @@ class Generator():
 
   def __init__(self):
     self.generated_functions_set = set()
+    self.vendor_intrinsic_infos = []
     pass
 
   def write(self, text):
@@ -49,6 +76,12 @@ class Generator():
 
   def inst_group_epilogue(self):
     return ""
+
+  def get_vendor_info(self, name):
+    for vendor_intrinsic_info in self.vendor_intrinsic_infos:
+      if vendor_intrinsic_info.claim(name):
+        return vendor_intrinsic_info
+    return None
 
   def func(self, inst_info, name, return_type, **kwargs):
     # pylint: disable=unused-argument
@@ -94,8 +127,11 @@ class Generator():
   # specified.
   # vle8_v_i8m1 (const int8_t *base, size_t vl);
   # vle8_v_i8m2 (const int8_t *base, size_t vl);
-  @staticmethod
-  def is_support_overloaded(name, **kwargs):
+  def is_support_overloaded(self, name, **kwargs):
+    vendor_info = self.get_vendor_info(name)
+    if (self.get_vendor_info(name)):
+      return vendor_info.is_support_overloaded(name)
+
     for p in ["tu", "tamu", "tumu", "tuma", "tam", "tum", "mu"]:
       if name.split("_")[-1] == p:
         return True
@@ -240,8 +276,13 @@ class Generator():
       #pylint: disable=line-too-long
       return rf"/* {{ dg-final {{ scan-assembler-times {{vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+{pattern_str}\s+}} {api_count} }} }} */" + "\n"
 
-  @staticmethod
-  def get_overloaded_op_name(name):
+  def get_overloaded_op_name(self, name):
+    vendor_info = self.get_vendor_info(name)
+    if (self.get_vendor_info(name)):
+      ov_name = vendor_info.get_overloaded_op_name(name)
+      if ov_name != None:
+        return ov_name
+
     sn = name.split("_")
     if name.startswith("sf_"):
       if name.startswith("sf_vfwcvt") or name.startswith("sf_vfncvt"):
@@ -398,16 +439,16 @@ class OverloadedDocGenerator(DocGenerator):
                      lmul_list, decorator_list):
     self.do_not_have_overloaded_variant = True
     for op in op_list:
-      if Generator.is_support_overloaded(op):
+      if self.is_support_overloaded(op):
         self.do_not_have_overloaded_variant = False
     super().function_group(template, title, link, op_list, type_list, sew_list,
                            lmul_list, decorator_list)
 
   def func(self, inst_info, name, return_type, **kwargs):
     func_name = Generator.func_name(name)
-    if not Generator.is_support_overloaded(name, **kwargs):
+    if not self.is_support_overloaded(name, **kwargs):
       return
-    func_name = Generator.get_overloaded_op_name(name)
+    func_name = self.get_overloaded_op_name(name)
     # Strip the `__riscv_` prefix here because it will be added back again in
     # Generator.func()
     func_name = func_name[8:]
@@ -475,12 +516,12 @@ class APITestGenerator(Generator):
     self.fd.write("#include <riscv_vector.h>\n")
 
   def func(self, inst_info, name, return_type, **kwargs):
-    if self.is_overloaded and not Generator.is_support_overloaded(
+    if self.is_overloaded and not self.is_support_overloaded(
         name, **kwargs):
       return
 
     non_overloaded_func_name = Generator.func_name(name)
-    overloaded_func_name = Generator.get_overloaded_op_name(name)
+    overloaded_func_name = self.get_overloaded_op_name(name)
     test_file_name = f"{inst_info.OP}.c"
 
     if self.is_overloaded:
@@ -630,7 +671,7 @@ class Grouper(Generator):
   def func(self, inst_info, name, return_type, **kwargs):
 
     func_name = Generator.func_name(name)
-    overloaded_func_name = Generator.get_overloaded_op_name(name)
+    overloaded_func_name = self.get_overloaded_op_name(name)
     test_file_name = inst_info.OP
 
     grp_info = (self.current_group, self.current_sub_group)
@@ -1066,7 +1107,7 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
     assert False, "Unreachable"
 
   def func(self, inst_info, name, return_type, **kwargs):
-    if self.is_overloaded and not Generator.is_support_overloaded(
+    if self.is_overloaded and not self.is_support_overloaded(
         name, **kwargs) and "vfmv_s" not in name and "vmv_s" not in name and\
         not (inst_info.extra_attr & ExtraAttr.IS_MASK and\
          ("viota" in name or "vid" in name)):
@@ -1082,7 +1123,7 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
       return
 
     if self.is_overloaded:
-      legacy_func_name = Generator.get_overloaded_op_name(name)[8:]
+      legacy_func_name = self.get_overloaded_op_name(name)[8:]
 
       if not CompatibleHeaderGenerator.is_policy_func(inst_info):
         # For legacy non-policy overloaded intrinsics, we need the override
