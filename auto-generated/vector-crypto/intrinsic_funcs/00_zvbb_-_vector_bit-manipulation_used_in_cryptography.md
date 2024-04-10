@@ -235,7 +235,7 @@ vuint64m4_t __riscv_vrev8_v_u64m4_m (vbool16_t mask, vuint64m4_t vs2, size_t vl)
 vuint64m8_t __riscv_vrev8_v_u64m8_m (vbool8_t mask, vuint64m8_t vs2, size_t vl);
 ```
 
-### [Vector Bit-manipulation used in Cryptography - Count Bits]():
+### [Vector Basic Bit-manipulation - Count Bits]():
 
 **Prototypes:**
 ``` C
