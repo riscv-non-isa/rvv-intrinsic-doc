@@ -1582,21 +1582,21 @@ vuint16m8_t __riscv_vreinterpret_v_bf16m8_u16m8(vbfloat16m8_t src);
 
 [,c]
 ----
-vbfloat16mf2_t __riscv_vlmul_ext_v_b16mf4_b16mf2(vbfloat16mf4_t value);
-vbfloat16m1_t __riscv_vlmul_ext_v_b16mf4_b16m1(vbfloat16mf4_t value);
-vbfloat16m2_t __riscv_vlmul_ext_v_b16mf4_b16m2(vbfloat16mf4_t value);
-vbfloat16m4_t __riscv_vlmul_ext_v_b16mf4_b16m4(vbfloat16mf4_t value);
-vbfloat16m8_t __riscv_vlmul_ext_v_b16mf4_b16m8(vbfloat16mf4_t value);
-vbfloat16m1_t __riscv_vlmul_ext_v_b16mf2_b16m1(vbfloat16mf2_t value);
-vbfloat16m2_t __riscv_vlmul_ext_v_b16mf2_b16m2(vbfloat16mf2_t value);
-vbfloat16m4_t __riscv_vlmul_ext_v_b16mf2_b16m4(vbfloat16mf2_t value);
-vbfloat16m8_t __riscv_vlmul_ext_v_b16mf2_b16m8(vbfloat16mf2_t value);
-vbfloat16m2_t __riscv_vlmul_ext_v_b16m1_b16m2(vbfloat16m1_t value);
-vbfloat16m4_t __riscv_vlmul_ext_v_b16m1_b16m4(vbfloat16m1_t value);
-vbfloat16m8_t __riscv_vlmul_ext_v_b16m1_b16m8(vbfloat16m1_t value);
-vbfloat16m4_t __riscv_vlmul_ext_v_b16m2_b16m4(vbfloat16m2_t value);
-vbfloat16m8_t __riscv_vlmul_ext_v_b16m2_b16m8(vbfloat16m2_t value);
-vbfloat16m8_t __riscv_vlmul_ext_v_b16m4_b16m8(vbfloat16m4_t value);
+vbfloat16mf2_t __riscv_vlmul_ext_v_bf16mf4_bf16mf2(vbfloat16mf4_t value);
+vbfloat16m1_t __riscv_vlmul_ext_v_bf16mf4_bf16m1(vbfloat16mf4_t value);
+vbfloat16m2_t __riscv_vlmul_ext_v_bf16mf4_bf16m2(vbfloat16mf4_t value);
+vbfloat16m4_t __riscv_vlmul_ext_v_bf16mf4_bf16m4(vbfloat16mf4_t value);
+vbfloat16m8_t __riscv_vlmul_ext_v_bf16mf4_bf16m8(vbfloat16mf4_t value);
+vbfloat16m1_t __riscv_vlmul_ext_v_bf16mf2_bf16m1(vbfloat16mf2_t value);
+vbfloat16m2_t __riscv_vlmul_ext_v_bf16mf2_bf16m2(vbfloat16mf2_t value);
+vbfloat16m4_t __riscv_vlmul_ext_v_bf16mf2_bf16m4(vbfloat16mf2_t value);
+vbfloat16m8_t __riscv_vlmul_ext_v_bf16mf2_bf16m8(vbfloat16mf2_t value);
+vbfloat16m2_t __riscv_vlmul_ext_v_bf16m1_bf16m2(vbfloat16m1_t value);
+vbfloat16m4_t __riscv_vlmul_ext_v_bf16m1_bf16m4(vbfloat16m1_t value);
+vbfloat16m8_t __riscv_vlmul_ext_v_bf16m1_bf16m8(vbfloat16m1_t value);
+vbfloat16m4_t __riscv_vlmul_ext_v_bf16m2_bf16m4(vbfloat16m2_t value);
+vbfloat16m8_t __riscv_vlmul_ext_v_bf16m2_bf16m8(vbfloat16m2_t value);
+vbfloat16m8_t __riscv_vlmul_ext_v_bf16m4_bf16m8(vbfloat16m4_t value);
 ----
 
 [[vector-lmul-truncation]]
@@ -1604,21 +1604,21 @@ vbfloat16m8_t __riscv_vlmul_ext_v_b16m4_b16m8(vbfloat16m4_t value);
 
 [,c]
 ----
-vbfloat16mf4_t __riscv_vlmul_trunc_v_b16mf2_b16mf4(vbfloat16mf2_t value);
-vbfloat16mf4_t __riscv_vlmul_trunc_v_b16m1_b16mf4(vbfloat16m1_t value);
-vbfloat16mf2_t __riscv_vlmul_trunc_v_b16m1_b16mf2(vbfloat16m1_t value);
-vbfloat16mf4_t __riscv_vlmul_trunc_v_b16m2_b16mf4(vbfloat16m2_t value);
-vbfloat16mf2_t __riscv_vlmul_trunc_v_b16m2_b16mf2(vbfloat16m2_t value);
-vbfloat16m1_t __riscv_vlmul_trunc_v_b16m2_b16m1(vbfloat16m2_t value);
-vbfloat16mf4_t __riscv_vlmul_trunc_v_b16m4_b16mf4(vbfloat16m4_t value);
-vbfloat16mf2_t __riscv_vlmul_trunc_v_b16m4_b16mf2(vbfloat16m4_t value);
-vbfloat16m1_t __riscv_vlmul_trunc_v_b16m4_b16m1(vbfloat16m4_t value);
-vbfloat16m2_t __riscv_vlmul_trunc_v_b16m4_b16m2(vbfloat16m4_t value);
-vbfloat16mf4_t __riscv_vlmul_trunc_v_b16m8_b16mf4(vbfloat16m8_t value);
-vbfloat16mf2_t __riscv_vlmul_trunc_v_b16m8_b16mf2(vbfloat16m8_t value);
-vbfloat16m1_t __riscv_vlmul_trunc_v_b16m8_b16m1(vbfloat16m8_t value);
-vbfloat16m2_t __riscv_vlmul_trunc_v_b16m8_b16m2(vbfloat16m8_t value);
-vbfloat16m4_t __riscv_vlmul_trunc_v_b16m8_b16m4(vbfloat16m8_t value);
+vbfloat16mf4_t __riscv_vlmul_trunc_v_bf16mf2_bf16mf4(vbfloat16mf2_t value);
+vbfloat16mf4_t __riscv_vlmul_trunc_v_bf16m1_bf16mf4(vbfloat16m1_t value);
+vbfloat16mf2_t __riscv_vlmul_trunc_v_bf16m1_bf16mf2(vbfloat16m1_t value);
+vbfloat16mf4_t __riscv_vlmul_trunc_v_bf16m2_bf16mf4(vbfloat16m2_t value);
+vbfloat16mf2_t __riscv_vlmul_trunc_v_bf16m2_bf16mf2(vbfloat16m2_t value);
+vbfloat16m1_t __riscv_vlmul_trunc_v_bf16m2_bf16m1(vbfloat16m2_t value);
+vbfloat16mf4_t __riscv_vlmul_trunc_v_bf16m4_bf16mf4(vbfloat16m4_t value);
+vbfloat16mf2_t __riscv_vlmul_trunc_v_bf16m4_bf16mf2(vbfloat16m4_t value);
+vbfloat16m1_t __riscv_vlmul_trunc_v_bf16m4_bf16m1(vbfloat16m4_t value);
+vbfloat16m2_t __riscv_vlmul_trunc_v_bf16m4_bf16m2(vbfloat16m4_t value);
+vbfloat16mf4_t __riscv_vlmul_trunc_v_bf16m8_bf16mf4(vbfloat16m8_t value);
+vbfloat16mf2_t __riscv_vlmul_trunc_v_bf16m8_bf16mf2(vbfloat16m8_t value);
+vbfloat16m1_t __riscv_vlmul_trunc_v_bf16m8_bf16m1(vbfloat16m8_t value);
+vbfloat16m2_t __riscv_vlmul_trunc_v_bf16m8_bf16m2(vbfloat16m8_t value);
+vbfloat16m4_t __riscv_vlmul_trunc_v_bf16m8_bf16m4(vbfloat16m8_t value);
 ----
 
 [[vector-initialization]]
