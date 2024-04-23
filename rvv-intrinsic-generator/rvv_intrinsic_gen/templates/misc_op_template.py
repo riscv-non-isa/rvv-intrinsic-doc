@@ -106,7 +106,10 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           continue
       type_helper = TypeHelper(**args)
       inst_info = InstInfo.get(args, decorator, inst_type)
-      args["TYPE1"] = args["TYPE"][0]
+      if args["TYPE"] == "bfloat":
+        args["TYPE1"] = args["TYPE"][0:2]
+      else:
+        args["TYPE1"] = args["TYPE"][0]
       func_name = "{OP}_{TYPE1}{SEW}m{LMUL}_{TYPE1}{SEW}m{DST_LMUL}".format_map(
           args)
 
