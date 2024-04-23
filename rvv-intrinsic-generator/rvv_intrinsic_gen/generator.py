@@ -491,7 +491,7 @@ class APITestGenerator(Generator):
     # different op name
     self.test_file_names = []
 
-  def write_file_header(self, has_float_type):
+  def write_file_header(self, has_float_type, has_bfloat16_type):
     #pylint: disable=line-too-long
     int_llvm_header = (r"""// REQUIRES: riscv-registered-target
 // RUN: %clang_cc1 -triple riscv64 -target-feature +v -disable-O0-optnone \
@@ -506,6 +506,14 @@ class APITestGenerator(Generator):
 // RUN:   FileCheck --check-prefix=CHECK-RV64 %s
 
 """)
+    bfloat16_llvm_header = (r"""// REQUIRES: riscv-registered-target
+// RUN: %clang_cc1 -triple riscv64 -target-feature +v \
+// RUN:   -target-feature +experimental-zvfbfmin \
+// RUN:   -target-feature +experimental-zvfbfwma -disable-O0-optnone \
+// RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
+// RUN:   FileCheck --check-prefix=CHECK-RV64 %s
+
+""")
     gnu_header = (
         r"""/* { dg-do compile } */
 /* { dg-options """ + '"' + "-march=rv64gcv_zvfh -mabi=lp64d" +
@@ -513,7 +521,9 @@ class APITestGenerator(Generator):
 
 """)
     if self.toolchain_type == ToolChainType.LLVM:
-      if has_float_type:
+      if has_bfloat16_type:
+        self.fd.write(bfloat16_llvm_header)
+      elif has_float_type:
         self.fd.write(float_llvm_header)
       else:
         self.fd.write(int_llvm_header)
@@ -576,6 +586,7 @@ class APITestGenerator(Generator):
     # righteously, there should be a function to determine if an intrinsic
     # has a floating-point variant and have the header emission depend on it.
     has_float_type = func_decl.find("vfloat") != -1
+    has_bfloat16_type = func_decl.find("bf16") != -1
     # NOTE(FIXME): This is logic as a hard fix to test case header emission.
     has_float_type_variant_inst = [
         "macc", "nmacc", "msac", "nmsac", "madd", "nmadd", "msub", "nmsub",
@@ -588,7 +599,7 @@ class APITestGenerator(Generator):
         has_float_type = True
 
     if header:
-      self.write_file_header(has_float_type)
+      self.write_file_header(has_float_type, has_bfloat16_type)
 
     def output_call_arg(arg_name, type_name):
       if ((name.startswith("vget") or name.startswith("vset")) \
