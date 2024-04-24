@@ -24,7 +24,7 @@ def gen(g):
 
   g.function_group(
       vector_crypto_template,
-      "Vector Bit-manipulation used in Cryptography - Reverse Bits",
+      "Vector Basic Bit-manipulation - Reverse Bits in Elements",
       "",  # FIXME: We probably have a separate document for vector-crypto
       ["vbrev", "vbrev8", "vrev8"],
       UITYPE,
@@ -34,7 +34,7 @@ def gen(g):
 
   g.function_group(
       vector_crypto_template,
-      "Vector Bit-manipulation used in Cryptography - Count Bits",
+      "Vector Basic Bit-manipulation - Count Bits",
       "",  # FIXME: We probably have a separate document for vector-crypto
       ["vclz", "vctz"],
       UITYPE,
@@ -54,7 +54,7 @@ def gen(g):
 
   g.function_group(
       vector_crypto_template,
-      "Vector Bit-manipulation used in Cryptography - Shift",
+      "Vector Basic Bit-manipulation used - Widening Shift",
       "",  # FIXME: We probably have a separate document for vector-crypto
       ["vwsll"],
       UITYPE,
@@ -198,7 +198,7 @@ def gen(g):
 
   g.function_group(
       vector_crypto_template,
-      "Vector SM3 Message Expansion",
+      "Vector SM3 Compression",
       "",  # FIXME: We probably have a separate document for vector-crypto
       ["vsm3c"],
       UITYPE,
