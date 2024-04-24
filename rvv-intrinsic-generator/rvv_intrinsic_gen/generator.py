@@ -488,13 +488,13 @@ class APITestGenerator(Generator):
 
     vector_crypto_llvm_header = (r"""// REQUIRES: riscv-registered-target
 // RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zvl512b \
-// RUN:   -target-feature +experimental-zvbb \
-// RUN:   -target-feature +experimental-zvbc \
-// RUN:   -target-feature +experimental-zvkg \
-// RUN:   -target-feature +experimental-zvkned \
-// RUN:   -target-feature +experimental-zvknhb \
-// RUN:   -target-feature +experimental-zvksed \
-// RUN:   -target-feature +experimental-zvksh -disable-O0-optnone \
+// RUN:   -target-feature +zvbb \
+// RUN:   -target-feature +zvbc \
+// RUN:   -target-feature +zvkg \
+// RUN:   -target-feature +zvkned \
+// RUN:   -target-feature +zvknhb \
+// RUN:   -target-feature +zvksed \
+// RUN:   -target-feature +zvksh -disable-O0-optnone \
 // RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
 // RUN:   FileCheck --check-prefix=CHECK-RV64 %s
 
