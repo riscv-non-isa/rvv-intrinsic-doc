@@ -1,9 +1,6 @@
 #include <stdint.h>
 #include <riscv_vector.h>
 
-typedef _Float16 float16_t;
-typedef float float32_t;
-typedef double float64_t;
 vuint32mf2_t test_vsha2cl_vv_u32mf2_tu(vuint32mf2_t vd, vuint32mf2_t vs2, vuint32mf2_t vs1, size_t vl) {
   return __riscv_vsha2cl_vv_u32mf2_tu(vd, vs2, vs1, vl);
 }
@@ -39,4 +36,3 @@ vuint64m4_t test_vsha2cl_vv_u64m4_tu(vuint64m4_t vd, vuint64m4_t vs2, vuint64m4_
 vuint64m8_t test_vsha2cl_vv_u64m8_tu(vuint64m8_t vd, vuint64m8_t vs2, vuint64m8_t vs1, size_t vl) {
   return __riscv_vsha2cl_vv_u64m8_tu(vd, vs2, vs1, vl);
 }
-
