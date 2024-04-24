@@ -152,6 +152,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
           starting_from_lmul_index = lmul_list.index(args["LMUL"])
           # print(starting_from_lmul_index)
           for i in range(starting_from_lmul_index, len(lmul_list)):
+            if args["LMUL"] == 8:
+              continue
+
             kwargs["return_type"] =\
                 f"v{args['TYPE']}{args['SEW']}m{lmul_list[i]}_t"
             kwargs["vd"] = f"v{args['TYPE']}{args['SEW']}m{lmul_list[i]}_t"
