@@ -431,6 +431,8 @@ Types with subscript "^\*^" are available when `ELEN >= 64` (that is, unavailabl
 [[floating-point-type]]
 === Floating-point types
 
+NOTE: This specification uses `_Float16` to designate IEEE-754 binary16, `float` to designate IEEE-754 binary32 and `double` to designate IEEE-754 binary64.
+
 Floating-point types have EEW and EMUL encoded into the type. The first row describes the EMUL and the first column describes the data type and element width of the scalar type.
 
 Floating-point types with element widths of 16 (Types=`_Float16`) require the `zvfh` and `zvfhmin` extension to be specified in the architecture.
@@ -438,8 +440,6 @@ Floating-point types with element widths of 16 (Types=`_Float16`) require the `z
 Floating-point types with element widths of 32 (Types=`float`) require the `zve32f` extension to be specified in the architecture.
 
 Floating-point types with element widths of 64 (Types=`double`) require the `zve64d` extension to be specified in the architecture.
-
-NOTE: Although C++23 introduces `<stdfloat>` for fixed-width floating-point types, this latest standard is not yet supported in the upstream RISC-V compiler. The specification (along with the prototype lists in appendix) uses `Float16`/`float`/`double` to represent the floating-point type with element width of 16/32/64.
 
 Types with subscript "^\*^" are available when `ELEN >= 64` (that is, unavailable under `Zve32f` and require at least `Zve64f`).
 
