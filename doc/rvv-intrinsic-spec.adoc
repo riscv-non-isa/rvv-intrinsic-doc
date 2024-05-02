@@ -565,66 +565,85 @@ Availability of the tuple types follows the availability of their corresponding 
 [[pseudo-intrinsics]]
 == Pseudo intrinsics
 
-The intrinsics provide additional utility functions to assist users in manipulating across intrinsic types. These functions are called "pseudo intrinsics". These pseudo intrinsics do not represent any real instructions.
+Pseudo intrinsics provide additional utility functions to assist users in manipulating across intrinsic types. They do not map to any specific RVV instruction. The specific mapping to actual instructions is given in the description of each pseudo intrinsic.
 
 [[pseudo-vsetvl]]
 === `vsetvl`
 
-The `vsetvl` intrinsics return the number of elements processed in a stripmining loop when  provided with the element width and LMUL in the intrinsic suffix.
+The `vsetvl` intrinsics return the number of elements processed in a stripmining loop when  provided with the element width and LMUL in the intrinsic suffix. This pseudo intrinsic is typically mapped to `vsetvli` or `vsetivli` instructions.
 
-NOTE: The implementation must respect the ratio between SEW and LMUL given to the intrinsic. On the other hand, as mentioned in <<control-of-vl>>, the `vsetvl` intrinsics do not necessarily map to the emission a `vsetvl` instruction of that exact SEW and LMUL provided. The actual value written to the `vl` control register is an implementation defined behavior and typically not known until runtime.
+NOTE: The implementation must respect the ratio between SEW and LMUL given to the intrinsic. On the other hand, as mentioned in <<control-of-vl>>, the `vsetvl` intrinsics do not necessarily map to the emission a `vsetvli` or `vsetivli` instruction of that exact SEW and LMUL provided. The actual value written to the `vl` control register is an implementation defined behavior and typically not known until runtime.
 
 [[pseudo-vsetvlmax]]
 === `vsetvlmax`
 
-The `vsetvlmax` intrinsics return `VLMAX` ^5^ when provided with the element width and LMUL in the intrinsic suffix.
+The `vsetvlmax` intrinsics return `VLMAX` ^5^ when provided with the element width and LMUL in the intrinsic suffix. This pseudo intrinsic is typically mapped to the `vsetvli` instruction.
 
-NOTE: As mentioned in <<control-of-vl>>, the `vsetvlmax` intrinsics do not necessarily map to the emission a `vsetvl` instruction of that exact SEW and LMUL provided. The actual value written to the `vl` control register is an implementation defined behavior and typically not known until runtime.
+NOTE: As mentioned in <<control-of-vl>>, the `vsetvlmax` intrinsics do not necessarily map to the emission a `vsetvli` instruction of that exact SEW and LMUL provided. The actual value written to the `vl` control register is an implementation defined behavior and typically not known until runtime.
 
 [[pseudo-vreinterpret]]
 === `vreinterpret`
 
 The `vreinterpret` intrinsics are provided for users to transition across the strongly-typed scheme. The intrinsic is limited to conversion between types operating upon the same number of registers.
+These intrinsics are not mapped to any instruction because reinterpretation of registers is a no-operation.
 
-The intrinsics do not alter values held within. Please use `vfcvt/v(f)wcvt/v(f)ncvt` intrinsics if you seek to extend, narrow, or perform real float/interger type conversions for the values.
+These pseudo intrinsics do not alter the bits held by a register. Please use `vfcvt/v(f)wcvt/v(f)ncvt` intrinsics if you seek to extend, narrow, or perform real float/interger type conversions for the values.
 
 [[pseudo-vundefined]]
 === `vundefined`
-The `vundefined` intrinsics are placeholders to represent unspecified values in variable initialization, or as arguments of `vset` and `vcreate`.
+The `vundefined` intrinsics are placeholders to represent unspecified values in variable initialization, or as arguments of `vset` and `vcreate`. These pseudo intrinsics are not mapped to any instruction.
 
 [[pseudo-vget]]
 === `vget`
 
 The `vget` intrinsics allow users to obtain small LMUL values from larger LMUL ones. The `vget` intrinsics also allows users to extract non-tuple (`NFIELD=1`) types from tuple (`NFIELD>1`) types after segment load intrinsics. The index provided must be a constant known at compile time.
 
-The intrinsics do not map to any real instruction. Whether if the implementation will generate vector move instructions is an optimization issue.
+These pseudo intrinsics do not map to any real instruction. The compiler may emit zero or more instructions to implement the semantics of these pseudo intrinsics. The precise set of instructions emitted is a compiler optimization issue.
 
 [[pseudo-vset]]
 === `vset`
 
 The `vset` intrinsics allow users to combine small LMUL values into larger LMUL ones. The `vset` intrinsics also allows users to combine non-tuple (`NFIELD=1`) types to tuple (`NFIELD>1`) types for segment store intrinsics. The index provided must be a constant known at compile time.
 
-The intrinsics do not map to any real instruction. Whether if the implementation will generate vector move instructions is an optimization issue.
+These pseudo intrinsics do not map to any real instruction. The compiler may emit zero or more instructions to implement the semantics of these pseudo intrinsics. The precise set of instructions emitted is a compiler optimization issue.
 
 [[pseudo-vlmul_trunc]]
 === `vlmul_trunc`
 
-The `vlmul_trunc` intrinsics are syntactic sugars that have the same semantic as `vget` with `idx=0`.
+The `vlmul_trunc` intrinsics are syntactic sugar for RVV vector types other than tuples and have the same semantic as `vget` with the `index` operand having the value `0`.
 
 [[pseudo-vlmul_ext]]
 === `vlmul_ext`
 
-The `vlmul_ext` intrinsics are syntactic sugars that have the same semantic as `vset` with `idx=0`.
+The `vlmul_ext` intrinsics are syntactic sugar for RVV vector types other than tuples and have the same semantic as `vset` with `index` operand having the value `0`.
 
 [[pseudo-vcreate]]
 === `vcreate`
 
-The `vcreate` intrinsics are syntactic sugars for RVV types creation. They have the same semantic as multiple `vset`-s filling in values accordingly.
+The `vcreate` intrinsics are syntactic sugar for the creation of values of RVV types. They have the same semantic as multiple `vset` pseudo intrinsics filling in values accordingly.
+
+.Pseudo intrinsic `vcreate` used to build a SEW=32, LMUL=4 `float` vector (`vfloat32m4`) from two SEW=32, LMUL=2 `float` vectors (`vfloat32m2`).
+====
+[,c]
+----
+// Given the following declarations
+vfloat32m4_t dest;
+vfloat32m2_t v0 = ...;
+vfloat32m2_t v1 = ...;
+
+// this pseudo intrinsic
+dest = __riscv_vcreate_v_f32m2_f32m4(v0, v1);
+
+// is semantically equivalent to
+dest = __riscv_vset_v_f32m2_f32m4(__riscv_vundefined_f32m4(), 0, v0);
+dest = __riscv_vset_v_f32m2_f32m4(dest, 1, v1);
+----
+====
 
 [[pseudo-vlenb]]
 === `vlenb`
 
-The `vlenb` intrinsic returns what is held inside the read-only CSR `vlenb` ^29^, which is the vector register length in bytes.
+The `vlenb` intrinsic returns what is held inside the read-only CSR `vlenb` ^29^, which is the vector register length in bytes. This pseudo intrinsic is mapped to a `csrr` instruction that reads from the `vlenb` operand.
 
 [,c]
 ----
