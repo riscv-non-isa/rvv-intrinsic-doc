@@ -112,22 +112,22 @@ NOTE: Control of the vector fixed-point saturation flag (`vxsat`) ^22^ is not ye
 [[control-of-frm]]
 === Control of floating-point rounding mode
 
-For the floating-point intrinsics, representing the floating-point arithmetic instructions ^23^, the intrinsics have two variants, called the implicit-`frm` and the explicit-`frm` intrinsics.
+For the floating-point intrinsics, representing the floating-point arithmetic instructions ^23^, the intrinsics have two variants: _Implicit FP rounding mode_ and _Explicit FP Rounding mode_ intrinsics.
 
 NOTE: Control of the floating-point accrued exceptions flag fields (`fflag`) ^10^ is not yet covered in the vector intrinsics v1.0. We plan to support it in follow-up versions in a compatible way with existing intrinsics in v1.0.
 
-==== Implicit-`frm` intrinsics
+==== Implicit FP rounding mode intrinsics
 
-The implicit-`frm` intrinsics behave like any C-language floating-point expressions, using the default rounding mode when `FENV_ACCESS` is off, and using the `fenv` dynamic rounding mode when `FENV_ACCESS` is on.
+The Implicit FP rounding mode intrinsics behave like any C-language floating-point expressions, using the default rounding mode when `FENV_ACCESS` is off, and using the `fenv` dynamic rounding mode when `FENV_ACCESS` is on.
 
 NOTE: Both GNU and LLVM compilers generate scalar floating-point instructions using dynamic rounding mode, relying on the environment initialization to set `frm` to `RNE` (specified as "roundTiesToEven" in IEEE-754 (a.k.a. IEC 60559)).
 
-NOTE: The implicit-`frm` intrinsics are intended to be used regardless of `FENV_ACCESS`. They are provided when `FENV_ACCESS` is on for the (few) programmers who are already using fenv; and they are provided when `FENV_ACCESS` is off for the (vast majority of) programmers who prefer the default rounding mode.
+NOTE: The Implicit FP rounding mode intrinsics are intended to be used regardless of `FENV_ACCESS`. They are provided when `FENV_ACCESS` is on for the (few) programmers who are already using `fenv`; and they are provided when `FENV_ACCESS` is off for the (vast majority of) programmers who prefer the default rounding mode.
 
 [[explicit-frm]]
-==== Explicit-`frm` intrinsics
+==== Explicit FP rounding mode intrinsics
 
-The explicit-`frm` intrinsics contain the `frm` argument which indicates the rounding mode (`frm`) ^10^ control. The floating-point intrinsics with the `frm` argument are followed by an `_rm` suffix in the function name.
+The Explicit FP rounding mode intrinsics contain the `frm` argument which indicates the rounding mode (`frm`) ^10^ control. The floating-point intrinsics with the `frm` argument are followed by an `_rm` suffix in the function name.
 
 The `frm` argument is required to be a constant integer expression. The implementation should provide the following `enum` that maps to the defined rounding mode values under RISC-V ISA Manual Table 8.1 ^9^.
 
@@ -142,7 +142,7 @@ enum __RISCV_FRM {
 };
 ----
 
-NOTE: The explicit-`frm` intrinsics are intended to be used when `FENV_ACCESS` is off, enabling more aggressive optimization while still providing the programmer with control over the rounding mode. Using explicit-`frm` intrinsics when `FENV_ACCESS` is on will still work correctly, but is expected to lead to extra saving/restoring of `frm`, that could be avoided by using `fenv` functionality and implicit-`frm` intrinsics.
+NOTE: The Explicit FP rounding mode intrinsics are intended to be used when `FENV_ACCESS` is off, enabling more aggressive optimization while still providing the programmer with control over the rounding mode. Using Explicit FP rounding mode intrinsics when `FENV_ACCESS` is on will still work correctly, but is expected to lead to extra saving/restoring of `frm`, that could be avoided by using `fenv` functionality and Implicit FP rounding mode intrinsics.
 
 [[naming-scheme]]
 == Naming scheme
@@ -293,7 +293,7 @@ vbool4_t __riscv_vreinterpret_v_i32m1_b4 (vint32m1_t src);
 [[implicit-naming-scheme]]
 === Implicit (Overloaded) naming scheme
 
-The implicit (overloaded) interface aims to provide a generic interface that takes values of different EEW and EMUL as the input. Therefore, the implicit intrinsics omit the EEW and EMUL encoded in the function name. The `_rm` prefix for explicit-`frm` intrinsics (<<control-of-frm>>) is also omitted. The intrinsics under this scheme are the "overloaded intrinsics", which in parallel we have the "non-overloaded intrinsics" defined under <<explicit-naming-scheme>>.
+The implicit (overloaded) interface aims to provide a generic interface that takes values of different EEW and EMUL as the input. Therefore, the implicit intrinsics omit the EEW and EMUL encoded in the function name. The `_rm` prefix for Explicit FP rounding mode intrinsics (<<control-of-frm>>) is also omitted. The intrinsics under this scheme are the "overloaded intrinsics", which in parallel we have the "non-overloaded intrinsics" defined under <<explicit-naming-scheme>>.
 
 Take the vector addition (`vadd`) instruction intrinsics as an example, stripping off the operand mnemonics and encoded EEW, EMUL information, the intrinsics provides the following overloaded interfaces.
 
