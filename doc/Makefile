@@ -40,6 +40,11 @@ build:
 	$(ASCIIDOCTOR_PDF) $(OPTIONS) $(REQUIRES) --out-file=$(PDF_RESULT) $(HEADER_SOURCE)
 	@echo "Build completed successfully."
 
+quick-build:
+	@echo "Starting build..."
+	$(ASCIIDOCTOR_PDF) $(OPTIONS) $(REQUIRES) -a build-type=quick --out-file=$(PDF_RESULT) $(HEADER_SOURCE)
+	@echo "Build completed successfully."
+
 clean:
 	@echo "Cleaning up generated files..."
 	rm -f $(PDF_RESULT)
