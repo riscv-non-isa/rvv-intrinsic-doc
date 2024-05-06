@@ -1,7 +1,5 @@
 = RISC-V Vector C Intrinsic Specification Document
-Authors: Author 1, Author 2
-:docgroup: RISC-V Vector C Intrinsic Task Group
-:description: RISC-V Vector C Intrinsic Specification Document
+RISC-V Vector C Intrinsic Task Group
 :company: RISC-V.org
 :revinfo:
 :url-riscv: http://riscv.org
@@ -40,14 +38,7 @@ it is accepted as a standard. Implementations based on this draft
 may not conform to the future standard.
 ====
 
-[preface]
-== Copyright and license information
-This specification is licensed under the Creative Commons
-Attribution 4.0 International License (CC-BY 4.0). The full
-license text is available at
-https://creativecommons.org/licenses/by/4.0/.
-
-Copyright 2023 by RISC-V International.
+include::preface.adoc[]
 
 include::rvv-intrinsic-spec.adoc[]
 
