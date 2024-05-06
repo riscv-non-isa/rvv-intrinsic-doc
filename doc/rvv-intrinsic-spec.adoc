@@ -417,7 +417,7 @@ Non-mask (integer and floating-point) data types have SEW and LMUL encoded.
 
 Integer types have EEW and EMUL encoded into the type. The first row describes the EMUL and the first column describes the data type and element width of the scalar type.
 
-Types with subscript "^\*^" are available when `ELEN >= 64` (that is, unavailable under `Zve32*` and require at least `Zve64x`).
+Types with an asterisk ({empty}*) are available when `ELEN >= 64` (that is, unavailable under `Zve32*` and require at least `Zve64x`).
 
 .Integer types
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
@@ -446,7 +446,7 @@ Floating-point types with element widths of 32 (Types=`float`) require the `zve3
 
 Floating-point types with element widths of 64 (Types=`double`) require the `zve64d` extension to be specified in the architecture.
 
-Types with subscript "^\*^" are available when `ELEN >= 64` (that is, unavailable under `Zve32f` and require at least `Zve64f`).
+Types with an asterisk ({empty}*) are available when `ELEN >= 64` (that is, unavailable under `Zve32f` and require at least `Zve64f`).
 
 .Floating-point types
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
@@ -461,7 +461,7 @@ Types with subscript "^\*^" are available when `ELEN >= 64` (that is, unavailabl
 
 Mask types have the ratio that is derived from `EEW`/`EMUL` encoded into the type. The mask types represent mask register values that follows the Mask Register Layout ^14^.
 
-Types with subscript "^\*^" are available when `ELEN >= 64` (that is, unavailable under `Zve32x` and require at least `Zve64x`).
+Types with an asterisk ({empty}*) are available when `ELEN >= 64` (that is, unavailable under `Zve32x` and require at least `Zve64x`).
 
 .Mask types
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
