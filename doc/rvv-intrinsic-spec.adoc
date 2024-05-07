@@ -107,7 +107,12 @@ NOTE: Rounding mode does not affect the computations of `vsadd`, `vsaddu`, `vssu
 
 NOTE: The RISC-V psABI ^9^ states that `vxrm` is not preserved across calls. Optimization for reducing the number of redundant writes to `vxrm` is a compiler and system specific issue.
 
-NOTE: Control of the vector fixed-point saturation flag (`vxsat`) ^22^ is not yet covered in the vector intrinsics v1.0. We plan to support it in follow-up versions in a compatible way with existing intrinsics in v1.0.
+[NOTE]
+====
+This version of the specification of does not cover the control of the vector fixed-point saturation flag (`vxsat`) ^22^. Support for this feature is planned for a later version of the specification in a way that is compatible with existing fixed-point intrinsics. No mechanism to set or retrieve the value of `vxsat` is specified either.
+
+The value of the `vxsat` after a fixed-point intrinsic is UNSPECIFIED. This includes the order in which the flag `vxsat` is updated in a program that executes a sequence of fixed-point intrinsics.
+====
 
 [[control-of-frm]]
 === Control of floating-point rounding mode
