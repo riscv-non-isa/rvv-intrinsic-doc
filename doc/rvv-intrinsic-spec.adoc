@@ -1,6 +1,6 @@
 == Introduction
 
-The RISC-V vector C intrinsics provide users interfaces in the C language level to directly leverage the RISC-V "V" extension ^0^ (also abbreviated as "RVV"), with assistance from the compiler in handling instruction scheduling and register allocation. The intrinsics also aim to free users from responsibility of maintaining the correct configuration settings ^18^ for the vector instruction executions.
+The RISC-V vector C intrinsics provide users interfaces in the C language level to directly leverage the RISC-V "V" extension cite:[riscv-v-spec] (also abbreviated as "RVV"), with assistance from the compiler in handling instruction scheduling and register allocation. The intrinsics also aim to free users from responsibility of maintaining the correct configuration settings for the vector instruction executions.
 
 This document uses the term "RVV" as an abbreviation for the RISC-V "V" extension. This document uses the term "the specification" to indicate the RISC-V "V" extension specification.
 
@@ -8,7 +8,7 @@ This document uses the term "RVV" as an abbreviation for the RISC-V "V" extensio
 
 The `__riscv_v_intrinsic` macro is the C macro to test the compiler's support for the RISC-V "V" extension intrinsics.
 
-The value of the test macro is defined as its version, which is computed using the following formula. The formula is identical to what is defined in the RISC-V C API specification ^1^ .
+The value of the test macro is defined as its version, which is computed using the following formula. The formula is identical to what is defined in the RISC-V C API specification cite:[riscv-c-api].
 
 ----
 <MAJOR_VERSION> * 1,000,000 + <MINOR_VERSION> * 1,000 + <REVISION_VERSION>
@@ -29,7 +29,7 @@ To leverage the intrinsics in the toolchain, the header `<riscv_vector.h>` needs
 
 == Availability
 
-With `<riscv_vector.h>` included, availability of intrinsic variants depends on the required architecture of their corresponding vector instructions. The supported architecture is specified to the compiler using the `-march` option ^2,3^.
+With `<riscv_vector.h>` included, availability of intrinsic variants depends on the required architecture of their corresponding vector instructions. The supported architecture is specified to the compiler using the `-march` option cite:[riscv-guide-llvm,riscv-v-gcc].
 
 The standard vector extensions ^19^ provides a set of smaller extensions for embedded use. Please check out the `Zve` extensions ^20^ for the varying degree of support.
 

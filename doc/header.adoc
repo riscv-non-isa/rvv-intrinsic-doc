@@ -29,6 +29,11 @@ endif::[]
 :stem: latexmath
 :footnote:
 :xrefstyle: short
+:bibtex-file: rvv-intrinsics.bib
+:bibtex-order: alphabetical
+:bibtex-style: apa
+:bibtex-format: asciidoc
+:bibtex-throw: false
 
 [WARNING]
 .This document is in the link:http://riscv.org/spec-state[Development state]
@@ -92,3 +97,6 @@ include::../auto-generated/policy_funcs/overloaded_intrinsic_funcs/07_vector_per
 include::../auto-generated/policy_funcs/overloaded_intrinsic_funcs/08_miscellaneous_vector_utility_intrinsics.adoc[]
 
 endif::[]
+
+include::bibliography.adoc[]
+
