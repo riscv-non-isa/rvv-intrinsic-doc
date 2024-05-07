@@ -615,7 +615,7 @@ The `vlmul_trunc` intrinsics are syntactic sugar for RVV vector types other than
 [[pseudo-vlmul_ext]]
 === `vlmul_ext`
 
-The `vlmul_ext` intrinsics are syntactic sugar for RVV vector types other than tuples and have the same semantic as `vset` with `index` operand having the value `0`.
+The `vlmul_ext` intrinsics are syntactic sugar for RVV vector types other than tuples and have the same semantic as `vset` with the `index` operand having the value `0`.
 
 [[pseudo-vcreate]]
 === `vcreate`
@@ -643,7 +643,7 @@ dest = __riscv_vset_v_f32m2_f32m4(dest, 1, v1);
 [[pseudo-vlenb]]
 === `vlenb`
 
-The `vlenb` intrinsic returns what is held inside the read-only CSR `vlenb` ^29^, which is the vector register length in bytes. This pseudo intrinsic is mapped to a `csrr` instruction that reads from the `vlenb` operand.
+The `vlenb` intrinsic returns what is held inside the read-only CSR `vlenb` ^29^, which is the vector register length in bytes. This pseudo intrinsic is mapped to a `csrr` instruction that reads from the CSR `vlenb`.
 
 [,c]
 ----
