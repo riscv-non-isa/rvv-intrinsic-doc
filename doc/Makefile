@@ -29,7 +29,7 @@ OPTIONS := --trace \
            -a pdf-fontsdir=docs-resources/fonts \
            -a pdf-theme=docs-resources/themes/riscv-pdf.yml \
            --failure-level=ERROR
-REQUIRES :=
+REQUIRES := --require=asciidoctor-bibtex \
 
 .PHONY: all build clean
 
