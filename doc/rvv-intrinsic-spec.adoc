@@ -2,7 +2,7 @@
 
 The RISC-V vector C intrinsics provide users interfaces in the C language level to directly leverage the RISC-V "V" extension cite:[riscv-v-spec] (also abbreviated as "RVV"), with assistance from the compiler in handling instruction scheduling and register allocation. The intrinsics also aim to free users from responsibility of maintaining the correct configuration settings for the vector instruction executions.
 
-This document uses the term "RVV" as an abbreviation for the RISC-V "V" extension. This document uses the term "the specification" to indicate the RISC-V "V" extension specification.
+This document uses the term "RVV" as an abbreviation for the RISC-V "V" extension. This document uses the term "the RVV specification" to indicate the RISC-V "V" extension specification.
 
 == Test macro
 
@@ -31,7 +31,7 @@ To leverage the intrinsics in the toolchain, the header `<riscv_vector.h>` needs
 
 With `<riscv_vector.h>` included, availability of intrinsic variants depends on the required architecture of their corresponding vector instructions. The supported architecture is specified to the compiler using the `-march` option cite:[riscv-guide-llvm,riscv-v-gcc].
 
-The standard vector extensions ^19^ provides a set of smaller extensions for embedded use. Please check out the `Zve` extensions ^20^ for the varying degree of support.
+The standard vector extensions cite:[riscv-v-spec] provides a set of smaller extensions for embedded use. Please check out the `Zve` extensions cite:[riscv-v-spec] for the varying degree of support.
 
 For example, RVV type `vint64m1_t` and `__riscv_vle64_v_i64m1` are not available under architecture `rv64gc_zve32x`.
 
@@ -44,7 +44,7 @@ In this chapter, we cover how the intrinsics embed the control of `vtype` fields
 
 === Control of effective element width (EEW) and effective LMUL (EMUL)
 
-The RISC-V vector intrinsics' data types are strongly-typed. The vector intrinsics encode the EEW (effective-element-width) ^17^ and EMUL (effective LMUL) ^17^ of the destination vector register in the suffix of the function name. Users can expect the results of the vector instruction intrinsics are computed under the specified EEW and EMUL.
+The RISC-V vector intrinsics' data types are strongly-typed. The vector intrinsics encode the EEW (effective-element-width) and EMUL (effective LMUL) of the destination vector register in the suffix of the function name. Users can expect the results of the vector instruction intrinsics are computed under the specified EEW and EMUL.
 
 To see the full list of data types for the intrinsics, please see <<type-system>>.
 
@@ -65,23 +65,23 @@ vint32m1_t __riscv_vwadd_vv_i32m1(vint16mf2_t vs2, vint16mf2_t vs1, size_t vl);
 [[control-of-vl]]
 === Control of number of elements to be processed
 
-The intrinsics do not directly expose the vector length control register (assembly mnemonics `vl` ^11^) to the intrinsics programmer. The intrinsics programmer specifies an "application vector length (AVL)" ^18^ using the argument `size_t vl`. The implementation is responsible to set the correct value into the underlying vector length control register (`vl`) given the informed AVL.
+The intrinsics do not directly expose the vector length control register to the intrinsics programmer. The intrinsics programmer specifies an "application vector length (AVL)" using the argument `size_t vl`. The implementation is responsible to set the correct value into the underlying vector length control register (`vl`) given the informed AVL.
 
 NOTE: The intrinsics for instructions that behave the same with different `vl` settings (e.g. `vmv.s.x`) do not have a `size_t vl` argument.
 
-NOTE: The actual value written to the `vl` control register is an implementation defined behavior and is typically not known until runtime. The actual setting of `vl`, given the provided AVL through the parameter, follows the rules ^27^ in the specification. The number of elements processed can be obtained through the `__riscv_vsetvl_*` intrinsics <<pseudo-vsetvl>>.
+NOTE: The actual value written to the `vl` control register is an implementation defined behavior and is typically not known until runtime. The actual setting of `vl`, given the provided AVL through the parameter, follows the rules in the RVV specification. The number of elements processed can be obtained through the `__riscv_vsetvl_*` intrinsics <<pseudo-vsetvl>>.
 
 [[control-of-masked]]
 === Control of vector masking
 
-Instructions that are available for masking ^7^ have masked variant intrinsics.
+Instructions that are available for masking have masked variant intrinsics.
 
-The intrinsics fuse the control of vector masking (`vm`) together with the control for policy behavior (`vta`, `vma`) in the same suffix. Please checkout <<control-of-policy>> and <<policy-and-masked-naming-scheme>> for the exact suffix that specifies a masked/unmasked vector operation along with its policy behavior.
+The intrinsics fuse the control of vector masking (`vm`) together with the control for policy behavior (`vta`, `vma`) in the same suffix. Please check out <<control-of-policy>> and <<policy-and-masked-naming-scheme>> for the exact suffix that specifies a masked/unmasked vector operation along with its policy behavior.
 
 [[control-of-policy]]
 === Control of behavior of destination tail elements and destination inactive masked-off elements
 
-The behavior of destination tail elements and destination inactive masked-off elements is controlled by the `vta` and `vma` bits ^6^.
+The behavior of destination tail elements and destination inactive masked-off elements is controlled by the `vta` and `vma` bits.
 
 Given the general assumption that target audience of the intrinsics are high performance cores, and an "undisturbed" policy will generally slow down an out-of-order core, the intrinsics have a default policy scheme of tail-agnostic and mask-agnostic (that is, `vta=1` and `vma=1`).
 
@@ -89,9 +89,9 @@ The intrinsics fuse the control of vector masking (`vm`) together with the contr
 
 === Control of fixed-point rounding mode
 
-For the fixed-point intrinsics, representing the fixed-point arithmetic instructions ^21^, the `vxrm` argument of the intrinsics indicates the rounding mode (`vxrm`) ^8^ control.
+For the fixed-point intrinsics, representing the fixed-point arithmetic instructions, the `vxrm` argument of the intrinsics indicates the rounding mode (`vxrm`) control.
 
-The `vxrm` argument is required to be a constant integer expression. The implementation should provide the following `enum` that maps to the defined rounding mode values under Table 4 ^8^ of the specification.
+The `vxrm` argument is required to be a constant integer expression. The implementation should provide the following `enum` that maps to the defined rounding mode values under Table 4 of the RVV specification.
 
 [,c]
 ----
@@ -105,11 +105,11 @@ enum __RISCV_VXRM {
 
 NOTE: Rounding mode does not affect the computations of `vsadd`, `vsaddu`, `vssub`, and `vssubu`; therefore, the intrinsics for these instructions do not have the `vxrm` argument.
 
-NOTE: The RISC-V psABI ^9^ states that `vxrm` is not preserved across calls. Optimization for reducing the number of redundant writes to `vxrm` is a compiler and system specific issue.
+NOTE: The RISC-V psABI cite:[riscv-cc-vector] states that `vxrm` is not preserved across calls. Optimization for reducing the number of redundant writes to `vxrm` is a compiler and system specific issue.
 
 [NOTE]
 ====
-This version of the specification of does not cover the control of the vector fixed-point saturation flag (`vxsat`) ^22^. Support for this feature is planned for a later version of the specification in a way that is compatible with existing fixed-point intrinsics. No mechanism to set or retrieve the value of `vxsat` is specified either.
+This version of the specification of does not cover the control of the vector fixed-point saturation flag (`vxsat`). Support for this feature is planned for a later version of the specification in a way that is compatible with existing fixed-point intrinsics. No mechanism to set or retrieve the value of `vxsat` is specified either.
 
 The value of the `vxsat` after a fixed-point intrinsic is UNSPECIFIED. This includes the order in which the flag `vxsat` is updated in a program that executes a sequence of fixed-point intrinsics.
 ====
@@ -117,24 +117,24 @@ The value of the `vxsat` after a fixed-point intrinsic is UNSPECIFIED. This incl
 [[control-of-frm]]
 === Control of floating-point rounding mode
 
-For the floating-point intrinsics, representing the floating-point arithmetic instructions ^23^, the intrinsics have two variants: _Implicit FP rounding mode_ and _Explicit FP Rounding mode_ intrinsics.
+For the floating-point intrinsics, representing the floating-point arithmetic instructions, the intrinsics have two variants: _Implicit FP rounding mode_ and _Explicit FP Rounding mode_ intrinsics.
 
-NOTE: Control of the floating-point accrued exceptions flag fields (`fflag`) ^10^ is not yet covered in the vector intrinsics v1.0. We plan to support it in follow-up versions in a compatible way with existing intrinsics in v1.0.
+NOTE: Control of the floating-point accrued exceptions flag fields (`fflag`) cite:[riscv-f-spec] is not yet covered in the vector intrinsics v1.0. We plan to support it in follow-up versions in a compatible way with existing intrinsics in v1.0.
 
 ==== Implicit FP rounding mode intrinsics
 
 The implicit FP rounding mode intrinsics behave like any C-language floating-point expressions, using the default rounding mode when `FENV_ACCESS` is off, and using the `fenv` dynamic rounding mode when `FENV_ACCESS` is on.
 
-NOTE: Both GNU and LLVM compilers generate scalar floating-point instructions using dynamic rounding mode, relying on the environment initialization to set `frm` to `RNE` (specified as "roundTiesToEven" in IEEE-754 (a.k.a. IEC 60559)).
+NOTE: Both GNU and LLVM compilers generate scalar floating-point instructions using dynamic rounding mode, relying on the environment initialization to set `frm` to `RNE` (specified as "roundTiesToEven" in IEEE-754 (a.k.a. IEC 60559)) cite:[ieee754-2008].
 
 NOTE: The implicit FP rounding mode intrinsics are intended to be used regardless of `FENV_ACCESS`. They are provided when `FENV_ACCESS` is on for the (few) programmers who are already using `fenv`; and they are provided when `FENV_ACCESS` is off for the (vast majority of) programmers who prefer the default rounding mode.
 
 [[explicit-frm]]
 ==== Explicit FP rounding mode intrinsics
 
-The explicit FP rounding mode intrinsics contain the `frm` argument which indicates the rounding mode (`frm`) ^10^ control. The floating-point intrinsics with the `frm` argument are followed by an `_rm` suffix in the function name.
+The explicit FP rounding mode intrinsics contain the `frm` argument which indicates the rounding mode (`frm`) cite:[riscv-f-spec] control. The floating-point intrinsics with the `frm` argument are followed by an `_rm` suffix in the function name.
 
-The `frm` argument is required to be a constant integer expression. The implementation should provide the following `enum` that maps to the defined rounding mode values under RISC-V ISA Manual Table 8.1 ^9^.
+The `frm` argument is required to be a constant integer expression. The implementation should provide the following `enum` that maps to the defined rounding mode values under RISC-V ISA Manual Table 8.1 cite:[riscv-cc-vector].
 
 [,c]
 ----
@@ -160,7 +160,7 @@ The intrinsics can be split into two major types, called "explicit (non-overload
 
 The explicit (non-overloaded) intrinsics embed the control described in <<control-of-vector-programming-model>> in the function name. This scheme gives intrinsic codebase more readability as the execution states are explicitly specified in the code.
 
-The implicit (overloaded) intrinsics, on the contrary, omit the explicit specifications for `vtype` control. The implicit (overloaded) intrinsics aim to provide a generic interface to let users put values of different EEW ^17^ and EMUL ^17^ as the input argument.
+The implicit (overloaded) intrinsics, on the contrary, omit the explicit specifications for `vtype` control. The implicit (overloaded) intrinsics aim to provide a generic interface to let users put values of different EEW and EMUL as the input argument.
 
 This section covers the general naming rule of the two types of intrinsics accordingly. Then, this section also enumerates the exceptions and the rationales behind them in <<explicit-exception-naming>> and <<implicit-exception-naming>>.
 
@@ -459,7 +459,7 @@ Types with subscript "^\*^" are available when `ELEN >= 64` (that is, unavailabl
 
 === Mask types
 
-Mask types have the ratio that is derived from `EEW`/`EMUL` encoded into the type. The mask types represent mask register values that follows the Mask Register Layout ^14^.
+Mask types have the ratio that is derived from `EEW`/`EMUL` encoded into the type. The mask types represent mask register values that follows the Mask Register Layout.
 
 Types with subscript "^\*^" are available when `ELEN >= 64` (that is, unavailable under `Zve32x` and require at least `Zve64x`).
 
@@ -472,9 +472,9 @@ Types with subscript "^\*^" are available when `ELEN >= 64` (that is, unavailabl
 
 === Tuple type
 
-Tuple types encode `SEW`, `LMUL`, and `NFIELD`^16^ into the data type.
+Tuple types encode `SEW`, `LMUL`, and `NFIELD` into the data type.
 
-These types are utilized through the segment load/store instruction intrinsics along with getters <<pseudo-vget>> and setters <<pseudo-vset>> to extract/combine them. The types listed in <<integer-type>> and <<floating-point-type>> all have tuple types. Types under the combination of `LMUL`, `NFIELD` follows the restriction by the specification, `EMUL * NFIELDS ≤ 8`.
+These types are utilized through the segment load/store instruction intrinsics along with getters <<pseudo-vget>> and setters <<pseudo-vset>> to extract/combine them. The types listed in <<integer-type>> and <<floating-point-type>> all have tuple types. Types under the combination of `LMUL`, `NFIELD` follows the restriction by the RVV specification, `EMUL * NFIELDS ≤ 8`.
 
 Availability of the tuple types follows the availability of their corresponding non-tuple (`NFIELD=1`) types.
 
@@ -577,7 +577,7 @@ NOTE: The implementation must respect the ratio between SEW and LMUL given to th
 [[pseudo-vsetvlmax]]
 === `vsetvlmax`
 
-The `vsetvlmax` intrinsics return `VLMAX` ^5^ when provided with the element width and LMUL in the intrinsic suffix. This pseudo intrinsic is typically mapped to the `vsetvli` instruction.
+The `vsetvlmax` intrinsics return `VLMAX` when provided with the element width and LMUL in the intrinsic suffix. This pseudo intrinsic is typically mapped to the `vsetvli` instruction.
 
 NOTE: As mentioned in <<control-of-vl>>, the `vsetvlmax` intrinsics do not necessarily map to the emission a `vsetvli` instruction of that exact SEW and LMUL provided. The actual value written to the `vl` control register is an implementation defined behavior and typically not known until runtime.
 
@@ -643,7 +643,7 @@ dest = __riscv_vset_v_f32m2_f32m4(dest, 1, v1);
 [[pseudo-vlenb]]
 === `vlenb`
 
-The `vlenb` intrinsic returns what is held inside the read-only CSR `vlenb` ^29^, which is the vector register length in bytes. This pseudo intrinsic is mapped to a `csrr` instruction that reads from the CSR `vlenb`.
+The `vlenb` intrinsic returns what is held inside the read-only CSR `vlenb`, which is the vector register length in bytes. This pseudo intrinsic is mapped to a `csrr` instruction that reads from the CSR `vlenb`.
 
 [,c]
 ----
@@ -665,7 +665,7 @@ An agnostic value is an indeterminate value and evaluation of an agnostic value 
 
 === Copying vector register group contents
 
-There is no intrinsic that directly maps to the whole vector register move instructions (`vmv<nr>r.v`) ^30^.
+There is no intrinsic that directly maps to the whole vector register move instructions (`vmv<nr>r.v`).
 
 For copying of the vector contents in whole, we encourage the users to use the assignment operator (`=`).
 
@@ -679,8 +679,8 @@ Intrinsics whose computation is relevant to the value held in destination regist
 
 - Intrinsics with tail-undisturbed (`vta=0`)
 - Intrinsics with mask-undisturbed (`vma=0`)
-- Intrinsics representing Vector Multiply-Add Operations ^13^
-- Intrinsics representing Vector Slideup Instructions ^24^
+- Intrinsics representing Vector Multiply-Add Operations
+- Intrinsics representing Vector Slideup Instructions
 
 For intrinsics with no `vd` argument, the implementation is free to pick any register as the destination register.
 
@@ -694,11 +694,11 @@ Some users may expect the intrinsics to directly translate and appear in the ass
 
 === Bookkeeping of configurations
 
-Control of `vl`, `vtype`, `vxrm`, and `frm` is not directly exposed to the user. The implementation is responsible for setting the correct values into these CSRs to achieve the expected semantics of the intrinsic functions with respect to the conventions defined in the ISA specification ^0^ and ABI specification ^9^.
+Control of `vl`, `vtype`, `vxrm`, and `frm` is not directly exposed to the user. The implementation is responsible for setting the correct values into these CSRs to achieve the expected semantics of the intrinsic functions with respect to the conventions defined in the ISA specification cite:[riscv-v-spec] and ABI specification cite:[riscv-cc-vector].
 
 === Strided load/store with stride of 0
 
-The specification mentions ^15^ that the strided load/store instruction with a stride of 0 could have different behaviors, performing all memory accesses or fewer memory operations. Since needing all memory accesses isn't likely to be common, the implementation is allowed to generate fewer memory operations with strided load/store intrinsics.
+The RVV specification mentions that the strided load/store instruction with a stride of 0 could have different behaviors, performing all memory accesses or fewer memory operations. Since needing all memory accesses isn't likely to be common, the implementation is allowed to generate fewer memory operations with strided load/store intrinsics.
 
 In other words, the compiler does not guarantee generating the instruction for all memory accesses in strided load/store intrinsics with a stride of 0. If the user needs all memory accesses to be performed, they should use an indexed load/store intrinsics with all zero indices.
 
@@ -715,69 +715,3 @@ The compiler will be conservative to registers (`vtype`, `vxrm`, `frm`) when enc
 === The `new_vl` argument in fault-only-first load intrinsics
 
 The fault-only-first load intrinsics write the new value inside the `vl` register into the address of the `new_vl` argument. Providing an illegal memory location is undefined behavior.
-
-== References
-
-^0^https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc[Github - riscv/riscv-v-spec/v-spec.adoc]
-
-NOTE: Standard extensions are merged into `riscv/riscv-isa-manual` after ratification. There is an on-going pull request ^26^ for the "V" extension to be merged. At this moment this intrinsics specification still references the frozen draft ^0^. This reference will be updated in the future once the pull request has been merged.
-
-^1^https://github.com/riscv-non-isa/riscv-c-api-doc/blob/master/riscv-c-api.md[Github - riscv-non-isa/riscv-c-api-doc/riscv-c-api.md]
-
-^2^https://llvm.org/docs/RISCVUsage.html[User Guide for RISC-V Target]
-
-^3^https://gcc.gnu.org/onlinedocs/gcc/RISC-V-Options.html[RISC-V Options (Using the GNU Compiler Collection (GCC))]
-
-^4^Section 3.4.1 (Vector selected element width `vsew[2:0]`) in the specification ^0^
-
-^5^Section 3.4.2 (Vector Register Grouping (`vlmul[2:0]``)) in the specification ^0^
-
-^6^Section 3.4.3 (Vector Tail Agnostic and Vector Mask Agnostic `vta` and `vma`) in the specification ^0^
-
-^7^Section 5.3 (Vector Masking) in the specification ^0^
-
-^8^Section 3.8 (Vector Fixed-Point Rounding Mode Register `vxrm`) in the specification ^0^
-
-^9^https://github.com/riscv-non-isa/riscv-elf-psabi-doc/blob/master/riscv-cc.adoc#vector-register-convention[psABI: Vector Register Convention]
-
-^10^https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf[The RISC-V Instruction Set Manual: 8.2 Floating-Point Control and Status Register]
-
-^11^Section 3.5 (Vector Length Register) in the specification ^0^
-
-^12^Section 3.4.2 in the specification ^0^
-
-^13^Section 11.13, 11.14, 13.6, 13.7 in the specification ^0^
-
-^14^Section 4.5 (Mask Register Layout) in the specification ^0^
-
-^15^Section 7.5 in the specification ^0^
-
-^16^Section 7.8 in the specification ^0^
-
-^17^Section 5.2 (Vector Operands) in the specification ^0^
-
-^18^Section 6 (Configuration-Setting Instructions) in the specification ^0^
-
-^19^Section 18 (Standrad Vector Extensions) in the specification ^0^
-
-^20^Section 18.2 (Zve*: Vector Extensions for Embedded Processors) in the specification ^0^
-
-^21^Section 12 (Vector Fixed-Point Arithmetic Instructions) in the specification ^0^
-
-^22^Section 3.9 (3.9. Vector Fixed-Point Saturation Flag vxsat) in the specification ^0^
-
-^23^Section 13 (Vector Floating-Point Instructions) in the specification ^0^
-
-^24^Section 16.3.1 (Vector Slideup Instructions) in the specification ^0^
-
-^25^Section 3.7 (Vector Start Index CSR `vstart`) in the specification ^0^
-
-^26^https://github.com/riscv/riscv-isa-manual/pull/1088[riscv/riscv-isa-manual#1088]
-
-^27^Section 6.3 (Constraints on Setting `vl`) in the specficiation ^0^
-
-^28^Section 6.4 (Example of stripmining and changes to SEW) in the specification ^0^
-
-^29^Section 3.6 (Vector Byte Length `vlenb`) in the specification ^0^
-
-^30^Section 16.6 (Whole Vector Register Move) in the specification ^0^
