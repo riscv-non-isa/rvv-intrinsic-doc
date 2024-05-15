@@ -112,9 +112,8 @@ void matmul_rvv(double *a, double *b, double *c, int n, int m, int p) {
         vfloat64m1_t vec_b =
           __riscv_vlse64_v_f64m1(ptr_b, sizeof(double) * m, vl);
 
-        // Accumulate dot product of row and column. If vl < vlmax
-        // we need to preserve the existin values of vec_s, hence the
-        // tu policy.
+        // Accumulate dot product of row and column. If vl < vlmax we need to
+        // preserve the existing values of vec_s, hence the tu policy.
         vec_s = __riscv_vfmacc_vv_f64m1_tu(vec_s, vec_a, vec_b, vl);
       }
 
