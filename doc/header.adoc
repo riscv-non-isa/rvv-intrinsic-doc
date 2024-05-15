@@ -47,6 +47,8 @@ include::preface.adoc[]
 
 include::rvv-intrinsic-spec.adoc[]
 
+include::rvv-intrinsic-examples.adoc[]
+
 ifeval::["{build-type}" != "quick"]
 [appendix]
 == Explicit (Non-overloaded) intrinsics
