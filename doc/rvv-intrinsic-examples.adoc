@@ -1,0 +1,297 @@
+== Examples
+
+NOTE: This section is non-normative.
+
+NOTE: No claims about efficiency are made the examples presented in this section.
+
+This section presents examples that use the RVV intrinsics specified in this
+document. The examples are in C and assume `#include <riscv_vector.h>` has
+appeared earlier in the source code.
+
+=== Memory copy
+
+.An implementation of the `memcpy` function of the C Standard library using RVV intrinsics.
+====
+[,c]
+----
+void *memcpy_rvv(void *restrict destination, const void *restrict source,
+    size_t n) {
+  unsigned char *dst = destination;
+  const unsigned char *src = source;
+  // copy data byte by byte
+  for (size_t vl; n > 0; n -= vl, src += vl, dst += vl) {
+    vl = __riscv_vsetvl_e8m8(n);
+    // Load src[0..vl)
+    vuint8m8_t vec_src = __riscv_vle8_v_u8m8(src, vl);
+    // Store dst[0..vl)
+    __riscv_vse8_v_u8m8(dst, vec_src, vl);
+    // src is incremented vl (bytes)
+    // dst is incremented vl (bytes)
+    // n is decremented vl
+  }
+  return destination;
+}
+----
+====
+
+=== SAXPY
+
+Consider the following function that implements a SAXPY-like kernel.
+
+[,c]
+----
+void saxpy_reference(size_t n, const float a, const float *x, float *y) {
+  for (size_t i = 0; i < n; ++i) {
+    y[i] = a * x[i] + y[i];
+  }
+}
+----
+
+.An implementation of SAXPY using RVV intrinsics.
+====
+[,c]
+----
+void saxpy_rvv(size_t n, const float a, const float *x, float *y) {
+  for (size_t vl; n > 0; n -= vl, x += vl, y += vl) {
+    vl = __riscv_vsetvl_e32m8(n);
+    // Load x[i..i+vl)
+    vfloat32m8_t vx = __riscv_vle32_v_f32m8(x, vl);
+    // Load y[i..i+vl)
+    vfloat32m8_t vy = __riscv_vle32_v_f32m8(y, vl);
+    // Computes vy[0..vl) + a*vx[0..vl)
+    // and stores it in y[i..i+vl)
+    __riscv_vse32_v_f32m8(y, __riscv_vfmacc_vf_f32m8(vy, a, vx, vl), vl);
+  }
+}
+----
+====
+
+=== Matrix multiplication
+
+Consider the following function that implements a naive matrix multiplication.
+
+[,c]
+----
+// matrix multiplication
+//  C[0..n)[0..m) = A[0..n)[0..p] x B[0..p)[0..m)
+void matmul_reference(double *a, double *b, double *c, int n, int m, int p) {
+  for (int i = 0; i < n; ++i)
+    for (int j = 0; j < m; ++j) {
+      c[i * n + j] = 0;
+      for (int k = 0; k < p; ++k) {
+        c[i * n + j] += a[i * p + k] * b[k * m + j];
+      }
+    }
+}
+----
+
+The following example is a version of the matrix multiplication. The
+accumulation on `c[i * n + j]` is implemented using partial accumulations
+followed by a single final accumulation.
+
+.An implementation of a naive matrix multiplication using RVV intrinsics.
+====
+[,c]
+----
+void matmul_rvv(double *a, double *b, double *c, int n, int m, int p) {
+  size_t vlmax = __riscv_vsetvlmax_e64m1();
+  for (int i = 0; i < n; ++i)
+    for (int j = 0; j < m; ++j) {
+      double *ptr_a = &a[i * p];
+      double *ptr_b = &b[j];
+      int k = p;
+      // Set accumulator to  zero.
+      vfloat64m1_t vec_s = __riscv_vfmv_v_f_f64m1(0.0, vlmax);
+      vfloat64m1_t vec_zero = __riscv_vfmv_v_f_f64m1(0.0, vlmax);
+      for (size_t vl; k > 0; k -= vl) {
+        vl = __riscv_vsetvl_e64m1(k);
+
+        // Load row a[i][k..k+vl)
+        vfloat64m1_t vec_a = __riscv_vle64_v_f64m1(ptr_a, vl);
+        // Load column b[k..k+vl)[j]
+        vfloat64m1_t vec_b =
+          __riscv_vlse64_v_f64m1(ptr_b, sizeof(double) * m, vl);
+
+        // Accumulate dot product of row and column. If vl < vlmax
+        // we need to preserve the existin values of vec_s, hence the
+        // tu policy.
+        vec_s = __riscv_vfmacc_vv_f64m1_tu(vec_s, vec_a, vec_b, vl);
+      }
+
+      // Final accumulation.
+      vfloat64m1_t vec_sum =
+        __riscv_vfredusum_vs_f64m1_f64m1(vec_s, vec_zero, vlmax);
+      double sum = __riscv_vfmv_f_s_f64m1_f64(vec_sum);
+      c[i * n + j] = sum;
+    }
+}
+----
+====
+
+
+=== String copy
+
+.An implementation of the `strcpy` function of the C Standard Library using RVV intrinsics.
+====
+[,c]
+----
+char *strcpy_rvv(char *destination, const char *source) {
+  unsigned char *dst = (unsigned char *)destination;
+  unsigned char *src = (unsigned char *)source;
+  size_t vlmax = __riscv_vsetvlmax_e8m8();
+  long first_set_bit = -1;
+
+  // This loop stops when among the loaded bytes we find the null byte
+  // of the string .i.e. when first_set_bit >= 0
+  for (size_t vl; first_set_bit < 0; src += vl, dst += vl) {
+    // Load up to vlmax elements if possible.
+    // vl is set to the maximum number of elements that could be loaded
+    // without causing a memory fault.
+    vuint8m8_t vec_src = __riscv_vle8ff_v_u8m8(src, &vl, vlmax);
+
+    // Mask that states where null bytes are in the loaded bytes.
+    vbool1_t string_terminate = __riscv_vmseq_vx_u8m8_b1(vec_src, 0, vl);
+
+    // If the null byte is not in the loaded bytes the resulting mask will
+    // be all ones, otherwise only the elements up to and including the
+    // first null byte of the resulting will be enabled.
+    vbool1_t mask = __riscv_vmsif_m_b1(string_terminate, vl);
+
+    // Store the enabled elements as determined by the mask above.
+    __riscv_vse8_v_u8m8_m(mask, dst, vec_src, vl);
+
+    // Determine if we found the null byte in the loaded bytes.
+    // If not found, first_set_bit is set to all ones (i.e., -1), otherwise
+    // first_set_bit will be the number of the first element enabled in the
+    // mask.
+    first_set_bit = __riscv_vfirst_m_b1(string_terminate, vl);
+  }
+  return destination;
+}
+----
+====
+
+=== Control flow
+
+Consider the following function that computes the division of two arrays
+elementwise but sets the result to a given value when the element of the
+divisor array is zero.
+
+[,c]
+----
+void branch_ref(double *a, double *b, double *c, int n, double constant) {
+  for (int i = 0; i < n; ++i) {
+    c[i] = (b[i] != 0.0) ? a[i] / b[i] : constant;
+  }
+}
+----
+
+The following example applies if-conversion using masks to implement the
+semantics of the conditional operator.
+
+.An implementation of `branch_ref` using RVV intrinsics.
+====
+[,c]
+----
+void branch_rvv(double *a, double *b, double *c, int n, double constant) {
+  // set vlmax and initialize variables
+  size_t vlmax = __riscv_vsetvlmax_e64m1();
+  // "Broadcast" the value of constant to all (vlmax) the elements in
+  // vec_constant.
+  vfloat64m1_t vec_constant = __riscv_vfmv_v_f_f64m1(constant, vlmax);
+  for (size_t vl; n > 0; n -= vl, a += vl, b += vl, c += vl) {
+    vl = __riscv_vsetvl_e64m1(n);
+
+    // Load a[i..i+vl)
+    vfloat64m1_t vec_a = __riscv_vle64_v_f64m1(a, vl);
+    // Load b[i..i+vl)
+    vfloat64m1_t vec_b = __riscv_vle64_v_f64m1(b, vl);
+
+    // Compute a mask whose enabled elements will correspond to the
+    // elements of b that are not zero.
+    vbool64_t mask = __riscv_vmfne_vf_f64m1_b64(vec_b, 0.0, vl);
+
+    // Use mask undisturbed policy to compute the division for the
+    // elements enabled in the mask, otherwise set them to the given
+    // constant above (maskedoff).
+    vfloat64m1_t vec_c = __riscv_vfdiv_vv_f64m1_mu(
+        mask, /*maskedoff*/ vec_constant, vec_a, vec_b, vl);
+
+    // Store into c[i..i+vl)
+    __riscv_vse64_v_f64m1(c, vec_c, vl);
+  }
+}
+----
+====
+
+=== Reduction and counting
+
+Consider the following function that computes the dot product of two arrays
+excluding elements of the first array (along with the correspondign element
+of the second array) where the value is 42. The function also counts how many
+pairs of elements took part of the dot-product.
+
+[,c]
+----
+void reduce_reference(double *a, double *b, double *result_sum,
+                      int *result_count, int n) {
+  int count = 0;
+  double s = 0.0;
+  for (int i = 0; i < n; ++i) {
+    if (a[i] != 42.0) {
+      s += a[i] * b[i];
+      count++;
+    }
+  }
+
+  *result_sum = s;
+  *result_count = count;
+}
+----
+
+The following example implements the accumulation of the `s` variable doing
+several partial accumulations followed by a final accumulation.
+
+.An implementation of `reduce_reference` using RVV intrinsics.
+====
+[,c]
+----
+void reduce_rvv(double *a, double *b, double *result_sum, int *result_count,
+    int n) {
+  int count = 0;
+  // set vlmax and initialize variables
+  size_t vlmax = __riscv_vsetvlmax_e64m1();
+  vfloat64m1_t vec_zero = __riscv_vfmv_v_f_f64m1(0.0, vlmax);
+  vfloat64m1_t vec_s = __riscv_vfmv_v_f_f64m1(0.0, vlmax);
+  for (size_t vl; n > 0; n -= vl, a += vl, b += vl) {
+    vl = __riscv_vsetvl_e64m1(n);
+
+    // Load a[i..i+vl)
+    vfloat64m1_t vec_a = __riscv_vle64_v_f64m1(a, vl);
+    // Load b[i..i+vl)
+    vfloat64m1_t vec_b = __riscv_vle64_v_f64m1(b, vl);
+
+    // Compute a mask whose enabled elements will correspond to the
+    // elements of a that are not 42.
+    vbool64_t mask = __riscv_vmfne_vf_f64m1_b64(vec_a, 42, vl);
+
+    // for all e in [0..vl)
+    //  vec_s[e] ← vec_s[e] + vec_a[e] * vec_b[e], if mask[e] is enabled
+    //             vec_s[e]                      , otherwise (mask undisturbed)
+    vec_s = __riscv_vfmacc_vv_f64m1_tumu(mask, vec_s, vec_a, vec_b, vl);
+
+    // Adds to count the number of elements in mask that are enabled.
+    count = count + __riscv_vcpop_m_b64(mask, vl);
+  }
+
+  vfloat64m1_t vec_sum;
+  // Final accumulation.
+  vec_sum = __riscv_vfredusum_vs_f64m1_f64m1(vec_s, vec_zero, vlmax);
+  double sum = __riscv_vfmv_f_s_f64m1_f64(vec_sum);
+
+  // Return values.
+  *result_sum = sum;
+  *result_count = count;
+}
+----
+====
