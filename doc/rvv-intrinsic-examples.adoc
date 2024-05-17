@@ -73,7 +73,7 @@ Consider the following function that implements a naive matrix multiplication.
 [,c]
 ----
 // matrix multiplication
-//  C[0..n)[0..m) = A[0..n)[0..p] x B[0..p)[0..m)
+//  C[0..n)[0..m) = A[0..n)[0..p) x B[0..p)[0..m)
 void matmul_reference(double *a, double *b, double *c, int n, int m, int p) {
   for (int i = 0; i < n; ++i)
     for (int j = 0; j < m; ++j) {
