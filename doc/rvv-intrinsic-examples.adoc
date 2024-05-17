@@ -272,7 +272,7 @@ void reduce_rvv(double *a, double *b, double *result_sum, int *result_count,
 
     // Compute a mask whose enabled elements will correspond to the
     // elements of a that are not 42.
-    vbool64_t mask = __riscv_vmfne_vf_f64m1_b64(vec_a, 42, vl);
+    vbool64_t mask = __riscv_vmfne_vf_f64m1_b64(vec_a, 42.0, vl);
 
     // for all e in [0..vl)
     //  vec_s[e] ← vec_s[e] + vec_a[e] * vec_b[e], if mask[e] is enabled
@@ -280,7 +280,7 @@ void reduce_rvv(double *a, double *b, double *result_sum, int *result_count,
     vec_s = __riscv_vfmacc_vv_f64m1_tumu(mask, vec_s, vec_a, vec_b, vl);
 
     // Adds to count the number of elements in mask that are enabled.
-    count = count + __riscv_vcpop_m_b64(mask, vl);
+    count += __riscv_vcpop_m_b64(mask, vl);
   }
 
   vfloat64m1_t vec_sum;
