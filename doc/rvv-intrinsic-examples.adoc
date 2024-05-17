@@ -228,7 +228,7 @@ void branch_rvv(double *a, double *b, double *c, int n, double constant) {
 Consider the following function that computes the dot product of two arrays
 excluding elements of the first array (along with the correspondign element
 of the second array) where the value is 42. The function also counts how many
-pairs of elements took part of the dot-product.
+pairs of elements took part in the dot-product.
 
 [,c]
 ----
