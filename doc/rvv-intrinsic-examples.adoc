@@ -77,16 +77,16 @@ Consider the following function that implements a naive matrix multiplication.
 void matmul_reference(double *a, double *b, double *c, int n, int m, int p) {
   for (int i = 0; i < n; ++i)
     for (int j = 0; j < m; ++j) {
-      c[i * n + j] = 0;
+      c[i * m + j] = 0;
       for (int k = 0; k < p; ++k) {
-        c[i * n + j] += a[i * p + k] * b[k * m + j];
+        c[i * m + j] += a[i * p + k] * b[k * m + j];
       }
     }
 }
 ----
 
 The following example is a version of the matrix multiplication. The
-accumulation on `c[i * n + j]` is implemented using partial accumulations
+accumulation on `c[i * m + j]` is implemented using partial accumulations
 followed by a single final accumulation.
 
 .An implementation of a naive matrix multiplication using RVV intrinsics.
@@ -121,7 +121,7 @@ void matmul_rvv(double *a, double *b, double *c, int n, int m, int p) {
       vfloat64m1_t vec_sum =
         __riscv_vfredusum_vs_f64m1_f64m1(vec_s, vec_zero, vlmax);
       double sum = __riscv_vfmv_f_s_f64m1_f64(vec_sum);
-      c[i * n + j] = sum;
+      c[i * m + j] = sum;
     }
 }
 ----
