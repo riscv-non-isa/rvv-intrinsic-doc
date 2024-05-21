@@ -24,7 +24,7 @@ def gen(g):
 
   g.function_group(
       vector_crypto_template,
-      "Vector Basic Bit-manipulation - Reverse Bits in Elements",
+      "Vector Basic Bit-manipulation - Reverse",
       "",  # FIXME: We probably have a separate document for vector-crypto
       ["vbrev", "vbrev8", "vrev8"],
       UITYPE,

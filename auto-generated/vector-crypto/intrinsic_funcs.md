@@ -98,7 +98,7 @@ vuint64m8_t __riscv_vandn_vx_u64m8_m (vbool8_t vm, vuint64m8_t vs2, uint64_t rs1
 ----
 
 [[]]
-==== Vector Basic Bit-manipulation - Reverse Bits in Elements
+==== Vector Basic Bit-manipulation - Reverse
 
 [,c]
 ----
