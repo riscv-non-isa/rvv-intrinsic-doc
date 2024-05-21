@@ -188,7 +188,7 @@ vuint64m8_t __riscv_vandn_mu (vbool8_t vm, vuint64m8_t vd, vuint64m8_t vs2, uint
 ----
 
 [[policy-variant-overloaded]]
-==== Vector Basic Bit-manipulation - Reverse Bits in Elements
+==== Vector Basic Bit-manipulation - Reverse
 
 [,c]
 ----
