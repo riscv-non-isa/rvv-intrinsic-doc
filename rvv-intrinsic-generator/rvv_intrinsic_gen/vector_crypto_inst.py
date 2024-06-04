@@ -40,7 +40,17 @@ def gen(g):
       UITYPE,
       SEWS,
       LMULS,
-      decorators.has_masking_no_maskedoff)
+      decorators.has_masking_maskedoff_policy)
+
+  g.function_group(
+      vector_crypto_template,
+      "Vector Basic Bit-manipulation - Vector Population Count",
+      "",  # FIXME: We probably have a separate document for vector-crypto
+      ["vcpop"],
+      UITYPE,
+      SEWS,
+      LMULS,
+      decorators.has_masking_maskedoff_policy)
 
   g.function_group(
       vector_crypto_template,

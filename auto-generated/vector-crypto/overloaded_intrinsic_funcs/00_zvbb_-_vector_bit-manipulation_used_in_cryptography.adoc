@@ -334,6 +334,58 @@ vuint64m8_t __riscv_vctz (vbool8_t vm, vuint64m8_t vs2, size_t vl);
 ----
 
 [[overloaded-]]
+==== Vector Basic Bit-manipulation - Vector Population Count
+
+[,c]
+----
+vuint8mf8_t __riscv_vcpop (vuint8mf8_t vs2, size_t vl);
+vuint8mf4_t __riscv_vcpop (vuint8mf4_t vs2, size_t vl);
+vuint8mf2_t __riscv_vcpop (vuint8mf2_t vs2, size_t vl);
+vuint8m1_t __riscv_vcpop (vuint8m1_t vs2, size_t vl);
+vuint8m2_t __riscv_vcpop (vuint8m2_t vs2, size_t vl);
+vuint8m4_t __riscv_vcpop (vuint8m4_t vs2, size_t vl);
+vuint8m8_t __riscv_vcpop (vuint8m8_t vs2, size_t vl);
+vuint16mf4_t __riscv_vcpop (vuint16mf4_t vs2, size_t vl);
+vuint16mf2_t __riscv_vcpop (vuint16mf2_t vs2, size_t vl);
+vuint16m1_t __riscv_vcpop (vuint16m1_t vs2, size_t vl);
+vuint16m2_t __riscv_vcpop (vuint16m2_t vs2, size_t vl);
+vuint16m4_t __riscv_vcpop (vuint16m4_t vs2, size_t vl);
+vuint16m8_t __riscv_vcpop (vuint16m8_t vs2, size_t vl);
+vuint32mf2_t __riscv_vcpop (vuint32mf2_t vs2, size_t vl);
+vuint32m1_t __riscv_vcpop (vuint32m1_t vs2, size_t vl);
+vuint32m2_t __riscv_vcpop (vuint32m2_t vs2, size_t vl);
+vuint32m4_t __riscv_vcpop (vuint32m4_t vs2, size_t vl);
+vuint32m8_t __riscv_vcpop (vuint32m8_t vs2, size_t vl);
+vuint64m1_t __riscv_vcpop (vuint64m1_t vs2, size_t vl);
+vuint64m2_t __riscv_vcpop (vuint64m2_t vs2, size_t vl);
+vuint64m4_t __riscv_vcpop (vuint64m4_t vs2, size_t vl);
+vuint64m8_t __riscv_vcpop (vuint64m8_t vs2, size_t vl);
+// masked functions
+vuint8mf8_t __riscv_vcpop (vbool64_t vm, vuint8mf8_t vs2, size_t vl);
+vuint8mf4_t __riscv_vcpop (vbool32_t vm, vuint8mf4_t vs2, size_t vl);
+vuint8mf2_t __riscv_vcpop (vbool16_t vm, vuint8mf2_t vs2, size_t vl);
+vuint8m1_t __riscv_vcpop (vbool8_t vm, vuint8m1_t vs2, size_t vl);
+vuint8m2_t __riscv_vcpop (vbool4_t vm, vuint8m2_t vs2, size_t vl);
+vuint8m4_t __riscv_vcpop (vbool2_t vm, vuint8m4_t vs2, size_t vl);
+vuint8m8_t __riscv_vcpop (vbool1_t vm, vuint8m8_t vs2, size_t vl);
+vuint16mf4_t __riscv_vcpop (vbool64_t vm, vuint16mf4_t vs2, size_t vl);
+vuint16mf2_t __riscv_vcpop (vbool32_t vm, vuint16mf2_t vs2, size_t vl);
+vuint16m1_t __riscv_vcpop (vbool16_t vm, vuint16m1_t vs2, size_t vl);
+vuint16m2_t __riscv_vcpop (vbool8_t vm, vuint16m2_t vs2, size_t vl);
+vuint16m4_t __riscv_vcpop (vbool4_t vm, vuint16m4_t vs2, size_t vl);
+vuint16m8_t __riscv_vcpop (vbool2_t vm, vuint16m8_t vs2, size_t vl);
+vuint32mf2_t __riscv_vcpop (vbool64_t vm, vuint32mf2_t vs2, size_t vl);
+vuint32m1_t __riscv_vcpop (vbool32_t vm, vuint32m1_t vs2, size_t vl);
+vuint32m2_t __riscv_vcpop (vbool16_t vm, vuint32m2_t vs2, size_t vl);
+vuint32m4_t __riscv_vcpop (vbool8_t vm, vuint32m4_t vs2, size_t vl);
+vuint32m8_t __riscv_vcpop (vbool4_t vm, vuint32m8_t vs2, size_t vl);
+vuint64m1_t __riscv_vcpop (vbool64_t vm, vuint64m1_t vs2, size_t vl);
+vuint64m2_t __riscv_vcpop (vbool32_t vm, vuint64m2_t vs2, size_t vl);
+vuint64m4_t __riscv_vcpop (vbool16_t vm, vuint64m4_t vs2, size_t vl);
+vuint64m8_t __riscv_vcpop (vbool8_t vm, vuint64m8_t vs2, size_t vl);
+----
+
+[[overloaded-]]
 ==== Vector Bit-manipulation used in Cryptography - Rotate
 
 [,c]
