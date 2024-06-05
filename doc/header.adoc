@@ -36,11 +36,9 @@ endif::[]
 :bibtex-throw: false
 
 [WARNING]
-.This document is in the link:http://riscv.org/spec-state[Development state]
+.This document is in the link:http://riscv.org/spec-state[Freeze state]
 ====
-Expect potential changes. This draft specification is likely to evolve before
-it is accepted as a standard. Implementations based on this draft
-may not conform to the future standard.
+Change is unlikely at this point of the specification.
 ====
 
 include::preface.adoc[]
