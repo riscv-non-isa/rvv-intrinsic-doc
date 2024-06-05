@@ -17,6 +17,7 @@ limitations under the License.
 
 Generator classes that controls structures of the output.
 """
+from abc import ABC, abstractmethod
 import os
 import collections
 import re
@@ -25,7 +26,7 @@ from enums import ExtraAttr
 from enums import ToolChainType
 
 
-class Generator():
+class Generator(ABC):
   """
   Base class for all generators.
   """
@@ -36,29 +37,23 @@ class Generator():
     pass
 
   def write(self, text):
-    pass
+    return NotImplemented
 
   def write_title(self, text, link):
-    pass
+    return NotImplemented
 
   def gen_prologue(self):
-    pass
+    return NotImplemented
 
   def inst_group_prologue(self):
-    return ""
+    return NotImplemented
 
   def inst_group_epilogue(self):
-    return ""
+    return NotImplemented
 
+  @abstractmethod
   def func(self, inst_info, name, return_type, **kwargs):
-    # pylint: disable=unused-argument
-    # FIXME: inst_info is currently only used by RIFGenerator.
-    self.generated_functions_set.add(name)
-    args = ", ".join(map(lambda a: f"{a[1]} {a[0]}", kwargs.items()))
-    # "T * name" to "T *name"
-    args = args.replace("* ", "*")
-    s = f"{return_type} {name} ({args});\n"
-    return s
+    return NotImplemented
 
   def function_group(self,
                      template,
@@ -83,7 +78,7 @@ class Generator():
         description=description)
 
   def start_group(self, group_name):
-    pass
+    return NotImplemented
 
   @staticmethod
   def func_name(name):
@@ -305,7 +300,7 @@ class Generator():
       \x1b[0mfunctions")
 
   def post_gen(self):
-    pass
+    return NotImplemented
 
   def emit_function_group_description(self, description):
     pass
@@ -386,7 +381,13 @@ class DocGenerator(Generator):
 
   def func(self, inst_info, name, return_type, **kwargs):
     name = Generator.func_name(name)
-    s = super().func(inst_info, name, return_type, **kwargs)
+    # pylint: disable=unused-argument
+    # FIXME: inst_info is currently only used by RIFGenerator.
+    self.generated_functions_set.add(name)
+    args = ", ".join(map(lambda a: f"{a[1]} {a[0]}", kwargs.items()))
+    # "T * name" to "T *name"
+    args = args.replace("* ", "*")
+    s = f"{return_type} {name} ({args});\n"
     self.write(s)
 
   def start_group(self, group_name):
@@ -565,10 +566,12 @@ class APITestGenerator(Generator):
         os.path.join(self.folder, test_file_name), mode, encoding="utf-8")
 
     stripped_prefix_non_overloaded_func_name = non_overloaded_func_name[8:]
-    func_decl = super().func(inst_info,
-                             "test_" + stripped_prefix_non_overloaded_func_name,
-                             return_type, **kwargs)
-    func_decl = func_decl.replace(" (", "(")
+    non_overloaded_func_name = "test_" + stripped_prefix_non_overloaded_func_name
+    self.generated_functions_set.add(non_overloaded_func_name)
+    args = ", ".join(map(lambda a: f"{a[1]} {a[0]}", kwargs.items()))
+    # "T * name" to "T *name"
+    args = args.replace("* ", "*")
+    func_decl = f"{return_type} {non_overloaded_func_name}({args});\n"
 
     # Strip redundant parameters in function declaration because the intrinsic
     # requires an immediate to be provided to the parameter.
