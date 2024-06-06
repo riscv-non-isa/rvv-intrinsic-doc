@@ -566,7 +566,8 @@ class APITestGenerator(Generator):
         os.path.join(self.folder, test_file_name), mode, encoding="utf-8")
 
     stripped_prefix_non_overloaded_func_name = non_overloaded_func_name[8:]
-    non_overloaded_func_name = "test_" + stripped_prefix_non_overloaded_func_name
+    non_overloaded_func_name = "test_" + \
+                                stripped_prefix_non_overloaded_func_name
     self.generated_functions_set.add(non_overloaded_func_name)
     args = ", ".join(map(lambda a: f"{a[1]} {a[0]}", kwargs.items()))
     # "T * name" to "T *name"
