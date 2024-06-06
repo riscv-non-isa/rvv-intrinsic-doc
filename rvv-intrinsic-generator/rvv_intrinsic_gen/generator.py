@@ -37,19 +37,19 @@ class Generator(ABC):
     pass
 
   def write(self, text):
-    return NotImplemented
+    raise NotImplementedError
 
   def write_title(self, text, link):
-    return NotImplemented
+    raise NotImplementedError
 
   def gen_prologue(self):
-    return NotImplemented
+    raise NotImplementedError
 
   def inst_group_prologue(self):
-    return NotImplemented
+    raise NotImplementedError
 
   def inst_group_epilogue(self):
-    return NotImplemented
+    raise NotImplementedError
 
   @abstractmethod
   def func(self, inst_info, name, return_type, **kwargs):
@@ -78,7 +78,7 @@ class Generator(ABC):
         description=description)
 
   def start_group(self, group_name):
-    return NotImplemented
+    raise NotImplementedError
 
   @staticmethod
   def func_name(name):
@@ -300,7 +300,7 @@ class Generator(ABC):
       \x1b[0mfunctions")
 
   def post_gen(self):
-    return NotImplemented
+    raise NotImplementedError
 
   def emit_function_group_description(self, description):
     pass
