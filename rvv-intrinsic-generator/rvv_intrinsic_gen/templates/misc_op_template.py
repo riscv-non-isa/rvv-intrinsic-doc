@@ -42,6 +42,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       break
     decorator.write_text_header(G)
 
+    inst_type = None
     for args in prod(OP=op_list, TYPE=type_list, SEW=sew_list, LMUL=lmul_list):
       type_helper = TypeHelper(**args)
       if args["OP"] not in ["vundefined"]:
