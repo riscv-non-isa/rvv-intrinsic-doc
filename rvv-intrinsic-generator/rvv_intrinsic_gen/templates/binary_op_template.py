@@ -63,6 +63,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
 
       type_helper = TypeHelper(**args)
 
+      s_op2 = None
       if (op in ["mulhsu", "ssra", "sra"] and data_type == "uint") or \
          (op in ["ssrl", "srl"] and data_type == "int"):
         # Unsigned mulhsu and ssra are unsupported, signed ssrl is unsupported
