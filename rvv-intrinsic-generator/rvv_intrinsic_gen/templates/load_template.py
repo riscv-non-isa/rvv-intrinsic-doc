@@ -37,6 +37,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
     decorator.write_text_header(G)
     for args in prod(
         OP=op_list, TYPE=type_list, SEW=sew_list, EEW=sew_list, LMUL=lmul_list):
+      assert args["OP"] is not None
       op = args["OP"]
       sew = args["SEW"]
       eew = args["EEW"]

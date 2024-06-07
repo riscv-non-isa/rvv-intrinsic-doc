@@ -43,6 +43,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
     inst_type = None
     for args in prod(OP=op_list, TYPE=type_list, SEW=sew_list, LMUL=lmul_list):
       type_helper = TypeHelper(**args)
+      inst_type = InstType.UNKNOWN
       if args["OP"] not in ["vundefined"]:
         break
       if args["TYPE"] == "float" and args["SEW"] == 8:
@@ -73,6 +74,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         LMUL=lmul_list,
         NF=nf_list):
       type_helper = TypeHelper(**args)
+      inst_type = InstType.UNKNOWN
       if args["OP"] not in ["vundefined"]:
         break
       if args["TYPE"] == "float" and args["SEW"] == 8:
@@ -94,6 +96,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         SEW=sew_list,
         LMUL=lmul_list,
         DST_LMUL=lmul_list):
+      assert args["TYPE"] is not None
       op = args["OP"]
       src_lmul = args["LMUL"]
       dst_lmul = args["DST_LMUL"]
@@ -174,6 +177,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         SEW=sew_list,
         LMUL=lmul_list,
         NF=nf_list):
+      assert args["NF"] is not None
       type_helper = TypeHelper(**args)
 
       # This intrinsic appears after v0.12

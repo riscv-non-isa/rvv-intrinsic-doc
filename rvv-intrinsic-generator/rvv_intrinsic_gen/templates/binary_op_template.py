@@ -40,6 +40,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         SEW=sew_list,
         LMUL=lmul_list,
         OP2=["v", "s"]):
+      assert args["OP"] is not None
       data_type = args["TYPE"]
       op = args["OP"]
       sew = args["SEW"]

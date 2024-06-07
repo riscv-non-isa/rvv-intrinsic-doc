@@ -33,6 +33,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
     decorator.write_text_header(G)
     # treat sew_list as MLEN
     for args in prod(OP=op_list, TYPE=type_list, MLEN=sew_list):
+      assert args["OP"] is not None
       op = args["OP"]
       if op not in ["cpop", "first"]:
         args["OP"] = "m" + args["OP"]
@@ -94,6 +95,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vl=type_helper.size_t)
 
     for args in prod(OP=op_list, TYPE=type_list, SEW=sew_list, LMUL=lmul_list):
+      assert args["OP"] is not None
       op = args["OP"]
       type_helper = TypeHelper(**args)
 

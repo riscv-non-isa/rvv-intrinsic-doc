@@ -34,6 +34,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
   for decorator in decorator_list:
     decorator.write_text_header(G)
     for args in prod(OP=op_list, TYPE=type_list, SEW=sew_list, LMUL=lmul_list):
+      assert args["TYPE"] is not None
       data_type = args["TYPE"]
       op = args["OP"]
 
