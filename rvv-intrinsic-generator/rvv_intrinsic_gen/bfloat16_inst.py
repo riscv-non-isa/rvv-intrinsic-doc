@@ -130,7 +130,7 @@ def gen(g):
   g.start_group("BFloat16 Miscellaneous Vector Utility Intrinsics")
 
   g.function_group(reint_op_template, "Reinterpret Cast Conversion Intrinsics",
-                   "reinterpret-cast-conversion", ["reinterpret"], "bfloat16",
+                   "reinterpret-cast-conversion", ["vreinterpret"], "bfloat16",
                    SEWS, LMULS, decorators.has_no_masking)
 
   g.function_group(misc_op_template, "Vector LMUL Extension Intrinsics",
