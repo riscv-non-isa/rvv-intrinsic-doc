@@ -395,7 +395,6 @@ class DocGenerator(Generator):
     # NOTE: If is_all_in_one is False, separate files of the grouped intrinsics
     # will be created, therefore we are allowing overriding the file descriptor
     # here.
-    super().start_group(group_name)
     if not self.is_all_in_one:
       file_name = f"{self.group_counter:02d}_{group_name}.adoc"
       file_name = file_name.replace(" ", "_")
