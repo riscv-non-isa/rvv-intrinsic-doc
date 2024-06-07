@@ -815,6 +815,9 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
   def inst_group_prologue(self):
     return ""
 
+  def inst_group_epilogue(self):
+    return ""
+
   def function_group(self, template, title, link, op_list, type_list, sew_list,
                      lmul_list, decorator_list):
     if self.has_tail_policy and len(decorator_list) == 0:
