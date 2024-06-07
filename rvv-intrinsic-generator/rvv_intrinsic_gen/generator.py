@@ -881,6 +881,9 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
   def inst_group_prologue(self):
     return ""
 
+  def inst_group_epilogue(self):
+    return ""
+
   def function_group(self,
                      template,
                      title,
