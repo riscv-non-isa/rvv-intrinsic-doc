@@ -1,6 +1,5 @@
 // REQUIRES: riscv-registered-target
-// RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zfh \
-// RUN:   -target-feature +experimental-zvfh \
+// RUN: %clang_cc1 -triple riscv64 -target-feature +v \
 // RUN:   -target-feature +experimental-zvfbfmin \
 // RUN:   -target-feature +experimental-zvfbfwma -disable-O0-optnone \
 // RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
