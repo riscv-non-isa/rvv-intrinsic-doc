@@ -491,6 +491,9 @@ class APITestGenerator(Generator):
     # different op name
     self.test_file_names = []
 
+  def write(self, text):
+    pass
+
   def start_group(self, group_name):
     pass
 
