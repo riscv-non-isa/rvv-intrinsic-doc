@@ -443,6 +443,9 @@ class APITestGenerator(Generator):
     # different op name
     self.test_file_names = []
 
+  def start_group(self, group_name):
+    pass
+
   def write_file_header(self, has_float_type, has_bfloat16_type):
     #pylint: disable=line-too-long
     int_llvm_header = r"""// REQUIRES: riscv-registered-target
