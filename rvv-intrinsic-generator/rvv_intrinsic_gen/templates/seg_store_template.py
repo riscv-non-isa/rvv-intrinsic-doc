@@ -49,6 +49,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
         EEW=sew_list,
         LMUL=lmul_list,
         NF=nf_list):
+      assert args["OP"] is not None
       op = args["OP"]
       nf = str(args["NF"])
       sew = args["SEW"]
