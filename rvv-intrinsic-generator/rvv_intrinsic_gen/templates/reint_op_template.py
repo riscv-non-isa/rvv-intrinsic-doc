@@ -50,6 +50,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
     for args in prod(
         OP=op_list, SEW=sew_list, TYPES=convert_set, LMUL=lmul_list):
       sew = args["SEW"]
+      assert args["TYPES"] is not None
 
       type_helper = TypeHelper(**args)
       args["TYPES0"] = args["TYPES"][0]
@@ -128,6 +129,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
     convert_set = [["int", "i"], ["uint", "u"]]
     for args in prod(
         OP=op_list, SEW=sew_list, TYPES=convert_set, LMUL=lmul_list):
+      assert args["TYPES"] is not None
 
       type_helper = TypeHelper(**args)
       args["TYPES0"] = args["TYPES"][0]

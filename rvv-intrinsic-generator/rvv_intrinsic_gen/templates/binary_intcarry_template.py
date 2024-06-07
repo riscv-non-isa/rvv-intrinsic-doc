@@ -38,6 +38,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       s = type_helper.s
       m = type_helper.m
 
+      assert args["OP"] is not None
       args["OP"] = "v" + args["OP"]
 
       inst_info_vvm = InstInfo.get(args, decorator, InstType.VVVM)
@@ -71,6 +72,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       s = type_helper.s
       m = type_helper.m
 
+      assert args["OP"] is not None
       args["OP"] = "v" + args["OP"]
 
       inst_info_vvm = InstInfo.get(args, None, InstType.VVVM)
