@@ -875,6 +875,9 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
   def write(self, text):
     self.fd.write(text)
 
+  def start_group(self, group_name):
+    pass
+
   def function_group(self,
                      template,
                      title,
