@@ -72,7 +72,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         G.func(
             inst_info_m,
             name="{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
-            return_type=type_helper.uint,
+            return_type=type_helper.ulong,
             **decorator.mask_args(type_helper.m),
             vs2=type_helper.m,
             vl=type_helper.size_t)
@@ -80,7 +80,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         G.func(
             inst_info_m,
             name="{OP}_m_b{MLEN}".format_map(args) + decorator.func_suffix,
-            return_type=type_helper.int,
+            return_type=type_helper.long,
             **decorator.mask_args(type_helper.m),
             vs2=type_helper.m,
             vl=type_helper.size_t)
