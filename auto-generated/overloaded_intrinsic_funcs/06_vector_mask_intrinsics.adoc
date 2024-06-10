@@ -83,21 +83,21 @@ vbool64_t __riscv_vmnot(vbool64_t vs, size_t vl);
 
 [,c]
 ----
-unsigned int __riscv_vcpop(vbool1_t vs2, size_t vl);
-unsigned int __riscv_vcpop(vbool2_t vs2, size_t vl);
-unsigned int __riscv_vcpop(vbool4_t vs2, size_t vl);
-unsigned int __riscv_vcpop(vbool8_t vs2, size_t vl);
-unsigned int __riscv_vcpop(vbool16_t vs2, size_t vl);
-unsigned int __riscv_vcpop(vbool32_t vs2, size_t vl);
-unsigned int __riscv_vcpop(vbool64_t vs2, size_t vl);
+unsigned long __riscv_vcpop(vbool1_t vs2, size_t vl);
+unsigned long __riscv_vcpop(vbool2_t vs2, size_t vl);
+unsigned long __riscv_vcpop(vbool4_t vs2, size_t vl);
+unsigned long __riscv_vcpop(vbool8_t vs2, size_t vl);
+unsigned long __riscv_vcpop(vbool16_t vs2, size_t vl);
+unsigned long __riscv_vcpop(vbool32_t vs2, size_t vl);
+unsigned long __riscv_vcpop(vbool64_t vs2, size_t vl);
 // masked functions
-unsigned int __riscv_vcpop(vbool1_t vm, vbool1_t vs2, size_t vl);
-unsigned int __riscv_vcpop(vbool2_t vm, vbool2_t vs2, size_t vl);
-unsigned int __riscv_vcpop(vbool4_t vm, vbool4_t vs2, size_t vl);
-unsigned int __riscv_vcpop(vbool8_t vm, vbool8_t vs2, size_t vl);
-unsigned int __riscv_vcpop(vbool16_t vm, vbool16_t vs2, size_t vl);
-unsigned int __riscv_vcpop(vbool32_t vm, vbool32_t vs2, size_t vl);
-unsigned int __riscv_vcpop(vbool64_t vm, vbool64_t vs2, size_t vl);
+unsigned long __riscv_vcpop(vbool1_t vm, vbool1_t vs2, size_t vl);
+unsigned long __riscv_vcpop(vbool2_t vm, vbool2_t vs2, size_t vl);
+unsigned long __riscv_vcpop(vbool4_t vm, vbool4_t vs2, size_t vl);
+unsigned long __riscv_vcpop(vbool8_t vm, vbool8_t vs2, size_t vl);
+unsigned long __riscv_vcpop(vbool16_t vm, vbool16_t vs2, size_t vl);
+unsigned long __riscv_vcpop(vbool32_t vm, vbool32_t vs2, size_t vl);
+unsigned long __riscv_vcpop(vbool64_t vm, vbool64_t vs2, size_t vl);
 ----
 
 [[overloaded-vfirst-find-first-set-mask-bit]]
@@ -105,21 +105,21 @@ unsigned int __riscv_vcpop(vbool64_t vm, vbool64_t vs2, size_t vl);
 
 [,c]
 ----
-int __riscv_vfirst(vbool1_t vs2, size_t vl);
-int __riscv_vfirst(vbool2_t vs2, size_t vl);
-int __riscv_vfirst(vbool4_t vs2, size_t vl);
-int __riscv_vfirst(vbool8_t vs2, size_t vl);
-int __riscv_vfirst(vbool16_t vs2, size_t vl);
-int __riscv_vfirst(vbool32_t vs2, size_t vl);
-int __riscv_vfirst(vbool64_t vs2, size_t vl);
+long __riscv_vfirst(vbool1_t vs2, size_t vl);
+long __riscv_vfirst(vbool2_t vs2, size_t vl);
+long __riscv_vfirst(vbool4_t vs2, size_t vl);
+long __riscv_vfirst(vbool8_t vs2, size_t vl);
+long __riscv_vfirst(vbool16_t vs2, size_t vl);
+long __riscv_vfirst(vbool32_t vs2, size_t vl);
+long __riscv_vfirst(vbool64_t vs2, size_t vl);
 // masked functions
-int __riscv_vfirst(vbool1_t vm, vbool1_t vs2, size_t vl);
-int __riscv_vfirst(vbool2_t vm, vbool2_t vs2, size_t vl);
-int __riscv_vfirst(vbool4_t vm, vbool4_t vs2, size_t vl);
-int __riscv_vfirst(vbool8_t vm, vbool8_t vs2, size_t vl);
-int __riscv_vfirst(vbool16_t vm, vbool16_t vs2, size_t vl);
-int __riscv_vfirst(vbool32_t vm, vbool32_t vs2, size_t vl);
-int __riscv_vfirst(vbool64_t vm, vbool64_t vs2, size_t vl);
+long __riscv_vfirst(vbool1_t vm, vbool1_t vs2, size_t vl);
+long __riscv_vfirst(vbool2_t vm, vbool2_t vs2, size_t vl);
+long __riscv_vfirst(vbool4_t vm, vbool4_t vs2, size_t vl);
+long __riscv_vfirst(vbool8_t vm, vbool8_t vs2, size_t vl);
+long __riscv_vfirst(vbool16_t vm, vbool16_t vs2, size_t vl);
+long __riscv_vfirst(vbool32_t vm, vbool32_t vs2, size_t vl);
+long __riscv_vfirst(vbool64_t vm, vbool64_t vs2, size_t vl);
 ----
 
 [[overloaded-vmsbfm-set-before-first-mask-bit]]
