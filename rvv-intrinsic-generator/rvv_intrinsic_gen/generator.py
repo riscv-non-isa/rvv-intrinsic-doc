@@ -43,7 +43,7 @@ class Generator(ABC):
     raise NotImplementedError
 
   def gen_prologue(self):
-    raise NotImplementedError
+    pass
 
   def inst_group_prologue(self):
     raise NotImplementedError
