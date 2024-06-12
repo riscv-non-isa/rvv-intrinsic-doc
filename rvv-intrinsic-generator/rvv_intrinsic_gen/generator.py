@@ -534,7 +534,7 @@ class APITestGenerator(Generator):
 
 """)
 
-    vector_crypto_llvm_header = (r"""// REQUIRES: riscv-registered-target
+    vector_crypto_llvm_header = r"""// REQUIRES: riscv-registered-target
 // RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zvl512b \
 // RUN:   -target-feature +zvbb \
 // RUN:   -target-feature +zvbc \
@@ -546,7 +546,7 @@ class APITestGenerator(Generator):
 // RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
 // RUN:   FileCheck --check-prefix=CHECK-RV64 %s
 
-""")
+"""
 
     def is_vector_crypto_inst(name):
       vector_crypto_inst = [
