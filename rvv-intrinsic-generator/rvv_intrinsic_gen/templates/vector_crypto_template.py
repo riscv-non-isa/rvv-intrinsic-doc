@@ -82,6 +82,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
   for decorator in decorator_list:
     decorator.write_text_header(G)
     for args in prod(OP=op_list, TYPE=type_list, SEW=sew_list, LMUL=lmul_list):
+      assert args["OP"] is not None
       op = args["OP"]
       for operand_mnemonic in operand_mnemonic_dict[op]:
         if operand_mnemonic in ("vv", "vs"):
