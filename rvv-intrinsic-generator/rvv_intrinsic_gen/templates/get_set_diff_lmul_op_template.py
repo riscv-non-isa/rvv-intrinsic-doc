@@ -67,7 +67,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       constraint = vset_constraint
       vget = False
     else:
-      raise Exception("Unknown operation")
+      raise ValueError("Unknown operation")
 
     for args in prod(
         OP=op_list,

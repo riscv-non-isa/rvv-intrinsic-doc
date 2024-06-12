@@ -106,7 +106,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       elif args["OP2"] == "f":
         inst_info = inst_info_vf
       else:
-        raise Exception("Unknown op2 type.")
+        raise ValueError("Unknown op2 type.")
 
       if op in ["ssra", "sra", "ssrl", "srl", "sll"]:
         if args["OP2"] == "v":

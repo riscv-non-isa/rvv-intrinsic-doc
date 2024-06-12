@@ -327,7 +327,7 @@ class DocGenerator(Generator):
       if not os.path.exists(self.folder):
         os.makedirs(self.folder)
       if not os.path.isdir(self.folder):
-        raise Exception("%s not dir, but it must be a dir.")
+        raise FileNotFoundError(f"{self.folder} not dir, but it must be a dir.")
       self.group_counter = 0
       self.fd = None
 
@@ -485,7 +485,7 @@ class APITestGenerator(Generator):
     if not os.path.exists(self.folder):
       os.makedirs(self.folder)
     if not os.path.isdir(self.folder):
-      raise Exception("%s not dir, but it must be a dir.")
+      raise FileNotFoundError(f"{self.folder} not dir, but it must be a dir.")
     self.fd = None
     self.test_files = []
     # test file name candidates which are declared in inst.py, it could have
