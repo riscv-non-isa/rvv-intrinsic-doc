@@ -31,10 +31,17 @@ __check_defined = \
 			$(error Undefined $1$(if $2, ($2))))
 
 # Replace softfloat float-point types with LLVM compatible floating-point types
+# macOS uses BSD sed
+ifeq ($(shell uname), Darwin)
+	SED_CMD = sed -i ''
+else
+	SED_CMD = sed -i
+endif
+
 replace_float = \
-		sed -i 's/float16_t/_Float16/g' $(1)/*; \
-		sed -i 's/float32_t/float/g' $(1)/*; \
-		sed -i 's/float64_t/double/g' $(1)/*
+		$(SED_CMD) 's/float16_t/_Float16/g' $(1)/*; \
+		$(SED_CMD) 's/float32_t/float/g' $(1)/*; \
+		$(SED_CMD) 's/float64_t/double/g' $(1)/*
 
 ###############################################################################
 # Variables
