@@ -1,5 +1,5 @@
-#include <stdint.h>
 #include <riscv_vector.h>
+#include <stdint.h>
 
 vuint8mf8_t test_vbrev_v_u8mf8(vuint8mf8_t vs2, size_t vl) {
   return __riscv_vbrev(vs2, vl);
