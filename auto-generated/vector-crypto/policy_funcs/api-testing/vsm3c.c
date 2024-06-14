@@ -1,7 +1,8 @@
-#include <stdint.h>
 #include <riscv_vector.h>
+#include <stdint.h>
 
-vuint32mf2_t test_vsm3c_vi_u32mf2_tu(vuint32mf2_t vd, vuint32mf2_t vs2, size_t vl) {
+vuint32mf2_t test_vsm3c_vi_u32mf2_tu(vuint32mf2_t vd, vuint32mf2_t vs2,
+                                     size_t vl) {
   return __riscv_vsm3c_vi_u32mf2_tu(vd, vs2, 0, vl);
 }
 

@@ -12,7 +12,8 @@
 
 #include <riscv_vector.h>
 
-vuint32mf2_t test_vgmul_vv_u32mf2_tu(vuint32mf2_t vd, vuint32mf2_t vs2, size_t vl) {
+vuint32mf2_t test_vgmul_vv_u32mf2_tu(vuint32mf2_t vd, vuint32mf2_t vs2,
+                                     size_t vl) {
   return __riscv_vgmul_vv_u32mf2_tu(vd, vs2, vl);
 }
 
