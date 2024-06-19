@@ -688,6 +688,15 @@ class Grouper(Generator):
     if group_name not in self.groups:
       self.groups[group_name] = []
 
+  def inst_group_prologue(self):
+    return ""
+
+  def inst_group_epilogue(self):
+    return ""
+
+  def write(self, text):
+    pass
+
   def func(self, inst_info, name, return_type, **kwargs):
 
     func_name = Generator.func_name(name)
