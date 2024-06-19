@@ -694,6 +694,9 @@ class Grouper(Generator):
   def inst_group_epilogue(self):
     return ""
 
+  def write(self, text):
+    pass
+
   def func(self, inst_info, name, return_type, **kwargs):
 
     func_name = Generator.func_name(name)
