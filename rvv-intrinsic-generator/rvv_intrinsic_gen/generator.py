@@ -56,7 +56,7 @@ class Generator(ABC):
     return NotImplemented
 
   def function_group(self, template, title, link, op_list, type_list, sew_list,
-                     lmul_list, decorator_list):
+                     lmul_list, decorator_list, description=None):
     # pylint: disable=unused-argument
     # NOTE: 'title' and 'link' are only used in DocGenerator and
     # OverloadedDocGenerator. Probably need some decoupling here.
@@ -66,7 +66,8 @@ class Generator(ABC):
         type_list=type_list,
         sew_list=sew_list,
         lmul_list=lmul_list,
-        decorator_list=decorator_list)
+        decorator_list=decorator_list,
+        description=description)
 
   def start_group(self, group_name):
     raise NotImplementedError
@@ -294,6 +295,9 @@ class Generator(ABC):
   def post_gen(self):
     raise NotImplementedError
 
+  def emit_function_group_description(self, description):
+    pass
+
 
 class DocGenerator(Generator):
   """
@@ -383,6 +387,8 @@ class DocGenerator(Generator):
           os.path.join(self.folder, file_name), "w", encoding="utf-8")
     self.write(f"\n=== {group_name}\n")
 
+  def emit_function_group_description(self, description):
+    self.write("{description}\n");
 
 class OverloadedDocGenerator(DocGenerator):
   """
