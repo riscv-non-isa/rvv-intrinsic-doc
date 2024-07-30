@@ -61,7 +61,7 @@ class Generator():
     return s
 
   def function_group(self, template, title, link, op_list, type_list, sew_list,
-                     lmul_list, decorator_list):
+                     lmul_list, decorator_list, description=None):
     # pylint: disable=unused-argument
     # NOTE: 'title' and 'link' are only used in DocGenerator and
     # OverloadedDocGenerator. Probably need some decoupling here.
@@ -71,7 +71,8 @@ class Generator():
         type_list=type_list,
         sew_list=sew_list,
         lmul_list=lmul_list,
-        decorator_list=decorator_list)
+        decorator_list=decorator_list,
+        description=description)
 
   def start_group(self, group_name):
     pass
@@ -297,6 +298,9 @@ class Generator():
   def post_gen(self):
     pass
 
+  def emit_function_group_description(self, description):
+    pass
+
 
 class DocGenerator(Generator):
   """
@@ -342,7 +346,7 @@ class DocGenerator(Generator):
     return s
 
   def function_group(self, template, title, link, op_list, type_list, sew_list,
-                     lmul_list, decorator_list):
+                     lmul_list, decorator_list, description=None):
     self.write_title(title, link)
     if self.has_tail_policy and len(decorator_list) == 0:
       s = "Intrinsics here don't have a policy variant.\n"
@@ -353,7 +357,7 @@ class DocGenerator(Generator):
       return
 
     super().function_group(template, title, link, op_list, type_list, sew_list,
-                           lmul_list, decorator_list)
+                           lmul_list, decorator_list, description=description)
 
   def func(self, inst_info, name, return_type, **kwargs):
     name = Generator.func_name(name)
@@ -381,6 +385,9 @@ class DocGenerator(Generator):
           os.path.join(self.folder, file_name), "w", encoding="utf-8")
     self.write(f"\n=== {group_name}\n")
 
+  def emit_function_group_description(self, description):
+    if description:
+      self.write(f"{description}\n");
 
 class OverloadedDocGenerator(DocGenerator):
   """
@@ -395,13 +402,13 @@ class OverloadedDocGenerator(DocGenerator):
       self.fd.write("\n[[overloaded-" + link + "]]\n==== " + text + "\n")
 
   def function_group(self, template, title, link, op_list, type_list, sew_list,
-                     lmul_list, decorator_list):
+                     lmul_list, decorator_list, description=None):
     self.do_not_have_overloaded_variant = True
     for op in op_list:
       if Generator.is_support_overloaded(op):
         self.do_not_have_overloaded_variant = False
     super().function_group(template, title, link, op_list, type_list, sew_list,
-                           lmul_list, decorator_list)
+                           lmul_list, decorator_list, description=description)
 
   def func(self, inst_info, name, return_type, **kwargs):
     func_name = Generator.func_name(name)
@@ -597,7 +604,7 @@ class APITestGenerator(Generator):
         self.fd.close()
 
   def function_group(self, template, title, link, op_list, type_list, sew_list,
-                     lmul_list, decorator_list):
+                     lmul_list, decorator_list, description=None):
     self.test_file_names = op_list
     template.render(
         G=self,
@@ -605,7 +612,7 @@ class APITestGenerator(Generator):
         type_list=type_list,
         sew_list=sew_list,
         lmul_list=lmul_list,
-        decorator_list=decorator_list)
+        decorator_list=decorator_list, description=description)
 
 
 class Grouper(Generator):
@@ -643,7 +650,7 @@ class Grouper(Generator):
     return self.func_group[func_name]
 
   def function_group(self, template, title, link, op_list, type_list, sew_list,
-                     lmul_list, decorator_list):
+                     lmul_list, decorator_list, description=None):
     self.op_list = op_list
     self.groups[self.current_group].append(title)
     self.current_sub_group = title
@@ -653,7 +660,8 @@ class Grouper(Generator):
         type_list=type_list,
         sew_list=sew_list,
         lmul_list=lmul_list,
-        decorator_list=decorator_list)
+        decorator_list=decorator_list,
+        description=description)
 
 
 class CompatibleHeaderGenerator(Generator):
@@ -783,11 +791,11 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
     self.fd.write(text)
 
   def function_group(self, template, title, link, op_list, type_list, sew_list,
-                     lmul_list, decorator_list):
+                     lmul_list, decorator_list, description=None):
     if self.has_tail_policy and len(decorator_list) == 0:
       return
     super().function_group(template, title, link, op_list, type_list, sew_list,
-                           lmul_list, decorator_list)
+                           lmul_list, decorator_list, description=description)
 
   @staticmethod
   def is_policy_func(inst_info):
