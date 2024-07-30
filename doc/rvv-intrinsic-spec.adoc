@@ -109,9 +109,9 @@ NOTE: The RISC-V psABI cite:[riscv-cc-vector] states that `vxrm` is not preserve
 
 [NOTE]
 ====
-This version of the specification of does not cover the control of the vector fixed-point saturation flag (`vxsat`). Support for this feature is planned for a later version of the specification in a way that is compatible with existing fixed-point intrinsics. No mechanism to set or retrieve the value of `vxsat` is specified either.
+This specification does not provide support for manipulating the `vxsat` CSR.  Since vxsat is not needed by a large majority of fixed-point code, we believe this specification is broadly useful as-is.  Nevertheless, we expect that a future extension will define an additional set of fixed-point intrinsics that update `vxsat` in a specified manner, along with intrinsics to explicitly read and write `vxsat`.  These new intrinsics would be interoperable with the intrinsics in this specification.
 
-The value of the `vxsat` after a fixed-point intrinsic is UNSPECIFIED. This includes the order in which the flag `vxsat` is updated in a program that executes a sequence of fixed-point intrinsics.
+The value of the `vxsat` after a fixed-point intrinsic is UNSPECIFIED.
 ====
 
 [[control-of-frm]]
