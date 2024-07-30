@@ -236,12 +236,15 @@ def gen(g):
 
   ####################################################################
   g.start_group("Vector Fixed-Point Arithmetic Intrinsics")
+  vxsat_description = "After executing an intrinsic in this section, " + \
+                      "the `vxsat` CSR assumes an UNSPECIFIED value.";
 
   g.function_group(
       binary_op_template,
       "Vector Single-Width Saturating Add and Subtract Intrinsics",
       "vector-single-width-saturating-add-and-subtract", ["sadd", "ssub"],
-      ITYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+      ITYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy,
+      description=vxsat_description)
 
   g.function_group(binary_op_template,
                    "Vector Single-Width Averaging Add and Subtract Intrinsics",
@@ -255,7 +258,8 @@ def gen(g):
       "Intrinsics",
       "vector-single-width-fractional-multiply-with-rounding-and-" +
       "saturation", ["smul"], ["int"], SEWS, LMULS,
-      decorators.has_masking_maskedoff_policy_vxrm)
+      decorators.has_masking_maskedoff_policy_vxrm,
+      description=vxsat_description)
 
   g.function_group(binary_op_template,
                    "Vector Single-Width Scaling Shift Intrinsics",
@@ -266,7 +270,8 @@ def gen(g):
   g.function_group(binary_nop_template,
                    "Vector Narrowing Fixed-Point Clip Intrinsics",
                    "vector-narrowing-fixed-point-clip", ["nclip"], ITYPES,
-                   WSEWS, WLMULS, decorators.has_masking_maskedoff_policy_vxrm)
+                   WSEWS, WLMULS, decorators.has_masking_maskedoff_policy_vxrm,
+                   description=vxsat_description)
 
   ####################################################################
   g.start_group("Vector Floating-Point Intrinsics")
