@@ -111,3 +111,35 @@ vfloat32m8_t __riscv_vfwmaccbf16(vbool4_t vm, vfloat32m8_t vd, __bf16 vs1,
                                  vbfloat16m4_t vs2, unsigned int frm,
                                  size_t vl);
 ----
+
+[[overloaded-vector-bf16-move]]
+==== Vector BFloat16 Move Intrinsics
+
+[,c]
+----
+vbfloat16mf4_t __riscv_vmv_v(vbfloat16mf4_t vs1, size_t vl);
+vbfloat16mf2_t __riscv_vmv_v(vbfloat16mf2_t vs1, size_t vl);
+vbfloat16m1_t __riscv_vmv_v(vbfloat16m1_t vs1, size_t vl);
+vbfloat16m2_t __riscv_vmv_v(vbfloat16m2_t vs1, size_t vl);
+vbfloat16m4_t __riscv_vmv_v(vbfloat16m4_t vs1, size_t vl);
+vbfloat16m8_t __riscv_vmv_v(vbfloat16m8_t vs1, size_t vl);
+----
+
+[[overloaded-vector-bf16-merge]]
+==== Vector BFloat16 Merge Intrinsics
+
+[,c]
+----
+vbfloat16mf4_t __riscv_vmerge(vbfloat16mf4_t vs2, vbfloat16mf4_t vs1,
+                              vbool64_t v0, size_t vl);
+vbfloat16mf2_t __riscv_vmerge(vbfloat16mf2_t vs2, vbfloat16mf2_t vs1,
+                              vbool32_t v0, size_t vl);
+vbfloat16m1_t __riscv_vmerge(vbfloat16m1_t vs2, vbfloat16m1_t vs1, vbool16_t v0,
+                             size_t vl);
+vbfloat16m2_t __riscv_vmerge(vbfloat16m2_t vs2, vbfloat16m2_t vs1, vbool8_t v0,
+                             size_t vl);
+vbfloat16m4_t __riscv_vmerge(vbfloat16m4_t vs2, vbfloat16m4_t vs1, vbool4_t v0,
+                             size_t vl);
+vbfloat16m8_t __riscv_vmerge(vbfloat16m8_t vs2, vbfloat16m8_t vs1, vbool2_t v0,
+                             size_t vl);
+----
