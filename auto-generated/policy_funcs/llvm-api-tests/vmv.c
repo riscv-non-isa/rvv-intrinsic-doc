@@ -238,7 +238,8 @@ vuint8m8_t test_vmv_v_x_u8m8_tu(vuint8m8_t vd, uint8_t rs1, size_t vl) {
   return __riscv_vmv_v_x_u8m8_tu(vd, rs1, vl);
 }
 
-vuint16mf4_t test_vmv_v_v_u16mf4_tu(vuint16mf4_t vd, vuint16mf4_t vs1, size_t vl) {
+vuint16mf4_t test_vmv_v_v_u16mf4_tu(vuint16mf4_t vd, vuint16mf4_t vs1,
+                                    size_t vl) {
   return __riscv_vmv_v_v_u16mf4_tu(vd, vs1, vl);
 }
 
@@ -246,7 +247,8 @@ vuint16mf4_t test_vmv_v_x_u16mf4_tu(vuint16mf4_t vd, uint16_t rs1, size_t vl) {
   return __riscv_vmv_v_x_u16mf4_tu(vd, rs1, vl);
 }
 
-vuint16mf2_t test_vmv_v_v_u16mf2_tu(vuint16mf2_t vd, vuint16mf2_t vs1, size_t vl) {
+vuint16mf2_t test_vmv_v_v_u16mf2_tu(vuint16mf2_t vd, vuint16mf2_t vs1,
+                                    size_t vl) {
   return __riscv_vmv_v_v_u16mf2_tu(vd, vs1, vl);
 }
 
@@ -286,7 +288,8 @@ vuint16m8_t test_vmv_v_x_u16m8_tu(vuint16m8_t vd, uint16_t rs1, size_t vl) {
   return __riscv_vmv_v_x_u16m8_tu(vd, rs1, vl);
 }
 
-vuint32mf2_t test_vmv_v_v_u32mf2_tu(vuint32mf2_t vd, vuint32mf2_t vs1, size_t vl) {
+vuint32mf2_t test_vmv_v_v_u32mf2_tu(vuint32mf2_t vd, vuint32mf2_t vs1,
+                                    size_t vl) {
   return __riscv_vmv_v_v_u32mf2_tu(vd, vs1, vl);
 }
 
@@ -358,63 +361,78 @@ vuint64m8_t test_vmv_v_x_u64m8_tu(vuint64m8_t vd, uint64_t rs1, size_t vl) {
   return __riscv_vmv_v_x_u64m8_tu(vd, rs1, vl);
 }
 
-vfloat16mf4_t test_vmv_v_v_f16mf4_tu(vfloat16mf4_t vd, vfloat16mf4_t vs1, size_t vl) {
+vfloat16mf4_t test_vmv_v_v_f16mf4_tu(vfloat16mf4_t vd, vfloat16mf4_t vs1,
+                                     size_t vl) {
   return __riscv_vmv_v_v_f16mf4_tu(vd, vs1, vl);
 }
 
-vfloat16mf2_t test_vmv_v_v_f16mf2_tu(vfloat16mf2_t vd, vfloat16mf2_t vs1, size_t vl) {
+vfloat16mf2_t test_vmv_v_v_f16mf2_tu(vfloat16mf2_t vd, vfloat16mf2_t vs1,
+                                     size_t vl) {
   return __riscv_vmv_v_v_f16mf2_tu(vd, vs1, vl);
 }
 
-vfloat16m1_t test_vmv_v_v_f16m1_tu(vfloat16m1_t vd, vfloat16m1_t vs1, size_t vl) {
+vfloat16m1_t test_vmv_v_v_f16m1_tu(vfloat16m1_t vd, vfloat16m1_t vs1,
+                                   size_t vl) {
   return __riscv_vmv_v_v_f16m1_tu(vd, vs1, vl);
 }
 
-vfloat16m2_t test_vmv_v_v_f16m2_tu(vfloat16m2_t vd, vfloat16m2_t vs1, size_t vl) {
+vfloat16m2_t test_vmv_v_v_f16m2_tu(vfloat16m2_t vd, vfloat16m2_t vs1,
+                                   size_t vl) {
   return __riscv_vmv_v_v_f16m2_tu(vd, vs1, vl);
 }
 
-vfloat16m4_t test_vmv_v_v_f16m4_tu(vfloat16m4_t vd, vfloat16m4_t vs1, size_t vl) {
+vfloat16m4_t test_vmv_v_v_f16m4_tu(vfloat16m4_t vd, vfloat16m4_t vs1,
+                                   size_t vl) {
   return __riscv_vmv_v_v_f16m4_tu(vd, vs1, vl);
 }
 
-vfloat16m8_t test_vmv_v_v_f16m8_tu(vfloat16m8_t vd, vfloat16m8_t vs1, size_t vl) {
+vfloat16m8_t test_vmv_v_v_f16m8_tu(vfloat16m8_t vd, vfloat16m8_t vs1,
+                                   size_t vl) {
   return __riscv_vmv_v_v_f16m8_tu(vd, vs1, vl);
 }
 
-vfloat32mf2_t test_vmv_v_v_f32mf2_tu(vfloat32mf2_t vd, vfloat32mf2_t vs1, size_t vl) {
+vfloat32mf2_t test_vmv_v_v_f32mf2_tu(vfloat32mf2_t vd, vfloat32mf2_t vs1,
+                                     size_t vl) {
   return __riscv_vmv_v_v_f32mf2_tu(vd, vs1, vl);
 }
 
-vfloat32m1_t test_vmv_v_v_f32m1_tu(vfloat32m1_t vd, vfloat32m1_t vs1, size_t vl) {
+vfloat32m1_t test_vmv_v_v_f32m1_tu(vfloat32m1_t vd, vfloat32m1_t vs1,
+                                   size_t vl) {
   return __riscv_vmv_v_v_f32m1_tu(vd, vs1, vl);
 }
 
-vfloat32m2_t test_vmv_v_v_f32m2_tu(vfloat32m2_t vd, vfloat32m2_t vs1, size_t vl) {
+vfloat32m2_t test_vmv_v_v_f32m2_tu(vfloat32m2_t vd, vfloat32m2_t vs1,
+                                   size_t vl) {
   return __riscv_vmv_v_v_f32m2_tu(vd, vs1, vl);
 }
 
-vfloat32m4_t test_vmv_v_v_f32m4_tu(vfloat32m4_t vd, vfloat32m4_t vs1, size_t vl) {
+vfloat32m4_t test_vmv_v_v_f32m4_tu(vfloat32m4_t vd, vfloat32m4_t vs1,
+                                   size_t vl) {
   return __riscv_vmv_v_v_f32m4_tu(vd, vs1, vl);
 }
 
-vfloat32m8_t test_vmv_v_v_f32m8_tu(vfloat32m8_t vd, vfloat32m8_t vs1, size_t vl) {
+vfloat32m8_t test_vmv_v_v_f32m8_tu(vfloat32m8_t vd, vfloat32m8_t vs1,
+                                   size_t vl) {
   return __riscv_vmv_v_v_f32m8_tu(vd, vs1, vl);
 }
 
-vfloat64m1_t test_vmv_v_v_f64m1_tu(vfloat64m1_t vd, vfloat64m1_t vs1, size_t vl) {
+vfloat64m1_t test_vmv_v_v_f64m1_tu(vfloat64m1_t vd, vfloat64m1_t vs1,
+                                   size_t vl) {
   return __riscv_vmv_v_v_f64m1_tu(vd, vs1, vl);
 }
 
-vfloat64m2_t test_vmv_v_v_f64m2_tu(vfloat64m2_t vd, vfloat64m2_t vs1, size_t vl) {
+vfloat64m2_t test_vmv_v_v_f64m2_tu(vfloat64m2_t vd, vfloat64m2_t vs1,
+                                   size_t vl) {
   return __riscv_vmv_v_v_f64m2_tu(vd, vs1, vl);
 }
 
-vfloat64m4_t test_vmv_v_v_f64m4_tu(vfloat64m4_t vd, vfloat64m4_t vs1, size_t vl) {
+vfloat64m4_t test_vmv_v_v_f64m4_tu(vfloat64m4_t vd, vfloat64m4_t vs1,
+                                   size_t vl) {
   return __riscv_vmv_v_v_f64m4_tu(vd, vs1, vl);
 }
 
-vfloat64m8_t test_vmv_v_v_f64m8_tu(vfloat64m8_t vd, vfloat64m8_t vs1, size_t vl) {
+vfloat64m8_t test_vmv_v_v_f64m8_tu(vfloat64m8_t vd, vfloat64m8_t vs1,
+                                   size_t vl) {
   return __riscv_vmv_v_v_f64m8_tu(vd, vs1, vl);
 }
 
