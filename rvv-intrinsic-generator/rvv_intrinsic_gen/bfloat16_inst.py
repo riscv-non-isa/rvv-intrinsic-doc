@@ -21,7 +21,7 @@ sequence and grouping.
 """
 
 from intrinsic_decorator import IntrinsicDecorators
-from generator import CompatibleHeaderGenerator
+from generator import CompatibleHeaderGenerator, APITestGenerator
 from templates import load_template
 from templates import seg_load_template
 from templates import store_template
@@ -37,10 +37,23 @@ SEWS = [16]
 NSEWS = [32]
 TYPES = ["bfloat"]
 
+llvm_header = r"""// REQUIRES: riscv-registered-target
+// RUN: %clang_cc1 -triple riscv64 -target-feature +v \
+// RUN:   -target-feature +experimental-zvfbfmin \
+// RUN:   -target-feature +experimental-zvfbfwma -disable-O0-optnone \
+// RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
+// RUN:   FileCheck --check-prefix=CHECK-RV64 %s
+
+"""
+
 
 def gen(g):
   if isinstance(g, CompatibleHeaderGenerator):
     assert False, "BFloat16 intrinsics is supported after v1.0"
+
+  if isinstance(g, APITestGenerator):
+    g.set_llvm_api_test_header(llvm_header)
+
   decorators = IntrinsicDecorators(g.has_tail_policy)
 
   ####################################################################

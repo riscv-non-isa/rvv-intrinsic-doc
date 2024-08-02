@@ -434,6 +434,7 @@ class APITestGenerator(Generator):
     self.folder = f
     self.toolchain_type = toolchain_type
     self.has_tail_policy = has_tail_policy
+    self.llvm_header = ""
     if not os.path.exists(self.folder):
       os.makedirs(self.folder)
     if not os.path.isdir(self.folder):
@@ -443,6 +444,9 @@ class APITestGenerator(Generator):
     # test file name candidates which are declared in inst.py, it could have
     # different op name
     self.test_file_names = []
+
+  def set_llvm_api_test_header(self, header):
+    self.llvm_header = header
 
   def write(self, text):
     pass
@@ -456,7 +460,7 @@ class APITestGenerator(Generator):
   def inst_group_epilogue(self):
     return ""
 
-  def write_file_header(self, has_float_type, has_bfloat16_type, name):
+  def write_file_header(self, has_float_type, name):
     #pylint: disable=line-too-long
     int_llvm_header = r"""// REQUIRES: riscv-registered-target
 // RUN: %clang_cc1 -triple riscv64 -target-feature +v -disable-O0-optnone \
@@ -471,14 +475,6 @@ class APITestGenerator(Generator):
 // RUN:   FileCheck --check-prefix=CHECK-RV64 %s
 
 """
-    bfloat16_llvm_header = r"""// REQUIRES: riscv-registered-target
-// RUN: %clang_cc1 -triple riscv64 -target-feature +v \
-// RUN:   -target-feature +experimental-zvfbfmin \
-// RUN:   -target-feature +experimental-zvfbfwma -disable-O0-optnone \
-// RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
-// RUN:   FileCheck --check-prefix=CHECK-RV64 %s
-
-"""
     gnu_header = (
         r"""/* { dg-do compile } */
 /* { dg-options """ + '"' + "-march=rv64gcv_zvfh -mabi=lp64d" +
@@ -486,37 +482,9 @@ class APITestGenerator(Generator):
 
 """)
 
-    vector_crypto_llvm_header = r"""// REQUIRES: riscv-registered-target
-// RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zvl512b \
-// RUN:   -target-feature +zvbb \
-// RUN:   -target-feature +zvbc \
-// RUN:   -target-feature +zvkg \
-// RUN:   -target-feature +zvkned \
-// RUN:   -target-feature +zvknhb \
-// RUN:   -target-feature +zvksed \
-// RUN:   -target-feature +zvksh -disable-O0-optnone \
-// RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
-// RUN:   FileCheck --check-prefix=CHECK-RV64 %s
-
-"""
-
-    def is_vector_crypto_inst(name):
-      vector_crypto_inst = [
-          "vandn", "vbrev", "vbrev8", "vrev8", "vclz", "vctz", "vrol", "vror",
-          "vwsll", "vclmul", "vclmulh", "vghsh", "vgmul", "vaesef", "vaesem",
-          "vaesdf", "vaesdm", "vaeskf1", "vaeskf2", "vaesz", "vsha2ms",
-          "vsha2ch", "vsha2cl", "vsm4k", "vsm4r", "vsm3me", "vsm3c"
-      ]
-      for inst in vector_crypto_inst:
-        if inst in name:
-          return True
-      return False
-
     if self.toolchain_type == ToolChainType.LLVM:
-      if has_bfloat16_type:
-        self.fd.write(bfloat16_llvm_header)
-      elif is_vector_crypto_inst(name):
-        self.fd.write(vector_crypto_llvm_header)
+      if self.llvm_header != "":
+        self.fd.write(self.llvm_header)
       elif has_float_type:
         self.fd.write(float_llvm_header)
       else:
@@ -584,7 +552,6 @@ class APITestGenerator(Generator):
     # righteously, there should be a function to determine if an intrinsic
     # has a floating-point variant and have the header emission depend on it.
     has_float_type = func_decl.find("vfloat") != -1
-    has_bfloat16_type = func_decl.find("bf16") != -1
     # NOTE(FIXME): This is logic as a hard fix to test case header emission.
     has_float_type_variant_inst = [
         "macc", "nmacc", "msac", "nmsac", "madd", "nmadd", "msub", "nmsub",
@@ -597,7 +564,7 @@ class APITestGenerator(Generator):
         has_float_type = True
 
     if header:
-      self.write_file_header(has_float_type, has_bfloat16_type, name)
+      self.write_file_header(has_float_type, name)
 
     def output_call_arg(arg_name, type_name):
       if ((name.startswith("vget") or name.startswith("vset")) \
