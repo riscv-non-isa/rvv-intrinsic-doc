@@ -32,7 +32,8 @@ from enums import MemType
 from generator import CompatibleHeaderGenerator
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list, description):
+def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
+           description):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
   G.emit_function_group_description(description)

@@ -25,7 +25,8 @@ from enums import InstInfo
 from enums import InstType
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list, description):
+def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
+           description):
   #pylint: disable=invalid-name, unused-argument
   # FIXME: Renaming 'G' to 'g' all in once later.
   # FIXME: Argument 'type_list', 'decorator_list' is unused but required for
