@@ -41,7 +41,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if op in ["zext", "sext"]:
         break
 
-      if data_type == "float":
+      if data_type == "float" or data_type == "bfloat":
         args["S_TYPE"] = "f"
         args["OP"] = "f" + args["OP"]
         inst_type_vvsm = InstType.VVFM
@@ -71,7 +71,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       # for float type, accrdoing current naming scheming it
       # should be vmv_v_v, same for vmerge.vvm.
       vv_args = args
-      if data_type == "float" and op in ["mv", "merge"]:
+      if (data_type == "float" or
+          data_type == "bfloat") and op in ["mv", "merge"]:
         vv_args = copy.deepcopy(args)
         vv_args["OP"] = "v" + op
 
@@ -87,6 +88,10 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vs1=type_helper.v,
             v0=type_helper.m,
             vl=type_helper.size_t)
+
+        if data_type == "bfloat":
+          continue
+
         G.func(
             inst_info_vvsm,
             name="{OP}_v{S_TYPE}m_{TYPE}{SEW}m{LMUL}".format_map(args) +
