@@ -228,7 +228,7 @@ llvm-non-overloaded-test:
 	$(call replace_float, $(DIR)/llvm-api-tests)
 	$(call replace_float, $(POLICY_DIR)/llvm-api-tests)
 	clang-format -i $(DIR)/llvm-api-tests/*
-	clang-format -i $(POLICY_DIR)/overloaded-api-testing/*
+	clang-format -i $(POLICY_DIR)/llvm-api-tests/*
 
 # Generate overloaded intrinsic testing C source files
 llvm-overloaded-test:
@@ -296,7 +296,7 @@ bf16-llvm-non-overloaded-test:
 	$(call replace_float, $(BF16_DIR)/llvm-api-tests)
 	$(call replace_float, $(BF16_POLICY_DIR)/llvm-api-tests)
 	clang-format -i $(BF16_DIR)/llvm-api-tests/*
-	clang-format -i $(BF16_POLICY_DIR)/overloaded-api-testing/*
+	clang-format -i $(BF16_POLICY_DIR)/llvm-api-tests/*
 
 # Generate overloaded intrinsic testing C source files
 bf16-llvm-overloaded-test:
