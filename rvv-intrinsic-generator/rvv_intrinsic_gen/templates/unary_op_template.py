@@ -87,6 +87,10 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             vs1=type_helper.v,
             v0=type_helper.m,
             vl=type_helper.size_t)
+
+        if data_type == "bfloat":
+          continue
+
         G.func(
             inst_info_vvsm,
             name="{OP}_v{S_TYPE}m_{TYPE}{SEW}m{LMUL}".format_map(args) +
@@ -106,6 +110,10 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
             **decorator.tu_dest_args(type_helper.v),
             vs1=type_helper.v,
             vl=type_helper.size_t)
+
+        if data_type == "bfloat":
+          continue
+
         G.func(
             inst_info_vs,
             name="{OP}_v_{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
