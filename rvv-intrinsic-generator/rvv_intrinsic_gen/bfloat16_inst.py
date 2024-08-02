@@ -29,6 +29,7 @@ from templates import seg_store_template
 from templates import reint_op_template
 from templates import get_set_diff_lmul_op_template
 from templates import misc_op_template
+from templates import unary_op_template
 from templates import cvt_op_template
 from templates import mac_template
 from constants import LMULS, WLMULS, NCVTLMULS, BFTYPES
@@ -126,6 +127,13 @@ def gen(g):
                    "Vector Widening Multiply-Accumulate Intrinsics",
                    "bf16-widening-multiply-accumulate", ["wmaccbf16"], BFTYPES,
                    SEWS, WLMULS, decorators.has_masking_no_maskedoff_policy_frm)
+  g.function_group(unary_op_template, "Vector BFloat16 Move Intrinsics",
+                   "vector-bf16-move", ["mv"], TYPES, SEWS, LMULS,
+                   decorators.has_no_masking_policy)
+
+  g.function_group(unary_op_template, "Vector BFloat16 Merge Intrinsics",
+                   "vector-bf16-merge", ["merge"], TYPES, SEWS, LMULS,
+                   decorators.has_no_masking_policy)
 
   ####################################################################
   g.start_group("BFloat16 Miscellaneous Vector Utility Intrinsics")
