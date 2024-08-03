@@ -3,11 +3,29 @@ Declares the vector crypto intrinsics through the vector crypto template.
 """
 
 from intrinsic_decorator import IntrinsicDecorators
+from generator import APITestGenerator
 from templates import vector_crypto_template
 from constants import LMULS, WLMULS, SEWS, WSEWS, UITYPE
 
+llvm_header = r"""// REQUIRES: riscv-registered-target
+// RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zvl512b \
+// RUN:   -target-feature +zvbb \
+// RUN:   -target-feature +zvbc \
+// RUN:   -target-feature +zvkg \
+// RUN:   -target-feature +zvkned \
+// RUN:   -target-feature +zvknhb \
+// RUN:   -target-feature +zvksed \
+// RUN:   -target-feature +zvksh -disable-O0-optnone \
+// RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
+// RUN:   FileCheck --check-prefix=CHECK-RV64 %s
+
+"""
+
 
 def gen(g):
+  if isinstance(g, APITestGenerator):
+    g.set_llvm_api_test_header(llvm_header)
+
   decorators = IntrinsicDecorators(g.has_tail_policy)
 
   g.start_group("Zvbb - Vector Bit-manipulation used in Cryptography")
