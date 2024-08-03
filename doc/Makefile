@@ -13,7 +13,7 @@
 # the Doc Template for RISC-V Extensions.
 
 DATE ?= $(shell date +%Y-%m-%d)
-VERSION ?= v1.0-rc1
+VERSION ?= v1.0-rc2
 REVMARK ?= Freeze
 
 HEADER_SOURCE := header.adoc
