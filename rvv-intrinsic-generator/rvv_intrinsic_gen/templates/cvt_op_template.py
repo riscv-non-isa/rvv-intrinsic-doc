@@ -47,6 +47,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         convert_set = [["float", "f", "bfloat", "bf"]]
       else:
         assert False, "Unhandled instruction with type_list = 'bfloat16'"
+    elif type_list == "float16_zvfhmin":
+      convert_set = [["float", "f", "float", "f"]]
     else:
       convert_set = [["int", "x", "float", "f"], ["uint", "xu", "float", "f"],
                      ["float", "f", "int", "x"], ["float", "f", "uint", "xu"],
@@ -123,6 +125,14 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if not type_helper.valid_vtype(dst_type) or\
          not type_helper.valid_vtype(src_type):
         continue
+      if "float16" in type_list:
+        # Skip the cases that don't contain float16 in the types for zvfh*.
+        if "float16" not in src_type and "float16" not in dst_type:
+          continue
+        # Skip the vfwcvt.f.f.v and vfncvt.f.f.w for float16
+        if type_list != "float16_zvfhmin" and\
+           args["TYPES1"] == "f" and args["TYPES3"] == "f":
+          continue
       if type_list == "bfloat16":
         if "ncvt" in args["OP"]:
           func_name = "{OP}_f_f_w_bf{LSEW}m{LLMUL}".format_map(args)
