@@ -29,18 +29,6 @@ vint8m1_t __riscv_vreinterpret_i8m1(vuint8m1_t src);
 vint8m2_t __riscv_vreinterpret_i8m2(vuint8m2_t src);
 vint8m4_t __riscv_vreinterpret_i8m4(vuint8m4_t src);
 vint8m8_t __riscv_vreinterpret_i8m8(vuint8m8_t src);
-vfloat16mf4_t __riscv_vreinterpret_f16mf4(vint16mf4_t src);
-vfloat16mf2_t __riscv_vreinterpret_f16mf2(vint16mf2_t src);
-vfloat16m1_t __riscv_vreinterpret_f16m1(vint16m1_t src);
-vfloat16m2_t __riscv_vreinterpret_f16m2(vint16m2_t src);
-vfloat16m4_t __riscv_vreinterpret_f16m4(vint16m4_t src);
-vfloat16m8_t __riscv_vreinterpret_f16m8(vint16m8_t src);
-vfloat16mf4_t __riscv_vreinterpret_f16mf4(vuint16mf4_t src);
-vfloat16mf2_t __riscv_vreinterpret_f16mf2(vuint16mf2_t src);
-vfloat16m1_t __riscv_vreinterpret_f16m1(vuint16m1_t src);
-vfloat16m2_t __riscv_vreinterpret_f16m2(vuint16m2_t src);
-vfloat16m4_t __riscv_vreinterpret_f16m4(vuint16m4_t src);
-vfloat16m8_t __riscv_vreinterpret_f16m8(vuint16m8_t src);
 vuint16mf4_t __riscv_vreinterpret_u16mf4(vint16mf4_t src);
 vuint16mf2_t __riscv_vreinterpret_u16mf2(vint16mf2_t src);
 vuint16m1_t __riscv_vreinterpret_u16m1(vint16m1_t src);
@@ -53,18 +41,6 @@ vint16m1_t __riscv_vreinterpret_i16m1(vuint16m1_t src);
 vint16m2_t __riscv_vreinterpret_i16m2(vuint16m2_t src);
 vint16m4_t __riscv_vreinterpret_i16m4(vuint16m4_t src);
 vint16m8_t __riscv_vreinterpret_i16m8(vuint16m8_t src);
-vint16mf4_t __riscv_vreinterpret_i16mf4(vfloat16mf4_t src);
-vint16mf2_t __riscv_vreinterpret_i16mf2(vfloat16mf2_t src);
-vint16m1_t __riscv_vreinterpret_i16m1(vfloat16m1_t src);
-vint16m2_t __riscv_vreinterpret_i16m2(vfloat16m2_t src);
-vint16m4_t __riscv_vreinterpret_i16m4(vfloat16m4_t src);
-vint16m8_t __riscv_vreinterpret_i16m8(vfloat16m8_t src);
-vuint16mf4_t __riscv_vreinterpret_u16mf4(vfloat16mf4_t src);
-vuint16mf2_t __riscv_vreinterpret_u16mf2(vfloat16mf2_t src);
-vuint16m1_t __riscv_vreinterpret_u16m1(vfloat16m1_t src);
-vuint16m2_t __riscv_vreinterpret_u16m2(vfloat16m2_t src);
-vuint16m4_t __riscv_vreinterpret_u16m4(vfloat16m4_t src);
-vuint16m8_t __riscv_vreinterpret_u16m8(vfloat16m8_t src);
 vfloat32mf2_t __riscv_vreinterpret_f32mf2(vint32mf2_t src);
 vfloat32m1_t __riscv_vreinterpret_f32m1(vint32m1_t src);
 vfloat32m2_t __riscv_vreinterpret_f32m2(vint32m2_t src);
@@ -328,37 +304,6 @@ vuint64m1_t __riscv_vreinterpret_u64m1(vbool8_t src);
 
 [,c]
 ----
-vfloat16mf2_t __riscv_vlmul_ext_f16mf2(vfloat16mf4_t value);
-vfloat16m1_t __riscv_vlmul_ext_f16m1(vfloat16mf4_t value);
-vfloat16m2_t __riscv_vlmul_ext_f16m2(vfloat16mf4_t value);
-vfloat16m4_t __riscv_vlmul_ext_f16m4(vfloat16mf4_t value);
-vfloat16m8_t __riscv_vlmul_ext_f16m8(vfloat16mf4_t value);
-vfloat16m1_t __riscv_vlmul_ext_f16m1(vfloat16mf2_t value);
-vfloat16m2_t __riscv_vlmul_ext_f16m2(vfloat16mf2_t value);
-vfloat16m4_t __riscv_vlmul_ext_f16m4(vfloat16mf2_t value);
-vfloat16m8_t __riscv_vlmul_ext_f16m8(vfloat16mf2_t value);
-vfloat16m2_t __riscv_vlmul_ext_f16m2(vfloat16m1_t value);
-vfloat16m4_t __riscv_vlmul_ext_f16m4(vfloat16m1_t value);
-vfloat16m8_t __riscv_vlmul_ext_f16m8(vfloat16m1_t value);
-vfloat16m4_t __riscv_vlmul_ext_f16m4(vfloat16m2_t value);
-vfloat16m8_t __riscv_vlmul_ext_f16m8(vfloat16m2_t value);
-vfloat16m8_t __riscv_vlmul_ext_f16m8(vfloat16m4_t value);
-vfloat32m1_t __riscv_vlmul_ext_f32m1(vfloat32mf2_t value);
-vfloat32m2_t __riscv_vlmul_ext_f32m2(vfloat32mf2_t value);
-vfloat32m4_t __riscv_vlmul_ext_f32m4(vfloat32mf2_t value);
-vfloat32m8_t __riscv_vlmul_ext_f32m8(vfloat32mf2_t value);
-vfloat32m2_t __riscv_vlmul_ext_f32m2(vfloat32m1_t value);
-vfloat32m4_t __riscv_vlmul_ext_f32m4(vfloat32m1_t value);
-vfloat32m8_t __riscv_vlmul_ext_f32m8(vfloat32m1_t value);
-vfloat32m4_t __riscv_vlmul_ext_f32m4(vfloat32m2_t value);
-vfloat32m8_t __riscv_vlmul_ext_f32m8(vfloat32m2_t value);
-vfloat32m8_t __riscv_vlmul_ext_f32m8(vfloat32m4_t value);
-vfloat64m2_t __riscv_vlmul_ext_f64m2(vfloat64m1_t value);
-vfloat64m4_t __riscv_vlmul_ext_f64m4(vfloat64m1_t value);
-vfloat64m8_t __riscv_vlmul_ext_f64m8(vfloat64m1_t value);
-vfloat64m4_t __riscv_vlmul_ext_f64m4(vfloat64m2_t value);
-vfloat64m8_t __riscv_vlmul_ext_f64m8(vfloat64m2_t value);
-vfloat64m8_t __riscv_vlmul_ext_f64m8(vfloat64m4_t value);
 vint8mf4_t __riscv_vlmul_ext_i8mf4(vint8mf8_t value);
 vint8mf2_t __riscv_vlmul_ext_i8mf2(vint8mf8_t value);
 vint8m1_t __riscv_vlmul_ext_i8m1(vint8mf8_t value);
@@ -465,42 +410,34 @@ vuint64m8_t __riscv_vlmul_ext_u64m8(vuint64m2_t value);
 vuint64m8_t __riscv_vlmul_ext_u64m8(vuint64m4_t value);
 ----
 
+[[overloaded-float-vector-lmul-extensionn]]
+==== Float Vector LMUL Extension Intrinsics
+
+[,c]
+----
+vfloat32m1_t __riscv_vlmul_ext_f32m1(vfloat32mf2_t value);
+vfloat32m2_t __riscv_vlmul_ext_f32m2(vfloat32mf2_t value);
+vfloat32m4_t __riscv_vlmul_ext_f32m4(vfloat32mf2_t value);
+vfloat32m8_t __riscv_vlmul_ext_f32m8(vfloat32mf2_t value);
+vfloat32m2_t __riscv_vlmul_ext_f32m2(vfloat32m1_t value);
+vfloat32m4_t __riscv_vlmul_ext_f32m4(vfloat32m1_t value);
+vfloat32m8_t __riscv_vlmul_ext_f32m8(vfloat32m1_t value);
+vfloat32m4_t __riscv_vlmul_ext_f32m4(vfloat32m2_t value);
+vfloat32m8_t __riscv_vlmul_ext_f32m8(vfloat32m2_t value);
+vfloat32m8_t __riscv_vlmul_ext_f32m8(vfloat32m4_t value);
+vfloat64m2_t __riscv_vlmul_ext_f64m2(vfloat64m1_t value);
+vfloat64m4_t __riscv_vlmul_ext_f64m4(vfloat64m1_t value);
+vfloat64m8_t __riscv_vlmul_ext_f64m8(vfloat64m1_t value);
+vfloat64m4_t __riscv_vlmul_ext_f64m4(vfloat64m2_t value);
+vfloat64m8_t __riscv_vlmul_ext_f64m8(vfloat64m2_t value);
+vfloat64m8_t __riscv_vlmul_ext_f64m8(vfloat64m4_t value);
+----
+
 [[overloaded-vector-lmul-truncation]]
 ==== Vector LMUL Truncation Intrinsics
 
 [,c]
 ----
-vfloat16mf4_t __riscv_vlmul_trunc_f16mf4(vfloat16mf2_t value);
-vfloat16mf4_t __riscv_vlmul_trunc_f16mf4(vfloat16m1_t value);
-vfloat16mf2_t __riscv_vlmul_trunc_f16mf2(vfloat16m1_t value);
-vfloat16mf4_t __riscv_vlmul_trunc_f16mf4(vfloat16m2_t value);
-vfloat16mf2_t __riscv_vlmul_trunc_f16mf2(vfloat16m2_t value);
-vfloat16m1_t __riscv_vlmul_trunc_f16m1(vfloat16m2_t value);
-vfloat16mf4_t __riscv_vlmul_trunc_f16mf4(vfloat16m4_t value);
-vfloat16mf2_t __riscv_vlmul_trunc_f16mf2(vfloat16m4_t value);
-vfloat16m1_t __riscv_vlmul_trunc_f16m1(vfloat16m4_t value);
-vfloat16m2_t __riscv_vlmul_trunc_f16m2(vfloat16m4_t value);
-vfloat16mf4_t __riscv_vlmul_trunc_f16mf4(vfloat16m8_t value);
-vfloat16mf2_t __riscv_vlmul_trunc_f16mf2(vfloat16m8_t value);
-vfloat16m1_t __riscv_vlmul_trunc_f16m1(vfloat16m8_t value);
-vfloat16m2_t __riscv_vlmul_trunc_f16m2(vfloat16m8_t value);
-vfloat16m4_t __riscv_vlmul_trunc_f16m4(vfloat16m8_t value);
-vfloat32mf2_t __riscv_vlmul_trunc_f32mf2(vfloat32m1_t value);
-vfloat32mf2_t __riscv_vlmul_trunc_f32mf2(vfloat32m2_t value);
-vfloat32m1_t __riscv_vlmul_trunc_f32m1(vfloat32m2_t value);
-vfloat32mf2_t __riscv_vlmul_trunc_f32mf2(vfloat32m4_t value);
-vfloat32m1_t __riscv_vlmul_trunc_f32m1(vfloat32m4_t value);
-vfloat32m2_t __riscv_vlmul_trunc_f32m2(vfloat32m4_t value);
-vfloat32mf2_t __riscv_vlmul_trunc_f32mf2(vfloat32m8_t value);
-vfloat32m1_t __riscv_vlmul_trunc_f32m1(vfloat32m8_t value);
-vfloat32m2_t __riscv_vlmul_trunc_f32m2(vfloat32m8_t value);
-vfloat32m4_t __riscv_vlmul_trunc_f32m4(vfloat32m8_t value);
-vfloat64m1_t __riscv_vlmul_trunc_f64m1(vfloat64m2_t value);
-vfloat64m1_t __riscv_vlmul_trunc_f64m1(vfloat64m4_t value);
-vfloat64m2_t __riscv_vlmul_trunc_f64m2(vfloat64m4_t value);
-vfloat64m1_t __riscv_vlmul_trunc_f64m1(vfloat64m8_t value);
-vfloat64m2_t __riscv_vlmul_trunc_f64m2(vfloat64m8_t value);
-vfloat64m4_t __riscv_vlmul_trunc_f64m4(vfloat64m8_t value);
 vint8mf8_t __riscv_vlmul_trunc_i8mf8(vint8mf4_t value);
 vint8mf8_t __riscv_vlmul_trunc_i8mf8(vint8mf2_t value);
 vint8mf4_t __riscv_vlmul_trunc_i8mf4(vint8mf2_t value);
@@ -607,8 +544,35 @@ vuint64m2_t __riscv_vlmul_trunc_u64m2(vuint64m8_t value);
 vuint64m4_t __riscv_vlmul_trunc_u64m4(vuint64m8_t value);
 ----
 
+[[overloaded-float-vector-lmul-truncation]]
+==== Float Vector LMUL Truncation Intrinsics
+
+[,c]
+----
+vfloat32mf2_t __riscv_vlmul_trunc_f32mf2(vfloat32m1_t value);
+vfloat32mf2_t __riscv_vlmul_trunc_f32mf2(vfloat32m2_t value);
+vfloat32m1_t __riscv_vlmul_trunc_f32m1(vfloat32m2_t value);
+vfloat32mf2_t __riscv_vlmul_trunc_f32mf2(vfloat32m4_t value);
+vfloat32m1_t __riscv_vlmul_trunc_f32m1(vfloat32m4_t value);
+vfloat32m2_t __riscv_vlmul_trunc_f32m2(vfloat32m4_t value);
+vfloat32mf2_t __riscv_vlmul_trunc_f32mf2(vfloat32m8_t value);
+vfloat32m1_t __riscv_vlmul_trunc_f32m1(vfloat32m8_t value);
+vfloat32m2_t __riscv_vlmul_trunc_f32m2(vfloat32m8_t value);
+vfloat32m4_t __riscv_vlmul_trunc_f32m4(vfloat32m8_t value);
+vfloat64m1_t __riscv_vlmul_trunc_f64m1(vfloat64m2_t value);
+vfloat64m1_t __riscv_vlmul_trunc_f64m1(vfloat64m4_t value);
+vfloat64m2_t __riscv_vlmul_trunc_f64m2(vfloat64m4_t value);
+vfloat64m1_t __riscv_vlmul_trunc_f64m1(vfloat64m8_t value);
+vfloat64m2_t __riscv_vlmul_trunc_f64m2(vfloat64m8_t value);
+vfloat64m4_t __riscv_vlmul_trunc_f64m4(vfloat64m8_t value);
+----
+
 [[overloaded-vector-initialization]]
 ==== Vector Initialization Intrinsics
+Intrinsics here don't have an overloaded variant.
+
+[[overloaded-float-vector-initialization]]
+==== Float Vector Initialization Intrinsics
 Intrinsics here don't have an overloaded variant.
 
 [[overloaded-vector-insertion]]
@@ -616,24 +580,6 @@ Intrinsics here don't have an overloaded variant.
 
 [,c]
 ----
-vfloat16m2_t __riscv_vset(vfloat16m2_t dest, size_t index, vfloat16m1_t value);
-vfloat16m4_t __riscv_vset(vfloat16m4_t dest, size_t index, vfloat16m1_t value);
-vfloat16m4_t __riscv_vset(vfloat16m4_t dest, size_t index, vfloat16m2_t value);
-vfloat16m8_t __riscv_vset(vfloat16m8_t dest, size_t index, vfloat16m1_t value);
-vfloat16m8_t __riscv_vset(vfloat16m8_t dest, size_t index, vfloat16m2_t value);
-vfloat16m8_t __riscv_vset(vfloat16m8_t dest, size_t index, vfloat16m4_t value);
-vfloat32m2_t __riscv_vset(vfloat32m2_t dest, size_t index, vfloat32m1_t value);
-vfloat32m4_t __riscv_vset(vfloat32m4_t dest, size_t index, vfloat32m1_t value);
-vfloat32m4_t __riscv_vset(vfloat32m4_t dest, size_t index, vfloat32m2_t value);
-vfloat32m8_t __riscv_vset(vfloat32m8_t dest, size_t index, vfloat32m1_t value);
-vfloat32m8_t __riscv_vset(vfloat32m8_t dest, size_t index, vfloat32m2_t value);
-vfloat32m8_t __riscv_vset(vfloat32m8_t dest, size_t index, vfloat32m4_t value);
-vfloat64m2_t __riscv_vset(vfloat64m2_t dest, size_t index, vfloat64m1_t value);
-vfloat64m4_t __riscv_vset(vfloat64m4_t dest, size_t index, vfloat64m1_t value);
-vfloat64m4_t __riscv_vset(vfloat64m4_t dest, size_t index, vfloat64m2_t value);
-vfloat64m8_t __riscv_vset(vfloat64m8_t dest, size_t index, vfloat64m1_t value);
-vfloat64m8_t __riscv_vset(vfloat64m8_t dest, size_t index, vfloat64m2_t value);
-vfloat64m8_t __riscv_vset(vfloat64m8_t dest, size_t index, vfloat64m4_t value);
 vint8m2_t __riscv_vset(vint8m2_t dest, size_t index, vint8m1_t value);
 vint8m4_t __riscv_vset(vint8m4_t dest, size_t index, vint8m1_t value);
 vint8m4_t __riscv_vset(vint8m4_t dest, size_t index, vint8m2_t value);
@@ -682,114 +628,6 @@ vuint64m4_t __riscv_vset(vuint64m4_t dest, size_t index, vuint64m2_t value);
 vuint64m8_t __riscv_vset(vuint64m8_t dest, size_t index, vuint64m1_t value);
 vuint64m8_t __riscv_vset(vuint64m8_t dest, size_t index, vuint64m2_t value);
 vuint64m8_t __riscv_vset(vuint64m8_t dest, size_t index, vuint64m4_t value);
-vfloat16mf4x2_t __riscv_vset(vfloat16mf4x2_t dest, size_t index,
-                             vfloat16mf4_t value);
-vfloat16mf4x3_t __riscv_vset(vfloat16mf4x3_t dest, size_t index,
-                             vfloat16mf4_t value);
-vfloat16mf4x4_t __riscv_vset(vfloat16mf4x4_t dest, size_t index,
-                             vfloat16mf4_t value);
-vfloat16mf4x5_t __riscv_vset(vfloat16mf4x5_t dest, size_t index,
-                             vfloat16mf4_t value);
-vfloat16mf4x6_t __riscv_vset(vfloat16mf4x6_t dest, size_t index,
-                             vfloat16mf4_t value);
-vfloat16mf4x7_t __riscv_vset(vfloat16mf4x7_t dest, size_t index,
-                             vfloat16mf4_t value);
-vfloat16mf4x8_t __riscv_vset(vfloat16mf4x8_t dest, size_t index,
-                             vfloat16mf4_t value);
-vfloat16mf2x2_t __riscv_vset(vfloat16mf2x2_t dest, size_t index,
-                             vfloat16mf2_t value);
-vfloat16mf2x3_t __riscv_vset(vfloat16mf2x3_t dest, size_t index,
-                             vfloat16mf2_t value);
-vfloat16mf2x4_t __riscv_vset(vfloat16mf2x4_t dest, size_t index,
-                             vfloat16mf2_t value);
-vfloat16mf2x5_t __riscv_vset(vfloat16mf2x5_t dest, size_t index,
-                             vfloat16mf2_t value);
-vfloat16mf2x6_t __riscv_vset(vfloat16mf2x6_t dest, size_t index,
-                             vfloat16mf2_t value);
-vfloat16mf2x7_t __riscv_vset(vfloat16mf2x7_t dest, size_t index,
-                             vfloat16mf2_t value);
-vfloat16mf2x8_t __riscv_vset(vfloat16mf2x8_t dest, size_t index,
-                             vfloat16mf2_t value);
-vfloat16m1x2_t __riscv_vset(vfloat16m1x2_t dest, size_t index,
-                            vfloat16m1_t value);
-vfloat16m1x3_t __riscv_vset(vfloat16m1x3_t dest, size_t index,
-                            vfloat16m1_t value);
-vfloat16m1x4_t __riscv_vset(vfloat16m1x4_t dest, size_t index,
-                            vfloat16m1_t value);
-vfloat16m1x5_t __riscv_vset(vfloat16m1x5_t dest, size_t index,
-                            vfloat16m1_t value);
-vfloat16m1x6_t __riscv_vset(vfloat16m1x6_t dest, size_t index,
-                            vfloat16m1_t value);
-vfloat16m1x7_t __riscv_vset(vfloat16m1x7_t dest, size_t index,
-                            vfloat16m1_t value);
-vfloat16m1x8_t __riscv_vset(vfloat16m1x8_t dest, size_t index,
-                            vfloat16m1_t value);
-vfloat16m2x2_t __riscv_vset(vfloat16m2x2_t dest, size_t index,
-                            vfloat16m2_t value);
-vfloat16m2x3_t __riscv_vset(vfloat16m2x3_t dest, size_t index,
-                            vfloat16m2_t value);
-vfloat16m2x4_t __riscv_vset(vfloat16m2x4_t dest, size_t index,
-                            vfloat16m2_t value);
-vfloat16m4x2_t __riscv_vset(vfloat16m4x2_t dest, size_t index,
-                            vfloat16m4_t value);
-vfloat32mf2x2_t __riscv_vset(vfloat32mf2x2_t dest, size_t index,
-                             vfloat32mf2_t value);
-vfloat32mf2x3_t __riscv_vset(vfloat32mf2x3_t dest, size_t index,
-                             vfloat32mf2_t value);
-vfloat32mf2x4_t __riscv_vset(vfloat32mf2x4_t dest, size_t index,
-                             vfloat32mf2_t value);
-vfloat32mf2x5_t __riscv_vset(vfloat32mf2x5_t dest, size_t index,
-                             vfloat32mf2_t value);
-vfloat32mf2x6_t __riscv_vset(vfloat32mf2x6_t dest, size_t index,
-                             vfloat32mf2_t value);
-vfloat32mf2x7_t __riscv_vset(vfloat32mf2x7_t dest, size_t index,
-                             vfloat32mf2_t value);
-vfloat32mf2x8_t __riscv_vset(vfloat32mf2x8_t dest, size_t index,
-                             vfloat32mf2_t value);
-vfloat32m1x2_t __riscv_vset(vfloat32m1x2_t dest, size_t index,
-                            vfloat32m1_t value);
-vfloat32m1x3_t __riscv_vset(vfloat32m1x3_t dest, size_t index,
-                            vfloat32m1_t value);
-vfloat32m1x4_t __riscv_vset(vfloat32m1x4_t dest, size_t index,
-                            vfloat32m1_t value);
-vfloat32m1x5_t __riscv_vset(vfloat32m1x5_t dest, size_t index,
-                            vfloat32m1_t value);
-vfloat32m1x6_t __riscv_vset(vfloat32m1x6_t dest, size_t index,
-                            vfloat32m1_t value);
-vfloat32m1x7_t __riscv_vset(vfloat32m1x7_t dest, size_t index,
-                            vfloat32m1_t value);
-vfloat32m1x8_t __riscv_vset(vfloat32m1x8_t dest, size_t index,
-                            vfloat32m1_t value);
-vfloat32m2x2_t __riscv_vset(vfloat32m2x2_t dest, size_t index,
-                            vfloat32m2_t value);
-vfloat32m2x3_t __riscv_vset(vfloat32m2x3_t dest, size_t index,
-                            vfloat32m2_t value);
-vfloat32m2x4_t __riscv_vset(vfloat32m2x4_t dest, size_t index,
-                            vfloat32m2_t value);
-vfloat32m4x2_t __riscv_vset(vfloat32m4x2_t dest, size_t index,
-                            vfloat32m4_t value);
-vfloat64m1x2_t __riscv_vset(vfloat64m1x2_t dest, size_t index,
-                            vfloat64m1_t value);
-vfloat64m1x3_t __riscv_vset(vfloat64m1x3_t dest, size_t index,
-                            vfloat64m1_t value);
-vfloat64m1x4_t __riscv_vset(vfloat64m1x4_t dest, size_t index,
-                            vfloat64m1_t value);
-vfloat64m1x5_t __riscv_vset(vfloat64m1x5_t dest, size_t index,
-                            vfloat64m1_t value);
-vfloat64m1x6_t __riscv_vset(vfloat64m1x6_t dest, size_t index,
-                            vfloat64m1_t value);
-vfloat64m1x7_t __riscv_vset(vfloat64m1x7_t dest, size_t index,
-                            vfloat64m1_t value);
-vfloat64m1x8_t __riscv_vset(vfloat64m1x8_t dest, size_t index,
-                            vfloat64m1_t value);
-vfloat64m2x2_t __riscv_vset(vfloat64m2x2_t dest, size_t index,
-                            vfloat64m2_t value);
-vfloat64m2x3_t __riscv_vset(vfloat64m2x3_t dest, size_t index,
-                            vfloat64m2_t value);
-vfloat64m2x4_t __riscv_vset(vfloat64m2x4_t dest, size_t index,
-                            vfloat64m2_t value);
-vfloat64m4x2_t __riscv_vset(vfloat64m4x2_t dest, size_t index,
-                            vfloat64m4_t value);
 vint8mf8x2_t __riscv_vset(vint8mf8x2_t dest, size_t index, vint8mf8_t value);
 vint8mf8x3_t __riscv_vset(vint8mf8x3_t dest, size_t index, vint8mf8_t value);
 vint8mf8x4_t __riscv_vset(vint8mf8x4_t dest, size_t index, vint8mf8_t value);
@@ -985,29 +823,88 @@ vuint64m2x4_t __riscv_vset(vuint64m2x4_t dest, size_t index, vuint64m2_t value);
 vuint64m4x2_t __riscv_vset(vuint64m4x2_t dest, size_t index, vuint64m4_t value);
 ----
 
+[[overloaded-float-vector-insertion]]
+==== Float Vector Insertion Intrinsics
+
+[,c]
+----
+vfloat32m2_t __riscv_vset(vfloat32m2_t dest, size_t index, vfloat32m1_t value);
+vfloat32m4_t __riscv_vset(vfloat32m4_t dest, size_t index, vfloat32m1_t value);
+vfloat32m4_t __riscv_vset(vfloat32m4_t dest, size_t index, vfloat32m2_t value);
+vfloat32m8_t __riscv_vset(vfloat32m8_t dest, size_t index, vfloat32m1_t value);
+vfloat32m8_t __riscv_vset(vfloat32m8_t dest, size_t index, vfloat32m2_t value);
+vfloat32m8_t __riscv_vset(vfloat32m8_t dest, size_t index, vfloat32m4_t value);
+vfloat64m2_t __riscv_vset(vfloat64m2_t dest, size_t index, vfloat64m1_t value);
+vfloat64m4_t __riscv_vset(vfloat64m4_t dest, size_t index, vfloat64m1_t value);
+vfloat64m4_t __riscv_vset(vfloat64m4_t dest, size_t index, vfloat64m2_t value);
+vfloat64m8_t __riscv_vset(vfloat64m8_t dest, size_t index, vfloat64m1_t value);
+vfloat64m8_t __riscv_vset(vfloat64m8_t dest, size_t index, vfloat64m2_t value);
+vfloat64m8_t __riscv_vset(vfloat64m8_t dest, size_t index, vfloat64m4_t value);
+vfloat32mf2x2_t __riscv_vset(vfloat32mf2x2_t dest, size_t index,
+                             vfloat32mf2_t value);
+vfloat32mf2x3_t __riscv_vset(vfloat32mf2x3_t dest, size_t index,
+                             vfloat32mf2_t value);
+vfloat32mf2x4_t __riscv_vset(vfloat32mf2x4_t dest, size_t index,
+                             vfloat32mf2_t value);
+vfloat32mf2x5_t __riscv_vset(vfloat32mf2x5_t dest, size_t index,
+                             vfloat32mf2_t value);
+vfloat32mf2x6_t __riscv_vset(vfloat32mf2x6_t dest, size_t index,
+                             vfloat32mf2_t value);
+vfloat32mf2x7_t __riscv_vset(vfloat32mf2x7_t dest, size_t index,
+                             vfloat32mf2_t value);
+vfloat32mf2x8_t __riscv_vset(vfloat32mf2x8_t dest, size_t index,
+                             vfloat32mf2_t value);
+vfloat32m1x2_t __riscv_vset(vfloat32m1x2_t dest, size_t index,
+                            vfloat32m1_t value);
+vfloat32m1x3_t __riscv_vset(vfloat32m1x3_t dest, size_t index,
+                            vfloat32m1_t value);
+vfloat32m1x4_t __riscv_vset(vfloat32m1x4_t dest, size_t index,
+                            vfloat32m1_t value);
+vfloat32m1x5_t __riscv_vset(vfloat32m1x5_t dest, size_t index,
+                            vfloat32m1_t value);
+vfloat32m1x6_t __riscv_vset(vfloat32m1x6_t dest, size_t index,
+                            vfloat32m1_t value);
+vfloat32m1x7_t __riscv_vset(vfloat32m1x7_t dest, size_t index,
+                            vfloat32m1_t value);
+vfloat32m1x8_t __riscv_vset(vfloat32m1x8_t dest, size_t index,
+                            vfloat32m1_t value);
+vfloat32m2x2_t __riscv_vset(vfloat32m2x2_t dest, size_t index,
+                            vfloat32m2_t value);
+vfloat32m2x3_t __riscv_vset(vfloat32m2x3_t dest, size_t index,
+                            vfloat32m2_t value);
+vfloat32m2x4_t __riscv_vset(vfloat32m2x4_t dest, size_t index,
+                            vfloat32m2_t value);
+vfloat32m4x2_t __riscv_vset(vfloat32m4x2_t dest, size_t index,
+                            vfloat32m4_t value);
+vfloat64m1x2_t __riscv_vset(vfloat64m1x2_t dest, size_t index,
+                            vfloat64m1_t value);
+vfloat64m1x3_t __riscv_vset(vfloat64m1x3_t dest, size_t index,
+                            vfloat64m1_t value);
+vfloat64m1x4_t __riscv_vset(vfloat64m1x4_t dest, size_t index,
+                            vfloat64m1_t value);
+vfloat64m1x5_t __riscv_vset(vfloat64m1x5_t dest, size_t index,
+                            vfloat64m1_t value);
+vfloat64m1x6_t __riscv_vset(vfloat64m1x6_t dest, size_t index,
+                            vfloat64m1_t value);
+vfloat64m1x7_t __riscv_vset(vfloat64m1x7_t dest, size_t index,
+                            vfloat64m1_t value);
+vfloat64m1x8_t __riscv_vset(vfloat64m1x8_t dest, size_t index,
+                            vfloat64m1_t value);
+vfloat64m2x2_t __riscv_vset(vfloat64m2x2_t dest, size_t index,
+                            vfloat64m2_t value);
+vfloat64m2x3_t __riscv_vset(vfloat64m2x3_t dest, size_t index,
+                            vfloat64m2_t value);
+vfloat64m2x4_t __riscv_vset(vfloat64m2x4_t dest, size_t index,
+                            vfloat64m2_t value);
+vfloat64m4x2_t __riscv_vset(vfloat64m4x2_t dest, size_t index,
+                            vfloat64m4_t value);
+----
+
 [[overloaded-vector-extraction]]
 ==== Vector Extraction Intrinsics
 
 [,c]
 ----
-vfloat16m1_t __riscv_vget_f16m1(vfloat16m2_t src, size_t index);
-vfloat16m1_t __riscv_vget_f16m1(vfloat16m4_t src, size_t index);
-vfloat16m1_t __riscv_vget_f16m1(vfloat16m8_t src, size_t index);
-vfloat16m2_t __riscv_vget_f16m2(vfloat16m4_t src, size_t index);
-vfloat16m2_t __riscv_vget_f16m2(vfloat16m8_t src, size_t index);
-vfloat16m4_t __riscv_vget_f16m4(vfloat16m8_t src, size_t index);
-vfloat32m1_t __riscv_vget_f32m1(vfloat32m2_t src, size_t index);
-vfloat32m1_t __riscv_vget_f32m1(vfloat32m4_t src, size_t index);
-vfloat32m1_t __riscv_vget_f32m1(vfloat32m8_t src, size_t index);
-vfloat32m2_t __riscv_vget_f32m2(vfloat32m4_t src, size_t index);
-vfloat32m2_t __riscv_vget_f32m2(vfloat32m8_t src, size_t index);
-vfloat32m4_t __riscv_vget_f32m4(vfloat32m8_t src, size_t index);
-vfloat64m1_t __riscv_vget_f64m1(vfloat64m2_t src, size_t index);
-vfloat64m1_t __riscv_vget_f64m1(vfloat64m4_t src, size_t index);
-vfloat64m1_t __riscv_vget_f64m1(vfloat64m8_t src, size_t index);
-vfloat64m2_t __riscv_vget_f64m2(vfloat64m4_t src, size_t index);
-vfloat64m2_t __riscv_vget_f64m2(vfloat64m8_t src, size_t index);
-vfloat64m4_t __riscv_vget_f64m4(vfloat64m8_t src, size_t index);
 vint8m1_t __riscv_vget_i8m1(vint8m2_t src, size_t index);
 vint8m1_t __riscv_vget_i8m1(vint8m4_t src, size_t index);
 vint8m1_t __riscv_vget_i8m1(vint8m8_t src, size_t index);
@@ -1056,60 +953,6 @@ vuint64m1_t __riscv_vget_u64m1(vuint64m8_t src, size_t index);
 vuint64m2_t __riscv_vget_u64m2(vuint64m4_t src, size_t index);
 vuint64m2_t __riscv_vget_u64m2(vuint64m8_t src, size_t index);
 vuint64m4_t __riscv_vget_u64m4(vuint64m8_t src, size_t index);
-vfloat16mf4_t __riscv_vget_f16mf4(vfloat16mf4x2_t src, size_t index);
-vfloat16mf4_t __riscv_vget_f16mf4(vfloat16mf4x3_t src, size_t index);
-vfloat16mf4_t __riscv_vget_f16mf4(vfloat16mf4x4_t src, size_t index);
-vfloat16mf4_t __riscv_vget_f16mf4(vfloat16mf4x5_t src, size_t index);
-vfloat16mf4_t __riscv_vget_f16mf4(vfloat16mf4x6_t src, size_t index);
-vfloat16mf4_t __riscv_vget_f16mf4(vfloat16mf4x7_t src, size_t index);
-vfloat16mf4_t __riscv_vget_f16mf4(vfloat16mf4x8_t src, size_t index);
-vfloat16mf2_t __riscv_vget_f16mf2(vfloat16mf2x2_t src, size_t index);
-vfloat16mf2_t __riscv_vget_f16mf2(vfloat16mf2x3_t src, size_t index);
-vfloat16mf2_t __riscv_vget_f16mf2(vfloat16mf2x4_t src, size_t index);
-vfloat16mf2_t __riscv_vget_f16mf2(vfloat16mf2x5_t src, size_t index);
-vfloat16mf2_t __riscv_vget_f16mf2(vfloat16mf2x6_t src, size_t index);
-vfloat16mf2_t __riscv_vget_f16mf2(vfloat16mf2x7_t src, size_t index);
-vfloat16mf2_t __riscv_vget_f16mf2(vfloat16mf2x8_t src, size_t index);
-vfloat16m1_t __riscv_vget_f16m1(vfloat16m1x2_t src, size_t index);
-vfloat16m1_t __riscv_vget_f16m1(vfloat16m1x3_t src, size_t index);
-vfloat16m1_t __riscv_vget_f16m1(vfloat16m1x4_t src, size_t index);
-vfloat16m1_t __riscv_vget_f16m1(vfloat16m1x5_t src, size_t index);
-vfloat16m1_t __riscv_vget_f16m1(vfloat16m1x6_t src, size_t index);
-vfloat16m1_t __riscv_vget_f16m1(vfloat16m1x7_t src, size_t index);
-vfloat16m1_t __riscv_vget_f16m1(vfloat16m1x8_t src, size_t index);
-vfloat16m2_t __riscv_vget_f16m2(vfloat16m2x2_t src, size_t index);
-vfloat16m2_t __riscv_vget_f16m2(vfloat16m2x3_t src, size_t index);
-vfloat16m2_t __riscv_vget_f16m2(vfloat16m2x4_t src, size_t index);
-vfloat16m4_t __riscv_vget_f16m4(vfloat16m4x2_t src, size_t index);
-vfloat32mf2_t __riscv_vget_f32mf2(vfloat32mf2x2_t src, size_t index);
-vfloat32mf2_t __riscv_vget_f32mf2(vfloat32mf2x3_t src, size_t index);
-vfloat32mf2_t __riscv_vget_f32mf2(vfloat32mf2x4_t src, size_t index);
-vfloat32mf2_t __riscv_vget_f32mf2(vfloat32mf2x5_t src, size_t index);
-vfloat32mf2_t __riscv_vget_f32mf2(vfloat32mf2x6_t src, size_t index);
-vfloat32mf2_t __riscv_vget_f32mf2(vfloat32mf2x7_t src, size_t index);
-vfloat32mf2_t __riscv_vget_f32mf2(vfloat32mf2x8_t src, size_t index);
-vfloat32m1_t __riscv_vget_f32m1(vfloat32m1x2_t src, size_t index);
-vfloat32m1_t __riscv_vget_f32m1(vfloat32m1x3_t src, size_t index);
-vfloat32m1_t __riscv_vget_f32m1(vfloat32m1x4_t src, size_t index);
-vfloat32m1_t __riscv_vget_f32m1(vfloat32m1x5_t src, size_t index);
-vfloat32m1_t __riscv_vget_f32m1(vfloat32m1x6_t src, size_t index);
-vfloat32m1_t __riscv_vget_f32m1(vfloat32m1x7_t src, size_t index);
-vfloat32m1_t __riscv_vget_f32m1(vfloat32m1x8_t src, size_t index);
-vfloat32m2_t __riscv_vget_f32m2(vfloat32m2x2_t src, size_t index);
-vfloat32m2_t __riscv_vget_f32m2(vfloat32m2x3_t src, size_t index);
-vfloat32m2_t __riscv_vget_f32m2(vfloat32m2x4_t src, size_t index);
-vfloat32m4_t __riscv_vget_f32m4(vfloat32m4x2_t src, size_t index);
-vfloat64m1_t __riscv_vget_f64m1(vfloat64m1x2_t src, size_t index);
-vfloat64m1_t __riscv_vget_f64m1(vfloat64m1x3_t src, size_t index);
-vfloat64m1_t __riscv_vget_f64m1(vfloat64m1x4_t src, size_t index);
-vfloat64m1_t __riscv_vget_f64m1(vfloat64m1x5_t src, size_t index);
-vfloat64m1_t __riscv_vget_f64m1(vfloat64m1x6_t src, size_t index);
-vfloat64m1_t __riscv_vget_f64m1(vfloat64m1x7_t src, size_t index);
-vfloat64m1_t __riscv_vget_f64m1(vfloat64m1x8_t src, size_t index);
-vfloat64m2_t __riscv_vget_f64m2(vfloat64m2x2_t src, size_t index);
-vfloat64m2_t __riscv_vget_f64m2(vfloat64m2x3_t src, size_t index);
-vfloat64m2_t __riscv_vget_f64m2(vfloat64m2x4_t src, size_t index);
-vfloat64m4_t __riscv_vget_f64m4(vfloat64m4x2_t src, size_t index);
 vint8mf8_t __riscv_vget_i8mf8(vint8mf8x2_t src, size_t index);
 vint8mf8_t __riscv_vget_i8mf8(vint8mf8x3_t src, size_t index);
 vint8mf8_t __riscv_vget_i8mf8(vint8mf8x4_t src, size_t index);
@@ -1284,6 +1127,58 @@ vuint64m2_t __riscv_vget_u64m2(vuint64m2x4_t src, size_t index);
 vuint64m4_t __riscv_vget_u64m4(vuint64m4x2_t src, size_t index);
 ----
 
+[[overloaded-float-vector-extraction]]
+==== Float Vector Extraction Intrinsics
+
+[,c]
+----
+vfloat32m1_t __riscv_vget_f32m1(vfloat32m2_t src, size_t index);
+vfloat32m1_t __riscv_vget_f32m1(vfloat32m4_t src, size_t index);
+vfloat32m1_t __riscv_vget_f32m1(vfloat32m8_t src, size_t index);
+vfloat32m2_t __riscv_vget_f32m2(vfloat32m4_t src, size_t index);
+vfloat32m2_t __riscv_vget_f32m2(vfloat32m8_t src, size_t index);
+vfloat32m4_t __riscv_vget_f32m4(vfloat32m8_t src, size_t index);
+vfloat64m1_t __riscv_vget_f64m1(vfloat64m2_t src, size_t index);
+vfloat64m1_t __riscv_vget_f64m1(vfloat64m4_t src, size_t index);
+vfloat64m1_t __riscv_vget_f64m1(vfloat64m8_t src, size_t index);
+vfloat64m2_t __riscv_vget_f64m2(vfloat64m4_t src, size_t index);
+vfloat64m2_t __riscv_vget_f64m2(vfloat64m8_t src, size_t index);
+vfloat64m4_t __riscv_vget_f64m4(vfloat64m8_t src, size_t index);
+vfloat32mf2_t __riscv_vget_f32mf2(vfloat32mf2x2_t src, size_t index);
+vfloat32mf2_t __riscv_vget_f32mf2(vfloat32mf2x3_t src, size_t index);
+vfloat32mf2_t __riscv_vget_f32mf2(vfloat32mf2x4_t src, size_t index);
+vfloat32mf2_t __riscv_vget_f32mf2(vfloat32mf2x5_t src, size_t index);
+vfloat32mf2_t __riscv_vget_f32mf2(vfloat32mf2x6_t src, size_t index);
+vfloat32mf2_t __riscv_vget_f32mf2(vfloat32mf2x7_t src, size_t index);
+vfloat32mf2_t __riscv_vget_f32mf2(vfloat32mf2x8_t src, size_t index);
+vfloat32m1_t __riscv_vget_f32m1(vfloat32m1x2_t src, size_t index);
+vfloat32m1_t __riscv_vget_f32m1(vfloat32m1x3_t src, size_t index);
+vfloat32m1_t __riscv_vget_f32m1(vfloat32m1x4_t src, size_t index);
+vfloat32m1_t __riscv_vget_f32m1(vfloat32m1x5_t src, size_t index);
+vfloat32m1_t __riscv_vget_f32m1(vfloat32m1x6_t src, size_t index);
+vfloat32m1_t __riscv_vget_f32m1(vfloat32m1x7_t src, size_t index);
+vfloat32m1_t __riscv_vget_f32m1(vfloat32m1x8_t src, size_t index);
+vfloat32m2_t __riscv_vget_f32m2(vfloat32m2x2_t src, size_t index);
+vfloat32m2_t __riscv_vget_f32m2(vfloat32m2x3_t src, size_t index);
+vfloat32m2_t __riscv_vget_f32m2(vfloat32m2x4_t src, size_t index);
+vfloat32m4_t __riscv_vget_f32m4(vfloat32m4x2_t src, size_t index);
+vfloat64m1_t __riscv_vget_f64m1(vfloat64m1x2_t src, size_t index);
+vfloat64m1_t __riscv_vget_f64m1(vfloat64m1x3_t src, size_t index);
+vfloat64m1_t __riscv_vget_f64m1(vfloat64m1x4_t src, size_t index);
+vfloat64m1_t __riscv_vget_f64m1(vfloat64m1x5_t src, size_t index);
+vfloat64m1_t __riscv_vget_f64m1(vfloat64m1x6_t src, size_t index);
+vfloat64m1_t __riscv_vget_f64m1(vfloat64m1x7_t src, size_t index);
+vfloat64m1_t __riscv_vget_f64m1(vfloat64m1x8_t src, size_t index);
+vfloat64m2_t __riscv_vget_f64m2(vfloat64m2x2_t src, size_t index);
+vfloat64m2_t __riscv_vget_f64m2(vfloat64m2x3_t src, size_t index);
+vfloat64m2_t __riscv_vget_f64m2(vfloat64m2x4_t src, size_t index);
+vfloat64m4_t __riscv_vget_f64m4(vfloat64m4x2_t src, size_t index);
+----
+
 [[overloaded-vector-creation]]
 ==== Vector Creation Intrinsics
+Intrinsics here don't have an overloaded variant.
+
+[[overloaded-float-vector-creation]]
+==== Float Vector Creation Intrinsics
 Intrinsics here don't have an overloaded variant.

@@ -6,36 +6,6 @@
 
 [,c]
 ----
-vfloat16mf4_t __riscv_vle16_v_f16mf4_tu(vfloat16mf4_t vd, const _Float16 *rs1,
-                                        size_t vl);
-vfloat16mf2_t __riscv_vle16_v_f16mf2_tu(vfloat16mf2_t vd, const _Float16 *rs1,
-                                        size_t vl);
-vfloat16m1_t __riscv_vle16_v_f16m1_tu(vfloat16m1_t vd, const _Float16 *rs1,
-                                      size_t vl);
-vfloat16m2_t __riscv_vle16_v_f16m2_tu(vfloat16m2_t vd, const _Float16 *rs1,
-                                      size_t vl);
-vfloat16m4_t __riscv_vle16_v_f16m4_tu(vfloat16m4_t vd, const _Float16 *rs1,
-                                      size_t vl);
-vfloat16m8_t __riscv_vle16_v_f16m8_tu(vfloat16m8_t vd, const _Float16 *rs1,
-                                      size_t vl);
-vfloat32mf2_t __riscv_vle32_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
-                                        size_t vl);
-vfloat32m1_t __riscv_vle32_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
-                                      size_t vl);
-vfloat32m2_t __riscv_vle32_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
-                                      size_t vl);
-vfloat32m4_t __riscv_vle32_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
-                                      size_t vl);
-vfloat32m8_t __riscv_vle32_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
-                                      size_t vl);
-vfloat64m1_t __riscv_vle64_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
-                                      size_t vl);
-vfloat64m2_t __riscv_vle64_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
-                                      size_t vl);
-vfloat64m4_t __riscv_vle64_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
-                                      size_t vl);
-vfloat64m8_t __riscv_vle64_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
-                                      size_t vl);
 vint8mf8_t __riscv_vle8_v_i8mf8_tu(vint8mf8_t vd, const int8_t *rs1, size_t vl);
 vint8mf4_t __riscv_vle8_v_i8mf4_tu(vint8mf4_t vd, const int8_t *rs1, size_t vl);
 vint8mf2_t __riscv_vle8_v_i8mf2_tu(vint8mf2_t vd, const int8_t *rs1, size_t vl);
@@ -114,36 +84,6 @@ vuint64m4_t __riscv_vle64_v_u64m4_tu(vuint64m4_t vd, const uint64_t *rs1,
 vuint64m8_t __riscv_vle64_v_u64m8_tu(vuint64m8_t vd, const uint64_t *rs1,
                                      size_t vl);
 // masked functions
-vfloat16mf4_t __riscv_vle16_v_f16mf4_tum(vbool64_t vm, vfloat16mf4_t vd,
-                                         const _Float16 *rs1, size_t vl);
-vfloat16mf2_t __riscv_vle16_v_f16mf2_tum(vbool32_t vm, vfloat16mf2_t vd,
-                                         const _Float16 *rs1, size_t vl);
-vfloat16m1_t __riscv_vle16_v_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
-                                       const _Float16 *rs1, size_t vl);
-vfloat16m2_t __riscv_vle16_v_f16m2_tum(vbool8_t vm, vfloat16m2_t vd,
-                                       const _Float16 *rs1, size_t vl);
-vfloat16m4_t __riscv_vle16_v_f16m4_tum(vbool4_t vm, vfloat16m4_t vd,
-                                       const _Float16 *rs1, size_t vl);
-vfloat16m8_t __riscv_vle16_v_f16m8_tum(vbool2_t vm, vfloat16m8_t vd,
-                                       const _Float16 *rs1, size_t vl);
-vfloat32mf2_t __riscv_vle32_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
-                                         const float *rs1, size_t vl);
-vfloat32m1_t __riscv_vle32_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
-                                       const float *rs1, size_t vl);
-vfloat32m2_t __riscv_vle32_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
-                                       const float *rs1, size_t vl);
-vfloat32m4_t __riscv_vle32_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
-                                       const float *rs1, size_t vl);
-vfloat32m8_t __riscv_vle32_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
-                                       const float *rs1, size_t vl);
-vfloat64m1_t __riscv_vle64_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
-                                       const double *rs1, size_t vl);
-vfloat64m2_t __riscv_vle64_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
-                                       const double *rs1, size_t vl);
-vfloat64m4_t __riscv_vle64_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
-                                       const double *rs1, size_t vl);
-vfloat64m8_t __riscv_vle64_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
-                                       const double *rs1, size_t vl);
 vint8mf8_t __riscv_vle8_v_i8mf8_tum(vbool64_t vm, vint8mf8_t vd,
                                     const int8_t *rs1, size_t vl);
 vint8mf4_t __riscv_vle8_v_i8mf4_tum(vbool32_t vm, vint8mf4_t vd,
@@ -233,36 +173,6 @@ vuint64m4_t __riscv_vle64_v_u64m4_tum(vbool16_t vm, vuint64m4_t vd,
 vuint64m8_t __riscv_vle64_v_u64m8_tum(vbool8_t vm, vuint64m8_t vd,
                                       const uint64_t *rs1, size_t vl);
 // masked functions
-vfloat16mf4_t __riscv_vle16_v_f16mf4_tumu(vbool64_t vm, vfloat16mf4_t vd,
-                                          const _Float16 *rs1, size_t vl);
-vfloat16mf2_t __riscv_vle16_v_f16mf2_tumu(vbool32_t vm, vfloat16mf2_t vd,
-                                          const _Float16 *rs1, size_t vl);
-vfloat16m1_t __riscv_vle16_v_f16m1_tumu(vbool16_t vm, vfloat16m1_t vd,
-                                        const _Float16 *rs1, size_t vl);
-vfloat16m2_t __riscv_vle16_v_f16m2_tumu(vbool8_t vm, vfloat16m2_t vd,
-                                        const _Float16 *rs1, size_t vl);
-vfloat16m4_t __riscv_vle16_v_f16m4_tumu(vbool4_t vm, vfloat16m4_t vd,
-                                        const _Float16 *rs1, size_t vl);
-vfloat16m8_t __riscv_vle16_v_f16m8_tumu(vbool2_t vm, vfloat16m8_t vd,
-                                        const _Float16 *rs1, size_t vl);
-vfloat32mf2_t __riscv_vle32_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
-                                          const float *rs1, size_t vl);
-vfloat32m1_t __riscv_vle32_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
-                                        const float *rs1, size_t vl);
-vfloat32m2_t __riscv_vle32_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
-                                        const float *rs1, size_t vl);
-vfloat32m4_t __riscv_vle32_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
-                                        const float *rs1, size_t vl);
-vfloat32m8_t __riscv_vle32_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
-                                        const float *rs1, size_t vl);
-vfloat64m1_t __riscv_vle64_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
-                                        const double *rs1, size_t vl);
-vfloat64m2_t __riscv_vle64_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
-                                        const double *rs1, size_t vl);
-vfloat64m4_t __riscv_vle64_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
-                                        const double *rs1, size_t vl);
-vfloat64m8_t __riscv_vle64_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
-                                        const double *rs1, size_t vl);
 vint8mf8_t __riscv_vle8_v_i8mf8_tumu(vbool64_t vm, vint8mf8_t vd,
                                      const int8_t *rs1, size_t vl);
 vint8mf4_t __riscv_vle8_v_i8mf4_tumu(vbool32_t vm, vint8mf4_t vd,
@@ -352,36 +262,6 @@ vuint64m4_t __riscv_vle64_v_u64m4_tumu(vbool16_t vm, vuint64m4_t vd,
 vuint64m8_t __riscv_vle64_v_u64m8_tumu(vbool8_t vm, vuint64m8_t vd,
                                        const uint64_t *rs1, size_t vl);
 // masked functions
-vfloat16mf4_t __riscv_vle16_v_f16mf4_mu(vbool64_t vm, vfloat16mf4_t vd,
-                                        const _Float16 *rs1, size_t vl);
-vfloat16mf2_t __riscv_vle16_v_f16mf2_mu(vbool32_t vm, vfloat16mf2_t vd,
-                                        const _Float16 *rs1, size_t vl);
-vfloat16m1_t __riscv_vle16_v_f16m1_mu(vbool16_t vm, vfloat16m1_t vd,
-                                      const _Float16 *rs1, size_t vl);
-vfloat16m2_t __riscv_vle16_v_f16m2_mu(vbool8_t vm, vfloat16m2_t vd,
-                                      const _Float16 *rs1, size_t vl);
-vfloat16m4_t __riscv_vle16_v_f16m4_mu(vbool4_t vm, vfloat16m4_t vd,
-                                      const _Float16 *rs1, size_t vl);
-vfloat16m8_t __riscv_vle16_v_f16m8_mu(vbool2_t vm, vfloat16m8_t vd,
-                                      const _Float16 *rs1, size_t vl);
-vfloat32mf2_t __riscv_vle32_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
-                                        const float *rs1, size_t vl);
-vfloat32m1_t __riscv_vle32_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
-                                      const float *rs1, size_t vl);
-vfloat32m2_t __riscv_vle32_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
-                                      const float *rs1, size_t vl);
-vfloat32m4_t __riscv_vle32_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
-                                      const float *rs1, size_t vl);
-vfloat32m8_t __riscv_vle32_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
-                                      const float *rs1, size_t vl);
-vfloat64m1_t __riscv_vle64_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
-                                      const double *rs1, size_t vl);
-vfloat64m2_t __riscv_vle64_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
-                                      const double *rs1, size_t vl);
-vfloat64m4_t __riscv_vle64_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
-                                      const double *rs1, size_t vl);
-vfloat64m8_t __riscv_vle64_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
-                                      const double *rs1, size_t vl);
 vint8mf8_t __riscv_vle8_v_i8mf8_mu(vbool64_t vm, vint8mf8_t vd,
                                    const int8_t *rs1, size_t vl);
 vint8mf4_t __riscv_vle8_v_i8mf4_mu(vbool32_t vm, vint8mf4_t vd,
@@ -472,8 +352,94 @@ vuint64m8_t __riscv_vle64_v_u64m8_mu(vbool8_t vm, vuint64m8_t vd,
                                      const uint64_t *rs1, size_t vl);
 ----
 
+[[policy-variant-float-vector-unit-stride-load]]
+==== Float Vector Unit-Stride Load Intrinsics
+
+[,c]
+----
+vfloat32mf2_t __riscv_vle32_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
+                                        size_t vl);
+vfloat32m1_t __riscv_vle32_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
+                                      size_t vl);
+vfloat32m2_t __riscv_vle32_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
+                                      size_t vl);
+vfloat32m4_t __riscv_vle32_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
+                                      size_t vl);
+vfloat32m8_t __riscv_vle32_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
+                                      size_t vl);
+vfloat64m1_t __riscv_vle64_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
+                                      size_t vl);
+vfloat64m2_t __riscv_vle64_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
+                                      size_t vl);
+vfloat64m4_t __riscv_vle64_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
+                                      size_t vl);
+vfloat64m8_t __riscv_vle64_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
+                                      size_t vl);
+// masked functions
+vfloat32mf2_t __riscv_vle32_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
+                                         const float *rs1, size_t vl);
+vfloat32m1_t __riscv_vle32_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
+                                       const float *rs1, size_t vl);
+vfloat32m2_t __riscv_vle32_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
+                                       const float *rs1, size_t vl);
+vfloat32m4_t __riscv_vle32_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
+                                       const float *rs1, size_t vl);
+vfloat32m8_t __riscv_vle32_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
+                                       const float *rs1, size_t vl);
+vfloat64m1_t __riscv_vle64_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
+                                       const double *rs1, size_t vl);
+vfloat64m2_t __riscv_vle64_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
+                                       const double *rs1, size_t vl);
+vfloat64m4_t __riscv_vle64_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
+                                       const double *rs1, size_t vl);
+vfloat64m8_t __riscv_vle64_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
+                                       const double *rs1, size_t vl);
+// masked functions
+vfloat32mf2_t __riscv_vle32_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
+                                          const float *rs1, size_t vl);
+vfloat32m1_t __riscv_vle32_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
+                                        const float *rs1, size_t vl);
+vfloat32m2_t __riscv_vle32_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
+                                        const float *rs1, size_t vl);
+vfloat32m4_t __riscv_vle32_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
+                                        const float *rs1, size_t vl);
+vfloat32m8_t __riscv_vle32_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
+                                        const float *rs1, size_t vl);
+vfloat64m1_t __riscv_vle64_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
+                                        const double *rs1, size_t vl);
+vfloat64m2_t __riscv_vle64_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
+                                        const double *rs1, size_t vl);
+vfloat64m4_t __riscv_vle64_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
+                                        const double *rs1, size_t vl);
+vfloat64m8_t __riscv_vle64_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
+                                        const double *rs1, size_t vl);
+// masked functions
+vfloat32mf2_t __riscv_vle32_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
+                                        const float *rs1, size_t vl);
+vfloat32m1_t __riscv_vle32_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
+                                      const float *rs1, size_t vl);
+vfloat32m2_t __riscv_vle32_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
+                                      const float *rs1, size_t vl);
+vfloat32m4_t __riscv_vle32_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
+                                      const float *rs1, size_t vl);
+vfloat32m8_t __riscv_vle32_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
+                                      const float *rs1, size_t vl);
+vfloat64m1_t __riscv_vle64_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
+                                      const double *rs1, size_t vl);
+vfloat64m2_t __riscv_vle64_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
+                                      const double *rs1, size_t vl);
+vfloat64m4_t __riscv_vle64_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
+                                      const double *rs1, size_t vl);
+vfloat64m8_t __riscv_vle64_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
+                                      const double *rs1, size_t vl);
+----
+
 [[policy-variant-vector-unit-stride-store]]
 ==== Vector Unit-Stride Store Intrinsics
+Intrinsics here don't have a policy variant.
+
+[[policy-variant-float-vector-unit-stride-store]]
+==== Float Vector Unit-Stride Store Intrinsics
 Intrinsics here don't have a policy variant.
 
 [[policy-variant-vector-unit-stride]]
@@ -485,36 +451,6 @@ Intrinsics here don't have a policy variant.
 
 [,c]
 ----
-vfloat16mf4_t __riscv_vlse16_v_f16mf4_tu(vfloat16mf4_t vd, const _Float16 *rs1,
-                                         ptrdiff_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vlse16_v_f16mf2_tu(vfloat16mf2_t vd, const _Float16 *rs1,
-                                         ptrdiff_t rs2, size_t vl);
-vfloat16m1_t __riscv_vlse16_v_f16m1_tu(vfloat16m1_t vd, const _Float16 *rs1,
-                                       ptrdiff_t rs2, size_t vl);
-vfloat16m2_t __riscv_vlse16_v_f16m2_tu(vfloat16m2_t vd, const _Float16 *rs1,
-                                       ptrdiff_t rs2, size_t vl);
-vfloat16m4_t __riscv_vlse16_v_f16m4_tu(vfloat16m4_t vd, const _Float16 *rs1,
-                                       ptrdiff_t rs2, size_t vl);
-vfloat16m8_t __riscv_vlse16_v_f16m8_tu(vfloat16m8_t vd, const _Float16 *rs1,
-                                       ptrdiff_t rs2, size_t vl);
-vfloat32mf2_t __riscv_vlse32_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
-                                         ptrdiff_t rs2, size_t vl);
-vfloat32m1_t __riscv_vlse32_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
-                                       ptrdiff_t rs2, size_t vl);
-vfloat32m2_t __riscv_vlse32_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
-                                       ptrdiff_t rs2, size_t vl);
-vfloat32m4_t __riscv_vlse32_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
-                                       ptrdiff_t rs2, size_t vl);
-vfloat32m8_t __riscv_vlse32_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
-                                       ptrdiff_t rs2, size_t vl);
-vfloat64m1_t __riscv_vlse64_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
-                                       ptrdiff_t rs2, size_t vl);
-vfloat64m2_t __riscv_vlse64_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
-                                       ptrdiff_t rs2, size_t vl);
-vfloat64m4_t __riscv_vlse64_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
-                                       ptrdiff_t rs2, size_t vl);
-vfloat64m8_t __riscv_vlse64_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
-                                       ptrdiff_t rs2, size_t vl);
 vint8mf8_t __riscv_vlse8_v_i8mf8_tu(vint8mf8_t vd, const int8_t *rs1,
                                     ptrdiff_t rs2, size_t vl);
 vint8mf4_t __riscv_vlse8_v_i8mf4_tu(vint8mf4_t vd, const int8_t *rs1,
@@ -604,51 +540,6 @@ vuint64m4_t __riscv_vlse64_v_u64m4_tu(vuint64m4_t vd, const uint64_t *rs1,
 vuint64m8_t __riscv_vlse64_v_u64m8_tu(vuint64m8_t vd, const uint64_t *rs1,
                                       ptrdiff_t rs2, size_t vl);
 // masked functions
-vfloat16mf4_t __riscv_vlse16_v_f16mf4_tum(vbool64_t vm, vfloat16mf4_t vd,
-                                          const _Float16 *rs1, ptrdiff_t rs2,
-                                          size_t vl);
-vfloat16mf2_t __riscv_vlse16_v_f16mf2_tum(vbool32_t vm, vfloat16mf2_t vd,
-                                          const _Float16 *rs1, ptrdiff_t rs2,
-                                          size_t vl);
-vfloat16m1_t __riscv_vlse16_v_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
-                                        const _Float16 *rs1, ptrdiff_t rs2,
-                                        size_t vl);
-vfloat16m2_t __riscv_vlse16_v_f16m2_tum(vbool8_t vm, vfloat16m2_t vd,
-                                        const _Float16 *rs1, ptrdiff_t rs2,
-                                        size_t vl);
-vfloat16m4_t __riscv_vlse16_v_f16m4_tum(vbool4_t vm, vfloat16m4_t vd,
-                                        const _Float16 *rs1, ptrdiff_t rs2,
-                                        size_t vl);
-vfloat16m8_t __riscv_vlse16_v_f16m8_tum(vbool2_t vm, vfloat16m8_t vd,
-                                        const _Float16 *rs1, ptrdiff_t rs2,
-                                        size_t vl);
-vfloat32mf2_t __riscv_vlse32_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
-                                          const float *rs1, ptrdiff_t rs2,
-                                          size_t vl);
-vfloat32m1_t __riscv_vlse32_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
-                                        const float *rs1, ptrdiff_t rs2,
-                                        size_t vl);
-vfloat32m2_t __riscv_vlse32_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
-                                        const float *rs1, ptrdiff_t rs2,
-                                        size_t vl);
-vfloat32m4_t __riscv_vlse32_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
-                                        const float *rs1, ptrdiff_t rs2,
-                                        size_t vl);
-vfloat32m8_t __riscv_vlse32_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
-                                        const float *rs1, ptrdiff_t rs2,
-                                        size_t vl);
-vfloat64m1_t __riscv_vlse64_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
-                                        const double *rs1, ptrdiff_t rs2,
-                                        size_t vl);
-vfloat64m2_t __riscv_vlse64_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
-                                        const double *rs1, ptrdiff_t rs2,
-                                        size_t vl);
-vfloat64m4_t __riscv_vlse64_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
-                                        const double *rs1, ptrdiff_t rs2,
-                                        size_t vl);
-vfloat64m8_t __riscv_vlse64_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
-                                        const double *rs1, ptrdiff_t rs2,
-                                        size_t vl);
 vint8mf8_t __riscv_vlse8_v_i8mf8_tum(vbool64_t vm, vint8mf8_t vd,
                                      const int8_t *rs1, ptrdiff_t rs2,
                                      size_t vl);
@@ -778,51 +669,6 @@ vuint64m8_t __riscv_vlse64_v_u64m8_tum(vbool8_t vm, vuint64m8_t vd,
                                        const uint64_t *rs1, ptrdiff_t rs2,
                                        size_t vl);
 // masked functions
-vfloat16mf4_t __riscv_vlse16_v_f16mf4_tumu(vbool64_t vm, vfloat16mf4_t vd,
-                                           const _Float16 *rs1, ptrdiff_t rs2,
-                                           size_t vl);
-vfloat16mf2_t __riscv_vlse16_v_f16mf2_tumu(vbool32_t vm, vfloat16mf2_t vd,
-                                           const _Float16 *rs1, ptrdiff_t rs2,
-                                           size_t vl);
-vfloat16m1_t __riscv_vlse16_v_f16m1_tumu(vbool16_t vm, vfloat16m1_t vd,
-                                         const _Float16 *rs1, ptrdiff_t rs2,
-                                         size_t vl);
-vfloat16m2_t __riscv_vlse16_v_f16m2_tumu(vbool8_t vm, vfloat16m2_t vd,
-                                         const _Float16 *rs1, ptrdiff_t rs2,
-                                         size_t vl);
-vfloat16m4_t __riscv_vlse16_v_f16m4_tumu(vbool4_t vm, vfloat16m4_t vd,
-                                         const _Float16 *rs1, ptrdiff_t rs2,
-                                         size_t vl);
-vfloat16m8_t __riscv_vlse16_v_f16m8_tumu(vbool2_t vm, vfloat16m8_t vd,
-                                         const _Float16 *rs1, ptrdiff_t rs2,
-                                         size_t vl);
-vfloat32mf2_t __riscv_vlse32_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
-                                           const float *rs1, ptrdiff_t rs2,
-                                           size_t vl);
-vfloat32m1_t __riscv_vlse32_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
-                                         const float *rs1, ptrdiff_t rs2,
-                                         size_t vl);
-vfloat32m2_t __riscv_vlse32_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
-                                         const float *rs1, ptrdiff_t rs2,
-                                         size_t vl);
-vfloat32m4_t __riscv_vlse32_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
-                                         const float *rs1, ptrdiff_t rs2,
-                                         size_t vl);
-vfloat32m8_t __riscv_vlse32_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
-                                         const float *rs1, ptrdiff_t rs2,
-                                         size_t vl);
-vfloat64m1_t __riscv_vlse64_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
-                                         const double *rs1, ptrdiff_t rs2,
-                                         size_t vl);
-vfloat64m2_t __riscv_vlse64_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
-                                         const double *rs1, ptrdiff_t rs2,
-                                         size_t vl);
-vfloat64m4_t __riscv_vlse64_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
-                                         const double *rs1, ptrdiff_t rs2,
-                                         size_t vl);
-vfloat64m8_t __riscv_vlse64_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
-                                         const double *rs1, ptrdiff_t rs2,
-                                         size_t vl);
 vint8mf8_t __riscv_vlse8_v_i8mf8_tumu(vbool64_t vm, vint8mf8_t vd,
                                       const int8_t *rs1, ptrdiff_t rs2,
                                       size_t vl);
@@ -956,51 +802,6 @@ vuint64m8_t __riscv_vlse64_v_u64m8_tumu(vbool8_t vm, vuint64m8_t vd,
                                         const uint64_t *rs1, ptrdiff_t rs2,
                                         size_t vl);
 // masked functions
-vfloat16mf4_t __riscv_vlse16_v_f16mf4_mu(vbool64_t vm, vfloat16mf4_t vd,
-                                         const _Float16 *rs1, ptrdiff_t rs2,
-                                         size_t vl);
-vfloat16mf2_t __riscv_vlse16_v_f16mf2_mu(vbool32_t vm, vfloat16mf2_t vd,
-                                         const _Float16 *rs1, ptrdiff_t rs2,
-                                         size_t vl);
-vfloat16m1_t __riscv_vlse16_v_f16m1_mu(vbool16_t vm, vfloat16m1_t vd,
-                                       const _Float16 *rs1, ptrdiff_t rs2,
-                                       size_t vl);
-vfloat16m2_t __riscv_vlse16_v_f16m2_mu(vbool8_t vm, vfloat16m2_t vd,
-                                       const _Float16 *rs1, ptrdiff_t rs2,
-                                       size_t vl);
-vfloat16m4_t __riscv_vlse16_v_f16m4_mu(vbool4_t vm, vfloat16m4_t vd,
-                                       const _Float16 *rs1, ptrdiff_t rs2,
-                                       size_t vl);
-vfloat16m8_t __riscv_vlse16_v_f16m8_mu(vbool2_t vm, vfloat16m8_t vd,
-                                       const _Float16 *rs1, ptrdiff_t rs2,
-                                       size_t vl);
-vfloat32mf2_t __riscv_vlse32_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
-                                         const float *rs1, ptrdiff_t rs2,
-                                         size_t vl);
-vfloat32m1_t __riscv_vlse32_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
-                                       const float *rs1, ptrdiff_t rs2,
-                                       size_t vl);
-vfloat32m2_t __riscv_vlse32_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
-                                       const float *rs1, ptrdiff_t rs2,
-                                       size_t vl);
-vfloat32m4_t __riscv_vlse32_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
-                                       const float *rs1, ptrdiff_t rs2,
-                                       size_t vl);
-vfloat32m8_t __riscv_vlse32_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
-                                       const float *rs1, ptrdiff_t rs2,
-                                       size_t vl);
-vfloat64m1_t __riscv_vlse64_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
-                                       const double *rs1, ptrdiff_t rs2,
-                                       size_t vl);
-vfloat64m2_t __riscv_vlse64_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
-                                       const double *rs1, ptrdiff_t rs2,
-                                       size_t vl);
-vfloat64m4_t __riscv_vlse64_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
-                                       const double *rs1, ptrdiff_t rs2,
-                                       size_t vl);
-vfloat64m8_t __riscv_vlse64_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
-                                       const double *rs1, ptrdiff_t rs2,
-                                       size_t vl);
 vint8mf8_t __riscv_vlse8_v_i8mf8_mu(vbool64_t vm, vint8mf8_t vd,
                                     const int8_t *rs1, ptrdiff_t rs2,
                                     size_t vl);
@@ -1131,8 +932,121 @@ vuint64m8_t __riscv_vlse64_v_u64m8_mu(vbool8_t vm, vuint64m8_t vd,
                                       size_t vl);
 ----
 
+[[policy-variant-float-vector-strided-load]]
+==== Float Vector Strided Load Intrinsics
+
+[,c]
+----
+vfloat32mf2_t __riscv_vlse32_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
+                                         ptrdiff_t rs2, size_t vl);
+vfloat32m1_t __riscv_vlse32_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
+                                       ptrdiff_t rs2, size_t vl);
+vfloat32m2_t __riscv_vlse32_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
+                                       ptrdiff_t rs2, size_t vl);
+vfloat32m4_t __riscv_vlse32_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
+                                       ptrdiff_t rs2, size_t vl);
+vfloat32m8_t __riscv_vlse32_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
+                                       ptrdiff_t rs2, size_t vl);
+vfloat64m1_t __riscv_vlse64_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
+                                       ptrdiff_t rs2, size_t vl);
+vfloat64m2_t __riscv_vlse64_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
+                                       ptrdiff_t rs2, size_t vl);
+vfloat64m4_t __riscv_vlse64_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
+                                       ptrdiff_t rs2, size_t vl);
+vfloat64m8_t __riscv_vlse64_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
+                                       ptrdiff_t rs2, size_t vl);
+// masked functions
+vfloat32mf2_t __riscv_vlse32_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
+                                          const float *rs1, ptrdiff_t rs2,
+                                          size_t vl);
+vfloat32m1_t __riscv_vlse32_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
+                                        const float *rs1, ptrdiff_t rs2,
+                                        size_t vl);
+vfloat32m2_t __riscv_vlse32_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
+                                        const float *rs1, ptrdiff_t rs2,
+                                        size_t vl);
+vfloat32m4_t __riscv_vlse32_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
+                                        const float *rs1, ptrdiff_t rs2,
+                                        size_t vl);
+vfloat32m8_t __riscv_vlse32_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
+                                        const float *rs1, ptrdiff_t rs2,
+                                        size_t vl);
+vfloat64m1_t __riscv_vlse64_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
+                                        const double *rs1, ptrdiff_t rs2,
+                                        size_t vl);
+vfloat64m2_t __riscv_vlse64_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
+                                        const double *rs1, ptrdiff_t rs2,
+                                        size_t vl);
+vfloat64m4_t __riscv_vlse64_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
+                                        const double *rs1, ptrdiff_t rs2,
+                                        size_t vl);
+vfloat64m8_t __riscv_vlse64_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
+                                        const double *rs1, ptrdiff_t rs2,
+                                        size_t vl);
+// masked functions
+vfloat32mf2_t __riscv_vlse32_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
+                                           const float *rs1, ptrdiff_t rs2,
+                                           size_t vl);
+vfloat32m1_t __riscv_vlse32_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
+                                         const float *rs1, ptrdiff_t rs2,
+                                         size_t vl);
+vfloat32m2_t __riscv_vlse32_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
+                                         const float *rs1, ptrdiff_t rs2,
+                                         size_t vl);
+vfloat32m4_t __riscv_vlse32_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
+                                         const float *rs1, ptrdiff_t rs2,
+                                         size_t vl);
+vfloat32m8_t __riscv_vlse32_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
+                                         const float *rs1, ptrdiff_t rs2,
+                                         size_t vl);
+vfloat64m1_t __riscv_vlse64_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
+                                         const double *rs1, ptrdiff_t rs2,
+                                         size_t vl);
+vfloat64m2_t __riscv_vlse64_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
+                                         const double *rs1, ptrdiff_t rs2,
+                                         size_t vl);
+vfloat64m4_t __riscv_vlse64_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
+                                         const double *rs1, ptrdiff_t rs2,
+                                         size_t vl);
+vfloat64m8_t __riscv_vlse64_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
+                                         const double *rs1, ptrdiff_t rs2,
+                                         size_t vl);
+// masked functions
+vfloat32mf2_t __riscv_vlse32_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
+                                         const float *rs1, ptrdiff_t rs2,
+                                         size_t vl);
+vfloat32m1_t __riscv_vlse32_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
+                                       const float *rs1, ptrdiff_t rs2,
+                                       size_t vl);
+vfloat32m2_t __riscv_vlse32_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
+                                       const float *rs1, ptrdiff_t rs2,
+                                       size_t vl);
+vfloat32m4_t __riscv_vlse32_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
+                                       const float *rs1, ptrdiff_t rs2,
+                                       size_t vl);
+vfloat32m8_t __riscv_vlse32_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
+                                       const float *rs1, ptrdiff_t rs2,
+                                       size_t vl);
+vfloat64m1_t __riscv_vlse64_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
+                                       const double *rs1, ptrdiff_t rs2,
+                                       size_t vl);
+vfloat64m2_t __riscv_vlse64_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
+                                       const double *rs1, ptrdiff_t rs2,
+                                       size_t vl);
+vfloat64m4_t __riscv_vlse64_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
+                                       const double *rs1, ptrdiff_t rs2,
+                                       size_t vl);
+vfloat64m8_t __riscv_vlse64_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
+                                       const double *rs1, ptrdiff_t rs2,
+                                       size_t vl);
+----
+
 [[policy-variant-vector-strided-store]]
 ==== Vector Strided Store Intrinsics
+Intrinsics here don't have a policy variant.
+
+[[policy-variant-float-vector-strided-store]]
+==== Float Vector Strided Store Intrinsics
 Intrinsics here don't have a policy variant.
 
 [[policy-variant-vector-indexed-load]]
@@ -1140,242 +1054,6 @@ Intrinsics here don't have a policy variant.
 
 [,c]
 ----
-vfloat16mf4_t __riscv_vloxei8_v_f16mf4_tu(vfloat16mf4_t vd, const _Float16 *rs1,
-                                          vuint8mf8_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vloxei8_v_f16mf2_tu(vfloat16mf2_t vd, const _Float16 *rs1,
-                                          vuint8mf4_t rs2, size_t vl);
-vfloat16m1_t __riscv_vloxei8_v_f16m1_tu(vfloat16m1_t vd, const _Float16 *rs1,
-                                        vuint8mf2_t rs2, size_t vl);
-vfloat16m2_t __riscv_vloxei8_v_f16m2_tu(vfloat16m2_t vd, const _Float16 *rs1,
-                                        vuint8m1_t rs2, size_t vl);
-vfloat16m4_t __riscv_vloxei8_v_f16m4_tu(vfloat16m4_t vd, const _Float16 *rs1,
-                                        vuint8m2_t rs2, size_t vl);
-vfloat16m8_t __riscv_vloxei8_v_f16m8_tu(vfloat16m8_t vd, const _Float16 *rs1,
-                                        vuint8m4_t rs2, size_t vl);
-vfloat16mf4_t __riscv_vloxei16_v_f16mf4_tu(vfloat16mf4_t vd,
-                                           const _Float16 *rs1,
-                                           vuint16mf4_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vloxei16_v_f16mf2_tu(vfloat16mf2_t vd,
-                                           const _Float16 *rs1,
-                                           vuint16mf2_t rs2, size_t vl);
-vfloat16m1_t __riscv_vloxei16_v_f16m1_tu(vfloat16m1_t vd, const _Float16 *rs1,
-                                         vuint16m1_t rs2, size_t vl);
-vfloat16m2_t __riscv_vloxei16_v_f16m2_tu(vfloat16m2_t vd, const _Float16 *rs1,
-                                         vuint16m2_t rs2, size_t vl);
-vfloat16m4_t __riscv_vloxei16_v_f16m4_tu(vfloat16m4_t vd, const _Float16 *rs1,
-                                         vuint16m4_t rs2, size_t vl);
-vfloat16m8_t __riscv_vloxei16_v_f16m8_tu(vfloat16m8_t vd, const _Float16 *rs1,
-                                         vuint16m8_t rs2, size_t vl);
-vfloat16mf4_t __riscv_vloxei32_v_f16mf4_tu(vfloat16mf4_t vd,
-                                           const _Float16 *rs1,
-                                           vuint32mf2_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vloxei32_v_f16mf2_tu(vfloat16mf2_t vd,
-                                           const _Float16 *rs1, vuint32m1_t rs2,
-                                           size_t vl);
-vfloat16m1_t __riscv_vloxei32_v_f16m1_tu(vfloat16m1_t vd, const _Float16 *rs1,
-                                         vuint32m2_t rs2, size_t vl);
-vfloat16m2_t __riscv_vloxei32_v_f16m2_tu(vfloat16m2_t vd, const _Float16 *rs1,
-                                         vuint32m4_t rs2, size_t vl);
-vfloat16m4_t __riscv_vloxei32_v_f16m4_tu(vfloat16m4_t vd, const _Float16 *rs1,
-                                         vuint32m8_t rs2, size_t vl);
-vfloat16mf4_t __riscv_vloxei64_v_f16mf4_tu(vfloat16mf4_t vd,
-                                           const _Float16 *rs1, vuint64m1_t rs2,
-                                           size_t vl);
-vfloat16mf2_t __riscv_vloxei64_v_f16mf2_tu(vfloat16mf2_t vd,
-                                           const _Float16 *rs1, vuint64m2_t rs2,
-                                           size_t vl);
-vfloat16m1_t __riscv_vloxei64_v_f16m1_tu(vfloat16m1_t vd, const _Float16 *rs1,
-                                         vuint64m4_t rs2, size_t vl);
-vfloat16m2_t __riscv_vloxei64_v_f16m2_tu(vfloat16m2_t vd, const _Float16 *rs1,
-                                         vuint64m8_t rs2, size_t vl);
-vfloat32mf2_t __riscv_vloxei8_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
-                                          vuint8mf8_t rs2, size_t vl);
-vfloat32m1_t __riscv_vloxei8_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
-                                        vuint8mf4_t rs2, size_t vl);
-vfloat32m2_t __riscv_vloxei8_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
-                                        vuint8mf2_t rs2, size_t vl);
-vfloat32m4_t __riscv_vloxei8_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
-                                        vuint8m1_t rs2, size_t vl);
-vfloat32m8_t __riscv_vloxei8_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
-                                        vuint8m2_t rs2, size_t vl);
-vfloat32mf2_t __riscv_vloxei16_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
-                                           vuint16mf4_t rs2, size_t vl);
-vfloat32m1_t __riscv_vloxei16_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
-                                         vuint16mf2_t rs2, size_t vl);
-vfloat32m2_t __riscv_vloxei16_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
-                                         vuint16m1_t rs2, size_t vl);
-vfloat32m4_t __riscv_vloxei16_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
-                                         vuint16m2_t rs2, size_t vl);
-vfloat32m8_t __riscv_vloxei16_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
-                                         vuint16m4_t rs2, size_t vl);
-vfloat32mf2_t __riscv_vloxei32_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
-                                           vuint32mf2_t rs2, size_t vl);
-vfloat32m1_t __riscv_vloxei32_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
-                                         vuint32m1_t rs2, size_t vl);
-vfloat32m2_t __riscv_vloxei32_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
-                                         vuint32m2_t rs2, size_t vl);
-vfloat32m4_t __riscv_vloxei32_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
-                                         vuint32m4_t rs2, size_t vl);
-vfloat32m8_t __riscv_vloxei32_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
-                                         vuint32m8_t rs2, size_t vl);
-vfloat32mf2_t __riscv_vloxei64_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
-                                           vuint64m1_t rs2, size_t vl);
-vfloat32m1_t __riscv_vloxei64_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
-                                         vuint64m2_t rs2, size_t vl);
-vfloat32m2_t __riscv_vloxei64_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
-                                         vuint64m4_t rs2, size_t vl);
-vfloat32m4_t __riscv_vloxei64_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
-                                         vuint64m8_t rs2, size_t vl);
-vfloat64m1_t __riscv_vloxei8_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
-                                        vuint8mf8_t rs2, size_t vl);
-vfloat64m2_t __riscv_vloxei8_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
-                                        vuint8mf4_t rs2, size_t vl);
-vfloat64m4_t __riscv_vloxei8_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
-                                        vuint8mf2_t rs2, size_t vl);
-vfloat64m8_t __riscv_vloxei8_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
-                                        vuint8m1_t rs2, size_t vl);
-vfloat64m1_t __riscv_vloxei16_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
-                                         vuint16mf4_t rs2, size_t vl);
-vfloat64m2_t __riscv_vloxei16_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
-                                         vuint16mf2_t rs2, size_t vl);
-vfloat64m4_t __riscv_vloxei16_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
-                                         vuint16m1_t rs2, size_t vl);
-vfloat64m8_t __riscv_vloxei16_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
-                                         vuint16m2_t rs2, size_t vl);
-vfloat64m1_t __riscv_vloxei32_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
-                                         vuint32mf2_t rs2, size_t vl);
-vfloat64m2_t __riscv_vloxei32_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
-                                         vuint32m1_t rs2, size_t vl);
-vfloat64m4_t __riscv_vloxei32_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
-                                         vuint32m2_t rs2, size_t vl);
-vfloat64m8_t __riscv_vloxei32_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
-                                         vuint32m4_t rs2, size_t vl);
-vfloat64m1_t __riscv_vloxei64_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
-                                         vuint64m1_t rs2, size_t vl);
-vfloat64m2_t __riscv_vloxei64_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
-                                         vuint64m2_t rs2, size_t vl);
-vfloat64m4_t __riscv_vloxei64_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
-                                         vuint64m4_t rs2, size_t vl);
-vfloat64m8_t __riscv_vloxei64_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
-                                         vuint64m8_t rs2, size_t vl);
-vfloat16mf4_t __riscv_vluxei8_v_f16mf4_tu(vfloat16mf4_t vd, const _Float16 *rs1,
-                                          vuint8mf8_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vluxei8_v_f16mf2_tu(vfloat16mf2_t vd, const _Float16 *rs1,
-                                          vuint8mf4_t rs2, size_t vl);
-vfloat16m1_t __riscv_vluxei8_v_f16m1_tu(vfloat16m1_t vd, const _Float16 *rs1,
-                                        vuint8mf2_t rs2, size_t vl);
-vfloat16m2_t __riscv_vluxei8_v_f16m2_tu(vfloat16m2_t vd, const _Float16 *rs1,
-                                        vuint8m1_t rs2, size_t vl);
-vfloat16m4_t __riscv_vluxei8_v_f16m4_tu(vfloat16m4_t vd, const _Float16 *rs1,
-                                        vuint8m2_t rs2, size_t vl);
-vfloat16m8_t __riscv_vluxei8_v_f16m8_tu(vfloat16m8_t vd, const _Float16 *rs1,
-                                        vuint8m4_t rs2, size_t vl);
-vfloat16mf4_t __riscv_vluxei16_v_f16mf4_tu(vfloat16mf4_t vd,
-                                           const _Float16 *rs1,
-                                           vuint16mf4_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vluxei16_v_f16mf2_tu(vfloat16mf2_t vd,
-                                           const _Float16 *rs1,
-                                           vuint16mf2_t rs2, size_t vl);
-vfloat16m1_t __riscv_vluxei16_v_f16m1_tu(vfloat16m1_t vd, const _Float16 *rs1,
-                                         vuint16m1_t rs2, size_t vl);
-vfloat16m2_t __riscv_vluxei16_v_f16m2_tu(vfloat16m2_t vd, const _Float16 *rs1,
-                                         vuint16m2_t rs2, size_t vl);
-vfloat16m4_t __riscv_vluxei16_v_f16m4_tu(vfloat16m4_t vd, const _Float16 *rs1,
-                                         vuint16m4_t rs2, size_t vl);
-vfloat16m8_t __riscv_vluxei16_v_f16m8_tu(vfloat16m8_t vd, const _Float16 *rs1,
-                                         vuint16m8_t rs2, size_t vl);
-vfloat16mf4_t __riscv_vluxei32_v_f16mf4_tu(vfloat16mf4_t vd,
-                                           const _Float16 *rs1,
-                                           vuint32mf2_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vluxei32_v_f16mf2_tu(vfloat16mf2_t vd,
-                                           const _Float16 *rs1, vuint32m1_t rs2,
-                                           size_t vl);
-vfloat16m1_t __riscv_vluxei32_v_f16m1_tu(vfloat16m1_t vd, const _Float16 *rs1,
-                                         vuint32m2_t rs2, size_t vl);
-vfloat16m2_t __riscv_vluxei32_v_f16m2_tu(vfloat16m2_t vd, const _Float16 *rs1,
-                                         vuint32m4_t rs2, size_t vl);
-vfloat16m4_t __riscv_vluxei32_v_f16m4_tu(vfloat16m4_t vd, const _Float16 *rs1,
-                                         vuint32m8_t rs2, size_t vl);
-vfloat16mf4_t __riscv_vluxei64_v_f16mf4_tu(vfloat16mf4_t vd,
-                                           const _Float16 *rs1, vuint64m1_t rs2,
-                                           size_t vl);
-vfloat16mf2_t __riscv_vluxei64_v_f16mf2_tu(vfloat16mf2_t vd,
-                                           const _Float16 *rs1, vuint64m2_t rs2,
-                                           size_t vl);
-vfloat16m1_t __riscv_vluxei64_v_f16m1_tu(vfloat16m1_t vd, const _Float16 *rs1,
-                                         vuint64m4_t rs2, size_t vl);
-vfloat16m2_t __riscv_vluxei64_v_f16m2_tu(vfloat16m2_t vd, const _Float16 *rs1,
-                                         vuint64m8_t rs2, size_t vl);
-vfloat32mf2_t __riscv_vluxei8_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
-                                          vuint8mf8_t rs2, size_t vl);
-vfloat32m1_t __riscv_vluxei8_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
-                                        vuint8mf4_t rs2, size_t vl);
-vfloat32m2_t __riscv_vluxei8_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
-                                        vuint8mf2_t rs2, size_t vl);
-vfloat32m4_t __riscv_vluxei8_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
-                                        vuint8m1_t rs2, size_t vl);
-vfloat32m8_t __riscv_vluxei8_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
-                                        vuint8m2_t rs2, size_t vl);
-vfloat32mf2_t __riscv_vluxei16_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
-                                           vuint16mf4_t rs2, size_t vl);
-vfloat32m1_t __riscv_vluxei16_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
-                                         vuint16mf2_t rs2, size_t vl);
-vfloat32m2_t __riscv_vluxei16_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
-                                         vuint16m1_t rs2, size_t vl);
-vfloat32m4_t __riscv_vluxei16_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
-                                         vuint16m2_t rs2, size_t vl);
-vfloat32m8_t __riscv_vluxei16_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
-                                         vuint16m4_t rs2, size_t vl);
-vfloat32mf2_t __riscv_vluxei32_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
-                                           vuint32mf2_t rs2, size_t vl);
-vfloat32m1_t __riscv_vluxei32_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
-                                         vuint32m1_t rs2, size_t vl);
-vfloat32m2_t __riscv_vluxei32_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
-                                         vuint32m2_t rs2, size_t vl);
-vfloat32m4_t __riscv_vluxei32_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
-                                         vuint32m4_t rs2, size_t vl);
-vfloat32m8_t __riscv_vluxei32_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
-                                         vuint32m8_t rs2, size_t vl);
-vfloat32mf2_t __riscv_vluxei64_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
-                                           vuint64m1_t rs2, size_t vl);
-vfloat32m1_t __riscv_vluxei64_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
-                                         vuint64m2_t rs2, size_t vl);
-vfloat32m2_t __riscv_vluxei64_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
-                                         vuint64m4_t rs2, size_t vl);
-vfloat32m4_t __riscv_vluxei64_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
-                                         vuint64m8_t rs2, size_t vl);
-vfloat64m1_t __riscv_vluxei8_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
-                                        vuint8mf8_t rs2, size_t vl);
-vfloat64m2_t __riscv_vluxei8_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
-                                        vuint8mf4_t rs2, size_t vl);
-vfloat64m4_t __riscv_vluxei8_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
-                                        vuint8mf2_t rs2, size_t vl);
-vfloat64m8_t __riscv_vluxei8_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
-                                        vuint8m1_t rs2, size_t vl);
-vfloat64m1_t __riscv_vluxei16_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
-                                         vuint16mf4_t rs2, size_t vl);
-vfloat64m2_t __riscv_vluxei16_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
-                                         vuint16mf2_t rs2, size_t vl);
-vfloat64m4_t __riscv_vluxei16_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
-                                         vuint16m1_t rs2, size_t vl);
-vfloat64m8_t __riscv_vluxei16_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
-                                         vuint16m2_t rs2, size_t vl);
-vfloat64m1_t __riscv_vluxei32_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
-                                         vuint32mf2_t rs2, size_t vl);
-vfloat64m2_t __riscv_vluxei32_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
-                                         vuint32m1_t rs2, size_t vl);
-vfloat64m4_t __riscv_vluxei32_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
-                                         vuint32m2_t rs2, size_t vl);
-vfloat64m8_t __riscv_vluxei32_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
-                                         vuint32m4_t rs2, size_t vl);
-vfloat64m1_t __riscv_vluxei64_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
-                                         vuint64m1_t rs2, size_t vl);
-vfloat64m2_t __riscv_vluxei64_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
-                                         vuint64m2_t rs2, size_t vl);
-vfloat64m4_t __riscv_vluxei64_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
-                                         vuint64m4_t rs2, size_t vl);
-vfloat64m8_t __riscv_vluxei64_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
-                                         vuint64m8_t rs2, size_t vl);
 vint8mf8_t __riscv_vloxei8_v_i8mf8_tu(vint8mf8_t vd, const int8_t *rs1,
                                       vuint8mf8_t rs2, size_t vl);
 vint8mf4_t __riscv_vloxei8_v_i8mf4_tu(vint8mf4_t vd, const int8_t *rs1,
@@ -2001,342 +1679,6 @@ vuint64m4_t __riscv_vluxei64_v_u64m4_tu(vuint64m4_t vd, const uint64_t *rs1,
 vuint64m8_t __riscv_vluxei64_v_u64m8_tu(vuint64m8_t vd, const uint64_t *rs1,
                                         vuint64m8_t rs2, size_t vl);
 // masked functions
-vfloat16mf4_t __riscv_vloxei8_v_f16mf4_tum(vbool64_t vm, vfloat16mf4_t vd,
-                                           const _Float16 *rs1, vuint8mf8_t rs2,
-                                           size_t vl);
-vfloat16mf2_t __riscv_vloxei8_v_f16mf2_tum(vbool32_t vm, vfloat16mf2_t vd,
-                                           const _Float16 *rs1, vuint8mf4_t rs2,
-                                           size_t vl);
-vfloat16m1_t __riscv_vloxei8_v_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
-                                         const _Float16 *rs1, vuint8mf2_t rs2,
-                                         size_t vl);
-vfloat16m2_t __riscv_vloxei8_v_f16m2_tum(vbool8_t vm, vfloat16m2_t vd,
-                                         const _Float16 *rs1, vuint8m1_t rs2,
-                                         size_t vl);
-vfloat16m4_t __riscv_vloxei8_v_f16m4_tum(vbool4_t vm, vfloat16m4_t vd,
-                                         const _Float16 *rs1, vuint8m2_t rs2,
-                                         size_t vl);
-vfloat16m8_t __riscv_vloxei8_v_f16m8_tum(vbool2_t vm, vfloat16m8_t vd,
-                                         const _Float16 *rs1, vuint8m4_t rs2,
-                                         size_t vl);
-vfloat16mf4_t __riscv_vloxei16_v_f16mf4_tum(vbool64_t vm, vfloat16mf4_t vd,
-                                            const _Float16 *rs1,
-                                            vuint16mf4_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vloxei16_v_f16mf2_tum(vbool32_t vm, vfloat16mf2_t vd,
-                                            const _Float16 *rs1,
-                                            vuint16mf2_t rs2, size_t vl);
-vfloat16m1_t __riscv_vloxei16_v_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
-                                          const _Float16 *rs1, vuint16m1_t rs2,
-                                          size_t vl);
-vfloat16m2_t __riscv_vloxei16_v_f16m2_tum(vbool8_t vm, vfloat16m2_t vd,
-                                          const _Float16 *rs1, vuint16m2_t rs2,
-                                          size_t vl);
-vfloat16m4_t __riscv_vloxei16_v_f16m4_tum(vbool4_t vm, vfloat16m4_t vd,
-                                          const _Float16 *rs1, vuint16m4_t rs2,
-                                          size_t vl);
-vfloat16m8_t __riscv_vloxei16_v_f16m8_tum(vbool2_t vm, vfloat16m8_t vd,
-                                          const _Float16 *rs1, vuint16m8_t rs2,
-                                          size_t vl);
-vfloat16mf4_t __riscv_vloxei32_v_f16mf4_tum(vbool64_t vm, vfloat16mf4_t vd,
-                                            const _Float16 *rs1,
-                                            vuint32mf2_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vloxei32_v_f16mf2_tum(vbool32_t vm, vfloat16mf2_t vd,
-                                            const _Float16 *rs1,
-                                            vuint32m1_t rs2, size_t vl);
-vfloat16m1_t __riscv_vloxei32_v_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
-                                          const _Float16 *rs1, vuint32m2_t rs2,
-                                          size_t vl);
-vfloat16m2_t __riscv_vloxei32_v_f16m2_tum(vbool8_t vm, vfloat16m2_t vd,
-                                          const _Float16 *rs1, vuint32m4_t rs2,
-                                          size_t vl);
-vfloat16m4_t __riscv_vloxei32_v_f16m4_tum(vbool4_t vm, vfloat16m4_t vd,
-                                          const _Float16 *rs1, vuint32m8_t rs2,
-                                          size_t vl);
-vfloat16mf4_t __riscv_vloxei64_v_f16mf4_tum(vbool64_t vm, vfloat16mf4_t vd,
-                                            const _Float16 *rs1,
-                                            vuint64m1_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vloxei64_v_f16mf2_tum(vbool32_t vm, vfloat16mf2_t vd,
-                                            const _Float16 *rs1,
-                                            vuint64m2_t rs2, size_t vl);
-vfloat16m1_t __riscv_vloxei64_v_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
-                                          const _Float16 *rs1, vuint64m4_t rs2,
-                                          size_t vl);
-vfloat16m2_t __riscv_vloxei64_v_f16m2_tum(vbool8_t vm, vfloat16m2_t vd,
-                                          const _Float16 *rs1, vuint64m8_t rs2,
-                                          size_t vl);
-vfloat32mf2_t __riscv_vloxei8_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
-                                           const float *rs1, vuint8mf8_t rs2,
-                                           size_t vl);
-vfloat32m1_t __riscv_vloxei8_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
-                                         const float *rs1, vuint8mf4_t rs2,
-                                         size_t vl);
-vfloat32m2_t __riscv_vloxei8_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
-                                         const float *rs1, vuint8mf2_t rs2,
-                                         size_t vl);
-vfloat32m4_t __riscv_vloxei8_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
-                                         const float *rs1, vuint8m1_t rs2,
-                                         size_t vl);
-vfloat32m8_t __riscv_vloxei8_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
-                                         const float *rs1, vuint8m2_t rs2,
-                                         size_t vl);
-vfloat32mf2_t __riscv_vloxei16_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
-                                            const float *rs1, vuint16mf4_t rs2,
-                                            size_t vl);
-vfloat32m1_t __riscv_vloxei16_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
-                                          const float *rs1, vuint16mf2_t rs2,
-                                          size_t vl);
-vfloat32m2_t __riscv_vloxei16_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
-                                          const float *rs1, vuint16m1_t rs2,
-                                          size_t vl);
-vfloat32m4_t __riscv_vloxei16_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
-                                          const float *rs1, vuint16m2_t rs2,
-                                          size_t vl);
-vfloat32m8_t __riscv_vloxei16_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
-                                          const float *rs1, vuint16m4_t rs2,
-                                          size_t vl);
-vfloat32mf2_t __riscv_vloxei32_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
-                                            const float *rs1, vuint32mf2_t rs2,
-                                            size_t vl);
-vfloat32m1_t __riscv_vloxei32_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
-                                          const float *rs1, vuint32m1_t rs2,
-                                          size_t vl);
-vfloat32m2_t __riscv_vloxei32_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
-                                          const float *rs1, vuint32m2_t rs2,
-                                          size_t vl);
-vfloat32m4_t __riscv_vloxei32_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
-                                          const float *rs1, vuint32m4_t rs2,
-                                          size_t vl);
-vfloat32m8_t __riscv_vloxei32_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
-                                          const float *rs1, vuint32m8_t rs2,
-                                          size_t vl);
-vfloat32mf2_t __riscv_vloxei64_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
-                                            const float *rs1, vuint64m1_t rs2,
-                                            size_t vl);
-vfloat32m1_t __riscv_vloxei64_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
-                                          const float *rs1, vuint64m2_t rs2,
-                                          size_t vl);
-vfloat32m2_t __riscv_vloxei64_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
-                                          const float *rs1, vuint64m4_t rs2,
-                                          size_t vl);
-vfloat32m4_t __riscv_vloxei64_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
-                                          const float *rs1, vuint64m8_t rs2,
-                                          size_t vl);
-vfloat64m1_t __riscv_vloxei8_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
-                                         const double *rs1, vuint8mf8_t rs2,
-                                         size_t vl);
-vfloat64m2_t __riscv_vloxei8_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
-                                         const double *rs1, vuint8mf4_t rs2,
-                                         size_t vl);
-vfloat64m4_t __riscv_vloxei8_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
-                                         const double *rs1, vuint8mf2_t rs2,
-                                         size_t vl);
-vfloat64m8_t __riscv_vloxei8_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
-                                         const double *rs1, vuint8m1_t rs2,
-                                         size_t vl);
-vfloat64m1_t __riscv_vloxei16_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
-                                          const double *rs1, vuint16mf4_t rs2,
-                                          size_t vl);
-vfloat64m2_t __riscv_vloxei16_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
-                                          const double *rs1, vuint16mf2_t rs2,
-                                          size_t vl);
-vfloat64m4_t __riscv_vloxei16_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
-                                          const double *rs1, vuint16m1_t rs2,
-                                          size_t vl);
-vfloat64m8_t __riscv_vloxei16_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
-                                          const double *rs1, vuint16m2_t rs2,
-                                          size_t vl);
-vfloat64m1_t __riscv_vloxei32_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
-                                          const double *rs1, vuint32mf2_t rs2,
-                                          size_t vl);
-vfloat64m2_t __riscv_vloxei32_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
-                                          const double *rs1, vuint32m1_t rs2,
-                                          size_t vl);
-vfloat64m4_t __riscv_vloxei32_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
-                                          const double *rs1, vuint32m2_t rs2,
-                                          size_t vl);
-vfloat64m8_t __riscv_vloxei32_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
-                                          const double *rs1, vuint32m4_t rs2,
-                                          size_t vl);
-vfloat64m1_t __riscv_vloxei64_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
-                                          const double *rs1, vuint64m1_t rs2,
-                                          size_t vl);
-vfloat64m2_t __riscv_vloxei64_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
-                                          const double *rs1, vuint64m2_t rs2,
-                                          size_t vl);
-vfloat64m4_t __riscv_vloxei64_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
-                                          const double *rs1, vuint64m4_t rs2,
-                                          size_t vl);
-vfloat64m8_t __riscv_vloxei64_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
-                                          const double *rs1, vuint64m8_t rs2,
-                                          size_t vl);
-vfloat16mf4_t __riscv_vluxei8_v_f16mf4_tum(vbool64_t vm, vfloat16mf4_t vd,
-                                           const _Float16 *rs1, vuint8mf8_t rs2,
-                                           size_t vl);
-vfloat16mf2_t __riscv_vluxei8_v_f16mf2_tum(vbool32_t vm, vfloat16mf2_t vd,
-                                           const _Float16 *rs1, vuint8mf4_t rs2,
-                                           size_t vl);
-vfloat16m1_t __riscv_vluxei8_v_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
-                                         const _Float16 *rs1, vuint8mf2_t rs2,
-                                         size_t vl);
-vfloat16m2_t __riscv_vluxei8_v_f16m2_tum(vbool8_t vm, vfloat16m2_t vd,
-                                         const _Float16 *rs1, vuint8m1_t rs2,
-                                         size_t vl);
-vfloat16m4_t __riscv_vluxei8_v_f16m4_tum(vbool4_t vm, vfloat16m4_t vd,
-                                         const _Float16 *rs1, vuint8m2_t rs2,
-                                         size_t vl);
-vfloat16m8_t __riscv_vluxei8_v_f16m8_tum(vbool2_t vm, vfloat16m8_t vd,
-                                         const _Float16 *rs1, vuint8m4_t rs2,
-                                         size_t vl);
-vfloat16mf4_t __riscv_vluxei16_v_f16mf4_tum(vbool64_t vm, vfloat16mf4_t vd,
-                                            const _Float16 *rs1,
-                                            vuint16mf4_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vluxei16_v_f16mf2_tum(vbool32_t vm, vfloat16mf2_t vd,
-                                            const _Float16 *rs1,
-                                            vuint16mf2_t rs2, size_t vl);
-vfloat16m1_t __riscv_vluxei16_v_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
-                                          const _Float16 *rs1, vuint16m1_t rs2,
-                                          size_t vl);
-vfloat16m2_t __riscv_vluxei16_v_f16m2_tum(vbool8_t vm, vfloat16m2_t vd,
-                                          const _Float16 *rs1, vuint16m2_t rs2,
-                                          size_t vl);
-vfloat16m4_t __riscv_vluxei16_v_f16m4_tum(vbool4_t vm, vfloat16m4_t vd,
-                                          const _Float16 *rs1, vuint16m4_t rs2,
-                                          size_t vl);
-vfloat16m8_t __riscv_vluxei16_v_f16m8_tum(vbool2_t vm, vfloat16m8_t vd,
-                                          const _Float16 *rs1, vuint16m8_t rs2,
-                                          size_t vl);
-vfloat16mf4_t __riscv_vluxei32_v_f16mf4_tum(vbool64_t vm, vfloat16mf4_t vd,
-                                            const _Float16 *rs1,
-                                            vuint32mf2_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vluxei32_v_f16mf2_tum(vbool32_t vm, vfloat16mf2_t vd,
-                                            const _Float16 *rs1,
-                                            vuint32m1_t rs2, size_t vl);
-vfloat16m1_t __riscv_vluxei32_v_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
-                                          const _Float16 *rs1, vuint32m2_t rs2,
-                                          size_t vl);
-vfloat16m2_t __riscv_vluxei32_v_f16m2_tum(vbool8_t vm, vfloat16m2_t vd,
-                                          const _Float16 *rs1, vuint32m4_t rs2,
-                                          size_t vl);
-vfloat16m4_t __riscv_vluxei32_v_f16m4_tum(vbool4_t vm, vfloat16m4_t vd,
-                                          const _Float16 *rs1, vuint32m8_t rs2,
-                                          size_t vl);
-vfloat16mf4_t __riscv_vluxei64_v_f16mf4_tum(vbool64_t vm, vfloat16mf4_t vd,
-                                            const _Float16 *rs1,
-                                            vuint64m1_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vluxei64_v_f16mf2_tum(vbool32_t vm, vfloat16mf2_t vd,
-                                            const _Float16 *rs1,
-                                            vuint64m2_t rs2, size_t vl);
-vfloat16m1_t __riscv_vluxei64_v_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
-                                          const _Float16 *rs1, vuint64m4_t rs2,
-                                          size_t vl);
-vfloat16m2_t __riscv_vluxei64_v_f16m2_tum(vbool8_t vm, vfloat16m2_t vd,
-                                          const _Float16 *rs1, vuint64m8_t rs2,
-                                          size_t vl);
-vfloat32mf2_t __riscv_vluxei8_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
-                                           const float *rs1, vuint8mf8_t rs2,
-                                           size_t vl);
-vfloat32m1_t __riscv_vluxei8_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
-                                         const float *rs1, vuint8mf4_t rs2,
-                                         size_t vl);
-vfloat32m2_t __riscv_vluxei8_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
-                                         const float *rs1, vuint8mf2_t rs2,
-                                         size_t vl);
-vfloat32m4_t __riscv_vluxei8_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
-                                         const float *rs1, vuint8m1_t rs2,
-                                         size_t vl);
-vfloat32m8_t __riscv_vluxei8_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
-                                         const float *rs1, vuint8m2_t rs2,
-                                         size_t vl);
-vfloat32mf2_t __riscv_vluxei16_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
-                                            const float *rs1, vuint16mf4_t rs2,
-                                            size_t vl);
-vfloat32m1_t __riscv_vluxei16_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
-                                          const float *rs1, vuint16mf2_t rs2,
-                                          size_t vl);
-vfloat32m2_t __riscv_vluxei16_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
-                                          const float *rs1, vuint16m1_t rs2,
-                                          size_t vl);
-vfloat32m4_t __riscv_vluxei16_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
-                                          const float *rs1, vuint16m2_t rs2,
-                                          size_t vl);
-vfloat32m8_t __riscv_vluxei16_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
-                                          const float *rs1, vuint16m4_t rs2,
-                                          size_t vl);
-vfloat32mf2_t __riscv_vluxei32_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
-                                            const float *rs1, vuint32mf2_t rs2,
-                                            size_t vl);
-vfloat32m1_t __riscv_vluxei32_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
-                                          const float *rs1, vuint32m1_t rs2,
-                                          size_t vl);
-vfloat32m2_t __riscv_vluxei32_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
-                                          const float *rs1, vuint32m2_t rs2,
-                                          size_t vl);
-vfloat32m4_t __riscv_vluxei32_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
-                                          const float *rs1, vuint32m4_t rs2,
-                                          size_t vl);
-vfloat32m8_t __riscv_vluxei32_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
-                                          const float *rs1, vuint32m8_t rs2,
-                                          size_t vl);
-vfloat32mf2_t __riscv_vluxei64_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
-                                            const float *rs1, vuint64m1_t rs2,
-                                            size_t vl);
-vfloat32m1_t __riscv_vluxei64_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
-                                          const float *rs1, vuint64m2_t rs2,
-                                          size_t vl);
-vfloat32m2_t __riscv_vluxei64_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
-                                          const float *rs1, vuint64m4_t rs2,
-                                          size_t vl);
-vfloat32m4_t __riscv_vluxei64_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
-                                          const float *rs1, vuint64m8_t rs2,
-                                          size_t vl);
-vfloat64m1_t __riscv_vluxei8_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
-                                         const double *rs1, vuint8mf8_t rs2,
-                                         size_t vl);
-vfloat64m2_t __riscv_vluxei8_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
-                                         const double *rs1, vuint8mf4_t rs2,
-                                         size_t vl);
-vfloat64m4_t __riscv_vluxei8_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
-                                         const double *rs1, vuint8mf2_t rs2,
-                                         size_t vl);
-vfloat64m8_t __riscv_vluxei8_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
-                                         const double *rs1, vuint8m1_t rs2,
-                                         size_t vl);
-vfloat64m1_t __riscv_vluxei16_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
-                                          const double *rs1, vuint16mf4_t rs2,
-                                          size_t vl);
-vfloat64m2_t __riscv_vluxei16_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
-                                          const double *rs1, vuint16mf2_t rs2,
-                                          size_t vl);
-vfloat64m4_t __riscv_vluxei16_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
-                                          const double *rs1, vuint16m1_t rs2,
-                                          size_t vl);
-vfloat64m8_t __riscv_vluxei16_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
-                                          const double *rs1, vuint16m2_t rs2,
-                                          size_t vl);
-vfloat64m1_t __riscv_vluxei32_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
-                                          const double *rs1, vuint32mf2_t rs2,
-                                          size_t vl);
-vfloat64m2_t __riscv_vluxei32_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
-                                          const double *rs1, vuint32m1_t rs2,
-                                          size_t vl);
-vfloat64m4_t __riscv_vluxei32_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
-                                          const double *rs1, vuint32m2_t rs2,
-                                          size_t vl);
-vfloat64m8_t __riscv_vluxei32_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
-                                          const double *rs1, vuint32m4_t rs2,
-                                          size_t vl);
-vfloat64m1_t __riscv_vluxei64_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
-                                          const double *rs1, vuint64m1_t rs2,
-                                          size_t vl);
-vfloat64m2_t __riscv_vluxei64_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
-                                          const double *rs1, vuint64m2_t rs2,
-                                          size_t vl);
-vfloat64m4_t __riscv_vluxei64_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
-                                          const double *rs1, vuint64m4_t rs2,
-                                          size_t vl);
-vfloat64m8_t __riscv_vluxei64_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
-                                          const double *rs1, vuint64m8_t rs2,
-                                          size_t vl);
 vint8mf8_t __riscv_vloxei8_v_i8mf8_tum(vbool64_t vm, vint8mf8_t vd,
                                        const int8_t *rs1, vuint8mf8_t rs2,
                                        size_t vl);
@@ -3274,342 +2616,6 @@ vuint64m8_t __riscv_vluxei64_v_u64m8_tum(vbool8_t vm, vuint64m8_t vd,
                                          const uint64_t *rs1, vuint64m8_t rs2,
                                          size_t vl);
 // masked functions
-vfloat16mf4_t __riscv_vloxei8_v_f16mf4_tumu(vbool64_t vm, vfloat16mf4_t vd,
-                                            const _Float16 *rs1,
-                                            vuint8mf8_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vloxei8_v_f16mf2_tumu(vbool32_t vm, vfloat16mf2_t vd,
-                                            const _Float16 *rs1,
-                                            vuint8mf4_t rs2, size_t vl);
-vfloat16m1_t __riscv_vloxei8_v_f16m1_tumu(vbool16_t vm, vfloat16m1_t vd,
-                                          const _Float16 *rs1, vuint8mf2_t rs2,
-                                          size_t vl);
-vfloat16m2_t __riscv_vloxei8_v_f16m2_tumu(vbool8_t vm, vfloat16m2_t vd,
-                                          const _Float16 *rs1, vuint8m1_t rs2,
-                                          size_t vl);
-vfloat16m4_t __riscv_vloxei8_v_f16m4_tumu(vbool4_t vm, vfloat16m4_t vd,
-                                          const _Float16 *rs1, vuint8m2_t rs2,
-                                          size_t vl);
-vfloat16m8_t __riscv_vloxei8_v_f16m8_tumu(vbool2_t vm, vfloat16m8_t vd,
-                                          const _Float16 *rs1, vuint8m4_t rs2,
-                                          size_t vl);
-vfloat16mf4_t __riscv_vloxei16_v_f16mf4_tumu(vbool64_t vm, vfloat16mf4_t vd,
-                                             const _Float16 *rs1,
-                                             vuint16mf4_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vloxei16_v_f16mf2_tumu(vbool32_t vm, vfloat16mf2_t vd,
-                                             const _Float16 *rs1,
-                                             vuint16mf2_t rs2, size_t vl);
-vfloat16m1_t __riscv_vloxei16_v_f16m1_tumu(vbool16_t vm, vfloat16m1_t vd,
-                                           const _Float16 *rs1, vuint16m1_t rs2,
-                                           size_t vl);
-vfloat16m2_t __riscv_vloxei16_v_f16m2_tumu(vbool8_t vm, vfloat16m2_t vd,
-                                           const _Float16 *rs1, vuint16m2_t rs2,
-                                           size_t vl);
-vfloat16m4_t __riscv_vloxei16_v_f16m4_tumu(vbool4_t vm, vfloat16m4_t vd,
-                                           const _Float16 *rs1, vuint16m4_t rs2,
-                                           size_t vl);
-vfloat16m8_t __riscv_vloxei16_v_f16m8_tumu(vbool2_t vm, vfloat16m8_t vd,
-                                           const _Float16 *rs1, vuint16m8_t rs2,
-                                           size_t vl);
-vfloat16mf4_t __riscv_vloxei32_v_f16mf4_tumu(vbool64_t vm, vfloat16mf4_t vd,
-                                             const _Float16 *rs1,
-                                             vuint32mf2_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vloxei32_v_f16mf2_tumu(vbool32_t vm, vfloat16mf2_t vd,
-                                             const _Float16 *rs1,
-                                             vuint32m1_t rs2, size_t vl);
-vfloat16m1_t __riscv_vloxei32_v_f16m1_tumu(vbool16_t vm, vfloat16m1_t vd,
-                                           const _Float16 *rs1, vuint32m2_t rs2,
-                                           size_t vl);
-vfloat16m2_t __riscv_vloxei32_v_f16m2_tumu(vbool8_t vm, vfloat16m2_t vd,
-                                           const _Float16 *rs1, vuint32m4_t rs2,
-                                           size_t vl);
-vfloat16m4_t __riscv_vloxei32_v_f16m4_tumu(vbool4_t vm, vfloat16m4_t vd,
-                                           const _Float16 *rs1, vuint32m8_t rs2,
-                                           size_t vl);
-vfloat16mf4_t __riscv_vloxei64_v_f16mf4_tumu(vbool64_t vm, vfloat16mf4_t vd,
-                                             const _Float16 *rs1,
-                                             vuint64m1_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vloxei64_v_f16mf2_tumu(vbool32_t vm, vfloat16mf2_t vd,
-                                             const _Float16 *rs1,
-                                             vuint64m2_t rs2, size_t vl);
-vfloat16m1_t __riscv_vloxei64_v_f16m1_tumu(vbool16_t vm, vfloat16m1_t vd,
-                                           const _Float16 *rs1, vuint64m4_t rs2,
-                                           size_t vl);
-vfloat16m2_t __riscv_vloxei64_v_f16m2_tumu(vbool8_t vm, vfloat16m2_t vd,
-                                           const _Float16 *rs1, vuint64m8_t rs2,
-                                           size_t vl);
-vfloat32mf2_t __riscv_vloxei8_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
-                                            const float *rs1, vuint8mf8_t rs2,
-                                            size_t vl);
-vfloat32m1_t __riscv_vloxei8_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
-                                          const float *rs1, vuint8mf4_t rs2,
-                                          size_t vl);
-vfloat32m2_t __riscv_vloxei8_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
-                                          const float *rs1, vuint8mf2_t rs2,
-                                          size_t vl);
-vfloat32m4_t __riscv_vloxei8_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
-                                          const float *rs1, vuint8m1_t rs2,
-                                          size_t vl);
-vfloat32m8_t __riscv_vloxei8_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
-                                          const float *rs1, vuint8m2_t rs2,
-                                          size_t vl);
-vfloat32mf2_t __riscv_vloxei16_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
-                                             const float *rs1, vuint16mf4_t rs2,
-                                             size_t vl);
-vfloat32m1_t __riscv_vloxei16_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
-                                           const float *rs1, vuint16mf2_t rs2,
-                                           size_t vl);
-vfloat32m2_t __riscv_vloxei16_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
-                                           const float *rs1, vuint16m1_t rs2,
-                                           size_t vl);
-vfloat32m4_t __riscv_vloxei16_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
-                                           const float *rs1, vuint16m2_t rs2,
-                                           size_t vl);
-vfloat32m8_t __riscv_vloxei16_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
-                                           const float *rs1, vuint16m4_t rs2,
-                                           size_t vl);
-vfloat32mf2_t __riscv_vloxei32_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
-                                             const float *rs1, vuint32mf2_t rs2,
-                                             size_t vl);
-vfloat32m1_t __riscv_vloxei32_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
-                                           const float *rs1, vuint32m1_t rs2,
-                                           size_t vl);
-vfloat32m2_t __riscv_vloxei32_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
-                                           const float *rs1, vuint32m2_t rs2,
-                                           size_t vl);
-vfloat32m4_t __riscv_vloxei32_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
-                                           const float *rs1, vuint32m4_t rs2,
-                                           size_t vl);
-vfloat32m8_t __riscv_vloxei32_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
-                                           const float *rs1, vuint32m8_t rs2,
-                                           size_t vl);
-vfloat32mf2_t __riscv_vloxei64_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
-                                             const float *rs1, vuint64m1_t rs2,
-                                             size_t vl);
-vfloat32m1_t __riscv_vloxei64_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
-                                           const float *rs1, vuint64m2_t rs2,
-                                           size_t vl);
-vfloat32m2_t __riscv_vloxei64_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
-                                           const float *rs1, vuint64m4_t rs2,
-                                           size_t vl);
-vfloat32m4_t __riscv_vloxei64_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
-                                           const float *rs1, vuint64m8_t rs2,
-                                           size_t vl);
-vfloat64m1_t __riscv_vloxei8_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
-                                          const double *rs1, vuint8mf8_t rs2,
-                                          size_t vl);
-vfloat64m2_t __riscv_vloxei8_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
-                                          const double *rs1, vuint8mf4_t rs2,
-                                          size_t vl);
-vfloat64m4_t __riscv_vloxei8_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
-                                          const double *rs1, vuint8mf2_t rs2,
-                                          size_t vl);
-vfloat64m8_t __riscv_vloxei8_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
-                                          const double *rs1, vuint8m1_t rs2,
-                                          size_t vl);
-vfloat64m1_t __riscv_vloxei16_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
-                                           const double *rs1, vuint16mf4_t rs2,
-                                           size_t vl);
-vfloat64m2_t __riscv_vloxei16_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
-                                           const double *rs1, vuint16mf2_t rs2,
-                                           size_t vl);
-vfloat64m4_t __riscv_vloxei16_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
-                                           const double *rs1, vuint16m1_t rs2,
-                                           size_t vl);
-vfloat64m8_t __riscv_vloxei16_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
-                                           const double *rs1, vuint16m2_t rs2,
-                                           size_t vl);
-vfloat64m1_t __riscv_vloxei32_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
-                                           const double *rs1, vuint32mf2_t rs2,
-                                           size_t vl);
-vfloat64m2_t __riscv_vloxei32_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
-                                           const double *rs1, vuint32m1_t rs2,
-                                           size_t vl);
-vfloat64m4_t __riscv_vloxei32_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
-                                           const double *rs1, vuint32m2_t rs2,
-                                           size_t vl);
-vfloat64m8_t __riscv_vloxei32_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
-                                           const double *rs1, vuint32m4_t rs2,
-                                           size_t vl);
-vfloat64m1_t __riscv_vloxei64_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
-                                           const double *rs1, vuint64m1_t rs2,
-                                           size_t vl);
-vfloat64m2_t __riscv_vloxei64_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
-                                           const double *rs1, vuint64m2_t rs2,
-                                           size_t vl);
-vfloat64m4_t __riscv_vloxei64_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
-                                           const double *rs1, vuint64m4_t rs2,
-                                           size_t vl);
-vfloat64m8_t __riscv_vloxei64_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
-                                           const double *rs1, vuint64m8_t rs2,
-                                           size_t vl);
-vfloat16mf4_t __riscv_vluxei8_v_f16mf4_tumu(vbool64_t vm, vfloat16mf4_t vd,
-                                            const _Float16 *rs1,
-                                            vuint8mf8_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vluxei8_v_f16mf2_tumu(vbool32_t vm, vfloat16mf2_t vd,
-                                            const _Float16 *rs1,
-                                            vuint8mf4_t rs2, size_t vl);
-vfloat16m1_t __riscv_vluxei8_v_f16m1_tumu(vbool16_t vm, vfloat16m1_t vd,
-                                          const _Float16 *rs1, vuint8mf2_t rs2,
-                                          size_t vl);
-vfloat16m2_t __riscv_vluxei8_v_f16m2_tumu(vbool8_t vm, vfloat16m2_t vd,
-                                          const _Float16 *rs1, vuint8m1_t rs2,
-                                          size_t vl);
-vfloat16m4_t __riscv_vluxei8_v_f16m4_tumu(vbool4_t vm, vfloat16m4_t vd,
-                                          const _Float16 *rs1, vuint8m2_t rs2,
-                                          size_t vl);
-vfloat16m8_t __riscv_vluxei8_v_f16m8_tumu(vbool2_t vm, vfloat16m8_t vd,
-                                          const _Float16 *rs1, vuint8m4_t rs2,
-                                          size_t vl);
-vfloat16mf4_t __riscv_vluxei16_v_f16mf4_tumu(vbool64_t vm, vfloat16mf4_t vd,
-                                             const _Float16 *rs1,
-                                             vuint16mf4_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vluxei16_v_f16mf2_tumu(vbool32_t vm, vfloat16mf2_t vd,
-                                             const _Float16 *rs1,
-                                             vuint16mf2_t rs2, size_t vl);
-vfloat16m1_t __riscv_vluxei16_v_f16m1_tumu(vbool16_t vm, vfloat16m1_t vd,
-                                           const _Float16 *rs1, vuint16m1_t rs2,
-                                           size_t vl);
-vfloat16m2_t __riscv_vluxei16_v_f16m2_tumu(vbool8_t vm, vfloat16m2_t vd,
-                                           const _Float16 *rs1, vuint16m2_t rs2,
-                                           size_t vl);
-vfloat16m4_t __riscv_vluxei16_v_f16m4_tumu(vbool4_t vm, vfloat16m4_t vd,
-                                           const _Float16 *rs1, vuint16m4_t rs2,
-                                           size_t vl);
-vfloat16m8_t __riscv_vluxei16_v_f16m8_tumu(vbool2_t vm, vfloat16m8_t vd,
-                                           const _Float16 *rs1, vuint16m8_t rs2,
-                                           size_t vl);
-vfloat16mf4_t __riscv_vluxei32_v_f16mf4_tumu(vbool64_t vm, vfloat16mf4_t vd,
-                                             const _Float16 *rs1,
-                                             vuint32mf2_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vluxei32_v_f16mf2_tumu(vbool32_t vm, vfloat16mf2_t vd,
-                                             const _Float16 *rs1,
-                                             vuint32m1_t rs2, size_t vl);
-vfloat16m1_t __riscv_vluxei32_v_f16m1_tumu(vbool16_t vm, vfloat16m1_t vd,
-                                           const _Float16 *rs1, vuint32m2_t rs2,
-                                           size_t vl);
-vfloat16m2_t __riscv_vluxei32_v_f16m2_tumu(vbool8_t vm, vfloat16m2_t vd,
-                                           const _Float16 *rs1, vuint32m4_t rs2,
-                                           size_t vl);
-vfloat16m4_t __riscv_vluxei32_v_f16m4_tumu(vbool4_t vm, vfloat16m4_t vd,
-                                           const _Float16 *rs1, vuint32m8_t rs2,
-                                           size_t vl);
-vfloat16mf4_t __riscv_vluxei64_v_f16mf4_tumu(vbool64_t vm, vfloat16mf4_t vd,
-                                             const _Float16 *rs1,
-                                             vuint64m1_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vluxei64_v_f16mf2_tumu(vbool32_t vm, vfloat16mf2_t vd,
-                                             const _Float16 *rs1,
-                                             vuint64m2_t rs2, size_t vl);
-vfloat16m1_t __riscv_vluxei64_v_f16m1_tumu(vbool16_t vm, vfloat16m1_t vd,
-                                           const _Float16 *rs1, vuint64m4_t rs2,
-                                           size_t vl);
-vfloat16m2_t __riscv_vluxei64_v_f16m2_tumu(vbool8_t vm, vfloat16m2_t vd,
-                                           const _Float16 *rs1, vuint64m8_t rs2,
-                                           size_t vl);
-vfloat32mf2_t __riscv_vluxei8_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
-                                            const float *rs1, vuint8mf8_t rs2,
-                                            size_t vl);
-vfloat32m1_t __riscv_vluxei8_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
-                                          const float *rs1, vuint8mf4_t rs2,
-                                          size_t vl);
-vfloat32m2_t __riscv_vluxei8_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
-                                          const float *rs1, vuint8mf2_t rs2,
-                                          size_t vl);
-vfloat32m4_t __riscv_vluxei8_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
-                                          const float *rs1, vuint8m1_t rs2,
-                                          size_t vl);
-vfloat32m8_t __riscv_vluxei8_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
-                                          const float *rs1, vuint8m2_t rs2,
-                                          size_t vl);
-vfloat32mf2_t __riscv_vluxei16_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
-                                             const float *rs1, vuint16mf4_t rs2,
-                                             size_t vl);
-vfloat32m1_t __riscv_vluxei16_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
-                                           const float *rs1, vuint16mf2_t rs2,
-                                           size_t vl);
-vfloat32m2_t __riscv_vluxei16_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
-                                           const float *rs1, vuint16m1_t rs2,
-                                           size_t vl);
-vfloat32m4_t __riscv_vluxei16_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
-                                           const float *rs1, vuint16m2_t rs2,
-                                           size_t vl);
-vfloat32m8_t __riscv_vluxei16_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
-                                           const float *rs1, vuint16m4_t rs2,
-                                           size_t vl);
-vfloat32mf2_t __riscv_vluxei32_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
-                                             const float *rs1, vuint32mf2_t rs2,
-                                             size_t vl);
-vfloat32m1_t __riscv_vluxei32_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
-                                           const float *rs1, vuint32m1_t rs2,
-                                           size_t vl);
-vfloat32m2_t __riscv_vluxei32_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
-                                           const float *rs1, vuint32m2_t rs2,
-                                           size_t vl);
-vfloat32m4_t __riscv_vluxei32_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
-                                           const float *rs1, vuint32m4_t rs2,
-                                           size_t vl);
-vfloat32m8_t __riscv_vluxei32_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
-                                           const float *rs1, vuint32m8_t rs2,
-                                           size_t vl);
-vfloat32mf2_t __riscv_vluxei64_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
-                                             const float *rs1, vuint64m1_t rs2,
-                                             size_t vl);
-vfloat32m1_t __riscv_vluxei64_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
-                                           const float *rs1, vuint64m2_t rs2,
-                                           size_t vl);
-vfloat32m2_t __riscv_vluxei64_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
-                                           const float *rs1, vuint64m4_t rs2,
-                                           size_t vl);
-vfloat32m4_t __riscv_vluxei64_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
-                                           const float *rs1, vuint64m8_t rs2,
-                                           size_t vl);
-vfloat64m1_t __riscv_vluxei8_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
-                                          const double *rs1, vuint8mf8_t rs2,
-                                          size_t vl);
-vfloat64m2_t __riscv_vluxei8_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
-                                          const double *rs1, vuint8mf4_t rs2,
-                                          size_t vl);
-vfloat64m4_t __riscv_vluxei8_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
-                                          const double *rs1, vuint8mf2_t rs2,
-                                          size_t vl);
-vfloat64m8_t __riscv_vluxei8_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
-                                          const double *rs1, vuint8m1_t rs2,
-                                          size_t vl);
-vfloat64m1_t __riscv_vluxei16_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
-                                           const double *rs1, vuint16mf4_t rs2,
-                                           size_t vl);
-vfloat64m2_t __riscv_vluxei16_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
-                                           const double *rs1, vuint16mf2_t rs2,
-                                           size_t vl);
-vfloat64m4_t __riscv_vluxei16_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
-                                           const double *rs1, vuint16m1_t rs2,
-                                           size_t vl);
-vfloat64m8_t __riscv_vluxei16_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
-                                           const double *rs1, vuint16m2_t rs2,
-                                           size_t vl);
-vfloat64m1_t __riscv_vluxei32_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
-                                           const double *rs1, vuint32mf2_t rs2,
-                                           size_t vl);
-vfloat64m2_t __riscv_vluxei32_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
-                                           const double *rs1, vuint32m1_t rs2,
-                                           size_t vl);
-vfloat64m4_t __riscv_vluxei32_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
-                                           const double *rs1, vuint32m2_t rs2,
-                                           size_t vl);
-vfloat64m8_t __riscv_vluxei32_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
-                                           const double *rs1, vuint32m4_t rs2,
-                                           size_t vl);
-vfloat64m1_t __riscv_vluxei64_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
-                                           const double *rs1, vuint64m1_t rs2,
-                                           size_t vl);
-vfloat64m2_t __riscv_vluxei64_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
-                                           const double *rs1, vuint64m2_t rs2,
-                                           size_t vl);
-vfloat64m4_t __riscv_vluxei64_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
-                                           const double *rs1, vuint64m4_t rs2,
-                                           size_t vl);
-vfloat64m8_t __riscv_vluxei64_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
-                                           const double *rs1, vuint64m8_t rs2,
-                                           size_t vl);
 vint8mf8_t __riscv_vloxei8_v_i8mf8_tumu(vbool64_t vm, vint8mf8_t vd,
                                         const int8_t *rs1, vuint8mf8_t rs2,
                                         size_t vl);
@@ -4547,342 +3553,6 @@ vuint64m8_t __riscv_vluxei64_v_u64m8_tumu(vbool8_t vm, vuint64m8_t vd,
                                           const uint64_t *rs1, vuint64m8_t rs2,
                                           size_t vl);
 // masked functions
-vfloat16mf4_t __riscv_vloxei8_v_f16mf4_mu(vbool64_t vm, vfloat16mf4_t vd,
-                                          const _Float16 *rs1, vuint8mf8_t rs2,
-                                          size_t vl);
-vfloat16mf2_t __riscv_vloxei8_v_f16mf2_mu(vbool32_t vm, vfloat16mf2_t vd,
-                                          const _Float16 *rs1, vuint8mf4_t rs2,
-                                          size_t vl);
-vfloat16m1_t __riscv_vloxei8_v_f16m1_mu(vbool16_t vm, vfloat16m1_t vd,
-                                        const _Float16 *rs1, vuint8mf2_t rs2,
-                                        size_t vl);
-vfloat16m2_t __riscv_vloxei8_v_f16m2_mu(vbool8_t vm, vfloat16m2_t vd,
-                                        const _Float16 *rs1, vuint8m1_t rs2,
-                                        size_t vl);
-vfloat16m4_t __riscv_vloxei8_v_f16m4_mu(vbool4_t vm, vfloat16m4_t vd,
-                                        const _Float16 *rs1, vuint8m2_t rs2,
-                                        size_t vl);
-vfloat16m8_t __riscv_vloxei8_v_f16m8_mu(vbool2_t vm, vfloat16m8_t vd,
-                                        const _Float16 *rs1, vuint8m4_t rs2,
-                                        size_t vl);
-vfloat16mf4_t __riscv_vloxei16_v_f16mf4_mu(vbool64_t vm, vfloat16mf4_t vd,
-                                           const _Float16 *rs1,
-                                           vuint16mf4_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vloxei16_v_f16mf2_mu(vbool32_t vm, vfloat16mf2_t vd,
-                                           const _Float16 *rs1,
-                                           vuint16mf2_t rs2, size_t vl);
-vfloat16m1_t __riscv_vloxei16_v_f16m1_mu(vbool16_t vm, vfloat16m1_t vd,
-                                         const _Float16 *rs1, vuint16m1_t rs2,
-                                         size_t vl);
-vfloat16m2_t __riscv_vloxei16_v_f16m2_mu(vbool8_t vm, vfloat16m2_t vd,
-                                         const _Float16 *rs1, vuint16m2_t rs2,
-                                         size_t vl);
-vfloat16m4_t __riscv_vloxei16_v_f16m4_mu(vbool4_t vm, vfloat16m4_t vd,
-                                         const _Float16 *rs1, vuint16m4_t rs2,
-                                         size_t vl);
-vfloat16m8_t __riscv_vloxei16_v_f16m8_mu(vbool2_t vm, vfloat16m8_t vd,
-                                         const _Float16 *rs1, vuint16m8_t rs2,
-                                         size_t vl);
-vfloat16mf4_t __riscv_vloxei32_v_f16mf4_mu(vbool64_t vm, vfloat16mf4_t vd,
-                                           const _Float16 *rs1,
-                                           vuint32mf2_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vloxei32_v_f16mf2_mu(vbool32_t vm, vfloat16mf2_t vd,
-                                           const _Float16 *rs1, vuint32m1_t rs2,
-                                           size_t vl);
-vfloat16m1_t __riscv_vloxei32_v_f16m1_mu(vbool16_t vm, vfloat16m1_t vd,
-                                         const _Float16 *rs1, vuint32m2_t rs2,
-                                         size_t vl);
-vfloat16m2_t __riscv_vloxei32_v_f16m2_mu(vbool8_t vm, vfloat16m2_t vd,
-                                         const _Float16 *rs1, vuint32m4_t rs2,
-                                         size_t vl);
-vfloat16m4_t __riscv_vloxei32_v_f16m4_mu(vbool4_t vm, vfloat16m4_t vd,
-                                         const _Float16 *rs1, vuint32m8_t rs2,
-                                         size_t vl);
-vfloat16mf4_t __riscv_vloxei64_v_f16mf4_mu(vbool64_t vm, vfloat16mf4_t vd,
-                                           const _Float16 *rs1, vuint64m1_t rs2,
-                                           size_t vl);
-vfloat16mf2_t __riscv_vloxei64_v_f16mf2_mu(vbool32_t vm, vfloat16mf2_t vd,
-                                           const _Float16 *rs1, vuint64m2_t rs2,
-                                           size_t vl);
-vfloat16m1_t __riscv_vloxei64_v_f16m1_mu(vbool16_t vm, vfloat16m1_t vd,
-                                         const _Float16 *rs1, vuint64m4_t rs2,
-                                         size_t vl);
-vfloat16m2_t __riscv_vloxei64_v_f16m2_mu(vbool8_t vm, vfloat16m2_t vd,
-                                         const _Float16 *rs1, vuint64m8_t rs2,
-                                         size_t vl);
-vfloat32mf2_t __riscv_vloxei8_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
-                                          const float *rs1, vuint8mf8_t rs2,
-                                          size_t vl);
-vfloat32m1_t __riscv_vloxei8_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
-                                        const float *rs1, vuint8mf4_t rs2,
-                                        size_t vl);
-vfloat32m2_t __riscv_vloxei8_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
-                                        const float *rs1, vuint8mf2_t rs2,
-                                        size_t vl);
-vfloat32m4_t __riscv_vloxei8_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
-                                        const float *rs1, vuint8m1_t rs2,
-                                        size_t vl);
-vfloat32m8_t __riscv_vloxei8_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
-                                        const float *rs1, vuint8m2_t rs2,
-                                        size_t vl);
-vfloat32mf2_t __riscv_vloxei16_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
-                                           const float *rs1, vuint16mf4_t rs2,
-                                           size_t vl);
-vfloat32m1_t __riscv_vloxei16_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
-                                         const float *rs1, vuint16mf2_t rs2,
-                                         size_t vl);
-vfloat32m2_t __riscv_vloxei16_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
-                                         const float *rs1, vuint16m1_t rs2,
-                                         size_t vl);
-vfloat32m4_t __riscv_vloxei16_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
-                                         const float *rs1, vuint16m2_t rs2,
-                                         size_t vl);
-vfloat32m8_t __riscv_vloxei16_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
-                                         const float *rs1, vuint16m4_t rs2,
-                                         size_t vl);
-vfloat32mf2_t __riscv_vloxei32_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
-                                           const float *rs1, vuint32mf2_t rs2,
-                                           size_t vl);
-vfloat32m1_t __riscv_vloxei32_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
-                                         const float *rs1, vuint32m1_t rs2,
-                                         size_t vl);
-vfloat32m2_t __riscv_vloxei32_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
-                                         const float *rs1, vuint32m2_t rs2,
-                                         size_t vl);
-vfloat32m4_t __riscv_vloxei32_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
-                                         const float *rs1, vuint32m4_t rs2,
-                                         size_t vl);
-vfloat32m8_t __riscv_vloxei32_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
-                                         const float *rs1, vuint32m8_t rs2,
-                                         size_t vl);
-vfloat32mf2_t __riscv_vloxei64_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
-                                           const float *rs1, vuint64m1_t rs2,
-                                           size_t vl);
-vfloat32m1_t __riscv_vloxei64_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
-                                         const float *rs1, vuint64m2_t rs2,
-                                         size_t vl);
-vfloat32m2_t __riscv_vloxei64_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
-                                         const float *rs1, vuint64m4_t rs2,
-                                         size_t vl);
-vfloat32m4_t __riscv_vloxei64_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
-                                         const float *rs1, vuint64m8_t rs2,
-                                         size_t vl);
-vfloat64m1_t __riscv_vloxei8_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
-                                        const double *rs1, vuint8mf8_t rs2,
-                                        size_t vl);
-vfloat64m2_t __riscv_vloxei8_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
-                                        const double *rs1, vuint8mf4_t rs2,
-                                        size_t vl);
-vfloat64m4_t __riscv_vloxei8_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
-                                        const double *rs1, vuint8mf2_t rs2,
-                                        size_t vl);
-vfloat64m8_t __riscv_vloxei8_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
-                                        const double *rs1, vuint8m1_t rs2,
-                                        size_t vl);
-vfloat64m1_t __riscv_vloxei16_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
-                                         const double *rs1, vuint16mf4_t rs2,
-                                         size_t vl);
-vfloat64m2_t __riscv_vloxei16_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
-                                         const double *rs1, vuint16mf2_t rs2,
-                                         size_t vl);
-vfloat64m4_t __riscv_vloxei16_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
-                                         const double *rs1, vuint16m1_t rs2,
-                                         size_t vl);
-vfloat64m8_t __riscv_vloxei16_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
-                                         const double *rs1, vuint16m2_t rs2,
-                                         size_t vl);
-vfloat64m1_t __riscv_vloxei32_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
-                                         const double *rs1, vuint32mf2_t rs2,
-                                         size_t vl);
-vfloat64m2_t __riscv_vloxei32_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
-                                         const double *rs1, vuint32m1_t rs2,
-                                         size_t vl);
-vfloat64m4_t __riscv_vloxei32_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
-                                         const double *rs1, vuint32m2_t rs2,
-                                         size_t vl);
-vfloat64m8_t __riscv_vloxei32_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
-                                         const double *rs1, vuint32m4_t rs2,
-                                         size_t vl);
-vfloat64m1_t __riscv_vloxei64_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
-                                         const double *rs1, vuint64m1_t rs2,
-                                         size_t vl);
-vfloat64m2_t __riscv_vloxei64_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
-                                         const double *rs1, vuint64m2_t rs2,
-                                         size_t vl);
-vfloat64m4_t __riscv_vloxei64_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
-                                         const double *rs1, vuint64m4_t rs2,
-                                         size_t vl);
-vfloat64m8_t __riscv_vloxei64_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
-                                         const double *rs1, vuint64m8_t rs2,
-                                         size_t vl);
-vfloat16mf4_t __riscv_vluxei8_v_f16mf4_mu(vbool64_t vm, vfloat16mf4_t vd,
-                                          const _Float16 *rs1, vuint8mf8_t rs2,
-                                          size_t vl);
-vfloat16mf2_t __riscv_vluxei8_v_f16mf2_mu(vbool32_t vm, vfloat16mf2_t vd,
-                                          const _Float16 *rs1, vuint8mf4_t rs2,
-                                          size_t vl);
-vfloat16m1_t __riscv_vluxei8_v_f16m1_mu(vbool16_t vm, vfloat16m1_t vd,
-                                        const _Float16 *rs1, vuint8mf2_t rs2,
-                                        size_t vl);
-vfloat16m2_t __riscv_vluxei8_v_f16m2_mu(vbool8_t vm, vfloat16m2_t vd,
-                                        const _Float16 *rs1, vuint8m1_t rs2,
-                                        size_t vl);
-vfloat16m4_t __riscv_vluxei8_v_f16m4_mu(vbool4_t vm, vfloat16m4_t vd,
-                                        const _Float16 *rs1, vuint8m2_t rs2,
-                                        size_t vl);
-vfloat16m8_t __riscv_vluxei8_v_f16m8_mu(vbool2_t vm, vfloat16m8_t vd,
-                                        const _Float16 *rs1, vuint8m4_t rs2,
-                                        size_t vl);
-vfloat16mf4_t __riscv_vluxei16_v_f16mf4_mu(vbool64_t vm, vfloat16mf4_t vd,
-                                           const _Float16 *rs1,
-                                           vuint16mf4_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vluxei16_v_f16mf2_mu(vbool32_t vm, vfloat16mf2_t vd,
-                                           const _Float16 *rs1,
-                                           vuint16mf2_t rs2, size_t vl);
-vfloat16m1_t __riscv_vluxei16_v_f16m1_mu(vbool16_t vm, vfloat16m1_t vd,
-                                         const _Float16 *rs1, vuint16m1_t rs2,
-                                         size_t vl);
-vfloat16m2_t __riscv_vluxei16_v_f16m2_mu(vbool8_t vm, vfloat16m2_t vd,
-                                         const _Float16 *rs1, vuint16m2_t rs2,
-                                         size_t vl);
-vfloat16m4_t __riscv_vluxei16_v_f16m4_mu(vbool4_t vm, vfloat16m4_t vd,
-                                         const _Float16 *rs1, vuint16m4_t rs2,
-                                         size_t vl);
-vfloat16m8_t __riscv_vluxei16_v_f16m8_mu(vbool2_t vm, vfloat16m8_t vd,
-                                         const _Float16 *rs1, vuint16m8_t rs2,
-                                         size_t vl);
-vfloat16mf4_t __riscv_vluxei32_v_f16mf4_mu(vbool64_t vm, vfloat16mf4_t vd,
-                                           const _Float16 *rs1,
-                                           vuint32mf2_t rs2, size_t vl);
-vfloat16mf2_t __riscv_vluxei32_v_f16mf2_mu(vbool32_t vm, vfloat16mf2_t vd,
-                                           const _Float16 *rs1, vuint32m1_t rs2,
-                                           size_t vl);
-vfloat16m1_t __riscv_vluxei32_v_f16m1_mu(vbool16_t vm, vfloat16m1_t vd,
-                                         const _Float16 *rs1, vuint32m2_t rs2,
-                                         size_t vl);
-vfloat16m2_t __riscv_vluxei32_v_f16m2_mu(vbool8_t vm, vfloat16m2_t vd,
-                                         const _Float16 *rs1, vuint32m4_t rs2,
-                                         size_t vl);
-vfloat16m4_t __riscv_vluxei32_v_f16m4_mu(vbool4_t vm, vfloat16m4_t vd,
-                                         const _Float16 *rs1, vuint32m8_t rs2,
-                                         size_t vl);
-vfloat16mf4_t __riscv_vluxei64_v_f16mf4_mu(vbool64_t vm, vfloat16mf4_t vd,
-                                           const _Float16 *rs1, vuint64m1_t rs2,
-                                           size_t vl);
-vfloat16mf2_t __riscv_vluxei64_v_f16mf2_mu(vbool32_t vm, vfloat16mf2_t vd,
-                                           const _Float16 *rs1, vuint64m2_t rs2,
-                                           size_t vl);
-vfloat16m1_t __riscv_vluxei64_v_f16m1_mu(vbool16_t vm, vfloat16m1_t vd,
-                                         const _Float16 *rs1, vuint64m4_t rs2,
-                                         size_t vl);
-vfloat16m2_t __riscv_vluxei64_v_f16m2_mu(vbool8_t vm, vfloat16m2_t vd,
-                                         const _Float16 *rs1, vuint64m8_t rs2,
-                                         size_t vl);
-vfloat32mf2_t __riscv_vluxei8_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
-                                          const float *rs1, vuint8mf8_t rs2,
-                                          size_t vl);
-vfloat32m1_t __riscv_vluxei8_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
-                                        const float *rs1, vuint8mf4_t rs2,
-                                        size_t vl);
-vfloat32m2_t __riscv_vluxei8_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
-                                        const float *rs1, vuint8mf2_t rs2,
-                                        size_t vl);
-vfloat32m4_t __riscv_vluxei8_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
-                                        const float *rs1, vuint8m1_t rs2,
-                                        size_t vl);
-vfloat32m8_t __riscv_vluxei8_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
-                                        const float *rs1, vuint8m2_t rs2,
-                                        size_t vl);
-vfloat32mf2_t __riscv_vluxei16_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
-                                           const float *rs1, vuint16mf4_t rs2,
-                                           size_t vl);
-vfloat32m1_t __riscv_vluxei16_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
-                                         const float *rs1, vuint16mf2_t rs2,
-                                         size_t vl);
-vfloat32m2_t __riscv_vluxei16_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
-                                         const float *rs1, vuint16m1_t rs2,
-                                         size_t vl);
-vfloat32m4_t __riscv_vluxei16_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
-                                         const float *rs1, vuint16m2_t rs2,
-                                         size_t vl);
-vfloat32m8_t __riscv_vluxei16_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
-                                         const float *rs1, vuint16m4_t rs2,
-                                         size_t vl);
-vfloat32mf2_t __riscv_vluxei32_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
-                                           const float *rs1, vuint32mf2_t rs2,
-                                           size_t vl);
-vfloat32m1_t __riscv_vluxei32_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
-                                         const float *rs1, vuint32m1_t rs2,
-                                         size_t vl);
-vfloat32m2_t __riscv_vluxei32_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
-                                         const float *rs1, vuint32m2_t rs2,
-                                         size_t vl);
-vfloat32m4_t __riscv_vluxei32_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
-                                         const float *rs1, vuint32m4_t rs2,
-                                         size_t vl);
-vfloat32m8_t __riscv_vluxei32_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
-                                         const float *rs1, vuint32m8_t rs2,
-                                         size_t vl);
-vfloat32mf2_t __riscv_vluxei64_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
-                                           const float *rs1, vuint64m1_t rs2,
-                                           size_t vl);
-vfloat32m1_t __riscv_vluxei64_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
-                                         const float *rs1, vuint64m2_t rs2,
-                                         size_t vl);
-vfloat32m2_t __riscv_vluxei64_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
-                                         const float *rs1, vuint64m4_t rs2,
-                                         size_t vl);
-vfloat32m4_t __riscv_vluxei64_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
-                                         const float *rs1, vuint64m8_t rs2,
-                                         size_t vl);
-vfloat64m1_t __riscv_vluxei8_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
-                                        const double *rs1, vuint8mf8_t rs2,
-                                        size_t vl);
-vfloat64m2_t __riscv_vluxei8_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
-                                        const double *rs1, vuint8mf4_t rs2,
-                                        size_t vl);
-vfloat64m4_t __riscv_vluxei8_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
-                                        const double *rs1, vuint8mf2_t rs2,
-                                        size_t vl);
-vfloat64m8_t __riscv_vluxei8_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
-                                        const double *rs1, vuint8m1_t rs2,
-                                        size_t vl);
-vfloat64m1_t __riscv_vluxei16_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
-                                         const double *rs1, vuint16mf4_t rs2,
-                                         size_t vl);
-vfloat64m2_t __riscv_vluxei16_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
-                                         const double *rs1, vuint16mf2_t rs2,
-                                         size_t vl);
-vfloat64m4_t __riscv_vluxei16_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
-                                         const double *rs1, vuint16m1_t rs2,
-                                         size_t vl);
-vfloat64m8_t __riscv_vluxei16_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
-                                         const double *rs1, vuint16m2_t rs2,
-                                         size_t vl);
-vfloat64m1_t __riscv_vluxei32_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
-                                         const double *rs1, vuint32mf2_t rs2,
-                                         size_t vl);
-vfloat64m2_t __riscv_vluxei32_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
-                                         const double *rs1, vuint32m1_t rs2,
-                                         size_t vl);
-vfloat64m4_t __riscv_vluxei32_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
-                                         const double *rs1, vuint32m2_t rs2,
-                                         size_t vl);
-vfloat64m8_t __riscv_vluxei32_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
-                                         const double *rs1, vuint32m4_t rs2,
-                                         size_t vl);
-vfloat64m1_t __riscv_vluxei64_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
-                                         const double *rs1, vuint64m1_t rs2,
-                                         size_t vl);
-vfloat64m2_t __riscv_vluxei64_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
-                                         const double *rs1, vuint64m2_t rs2,
-                                         size_t vl);
-vfloat64m4_t __riscv_vluxei64_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
-                                         const double *rs1, vuint64m4_t rs2,
-                                         size_t vl);
-vfloat64m8_t __riscv_vluxei64_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
-                                         const double *rs1, vuint64m8_t rs2,
-                                         size_t vl);
 vint8mf8_t __riscv_vloxei8_v_i8mf8_mu(vbool64_t vm, vint8mf8_t vd,
                                       const int8_t *rs1, vuint8mf8_t rs2,
                                       size_t vl);
@@ -5821,8 +4491,396 @@ vuint64m8_t __riscv_vluxei64_v_u64m8_mu(vbool8_t vm, vuint64m8_t vd,
                                         size_t vl);
 ----
 
+[[policy-variant-float-vector-indexed-load]]
+==== Float Vector Indexed Load Intrinsics
+
+[,c]
+----
+vfloat32mf2_t __riscv_vloxei32_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
+                                           vuint32mf2_t rs2, size_t vl);
+vfloat32m1_t __riscv_vloxei32_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
+                                         vuint32m1_t rs2, size_t vl);
+vfloat32m2_t __riscv_vloxei32_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
+                                         vuint32m2_t rs2, size_t vl);
+vfloat32m4_t __riscv_vloxei32_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
+                                         vuint32m4_t rs2, size_t vl);
+vfloat32m8_t __riscv_vloxei32_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
+                                         vuint32m8_t rs2, size_t vl);
+vfloat32mf2_t __riscv_vloxei64_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
+                                           vuint64m1_t rs2, size_t vl);
+vfloat32m1_t __riscv_vloxei64_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
+                                         vuint64m2_t rs2, size_t vl);
+vfloat32m2_t __riscv_vloxei64_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
+                                         vuint64m4_t rs2, size_t vl);
+vfloat32m4_t __riscv_vloxei64_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
+                                         vuint64m8_t rs2, size_t vl);
+vfloat64m1_t __riscv_vloxei32_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
+                                         vuint32mf2_t rs2, size_t vl);
+vfloat64m2_t __riscv_vloxei32_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
+                                         vuint32m1_t rs2, size_t vl);
+vfloat64m4_t __riscv_vloxei32_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
+                                         vuint32m2_t rs2, size_t vl);
+vfloat64m8_t __riscv_vloxei32_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
+                                         vuint32m4_t rs2, size_t vl);
+vfloat64m1_t __riscv_vloxei64_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
+                                         vuint64m1_t rs2, size_t vl);
+vfloat64m2_t __riscv_vloxei64_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
+                                         vuint64m2_t rs2, size_t vl);
+vfloat64m4_t __riscv_vloxei64_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
+                                         vuint64m4_t rs2, size_t vl);
+vfloat64m8_t __riscv_vloxei64_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
+                                         vuint64m8_t rs2, size_t vl);
+vfloat32mf2_t __riscv_vluxei32_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
+                                           vuint32mf2_t rs2, size_t vl);
+vfloat32m1_t __riscv_vluxei32_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
+                                         vuint32m1_t rs2, size_t vl);
+vfloat32m2_t __riscv_vluxei32_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
+                                         vuint32m2_t rs2, size_t vl);
+vfloat32m4_t __riscv_vluxei32_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
+                                         vuint32m4_t rs2, size_t vl);
+vfloat32m8_t __riscv_vluxei32_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
+                                         vuint32m8_t rs2, size_t vl);
+vfloat32mf2_t __riscv_vluxei64_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
+                                           vuint64m1_t rs2, size_t vl);
+vfloat32m1_t __riscv_vluxei64_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
+                                         vuint64m2_t rs2, size_t vl);
+vfloat32m2_t __riscv_vluxei64_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
+                                         vuint64m4_t rs2, size_t vl);
+vfloat32m4_t __riscv_vluxei64_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
+                                         vuint64m8_t rs2, size_t vl);
+vfloat64m1_t __riscv_vluxei32_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
+                                         vuint32mf2_t rs2, size_t vl);
+vfloat64m2_t __riscv_vluxei32_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
+                                         vuint32m1_t rs2, size_t vl);
+vfloat64m4_t __riscv_vluxei32_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
+                                         vuint32m2_t rs2, size_t vl);
+vfloat64m8_t __riscv_vluxei32_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
+                                         vuint32m4_t rs2, size_t vl);
+vfloat64m1_t __riscv_vluxei64_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
+                                         vuint64m1_t rs2, size_t vl);
+vfloat64m2_t __riscv_vluxei64_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
+                                         vuint64m2_t rs2, size_t vl);
+vfloat64m4_t __riscv_vluxei64_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
+                                         vuint64m4_t rs2, size_t vl);
+vfloat64m8_t __riscv_vluxei64_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
+                                         vuint64m8_t rs2, size_t vl);
+// masked functions
+vfloat32mf2_t __riscv_vloxei32_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
+                                            const float *rs1, vuint32mf2_t rs2,
+                                            size_t vl);
+vfloat32m1_t __riscv_vloxei32_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
+                                          const float *rs1, vuint32m1_t rs2,
+                                          size_t vl);
+vfloat32m2_t __riscv_vloxei32_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
+                                          const float *rs1, vuint32m2_t rs2,
+                                          size_t vl);
+vfloat32m4_t __riscv_vloxei32_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
+                                          const float *rs1, vuint32m4_t rs2,
+                                          size_t vl);
+vfloat32m8_t __riscv_vloxei32_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
+                                          const float *rs1, vuint32m8_t rs2,
+                                          size_t vl);
+vfloat32mf2_t __riscv_vloxei64_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
+                                            const float *rs1, vuint64m1_t rs2,
+                                            size_t vl);
+vfloat32m1_t __riscv_vloxei64_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
+                                          const float *rs1, vuint64m2_t rs2,
+                                          size_t vl);
+vfloat32m2_t __riscv_vloxei64_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
+                                          const float *rs1, vuint64m4_t rs2,
+                                          size_t vl);
+vfloat32m4_t __riscv_vloxei64_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
+                                          const float *rs1, vuint64m8_t rs2,
+                                          size_t vl);
+vfloat64m1_t __riscv_vloxei32_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
+                                          const double *rs1, vuint32mf2_t rs2,
+                                          size_t vl);
+vfloat64m2_t __riscv_vloxei32_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
+                                          const double *rs1, vuint32m1_t rs2,
+                                          size_t vl);
+vfloat64m4_t __riscv_vloxei32_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
+                                          const double *rs1, vuint32m2_t rs2,
+                                          size_t vl);
+vfloat64m8_t __riscv_vloxei32_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
+                                          const double *rs1, vuint32m4_t rs2,
+                                          size_t vl);
+vfloat64m1_t __riscv_vloxei64_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
+                                          const double *rs1, vuint64m1_t rs2,
+                                          size_t vl);
+vfloat64m2_t __riscv_vloxei64_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
+                                          const double *rs1, vuint64m2_t rs2,
+                                          size_t vl);
+vfloat64m4_t __riscv_vloxei64_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
+                                          const double *rs1, vuint64m4_t rs2,
+                                          size_t vl);
+vfloat64m8_t __riscv_vloxei64_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
+                                          const double *rs1, vuint64m8_t rs2,
+                                          size_t vl);
+vfloat32mf2_t __riscv_vluxei32_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
+                                            const float *rs1, vuint32mf2_t rs2,
+                                            size_t vl);
+vfloat32m1_t __riscv_vluxei32_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
+                                          const float *rs1, vuint32m1_t rs2,
+                                          size_t vl);
+vfloat32m2_t __riscv_vluxei32_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
+                                          const float *rs1, vuint32m2_t rs2,
+                                          size_t vl);
+vfloat32m4_t __riscv_vluxei32_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
+                                          const float *rs1, vuint32m4_t rs2,
+                                          size_t vl);
+vfloat32m8_t __riscv_vluxei32_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
+                                          const float *rs1, vuint32m8_t rs2,
+                                          size_t vl);
+vfloat32mf2_t __riscv_vluxei64_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
+                                            const float *rs1, vuint64m1_t rs2,
+                                            size_t vl);
+vfloat32m1_t __riscv_vluxei64_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
+                                          const float *rs1, vuint64m2_t rs2,
+                                          size_t vl);
+vfloat32m2_t __riscv_vluxei64_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
+                                          const float *rs1, vuint64m4_t rs2,
+                                          size_t vl);
+vfloat32m4_t __riscv_vluxei64_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
+                                          const float *rs1, vuint64m8_t rs2,
+                                          size_t vl);
+vfloat64m1_t __riscv_vluxei32_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
+                                          const double *rs1, vuint32mf2_t rs2,
+                                          size_t vl);
+vfloat64m2_t __riscv_vluxei32_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
+                                          const double *rs1, vuint32m1_t rs2,
+                                          size_t vl);
+vfloat64m4_t __riscv_vluxei32_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
+                                          const double *rs1, vuint32m2_t rs2,
+                                          size_t vl);
+vfloat64m8_t __riscv_vluxei32_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
+                                          const double *rs1, vuint32m4_t rs2,
+                                          size_t vl);
+vfloat64m1_t __riscv_vluxei64_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
+                                          const double *rs1, vuint64m1_t rs2,
+                                          size_t vl);
+vfloat64m2_t __riscv_vluxei64_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
+                                          const double *rs1, vuint64m2_t rs2,
+                                          size_t vl);
+vfloat64m4_t __riscv_vluxei64_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
+                                          const double *rs1, vuint64m4_t rs2,
+                                          size_t vl);
+vfloat64m8_t __riscv_vluxei64_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
+                                          const double *rs1, vuint64m8_t rs2,
+                                          size_t vl);
+// masked functions
+vfloat32mf2_t __riscv_vloxei32_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
+                                             const float *rs1, vuint32mf2_t rs2,
+                                             size_t vl);
+vfloat32m1_t __riscv_vloxei32_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
+                                           const float *rs1, vuint32m1_t rs2,
+                                           size_t vl);
+vfloat32m2_t __riscv_vloxei32_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
+                                           const float *rs1, vuint32m2_t rs2,
+                                           size_t vl);
+vfloat32m4_t __riscv_vloxei32_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
+                                           const float *rs1, vuint32m4_t rs2,
+                                           size_t vl);
+vfloat32m8_t __riscv_vloxei32_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
+                                           const float *rs1, vuint32m8_t rs2,
+                                           size_t vl);
+vfloat32mf2_t __riscv_vloxei64_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
+                                             const float *rs1, vuint64m1_t rs2,
+                                             size_t vl);
+vfloat32m1_t __riscv_vloxei64_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
+                                           const float *rs1, vuint64m2_t rs2,
+                                           size_t vl);
+vfloat32m2_t __riscv_vloxei64_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
+                                           const float *rs1, vuint64m4_t rs2,
+                                           size_t vl);
+vfloat32m4_t __riscv_vloxei64_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
+                                           const float *rs1, vuint64m8_t rs2,
+                                           size_t vl);
+vfloat64m1_t __riscv_vloxei32_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
+                                           const double *rs1, vuint32mf2_t rs2,
+                                           size_t vl);
+vfloat64m2_t __riscv_vloxei32_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
+                                           const double *rs1, vuint32m1_t rs2,
+                                           size_t vl);
+vfloat64m4_t __riscv_vloxei32_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
+                                           const double *rs1, vuint32m2_t rs2,
+                                           size_t vl);
+vfloat64m8_t __riscv_vloxei32_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
+                                           const double *rs1, vuint32m4_t rs2,
+                                           size_t vl);
+vfloat64m1_t __riscv_vloxei64_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
+                                           const double *rs1, vuint64m1_t rs2,
+                                           size_t vl);
+vfloat64m2_t __riscv_vloxei64_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
+                                           const double *rs1, vuint64m2_t rs2,
+                                           size_t vl);
+vfloat64m4_t __riscv_vloxei64_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
+                                           const double *rs1, vuint64m4_t rs2,
+                                           size_t vl);
+vfloat64m8_t __riscv_vloxei64_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
+                                           const double *rs1, vuint64m8_t rs2,
+                                           size_t vl);
+vfloat32mf2_t __riscv_vluxei32_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
+                                             const float *rs1, vuint32mf2_t rs2,
+                                             size_t vl);
+vfloat32m1_t __riscv_vluxei32_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
+                                           const float *rs1, vuint32m1_t rs2,
+                                           size_t vl);
+vfloat32m2_t __riscv_vluxei32_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
+                                           const float *rs1, vuint32m2_t rs2,
+                                           size_t vl);
+vfloat32m4_t __riscv_vluxei32_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
+                                           const float *rs1, vuint32m4_t rs2,
+                                           size_t vl);
+vfloat32m8_t __riscv_vluxei32_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
+                                           const float *rs1, vuint32m8_t rs2,
+                                           size_t vl);
+vfloat32mf2_t __riscv_vluxei64_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
+                                             const float *rs1, vuint64m1_t rs2,
+                                             size_t vl);
+vfloat32m1_t __riscv_vluxei64_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
+                                           const float *rs1, vuint64m2_t rs2,
+                                           size_t vl);
+vfloat32m2_t __riscv_vluxei64_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
+                                           const float *rs1, vuint64m4_t rs2,
+                                           size_t vl);
+vfloat32m4_t __riscv_vluxei64_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
+                                           const float *rs1, vuint64m8_t rs2,
+                                           size_t vl);
+vfloat64m1_t __riscv_vluxei32_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
+                                           const double *rs1, vuint32mf2_t rs2,
+                                           size_t vl);
+vfloat64m2_t __riscv_vluxei32_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
+                                           const double *rs1, vuint32m1_t rs2,
+                                           size_t vl);
+vfloat64m4_t __riscv_vluxei32_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
+                                           const double *rs1, vuint32m2_t rs2,
+                                           size_t vl);
+vfloat64m8_t __riscv_vluxei32_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
+                                           const double *rs1, vuint32m4_t rs2,
+                                           size_t vl);
+vfloat64m1_t __riscv_vluxei64_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
+                                           const double *rs1, vuint64m1_t rs2,
+                                           size_t vl);
+vfloat64m2_t __riscv_vluxei64_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
+                                           const double *rs1, vuint64m2_t rs2,
+                                           size_t vl);
+vfloat64m4_t __riscv_vluxei64_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
+                                           const double *rs1, vuint64m4_t rs2,
+                                           size_t vl);
+vfloat64m8_t __riscv_vluxei64_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
+                                           const double *rs1, vuint64m8_t rs2,
+                                           size_t vl);
+// masked functions
+vfloat32mf2_t __riscv_vloxei32_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
+                                           const float *rs1, vuint32mf2_t rs2,
+                                           size_t vl);
+vfloat32m1_t __riscv_vloxei32_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
+                                         const float *rs1, vuint32m1_t rs2,
+                                         size_t vl);
+vfloat32m2_t __riscv_vloxei32_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
+                                         const float *rs1, vuint32m2_t rs2,
+                                         size_t vl);
+vfloat32m4_t __riscv_vloxei32_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
+                                         const float *rs1, vuint32m4_t rs2,
+                                         size_t vl);
+vfloat32m8_t __riscv_vloxei32_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
+                                         const float *rs1, vuint32m8_t rs2,
+                                         size_t vl);
+vfloat32mf2_t __riscv_vloxei64_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
+                                           const float *rs1, vuint64m1_t rs2,
+                                           size_t vl);
+vfloat32m1_t __riscv_vloxei64_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
+                                         const float *rs1, vuint64m2_t rs2,
+                                         size_t vl);
+vfloat32m2_t __riscv_vloxei64_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
+                                         const float *rs1, vuint64m4_t rs2,
+                                         size_t vl);
+vfloat32m4_t __riscv_vloxei64_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
+                                         const float *rs1, vuint64m8_t rs2,
+                                         size_t vl);
+vfloat64m1_t __riscv_vloxei32_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
+                                         const double *rs1, vuint32mf2_t rs2,
+                                         size_t vl);
+vfloat64m2_t __riscv_vloxei32_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
+                                         const double *rs1, vuint32m1_t rs2,
+                                         size_t vl);
+vfloat64m4_t __riscv_vloxei32_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
+                                         const double *rs1, vuint32m2_t rs2,
+                                         size_t vl);
+vfloat64m8_t __riscv_vloxei32_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
+                                         const double *rs1, vuint32m4_t rs2,
+                                         size_t vl);
+vfloat64m1_t __riscv_vloxei64_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
+                                         const double *rs1, vuint64m1_t rs2,
+                                         size_t vl);
+vfloat64m2_t __riscv_vloxei64_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
+                                         const double *rs1, vuint64m2_t rs2,
+                                         size_t vl);
+vfloat64m4_t __riscv_vloxei64_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
+                                         const double *rs1, vuint64m4_t rs2,
+                                         size_t vl);
+vfloat64m8_t __riscv_vloxei64_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
+                                         const double *rs1, vuint64m8_t rs2,
+                                         size_t vl);
+vfloat32mf2_t __riscv_vluxei32_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
+                                           const float *rs1, vuint32mf2_t rs2,
+                                           size_t vl);
+vfloat32m1_t __riscv_vluxei32_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
+                                         const float *rs1, vuint32m1_t rs2,
+                                         size_t vl);
+vfloat32m2_t __riscv_vluxei32_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
+                                         const float *rs1, vuint32m2_t rs2,
+                                         size_t vl);
+vfloat32m4_t __riscv_vluxei32_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
+                                         const float *rs1, vuint32m4_t rs2,
+                                         size_t vl);
+vfloat32m8_t __riscv_vluxei32_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
+                                         const float *rs1, vuint32m8_t rs2,
+                                         size_t vl);
+vfloat32mf2_t __riscv_vluxei64_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
+                                           const float *rs1, vuint64m1_t rs2,
+                                           size_t vl);
+vfloat32m1_t __riscv_vluxei64_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
+                                         const float *rs1, vuint64m2_t rs2,
+                                         size_t vl);
+vfloat32m2_t __riscv_vluxei64_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
+                                         const float *rs1, vuint64m4_t rs2,
+                                         size_t vl);
+vfloat32m4_t __riscv_vluxei64_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
+                                         const float *rs1, vuint64m8_t rs2,
+                                         size_t vl);
+vfloat64m1_t __riscv_vluxei32_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
+                                         const double *rs1, vuint32mf2_t rs2,
+                                         size_t vl);
+vfloat64m2_t __riscv_vluxei32_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
+                                         const double *rs1, vuint32m1_t rs2,
+                                         size_t vl);
+vfloat64m4_t __riscv_vluxei32_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
+                                         const double *rs1, vuint32m2_t rs2,
+                                         size_t vl);
+vfloat64m8_t __riscv_vluxei32_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
+                                         const double *rs1, vuint32m4_t rs2,
+                                         size_t vl);
+vfloat64m1_t __riscv_vluxei64_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
+                                         const double *rs1, vuint64m1_t rs2,
+                                         size_t vl);
+vfloat64m2_t __riscv_vluxei64_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
+                                         const double *rs1, vuint64m2_t rs2,
+                                         size_t vl);
+vfloat64m4_t __riscv_vluxei64_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
+                                         const double *rs1, vuint64m4_t rs2,
+                                         size_t vl);
+vfloat64m8_t __riscv_vluxei64_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
+                                         const double *rs1, vuint64m8_t rs2,
+                                         size_t vl);
+----
+
 [[policy-variant-vector-indexed-store]]
 ==== Vector Indexed Store Intrinsics
+Intrinsics here don't have a policy variant.
+
+[[policy-variant-float-vector-indexed-store]]
+==== Float Vector Indexed Store Intrinsics
 Intrinsics here don't have a policy variant.
 
 [[policy-variant-unit-stride-fault-only-first-loads]]
@@ -5830,36 +4888,6 @@ Intrinsics here don't have a policy variant.
 
 [,c]
 ----
-vfloat16mf4_t __riscv_vle16ff_v_f16mf4_tu(vfloat16mf4_t vd, const _Float16 *rs1,
-                                          size_t *new_vl, size_t vl);
-vfloat16mf2_t __riscv_vle16ff_v_f16mf2_tu(vfloat16mf2_t vd, const _Float16 *rs1,
-                                          size_t *new_vl, size_t vl);
-vfloat16m1_t __riscv_vle16ff_v_f16m1_tu(vfloat16m1_t vd, const _Float16 *rs1,
-                                        size_t *new_vl, size_t vl);
-vfloat16m2_t __riscv_vle16ff_v_f16m2_tu(vfloat16m2_t vd, const _Float16 *rs1,
-                                        size_t *new_vl, size_t vl);
-vfloat16m4_t __riscv_vle16ff_v_f16m4_tu(vfloat16m4_t vd, const _Float16 *rs1,
-                                        size_t *new_vl, size_t vl);
-vfloat16m8_t __riscv_vle16ff_v_f16m8_tu(vfloat16m8_t vd, const _Float16 *rs1,
-                                        size_t *new_vl, size_t vl);
-vfloat32mf2_t __riscv_vle32ff_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
-                                          size_t *new_vl, size_t vl);
-vfloat32m1_t __riscv_vle32ff_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
-                                        size_t *new_vl, size_t vl);
-vfloat32m2_t __riscv_vle32ff_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
-                                        size_t *new_vl, size_t vl);
-vfloat32m4_t __riscv_vle32ff_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
-                                        size_t *new_vl, size_t vl);
-vfloat32m8_t __riscv_vle32ff_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
-                                        size_t *new_vl, size_t vl);
-vfloat64m1_t __riscv_vle64ff_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
-                                        size_t *new_vl, size_t vl);
-vfloat64m2_t __riscv_vle64ff_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
-                                        size_t *new_vl, size_t vl);
-vfloat64m4_t __riscv_vle64ff_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
-                                        size_t *new_vl, size_t vl);
-vfloat64m8_t __riscv_vle64ff_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
-                                        size_t *new_vl, size_t vl);
 vint8mf8_t __riscv_vle8ff_v_i8mf8_tu(vint8mf8_t vd, const int8_t *rs1,
                                      size_t *new_vl, size_t vl);
 vint8mf4_t __riscv_vle8ff_v_i8mf4_tu(vint8mf4_t vd, const int8_t *rs1,
@@ -5949,51 +4977,6 @@ vuint64m4_t __riscv_vle64ff_v_u64m4_tu(vuint64m4_t vd, const uint64_t *rs1,
 vuint64m8_t __riscv_vle64ff_v_u64m8_tu(vuint64m8_t vd, const uint64_t *rs1,
                                        size_t *new_vl, size_t vl);
 // masked functions
-vfloat16mf4_t __riscv_vle16ff_v_f16mf4_tum(vbool64_t vm, vfloat16mf4_t vd,
-                                           const _Float16 *rs1, size_t *new_vl,
-                                           size_t vl);
-vfloat16mf2_t __riscv_vle16ff_v_f16mf2_tum(vbool32_t vm, vfloat16mf2_t vd,
-                                           const _Float16 *rs1, size_t *new_vl,
-                                           size_t vl);
-vfloat16m1_t __riscv_vle16ff_v_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
-                                         const _Float16 *rs1, size_t *new_vl,
-                                         size_t vl);
-vfloat16m2_t __riscv_vle16ff_v_f16m2_tum(vbool8_t vm, vfloat16m2_t vd,
-                                         const _Float16 *rs1, size_t *new_vl,
-                                         size_t vl);
-vfloat16m4_t __riscv_vle16ff_v_f16m4_tum(vbool4_t vm, vfloat16m4_t vd,
-                                         const _Float16 *rs1, size_t *new_vl,
-                                         size_t vl);
-vfloat16m8_t __riscv_vle16ff_v_f16m8_tum(vbool2_t vm, vfloat16m8_t vd,
-                                         const _Float16 *rs1, size_t *new_vl,
-                                         size_t vl);
-vfloat32mf2_t __riscv_vle32ff_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
-                                           const float *rs1, size_t *new_vl,
-                                           size_t vl);
-vfloat32m1_t __riscv_vle32ff_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
-                                         const float *rs1, size_t *new_vl,
-                                         size_t vl);
-vfloat32m2_t __riscv_vle32ff_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
-                                         const float *rs1, size_t *new_vl,
-                                         size_t vl);
-vfloat32m4_t __riscv_vle32ff_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
-                                         const float *rs1, size_t *new_vl,
-                                         size_t vl);
-vfloat32m8_t __riscv_vle32ff_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
-                                         const float *rs1, size_t *new_vl,
-                                         size_t vl);
-vfloat64m1_t __riscv_vle64ff_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
-                                         const double *rs1, size_t *new_vl,
-                                         size_t vl);
-vfloat64m2_t __riscv_vle64ff_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
-                                         const double *rs1, size_t *new_vl,
-                                         size_t vl);
-vfloat64m4_t __riscv_vle64ff_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
-                                         const double *rs1, size_t *new_vl,
-                                         size_t vl);
-vfloat64m8_t __riscv_vle64ff_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
-                                         const double *rs1, size_t *new_vl,
-                                         size_t vl);
 vint8mf8_t __riscv_vle8ff_v_i8mf8_tum(vbool64_t vm, vint8mf8_t vd,
                                       const int8_t *rs1, size_t *new_vl,
                                       size_t vl);
@@ -6127,51 +5110,6 @@ vuint64m8_t __riscv_vle64ff_v_u64m8_tum(vbool8_t vm, vuint64m8_t vd,
                                         const uint64_t *rs1, size_t *new_vl,
                                         size_t vl);
 // masked functions
-vfloat16mf4_t __riscv_vle16ff_v_f16mf4_tumu(vbool64_t vm, vfloat16mf4_t vd,
-                                            const _Float16 *rs1, size_t *new_vl,
-                                            size_t vl);
-vfloat16mf2_t __riscv_vle16ff_v_f16mf2_tumu(vbool32_t vm, vfloat16mf2_t vd,
-                                            const _Float16 *rs1, size_t *new_vl,
-                                            size_t vl);
-vfloat16m1_t __riscv_vle16ff_v_f16m1_tumu(vbool16_t vm, vfloat16m1_t vd,
-                                          const _Float16 *rs1, size_t *new_vl,
-                                          size_t vl);
-vfloat16m2_t __riscv_vle16ff_v_f16m2_tumu(vbool8_t vm, vfloat16m2_t vd,
-                                          const _Float16 *rs1, size_t *new_vl,
-                                          size_t vl);
-vfloat16m4_t __riscv_vle16ff_v_f16m4_tumu(vbool4_t vm, vfloat16m4_t vd,
-                                          const _Float16 *rs1, size_t *new_vl,
-                                          size_t vl);
-vfloat16m8_t __riscv_vle16ff_v_f16m8_tumu(vbool2_t vm, vfloat16m8_t vd,
-                                          const _Float16 *rs1, size_t *new_vl,
-                                          size_t vl);
-vfloat32mf2_t __riscv_vle32ff_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
-                                            const float *rs1, size_t *new_vl,
-                                            size_t vl);
-vfloat32m1_t __riscv_vle32ff_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
-                                          const float *rs1, size_t *new_vl,
-                                          size_t vl);
-vfloat32m2_t __riscv_vle32ff_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
-                                          const float *rs1, size_t *new_vl,
-                                          size_t vl);
-vfloat32m4_t __riscv_vle32ff_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
-                                          const float *rs1, size_t *new_vl,
-                                          size_t vl);
-vfloat32m8_t __riscv_vle32ff_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
-                                          const float *rs1, size_t *new_vl,
-                                          size_t vl);
-vfloat64m1_t __riscv_vle64ff_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
-                                          const double *rs1, size_t *new_vl,
-                                          size_t vl);
-vfloat64m2_t __riscv_vle64ff_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
-                                          const double *rs1, size_t *new_vl,
-                                          size_t vl);
-vfloat64m4_t __riscv_vle64ff_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
-                                          const double *rs1, size_t *new_vl,
-                                          size_t vl);
-vfloat64m8_t __riscv_vle64ff_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
-                                          const double *rs1, size_t *new_vl,
-                                          size_t vl);
 vint8mf8_t __riscv_vle8ff_v_i8mf8_tumu(vbool64_t vm, vint8mf8_t vd,
                                        const int8_t *rs1, size_t *new_vl,
                                        size_t vl);
@@ -6305,51 +5243,6 @@ vuint64m8_t __riscv_vle64ff_v_u64m8_tumu(vbool8_t vm, vuint64m8_t vd,
                                          const uint64_t *rs1, size_t *new_vl,
                                          size_t vl);
 // masked functions
-vfloat16mf4_t __riscv_vle16ff_v_f16mf4_mu(vbool64_t vm, vfloat16mf4_t vd,
-                                          const _Float16 *rs1, size_t *new_vl,
-                                          size_t vl);
-vfloat16mf2_t __riscv_vle16ff_v_f16mf2_mu(vbool32_t vm, vfloat16mf2_t vd,
-                                          const _Float16 *rs1, size_t *new_vl,
-                                          size_t vl);
-vfloat16m1_t __riscv_vle16ff_v_f16m1_mu(vbool16_t vm, vfloat16m1_t vd,
-                                        const _Float16 *rs1, size_t *new_vl,
-                                        size_t vl);
-vfloat16m2_t __riscv_vle16ff_v_f16m2_mu(vbool8_t vm, vfloat16m2_t vd,
-                                        const _Float16 *rs1, size_t *new_vl,
-                                        size_t vl);
-vfloat16m4_t __riscv_vle16ff_v_f16m4_mu(vbool4_t vm, vfloat16m4_t vd,
-                                        const _Float16 *rs1, size_t *new_vl,
-                                        size_t vl);
-vfloat16m8_t __riscv_vle16ff_v_f16m8_mu(vbool2_t vm, vfloat16m8_t vd,
-                                        const _Float16 *rs1, size_t *new_vl,
-                                        size_t vl);
-vfloat32mf2_t __riscv_vle32ff_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
-                                          const float *rs1, size_t *new_vl,
-                                          size_t vl);
-vfloat32m1_t __riscv_vle32ff_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
-                                        const float *rs1, size_t *new_vl,
-                                        size_t vl);
-vfloat32m2_t __riscv_vle32ff_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
-                                        const float *rs1, size_t *new_vl,
-                                        size_t vl);
-vfloat32m4_t __riscv_vle32ff_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
-                                        const float *rs1, size_t *new_vl,
-                                        size_t vl);
-vfloat32m8_t __riscv_vle32ff_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
-                                        const float *rs1, size_t *new_vl,
-                                        size_t vl);
-vfloat64m1_t __riscv_vle64ff_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
-                                        const double *rs1, size_t *new_vl,
-                                        size_t vl);
-vfloat64m2_t __riscv_vle64ff_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
-                                        const double *rs1, size_t *new_vl,
-                                        size_t vl);
-vfloat64m4_t __riscv_vle64ff_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
-                                        const double *rs1, size_t *new_vl,
-                                        size_t vl);
-vfloat64m8_t __riscv_vle64ff_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
-                                        const double *rs1, size_t *new_vl,
-                                        size_t vl);
 vint8mf8_t __riscv_vle8ff_v_i8mf8_mu(vbool64_t vm, vint8mf8_t vd,
                                      const int8_t *rs1, size_t *new_vl,
                                      size_t vl);
@@ -6478,4 +5371,113 @@ vuint64m4_t __riscv_vle64ff_v_u64m4_mu(vbool16_t vm, vuint64m4_t vd,
 vuint64m8_t __riscv_vle64ff_v_u64m8_mu(vbool8_t vm, vuint64m8_t vd,
                                        const uint64_t *rs1, size_t *new_vl,
                                        size_t vl);
+----
+
+[[policy-variant-float-unit-stride-fault-only-first-loads]]
+==== Float Unit-stride Fault-Only-First Loads Intrinsics
+
+[,c]
+----
+vfloat32mf2_t __riscv_vle32ff_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
+                                          size_t *new_vl, size_t vl);
+vfloat32m1_t __riscv_vle32ff_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
+                                        size_t *new_vl, size_t vl);
+vfloat32m2_t __riscv_vle32ff_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
+                                        size_t *new_vl, size_t vl);
+vfloat32m4_t __riscv_vle32ff_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
+                                        size_t *new_vl, size_t vl);
+vfloat32m8_t __riscv_vle32ff_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
+                                        size_t *new_vl, size_t vl);
+vfloat64m1_t __riscv_vle64ff_v_f64m1_tu(vfloat64m1_t vd, const double *rs1,
+                                        size_t *new_vl, size_t vl);
+vfloat64m2_t __riscv_vle64ff_v_f64m2_tu(vfloat64m2_t vd, const double *rs1,
+                                        size_t *new_vl, size_t vl);
+vfloat64m4_t __riscv_vle64ff_v_f64m4_tu(vfloat64m4_t vd, const double *rs1,
+                                        size_t *new_vl, size_t vl);
+vfloat64m8_t __riscv_vle64ff_v_f64m8_tu(vfloat64m8_t vd, const double *rs1,
+                                        size_t *new_vl, size_t vl);
+// masked functions
+vfloat32mf2_t __riscv_vle32ff_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
+                                           const float *rs1, size_t *new_vl,
+                                           size_t vl);
+vfloat32m1_t __riscv_vle32ff_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
+                                         const float *rs1, size_t *new_vl,
+                                         size_t vl);
+vfloat32m2_t __riscv_vle32ff_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
+                                         const float *rs1, size_t *new_vl,
+                                         size_t vl);
+vfloat32m4_t __riscv_vle32ff_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
+                                         const float *rs1, size_t *new_vl,
+                                         size_t vl);
+vfloat32m8_t __riscv_vle32ff_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
+                                         const float *rs1, size_t *new_vl,
+                                         size_t vl);
+vfloat64m1_t __riscv_vle64ff_v_f64m1_tum(vbool64_t vm, vfloat64m1_t vd,
+                                         const double *rs1, size_t *new_vl,
+                                         size_t vl);
+vfloat64m2_t __riscv_vle64ff_v_f64m2_tum(vbool32_t vm, vfloat64m2_t vd,
+                                         const double *rs1, size_t *new_vl,
+                                         size_t vl);
+vfloat64m4_t __riscv_vle64ff_v_f64m4_tum(vbool16_t vm, vfloat64m4_t vd,
+                                         const double *rs1, size_t *new_vl,
+                                         size_t vl);
+vfloat64m8_t __riscv_vle64ff_v_f64m8_tum(vbool8_t vm, vfloat64m8_t vd,
+                                         const double *rs1, size_t *new_vl,
+                                         size_t vl);
+// masked functions
+vfloat32mf2_t __riscv_vle32ff_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
+                                            const float *rs1, size_t *new_vl,
+                                            size_t vl);
+vfloat32m1_t __riscv_vle32ff_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
+                                          const float *rs1, size_t *new_vl,
+                                          size_t vl);
+vfloat32m2_t __riscv_vle32ff_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
+                                          const float *rs1, size_t *new_vl,
+                                          size_t vl);
+vfloat32m4_t __riscv_vle32ff_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
+                                          const float *rs1, size_t *new_vl,
+                                          size_t vl);
+vfloat32m8_t __riscv_vle32ff_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
+                                          const float *rs1, size_t *new_vl,
+                                          size_t vl);
+vfloat64m1_t __riscv_vle64ff_v_f64m1_tumu(vbool64_t vm, vfloat64m1_t vd,
+                                          const double *rs1, size_t *new_vl,
+                                          size_t vl);
+vfloat64m2_t __riscv_vle64ff_v_f64m2_tumu(vbool32_t vm, vfloat64m2_t vd,
+                                          const double *rs1, size_t *new_vl,
+                                          size_t vl);
+vfloat64m4_t __riscv_vle64ff_v_f64m4_tumu(vbool16_t vm, vfloat64m4_t vd,
+                                          const double *rs1, size_t *new_vl,
+                                          size_t vl);
+vfloat64m8_t __riscv_vle64ff_v_f64m8_tumu(vbool8_t vm, vfloat64m8_t vd,
+                                          const double *rs1, size_t *new_vl,
+                                          size_t vl);
+// masked functions
+vfloat32mf2_t __riscv_vle32ff_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
+                                          const float *rs1, size_t *new_vl,
+                                          size_t vl);
+vfloat32m1_t __riscv_vle32ff_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
+                                        const float *rs1, size_t *new_vl,
+                                        size_t vl);
+vfloat32m2_t __riscv_vle32ff_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
+                                        const float *rs1, size_t *new_vl,
+                                        size_t vl);
+vfloat32m4_t __riscv_vle32ff_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
+                                        const float *rs1, size_t *new_vl,
+                                        size_t vl);
+vfloat32m8_t __riscv_vle32ff_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
+                                        const float *rs1, size_t *new_vl,
+                                        size_t vl);
+vfloat64m1_t __riscv_vle64ff_v_f64m1_mu(vbool64_t vm, vfloat64m1_t vd,
+                                        const double *rs1, size_t *new_vl,
+                                        size_t vl);
+vfloat64m2_t __riscv_vle64ff_v_f64m2_mu(vbool32_t vm, vfloat64m2_t vd,
+                                        const double *rs1, size_t *new_vl,
+                                        size_t vl);
+vfloat64m4_t __riscv_vle64ff_v_f64m4_mu(vbool16_t vm, vfloat64m4_t vd,
+                                        const double *rs1, size_t *new_vl,
+                                        size_t vl);
+vfloat64m8_t __riscv_vle64ff_v_f64m8_mu(vbool8_t vm, vfloat64m8_t vd,
+                                        const double *rs1, size_t *new_vl,
+                                        size_t vl);
 ----

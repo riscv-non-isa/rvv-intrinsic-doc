@@ -1531,24 +1531,6 @@ vuint64m1_t __riscv_vwredsumu_vs_u32m8_u64m1_tum(vbool4_t vm, vuint64m1_t vd,
 
 [,c]
 ----
-vfloat16m1_t __riscv_vfredosum_vs_f16mf4_f16m1_tu(vfloat16m1_t vd,
-                                                  vfloat16mf4_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16mf2_f16m1_tu(vfloat16m1_t vd,
-                                                  vfloat16mf2_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16m1_f16m1_tu(vfloat16m1_t vd,
-                                                 vfloat16m1_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16m2_f16m1_tu(vfloat16m1_t vd,
-                                                 vfloat16m2_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16m4_f16m1_tu(vfloat16m1_t vd,
-                                                 vfloat16m4_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16m8_f16m1_tu(vfloat16m1_t vd,
-                                                 vfloat16m8_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
 vfloat32m1_t __riscv_vfredosum_vs_f32mf2_f32m1_tu(vfloat32m1_t vd,
                                                   vfloat32mf2_t vs2,
                                                   vfloat32m1_t vs1, size_t vl);
@@ -1576,24 +1558,6 @@ vfloat64m1_t __riscv_vfredosum_vs_f64m4_f64m1_tu(vfloat64m1_t vd,
 vfloat64m1_t __riscv_vfredosum_vs_f64m8_f64m1_tu(vfloat64m1_t vd,
                                                  vfloat64m8_t vs2,
                                                  vfloat64m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16mf4_f16m1_tu(vfloat16m1_t vd,
-                                                  vfloat16mf4_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16mf2_f16m1_tu(vfloat16m1_t vd,
-                                                  vfloat16mf2_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16m1_f16m1_tu(vfloat16m1_t vd,
-                                                 vfloat16m1_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16m2_f16m1_tu(vfloat16m1_t vd,
-                                                 vfloat16m2_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16m4_f16m1_tu(vfloat16m1_t vd,
-                                                 vfloat16m4_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16m8_f16m1_tu(vfloat16m1_t vd,
-                                                 vfloat16m8_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
 vfloat32m1_t __riscv_vfredusum_vs_f32mf2_f32m1_tu(vfloat32m1_t vd,
                                                   vfloat32mf2_t vs2,
                                                   vfloat32m1_t vs1, size_t vl);
@@ -1621,24 +1585,6 @@ vfloat64m1_t __riscv_vfredusum_vs_f64m4_f64m1_tu(vfloat64m1_t vd,
 vfloat64m1_t __riscv_vfredusum_vs_f64m8_f64m1_tu(vfloat64m1_t vd,
                                                  vfloat64m8_t vs2,
                                                  vfloat64m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmax_vs_f16mf4_f16m1_tu(vfloat16m1_t vd,
-                                                 vfloat16mf4_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmax_vs_f16mf2_f16m1_tu(vfloat16m1_t vd,
-                                                 vfloat16mf2_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmax_vs_f16m1_f16m1_tu(vfloat16m1_t vd,
-                                                vfloat16m1_t vs2,
-                                                vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmax_vs_f16m2_f16m1_tu(vfloat16m1_t vd,
-                                                vfloat16m2_t vs2,
-                                                vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmax_vs_f16m4_f16m1_tu(vfloat16m1_t vd,
-                                                vfloat16m4_t vs2,
-                                                vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmax_vs_f16m8_f16m1_tu(vfloat16m1_t vd,
-                                                vfloat16m8_t vs2,
-                                                vfloat16m1_t vs1, size_t vl);
 vfloat32m1_t __riscv_vfredmax_vs_f32mf2_f32m1_tu(vfloat32m1_t vd,
                                                  vfloat32mf2_t vs2,
                                                  vfloat32m1_t vs1, size_t vl);
@@ -1666,24 +1612,6 @@ vfloat64m1_t __riscv_vfredmax_vs_f64m4_f64m1_tu(vfloat64m1_t vd,
 vfloat64m1_t __riscv_vfredmax_vs_f64m8_f64m1_tu(vfloat64m1_t vd,
                                                 vfloat64m8_t vs2,
                                                 vfloat64m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmin_vs_f16mf4_f16m1_tu(vfloat16m1_t vd,
-                                                 vfloat16mf4_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmin_vs_f16mf2_f16m1_tu(vfloat16m1_t vd,
-                                                 vfloat16mf2_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmin_vs_f16m1_f16m1_tu(vfloat16m1_t vd,
-                                                vfloat16m1_t vs2,
-                                                vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmin_vs_f16m2_f16m1_tu(vfloat16m1_t vd,
-                                                vfloat16m2_t vs2,
-                                                vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmin_vs_f16m4_f16m1_tu(vfloat16m1_t vd,
-                                                vfloat16m4_t vs2,
-                                                vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmin_vs_f16m8_f16m1_tu(vfloat16m1_t vd,
-                                                vfloat16m8_t vs2,
-                                                vfloat16m1_t vs1, size_t vl);
 vfloat32m1_t __riscv_vfredmin_vs_f32mf2_f32m1_tu(vfloat32m1_t vd,
                                                  vfloat32mf2_t vs2,
                                                  vfloat32m1_t vs1, size_t vl);
@@ -1712,26 +1640,6 @@ vfloat64m1_t __riscv_vfredmin_vs_f64m8_f64m1_tu(vfloat64m1_t vd,
                                                 vfloat64m8_t vs2,
                                                 vfloat64m1_t vs1, size_t vl);
 // masked functions
-vfloat16m1_t __riscv_vfredosum_vs_f16mf4_f16m1_tum(vbool64_t vm,
-                                                   vfloat16m1_t vd,
-                                                   vfloat16mf4_t vs2,
-                                                   vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16mf2_f16m1_tum(vbool32_t vm,
-                                                   vfloat16m1_t vd,
-                                                   vfloat16mf2_t vs2,
-                                                   vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16m1_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
-                                                  vfloat16m1_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16m2_f16m1_tum(vbool8_t vm, vfloat16m1_t vd,
-                                                  vfloat16m2_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16m4_f16m1_tum(vbool4_t vm, vfloat16m1_t vd,
-                                                  vfloat16m4_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16m8_f16m1_tum(vbool2_t vm, vfloat16m1_t vd,
-                                                  vfloat16m8_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
 vfloat32m1_t __riscv_vfredosum_vs_f32mf2_f32m1_tum(vbool64_t vm,
                                                    vfloat32m1_t vd,
                                                    vfloat32mf2_t vs2,
@@ -1760,26 +1668,6 @@ vfloat64m1_t __riscv_vfredosum_vs_f64m4_f64m1_tum(vbool16_t vm, vfloat64m1_t vd,
 vfloat64m1_t __riscv_vfredosum_vs_f64m8_f64m1_tum(vbool8_t vm, vfloat64m1_t vd,
                                                   vfloat64m8_t vs2,
                                                   vfloat64m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16mf4_f16m1_tum(vbool64_t vm,
-                                                   vfloat16m1_t vd,
-                                                   vfloat16mf4_t vs2,
-                                                   vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16mf2_f16m1_tum(vbool32_t vm,
-                                                   vfloat16m1_t vd,
-                                                   vfloat16mf2_t vs2,
-                                                   vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16m1_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
-                                                  vfloat16m1_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16m2_f16m1_tum(vbool8_t vm, vfloat16m1_t vd,
-                                                  vfloat16m2_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16m4_f16m1_tum(vbool4_t vm, vfloat16m1_t vd,
-                                                  vfloat16m4_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16m8_f16m1_tum(vbool2_t vm, vfloat16m1_t vd,
-                                                  vfloat16m8_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
 vfloat32m1_t __riscv_vfredusum_vs_f32mf2_f32m1_tum(vbool64_t vm,
                                                    vfloat32m1_t vd,
                                                    vfloat32mf2_t vs2,
@@ -1808,24 +1696,6 @@ vfloat64m1_t __riscv_vfredusum_vs_f64m4_f64m1_tum(vbool16_t vm, vfloat64m1_t vd,
 vfloat64m1_t __riscv_vfredusum_vs_f64m8_f64m1_tum(vbool8_t vm, vfloat64m1_t vd,
                                                   vfloat64m8_t vs2,
                                                   vfloat64m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmax_vs_f16mf4_f16m1_tum(vbool64_t vm, vfloat16m1_t vd,
-                                                  vfloat16mf4_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmax_vs_f16mf2_f16m1_tum(vbool32_t vm, vfloat16m1_t vd,
-                                                  vfloat16mf2_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmax_vs_f16m1_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
-                                                 vfloat16m1_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmax_vs_f16m2_f16m1_tum(vbool8_t vm, vfloat16m1_t vd,
-                                                 vfloat16m2_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmax_vs_f16m4_f16m1_tum(vbool4_t vm, vfloat16m1_t vd,
-                                                 vfloat16m4_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmax_vs_f16m8_f16m1_tum(vbool2_t vm, vfloat16m1_t vd,
-                                                 vfloat16m8_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
 vfloat32m1_t __riscv_vfredmax_vs_f32mf2_f32m1_tum(vbool64_t vm, vfloat32m1_t vd,
                                                   vfloat32mf2_t vs2,
                                                   vfloat32m1_t vs1, size_t vl);
@@ -1853,24 +1723,6 @@ vfloat64m1_t __riscv_vfredmax_vs_f64m4_f64m1_tum(vbool16_t vm, vfloat64m1_t vd,
 vfloat64m1_t __riscv_vfredmax_vs_f64m8_f64m1_tum(vbool8_t vm, vfloat64m1_t vd,
                                                  vfloat64m8_t vs2,
                                                  vfloat64m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmin_vs_f16mf4_f16m1_tum(vbool64_t vm, vfloat16m1_t vd,
-                                                  vfloat16mf4_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmin_vs_f16mf2_f16m1_tum(vbool32_t vm, vfloat16m1_t vd,
-                                                  vfloat16mf2_t vs2,
-                                                  vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmin_vs_f16m1_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
-                                                 vfloat16m1_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmin_vs_f16m2_f16m1_tum(vbool8_t vm, vfloat16m1_t vd,
-                                                 vfloat16m2_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmin_vs_f16m4_f16m1_tum(vbool4_t vm, vfloat16m1_t vd,
-                                                 vfloat16m4_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredmin_vs_f16m8_f16m1_tum(vbool2_t vm, vfloat16m1_t vd,
-                                                 vfloat16m8_t vs2,
-                                                 vfloat16m1_t vs1, size_t vl);
 vfloat32m1_t __riscv_vfredmin_vs_f32mf2_f32m1_tum(vbool64_t vm, vfloat32m1_t vd,
                                                   vfloat32mf2_t vs2,
                                                   vfloat32m1_t vs1, size_t vl);
@@ -1898,36 +1750,6 @@ vfloat64m1_t __riscv_vfredmin_vs_f64m4_f64m1_tum(vbool16_t vm, vfloat64m1_t vd,
 vfloat64m1_t __riscv_vfredmin_vs_f64m8_f64m1_tum(vbool8_t vm, vfloat64m1_t vd,
                                                  vfloat64m8_t vs2,
                                                  vfloat64m1_t vs1, size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16mf4_f16m1_rm_tu(vfloat16m1_t vd,
-                                                     vfloat16mf4_t vs2,
-                                                     vfloat16m1_t vs1,
-                                                     unsigned int frm,
-                                                     size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16mf2_f16m1_rm_tu(vfloat16m1_t vd,
-                                                     vfloat16mf2_t vs2,
-                                                     vfloat16m1_t vs1,
-                                                     unsigned int frm,
-                                                     size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16m1_f16m1_rm_tu(vfloat16m1_t vd,
-                                                    vfloat16m1_t vs2,
-                                                    vfloat16m1_t vs1,
-                                                    unsigned int frm,
-                                                    size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16m2_f16m1_rm_tu(vfloat16m1_t vd,
-                                                    vfloat16m2_t vs2,
-                                                    vfloat16m1_t vs1,
-                                                    unsigned int frm,
-                                                    size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16m4_f16m1_rm_tu(vfloat16m1_t vd,
-                                                    vfloat16m4_t vs2,
-                                                    vfloat16m1_t vs1,
-                                                    unsigned int frm,
-                                                    size_t vl);
-vfloat16m1_t __riscv_vfredosum_vs_f16m8_f16m1_rm_tu(vfloat16m1_t vd,
-                                                    vfloat16m8_t vs2,
-                                                    vfloat16m1_t vs1,
-                                                    unsigned int frm,
-                                                    size_t vl);
 vfloat32m1_t __riscv_vfredosum_vs_f32mf2_f32m1_rm_tu(vfloat32m1_t vd,
                                                      vfloat32mf2_t vs2,
                                                      vfloat32m1_t vs1,
@@ -1971,36 +1793,6 @@ vfloat64m1_t __riscv_vfredosum_vs_f64m4_f64m1_rm_tu(vfloat64m1_t vd,
 vfloat64m1_t __riscv_vfredosum_vs_f64m8_f64m1_rm_tu(vfloat64m1_t vd,
                                                     vfloat64m8_t vs2,
                                                     vfloat64m1_t vs1,
-                                                    unsigned int frm,
-                                                    size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16mf4_f16m1_rm_tu(vfloat16m1_t vd,
-                                                     vfloat16mf4_t vs2,
-                                                     vfloat16m1_t vs1,
-                                                     unsigned int frm,
-                                                     size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16mf2_f16m1_rm_tu(vfloat16m1_t vd,
-                                                     vfloat16mf2_t vs2,
-                                                     vfloat16m1_t vs1,
-                                                     unsigned int frm,
-                                                     size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16m1_f16m1_rm_tu(vfloat16m1_t vd,
-                                                    vfloat16m1_t vs2,
-                                                    vfloat16m1_t vs1,
-                                                    unsigned int frm,
-                                                    size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16m2_f16m1_rm_tu(vfloat16m1_t vd,
-                                                    vfloat16m2_t vs2,
-                                                    vfloat16m1_t vs1,
-                                                    unsigned int frm,
-                                                    size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16m4_f16m1_rm_tu(vfloat16m1_t vd,
-                                                    vfloat16m4_t vs2,
-                                                    vfloat16m1_t vs1,
-                                                    unsigned int frm,
-                                                    size_t vl);
-vfloat16m1_t __riscv_vfredusum_vs_f16m8_f16m1_rm_tu(vfloat16m1_t vd,
-                                                    vfloat16m8_t vs2,
-                                                    vfloat16m1_t vs1,
                                                     unsigned int frm,
                                                     size_t vl);
 vfloat32m1_t __riscv_vfredusum_vs_f32mf2_f32m1_rm_tu(vfloat32m1_t vd,
@@ -2049,30 +1841,6 @@ vfloat64m1_t __riscv_vfredusum_vs_f64m8_f64m1_rm_tu(vfloat64m1_t vd,
                                                     unsigned int frm,
                                                     size_t vl);
 // masked functions
-vfloat16m1_t
-__riscv_vfredosum_vs_f16mf4_f16m1_rm_tum(vbool64_t vm, vfloat16m1_t vd,
-                                         vfloat16mf4_t vs2, vfloat16m1_t vs1,
-                                         unsigned int frm, size_t vl);
-vfloat16m1_t
-__riscv_vfredosum_vs_f16mf2_f16m1_rm_tum(vbool32_t vm, vfloat16m1_t vd,
-                                         vfloat16mf2_t vs2, vfloat16m1_t vs1,
-                                         unsigned int frm, size_t vl);
-vfloat16m1_t
-__riscv_vfredosum_vs_f16m1_f16m1_rm_tum(vbool16_t vm, vfloat16m1_t vd,
-                                        vfloat16m1_t vs2, vfloat16m1_t vs1,
-                                        unsigned int frm, size_t vl);
-vfloat16m1_t
-__riscv_vfredosum_vs_f16m2_f16m1_rm_tum(vbool8_t vm, vfloat16m1_t vd,
-                                        vfloat16m2_t vs2, vfloat16m1_t vs1,
-                                        unsigned int frm, size_t vl);
-vfloat16m1_t
-__riscv_vfredosum_vs_f16m4_f16m1_rm_tum(vbool4_t vm, vfloat16m1_t vd,
-                                        vfloat16m4_t vs2, vfloat16m1_t vs1,
-                                        unsigned int frm, size_t vl);
-vfloat16m1_t
-__riscv_vfredosum_vs_f16m8_f16m1_rm_tum(vbool2_t vm, vfloat16m1_t vd,
-                                        vfloat16m8_t vs2, vfloat16m1_t vs1,
-                                        unsigned int frm, size_t vl);
 vfloat32m1_t
 __riscv_vfredosum_vs_f32mf2_f32m1_rm_tum(vbool64_t vm, vfloat32m1_t vd,
                                          vfloat32mf2_t vs2, vfloat32m1_t vs1,
@@ -2108,30 +1876,6 @@ __riscv_vfredosum_vs_f64m4_f64m1_rm_tum(vbool16_t vm, vfloat64m1_t vd,
 vfloat64m1_t
 __riscv_vfredosum_vs_f64m8_f64m1_rm_tum(vbool8_t vm, vfloat64m1_t vd,
                                         vfloat64m8_t vs2, vfloat64m1_t vs1,
-                                        unsigned int frm, size_t vl);
-vfloat16m1_t
-__riscv_vfredusum_vs_f16mf4_f16m1_rm_tum(vbool64_t vm, vfloat16m1_t vd,
-                                         vfloat16mf4_t vs2, vfloat16m1_t vs1,
-                                         unsigned int frm, size_t vl);
-vfloat16m1_t
-__riscv_vfredusum_vs_f16mf2_f16m1_rm_tum(vbool32_t vm, vfloat16m1_t vd,
-                                         vfloat16mf2_t vs2, vfloat16m1_t vs1,
-                                         unsigned int frm, size_t vl);
-vfloat16m1_t
-__riscv_vfredusum_vs_f16m1_f16m1_rm_tum(vbool16_t vm, vfloat16m1_t vd,
-                                        vfloat16m1_t vs2, vfloat16m1_t vs1,
-                                        unsigned int frm, size_t vl);
-vfloat16m1_t
-__riscv_vfredusum_vs_f16m2_f16m1_rm_tum(vbool8_t vm, vfloat16m1_t vd,
-                                        vfloat16m2_t vs2, vfloat16m1_t vs1,
-                                        unsigned int frm, size_t vl);
-vfloat16m1_t
-__riscv_vfredusum_vs_f16m4_f16m1_rm_tum(vbool4_t vm, vfloat16m1_t vd,
-                                        vfloat16m4_t vs2, vfloat16m1_t vs1,
-                                        unsigned int frm, size_t vl);
-vfloat16m1_t
-__riscv_vfredusum_vs_f16m8_f16m1_rm_tum(vbool2_t vm, vfloat16m1_t vd,
-                                        vfloat16m8_t vs2, vfloat16m1_t vs1,
                                         unsigned int frm, size_t vl);
 vfloat32m1_t
 __riscv_vfredusum_vs_f32mf2_f32m1_rm_tum(vbool64_t vm, vfloat32m1_t vd,
@@ -2176,24 +1920,6 @@ __riscv_vfredusum_vs_f64m8_f64m1_rm_tum(vbool8_t vm, vfloat64m1_t vd,
 
 [,c]
 ----
-vfloat32m1_t __riscv_vfwredosum_vs_f16mf4_f32m1_tu(vfloat32m1_t vd,
-                                                   vfloat16mf4_t vs2,
-                                                   vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16mf2_f32m1_tu(vfloat32m1_t vd,
-                                                   vfloat16mf2_t vs2,
-                                                   vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16m1_f32m1_tu(vfloat32m1_t vd,
-                                                  vfloat16m1_t vs2,
-                                                  vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16m2_f32m1_tu(vfloat32m1_t vd,
-                                                  vfloat16m2_t vs2,
-                                                  vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16m4_f32m1_tu(vfloat32m1_t vd,
-                                                  vfloat16m4_t vs2,
-                                                  vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16m8_f32m1_tu(vfloat32m1_t vd,
-                                                  vfloat16m8_t vs2,
-                                                  vfloat32m1_t vs1, size_t vl);
 vfloat64m1_t __riscv_vfwredosum_vs_f32mf2_f64m1_tu(vfloat64m1_t vd,
                                                    vfloat32mf2_t vs2,
                                                    vfloat64m1_t vs1, size_t vl);
@@ -2209,24 +1935,6 @@ vfloat64m1_t __riscv_vfwredosum_vs_f32m4_f64m1_tu(vfloat64m1_t vd,
 vfloat64m1_t __riscv_vfwredosum_vs_f32m8_f64m1_tu(vfloat64m1_t vd,
                                                   vfloat32m8_t vs2,
                                                   vfloat64m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16mf4_f32m1_tu(vfloat32m1_t vd,
-                                                   vfloat16mf4_t vs2,
-                                                   vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16mf2_f32m1_tu(vfloat32m1_t vd,
-                                                   vfloat16mf2_t vs2,
-                                                   vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16m1_f32m1_tu(vfloat32m1_t vd,
-                                                  vfloat16m1_t vs2,
-                                                  vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16m2_f32m1_tu(vfloat32m1_t vd,
-                                                  vfloat16m2_t vs2,
-                                                  vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16m4_f32m1_tu(vfloat32m1_t vd,
-                                                  vfloat16m4_t vs2,
-                                                  vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16m8_f32m1_tu(vfloat32m1_t vd,
-                                                  vfloat16m8_t vs2,
-                                                  vfloat32m1_t vs1, size_t vl);
 vfloat64m1_t __riscv_vfwredusum_vs_f32mf2_f64m1_tu(vfloat64m1_t vd,
                                                    vfloat32mf2_t vs2,
                                                    vfloat64m1_t vs1, size_t vl);
@@ -2243,29 +1951,6 @@ vfloat64m1_t __riscv_vfwredusum_vs_f32m8_f64m1_tu(vfloat64m1_t vd,
                                                   vfloat32m8_t vs2,
                                                   vfloat64m1_t vs1, size_t vl);
 // masked functions
-vfloat32m1_t __riscv_vfwredosum_vs_f16mf4_f32m1_tum(vbool64_t vm,
-                                                    vfloat32m1_t vd,
-                                                    vfloat16mf4_t vs2,
-                                                    vfloat32m1_t vs1,
-                                                    size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16mf2_f32m1_tum(vbool32_t vm,
-                                                    vfloat32m1_t vd,
-                                                    vfloat16mf2_t vs2,
-                                                    vfloat32m1_t vs1,
-                                                    size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16m1_f32m1_tum(vbool16_t vm,
-                                                   vfloat32m1_t vd,
-                                                   vfloat16m1_t vs2,
-                                                   vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16m2_f32m1_tum(vbool8_t vm, vfloat32m1_t vd,
-                                                   vfloat16m2_t vs2,
-                                                   vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16m4_f32m1_tum(vbool4_t vm, vfloat32m1_t vd,
-                                                   vfloat16m4_t vs2,
-                                                   vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16m8_f32m1_tum(vbool2_t vm, vfloat32m1_t vd,
-                                                   vfloat16m8_t vs2,
-                                                   vfloat32m1_t vs1, size_t vl);
 vfloat64m1_t __riscv_vfwredosum_vs_f32mf2_f64m1_tum(vbool64_t vm,
                                                     vfloat64m1_t vd,
                                                     vfloat32mf2_t vs2,
@@ -2285,29 +1970,6 @@ vfloat64m1_t __riscv_vfwredosum_vs_f32m4_f64m1_tum(vbool8_t vm, vfloat64m1_t vd,
 vfloat64m1_t __riscv_vfwredosum_vs_f32m8_f64m1_tum(vbool4_t vm, vfloat64m1_t vd,
                                                    vfloat32m8_t vs2,
                                                    vfloat64m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16mf4_f32m1_tum(vbool64_t vm,
-                                                    vfloat32m1_t vd,
-                                                    vfloat16mf4_t vs2,
-                                                    vfloat32m1_t vs1,
-                                                    size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16mf2_f32m1_tum(vbool32_t vm,
-                                                    vfloat32m1_t vd,
-                                                    vfloat16mf2_t vs2,
-                                                    vfloat32m1_t vs1,
-                                                    size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16m1_f32m1_tum(vbool16_t vm,
-                                                   vfloat32m1_t vd,
-                                                   vfloat16m1_t vs2,
-                                                   vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16m2_f32m1_tum(vbool8_t vm, vfloat32m1_t vd,
-                                                   vfloat16m2_t vs2,
-                                                   vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16m4_f32m1_tum(vbool4_t vm, vfloat32m1_t vd,
-                                                   vfloat16m4_t vs2,
-                                                   vfloat32m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16m8_f32m1_tum(vbool2_t vm, vfloat32m1_t vd,
-                                                   vfloat16m8_t vs2,
-                                                   vfloat32m1_t vs1, size_t vl);
 vfloat64m1_t __riscv_vfwredusum_vs_f32mf2_f64m1_tum(vbool64_t vm,
                                                     vfloat64m1_t vd,
                                                     vfloat32mf2_t vs2,
@@ -2327,36 +1989,6 @@ vfloat64m1_t __riscv_vfwredusum_vs_f32m4_f64m1_tum(vbool8_t vm, vfloat64m1_t vd,
 vfloat64m1_t __riscv_vfwredusum_vs_f32m8_f64m1_tum(vbool4_t vm, vfloat64m1_t vd,
                                                    vfloat32m8_t vs2,
                                                    vfloat64m1_t vs1, size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16mf4_f32m1_rm_tu(vfloat32m1_t vd,
-                                                      vfloat16mf4_t vs2,
-                                                      vfloat32m1_t vs1,
-                                                      unsigned int frm,
-                                                      size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16mf2_f32m1_rm_tu(vfloat32m1_t vd,
-                                                      vfloat16mf2_t vs2,
-                                                      vfloat32m1_t vs1,
-                                                      unsigned int frm,
-                                                      size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16m1_f32m1_rm_tu(vfloat32m1_t vd,
-                                                     vfloat16m1_t vs2,
-                                                     vfloat32m1_t vs1,
-                                                     unsigned int frm,
-                                                     size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16m2_f32m1_rm_tu(vfloat32m1_t vd,
-                                                     vfloat16m2_t vs2,
-                                                     vfloat32m1_t vs1,
-                                                     unsigned int frm,
-                                                     size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16m4_f32m1_rm_tu(vfloat32m1_t vd,
-                                                     vfloat16m4_t vs2,
-                                                     vfloat32m1_t vs1,
-                                                     unsigned int frm,
-                                                     size_t vl);
-vfloat32m1_t __riscv_vfwredosum_vs_f16m8_f32m1_rm_tu(vfloat32m1_t vd,
-                                                     vfloat16m8_t vs2,
-                                                     vfloat32m1_t vs1,
-                                                     unsigned int frm,
-                                                     size_t vl);
 vfloat64m1_t __riscv_vfwredosum_vs_f32mf2_f64m1_rm_tu(vfloat64m1_t vd,
                                                       vfloat32mf2_t vs2,
                                                       vfloat64m1_t vs1,
@@ -2380,36 +2012,6 @@ vfloat64m1_t __riscv_vfwredosum_vs_f32m4_f64m1_rm_tu(vfloat64m1_t vd,
 vfloat64m1_t __riscv_vfwredosum_vs_f32m8_f64m1_rm_tu(vfloat64m1_t vd,
                                                      vfloat32m8_t vs2,
                                                      vfloat64m1_t vs1,
-                                                     unsigned int frm,
-                                                     size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16mf4_f32m1_rm_tu(vfloat32m1_t vd,
-                                                      vfloat16mf4_t vs2,
-                                                      vfloat32m1_t vs1,
-                                                      unsigned int frm,
-                                                      size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16mf2_f32m1_rm_tu(vfloat32m1_t vd,
-                                                      vfloat16mf2_t vs2,
-                                                      vfloat32m1_t vs1,
-                                                      unsigned int frm,
-                                                      size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16m1_f32m1_rm_tu(vfloat32m1_t vd,
-                                                     vfloat16m1_t vs2,
-                                                     vfloat32m1_t vs1,
-                                                     unsigned int frm,
-                                                     size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16m2_f32m1_rm_tu(vfloat32m1_t vd,
-                                                     vfloat16m2_t vs2,
-                                                     vfloat32m1_t vs1,
-                                                     unsigned int frm,
-                                                     size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16m4_f32m1_rm_tu(vfloat32m1_t vd,
-                                                     vfloat16m4_t vs2,
-                                                     vfloat32m1_t vs1,
-                                                     unsigned int frm,
-                                                     size_t vl);
-vfloat32m1_t __riscv_vfwredusum_vs_f16m8_f32m1_rm_tu(vfloat32m1_t vd,
-                                                     vfloat16m8_t vs2,
-                                                     vfloat32m1_t vs1,
                                                      unsigned int frm,
                                                      size_t vl);
 vfloat64m1_t __riscv_vfwredusum_vs_f32mf2_f64m1_rm_tu(vfloat64m1_t vd,
@@ -2438,30 +2040,6 @@ vfloat64m1_t __riscv_vfwredusum_vs_f32m8_f64m1_rm_tu(vfloat64m1_t vd,
                                                      unsigned int frm,
                                                      size_t vl);
 // masked functions
-vfloat32m1_t
-__riscv_vfwredosum_vs_f16mf4_f32m1_rm_tum(vbool64_t vm, vfloat32m1_t vd,
-                                          vfloat16mf4_t vs2, vfloat32m1_t vs1,
-                                          unsigned int frm, size_t vl);
-vfloat32m1_t
-__riscv_vfwredosum_vs_f16mf2_f32m1_rm_tum(vbool32_t vm, vfloat32m1_t vd,
-                                          vfloat16mf2_t vs2, vfloat32m1_t vs1,
-                                          unsigned int frm, size_t vl);
-vfloat32m1_t
-__riscv_vfwredosum_vs_f16m1_f32m1_rm_tum(vbool16_t vm, vfloat32m1_t vd,
-                                         vfloat16m1_t vs2, vfloat32m1_t vs1,
-                                         unsigned int frm, size_t vl);
-vfloat32m1_t
-__riscv_vfwredosum_vs_f16m2_f32m1_rm_tum(vbool8_t vm, vfloat32m1_t vd,
-                                         vfloat16m2_t vs2, vfloat32m1_t vs1,
-                                         unsigned int frm, size_t vl);
-vfloat32m1_t
-__riscv_vfwredosum_vs_f16m4_f32m1_rm_tum(vbool4_t vm, vfloat32m1_t vd,
-                                         vfloat16m4_t vs2, vfloat32m1_t vs1,
-                                         unsigned int frm, size_t vl);
-vfloat32m1_t
-__riscv_vfwredosum_vs_f16m8_f32m1_rm_tum(vbool2_t vm, vfloat32m1_t vd,
-                                         vfloat16m8_t vs2, vfloat32m1_t vs1,
-                                         unsigned int frm, size_t vl);
 vfloat64m1_t
 __riscv_vfwredosum_vs_f32mf2_f64m1_rm_tum(vbool64_t vm, vfloat64m1_t vd,
                                           vfloat32mf2_t vs2, vfloat64m1_t vs1,
@@ -2481,30 +2059,6 @@ __riscv_vfwredosum_vs_f32m4_f64m1_rm_tum(vbool8_t vm, vfloat64m1_t vd,
 vfloat64m1_t
 __riscv_vfwredosum_vs_f32m8_f64m1_rm_tum(vbool4_t vm, vfloat64m1_t vd,
                                          vfloat32m8_t vs2, vfloat64m1_t vs1,
-                                         unsigned int frm, size_t vl);
-vfloat32m1_t
-__riscv_vfwredusum_vs_f16mf4_f32m1_rm_tum(vbool64_t vm, vfloat32m1_t vd,
-                                          vfloat16mf4_t vs2, vfloat32m1_t vs1,
-                                          unsigned int frm, size_t vl);
-vfloat32m1_t
-__riscv_vfwredusum_vs_f16mf2_f32m1_rm_tum(vbool32_t vm, vfloat32m1_t vd,
-                                          vfloat16mf2_t vs2, vfloat32m1_t vs1,
-                                          unsigned int frm, size_t vl);
-vfloat32m1_t
-__riscv_vfwredusum_vs_f16m1_f32m1_rm_tum(vbool16_t vm, vfloat32m1_t vd,
-                                         vfloat16m1_t vs2, vfloat32m1_t vs1,
-                                         unsigned int frm, size_t vl);
-vfloat32m1_t
-__riscv_vfwredusum_vs_f16m2_f32m1_rm_tum(vbool8_t vm, vfloat32m1_t vd,
-                                         vfloat16m2_t vs2, vfloat32m1_t vs1,
-                                         unsigned int frm, size_t vl);
-vfloat32m1_t
-__riscv_vfwredusum_vs_f16m4_f32m1_rm_tum(vbool4_t vm, vfloat32m1_t vd,
-                                         vfloat16m4_t vs2, vfloat32m1_t vs1,
-                                         unsigned int frm, size_t vl);
-vfloat32m1_t
-__riscv_vfwredusum_vs_f16m8_f32m1_rm_tum(vbool2_t vm, vfloat32m1_t vd,
-                                         vfloat16m8_t vs2, vfloat32m1_t vs1,
                                          unsigned int frm, size_t vl);
 vfloat64m1_t
 __riscv_vfwredusum_vs_f32mf2_f64m1_rm_tum(vbool64_t vm, vfloat64m1_t vd,

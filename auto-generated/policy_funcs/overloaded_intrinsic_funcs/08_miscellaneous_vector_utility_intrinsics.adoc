@@ -17,22 +17,46 @@ Intrinsics here don't have a policy variant.
 ==== Vector LMUL Extension Intrinsics
 Intrinsics here don't have a policy variant.
 
+[[policy-variant-overloadedfloat-vector-lmul-extensionn]]
+==== Float Vector LMUL Extension Intrinsics
+Intrinsics here don't have a policy variant.
+
 [[policy-variant-overloadedvector-lmul-truncation]]
 ==== Vector LMUL Truncation Intrinsics
+Intrinsics here don't have a policy variant.
+
+[[policy-variant-overloadedfloat-vector-lmul-truncation]]
+==== Float Vector LMUL Truncation Intrinsics
 Intrinsics here don't have a policy variant.
 
 [[policy-variant-overloadedvector-initialization]]
 ==== Vector Initialization Intrinsics
 Intrinsics here don't have a policy variant.
 
+[[policy-variant-overloadedfloat-vector-initialization]]
+==== Float Vector Initialization Intrinsics
+Intrinsics here don't have a policy variant.
+
 [[policy-variant-overloadedvector-insertion]]
 ==== Vector Insertion Intrinsics
+Intrinsics here don't have a policy variant.
+
+[[policy-variant-overloadedfloat-vector-insertion]]
+==== Float Vector Insertion Intrinsics
 Intrinsics here don't have a policy variant.
 
 [[policy-variant-overloadedvector-extraction]]
 ==== Vector Extraction Intrinsics
 Intrinsics here don't have a policy variant.
 
+[[policy-variant-overloadedfloat-vector-extraction]]
+==== Float Vector Extraction Intrinsics
+Intrinsics here don't have a policy variant.
+
 [[policy-variant-overloadedvector-creation]]
 ==== Vector Creation Intrinsics
+Intrinsics here don't have a policy variant.
+
+[[policy-variant-overloadedfloat-vector-creation]]
+==== Float Vector Creation Intrinsics
 Intrinsics here don't have a policy variant.
