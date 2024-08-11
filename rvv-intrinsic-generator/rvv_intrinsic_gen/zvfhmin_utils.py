@@ -104,7 +104,7 @@ def misc_group(g):
   decorators = IntrinsicDecorators(g.has_tail_policy)
 
   g.function_group(reint_op_template, "Reinterpret Cast Conversion Intrinsics",
-                   "reinterpret-cast-conversion", ["vreinterpret"], FTYPES,
+                   "reinterpret-cast-conversion", ["vreinterpret"], "float16_zvfhmin",
                    SEWS, LMULS, decorators.has_no_masking)
 
   g.function_group(misc_op_template, "Vector LMUL Extension Intrinsics",

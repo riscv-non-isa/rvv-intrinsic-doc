@@ -133,6 +133,11 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
         if type_list != "float16_zvfhmin" and\
            args["TYPES1"] == "f" and args["TYPES3"] == "f":
           continue
+      else:
+        # Skip the cases that contain float16 but not zvfh*.
+        if "float16" in src_type or "float16" in dst_type:
+          continue
+
       if type_list == "bfloat16":
         if "ncvt" in args["OP"]:
           func_name = "{OP}_f_f_w_bf{LSEW}m{LLMUL}".format_map(args)

@@ -57,11 +57,19 @@ def gen(g):
   g.start_group("Vector Loads and Stores Intrinsics")
 
   g.function_group(load_template, "Vector Unit-Stride Load Intrinsics",
-                   "vector-unit-stride-load", ["vle"], TYPES, SEWS, LMULS,
+                   "vector-unit-stride-load", ["vle"], ITYPES, SEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy)
+
+  g.function_group(load_template, "Float Vector Unit-Stride Load Intrinsics",
+                   "float-vector-unit-stride-load", ["vle"], FTYPES, FSEWS, LMULS,
                    decorators.has_masking_maskedoff_policy)
 
   g.function_group(store_template, "Vector Unit-Stride Store Intrinsics",
-                   "vector-unit-stride-store", ["vse"], TYPES, SEWS, LMULS,
+                   "vector-unit-stride-store", ["vse"], ITYPES, SEWS, LMULS,
+                   decorators.has_masking_no_maskedoff)
+
+  g.function_group(store_template, "Float Vector Unit-Stride Store Intrinsics",
+                   "float-vector-unit-stride-store", ["vse"], FTYPES, FSEWS, LMULS,
                    decorators.has_masking_no_maskedoff)
 
   g.function_group(mask_load_store_template,
@@ -70,24 +78,45 @@ def gen(g):
                    decorators.has_no_masking)
 
   g.function_group(load_template, "Vector Strided Load Intrinsics",
-                   "vector-strided-load", ["vlse"], TYPES, SEWS, LMULS,
+                   "vector-strided-load", ["vlse"], ITYPES, SEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy)
+
+  g.function_group(load_template, "Float Vector Strided Load Intrinsics",
+                   "float-vector-strided-load", ["vlse"], FTYPES, FSEWS, LMULS,
                    decorators.has_masking_maskedoff_policy)
 
   g.function_group(store_template, "Vector Strided Store Intrinsics",
-                   "vector-strided-store", ["vsse"], TYPES, SEWS, LMULS,
+                   "vector-strided-store", ["vsse"], ITYPES, SEWS, LMULS,
+                   decorators.has_masking_no_maskedoff)
+
+  g.function_group(store_template, "Float Vector Strided Store Intrinsics",
+                   "float-vector-strided-store", ["vsse"], FTYPES, FSEWS, LMULS,
                    decorators.has_masking_no_maskedoff)
 
   g.function_group(load_template, "Vector Indexed Load Intrinsics",
-                   "vector-indexed-load", ["vloxei", "vluxei"], TYPES, SEWS,
+                   "vector-indexed-load", ["vloxei", "vluxei"], ITYPES, SEWS,
+                   LMULS, decorators.has_masking_maskedoff_policy)
+
+  g.function_group(load_template, "Float Vector Indexed Load Intrinsics",
+                   "float-vector-indexed-load", ["vloxei", "vluxei"], FTYPES, FSEWS,
                    LMULS, decorators.has_masking_maskedoff_policy)
 
   g.function_group(store_template, "Vector Indexed Store Intrinsics",
-                   "vector-indexed-store", ["vsoxei", "vsuxei"], TYPES, SEWS,
+                   "vector-indexed-store", ["vsoxei", "vsuxei"], ITYPES, SEWS,
+                   LMULS, decorators.has_masking_no_maskedoff)
+
+  g.function_group(store_template, "Float Vector Indexed Store Intrinsics",
+                   "float-vector-indexed-store", ["vsoxei", "vsuxei"], FTYPES, FSEWS,
                    LMULS, decorators.has_masking_no_maskedoff)
 
   g.function_group(load_template,
                    "Unit-stride Fault-Only-First Loads Intrinsics",
-                   "unit-stride-fault-only-first-loads", ["vleff"], TYPES, SEWS,
+                   "unit-stride-fault-only-first-loads", ["vleff"], ITYPES, SEWS,
+                   LMULS, decorators.has_masking_maskedoff_policy)
+
+  g.function_group(load_template,
+                   "Float Unit-stride Fault-Only-First Loads Intrinsics",
+                   "float-unit-stride-fault-only-first-loads", ["vleff"], FTYPES, FSEWS,
                    LMULS, decorators.has_masking_maskedoff_policy)
 
   ####################################################################
@@ -97,30 +126,58 @@ def gen(g):
   g.function_group(seg_load_template,
                    "Vector Unit-Stride Segment Load Intrinsics",
                    "vector-unit-stride-segment-load", ["vlseg", "vlsegff"],
-                   TYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+                   ITYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+
+  g.function_group(seg_load_template,
+                   "Float Vector Unit-Stride Segment Load Intrinsics",
+                   "float-vector-unit-stride-segment-load", ["vlseg", "vlsegff"],
+                   FTYPES, FSEWS, LMULS, decorators.has_masking_maskedoff_policy)
 
   g.function_group(seg_store_template,
                    "Vector Unit-Stride Segment Store Intrinsics",
-                   "vecrtor-unit-stride-segment-store", ["vsseg"], TYPES, SEWS,
+                   "vecrtor-unit-stride-segment-store", ["vsseg"], ITYPES, SEWS,
+                   LMULS, decorators.has_masking_no_maskedoff)
+
+  g.function_group(seg_store_template,
+                   "Float Vector Unit-Stride Segment Store Intrinsics",
+                   "float-vecrtor-unit-stride-segment-store", ["vsseg"], FTYPES, FSEWS,
                    LMULS, decorators.has_masking_no_maskedoff)
 
   g.function_group(seg_load_template, "Vector Strided Segment Load Intrinsics",
-                   "vector-strided-segment-load", ["vlsseg"], TYPES, SEWS,
+                   "vector-strided-segment-load", ["vlsseg"], ITYPES, SEWS,
+                   LMULS, decorators.has_masking_maskedoff_policy)
+
+  g.function_group(seg_load_template, "Float Vector Strided Segment Load Intrinsics",
+                   "float-vector-strided-segment-load", ["vlsseg"], FTYPES, FSEWS,
                    LMULS, decorators.has_masking_maskedoff_policy)
 
   g.function_group(seg_store_template,
                    "Vector Strided Segment Store Intrinsics",
-                   "vector-strided-segment-store", ["vssseg"], TYPES, SEWS,
+                   "vector-strided-segment-store", ["vssseg"], ITYPES, SEWS,
+                   LMULS, decorators.has_masking_no_maskedoff)
+
+  g.function_group(seg_store_template,
+                   "Float Vector Strided Segment Store Intrinsics",
+                   "float-vector-strided-segment-store", ["vssseg"], FTYPES, FSEWS,
                    LMULS, decorators.has_masking_no_maskedoff)
 
   g.function_group(seg_load_template, "Vector Indexed Segment Load Intrinsics",
-                   "vector-indexed-segment-load", ["vloxseg", "vluxseg"], TYPES,
+                   "vector-indexed-segment-load", ["vloxseg", "vluxseg"], ITYPES,
                    SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+
+  g.function_group(seg_load_template, "Float Vector Indexed Segment Load Intrinsics",
+                   "float-vector-indexed-segment-load", ["vloxseg", "vluxseg"], FTYPES,
+                   FSEWS, LMULS, decorators.has_masking_maskedoff_policy)
 
   g.function_group(seg_store_template,
                    "Vector Indexed Segment Store Intrinsics",
                    "vector-indexed-segment-store", ["vsoxseg", "vsuxseg"],
-                   TYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff)
+                   ITYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff)
+
+  g.function_group(seg_store_template,
+                   "Float Vector Indexed Segment Store Intrinsics",
+                   "float-vector-indexed-segment-store", ["vsoxseg", "vsuxseg"],
+                   FTYPES, FSEWS, LMULS, decorators.has_masking_no_maskedoff)
 
   ####################################################################
 
@@ -448,29 +505,55 @@ def gen(g):
   g.start_group("Vector Permutation Intrinsics")
 
   g.function_group(permute_template,
-                   "Integer and Floating-Point Scalar Move Intrinsics",
-                   "integer-scalar-move", ["mv"], TYPES, SEWS, LMULS,
+                   "Integer Scalar Move Intrinsics",
+                   "integer-scalar-move", ["mv"], ITYPES, SEWS, LMULS,
+                   decorators.has_no_masking_policy)
+
+  g.function_group(permute_template,
+                   "Floating-Point Scalar Move Intrinsics",
+                   "float-scalar-move", ["mv"], FTYPES, FSEWS, LMULS,
                    decorators.has_no_masking_policy)
 
   g.function_group(permute_template, "Vector Slideup Intrinsics",
-                   "vector-slideup", ["slideup"], TYPES, SEWS, LMULS,
+                   "vector-slideup", ["slideup"], ITYPES, SEWS, LMULS,
+                   decorators.has_masking_no_maskedoff_policy_vslide)
+
+  g.function_group(permute_template, "Float Vector Slideup Intrinsics",
+                   "float-vector-slideup", ["slideup"], FTYPES, FSEWS, LMULS,
                    decorators.has_masking_no_maskedoff_policy_vslide)
 
   g.function_group(permute_template, "Vector Slidedown Intrinsics",
-                   "vector-slidedown", ["slidedown"], TYPES, SEWS, LMULS,
+                   "vector-slidedown", ["slidedown"], ITYPES, SEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy)
+
+  g.function_group(permute_template, "Float Vector Slidedown Intrinsics",
+                   "float-vector-slidedown", ["slidedown"], FTYPES, FSEWS, LMULS,
                    decorators.has_masking_maskedoff_policy)
 
   g.function_group(permute_template,
                    "Vector Slide1up and Slide1down Intrinsics",
                    "vector-slide1up-and-slide1down", ["slide1up", "slide1down"],
-                   TYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+                   ITYPES, SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+
+  g.function_group(permute_template,
+                   "Float Vector Slide1up and Slide1down Intrinsics",
+                   "float-vector-slide1up-and-slide1down", ["slide1up", "slide1down"],
+                   FTYPES, FSEWS, LMULS, decorators.has_masking_maskedoff_policy)
 
   g.function_group(binary_op_template, "Vector Register Gather Intrinsics",
-                   "vector-register-gather", ["rgather", "rgatherei16"], TYPES,
+                   "vector-register-gather", ["rgather", "rgatherei16"], ITYPES,
                    SEWS, LMULS, decorators.has_masking_maskedoff_policy)
 
+  g.function_group(binary_op_template, "Float Vector Register Gather Intrinsics",
+                   "float-vector-register-gather", ["rgather", "rgatherei16"], FTYPES,
+                   FSEWS, LMULS, decorators.has_masking_maskedoff_policy)
+
   g.function_group(permute_template, "Vector Compress Intrinsics",
-                   "vector-compress", ["compress"], TYPES, SEWS, LMULS,
+                   "vector-compress", ["compress"], ITYPES, SEWS, LMULS,
+                   decorators.has_no_masking_policy)
+
+  g.function_group(permute_template, "Float Vector Compress Intrinsics",
+                   "float-vector-compress", ["compress"], FTYPES, FSEWS, LMULS,
                    decorators.has_no_masking_policy)
 
   ####################################################################
@@ -488,27 +571,51 @@ def gen(g):
                    LMULS, decorators.has_no_masking)
 
   g.function_group(misc_op_template, "Vector LMUL Extension Intrinsics",
-                   "vector-lmul-extensionn", ["vlmul_ext_v"], TYPES, SEWS,
+                   "vector-lmul-extensionn", ["vlmul_ext_v"], ITYPES, SEWS,
+                   LMULS, decorators.has_no_masking)
+
+  g.function_group(misc_op_template, "Float Vector LMUL Extension Intrinsics",
+                   "float-vector-lmul-extensionn", ["vlmul_ext_v"], FTYPES, FSEWS,
                    LMULS, decorators.has_no_masking)
 
   g.function_group(misc_op_template, "Vector LMUL Truncation Intrinsics",
-                   "vector-lmul-truncation", ["vlmul_trunc_v"], TYPES, SEWS,
+                   "vector-lmul-truncation", ["vlmul_trunc_v"], ITYPES, SEWS,
+                   LMULS, decorators.has_no_masking)
+
+  g.function_group(misc_op_template, "Float Vector LMUL Truncation Intrinsics",
+                   "float-vector-lmul-truncation", ["vlmul_trunc_v"], FTYPES, FSEWS,
                    LMULS, decorators.has_no_masking)
 
   g.function_group(misc_op_template, "Vector Initialization Intrinsics",
-                   "vector-initialization", ["vundefined"], TYPES, SEWS, LMULS,
+                   "vector-initialization", ["vundefined"], ITYPES, SEWS, LMULS,
+                   decorators.has_no_masking)
+
+  g.function_group(misc_op_template, "Float Vector Initialization Intrinsics",
+                   "float-vector-initialization", ["vundefined"], FTYPES, FSEWS, LMULS,
                    decorators.has_no_masking)
 
   g.function_group(get_set_diff_lmul_op_template, "Vector Insertion Intrinsics",
-                   "vector-insertion", ["vset"], TYPES, SEWS, LMULS,
+                   "vector-insertion", ["vset"], ITYPES, SEWS, LMULS,
+                   decorators.has_no_masking)
+
+  g.function_group(get_set_diff_lmul_op_template, "Float Vector Insertion Intrinsics",
+                   "float-vector-insertion", ["vset"], FTYPES, FSEWS, LMULS,
                    decorators.has_no_masking)
 
   g.function_group(get_set_diff_lmul_op_template,
                    "Vector Extraction Intrinsics", "vector-extraction",
-                   ["vget"], TYPES, SEWS, LMULS, decorators.has_no_masking)
+                   ["vget"], ITYPES, SEWS, LMULS, decorators.has_no_masking)
+
+  g.function_group(get_set_diff_lmul_op_template,
+                   "Float Vector Extraction Intrinsics", "float-vector-extraction",
+                   ["vget"], FTYPES, FSEWS, LMULS, decorators.has_no_masking)
 
   g.function_group(misc_op_template, "Vector Creation Intrinsics",
-                   "vector-creation", ["vcreate"], TYPES, SEWS, LMULS,
+                   "vector-creation", ["vcreate"], ITYPES, SEWS, LMULS,
+                   decorators.has_no_masking)
+
+  g.function_group(misc_op_template, "Float Vector Creation Intrinsics",
+                   "float-vector-creation", ["vcreate"], FTYPES, FSEWS, LMULS,
                    decorators.has_no_masking)
 
   ####################################################################

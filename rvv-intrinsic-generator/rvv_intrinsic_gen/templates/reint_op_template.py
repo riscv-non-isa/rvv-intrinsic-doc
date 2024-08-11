@@ -61,6 +61,10 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if (args["TYPES1"] == "f" or args["TYPES3"] == "f") and sew == 8:
         continue
 
+      if type_list != "float16_zvfhmin" and\
+         ((args["TYPES1"] == "f" or args["TYPES3"] == "f") and sew == 16):
+        continue
+
       if (args["TYPES1"] == "bf" or args["TYPES3"] == "bf") and sew != 16:
         continue
 
