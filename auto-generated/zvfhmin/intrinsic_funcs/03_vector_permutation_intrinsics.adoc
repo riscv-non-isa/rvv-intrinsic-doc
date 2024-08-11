@@ -1,0 +1,73 @@
+
+=== Vector Permutation Intrinsics
+
+[[vector-register-gather]]
+==== Vector Register Gather Intrinsics
+
+[,c]
+----
+vfloat16mf4_t __riscv_vrgather_vv_f16mf4(vfloat16mf4_t vs2, vuint16mf4_t vs1,
+                                         size_t vl);
+vfloat16mf4_t __riscv_vrgather_vx_f16mf4(vfloat16mf4_t vs2, size_t vs1,
+                                         size_t vl);
+vfloat16mf2_t __riscv_vrgather_vv_f16mf2(vfloat16mf2_t vs2, vuint16mf2_t vs1,
+                                         size_t vl);
+vfloat16mf2_t __riscv_vrgather_vx_f16mf2(vfloat16mf2_t vs2, size_t vs1,
+                                         size_t vl);
+vfloat16m1_t __riscv_vrgather_vv_f16m1(vfloat16m1_t vs2, vuint16m1_t vs1,
+                                       size_t vl);
+vfloat16m1_t __riscv_vrgather_vx_f16m1(vfloat16m1_t vs2, size_t vs1, size_t vl);
+vfloat16m2_t __riscv_vrgather_vv_f16m2(vfloat16m2_t vs2, vuint16m2_t vs1,
+                                       size_t vl);
+vfloat16m2_t __riscv_vrgather_vx_f16m2(vfloat16m2_t vs2, size_t vs1, size_t vl);
+vfloat16m4_t __riscv_vrgather_vv_f16m4(vfloat16m4_t vs2, vuint16m4_t vs1,
+                                       size_t vl);
+vfloat16m4_t __riscv_vrgather_vx_f16m4(vfloat16m4_t vs2, size_t vs1, size_t vl);
+vfloat16m8_t __riscv_vrgather_vv_f16m8(vfloat16m8_t vs2, vuint16m8_t vs1,
+                                       size_t vl);
+vfloat16m8_t __riscv_vrgather_vx_f16m8(vfloat16m8_t vs2, size_t vs1, size_t vl);
+// masked functions
+vfloat16mf4_t __riscv_vrgather_vv_f16mf4_m(vbool64_t vm, vfloat16mf4_t vs2,
+                                           vuint16mf4_t vs1, size_t vl);
+vfloat16mf4_t __riscv_vrgather_vx_f16mf4_m(vbool64_t vm, vfloat16mf4_t vs2,
+                                           size_t vs1, size_t vl);
+vfloat16mf2_t __riscv_vrgather_vv_f16mf2_m(vbool32_t vm, vfloat16mf2_t vs2,
+                                           vuint16mf2_t vs1, size_t vl);
+vfloat16mf2_t __riscv_vrgather_vx_f16mf2_m(vbool32_t vm, vfloat16mf2_t vs2,
+                                           size_t vs1, size_t vl);
+vfloat16m1_t __riscv_vrgather_vv_f16m1_m(vbool16_t vm, vfloat16m1_t vs2,
+                                         vuint16m1_t vs1, size_t vl);
+vfloat16m1_t __riscv_vrgather_vx_f16m1_m(vbool16_t vm, vfloat16m1_t vs2,
+                                         size_t vs1, size_t vl);
+vfloat16m2_t __riscv_vrgather_vv_f16m2_m(vbool8_t vm, vfloat16m2_t vs2,
+                                         vuint16m2_t vs1, size_t vl);
+vfloat16m2_t __riscv_vrgather_vx_f16m2_m(vbool8_t vm, vfloat16m2_t vs2,
+                                         size_t vs1, size_t vl);
+vfloat16m4_t __riscv_vrgather_vv_f16m4_m(vbool4_t vm, vfloat16m4_t vs2,
+                                         vuint16m4_t vs1, size_t vl);
+vfloat16m4_t __riscv_vrgather_vx_f16m4_m(vbool4_t vm, vfloat16m4_t vs2,
+                                         size_t vs1, size_t vl);
+vfloat16m8_t __riscv_vrgather_vv_f16m8_m(vbool2_t vm, vfloat16m8_t vs2,
+                                         vuint16m8_t vs1, size_t vl);
+vfloat16m8_t __riscv_vrgather_vx_f16m8_m(vbool2_t vm, vfloat16m8_t vs2,
+                                         size_t vs1, size_t vl);
+----
+
+[[vector-compress]]
+==== Vector Compress Intrinsics
+
+[,c]
+----
+vfloat16mf4_t __riscv_vcompress_vm_f16mf4(vfloat16mf4_t vs2, vbool64_t vs1,
+                                          size_t vl);
+vfloat16mf2_t __riscv_vcompress_vm_f16mf2(vfloat16mf2_t vs2, vbool32_t vs1,
+                                          size_t vl);
+vfloat16m1_t __riscv_vcompress_vm_f16m1(vfloat16m1_t vs2, vbool16_t vs1,
+                                        size_t vl);
+vfloat16m2_t __riscv_vcompress_vm_f16m2(vfloat16m2_t vs2, vbool8_t vs1,
+                                        size_t vl);
+vfloat16m4_t __riscv_vcompress_vm_f16m4(vfloat16m4_t vs2, vbool4_t vs1,
+                                        size_t vl);
+vfloat16m8_t __riscv_vcompress_vm_f16m8(vfloat16m8_t vs2, vbool2_t vs1,
+                                        size_t vl);
+----
