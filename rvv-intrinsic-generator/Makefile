@@ -60,6 +60,8 @@ PY3 := PYTHONPATH=$$PYTHONPATH:$(PYTHONPATHS) python3
 MAIN := rvv_intrinsic_gen.main
 # Zvfhmin instruction scripts
 ZVFHMIN_INST := $(RVV_INTRINSIC_GEN_PATH)/zvfhmin_inst.py
+# Zvfh instruction scripts
+ZVFH_INST := $(RVV_INTRINSIC_GEN_PATH)/zvfh_inst.py
 # BFloat16 instruction scripts
 BF16_INST := $(RVV_INTRINSIC_GEN_PATH)/bfloat16_inst.py
 # Script to clang-format the auto-generated adoc files
@@ -77,6 +79,10 @@ POLICY_DIR := $(DIR)/policy_funcs
 ZVFHMIN_DIR := $(DIR)/zvfhmin
 # Output directory for zvfhmin policy intrinsics
 ZVFHMIN_POLICY_DIR := $(ZVFHMIN_DIR)/policy_funcs
+# Output directory for zvfh non-policy intrinsics
+ZVFH_DIR := $(DIR)/zvfh
+# Output directory for zvfh policy intrinsics
+ZVFH_POLICY_DIR := $(ZVFH_DIR)/policy_funcs
 # Output directory for bfloat16 non-policy intrinsics
 BF16_DIR := $(DIR)/bfloat16
 # Output directory for bfloat16 policy intrinsics
@@ -165,26 +171,30 @@ endef
 # If VENDOR_GENERATOR_SCRIPT is defined, also trigger it in all.
 # NOTE: A possible enhancement to this is allow multiple targets be added here
 ifdef VENDOR_GENERATOR_SCRIPT
-all: gen-document gen-test gen-compatible-header zvfhmin-all bf16-all vector-crypto-all vendor-generator
+all: gen-document gen-test gen-compatible-header zvfhmin-all zvfh-all bf16-all vector-crypto-all vendor-generator
 else
-all: gen-document gen-test gen-compatible-header zvfhmin-all bf16-all vector-crypto-all
+all: gen-document gen-test gen-compatible-header zvfhmin-all zvfh-all bf16-all vector-crypto-all
 endif
 
 zvfhmin-all: gen-zvfhmin-document gen-zvfhmin-test
+zvfh-all: gen-zvfh-document gen-zvfh-test
 bf16-all: gen-bf16-document gen-bf16-test
 vector-crypto-all: gen-vector-crypto-document gen-vector-crypto-test
 
 gen-document: non-overloaded-doc non-overloaded-docs overloaded-doc overloaded-docs
 gen-zvfhmin-document: zvfhmin-non-overloaded-doc zvfhmin-non-overloaded-docs zvfhmin-overloaded-doc zvfhmin-overloaded-docs
+gen-zvfh-document: zvfh-non-overloaded-doc zvfh-non-overloaded-docs zvfh-overloaded-doc zvfh-overloaded-docs
 gen-bf16-document: bf16-non-overloaded-doc bf16-non-overloaded-docs bf16-overloaded-doc bf16-overloaded-docs
 gen-vector-crypto-document: vector-crypto-non-overloaded-doc vector-crypto-non-overloaded-docs vector-crypto-overloaded-doc vector-crypto-overloaded-docs
 gen-test: non-overloaded-test overloaded-test gen-llvm-test gen-gnu-test
 gen-zvfhmin-test: zvfhmin-non-overloaded-test zvfhmin-overloaded-test gen-zvfhmin-llvm-test
+gen-zvfh-test: zvfh-non-overloaded-test zvfh-overloaded-test gen-zvfh-llvm-test
 gen-bf16-test: bf16-non-overloaded-test bf16-overloaded-test gen-bf16-llvm-test
 gen-vector-crypto-test: vector-crypto-non-overloaded-test vector-crypto-overloaded-test gen-vector-crypto-llvm-test
 gen-compatible-header: non-policy-compatible-header policy-compatible-header non-policy-overloaded-compatible-header policy-overloaded-compatible-header
 gen-llvm-test: llvm-non-overloaded-test llvm-overloaded-test
 gen-zvfhmin-llvm-test: zvfhmin-llvm-non-overloaded-test zvfhmin-llvm-overloaded-test
+gen-zvfh-llvm-test: zvfh-llvm-non-overloaded-test zvfh-llvm-overloaded-test
 gen-bf16-llvm-test: bf16-llvm-non-overloaded-test bf16-llvm-overloaded-test
 gen-vector-crypto-llvm-test: vector-crypto-llvm-non-overloaded-test vector-crypto-llvm-overloaded-test
 gen-gnu-test: gnu-overloaded-test gnu-non-overloaded-test
@@ -316,6 +326,64 @@ zvfhmin-llvm-overloaded-test:
 	$(call replace_float, $(ZVFHMIN_POLICY_DIR)/llvm-overloaded-tests)
 	clang-format -i $(ZVFHMIN_DIR)/llvm-overloaded-tests/*
 	clang-format -i $(ZVFHMIN_POLICY_DIR)/llvm-overloaded-tests/*
+
+# Zvfh documents
+zvfh-non-overloaded-doc:
+	$(call gen_doc, $(ZVFH_DIR),intrinsic_funcs.adoc,non-overloaded-doc,--skip-default-inst --vendor-inst $(ZVFH_INST))
+	$(call gen_doc, $(ZVFH_POLICY_DIR),intrinsic_funcs.adoc,non-overloaded-doc,--has-policy --skip-default-inst --vendor-inst $(ZVFH_INST))
+	$(call clang_format_adoc, --file, $(ZVFH_DIR)/intrinsic_funcs.adoc)
+	$(call clang_format_adoc, --file, $(ZVFH_POLICY_DIR)/intrinsic_funcs.adoc)
+
+zvfh-non-overloaded-docs:
+	$(call gen_doc, $(ZVFH_DIR),intrinsic_funcs,non-overloaded-docs,--skip-default-inst --vendor-inst $(ZVFH_INST))
+	$(call gen_doc, $(ZVFH_POLICY_DIR),intrinsic_funcs,non-overloaded-docs,--has-policy --skip-default-inst --vendor-inst $(ZVFH_INST))
+	$(call clang_format_adoc, --folder, $(ZVFH_DIR)/intrinsic_funcs)
+	$(call clang_format_adoc, --folder, $(ZVFH_POLICY_DIR)/intrinsic_funcs)
+
+zvfh-overloaded-doc:
+	$(call gen_doc, $(ZVFH_DIR),overloaded_intrinsic_funcs.adoc,overloaded-doc,--skip-default-inst --vendor-inst $(ZVFH_INST))
+	$(call gen_doc, $(ZVFH_POLICY_DIR),overloaded_intrinsic_funcs.adoc,overloaded-doc,--has-policy --skip-default-inst --vendor-inst $(ZVFH_INST))
+	$(call clang_format_adoc, --file, $(ZVFH_DIR)/overloaded_intrinsic_funcs.adoc)
+	$(call clang_format_adoc, --file, $(ZVFH_POLICY_DIR)/overloaded_intrinsic_funcs.adoc)
+
+zvfh-overloaded-docs:
+	$(call gen_doc, $(ZVFH_DIR),overloaded_intrinsic_funcs,overloaded-docs,--skip-default-inst --vendor-inst $(ZVFH_INST))
+	$(call gen_doc, $(ZVFH_POLICY_DIR),overloaded_intrinsic_funcs,overloaded-docs,--has-policy --skip-default-inst --vendor-inst $(ZVFH_INST))
+	$(call clang_format_adoc, --folder, $(ZVFH_DIR)/overloaded_intrinsic_funcs)
+	$(call clang_format_adoc, --folder, $(ZVFH_POLICY_DIR)/overloaded_intrinsic_funcs)
+
+# Zvfh tests
+# Generate non-overloaded intrinsic testing C source files
+zvfh-non-overloaded-test:
+	$(call gen_tests,$(ZVFH_DIR)/api-testing,non-overloaded-test,--skip-default-inst --vendor-inst $(ZVFH_INST))
+	$(call gen_tests,$(ZVFH_POLICY_DIR)/api-testing,non-overloaded-test,--has-policy --skip-default-inst --vendor-inst $(ZVFH_INST))
+	clang-format -i $(ZVFH_DIR)/api-testing/*
+	clang-format -i $(ZVFH_POLICY_DIR)/api-testing/*
+
+# Generate overloaded intrinsic testing C source files
+zvfh-overloaded-test:
+	$(call gen_tests,$(ZVFH_DIR)/overloaded-api-testing,overloaded-test,--skip-default-inst --vendor-inst $(ZVFH_INST))
+	$(call gen_tests,$(ZVFH_POLICY_DIR)/overloaded-api-testing,overloaded-test,--has-policy --skip-default-inst --vendor-inst $(ZVFH_INST))
+	clang-format -i $(ZVFH_DIR)/overloaded-api-testing/*
+	clang-format -i $(ZVFH_POLICY_DIR)/overloaded-api-testing/*
+
+# Generate non-overloaded intrinsic testing C source files
+zvfh-llvm-non-overloaded-test:
+	$(call gen_tests,$(ZVFH_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --skip-default-inst --vendor-inst $(ZVFH_INST))
+	$(call gen_tests,$(ZVFH_POLICY_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --has-policy --skip-default-inst --vendor-inst $(ZVFH_INST))
+	$(call replace_float, $(ZVFH_DIR)/llvm-api-tests)
+	$(call replace_float, $(ZVFH_POLICY_DIR)/llvm-api-tests)
+	clang-format -i $(ZVFH_DIR)/llvm-api-tests/*
+	clang-format -i $(ZVFH_POLICY_DIR)/llvm-api-tests/*
+
+# Generate overloaded intrinsic testing C source files
+zvfh-llvm-overloaded-test:
+	$(call gen_tests,$(ZVFH_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --skip-default-inst --vendor-inst $(ZVFH_INST))
+	$(call gen_tests,$(ZVFH_POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --has-policy --skip-default-inst --vendor-inst $(ZVFH_INST))
+	$(call replace_float, $(ZVFH_DIR)/llvm-overloaded-tests)
+	$(call replace_float, $(ZVFH_POLICY_DIR)/llvm-overloaded-tests)
+	clang-format -i $(ZVFH_DIR)/llvm-overloaded-tests/*
+	clang-format -i $(ZVFH_POLICY_DIR)/llvm-overloaded-tests/*
 
 # BFloat16 documents
 bf16-non-overloaded-doc:
@@ -466,6 +534,10 @@ git-commit-zvfhmin-all:
 	make git-commit-autogen-zvfhmin-doc OUTPUT_DIR=${OUTPUT_DIR}
 	make git-commit-autogen-zvfhmin-test OUTPUT_DIR=${OUTPUT_DIR}
 
+git-commit-zvfh-all:
+	make git-commit-autogen-zvfh-doc OUTPUT_DIR=${OUTPUT_DIR}
+	make git-commit-autogen-zvfh-test OUTPUT_DIR=${OUTPUT_DIR}
+
 git-commit-bf16-all:
 	make git-commit-autogen-bf16-doc OUTPUT_DIR=${OUTPUT_DIR}
 	make git-commit-autogen-bf16-test OUTPUT_DIR=${OUTPUT_DIR}
@@ -484,6 +556,11 @@ git-commit-autogen-zvfhmin-doc:
 	make gen-zvfhmin-document OUTPUT_DIR=${OUTPUT_DIR}
 	git add ${ZVFHMIN_DIR}/*
 	git commit -m "[Auto-gen] Update bfloat16 documents under ${OUTPUT_DIR}. (make git-commit-autogen-zvfhmin-doc)"
+
+git-commit-autogen-zvfh-doc:
+	make gen-zvfh-document OUTPUT_DIR=${OUTPUT_DIR}
+	git add ${ZVFH_DIR}/*
+	git commit -m "[Auto-gen] Update bfloat16 documents under ${OUTPUT_DIR}. (make git-commit-autogen-zvfh-doc)"
 
 git-commit-autogen-bf16-doc:
 	make gen-bf16-document OUTPUT_DIR=${OUTPUT_DIR}
@@ -505,6 +582,11 @@ git-commit-autogen-zvfhmin-test:
 	make gen-zvfhmin-test
 	git add ${ZVFHMIN_DIR}/*
 	git commit -m "[Auto-gen] Update bfloat16 tests under ${OUTPUT_DIR}. (make git-commit-autogen-zvfhmin-test)"
+
+git-commit-autogen-zvfh-test:
+	make gen-zvfh-test
+	git add ${ZVFH_DIR}/*
+	git commit -m "[Auto-gen] Update bfloat16 tests under ${OUTPUT_DIR}. (make git-commit-autogen-zvfh-test)"
 
 git-commit-autogen-bf16-test:
 	make gen-bf16-test
