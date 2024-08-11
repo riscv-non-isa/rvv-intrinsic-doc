@@ -1,0 +1,163 @@
+// REQUIRES: riscv-registered-target
+// RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zfh \
+// RUN:   -target-feature +zvfh -disable-O0-optnone \
+// RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
+// RUN:   FileCheck --check-prefix=CHECK-RV64 %s
+
+#include <riscv_vector.h>
+
+vfloat16m1_t test_vfredusum_vs_f16mf4_f16m1_tu(vfloat16m1_t vd,
+                                               vfloat16mf4_t vs2,
+                                               vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16mf4_f16m1_tu(vd, vs2, vs1, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16mf2_f16m1_tu(vfloat16m1_t vd,
+                                               vfloat16mf2_t vs2,
+                                               vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16mf2_f16m1_tu(vd, vs2, vs1, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m1_f16m1_tu(vfloat16m1_t vd, vfloat16m1_t vs2,
+                                              vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m1_f16m1_tu(vd, vs2, vs1, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m2_f16m1_tu(vfloat16m1_t vd, vfloat16m2_t vs2,
+                                              vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m2_f16m1_tu(vd, vs2, vs1, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m4_f16m1_tu(vfloat16m1_t vd, vfloat16m4_t vs2,
+                                              vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m4_f16m1_tu(vd, vs2, vs1, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m8_f16m1_tu(vfloat16m1_t vd, vfloat16m8_t vs2,
+                                              vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m8_f16m1_tu(vd, vs2, vs1, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16mf4_f16m1_tum(vbool64_t vm, vfloat16m1_t vd,
+                                                vfloat16mf4_t vs2,
+                                                vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16mf4_f16m1_tum(vm, vd, vs2, vs1, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16mf2_f16m1_tum(vbool32_t vm, vfloat16m1_t vd,
+                                                vfloat16mf2_t vs2,
+                                                vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16mf2_f16m1_tum(vm, vd, vs2, vs1, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m1_f16m1_tum(vbool16_t vm, vfloat16m1_t vd,
+                                               vfloat16m1_t vs2,
+                                               vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m1_f16m1_tum(vm, vd, vs2, vs1, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m2_f16m1_tum(vbool8_t vm, vfloat16m1_t vd,
+                                               vfloat16m2_t vs2,
+                                               vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m2_f16m1_tum(vm, vd, vs2, vs1, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m4_f16m1_tum(vbool4_t vm, vfloat16m1_t vd,
+                                               vfloat16m4_t vs2,
+                                               vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m4_f16m1_tum(vm, vd, vs2, vs1, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m8_f16m1_tum(vbool2_t vm, vfloat16m1_t vd,
+                                               vfloat16m8_t vs2,
+                                               vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m8_f16m1_tum(vm, vd, vs2, vs1, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16mf4_f16m1_rm_tu(vfloat16m1_t vd,
+                                                  vfloat16mf4_t vs2,
+                                                  vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16mf4_f16m1_rm_tu(vd, vs2, vs1, __RISCV_FRM_RNE,
+                                                 vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16mf2_f16m1_rm_tu(vfloat16m1_t vd,
+                                                  vfloat16mf2_t vs2,
+                                                  vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16mf2_f16m1_rm_tu(vd, vs2, vs1, __RISCV_FRM_RNE,
+                                                 vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m1_f16m1_rm_tu(vfloat16m1_t vd,
+                                                 vfloat16m1_t vs2,
+                                                 vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m1_f16m1_rm_tu(vd, vs2, vs1, __RISCV_FRM_RNE,
+                                                vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m2_f16m1_rm_tu(vfloat16m1_t vd,
+                                                 vfloat16m2_t vs2,
+                                                 vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m2_f16m1_rm_tu(vd, vs2, vs1, __RISCV_FRM_RNE,
+                                                vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m4_f16m1_rm_tu(vfloat16m1_t vd,
+                                                 vfloat16m4_t vs2,
+                                                 vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m4_f16m1_rm_tu(vd, vs2, vs1, __RISCV_FRM_RNE,
+                                                vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m8_f16m1_rm_tu(vfloat16m1_t vd,
+                                                 vfloat16m8_t vs2,
+                                                 vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m8_f16m1_rm_tu(vd, vs2, vs1, __RISCV_FRM_RNE,
+                                                vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16mf4_f16m1_rm_tum(vbool64_t vm,
+                                                   vfloat16m1_t vd,
+                                                   vfloat16mf4_t vs2,
+                                                   vfloat16m1_t vs1,
+                                                   size_t vl) {
+  return __riscv_vfredusum_vs_f16mf4_f16m1_rm_tum(vm, vd, vs2, vs1,
+                                                  __RISCV_FRM_RNE, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16mf2_f16m1_rm_tum(vbool32_t vm,
+                                                   vfloat16m1_t vd,
+                                                   vfloat16mf2_t vs2,
+                                                   vfloat16m1_t vs1,
+                                                   size_t vl) {
+  return __riscv_vfredusum_vs_f16mf2_f16m1_rm_tum(vm, vd, vs2, vs1,
+                                                  __RISCV_FRM_RNE, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m1_f16m1_rm_tum(vbool16_t vm, vfloat16m1_t vd,
+                                                  vfloat16m1_t vs2,
+                                                  vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m1_f16m1_rm_tum(vm, vd, vs2, vs1,
+                                                 __RISCV_FRM_RNE, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m2_f16m1_rm_tum(vbool8_t vm, vfloat16m1_t vd,
+                                                  vfloat16m2_t vs2,
+                                                  vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m2_f16m1_rm_tum(vm, vd, vs2, vs1,
+                                                 __RISCV_FRM_RNE, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m4_f16m1_rm_tum(vbool4_t vm, vfloat16m1_t vd,
+                                                  vfloat16m4_t vs2,
+                                                  vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m4_f16m1_rm_tum(vm, vd, vs2, vs1,
+                                                 __RISCV_FRM_RNE, vl);
+}
+
+vfloat16m1_t test_vfredusum_vs_f16m8_f16m1_rm_tum(vbool2_t vm, vfloat16m1_t vd,
+                                                  vfloat16m8_t vs2,
+                                                  vfloat16m1_t vs1, size_t vl) {
+  return __riscv_vfredusum_vs_f16m8_f16m1_rm_tum(vm, vd, vs2, vs1,
+                                                 __RISCV_FRM_RNE, vl);
+}

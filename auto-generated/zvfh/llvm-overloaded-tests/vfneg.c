@@ -1,0 +1,55 @@
+// REQUIRES: riscv-registered-target
+// RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zfh \
+// RUN:   -target-feature +zvfh -disable-O0-optnone \
+// RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
+// RUN:   FileCheck --check-prefix=CHECK-RV64 %s
+
+#include <riscv_vector.h>
+
+vfloat16mf4_t test_vfneg_v_f16mf4(vfloat16mf4_t vs, size_t vl) {
+  return __riscv_vfneg(vs, vl);
+}
+
+vfloat16mf2_t test_vfneg_v_f16mf2(vfloat16mf2_t vs, size_t vl) {
+  return __riscv_vfneg(vs, vl);
+}
+
+vfloat16m1_t test_vfneg_v_f16m1(vfloat16m1_t vs, size_t vl) {
+  return __riscv_vfneg(vs, vl);
+}
+
+vfloat16m2_t test_vfneg_v_f16m2(vfloat16m2_t vs, size_t vl) {
+  return __riscv_vfneg(vs, vl);
+}
+
+vfloat16m4_t test_vfneg_v_f16m4(vfloat16m4_t vs, size_t vl) {
+  return __riscv_vfneg(vs, vl);
+}
+
+vfloat16m8_t test_vfneg_v_f16m8(vfloat16m8_t vs, size_t vl) {
+  return __riscv_vfneg(vs, vl);
+}
+
+vfloat16mf4_t test_vfneg_v_f16mf4_m(vbool64_t vm, vfloat16mf4_t vs, size_t vl) {
+  return __riscv_vfneg(vm, vs, vl);
+}
+
+vfloat16mf2_t test_vfneg_v_f16mf2_m(vbool32_t vm, vfloat16mf2_t vs, size_t vl) {
+  return __riscv_vfneg(vm, vs, vl);
+}
+
+vfloat16m1_t test_vfneg_v_f16m1_m(vbool16_t vm, vfloat16m1_t vs, size_t vl) {
+  return __riscv_vfneg(vm, vs, vl);
+}
+
+vfloat16m2_t test_vfneg_v_f16m2_m(vbool8_t vm, vfloat16m2_t vs, size_t vl) {
+  return __riscv_vfneg(vm, vs, vl);
+}
+
+vfloat16m4_t test_vfneg_v_f16m4_m(vbool4_t vm, vfloat16m4_t vs, size_t vl) {
+  return __riscv_vfneg(vm, vs, vl);
+}
+
+vfloat16m8_t test_vfneg_v_f16m8_m(vbool2_t vm, vfloat16m8_t vs, size_t vl) {
+  return __riscv_vfneg(vm, vs, vl);
+}
