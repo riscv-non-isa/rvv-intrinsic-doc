@@ -1,36 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-vfloat16mf4x6_t test_vluxseg6ei8_v_f16mf4x6(const _Float16 *rs1,
-                                            vuint8mf8_t rs2, size_t vl) {
-  return __riscv_vluxseg6ei8(rs1, rs2, vl);
-}
-
-vfloat16mf2x6_t test_vluxseg6ei8_v_f16mf2x6(const _Float16 *rs1,
-                                            vuint8mf4_t rs2, size_t vl) {
-  return __riscv_vluxseg6ei8(rs1, rs2, vl);
-}
-
-vfloat16m1x6_t test_vluxseg6ei8_v_f16m1x6(const _Float16 *rs1, vuint8mf2_t rs2,
-                                          size_t vl) {
-  return __riscv_vluxseg6ei8(rs1, rs2, vl);
-}
-
-vfloat32mf2x6_t test_vluxseg6ei8_v_f32mf2x6(const float *rs1, vuint8mf8_t rs2,
-                                            size_t vl) {
-  return __riscv_vluxseg6ei8(rs1, rs2, vl);
-}
-
-vfloat32m1x6_t test_vluxseg6ei8_v_f32m1x6(const float *rs1, vuint8mf4_t rs2,
-                                          size_t vl) {
-  return __riscv_vluxseg6ei8(rs1, rs2, vl);
-}
-
-vfloat64m1x6_t test_vluxseg6ei8_v_f64m1x6(const double *rs1, vuint8mf8_t rs2,
-                                          size_t vl) {
-  return __riscv_vluxseg6ei8(rs1, rs2, vl);
-}
-
 vint8mf8x6_t test_vluxseg6ei8_v_i8mf8x6(const int8_t *rs1, vuint8mf8_t rs2,
                                         size_t vl) {
   return __riscv_vluxseg6ei8(rs1, rs2, vl);
@@ -129,36 +99,6 @@ vuint32m1x6_t test_vluxseg6ei8_v_u32m1x6(const uint32_t *rs1, vuint8mf4_t rs2,
 vuint64m1x6_t test_vluxseg6ei8_v_u64m1x6(const uint64_t *rs1, vuint8mf8_t rs2,
                                          size_t vl) {
   return __riscv_vluxseg6ei8(rs1, rs2, vl);
-}
-
-vfloat16mf4x6_t test_vluxseg6ei8_v_f16mf4x6_m(vbool64_t vm, const _Float16 *rs1,
-                                              vuint8mf8_t rs2, size_t vl) {
-  return __riscv_vluxseg6ei8(vm, rs1, rs2, vl);
-}
-
-vfloat16mf2x6_t test_vluxseg6ei8_v_f16mf2x6_m(vbool32_t vm, const _Float16 *rs1,
-                                              vuint8mf4_t rs2, size_t vl) {
-  return __riscv_vluxseg6ei8(vm, rs1, rs2, vl);
-}
-
-vfloat16m1x6_t test_vluxseg6ei8_v_f16m1x6_m(vbool16_t vm, const _Float16 *rs1,
-                                            vuint8mf2_t rs2, size_t vl) {
-  return __riscv_vluxseg6ei8(vm, rs1, rs2, vl);
-}
-
-vfloat32mf2x6_t test_vluxseg6ei8_v_f32mf2x6_m(vbool64_t vm, const float *rs1,
-                                              vuint8mf8_t rs2, size_t vl) {
-  return __riscv_vluxseg6ei8(vm, rs1, rs2, vl);
-}
-
-vfloat32m1x6_t test_vluxseg6ei8_v_f32m1x6_m(vbool32_t vm, const float *rs1,
-                                            vuint8mf4_t rs2, size_t vl) {
-  return __riscv_vluxseg6ei8(vm, rs1, rs2, vl);
-}
-
-vfloat64m1x6_t test_vluxseg6ei8_v_f64m1x6_m(vbool64_t vm, const double *rs1,
-                                            vuint8mf8_t rs2, size_t vl) {
-  return __riscv_vluxseg6ei8(vm, rs1, rs2, vl);
 }
 
 vint8mf8x6_t test_vluxseg6ei8_v_i8mf8x6_m(vbool64_t vm, const int8_t *rs1,

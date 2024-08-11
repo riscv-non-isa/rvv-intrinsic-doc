@@ -1,130 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-vfloat16mf4_t test_vlmul_trunc_v_f16mf2_f16mf4(vfloat16mf2_t value) {
-  return __riscv_vlmul_trunc_f16mf4(value);
-}
-
-vfloat16mf4_t test_vlmul_trunc_v_f16m1_f16mf4(vfloat16m1_t value) {
-  return __riscv_vlmul_trunc_f16mf4(value);
-}
-
-vfloat16mf2_t test_vlmul_trunc_v_f16m1_f16mf2(vfloat16m1_t value) {
-  return __riscv_vlmul_trunc_f16mf2(value);
-}
-
-vfloat16mf4_t test_vlmul_trunc_v_f16m2_f16mf4(vfloat16m2_t value) {
-  return __riscv_vlmul_trunc_f16mf4(value);
-}
-
-vfloat16mf2_t test_vlmul_trunc_v_f16m2_f16mf2(vfloat16m2_t value) {
-  return __riscv_vlmul_trunc_f16mf2(value);
-}
-
-vfloat16m1_t test_vlmul_trunc_v_f16m2_f16m1(vfloat16m2_t value) {
-  return __riscv_vlmul_trunc_f16m1(value);
-}
-
-vfloat16mf4_t test_vlmul_trunc_v_f16m4_f16mf4(vfloat16m4_t value) {
-  return __riscv_vlmul_trunc_f16mf4(value);
-}
-
-vfloat16mf2_t test_vlmul_trunc_v_f16m4_f16mf2(vfloat16m4_t value) {
-  return __riscv_vlmul_trunc_f16mf2(value);
-}
-
-vfloat16m1_t test_vlmul_trunc_v_f16m4_f16m1(vfloat16m4_t value) {
-  return __riscv_vlmul_trunc_f16m1(value);
-}
-
-vfloat16m2_t test_vlmul_trunc_v_f16m4_f16m2(vfloat16m4_t value) {
-  return __riscv_vlmul_trunc_f16m2(value);
-}
-
-vfloat16mf4_t test_vlmul_trunc_v_f16m8_f16mf4(vfloat16m8_t value) {
-  return __riscv_vlmul_trunc_f16mf4(value);
-}
-
-vfloat16mf2_t test_vlmul_trunc_v_f16m8_f16mf2(vfloat16m8_t value) {
-  return __riscv_vlmul_trunc_f16mf2(value);
-}
-
-vfloat16m1_t test_vlmul_trunc_v_f16m8_f16m1(vfloat16m8_t value) {
-  return __riscv_vlmul_trunc_f16m1(value);
-}
-
-vfloat16m2_t test_vlmul_trunc_v_f16m8_f16m2(vfloat16m8_t value) {
-  return __riscv_vlmul_trunc_f16m2(value);
-}
-
-vfloat16m4_t test_vlmul_trunc_v_f16m8_f16m4(vfloat16m8_t value) {
-  return __riscv_vlmul_trunc_f16m4(value);
-}
-
-vfloat32mf2_t test_vlmul_trunc_v_f32m1_f32mf2(vfloat32m1_t value) {
-  return __riscv_vlmul_trunc_f32mf2(value);
-}
-
-vfloat32mf2_t test_vlmul_trunc_v_f32m2_f32mf2(vfloat32m2_t value) {
-  return __riscv_vlmul_trunc_f32mf2(value);
-}
-
-vfloat32m1_t test_vlmul_trunc_v_f32m2_f32m1(vfloat32m2_t value) {
-  return __riscv_vlmul_trunc_f32m1(value);
-}
-
-vfloat32mf2_t test_vlmul_trunc_v_f32m4_f32mf2(vfloat32m4_t value) {
-  return __riscv_vlmul_trunc_f32mf2(value);
-}
-
-vfloat32m1_t test_vlmul_trunc_v_f32m4_f32m1(vfloat32m4_t value) {
-  return __riscv_vlmul_trunc_f32m1(value);
-}
-
-vfloat32m2_t test_vlmul_trunc_v_f32m4_f32m2(vfloat32m4_t value) {
-  return __riscv_vlmul_trunc_f32m2(value);
-}
-
-vfloat32mf2_t test_vlmul_trunc_v_f32m8_f32mf2(vfloat32m8_t value) {
-  return __riscv_vlmul_trunc_f32mf2(value);
-}
-
-vfloat32m1_t test_vlmul_trunc_v_f32m8_f32m1(vfloat32m8_t value) {
-  return __riscv_vlmul_trunc_f32m1(value);
-}
-
-vfloat32m2_t test_vlmul_trunc_v_f32m8_f32m2(vfloat32m8_t value) {
-  return __riscv_vlmul_trunc_f32m2(value);
-}
-
-vfloat32m4_t test_vlmul_trunc_v_f32m8_f32m4(vfloat32m8_t value) {
-  return __riscv_vlmul_trunc_f32m4(value);
-}
-
-vfloat64m1_t test_vlmul_trunc_v_f64m2_f64m1(vfloat64m2_t value) {
-  return __riscv_vlmul_trunc_f64m1(value);
-}
-
-vfloat64m1_t test_vlmul_trunc_v_f64m4_f64m1(vfloat64m4_t value) {
-  return __riscv_vlmul_trunc_f64m1(value);
-}
-
-vfloat64m2_t test_vlmul_trunc_v_f64m4_f64m2(vfloat64m4_t value) {
-  return __riscv_vlmul_trunc_f64m2(value);
-}
-
-vfloat64m1_t test_vlmul_trunc_v_f64m8_f64m1(vfloat64m8_t value) {
-  return __riscv_vlmul_trunc_f64m1(value);
-}
-
-vfloat64m2_t test_vlmul_trunc_v_f64m8_f64m2(vfloat64m8_t value) {
-  return __riscv_vlmul_trunc_f64m2(value);
-}
-
-vfloat64m4_t test_vlmul_trunc_v_f64m8_f64m4(vfloat64m8_t value) {
-  return __riscv_vlmul_trunc_f64m4(value);
-}
-
 vint8mf8_t test_vlmul_trunc_v_i8mf4_i8mf8(vint8mf4_t value) {
   return __riscv_vlmul_trunc_i8mf8(value);
 }
@@ -539,4 +415,68 @@ vuint64m2_t test_vlmul_trunc_v_u64m8_u64m2(vuint64m8_t value) {
 
 vuint64m4_t test_vlmul_trunc_v_u64m8_u64m4(vuint64m8_t value) {
   return __riscv_vlmul_trunc_u64m4(value);
+}
+
+vfloat32mf2_t test_vlmul_trunc_v_f32m1_f32mf2(vfloat32m1_t value) {
+  return __riscv_vlmul_trunc_f32mf2(value);
+}
+
+vfloat32mf2_t test_vlmul_trunc_v_f32m2_f32mf2(vfloat32m2_t value) {
+  return __riscv_vlmul_trunc_f32mf2(value);
+}
+
+vfloat32m1_t test_vlmul_trunc_v_f32m2_f32m1(vfloat32m2_t value) {
+  return __riscv_vlmul_trunc_f32m1(value);
+}
+
+vfloat32mf2_t test_vlmul_trunc_v_f32m4_f32mf2(vfloat32m4_t value) {
+  return __riscv_vlmul_trunc_f32mf2(value);
+}
+
+vfloat32m1_t test_vlmul_trunc_v_f32m4_f32m1(vfloat32m4_t value) {
+  return __riscv_vlmul_trunc_f32m1(value);
+}
+
+vfloat32m2_t test_vlmul_trunc_v_f32m4_f32m2(vfloat32m4_t value) {
+  return __riscv_vlmul_trunc_f32m2(value);
+}
+
+vfloat32mf2_t test_vlmul_trunc_v_f32m8_f32mf2(vfloat32m8_t value) {
+  return __riscv_vlmul_trunc_f32mf2(value);
+}
+
+vfloat32m1_t test_vlmul_trunc_v_f32m8_f32m1(vfloat32m8_t value) {
+  return __riscv_vlmul_trunc_f32m1(value);
+}
+
+vfloat32m2_t test_vlmul_trunc_v_f32m8_f32m2(vfloat32m8_t value) {
+  return __riscv_vlmul_trunc_f32m2(value);
+}
+
+vfloat32m4_t test_vlmul_trunc_v_f32m8_f32m4(vfloat32m8_t value) {
+  return __riscv_vlmul_trunc_f32m4(value);
+}
+
+vfloat64m1_t test_vlmul_trunc_v_f64m2_f64m1(vfloat64m2_t value) {
+  return __riscv_vlmul_trunc_f64m1(value);
+}
+
+vfloat64m1_t test_vlmul_trunc_v_f64m4_f64m1(vfloat64m4_t value) {
+  return __riscv_vlmul_trunc_f64m1(value);
+}
+
+vfloat64m2_t test_vlmul_trunc_v_f64m4_f64m2(vfloat64m4_t value) {
+  return __riscv_vlmul_trunc_f64m2(value);
+}
+
+vfloat64m1_t test_vlmul_trunc_v_f64m8_f64m1(vfloat64m8_t value) {
+  return __riscv_vlmul_trunc_f64m1(value);
+}
+
+vfloat64m2_t test_vlmul_trunc_v_f64m8_f64m2(vfloat64m8_t value) {
+  return __riscv_vlmul_trunc_f64m2(value);
+}
+
+vfloat64m4_t test_vlmul_trunc_v_f64m8_f64m4(vfloat64m8_t value) {
+  return __riscv_vlmul_trunc_f64m4(value);
 }

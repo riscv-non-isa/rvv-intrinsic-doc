@@ -3,18 +3,6 @@
 
 #include <riscv_vector.h>
 
-void test_vsseg2e64_v_f64m1x2(double *rs1, vfloat64m1x2_t vs3, size_t vl) {
-  return __riscv_vsseg2e64(rs1, vs3, vl);
-}
-
-void test_vsseg2e64_v_f64m2x2(double *rs1, vfloat64m2x2_t vs3, size_t vl) {
-  return __riscv_vsseg2e64(rs1, vs3, vl);
-}
-
-void test_vsseg2e64_v_f64m4x2(double *rs1, vfloat64m4x2_t vs3, size_t vl) {
-  return __riscv_vsseg2e64(rs1, vs3, vl);
-}
-
 void test_vsseg2e64_v_i64m1x2(int64_t *rs1, vint64m1x2_t vs3, size_t vl) {
   return __riscv_vsseg2e64(rs1, vs3, vl);
 }
@@ -39,18 +27,6 @@ void test_vsseg2e64_v_u64m4x2(uint64_t *rs1, vuint64m4x2_t vs3, size_t vl) {
   return __riscv_vsseg2e64(rs1, vs3, vl);
 }
 
-void test_vsseg2e64_v_f64m1x2_m(vbool64_t vm, double *rs1, vfloat64m1x2_t vs3, size_t vl) {
-  return __riscv_vsseg2e64(vm, rs1, vs3, vl);
-}
-
-void test_vsseg2e64_v_f64m2x2_m(vbool32_t vm, double *rs1, vfloat64m2x2_t vs3, size_t vl) {
-  return __riscv_vsseg2e64(vm, rs1, vs3, vl);
-}
-
-void test_vsseg2e64_v_f64m4x2_m(vbool16_t vm, double *rs1, vfloat64m4x2_t vs3, size_t vl) {
-  return __riscv_vsseg2e64(vm, rs1, vs3, vl);
-}
-
 void test_vsseg2e64_v_i64m1x2_m(vbool64_t vm, int64_t *rs1, vint64m1x2_t vs3, size_t vl) {
   return __riscv_vsseg2e64(vm, rs1, vs3, vl);
 }
@@ -72,6 +48,30 @@ void test_vsseg2e64_v_u64m2x2_m(vbool32_t vm, uint64_t *rs1, vuint64m2x2_t vs3, 
 }
 
 void test_vsseg2e64_v_u64m4x2_m(vbool16_t vm, uint64_t *rs1, vuint64m4x2_t vs3, size_t vl) {
+  return __riscv_vsseg2e64(vm, rs1, vs3, vl);
+}
+
+void test_vsseg2e64_v_f64m1x2(double *rs1, vfloat64m1x2_t vs3, size_t vl) {
+  return __riscv_vsseg2e64(rs1, vs3, vl);
+}
+
+void test_vsseg2e64_v_f64m2x2(double *rs1, vfloat64m2x2_t vs3, size_t vl) {
+  return __riscv_vsseg2e64(rs1, vs3, vl);
+}
+
+void test_vsseg2e64_v_f64m4x2(double *rs1, vfloat64m4x2_t vs3, size_t vl) {
+  return __riscv_vsseg2e64(rs1, vs3, vl);
+}
+
+void test_vsseg2e64_v_f64m1x2_m(vbool64_t vm, double *rs1, vfloat64m1x2_t vs3, size_t vl) {
+  return __riscv_vsseg2e64(vm, rs1, vs3, vl);
+}
+
+void test_vsseg2e64_v_f64m2x2_m(vbool32_t vm, double *rs1, vfloat64m2x2_t vs3, size_t vl) {
+  return __riscv_vsseg2e64(vm, rs1, vs3, vl);
+}
+
+void test_vsseg2e64_v_f64m4x2_m(vbool16_t vm, double *rs1, vfloat64m4x2_t vs3, size_t vl) {
   return __riscv_vsseg2e64(vm, rs1, vs3, vl);
 }
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsseg2e64\.[ivxfswum.]+\s+} 18 } } */

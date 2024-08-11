@@ -3,42 +3,6 @@
 
 #include <riscv_vector.h>
 
-void test_vsuxseg4ei16_v_f16mf4x4(_Float16 *rs1, vuint16mf4_t vs2, vfloat16mf4x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f16mf4x4(rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f16mf2x4(_Float16 *rs1, vuint16mf2_t vs2, vfloat16mf2x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f16mf2x4(rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f16m1x4(_Float16 *rs1, vuint16m1_t vs2, vfloat16m1x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f16m1x4(rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f16m2x4(_Float16 *rs1, vuint16m2_t vs2, vfloat16m2x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f16m2x4(rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f32mf2x4(float *rs1, vuint16mf4_t vs2, vfloat32mf2x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f32mf2x4(rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f32m1x4(float *rs1, vuint16mf2_t vs2, vfloat32m1x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f32m1x4(rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f32m2x4(float *rs1, vuint16m1_t vs2, vfloat32m2x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f32m2x4(rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f64m1x4(double *rs1, vuint16mf4_t vs2, vfloat64m1x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f64m1x4(rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f64m2x4(double *rs1, vuint16mf2_t vs2, vfloat64m2x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f64m2x4(rs1, vs2, vs3, vl);
-}
-
 void test_vsuxseg4ei16_v_i8mf8x4(int8_t *rs1, vuint16mf4_t vs2, vint8mf8x4_t vs3, size_t vl) {
   return __riscv_vsuxseg4ei16_v_i8mf8x4(rs1, vs2, vs3, vl);
 }
@@ -149,42 +113,6 @@ void test_vsuxseg4ei16_v_u64m1x4(uint64_t *rs1, vuint16mf4_t vs2, vuint64m1x4_t 
 
 void test_vsuxseg4ei16_v_u64m2x4(uint64_t *rs1, vuint16mf2_t vs2, vuint64m2x4_t vs3, size_t vl) {
   return __riscv_vsuxseg4ei16_v_u64m2x4(rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f16mf4x4_m(vbool64_t vm, _Float16 *rs1, vuint16mf4_t vs2, vfloat16mf4x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f16mf4x4_m(vm, rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f16mf2x4_m(vbool32_t vm, _Float16 *rs1, vuint16mf2_t vs2, vfloat16mf2x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f16mf2x4_m(vm, rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f16m1x4_m(vbool16_t vm, _Float16 *rs1, vuint16m1_t vs2, vfloat16m1x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f16m1x4_m(vm, rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f16m2x4_m(vbool8_t vm, _Float16 *rs1, vuint16m2_t vs2, vfloat16m2x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f16m2x4_m(vm, rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f32mf2x4_m(vbool64_t vm, float *rs1, vuint16mf4_t vs2, vfloat32mf2x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f32mf2x4_m(vm, rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f32m1x4_m(vbool32_t vm, float *rs1, vuint16mf2_t vs2, vfloat32m1x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f32m1x4_m(vm, rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f32m2x4_m(vbool16_t vm, float *rs1, vuint16m1_t vs2, vfloat32m2x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f32m2x4_m(vm, rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f64m1x4_m(vbool64_t vm, double *rs1, vuint16mf4_t vs2, vfloat64m1x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f64m1x4_m(vm, rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg4ei16_v_f64m2x4_m(vbool32_t vm, double *rs1, vuint16mf2_t vs2, vfloat64m2x4_t vs3, size_t vl) {
-  return __riscv_vsuxseg4ei16_v_f64m2x4_m(vm, rs1, vs2, vs3, vl);
 }
 
 void test_vsuxseg4ei16_v_i8mf8x4_m(vbool64_t vm, int8_t *rs1, vuint16mf4_t vs2, vint8mf8x4_t vs3, size_t vl) {
@@ -298,4 +226,4 @@ void test_vsuxseg4ei16_v_u64m1x4_m(vbool64_t vm, uint64_t *rs1, vuint16mf4_t vs2
 void test_vsuxseg4ei16_v_u64m2x4_m(vbool32_t vm, uint64_t *rs1, vuint16mf2_t vs2, vuint64m2x4_t vs3, size_t vl) {
   return __riscv_vsuxseg4ei16_v_u64m2x4_m(vm, rs1, vs2, vs3, vl);
 }
-/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsuxseg4ei16\.[ivxfswum.]+\s+} 74 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vsuxseg4ei16\.[ivxfswum.]+\s+} 56 } } */

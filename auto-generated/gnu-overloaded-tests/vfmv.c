@@ -3,30 +3,6 @@
 
 #include <riscv_vector.h>
 
-_Float16 test_vfmv_f_s_f16mf4_f16(vfloat16mf4_t vs1) {
-  return __riscv_vfmv_f(vs1);
-}
-
-_Float16 test_vfmv_f_s_f16mf2_f16(vfloat16mf2_t vs1) {
-  return __riscv_vfmv_f(vs1);
-}
-
-_Float16 test_vfmv_f_s_f16m1_f16(vfloat16m1_t vs1) {
-  return __riscv_vfmv_f(vs1);
-}
-
-_Float16 test_vfmv_f_s_f16m2_f16(vfloat16m2_t vs1) {
-  return __riscv_vfmv_f(vs1);
-}
-
-_Float16 test_vfmv_f_s_f16m4_f16(vfloat16m4_t vs1) {
-  return __riscv_vfmv_f(vs1);
-}
-
-_Float16 test_vfmv_f_s_f16m8_f16(vfloat16m8_t vs1) {
-  return __riscv_vfmv_f(vs1);
-}
-
 float test_vfmv_f_s_f32mf2_f32(vfloat32mf2_t vs1) {
   return __riscv_vfmv_f(vs1);
 }
@@ -62,4 +38,4 @@ double test_vfmv_f_s_f64m4_f64(vfloat64m4_t vs1) {
 double test_vfmv_f_s_f64m8_f64(vfloat64m8_t vs1) {
   return __riscv_vfmv_f(vs1);
 }
-/* { dg-final { scan-assembler-times {vfmv\.[ivxfswum.]+\s+[,\sa-x0-9()]+} 15 } } */
+/* { dg-final { scan-assembler-times {vfmv\.[ivxfswum.]+\s+[,\sa-x0-9()]+} 9 } } */

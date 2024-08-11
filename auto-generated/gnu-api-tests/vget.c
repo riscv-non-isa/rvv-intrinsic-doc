@@ -3,78 +3,6 @@
 
 #include <riscv_vector.h>
 
-vfloat16m1_t test_vget_v_f16m2_f16m1(vfloat16m2_t src, size_t index) {
-  return __riscv_vget_v_f16m2_f16m1(src, 0);
-}
-
-vfloat16m1_t test_vget_v_f16m4_f16m1(vfloat16m4_t src, size_t index) {
-  return __riscv_vget_v_f16m4_f16m1(src, 0);
-}
-
-vfloat16m1_t test_vget_v_f16m8_f16m1(vfloat16m8_t src, size_t index) {
-  return __riscv_vget_v_f16m8_f16m1(src, 0);
-}
-
-vfloat16m2_t test_vget_v_f16m4_f16m2(vfloat16m4_t src, size_t index) {
-  return __riscv_vget_v_f16m4_f16m2(src, 0);
-}
-
-vfloat16m2_t test_vget_v_f16m8_f16m2(vfloat16m8_t src, size_t index) {
-  return __riscv_vget_v_f16m8_f16m2(src, 0);
-}
-
-vfloat16m4_t test_vget_v_f16m8_f16m4(vfloat16m8_t src, size_t index) {
-  return __riscv_vget_v_f16m8_f16m4(src, 0);
-}
-
-vfloat32m1_t test_vget_v_f32m2_f32m1(vfloat32m2_t src, size_t index) {
-  return __riscv_vget_v_f32m2_f32m1(src, 0);
-}
-
-vfloat32m1_t test_vget_v_f32m4_f32m1(vfloat32m4_t src, size_t index) {
-  return __riscv_vget_v_f32m4_f32m1(src, 0);
-}
-
-vfloat32m1_t test_vget_v_f32m8_f32m1(vfloat32m8_t src, size_t index) {
-  return __riscv_vget_v_f32m8_f32m1(src, 0);
-}
-
-vfloat32m2_t test_vget_v_f32m4_f32m2(vfloat32m4_t src, size_t index) {
-  return __riscv_vget_v_f32m4_f32m2(src, 0);
-}
-
-vfloat32m2_t test_vget_v_f32m8_f32m2(vfloat32m8_t src, size_t index) {
-  return __riscv_vget_v_f32m8_f32m2(src, 0);
-}
-
-vfloat32m4_t test_vget_v_f32m8_f32m4(vfloat32m8_t src, size_t index) {
-  return __riscv_vget_v_f32m8_f32m4(src, 0);
-}
-
-vfloat64m1_t test_vget_v_f64m2_f64m1(vfloat64m2_t src, size_t index) {
-  return __riscv_vget_v_f64m2_f64m1(src, 0);
-}
-
-vfloat64m1_t test_vget_v_f64m4_f64m1(vfloat64m4_t src, size_t index) {
-  return __riscv_vget_v_f64m4_f64m1(src, 0);
-}
-
-vfloat64m1_t test_vget_v_f64m8_f64m1(vfloat64m8_t src, size_t index) {
-  return __riscv_vget_v_f64m8_f64m1(src, 0);
-}
-
-vfloat64m2_t test_vget_v_f64m4_f64m2(vfloat64m4_t src, size_t index) {
-  return __riscv_vget_v_f64m4_f64m2(src, 0);
-}
-
-vfloat64m2_t test_vget_v_f64m8_f64m2(vfloat64m8_t src, size_t index) {
-  return __riscv_vget_v_f64m8_f64m2(src, 0);
-}
-
-vfloat64m4_t test_vget_v_f64m8_f64m4(vfloat64m8_t src, size_t index) {
-  return __riscv_vget_v_f64m8_f64m4(src, 0);
-}
-
 vint8m1_t test_vget_v_i8m2_i8m1(vint8m2_t src, size_t index) {
   return __riscv_vget_v_i8m2_i8m1(src, 0);
 }
@@ -265,222 +193,6 @@ vuint64m2_t test_vget_v_u64m8_u64m2(vuint64m8_t src, size_t index) {
 
 vuint64m4_t test_vget_v_u64m8_u64m4(vuint64m8_t src, size_t index) {
   return __riscv_vget_v_u64m8_u64m4(src, 0);
-}
-
-vfloat16mf4_t test_vget_v_f16mf4x2_f16mf4(vfloat16mf4x2_t src, size_t index) {
-  return __riscv_vget_v_f16mf4x2_f16mf4(src, 0);
-}
-
-vfloat16mf4_t test_vget_v_f16mf4x3_f16mf4(vfloat16mf4x3_t src, size_t index) {
-  return __riscv_vget_v_f16mf4x3_f16mf4(src, 0);
-}
-
-vfloat16mf4_t test_vget_v_f16mf4x4_f16mf4(vfloat16mf4x4_t src, size_t index) {
-  return __riscv_vget_v_f16mf4x4_f16mf4(src, 0);
-}
-
-vfloat16mf4_t test_vget_v_f16mf4x5_f16mf4(vfloat16mf4x5_t src, size_t index) {
-  return __riscv_vget_v_f16mf4x5_f16mf4(src, 0);
-}
-
-vfloat16mf4_t test_vget_v_f16mf4x6_f16mf4(vfloat16mf4x6_t src, size_t index) {
-  return __riscv_vget_v_f16mf4x6_f16mf4(src, 0);
-}
-
-vfloat16mf4_t test_vget_v_f16mf4x7_f16mf4(vfloat16mf4x7_t src, size_t index) {
-  return __riscv_vget_v_f16mf4x7_f16mf4(src, 0);
-}
-
-vfloat16mf4_t test_vget_v_f16mf4x8_f16mf4(vfloat16mf4x8_t src, size_t index) {
-  return __riscv_vget_v_f16mf4x8_f16mf4(src, 0);
-}
-
-vfloat16mf2_t test_vget_v_f16mf2x2_f16mf2(vfloat16mf2x2_t src, size_t index) {
-  return __riscv_vget_v_f16mf2x2_f16mf2(src, 0);
-}
-
-vfloat16mf2_t test_vget_v_f16mf2x3_f16mf2(vfloat16mf2x3_t src, size_t index) {
-  return __riscv_vget_v_f16mf2x3_f16mf2(src, 0);
-}
-
-vfloat16mf2_t test_vget_v_f16mf2x4_f16mf2(vfloat16mf2x4_t src, size_t index) {
-  return __riscv_vget_v_f16mf2x4_f16mf2(src, 0);
-}
-
-vfloat16mf2_t test_vget_v_f16mf2x5_f16mf2(vfloat16mf2x5_t src, size_t index) {
-  return __riscv_vget_v_f16mf2x5_f16mf2(src, 0);
-}
-
-vfloat16mf2_t test_vget_v_f16mf2x6_f16mf2(vfloat16mf2x6_t src, size_t index) {
-  return __riscv_vget_v_f16mf2x6_f16mf2(src, 0);
-}
-
-vfloat16mf2_t test_vget_v_f16mf2x7_f16mf2(vfloat16mf2x7_t src, size_t index) {
-  return __riscv_vget_v_f16mf2x7_f16mf2(src, 0);
-}
-
-vfloat16mf2_t test_vget_v_f16mf2x8_f16mf2(vfloat16mf2x8_t src, size_t index) {
-  return __riscv_vget_v_f16mf2x8_f16mf2(src, 0);
-}
-
-vfloat16m1_t test_vget_v_f16m1x2_f16m1(vfloat16m1x2_t src, size_t index) {
-  return __riscv_vget_v_f16m1x2_f16m1(src, 0);
-}
-
-vfloat16m1_t test_vget_v_f16m1x3_f16m1(vfloat16m1x3_t src, size_t index) {
-  return __riscv_vget_v_f16m1x3_f16m1(src, 0);
-}
-
-vfloat16m1_t test_vget_v_f16m1x4_f16m1(vfloat16m1x4_t src, size_t index) {
-  return __riscv_vget_v_f16m1x4_f16m1(src, 0);
-}
-
-vfloat16m1_t test_vget_v_f16m1x5_f16m1(vfloat16m1x5_t src, size_t index) {
-  return __riscv_vget_v_f16m1x5_f16m1(src, 0);
-}
-
-vfloat16m1_t test_vget_v_f16m1x6_f16m1(vfloat16m1x6_t src, size_t index) {
-  return __riscv_vget_v_f16m1x6_f16m1(src, 0);
-}
-
-vfloat16m1_t test_vget_v_f16m1x7_f16m1(vfloat16m1x7_t src, size_t index) {
-  return __riscv_vget_v_f16m1x7_f16m1(src, 0);
-}
-
-vfloat16m1_t test_vget_v_f16m1x8_f16m1(vfloat16m1x8_t src, size_t index) {
-  return __riscv_vget_v_f16m1x8_f16m1(src, 0);
-}
-
-vfloat16m2_t test_vget_v_f16m2x2_f16m2(vfloat16m2x2_t src, size_t index) {
-  return __riscv_vget_v_f16m2x2_f16m2(src, 0);
-}
-
-vfloat16m2_t test_vget_v_f16m2x3_f16m2(vfloat16m2x3_t src, size_t index) {
-  return __riscv_vget_v_f16m2x3_f16m2(src, 0);
-}
-
-vfloat16m2_t test_vget_v_f16m2x4_f16m2(vfloat16m2x4_t src, size_t index) {
-  return __riscv_vget_v_f16m2x4_f16m2(src, 0);
-}
-
-vfloat16m4_t test_vget_v_f16m4x2_f16m4(vfloat16m4x2_t src, size_t index) {
-  return __riscv_vget_v_f16m4x2_f16m4(src, 0);
-}
-
-vfloat32mf2_t test_vget_v_f32mf2x2_f32mf2(vfloat32mf2x2_t src, size_t index) {
-  return __riscv_vget_v_f32mf2x2_f32mf2(src, 0);
-}
-
-vfloat32mf2_t test_vget_v_f32mf2x3_f32mf2(vfloat32mf2x3_t src, size_t index) {
-  return __riscv_vget_v_f32mf2x3_f32mf2(src, 0);
-}
-
-vfloat32mf2_t test_vget_v_f32mf2x4_f32mf2(vfloat32mf2x4_t src, size_t index) {
-  return __riscv_vget_v_f32mf2x4_f32mf2(src, 0);
-}
-
-vfloat32mf2_t test_vget_v_f32mf2x5_f32mf2(vfloat32mf2x5_t src, size_t index) {
-  return __riscv_vget_v_f32mf2x5_f32mf2(src, 0);
-}
-
-vfloat32mf2_t test_vget_v_f32mf2x6_f32mf2(vfloat32mf2x6_t src, size_t index) {
-  return __riscv_vget_v_f32mf2x6_f32mf2(src, 0);
-}
-
-vfloat32mf2_t test_vget_v_f32mf2x7_f32mf2(vfloat32mf2x7_t src, size_t index) {
-  return __riscv_vget_v_f32mf2x7_f32mf2(src, 0);
-}
-
-vfloat32mf2_t test_vget_v_f32mf2x8_f32mf2(vfloat32mf2x8_t src, size_t index) {
-  return __riscv_vget_v_f32mf2x8_f32mf2(src, 0);
-}
-
-vfloat32m1_t test_vget_v_f32m1x2_f32m1(vfloat32m1x2_t src, size_t index) {
-  return __riscv_vget_v_f32m1x2_f32m1(src, 0);
-}
-
-vfloat32m1_t test_vget_v_f32m1x3_f32m1(vfloat32m1x3_t src, size_t index) {
-  return __riscv_vget_v_f32m1x3_f32m1(src, 0);
-}
-
-vfloat32m1_t test_vget_v_f32m1x4_f32m1(vfloat32m1x4_t src, size_t index) {
-  return __riscv_vget_v_f32m1x4_f32m1(src, 0);
-}
-
-vfloat32m1_t test_vget_v_f32m1x5_f32m1(vfloat32m1x5_t src, size_t index) {
-  return __riscv_vget_v_f32m1x5_f32m1(src, 0);
-}
-
-vfloat32m1_t test_vget_v_f32m1x6_f32m1(vfloat32m1x6_t src, size_t index) {
-  return __riscv_vget_v_f32m1x6_f32m1(src, 0);
-}
-
-vfloat32m1_t test_vget_v_f32m1x7_f32m1(vfloat32m1x7_t src, size_t index) {
-  return __riscv_vget_v_f32m1x7_f32m1(src, 0);
-}
-
-vfloat32m1_t test_vget_v_f32m1x8_f32m1(vfloat32m1x8_t src, size_t index) {
-  return __riscv_vget_v_f32m1x8_f32m1(src, 0);
-}
-
-vfloat32m2_t test_vget_v_f32m2x2_f32m2(vfloat32m2x2_t src, size_t index) {
-  return __riscv_vget_v_f32m2x2_f32m2(src, 0);
-}
-
-vfloat32m2_t test_vget_v_f32m2x3_f32m2(vfloat32m2x3_t src, size_t index) {
-  return __riscv_vget_v_f32m2x3_f32m2(src, 0);
-}
-
-vfloat32m2_t test_vget_v_f32m2x4_f32m2(vfloat32m2x4_t src, size_t index) {
-  return __riscv_vget_v_f32m2x4_f32m2(src, 0);
-}
-
-vfloat32m4_t test_vget_v_f32m4x2_f32m4(vfloat32m4x2_t src, size_t index) {
-  return __riscv_vget_v_f32m4x2_f32m4(src, 0);
-}
-
-vfloat64m1_t test_vget_v_f64m1x2_f64m1(vfloat64m1x2_t src, size_t index) {
-  return __riscv_vget_v_f64m1x2_f64m1(src, 0);
-}
-
-vfloat64m1_t test_vget_v_f64m1x3_f64m1(vfloat64m1x3_t src, size_t index) {
-  return __riscv_vget_v_f64m1x3_f64m1(src, 0);
-}
-
-vfloat64m1_t test_vget_v_f64m1x4_f64m1(vfloat64m1x4_t src, size_t index) {
-  return __riscv_vget_v_f64m1x4_f64m1(src, 0);
-}
-
-vfloat64m1_t test_vget_v_f64m1x5_f64m1(vfloat64m1x5_t src, size_t index) {
-  return __riscv_vget_v_f64m1x5_f64m1(src, 0);
-}
-
-vfloat64m1_t test_vget_v_f64m1x6_f64m1(vfloat64m1x6_t src, size_t index) {
-  return __riscv_vget_v_f64m1x6_f64m1(src, 0);
-}
-
-vfloat64m1_t test_vget_v_f64m1x7_f64m1(vfloat64m1x7_t src, size_t index) {
-  return __riscv_vget_v_f64m1x7_f64m1(src, 0);
-}
-
-vfloat64m1_t test_vget_v_f64m1x8_f64m1(vfloat64m1x8_t src, size_t index) {
-  return __riscv_vget_v_f64m1x8_f64m1(src, 0);
-}
-
-vfloat64m2_t test_vget_v_f64m2x2_f64m2(vfloat64m2x2_t src, size_t index) {
-  return __riscv_vget_v_f64m2x2_f64m2(src, 0);
-}
-
-vfloat64m2_t test_vget_v_f64m2x3_f64m2(vfloat64m2x3_t src, size_t index) {
-  return __riscv_vget_v_f64m2x3_f64m2(src, 0);
-}
-
-vfloat64m2_t test_vget_v_f64m2x4_f64m2(vfloat64m2x4_t src, size_t index) {
-  return __riscv_vget_v_f64m2x4_f64m2(src, 0);
-}
-
-vfloat64m4_t test_vget_v_f64m4x2_f64m4(vfloat64m4x2_t src, size_t index) {
-  return __riscv_vget_v_f64m4x2_f64m4(src, 0);
 }
 
 vint8mf8_t test_vget_v_i8mf8x2_i8mf8(vint8mf8x2_t src, size_t index) {
@@ -1169,5 +881,169 @@ vuint64m2_t test_vget_v_u64m2x4_u64m2(vuint64m2x4_t src, size_t index) {
 
 vuint64m4_t test_vget_v_u64m4x2_u64m4(vuint64m4x2_t src, size_t index) {
   return __riscv_vget_v_u64m4x2_u64m4(src, 0);
+}
+
+vfloat32m1_t test_vget_v_f32m2_f32m1(vfloat32m2_t src, size_t index) {
+  return __riscv_vget_v_f32m2_f32m1(src, 0);
+}
+
+vfloat32m1_t test_vget_v_f32m4_f32m1(vfloat32m4_t src, size_t index) {
+  return __riscv_vget_v_f32m4_f32m1(src, 0);
+}
+
+vfloat32m1_t test_vget_v_f32m8_f32m1(vfloat32m8_t src, size_t index) {
+  return __riscv_vget_v_f32m8_f32m1(src, 0);
+}
+
+vfloat32m2_t test_vget_v_f32m4_f32m2(vfloat32m4_t src, size_t index) {
+  return __riscv_vget_v_f32m4_f32m2(src, 0);
+}
+
+vfloat32m2_t test_vget_v_f32m8_f32m2(vfloat32m8_t src, size_t index) {
+  return __riscv_vget_v_f32m8_f32m2(src, 0);
+}
+
+vfloat32m4_t test_vget_v_f32m8_f32m4(vfloat32m8_t src, size_t index) {
+  return __riscv_vget_v_f32m8_f32m4(src, 0);
+}
+
+vfloat64m1_t test_vget_v_f64m2_f64m1(vfloat64m2_t src, size_t index) {
+  return __riscv_vget_v_f64m2_f64m1(src, 0);
+}
+
+vfloat64m1_t test_vget_v_f64m4_f64m1(vfloat64m4_t src, size_t index) {
+  return __riscv_vget_v_f64m4_f64m1(src, 0);
+}
+
+vfloat64m1_t test_vget_v_f64m8_f64m1(vfloat64m8_t src, size_t index) {
+  return __riscv_vget_v_f64m8_f64m1(src, 0);
+}
+
+vfloat64m2_t test_vget_v_f64m4_f64m2(vfloat64m4_t src, size_t index) {
+  return __riscv_vget_v_f64m4_f64m2(src, 0);
+}
+
+vfloat64m2_t test_vget_v_f64m8_f64m2(vfloat64m8_t src, size_t index) {
+  return __riscv_vget_v_f64m8_f64m2(src, 0);
+}
+
+vfloat64m4_t test_vget_v_f64m8_f64m4(vfloat64m8_t src, size_t index) {
+  return __riscv_vget_v_f64m8_f64m4(src, 0);
+}
+
+vfloat32mf2_t test_vget_v_f32mf2x2_f32mf2(vfloat32mf2x2_t src, size_t index) {
+  return __riscv_vget_v_f32mf2x2_f32mf2(src, 0);
+}
+
+vfloat32mf2_t test_vget_v_f32mf2x3_f32mf2(vfloat32mf2x3_t src, size_t index) {
+  return __riscv_vget_v_f32mf2x3_f32mf2(src, 0);
+}
+
+vfloat32mf2_t test_vget_v_f32mf2x4_f32mf2(vfloat32mf2x4_t src, size_t index) {
+  return __riscv_vget_v_f32mf2x4_f32mf2(src, 0);
+}
+
+vfloat32mf2_t test_vget_v_f32mf2x5_f32mf2(vfloat32mf2x5_t src, size_t index) {
+  return __riscv_vget_v_f32mf2x5_f32mf2(src, 0);
+}
+
+vfloat32mf2_t test_vget_v_f32mf2x6_f32mf2(vfloat32mf2x6_t src, size_t index) {
+  return __riscv_vget_v_f32mf2x6_f32mf2(src, 0);
+}
+
+vfloat32mf2_t test_vget_v_f32mf2x7_f32mf2(vfloat32mf2x7_t src, size_t index) {
+  return __riscv_vget_v_f32mf2x7_f32mf2(src, 0);
+}
+
+vfloat32mf2_t test_vget_v_f32mf2x8_f32mf2(vfloat32mf2x8_t src, size_t index) {
+  return __riscv_vget_v_f32mf2x8_f32mf2(src, 0);
+}
+
+vfloat32m1_t test_vget_v_f32m1x2_f32m1(vfloat32m1x2_t src, size_t index) {
+  return __riscv_vget_v_f32m1x2_f32m1(src, 0);
+}
+
+vfloat32m1_t test_vget_v_f32m1x3_f32m1(vfloat32m1x3_t src, size_t index) {
+  return __riscv_vget_v_f32m1x3_f32m1(src, 0);
+}
+
+vfloat32m1_t test_vget_v_f32m1x4_f32m1(vfloat32m1x4_t src, size_t index) {
+  return __riscv_vget_v_f32m1x4_f32m1(src, 0);
+}
+
+vfloat32m1_t test_vget_v_f32m1x5_f32m1(vfloat32m1x5_t src, size_t index) {
+  return __riscv_vget_v_f32m1x5_f32m1(src, 0);
+}
+
+vfloat32m1_t test_vget_v_f32m1x6_f32m1(vfloat32m1x6_t src, size_t index) {
+  return __riscv_vget_v_f32m1x6_f32m1(src, 0);
+}
+
+vfloat32m1_t test_vget_v_f32m1x7_f32m1(vfloat32m1x7_t src, size_t index) {
+  return __riscv_vget_v_f32m1x7_f32m1(src, 0);
+}
+
+vfloat32m1_t test_vget_v_f32m1x8_f32m1(vfloat32m1x8_t src, size_t index) {
+  return __riscv_vget_v_f32m1x8_f32m1(src, 0);
+}
+
+vfloat32m2_t test_vget_v_f32m2x2_f32m2(vfloat32m2x2_t src, size_t index) {
+  return __riscv_vget_v_f32m2x2_f32m2(src, 0);
+}
+
+vfloat32m2_t test_vget_v_f32m2x3_f32m2(vfloat32m2x3_t src, size_t index) {
+  return __riscv_vget_v_f32m2x3_f32m2(src, 0);
+}
+
+vfloat32m2_t test_vget_v_f32m2x4_f32m2(vfloat32m2x4_t src, size_t index) {
+  return __riscv_vget_v_f32m2x4_f32m2(src, 0);
+}
+
+vfloat32m4_t test_vget_v_f32m4x2_f32m4(vfloat32m4x2_t src, size_t index) {
+  return __riscv_vget_v_f32m4x2_f32m4(src, 0);
+}
+
+vfloat64m1_t test_vget_v_f64m1x2_f64m1(vfloat64m1x2_t src, size_t index) {
+  return __riscv_vget_v_f64m1x2_f64m1(src, 0);
+}
+
+vfloat64m1_t test_vget_v_f64m1x3_f64m1(vfloat64m1x3_t src, size_t index) {
+  return __riscv_vget_v_f64m1x3_f64m1(src, 0);
+}
+
+vfloat64m1_t test_vget_v_f64m1x4_f64m1(vfloat64m1x4_t src, size_t index) {
+  return __riscv_vget_v_f64m1x4_f64m1(src, 0);
+}
+
+vfloat64m1_t test_vget_v_f64m1x5_f64m1(vfloat64m1x5_t src, size_t index) {
+  return __riscv_vget_v_f64m1x5_f64m1(src, 0);
+}
+
+vfloat64m1_t test_vget_v_f64m1x6_f64m1(vfloat64m1x6_t src, size_t index) {
+  return __riscv_vget_v_f64m1x6_f64m1(src, 0);
+}
+
+vfloat64m1_t test_vget_v_f64m1x7_f64m1(vfloat64m1x7_t src, size_t index) {
+  return __riscv_vget_v_f64m1x7_f64m1(src, 0);
+}
+
+vfloat64m1_t test_vget_v_f64m1x8_f64m1(vfloat64m1x8_t src, size_t index) {
+  return __riscv_vget_v_f64m1x8_f64m1(src, 0);
+}
+
+vfloat64m2_t test_vget_v_f64m2x2_f64m2(vfloat64m2x2_t src, size_t index) {
+  return __riscv_vget_v_f64m2x2_f64m2(src, 0);
+}
+
+vfloat64m2_t test_vget_v_f64m2x3_f64m2(vfloat64m2x3_t src, size_t index) {
+  return __riscv_vget_v_f64m2x3_f64m2(src, 0);
+}
+
+vfloat64m2_t test_vget_v_f64m2x4_f64m2(vfloat64m2x4_t src, size_t index) {
+  return __riscv_vget_v_f64m2x4_f64m2(src, 0);
+}
+
+vfloat64m4_t test_vget_v_f64m4x2_f64m4(vfloat64m4x2_t src, size_t index) {
+  return __riscv_vget_v_f64m4x2_f64m4(src, 0);
 }
 /* { dg-final { scan-assembler-times {vl[124]re[0-9]*\.v\s+v[124],0\([a-z0-9]*\)\s+vs[124]r\.+[ivxfswum.]*\s+} 187 } } */

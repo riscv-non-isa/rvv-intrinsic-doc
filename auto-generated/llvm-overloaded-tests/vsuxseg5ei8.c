@@ -1,40 +1,9 @@
 // REQUIRES: riscv-registered-target
-// RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zfh \
-// RUN:   -target-feature +experimental-zvfh -disable-O0-optnone \
+// RUN: %clang_cc1 -triple riscv64 -target-feature +v -disable-O0-optnone \
 // RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
 // RUN:   FileCheck --check-prefix=CHECK-RV64 %s
 
 #include <riscv_vector.h>
-
-void test_vsuxseg5ei8_v_f16mf4x5(_Float16 *rs1, vuint8mf8_t vs2,
-                                 vfloat16mf4x5_t vs3, size_t vl) {
-  return __riscv_vsuxseg5ei8(rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg5ei8_v_f16mf2x5(_Float16 *rs1, vuint8mf4_t vs2,
-                                 vfloat16mf2x5_t vs3, size_t vl) {
-  return __riscv_vsuxseg5ei8(rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg5ei8_v_f16m1x5(_Float16 *rs1, vuint8mf2_t vs2,
-                                vfloat16m1x5_t vs3, size_t vl) {
-  return __riscv_vsuxseg5ei8(rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg5ei8_v_f32mf2x5(float *rs1, vuint8mf8_t vs2,
-                                 vfloat32mf2x5_t vs3, size_t vl) {
-  return __riscv_vsuxseg5ei8(rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg5ei8_v_f32m1x5(float *rs1, vuint8mf4_t vs2, vfloat32m1x5_t vs3,
-                                size_t vl) {
-  return __riscv_vsuxseg5ei8(rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg5ei8_v_f64m1x5(double *rs1, vuint8mf8_t vs2,
-                                vfloat64m1x5_t vs3, size_t vl) {
-  return __riscv_vsuxseg5ei8(rs1, vs2, vs3, vl);
-}
 
 void test_vsuxseg5ei8_v_i8mf8x5(int8_t *rs1, vuint8mf8_t vs2, vint8mf8x5_t vs3,
                                 size_t vl) {
@@ -134,36 +103,6 @@ void test_vsuxseg5ei8_v_u32m1x5(uint32_t *rs1, vuint8mf4_t vs2,
 void test_vsuxseg5ei8_v_u64m1x5(uint64_t *rs1, vuint8mf8_t vs2,
                                 vuint64m1x5_t vs3, size_t vl) {
   return __riscv_vsuxseg5ei8(rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg5ei8_v_f16mf4x5_m(vbool64_t vm, _Float16 *rs1, vuint8mf8_t vs2,
-                                   vfloat16mf4x5_t vs3, size_t vl) {
-  return __riscv_vsuxseg5ei8(vm, rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg5ei8_v_f16mf2x5_m(vbool32_t vm, _Float16 *rs1, vuint8mf4_t vs2,
-                                   vfloat16mf2x5_t vs3, size_t vl) {
-  return __riscv_vsuxseg5ei8(vm, rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg5ei8_v_f16m1x5_m(vbool16_t vm, _Float16 *rs1, vuint8mf2_t vs2,
-                                  vfloat16m1x5_t vs3, size_t vl) {
-  return __riscv_vsuxseg5ei8(vm, rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg5ei8_v_f32mf2x5_m(vbool64_t vm, float *rs1, vuint8mf8_t vs2,
-                                   vfloat32mf2x5_t vs3, size_t vl) {
-  return __riscv_vsuxseg5ei8(vm, rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg5ei8_v_f32m1x5_m(vbool32_t vm, float *rs1, vuint8mf4_t vs2,
-                                  vfloat32m1x5_t vs3, size_t vl) {
-  return __riscv_vsuxseg5ei8(vm, rs1, vs2, vs3, vl);
-}
-
-void test_vsuxseg5ei8_v_f64m1x5_m(vbool64_t vm, double *rs1, vuint8mf8_t vs2,
-                                  vfloat64m1x5_t vs3, size_t vl) {
-  return __riscv_vsuxseg5ei8(vm, rs1, vs2, vs3, vl);
 }
 
 void test_vsuxseg5ei8_v_i8mf8x5_m(vbool64_t vm, int8_t *rs1, vuint8mf8_t vs2,

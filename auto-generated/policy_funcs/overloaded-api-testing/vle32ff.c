@@ -1,31 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-vfloat32mf2_t test_vle32ff_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
-                                       size_t *new_vl, size_t vl) {
-  return __riscv_vle32ff_tu(vd, rs1, new_vl, vl);
-}
-
-vfloat32m1_t test_vle32ff_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
-                                     size_t *new_vl, size_t vl) {
-  return __riscv_vle32ff_tu(vd, rs1, new_vl, vl);
-}
-
-vfloat32m2_t test_vle32ff_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
-                                     size_t *new_vl, size_t vl) {
-  return __riscv_vle32ff_tu(vd, rs1, new_vl, vl);
-}
-
-vfloat32m4_t test_vle32ff_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
-                                     size_t *new_vl, size_t vl) {
-  return __riscv_vle32ff_tu(vd, rs1, new_vl, vl);
-}
-
-vfloat32m8_t test_vle32ff_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
-                                     size_t *new_vl, size_t vl) {
-  return __riscv_vle32ff_tu(vd, rs1, new_vl, vl);
-}
-
 vint32mf2_t test_vle32ff_v_i32mf2_tu(vint32mf2_t vd, const int32_t *rs1,
                                      size_t *new_vl, size_t vl) {
   return __riscv_vle32ff_tu(vd, rs1, new_vl, vl);
@@ -74,36 +49,6 @@ vuint32m4_t test_vle32ff_v_u32m4_tu(vuint32m4_t vd, const uint32_t *rs1,
 vuint32m8_t test_vle32ff_v_u32m8_tu(vuint32m8_t vd, const uint32_t *rs1,
                                     size_t *new_vl, size_t vl) {
   return __riscv_vle32ff_tu(vd, rs1, new_vl, vl);
-}
-
-vfloat32mf2_t test_vle32ff_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
-                                        const float *rs1, size_t *new_vl,
-                                        size_t vl) {
-  return __riscv_vle32ff_tum(vm, vd, rs1, new_vl, vl);
-}
-
-vfloat32m1_t test_vle32ff_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
-                                      const float *rs1, size_t *new_vl,
-                                      size_t vl) {
-  return __riscv_vle32ff_tum(vm, vd, rs1, new_vl, vl);
-}
-
-vfloat32m2_t test_vle32ff_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
-                                      const float *rs1, size_t *new_vl,
-                                      size_t vl) {
-  return __riscv_vle32ff_tum(vm, vd, rs1, new_vl, vl);
-}
-
-vfloat32m4_t test_vle32ff_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
-                                      const float *rs1, size_t *new_vl,
-                                      size_t vl) {
-  return __riscv_vle32ff_tum(vm, vd, rs1, new_vl, vl);
-}
-
-vfloat32m8_t test_vle32ff_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
-                                      const float *rs1, size_t *new_vl,
-                                      size_t vl) {
-  return __riscv_vle32ff_tum(vm, vd, rs1, new_vl, vl);
 }
 
 vint32mf2_t test_vle32ff_v_i32mf2_tum(vbool64_t vm, vint32mf2_t vd,
@@ -166,36 +111,6 @@ vuint32m8_t test_vle32ff_v_u32m8_tum(vbool4_t vm, vuint32m8_t vd,
   return __riscv_vle32ff_tum(vm, vd, rs1, new_vl, vl);
 }
 
-vfloat32mf2_t test_vle32ff_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
-                                         const float *rs1, size_t *new_vl,
-                                         size_t vl) {
-  return __riscv_vle32ff_tumu(vm, vd, rs1, new_vl, vl);
-}
-
-vfloat32m1_t test_vle32ff_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
-                                       const float *rs1, size_t *new_vl,
-                                       size_t vl) {
-  return __riscv_vle32ff_tumu(vm, vd, rs1, new_vl, vl);
-}
-
-vfloat32m2_t test_vle32ff_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
-                                       const float *rs1, size_t *new_vl,
-                                       size_t vl) {
-  return __riscv_vle32ff_tumu(vm, vd, rs1, new_vl, vl);
-}
-
-vfloat32m4_t test_vle32ff_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
-                                       const float *rs1, size_t *new_vl,
-                                       size_t vl) {
-  return __riscv_vle32ff_tumu(vm, vd, rs1, new_vl, vl);
-}
-
-vfloat32m8_t test_vle32ff_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
-                                       const float *rs1, size_t *new_vl,
-                                       size_t vl) {
-  return __riscv_vle32ff_tumu(vm, vd, rs1, new_vl, vl);
-}
-
 vint32mf2_t test_vle32ff_v_i32mf2_tumu(vbool64_t vm, vint32mf2_t vd,
                                        const int32_t *rs1, size_t *new_vl,
                                        size_t vl) {
@@ -256,36 +171,6 @@ vuint32m8_t test_vle32ff_v_u32m8_tumu(vbool4_t vm, vuint32m8_t vd,
   return __riscv_vle32ff_tumu(vm, vd, rs1, new_vl, vl);
 }
 
-vfloat32mf2_t test_vle32ff_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
-                                       const float *rs1, size_t *new_vl,
-                                       size_t vl) {
-  return __riscv_vle32ff_mu(vm, vd, rs1, new_vl, vl);
-}
-
-vfloat32m1_t test_vle32ff_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
-                                     const float *rs1, size_t *new_vl,
-                                     size_t vl) {
-  return __riscv_vle32ff_mu(vm, vd, rs1, new_vl, vl);
-}
-
-vfloat32m2_t test_vle32ff_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
-                                     const float *rs1, size_t *new_vl,
-                                     size_t vl) {
-  return __riscv_vle32ff_mu(vm, vd, rs1, new_vl, vl);
-}
-
-vfloat32m4_t test_vle32ff_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
-                                     const float *rs1, size_t *new_vl,
-                                     size_t vl) {
-  return __riscv_vle32ff_mu(vm, vd, rs1, new_vl, vl);
-}
-
-vfloat32m8_t test_vle32ff_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
-                                     const float *rs1, size_t *new_vl,
-                                     size_t vl) {
-  return __riscv_vle32ff_mu(vm, vd, rs1, new_vl, vl);
-}
-
 vint32mf2_t test_vle32ff_v_i32mf2_mu(vbool64_t vm, vint32mf2_t vd,
                                      const int32_t *rs1, size_t *new_vl,
                                      size_t vl) {
@@ -343,5 +228,120 @@ vuint32m4_t test_vle32ff_v_u32m4_mu(vbool8_t vm, vuint32m4_t vd,
 vuint32m8_t test_vle32ff_v_u32m8_mu(vbool4_t vm, vuint32m8_t vd,
                                     const uint32_t *rs1, size_t *new_vl,
                                     size_t vl) {
+  return __riscv_vle32ff_mu(vm, vd, rs1, new_vl, vl);
+}
+
+vfloat32mf2_t test_vle32ff_v_f32mf2_tu(vfloat32mf2_t vd, const float *rs1,
+                                       size_t *new_vl, size_t vl) {
+  return __riscv_vle32ff_tu(vd, rs1, new_vl, vl);
+}
+
+vfloat32m1_t test_vle32ff_v_f32m1_tu(vfloat32m1_t vd, const float *rs1,
+                                     size_t *new_vl, size_t vl) {
+  return __riscv_vle32ff_tu(vd, rs1, new_vl, vl);
+}
+
+vfloat32m2_t test_vle32ff_v_f32m2_tu(vfloat32m2_t vd, const float *rs1,
+                                     size_t *new_vl, size_t vl) {
+  return __riscv_vle32ff_tu(vd, rs1, new_vl, vl);
+}
+
+vfloat32m4_t test_vle32ff_v_f32m4_tu(vfloat32m4_t vd, const float *rs1,
+                                     size_t *new_vl, size_t vl) {
+  return __riscv_vle32ff_tu(vd, rs1, new_vl, vl);
+}
+
+vfloat32m8_t test_vle32ff_v_f32m8_tu(vfloat32m8_t vd, const float *rs1,
+                                     size_t *new_vl, size_t vl) {
+  return __riscv_vle32ff_tu(vd, rs1, new_vl, vl);
+}
+
+vfloat32mf2_t test_vle32ff_v_f32mf2_tum(vbool64_t vm, vfloat32mf2_t vd,
+                                        const float *rs1, size_t *new_vl,
+                                        size_t vl) {
+  return __riscv_vle32ff_tum(vm, vd, rs1, new_vl, vl);
+}
+
+vfloat32m1_t test_vle32ff_v_f32m1_tum(vbool32_t vm, vfloat32m1_t vd,
+                                      const float *rs1, size_t *new_vl,
+                                      size_t vl) {
+  return __riscv_vle32ff_tum(vm, vd, rs1, new_vl, vl);
+}
+
+vfloat32m2_t test_vle32ff_v_f32m2_tum(vbool16_t vm, vfloat32m2_t vd,
+                                      const float *rs1, size_t *new_vl,
+                                      size_t vl) {
+  return __riscv_vle32ff_tum(vm, vd, rs1, new_vl, vl);
+}
+
+vfloat32m4_t test_vle32ff_v_f32m4_tum(vbool8_t vm, vfloat32m4_t vd,
+                                      const float *rs1, size_t *new_vl,
+                                      size_t vl) {
+  return __riscv_vle32ff_tum(vm, vd, rs1, new_vl, vl);
+}
+
+vfloat32m8_t test_vle32ff_v_f32m8_tum(vbool4_t vm, vfloat32m8_t vd,
+                                      const float *rs1, size_t *new_vl,
+                                      size_t vl) {
+  return __riscv_vle32ff_tum(vm, vd, rs1, new_vl, vl);
+}
+
+vfloat32mf2_t test_vle32ff_v_f32mf2_tumu(vbool64_t vm, vfloat32mf2_t vd,
+                                         const float *rs1, size_t *new_vl,
+                                         size_t vl) {
+  return __riscv_vle32ff_tumu(vm, vd, rs1, new_vl, vl);
+}
+
+vfloat32m1_t test_vle32ff_v_f32m1_tumu(vbool32_t vm, vfloat32m1_t vd,
+                                       const float *rs1, size_t *new_vl,
+                                       size_t vl) {
+  return __riscv_vle32ff_tumu(vm, vd, rs1, new_vl, vl);
+}
+
+vfloat32m2_t test_vle32ff_v_f32m2_tumu(vbool16_t vm, vfloat32m2_t vd,
+                                       const float *rs1, size_t *new_vl,
+                                       size_t vl) {
+  return __riscv_vle32ff_tumu(vm, vd, rs1, new_vl, vl);
+}
+
+vfloat32m4_t test_vle32ff_v_f32m4_tumu(vbool8_t vm, vfloat32m4_t vd,
+                                       const float *rs1, size_t *new_vl,
+                                       size_t vl) {
+  return __riscv_vle32ff_tumu(vm, vd, rs1, new_vl, vl);
+}
+
+vfloat32m8_t test_vle32ff_v_f32m8_tumu(vbool4_t vm, vfloat32m8_t vd,
+                                       const float *rs1, size_t *new_vl,
+                                       size_t vl) {
+  return __riscv_vle32ff_tumu(vm, vd, rs1, new_vl, vl);
+}
+
+vfloat32mf2_t test_vle32ff_v_f32mf2_mu(vbool64_t vm, vfloat32mf2_t vd,
+                                       const float *rs1, size_t *new_vl,
+                                       size_t vl) {
+  return __riscv_vle32ff_mu(vm, vd, rs1, new_vl, vl);
+}
+
+vfloat32m1_t test_vle32ff_v_f32m1_mu(vbool32_t vm, vfloat32m1_t vd,
+                                     const float *rs1, size_t *new_vl,
+                                     size_t vl) {
+  return __riscv_vle32ff_mu(vm, vd, rs1, new_vl, vl);
+}
+
+vfloat32m2_t test_vle32ff_v_f32m2_mu(vbool16_t vm, vfloat32m2_t vd,
+                                     const float *rs1, size_t *new_vl,
+                                     size_t vl) {
+  return __riscv_vle32ff_mu(vm, vd, rs1, new_vl, vl);
+}
+
+vfloat32m4_t test_vle32ff_v_f32m4_mu(vbool8_t vm, vfloat32m4_t vd,
+                                     const float *rs1, size_t *new_vl,
+                                     size_t vl) {
+  return __riscv_vle32ff_mu(vm, vd, rs1, new_vl, vl);
+}
+
+vfloat32m8_t test_vle32ff_v_f32m8_mu(vbool4_t vm, vfloat32m8_t vd,
+                                     const float *rs1, size_t *new_vl,
+                                     size_t vl) {
   return __riscv_vle32ff_mu(vm, vd, rs1, new_vl, vl);
 }

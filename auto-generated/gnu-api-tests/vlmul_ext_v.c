@@ -3,130 +3,6 @@
 
 #include <riscv_vector.h>
 
-vfloat16mf2_t test_vlmul_ext_v_f16mf4_f16mf2(vfloat16mf4_t value) {
-  return __riscv_vlmul_ext_v_f16mf4_f16mf2(value);
-}
-
-vfloat16m1_t test_vlmul_ext_v_f16mf4_f16m1(vfloat16mf4_t value) {
-  return __riscv_vlmul_ext_v_f16mf4_f16m1(value);
-}
-
-vfloat16m2_t test_vlmul_ext_v_f16mf4_f16m2(vfloat16mf4_t value) {
-  return __riscv_vlmul_ext_v_f16mf4_f16m2(value);
-}
-
-vfloat16m4_t test_vlmul_ext_v_f16mf4_f16m4(vfloat16mf4_t value) {
-  return __riscv_vlmul_ext_v_f16mf4_f16m4(value);
-}
-
-vfloat16m8_t test_vlmul_ext_v_f16mf4_f16m8(vfloat16mf4_t value) {
-  return __riscv_vlmul_ext_v_f16mf4_f16m8(value);
-}
-
-vfloat16m1_t test_vlmul_ext_v_f16mf2_f16m1(vfloat16mf2_t value) {
-  return __riscv_vlmul_ext_v_f16mf2_f16m1(value);
-}
-
-vfloat16m2_t test_vlmul_ext_v_f16mf2_f16m2(vfloat16mf2_t value) {
-  return __riscv_vlmul_ext_v_f16mf2_f16m2(value);
-}
-
-vfloat16m4_t test_vlmul_ext_v_f16mf2_f16m4(vfloat16mf2_t value) {
-  return __riscv_vlmul_ext_v_f16mf2_f16m4(value);
-}
-
-vfloat16m8_t test_vlmul_ext_v_f16mf2_f16m8(vfloat16mf2_t value) {
-  return __riscv_vlmul_ext_v_f16mf2_f16m8(value);
-}
-
-vfloat16m2_t test_vlmul_ext_v_f16m1_f16m2(vfloat16m1_t value) {
-  return __riscv_vlmul_ext_v_f16m1_f16m2(value);
-}
-
-vfloat16m4_t test_vlmul_ext_v_f16m1_f16m4(vfloat16m1_t value) {
-  return __riscv_vlmul_ext_v_f16m1_f16m4(value);
-}
-
-vfloat16m8_t test_vlmul_ext_v_f16m1_f16m8(vfloat16m1_t value) {
-  return __riscv_vlmul_ext_v_f16m1_f16m8(value);
-}
-
-vfloat16m4_t test_vlmul_ext_v_f16m2_f16m4(vfloat16m2_t value) {
-  return __riscv_vlmul_ext_v_f16m2_f16m4(value);
-}
-
-vfloat16m8_t test_vlmul_ext_v_f16m2_f16m8(vfloat16m2_t value) {
-  return __riscv_vlmul_ext_v_f16m2_f16m8(value);
-}
-
-vfloat16m8_t test_vlmul_ext_v_f16m4_f16m8(vfloat16m4_t value) {
-  return __riscv_vlmul_ext_v_f16m4_f16m8(value);
-}
-
-vfloat32m1_t test_vlmul_ext_v_f32mf2_f32m1(vfloat32mf2_t value) {
-  return __riscv_vlmul_ext_v_f32mf2_f32m1(value);
-}
-
-vfloat32m2_t test_vlmul_ext_v_f32mf2_f32m2(vfloat32mf2_t value) {
-  return __riscv_vlmul_ext_v_f32mf2_f32m2(value);
-}
-
-vfloat32m4_t test_vlmul_ext_v_f32mf2_f32m4(vfloat32mf2_t value) {
-  return __riscv_vlmul_ext_v_f32mf2_f32m4(value);
-}
-
-vfloat32m8_t test_vlmul_ext_v_f32mf2_f32m8(vfloat32mf2_t value) {
-  return __riscv_vlmul_ext_v_f32mf2_f32m8(value);
-}
-
-vfloat32m2_t test_vlmul_ext_v_f32m1_f32m2(vfloat32m1_t value) {
-  return __riscv_vlmul_ext_v_f32m1_f32m2(value);
-}
-
-vfloat32m4_t test_vlmul_ext_v_f32m1_f32m4(vfloat32m1_t value) {
-  return __riscv_vlmul_ext_v_f32m1_f32m4(value);
-}
-
-vfloat32m8_t test_vlmul_ext_v_f32m1_f32m8(vfloat32m1_t value) {
-  return __riscv_vlmul_ext_v_f32m1_f32m8(value);
-}
-
-vfloat32m4_t test_vlmul_ext_v_f32m2_f32m4(vfloat32m2_t value) {
-  return __riscv_vlmul_ext_v_f32m2_f32m4(value);
-}
-
-vfloat32m8_t test_vlmul_ext_v_f32m2_f32m8(vfloat32m2_t value) {
-  return __riscv_vlmul_ext_v_f32m2_f32m8(value);
-}
-
-vfloat32m8_t test_vlmul_ext_v_f32m4_f32m8(vfloat32m4_t value) {
-  return __riscv_vlmul_ext_v_f32m4_f32m8(value);
-}
-
-vfloat64m2_t test_vlmul_ext_v_f64m1_f64m2(vfloat64m1_t value) {
-  return __riscv_vlmul_ext_v_f64m1_f64m2(value);
-}
-
-vfloat64m4_t test_vlmul_ext_v_f64m1_f64m4(vfloat64m1_t value) {
-  return __riscv_vlmul_ext_v_f64m1_f64m4(value);
-}
-
-vfloat64m8_t test_vlmul_ext_v_f64m1_f64m8(vfloat64m1_t value) {
-  return __riscv_vlmul_ext_v_f64m1_f64m8(value);
-}
-
-vfloat64m4_t test_vlmul_ext_v_f64m2_f64m4(vfloat64m2_t value) {
-  return __riscv_vlmul_ext_v_f64m2_f64m4(value);
-}
-
-vfloat64m8_t test_vlmul_ext_v_f64m2_f64m8(vfloat64m2_t value) {
-  return __riscv_vlmul_ext_v_f64m2_f64m8(value);
-}
-
-vfloat64m8_t test_vlmul_ext_v_f64m4_f64m8(vfloat64m4_t value) {
-  return __riscv_vlmul_ext_v_f64m4_f64m8(value);
-}
-
 vint8mf4_t test_vlmul_ext_v_i8mf8_i8mf4(vint8mf8_t value) {
   return __riscv_vlmul_ext_v_i8mf8_i8mf4(value);
 }
@@ -542,4 +418,68 @@ vuint64m8_t test_vlmul_ext_v_u64m2_u64m8(vuint64m2_t value) {
 vuint64m8_t test_vlmul_ext_v_u64m4_u64m8(vuint64m4_t value) {
   return __riscv_vlmul_ext_v_u64m4_u64m8(value);
 }
-/* { dg-final { scan-assembler-times {vs[1248e][r123468]+\.[ivxfswum.]+\s+[,\sa-x0-9()]+} 135 } } */
+
+vfloat32m1_t test_vlmul_ext_v_f32mf2_f32m1(vfloat32mf2_t value) {
+  return __riscv_vlmul_ext_v_f32mf2_f32m1(value);
+}
+
+vfloat32m2_t test_vlmul_ext_v_f32mf2_f32m2(vfloat32mf2_t value) {
+  return __riscv_vlmul_ext_v_f32mf2_f32m2(value);
+}
+
+vfloat32m4_t test_vlmul_ext_v_f32mf2_f32m4(vfloat32mf2_t value) {
+  return __riscv_vlmul_ext_v_f32mf2_f32m4(value);
+}
+
+vfloat32m8_t test_vlmul_ext_v_f32mf2_f32m8(vfloat32mf2_t value) {
+  return __riscv_vlmul_ext_v_f32mf2_f32m8(value);
+}
+
+vfloat32m2_t test_vlmul_ext_v_f32m1_f32m2(vfloat32m1_t value) {
+  return __riscv_vlmul_ext_v_f32m1_f32m2(value);
+}
+
+vfloat32m4_t test_vlmul_ext_v_f32m1_f32m4(vfloat32m1_t value) {
+  return __riscv_vlmul_ext_v_f32m1_f32m4(value);
+}
+
+vfloat32m8_t test_vlmul_ext_v_f32m1_f32m8(vfloat32m1_t value) {
+  return __riscv_vlmul_ext_v_f32m1_f32m8(value);
+}
+
+vfloat32m4_t test_vlmul_ext_v_f32m2_f32m4(vfloat32m2_t value) {
+  return __riscv_vlmul_ext_v_f32m2_f32m4(value);
+}
+
+vfloat32m8_t test_vlmul_ext_v_f32m2_f32m8(vfloat32m2_t value) {
+  return __riscv_vlmul_ext_v_f32m2_f32m8(value);
+}
+
+vfloat32m8_t test_vlmul_ext_v_f32m4_f32m8(vfloat32m4_t value) {
+  return __riscv_vlmul_ext_v_f32m4_f32m8(value);
+}
+
+vfloat64m2_t test_vlmul_ext_v_f64m1_f64m2(vfloat64m1_t value) {
+  return __riscv_vlmul_ext_v_f64m1_f64m2(value);
+}
+
+vfloat64m4_t test_vlmul_ext_v_f64m1_f64m4(vfloat64m1_t value) {
+  return __riscv_vlmul_ext_v_f64m1_f64m4(value);
+}
+
+vfloat64m8_t test_vlmul_ext_v_f64m1_f64m8(vfloat64m1_t value) {
+  return __riscv_vlmul_ext_v_f64m1_f64m8(value);
+}
+
+vfloat64m4_t test_vlmul_ext_v_f64m2_f64m4(vfloat64m2_t value) {
+  return __riscv_vlmul_ext_v_f64m2_f64m4(value);
+}
+
+vfloat64m8_t test_vlmul_ext_v_f64m2_f64m8(vfloat64m2_t value) {
+  return __riscv_vlmul_ext_v_f64m2_f64m8(value);
+}
+
+vfloat64m8_t test_vlmul_ext_v_f64m4_f64m8(vfloat64m4_t value) {
+  return __riscv_vlmul_ext_v_f64m4_f64m8(value);
+}
+/* { dg-final { scan-assembler-times {vs[1248e][r123468]+\.[ivxfswum.]+\s+[,\sa-x0-9()]+} 120 } } */

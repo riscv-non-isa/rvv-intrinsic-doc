@@ -1,144 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-vfloat16mf4_t test_vrgather_vv_f16mf4(vfloat16mf4_t vs2, vuint16mf4_t vs1,
-                                      size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat16mf4_t test_vrgather_vx_f16mf4(vfloat16mf4_t vs2, size_t vs1,
-                                      size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat16mf2_t test_vrgather_vv_f16mf2(vfloat16mf2_t vs2, vuint16mf2_t vs1,
-                                      size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat16mf2_t test_vrgather_vx_f16mf2(vfloat16mf2_t vs2, size_t vs1,
-                                      size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat16m1_t test_vrgather_vv_f16m1(vfloat16m1_t vs2, vuint16m1_t vs1,
-                                    size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat16m1_t test_vrgather_vx_f16m1(vfloat16m1_t vs2, size_t vs1, size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat16m2_t test_vrgather_vv_f16m2(vfloat16m2_t vs2, vuint16m2_t vs1,
-                                    size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat16m2_t test_vrgather_vx_f16m2(vfloat16m2_t vs2, size_t vs1, size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat16m4_t test_vrgather_vv_f16m4(vfloat16m4_t vs2, vuint16m4_t vs1,
-                                    size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat16m4_t test_vrgather_vx_f16m4(vfloat16m4_t vs2, size_t vs1, size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat16m8_t test_vrgather_vv_f16m8(vfloat16m8_t vs2, vuint16m8_t vs1,
-                                    size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat16m8_t test_vrgather_vx_f16m8(vfloat16m8_t vs2, size_t vs1, size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat32mf2_t test_vrgather_vv_f32mf2(vfloat32mf2_t vs2, vuint32mf2_t vs1,
-                                      size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat32mf2_t test_vrgather_vx_f32mf2(vfloat32mf2_t vs2, size_t vs1,
-                                      size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat32m1_t test_vrgather_vv_f32m1(vfloat32m1_t vs2, vuint32m1_t vs1,
-                                    size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat32m1_t test_vrgather_vx_f32m1(vfloat32m1_t vs2, size_t vs1, size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat32m2_t test_vrgather_vv_f32m2(vfloat32m2_t vs2, vuint32m2_t vs1,
-                                    size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat32m2_t test_vrgather_vx_f32m2(vfloat32m2_t vs2, size_t vs1, size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat32m4_t test_vrgather_vv_f32m4(vfloat32m4_t vs2, vuint32m4_t vs1,
-                                    size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat32m4_t test_vrgather_vx_f32m4(vfloat32m4_t vs2, size_t vs1, size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat32m8_t test_vrgather_vv_f32m8(vfloat32m8_t vs2, vuint32m8_t vs1,
-                                    size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat32m8_t test_vrgather_vx_f32m8(vfloat32m8_t vs2, size_t vs1, size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat64m1_t test_vrgather_vv_f64m1(vfloat64m1_t vs2, vuint64m1_t vs1,
-                                    size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat64m1_t test_vrgather_vx_f64m1(vfloat64m1_t vs2, size_t vs1, size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat64m2_t test_vrgather_vv_f64m2(vfloat64m2_t vs2, vuint64m2_t vs1,
-                                    size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat64m2_t test_vrgather_vx_f64m2(vfloat64m2_t vs2, size_t vs1, size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat64m4_t test_vrgather_vv_f64m4(vfloat64m4_t vs2, vuint64m4_t vs1,
-                                    size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat64m4_t test_vrgather_vx_f64m4(vfloat64m4_t vs2, size_t vs1, size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat64m8_t test_vrgather_vv_f64m8(vfloat64m8_t vs2, vuint64m8_t vs1,
-                                    size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat64m8_t test_vrgather_vx_f64m8(vfloat64m8_t vs2, size_t vs1, size_t vl) {
-  return __riscv_vrgather(vs2, vs1, vl);
-}
-
 vint8mf8_t test_vrgather_vv_i8mf8(vint8mf8_t vs2, vuint8mf8_t vs1, size_t vl) {
   return __riscv_vrgather(vs2, vs1, vl);
 }
@@ -510,156 +372,6 @@ vuint64m8_t test_vrgather_vv_u64m8(vuint64m8_t vs2, vuint64m8_t vs1,
 
 vuint64m8_t test_vrgather_vx_u64m8(vuint64m8_t vs2, size_t vs1, size_t vl) {
   return __riscv_vrgather(vs2, vs1, vl);
-}
-
-vfloat16mf4_t test_vrgather_vv_f16mf4_m(vbool64_t vm, vfloat16mf4_t vs2,
-                                        vuint16mf4_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat16mf4_t test_vrgather_vx_f16mf4_m(vbool64_t vm, vfloat16mf4_t vs2,
-                                        size_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat16mf2_t test_vrgather_vv_f16mf2_m(vbool32_t vm, vfloat16mf2_t vs2,
-                                        vuint16mf2_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat16mf2_t test_vrgather_vx_f16mf2_m(vbool32_t vm, vfloat16mf2_t vs2,
-                                        size_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat16m1_t test_vrgather_vv_f16m1_m(vbool16_t vm, vfloat16m1_t vs2,
-                                      vuint16m1_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat16m1_t test_vrgather_vx_f16m1_m(vbool16_t vm, vfloat16m1_t vs2,
-                                      size_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat16m2_t test_vrgather_vv_f16m2_m(vbool8_t vm, vfloat16m2_t vs2,
-                                      vuint16m2_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat16m2_t test_vrgather_vx_f16m2_m(vbool8_t vm, vfloat16m2_t vs2, size_t vs1,
-                                      size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat16m4_t test_vrgather_vv_f16m4_m(vbool4_t vm, vfloat16m4_t vs2,
-                                      vuint16m4_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat16m4_t test_vrgather_vx_f16m4_m(vbool4_t vm, vfloat16m4_t vs2, size_t vs1,
-                                      size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat16m8_t test_vrgather_vv_f16m8_m(vbool2_t vm, vfloat16m8_t vs2,
-                                      vuint16m8_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat16m8_t test_vrgather_vx_f16m8_m(vbool2_t vm, vfloat16m8_t vs2, size_t vs1,
-                                      size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat32mf2_t test_vrgather_vv_f32mf2_m(vbool64_t vm, vfloat32mf2_t vs2,
-                                        vuint32mf2_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat32mf2_t test_vrgather_vx_f32mf2_m(vbool64_t vm, vfloat32mf2_t vs2,
-                                        size_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat32m1_t test_vrgather_vv_f32m1_m(vbool32_t vm, vfloat32m1_t vs2,
-                                      vuint32m1_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat32m1_t test_vrgather_vx_f32m1_m(vbool32_t vm, vfloat32m1_t vs2,
-                                      size_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat32m2_t test_vrgather_vv_f32m2_m(vbool16_t vm, vfloat32m2_t vs2,
-                                      vuint32m2_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat32m2_t test_vrgather_vx_f32m2_m(vbool16_t vm, vfloat32m2_t vs2,
-                                      size_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat32m4_t test_vrgather_vv_f32m4_m(vbool8_t vm, vfloat32m4_t vs2,
-                                      vuint32m4_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat32m4_t test_vrgather_vx_f32m4_m(vbool8_t vm, vfloat32m4_t vs2, size_t vs1,
-                                      size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat32m8_t test_vrgather_vv_f32m8_m(vbool4_t vm, vfloat32m8_t vs2,
-                                      vuint32m8_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat32m8_t test_vrgather_vx_f32m8_m(vbool4_t vm, vfloat32m8_t vs2, size_t vs1,
-                                      size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat64m1_t test_vrgather_vv_f64m1_m(vbool64_t vm, vfloat64m1_t vs2,
-                                      vuint64m1_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat64m1_t test_vrgather_vx_f64m1_m(vbool64_t vm, vfloat64m1_t vs2,
-                                      size_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat64m2_t test_vrgather_vv_f64m2_m(vbool32_t vm, vfloat64m2_t vs2,
-                                      vuint64m2_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat64m2_t test_vrgather_vx_f64m2_m(vbool32_t vm, vfloat64m2_t vs2,
-                                      size_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat64m4_t test_vrgather_vv_f64m4_m(vbool16_t vm, vfloat64m4_t vs2,
-                                      vuint64m4_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat64m4_t test_vrgather_vx_f64m4_m(vbool16_t vm, vfloat64m4_t vs2,
-                                      size_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat64m8_t test_vrgather_vv_f64m8_m(vbool8_t vm, vfloat64m8_t vs2,
-                                      vuint64m8_t vs1, size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
-}
-
-vfloat64m8_t test_vrgather_vx_f64m8_m(vbool8_t vm, vfloat64m8_t vs2, size_t vs1,
-                                      size_t vl) {
-  return __riscv_vrgather(vm, vs2, vs1, vl);
 }
 
 vint8mf8_t test_vrgather_vv_i8mf8_m(vbool64_t vm, vint8mf8_t vs2,
@@ -1099,5 +811,177 @@ vuint64m8_t test_vrgather_vv_u64m8_m(vbool8_t vm, vuint64m8_t vs2,
 
 vuint64m8_t test_vrgather_vx_u64m8_m(vbool8_t vm, vuint64m8_t vs2, size_t vs1,
                                      size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat32mf2_t test_vrgather_vv_f32mf2(vfloat32mf2_t vs2, vuint32mf2_t vs1,
+                                      size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat32mf2_t test_vrgather_vx_f32mf2(vfloat32mf2_t vs2, size_t vs1,
+                                      size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat32m1_t test_vrgather_vv_f32m1(vfloat32m1_t vs2, vuint32m1_t vs1,
+                                    size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat32m1_t test_vrgather_vx_f32m1(vfloat32m1_t vs2, size_t vs1, size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat32m2_t test_vrgather_vv_f32m2(vfloat32m2_t vs2, vuint32m2_t vs1,
+                                    size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat32m2_t test_vrgather_vx_f32m2(vfloat32m2_t vs2, size_t vs1, size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat32m4_t test_vrgather_vv_f32m4(vfloat32m4_t vs2, vuint32m4_t vs1,
+                                    size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat32m4_t test_vrgather_vx_f32m4(vfloat32m4_t vs2, size_t vs1, size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat32m8_t test_vrgather_vv_f32m8(vfloat32m8_t vs2, vuint32m8_t vs1,
+                                    size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat32m8_t test_vrgather_vx_f32m8(vfloat32m8_t vs2, size_t vs1, size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat64m1_t test_vrgather_vv_f64m1(vfloat64m1_t vs2, vuint64m1_t vs1,
+                                    size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat64m1_t test_vrgather_vx_f64m1(vfloat64m1_t vs2, size_t vs1, size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat64m2_t test_vrgather_vv_f64m2(vfloat64m2_t vs2, vuint64m2_t vs1,
+                                    size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat64m2_t test_vrgather_vx_f64m2(vfloat64m2_t vs2, size_t vs1, size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat64m4_t test_vrgather_vv_f64m4(vfloat64m4_t vs2, vuint64m4_t vs1,
+                                    size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat64m4_t test_vrgather_vx_f64m4(vfloat64m4_t vs2, size_t vs1, size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat64m8_t test_vrgather_vv_f64m8(vfloat64m8_t vs2, vuint64m8_t vs1,
+                                    size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat64m8_t test_vrgather_vx_f64m8(vfloat64m8_t vs2, size_t vs1, size_t vl) {
+  return __riscv_vrgather(vs2, vs1, vl);
+}
+
+vfloat32mf2_t test_vrgather_vv_f32mf2_m(vbool64_t vm, vfloat32mf2_t vs2,
+                                        vuint32mf2_t vs1, size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat32mf2_t test_vrgather_vx_f32mf2_m(vbool64_t vm, vfloat32mf2_t vs2,
+                                        size_t vs1, size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat32m1_t test_vrgather_vv_f32m1_m(vbool32_t vm, vfloat32m1_t vs2,
+                                      vuint32m1_t vs1, size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat32m1_t test_vrgather_vx_f32m1_m(vbool32_t vm, vfloat32m1_t vs2,
+                                      size_t vs1, size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat32m2_t test_vrgather_vv_f32m2_m(vbool16_t vm, vfloat32m2_t vs2,
+                                      vuint32m2_t vs1, size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat32m2_t test_vrgather_vx_f32m2_m(vbool16_t vm, vfloat32m2_t vs2,
+                                      size_t vs1, size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat32m4_t test_vrgather_vv_f32m4_m(vbool8_t vm, vfloat32m4_t vs2,
+                                      vuint32m4_t vs1, size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat32m4_t test_vrgather_vx_f32m4_m(vbool8_t vm, vfloat32m4_t vs2, size_t vs1,
+                                      size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat32m8_t test_vrgather_vv_f32m8_m(vbool4_t vm, vfloat32m8_t vs2,
+                                      vuint32m8_t vs1, size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat32m8_t test_vrgather_vx_f32m8_m(vbool4_t vm, vfloat32m8_t vs2, size_t vs1,
+                                      size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat64m1_t test_vrgather_vv_f64m1_m(vbool64_t vm, vfloat64m1_t vs2,
+                                      vuint64m1_t vs1, size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat64m1_t test_vrgather_vx_f64m1_m(vbool64_t vm, vfloat64m1_t vs2,
+                                      size_t vs1, size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat64m2_t test_vrgather_vv_f64m2_m(vbool32_t vm, vfloat64m2_t vs2,
+                                      vuint64m2_t vs1, size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat64m2_t test_vrgather_vx_f64m2_m(vbool32_t vm, vfloat64m2_t vs2,
+                                      size_t vs1, size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat64m4_t test_vrgather_vv_f64m4_m(vbool16_t vm, vfloat64m4_t vs2,
+                                      vuint64m4_t vs1, size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat64m4_t test_vrgather_vx_f64m4_m(vbool16_t vm, vfloat64m4_t vs2,
+                                      size_t vs1, size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat64m8_t test_vrgather_vv_f64m8_m(vbool8_t vm, vfloat64m8_t vs2,
+                                      vuint64m8_t vs1, size_t vl) {
+  return __riscv_vrgather(vm, vs2, vs1, vl);
+}
+
+vfloat64m8_t test_vrgather_vx_f64m8_m(vbool8_t vm, vfloat64m8_t vs2, size_t vs1,
+                                      size_t vl) {
   return __riscv_vrgather(vm, vs2, vs1, vl);
 }

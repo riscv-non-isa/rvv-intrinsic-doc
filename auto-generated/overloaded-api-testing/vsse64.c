@@ -1,26 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-void test_vsse64_v_f64m1(double *rs1, ptrdiff_t rs2, vfloat64m1_t vs3,
-                         size_t vl) {
-  return __riscv_vsse64(rs1, rs2, vs3, vl);
-}
-
-void test_vsse64_v_f64m2(double *rs1, ptrdiff_t rs2, vfloat64m2_t vs3,
-                         size_t vl) {
-  return __riscv_vsse64(rs1, rs2, vs3, vl);
-}
-
-void test_vsse64_v_f64m4(double *rs1, ptrdiff_t rs2, vfloat64m4_t vs3,
-                         size_t vl) {
-  return __riscv_vsse64(rs1, rs2, vs3, vl);
-}
-
-void test_vsse64_v_f64m8(double *rs1, ptrdiff_t rs2, vfloat64m8_t vs3,
-                         size_t vl) {
-  return __riscv_vsse64(rs1, rs2, vs3, vl);
-}
-
 void test_vsse64_v_i64m1(int64_t *rs1, ptrdiff_t rs2, vint64m1_t vs3,
                          size_t vl) {
   return __riscv_vsse64(rs1, rs2, vs3, vl);
@@ -61,26 +41,6 @@ void test_vsse64_v_u64m8(uint64_t *rs1, ptrdiff_t rs2, vuint64m8_t vs3,
   return __riscv_vsse64(rs1, rs2, vs3, vl);
 }
 
-void test_vsse64_v_f64m1_m(vbool64_t vm, double *rs1, ptrdiff_t rs2,
-                           vfloat64m1_t vs3, size_t vl) {
-  return __riscv_vsse64(vm, rs1, rs2, vs3, vl);
-}
-
-void test_vsse64_v_f64m2_m(vbool32_t vm, double *rs1, ptrdiff_t rs2,
-                           vfloat64m2_t vs3, size_t vl) {
-  return __riscv_vsse64(vm, rs1, rs2, vs3, vl);
-}
-
-void test_vsse64_v_f64m4_m(vbool16_t vm, double *rs1, ptrdiff_t rs2,
-                           vfloat64m4_t vs3, size_t vl) {
-  return __riscv_vsse64(vm, rs1, rs2, vs3, vl);
-}
-
-void test_vsse64_v_f64m8_m(vbool8_t vm, double *rs1, ptrdiff_t rs2,
-                           vfloat64m8_t vs3, size_t vl) {
-  return __riscv_vsse64(vm, rs1, rs2, vs3, vl);
-}
-
 void test_vsse64_v_i64m1_m(vbool64_t vm, int64_t *rs1, ptrdiff_t rs2,
                            vint64m1_t vs3, size_t vl) {
   return __riscv_vsse64(vm, rs1, rs2, vs3, vl);
@@ -118,5 +78,45 @@ void test_vsse64_v_u64m4_m(vbool16_t vm, uint64_t *rs1, ptrdiff_t rs2,
 
 void test_vsse64_v_u64m8_m(vbool8_t vm, uint64_t *rs1, ptrdiff_t rs2,
                            vuint64m8_t vs3, size_t vl) {
+  return __riscv_vsse64(vm, rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m1(double *rs1, ptrdiff_t rs2, vfloat64m1_t vs3,
+                         size_t vl) {
+  return __riscv_vsse64(rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m2(double *rs1, ptrdiff_t rs2, vfloat64m2_t vs3,
+                         size_t vl) {
+  return __riscv_vsse64(rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m4(double *rs1, ptrdiff_t rs2, vfloat64m4_t vs3,
+                         size_t vl) {
+  return __riscv_vsse64(rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m8(double *rs1, ptrdiff_t rs2, vfloat64m8_t vs3,
+                         size_t vl) {
+  return __riscv_vsse64(rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m1_m(vbool64_t vm, double *rs1, ptrdiff_t rs2,
+                           vfloat64m1_t vs3, size_t vl) {
+  return __riscv_vsse64(vm, rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m2_m(vbool32_t vm, double *rs1, ptrdiff_t rs2,
+                           vfloat64m2_t vs3, size_t vl) {
+  return __riscv_vsse64(vm, rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m4_m(vbool16_t vm, double *rs1, ptrdiff_t rs2,
+                           vfloat64m4_t vs3, size_t vl) {
+  return __riscv_vsse64(vm, rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m8_m(vbool8_t vm, double *rs1, ptrdiff_t rs2,
+                           vfloat64m8_t vs3, size_t vl) {
   return __riscv_vsse64(vm, rs1, rs2, vs3, vl);
 }

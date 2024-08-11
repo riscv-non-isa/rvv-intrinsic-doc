@@ -1,30 +1,9 @@
 // REQUIRES: riscv-registered-target
-// RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zfh \
-// RUN:   -target-feature +experimental-zvfh -disable-O0-optnone \
+// RUN: %clang_cc1 -triple riscv64 -target-feature +v -disable-O0-optnone \
 // RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
 // RUN:   FileCheck --check-prefix=CHECK-RV64 %s
 
 #include <riscv_vector.h>
-
-void test_vsse64_v_f64m1(double *rs1, ptrdiff_t rs2, vfloat64m1_t vs3,
-                         size_t vl) {
-  return __riscv_vsse64_v_f64m1(rs1, rs2, vs3, vl);
-}
-
-void test_vsse64_v_f64m2(double *rs1, ptrdiff_t rs2, vfloat64m2_t vs3,
-                         size_t vl) {
-  return __riscv_vsse64_v_f64m2(rs1, rs2, vs3, vl);
-}
-
-void test_vsse64_v_f64m4(double *rs1, ptrdiff_t rs2, vfloat64m4_t vs3,
-                         size_t vl) {
-  return __riscv_vsse64_v_f64m4(rs1, rs2, vs3, vl);
-}
-
-void test_vsse64_v_f64m8(double *rs1, ptrdiff_t rs2, vfloat64m8_t vs3,
-                         size_t vl) {
-  return __riscv_vsse64_v_f64m8(rs1, rs2, vs3, vl);
-}
 
 void test_vsse64_v_i64m1(int64_t *rs1, ptrdiff_t rs2, vint64m1_t vs3,
                          size_t vl) {
@@ -66,26 +45,6 @@ void test_vsse64_v_u64m8(uint64_t *rs1, ptrdiff_t rs2, vuint64m8_t vs3,
   return __riscv_vsse64_v_u64m8(rs1, rs2, vs3, vl);
 }
 
-void test_vsse64_v_f64m1_m(vbool64_t vm, double *rs1, ptrdiff_t rs2,
-                           vfloat64m1_t vs3, size_t vl) {
-  return __riscv_vsse64_v_f64m1_m(vm, rs1, rs2, vs3, vl);
-}
-
-void test_vsse64_v_f64m2_m(vbool32_t vm, double *rs1, ptrdiff_t rs2,
-                           vfloat64m2_t vs3, size_t vl) {
-  return __riscv_vsse64_v_f64m2_m(vm, rs1, rs2, vs3, vl);
-}
-
-void test_vsse64_v_f64m4_m(vbool16_t vm, double *rs1, ptrdiff_t rs2,
-                           vfloat64m4_t vs3, size_t vl) {
-  return __riscv_vsse64_v_f64m4_m(vm, rs1, rs2, vs3, vl);
-}
-
-void test_vsse64_v_f64m8_m(vbool8_t vm, double *rs1, ptrdiff_t rs2,
-                           vfloat64m8_t vs3, size_t vl) {
-  return __riscv_vsse64_v_f64m8_m(vm, rs1, rs2, vs3, vl);
-}
-
 void test_vsse64_v_i64m1_m(vbool64_t vm, int64_t *rs1, ptrdiff_t rs2,
                            vint64m1_t vs3, size_t vl) {
   return __riscv_vsse64_v_i64m1_m(vm, rs1, rs2, vs3, vl);
@@ -124,4 +83,44 @@ void test_vsse64_v_u64m4_m(vbool16_t vm, uint64_t *rs1, ptrdiff_t rs2,
 void test_vsse64_v_u64m8_m(vbool8_t vm, uint64_t *rs1, ptrdiff_t rs2,
                            vuint64m8_t vs3, size_t vl) {
   return __riscv_vsse64_v_u64m8_m(vm, rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m1(double *rs1, ptrdiff_t rs2, vfloat64m1_t vs3,
+                         size_t vl) {
+  return __riscv_vsse64_v_f64m1(rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m2(double *rs1, ptrdiff_t rs2, vfloat64m2_t vs3,
+                         size_t vl) {
+  return __riscv_vsse64_v_f64m2(rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m4(double *rs1, ptrdiff_t rs2, vfloat64m4_t vs3,
+                         size_t vl) {
+  return __riscv_vsse64_v_f64m4(rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m8(double *rs1, ptrdiff_t rs2, vfloat64m8_t vs3,
+                         size_t vl) {
+  return __riscv_vsse64_v_f64m8(rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m1_m(vbool64_t vm, double *rs1, ptrdiff_t rs2,
+                           vfloat64m1_t vs3, size_t vl) {
+  return __riscv_vsse64_v_f64m1_m(vm, rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m2_m(vbool32_t vm, double *rs1, ptrdiff_t rs2,
+                           vfloat64m2_t vs3, size_t vl) {
+  return __riscv_vsse64_v_f64m2_m(vm, rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m4_m(vbool16_t vm, double *rs1, ptrdiff_t rs2,
+                           vfloat64m4_t vs3, size_t vl) {
+  return __riscv_vsse64_v_f64m4_m(vm, rs1, rs2, vs3, vl);
+}
+
+void test_vsse64_v_f64m8_m(vbool8_t vm, double *rs1, ptrdiff_t rs2,
+                           vfloat64m8_t vs3, size_t vl) {
+  return __riscv_vsse64_v_f64m8_m(vm, rs1, rs2, vs3, vl);
 }

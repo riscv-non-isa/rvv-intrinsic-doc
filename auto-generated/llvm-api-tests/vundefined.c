@@ -6,36 +6,6 @@
 
 #include <riscv_vector.h>
 
-vfloat16mf4_t test_vundefined_f16mf4() { return __riscv_vundefined_f16mf4(); }
-
-vfloat16mf2_t test_vundefined_f16mf2() { return __riscv_vundefined_f16mf2(); }
-
-vfloat16m1_t test_vundefined_f16m1() { return __riscv_vundefined_f16m1(); }
-
-vfloat16m2_t test_vundefined_f16m2() { return __riscv_vundefined_f16m2(); }
-
-vfloat16m4_t test_vundefined_f16m4() { return __riscv_vundefined_f16m4(); }
-
-vfloat16m8_t test_vundefined_f16m8() { return __riscv_vundefined_f16m8(); }
-
-vfloat32mf2_t test_vundefined_f32mf2() { return __riscv_vundefined_f32mf2(); }
-
-vfloat32m1_t test_vundefined_f32m1() { return __riscv_vundefined_f32m1(); }
-
-vfloat32m2_t test_vundefined_f32m2() { return __riscv_vundefined_f32m2(); }
-
-vfloat32m4_t test_vundefined_f32m4() { return __riscv_vundefined_f32m4(); }
-
-vfloat32m8_t test_vundefined_f32m8() { return __riscv_vundefined_f32m8(); }
-
-vfloat64m1_t test_vundefined_f64m1() { return __riscv_vundefined_f64m1(); }
-
-vfloat64m2_t test_vundefined_f64m2() { return __riscv_vundefined_f64m2(); }
-
-vfloat64m4_t test_vundefined_f64m4() { return __riscv_vundefined_f64m4(); }
-
-vfloat64m8_t test_vundefined_f64m8() { return __riscv_vundefined_f64m8(); }
-
 vint8mf8_t test_vundefined_i8mf8() { return __riscv_vundefined_i8mf8(); }
 
 vint8mf4_t test_vundefined_i8mf4() { return __riscv_vundefined_i8mf4(); }
@@ -123,222 +93,6 @@ vuint64m2_t test_vundefined_u64m2() { return __riscv_vundefined_u64m2(); }
 vuint64m4_t test_vundefined_u64m4() { return __riscv_vundefined_u64m4(); }
 
 vuint64m8_t test_vundefined_u64m8() { return __riscv_vundefined_u64m8(); }
-
-vfloat16mf4x2_t test_vundefined_f16mf4x2() {
-  return __riscv_vundefined_f16mf4x2();
-}
-
-vfloat16mf4x3_t test_vundefined_f16mf4x3() {
-  return __riscv_vundefined_f16mf4x3();
-}
-
-vfloat16mf4x4_t test_vundefined_f16mf4x4() {
-  return __riscv_vundefined_f16mf4x4();
-}
-
-vfloat16mf4x5_t test_vundefined_f16mf4x5() {
-  return __riscv_vundefined_f16mf4x5();
-}
-
-vfloat16mf4x6_t test_vundefined_f16mf4x6() {
-  return __riscv_vundefined_f16mf4x6();
-}
-
-vfloat16mf4x7_t test_vundefined_f16mf4x7() {
-  return __riscv_vundefined_f16mf4x7();
-}
-
-vfloat16mf4x8_t test_vundefined_f16mf4x8() {
-  return __riscv_vundefined_f16mf4x8();
-}
-
-vfloat16mf2x2_t test_vundefined_f16mf2x2() {
-  return __riscv_vundefined_f16mf2x2();
-}
-
-vfloat16mf2x3_t test_vundefined_f16mf2x3() {
-  return __riscv_vundefined_f16mf2x3();
-}
-
-vfloat16mf2x4_t test_vundefined_f16mf2x4() {
-  return __riscv_vundefined_f16mf2x4();
-}
-
-vfloat16mf2x5_t test_vundefined_f16mf2x5() {
-  return __riscv_vundefined_f16mf2x5();
-}
-
-vfloat16mf2x6_t test_vundefined_f16mf2x6() {
-  return __riscv_vundefined_f16mf2x6();
-}
-
-vfloat16mf2x7_t test_vundefined_f16mf2x7() {
-  return __riscv_vundefined_f16mf2x7();
-}
-
-vfloat16mf2x8_t test_vundefined_f16mf2x8() {
-  return __riscv_vundefined_f16mf2x8();
-}
-
-vfloat16m1x2_t test_vundefined_f16m1x2() {
-  return __riscv_vundefined_f16m1x2();
-}
-
-vfloat16m1x3_t test_vundefined_f16m1x3() {
-  return __riscv_vundefined_f16m1x3();
-}
-
-vfloat16m1x4_t test_vundefined_f16m1x4() {
-  return __riscv_vundefined_f16m1x4();
-}
-
-vfloat16m1x5_t test_vundefined_f16m1x5() {
-  return __riscv_vundefined_f16m1x5();
-}
-
-vfloat16m1x6_t test_vundefined_f16m1x6() {
-  return __riscv_vundefined_f16m1x6();
-}
-
-vfloat16m1x7_t test_vundefined_f16m1x7() {
-  return __riscv_vundefined_f16m1x7();
-}
-
-vfloat16m1x8_t test_vundefined_f16m1x8() {
-  return __riscv_vundefined_f16m1x8();
-}
-
-vfloat16m2x2_t test_vundefined_f16m2x2() {
-  return __riscv_vundefined_f16m2x2();
-}
-
-vfloat16m2x3_t test_vundefined_f16m2x3() {
-  return __riscv_vundefined_f16m2x3();
-}
-
-vfloat16m2x4_t test_vundefined_f16m2x4() {
-  return __riscv_vundefined_f16m2x4();
-}
-
-vfloat16m4x2_t test_vundefined_f16m4x2() {
-  return __riscv_vundefined_f16m4x2();
-}
-
-vfloat32mf2x2_t test_vundefined_f32mf2x2() {
-  return __riscv_vundefined_f32mf2x2();
-}
-
-vfloat32mf2x3_t test_vundefined_f32mf2x3() {
-  return __riscv_vundefined_f32mf2x3();
-}
-
-vfloat32mf2x4_t test_vundefined_f32mf2x4() {
-  return __riscv_vundefined_f32mf2x4();
-}
-
-vfloat32mf2x5_t test_vundefined_f32mf2x5() {
-  return __riscv_vundefined_f32mf2x5();
-}
-
-vfloat32mf2x6_t test_vundefined_f32mf2x6() {
-  return __riscv_vundefined_f32mf2x6();
-}
-
-vfloat32mf2x7_t test_vundefined_f32mf2x7() {
-  return __riscv_vundefined_f32mf2x7();
-}
-
-vfloat32mf2x8_t test_vundefined_f32mf2x8() {
-  return __riscv_vundefined_f32mf2x8();
-}
-
-vfloat32m1x2_t test_vundefined_f32m1x2() {
-  return __riscv_vundefined_f32m1x2();
-}
-
-vfloat32m1x3_t test_vundefined_f32m1x3() {
-  return __riscv_vundefined_f32m1x3();
-}
-
-vfloat32m1x4_t test_vundefined_f32m1x4() {
-  return __riscv_vundefined_f32m1x4();
-}
-
-vfloat32m1x5_t test_vundefined_f32m1x5() {
-  return __riscv_vundefined_f32m1x5();
-}
-
-vfloat32m1x6_t test_vundefined_f32m1x6() {
-  return __riscv_vundefined_f32m1x6();
-}
-
-vfloat32m1x7_t test_vundefined_f32m1x7() {
-  return __riscv_vundefined_f32m1x7();
-}
-
-vfloat32m1x8_t test_vundefined_f32m1x8() {
-  return __riscv_vundefined_f32m1x8();
-}
-
-vfloat32m2x2_t test_vundefined_f32m2x2() {
-  return __riscv_vundefined_f32m2x2();
-}
-
-vfloat32m2x3_t test_vundefined_f32m2x3() {
-  return __riscv_vundefined_f32m2x3();
-}
-
-vfloat32m2x4_t test_vundefined_f32m2x4() {
-  return __riscv_vundefined_f32m2x4();
-}
-
-vfloat32m4x2_t test_vundefined_f32m4x2() {
-  return __riscv_vundefined_f32m4x2();
-}
-
-vfloat64m1x2_t test_vundefined_f64m1x2() {
-  return __riscv_vundefined_f64m1x2();
-}
-
-vfloat64m1x3_t test_vundefined_f64m1x3() {
-  return __riscv_vundefined_f64m1x3();
-}
-
-vfloat64m1x4_t test_vundefined_f64m1x4() {
-  return __riscv_vundefined_f64m1x4();
-}
-
-vfloat64m1x5_t test_vundefined_f64m1x5() {
-  return __riscv_vundefined_f64m1x5();
-}
-
-vfloat64m1x6_t test_vundefined_f64m1x6() {
-  return __riscv_vundefined_f64m1x6();
-}
-
-vfloat64m1x7_t test_vundefined_f64m1x7() {
-  return __riscv_vundefined_f64m1x7();
-}
-
-vfloat64m1x8_t test_vundefined_f64m1x8() {
-  return __riscv_vundefined_f64m1x8();
-}
-
-vfloat64m2x2_t test_vundefined_f64m2x2() {
-  return __riscv_vundefined_f64m2x2();
-}
-
-vfloat64m2x3_t test_vundefined_f64m2x3() {
-  return __riscv_vundefined_f64m2x3();
-}
-
-vfloat64m2x4_t test_vundefined_f64m2x4() {
-  return __riscv_vundefined_f64m2x4();
-}
-
-vfloat64m4x2_t test_vundefined_f64m4x2() {
-  return __riscv_vundefined_f64m4x2();
-}
 
 vint8mf8x2_t test_vundefined_i8mf8x2() { return __riscv_vundefined_i8mf8x2(); }
 
@@ -767,3 +521,137 @@ vuint64m2x3_t test_vundefined_u64m2x3() { return __riscv_vundefined_u64m2x3(); }
 vuint64m2x4_t test_vundefined_u64m2x4() { return __riscv_vundefined_u64m2x4(); }
 
 vuint64m4x2_t test_vundefined_u64m4x2() { return __riscv_vundefined_u64m4x2(); }
+
+vfloat32mf2_t test_vundefined_f32mf2() { return __riscv_vundefined_f32mf2(); }
+
+vfloat32m1_t test_vundefined_f32m1() { return __riscv_vundefined_f32m1(); }
+
+vfloat32m2_t test_vundefined_f32m2() { return __riscv_vundefined_f32m2(); }
+
+vfloat32m4_t test_vundefined_f32m4() { return __riscv_vundefined_f32m4(); }
+
+vfloat32m8_t test_vundefined_f32m8() { return __riscv_vundefined_f32m8(); }
+
+vfloat64m1_t test_vundefined_f64m1() { return __riscv_vundefined_f64m1(); }
+
+vfloat64m2_t test_vundefined_f64m2() { return __riscv_vundefined_f64m2(); }
+
+vfloat64m4_t test_vundefined_f64m4() { return __riscv_vundefined_f64m4(); }
+
+vfloat64m8_t test_vundefined_f64m8() { return __riscv_vundefined_f64m8(); }
+
+vfloat32mf2x2_t test_vundefined_f32mf2x2() {
+  return __riscv_vundefined_f32mf2x2();
+}
+
+vfloat32mf2x3_t test_vundefined_f32mf2x3() {
+  return __riscv_vundefined_f32mf2x3();
+}
+
+vfloat32mf2x4_t test_vundefined_f32mf2x4() {
+  return __riscv_vundefined_f32mf2x4();
+}
+
+vfloat32mf2x5_t test_vundefined_f32mf2x5() {
+  return __riscv_vundefined_f32mf2x5();
+}
+
+vfloat32mf2x6_t test_vundefined_f32mf2x6() {
+  return __riscv_vundefined_f32mf2x6();
+}
+
+vfloat32mf2x7_t test_vundefined_f32mf2x7() {
+  return __riscv_vundefined_f32mf2x7();
+}
+
+vfloat32mf2x8_t test_vundefined_f32mf2x8() {
+  return __riscv_vundefined_f32mf2x8();
+}
+
+vfloat32m1x2_t test_vundefined_f32m1x2() {
+  return __riscv_vundefined_f32m1x2();
+}
+
+vfloat32m1x3_t test_vundefined_f32m1x3() {
+  return __riscv_vundefined_f32m1x3();
+}
+
+vfloat32m1x4_t test_vundefined_f32m1x4() {
+  return __riscv_vundefined_f32m1x4();
+}
+
+vfloat32m1x5_t test_vundefined_f32m1x5() {
+  return __riscv_vundefined_f32m1x5();
+}
+
+vfloat32m1x6_t test_vundefined_f32m1x6() {
+  return __riscv_vundefined_f32m1x6();
+}
+
+vfloat32m1x7_t test_vundefined_f32m1x7() {
+  return __riscv_vundefined_f32m1x7();
+}
+
+vfloat32m1x8_t test_vundefined_f32m1x8() {
+  return __riscv_vundefined_f32m1x8();
+}
+
+vfloat32m2x2_t test_vundefined_f32m2x2() {
+  return __riscv_vundefined_f32m2x2();
+}
+
+vfloat32m2x3_t test_vundefined_f32m2x3() {
+  return __riscv_vundefined_f32m2x3();
+}
+
+vfloat32m2x4_t test_vundefined_f32m2x4() {
+  return __riscv_vundefined_f32m2x4();
+}
+
+vfloat32m4x2_t test_vundefined_f32m4x2() {
+  return __riscv_vundefined_f32m4x2();
+}
+
+vfloat64m1x2_t test_vundefined_f64m1x2() {
+  return __riscv_vundefined_f64m1x2();
+}
+
+vfloat64m1x3_t test_vundefined_f64m1x3() {
+  return __riscv_vundefined_f64m1x3();
+}
+
+vfloat64m1x4_t test_vundefined_f64m1x4() {
+  return __riscv_vundefined_f64m1x4();
+}
+
+vfloat64m1x5_t test_vundefined_f64m1x5() {
+  return __riscv_vundefined_f64m1x5();
+}
+
+vfloat64m1x6_t test_vundefined_f64m1x6() {
+  return __riscv_vundefined_f64m1x6();
+}
+
+vfloat64m1x7_t test_vundefined_f64m1x7() {
+  return __riscv_vundefined_f64m1x7();
+}
+
+vfloat64m1x8_t test_vundefined_f64m1x8() {
+  return __riscv_vundefined_f64m1x8();
+}
+
+vfloat64m2x2_t test_vundefined_f64m2x2() {
+  return __riscv_vundefined_f64m2x2();
+}
+
+vfloat64m2x3_t test_vundefined_f64m2x3() {
+  return __riscv_vundefined_f64m2x3();
+}
+
+vfloat64m2x4_t test_vundefined_f64m2x4() {
+  return __riscv_vundefined_f64m2x4();
+}
+
+vfloat64m4x2_t test_vundefined_f64m4x2() {
+  return __riscv_vundefined_f64m4x2();
+}

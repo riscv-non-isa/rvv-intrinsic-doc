@@ -1,80 +1,9 @@
 // REQUIRES: riscv-registered-target
-// RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zfh \
-// RUN:   -target-feature +experimental-zvfh -disable-O0-optnone \
+// RUN: %clang_cc1 -triple riscv64 -target-feature +v -disable-O0-optnone \
 // RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
 // RUN:   FileCheck --check-prefix=CHECK-RV64 %s
 
 #include <riscv_vector.h>
-
-vfloat16mf4_t test_vloxei32_v_f16mf4(const _Float16 *rs1, vuint32mf2_t rs2,
-                                     size_t vl) {
-  return __riscv_vloxei32(rs1, rs2, vl);
-}
-
-vfloat16mf2_t test_vloxei32_v_f16mf2(const _Float16 *rs1, vuint32m1_t rs2,
-                                     size_t vl) {
-  return __riscv_vloxei32(rs1, rs2, vl);
-}
-
-vfloat16m1_t test_vloxei32_v_f16m1(const _Float16 *rs1, vuint32m2_t rs2,
-                                   size_t vl) {
-  return __riscv_vloxei32(rs1, rs2, vl);
-}
-
-vfloat16m2_t test_vloxei32_v_f16m2(const _Float16 *rs1, vuint32m4_t rs2,
-                                   size_t vl) {
-  return __riscv_vloxei32(rs1, rs2, vl);
-}
-
-vfloat16m4_t test_vloxei32_v_f16m4(const _Float16 *rs1, vuint32m8_t rs2,
-                                   size_t vl) {
-  return __riscv_vloxei32(rs1, rs2, vl);
-}
-
-vfloat32mf2_t test_vloxei32_v_f32mf2(const float *rs1, vuint32mf2_t rs2,
-                                     size_t vl) {
-  return __riscv_vloxei32(rs1, rs2, vl);
-}
-
-vfloat32m1_t test_vloxei32_v_f32m1(const float *rs1, vuint32m1_t rs2,
-                                   size_t vl) {
-  return __riscv_vloxei32(rs1, rs2, vl);
-}
-
-vfloat32m2_t test_vloxei32_v_f32m2(const float *rs1, vuint32m2_t rs2,
-                                   size_t vl) {
-  return __riscv_vloxei32(rs1, rs2, vl);
-}
-
-vfloat32m4_t test_vloxei32_v_f32m4(const float *rs1, vuint32m4_t rs2,
-                                   size_t vl) {
-  return __riscv_vloxei32(rs1, rs2, vl);
-}
-
-vfloat32m8_t test_vloxei32_v_f32m8(const float *rs1, vuint32m8_t rs2,
-                                   size_t vl) {
-  return __riscv_vloxei32(rs1, rs2, vl);
-}
-
-vfloat64m1_t test_vloxei32_v_f64m1(const double *rs1, vuint32mf2_t rs2,
-                                   size_t vl) {
-  return __riscv_vloxei32(rs1, rs2, vl);
-}
-
-vfloat64m2_t test_vloxei32_v_f64m2(const double *rs1, vuint32m1_t rs2,
-                                   size_t vl) {
-  return __riscv_vloxei32(rs1, rs2, vl);
-}
-
-vfloat64m4_t test_vloxei32_v_f64m4(const double *rs1, vuint32m2_t rs2,
-                                   size_t vl) {
-  return __riscv_vloxei32(rs1, rs2, vl);
-}
-
-vfloat64m8_t test_vloxei32_v_f64m8(const double *rs1, vuint32m4_t rs2,
-                                   size_t vl) {
-  return __riscv_vloxei32(rs1, rs2, vl);
-}
 
 vint8mf8_t test_vloxei32_v_i8mf8(const int8_t *rs1, vuint32mf2_t rs2,
                                  size_t vl) {
@@ -264,76 +193,6 @@ vuint64m8_t test_vloxei32_v_u64m8(const uint64_t *rs1, vuint32m4_t rs2,
   return __riscv_vloxei32(rs1, rs2, vl);
 }
 
-vfloat16mf4_t test_vloxei32_v_f16mf4_m(vbool64_t vm, const _Float16 *rs1,
-                                       vuint32mf2_t rs2, size_t vl) {
-  return __riscv_vloxei32(vm, rs1, rs2, vl);
-}
-
-vfloat16mf2_t test_vloxei32_v_f16mf2_m(vbool32_t vm, const _Float16 *rs1,
-                                       vuint32m1_t rs2, size_t vl) {
-  return __riscv_vloxei32(vm, rs1, rs2, vl);
-}
-
-vfloat16m1_t test_vloxei32_v_f16m1_m(vbool16_t vm, const _Float16 *rs1,
-                                     vuint32m2_t rs2, size_t vl) {
-  return __riscv_vloxei32(vm, rs1, rs2, vl);
-}
-
-vfloat16m2_t test_vloxei32_v_f16m2_m(vbool8_t vm, const _Float16 *rs1,
-                                     vuint32m4_t rs2, size_t vl) {
-  return __riscv_vloxei32(vm, rs1, rs2, vl);
-}
-
-vfloat16m4_t test_vloxei32_v_f16m4_m(vbool4_t vm, const _Float16 *rs1,
-                                     vuint32m8_t rs2, size_t vl) {
-  return __riscv_vloxei32(vm, rs1, rs2, vl);
-}
-
-vfloat32mf2_t test_vloxei32_v_f32mf2_m(vbool64_t vm, const float *rs1,
-                                       vuint32mf2_t rs2, size_t vl) {
-  return __riscv_vloxei32(vm, rs1, rs2, vl);
-}
-
-vfloat32m1_t test_vloxei32_v_f32m1_m(vbool32_t vm, const float *rs1,
-                                     vuint32m1_t rs2, size_t vl) {
-  return __riscv_vloxei32(vm, rs1, rs2, vl);
-}
-
-vfloat32m2_t test_vloxei32_v_f32m2_m(vbool16_t vm, const float *rs1,
-                                     vuint32m2_t rs2, size_t vl) {
-  return __riscv_vloxei32(vm, rs1, rs2, vl);
-}
-
-vfloat32m4_t test_vloxei32_v_f32m4_m(vbool8_t vm, const float *rs1,
-                                     vuint32m4_t rs2, size_t vl) {
-  return __riscv_vloxei32(vm, rs1, rs2, vl);
-}
-
-vfloat32m8_t test_vloxei32_v_f32m8_m(vbool4_t vm, const float *rs1,
-                                     vuint32m8_t rs2, size_t vl) {
-  return __riscv_vloxei32(vm, rs1, rs2, vl);
-}
-
-vfloat64m1_t test_vloxei32_v_f64m1_m(vbool64_t vm, const double *rs1,
-                                     vuint32mf2_t rs2, size_t vl) {
-  return __riscv_vloxei32(vm, rs1, rs2, vl);
-}
-
-vfloat64m2_t test_vloxei32_v_f64m2_m(vbool32_t vm, const double *rs1,
-                                     vuint32m1_t rs2, size_t vl) {
-  return __riscv_vloxei32(vm, rs1, rs2, vl);
-}
-
-vfloat64m4_t test_vloxei32_v_f64m4_m(vbool16_t vm, const double *rs1,
-                                     vuint32m2_t rs2, size_t vl) {
-  return __riscv_vloxei32(vm, rs1, rs2, vl);
-}
-
-vfloat64m8_t test_vloxei32_v_f64m8_m(vbool8_t vm, const double *rs1,
-                                     vuint32m4_t rs2, size_t vl) {
-  return __riscv_vloxei32(vm, rs1, rs2, vl);
-}
-
 vint8mf8_t test_vloxei32_v_i8mf8_m(vbool64_t vm, const int8_t *rs1,
                                    vuint32mf2_t rs2, size_t vl) {
   return __riscv_vloxei32(vm, rs1, rs2, vl);
@@ -521,5 +380,95 @@ vuint64m4_t test_vloxei32_v_u64m4_m(vbool16_t vm, const uint64_t *rs1,
 
 vuint64m8_t test_vloxei32_v_u64m8_m(vbool8_t vm, const uint64_t *rs1,
                                     vuint32m4_t rs2, size_t vl) {
+  return __riscv_vloxei32(vm, rs1, rs2, vl);
+}
+
+vfloat32mf2_t test_vloxei32_v_f32mf2(const float *rs1, vuint32mf2_t rs2,
+                                     size_t vl) {
+  return __riscv_vloxei32(rs1, rs2, vl);
+}
+
+vfloat32m1_t test_vloxei32_v_f32m1(const float *rs1, vuint32m1_t rs2,
+                                   size_t vl) {
+  return __riscv_vloxei32(rs1, rs2, vl);
+}
+
+vfloat32m2_t test_vloxei32_v_f32m2(const float *rs1, vuint32m2_t rs2,
+                                   size_t vl) {
+  return __riscv_vloxei32(rs1, rs2, vl);
+}
+
+vfloat32m4_t test_vloxei32_v_f32m4(const float *rs1, vuint32m4_t rs2,
+                                   size_t vl) {
+  return __riscv_vloxei32(rs1, rs2, vl);
+}
+
+vfloat32m8_t test_vloxei32_v_f32m8(const float *rs1, vuint32m8_t rs2,
+                                   size_t vl) {
+  return __riscv_vloxei32(rs1, rs2, vl);
+}
+
+vfloat64m1_t test_vloxei32_v_f64m1(const double *rs1, vuint32mf2_t rs2,
+                                   size_t vl) {
+  return __riscv_vloxei32(rs1, rs2, vl);
+}
+
+vfloat64m2_t test_vloxei32_v_f64m2(const double *rs1, vuint32m1_t rs2,
+                                   size_t vl) {
+  return __riscv_vloxei32(rs1, rs2, vl);
+}
+
+vfloat64m4_t test_vloxei32_v_f64m4(const double *rs1, vuint32m2_t rs2,
+                                   size_t vl) {
+  return __riscv_vloxei32(rs1, rs2, vl);
+}
+
+vfloat64m8_t test_vloxei32_v_f64m8(const double *rs1, vuint32m4_t rs2,
+                                   size_t vl) {
+  return __riscv_vloxei32(rs1, rs2, vl);
+}
+
+vfloat32mf2_t test_vloxei32_v_f32mf2_m(vbool64_t vm, const float *rs1,
+                                       vuint32mf2_t rs2, size_t vl) {
+  return __riscv_vloxei32(vm, rs1, rs2, vl);
+}
+
+vfloat32m1_t test_vloxei32_v_f32m1_m(vbool32_t vm, const float *rs1,
+                                     vuint32m1_t rs2, size_t vl) {
+  return __riscv_vloxei32(vm, rs1, rs2, vl);
+}
+
+vfloat32m2_t test_vloxei32_v_f32m2_m(vbool16_t vm, const float *rs1,
+                                     vuint32m2_t rs2, size_t vl) {
+  return __riscv_vloxei32(vm, rs1, rs2, vl);
+}
+
+vfloat32m4_t test_vloxei32_v_f32m4_m(vbool8_t vm, const float *rs1,
+                                     vuint32m4_t rs2, size_t vl) {
+  return __riscv_vloxei32(vm, rs1, rs2, vl);
+}
+
+vfloat32m8_t test_vloxei32_v_f32m8_m(vbool4_t vm, const float *rs1,
+                                     vuint32m8_t rs2, size_t vl) {
+  return __riscv_vloxei32(vm, rs1, rs2, vl);
+}
+
+vfloat64m1_t test_vloxei32_v_f64m1_m(vbool64_t vm, const double *rs1,
+                                     vuint32mf2_t rs2, size_t vl) {
+  return __riscv_vloxei32(vm, rs1, rs2, vl);
+}
+
+vfloat64m2_t test_vloxei32_v_f64m2_m(vbool32_t vm, const double *rs1,
+                                     vuint32m1_t rs2, size_t vl) {
+  return __riscv_vloxei32(vm, rs1, rs2, vl);
+}
+
+vfloat64m4_t test_vloxei32_v_f64m4_m(vbool16_t vm, const double *rs1,
+                                     vuint32m2_t rs2, size_t vl) {
+  return __riscv_vloxei32(vm, rs1, rs2, vl);
+}
+
+vfloat64m8_t test_vloxei32_v_f64m8_m(vbool8_t vm, const double *rs1,
+                                     vuint32m4_t rs2, size_t vl) {
   return __riscv_vloxei32(vm, rs1, rs2, vl);
 }

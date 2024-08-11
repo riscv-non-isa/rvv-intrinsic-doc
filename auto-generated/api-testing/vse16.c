@@ -1,30 +1,6 @@
 #include <riscv_vector.h>
 #include <stdint.h>
 
-void test_vse16_v_f16mf4(_Float16 *rs1, vfloat16mf4_t vs3, size_t vl) {
-  return __riscv_vse16_v_f16mf4(rs1, vs3, vl);
-}
-
-void test_vse16_v_f16mf2(_Float16 *rs1, vfloat16mf2_t vs3, size_t vl) {
-  return __riscv_vse16_v_f16mf2(rs1, vs3, vl);
-}
-
-void test_vse16_v_f16m1(_Float16 *rs1, vfloat16m1_t vs3, size_t vl) {
-  return __riscv_vse16_v_f16m1(rs1, vs3, vl);
-}
-
-void test_vse16_v_f16m2(_Float16 *rs1, vfloat16m2_t vs3, size_t vl) {
-  return __riscv_vse16_v_f16m2(rs1, vs3, vl);
-}
-
-void test_vse16_v_f16m4(_Float16 *rs1, vfloat16m4_t vs3, size_t vl) {
-  return __riscv_vse16_v_f16m4(rs1, vs3, vl);
-}
-
-void test_vse16_v_f16m8(_Float16 *rs1, vfloat16m8_t vs3, size_t vl) {
-  return __riscv_vse16_v_f16m8(rs1, vs3, vl);
-}
-
 void test_vse16_v_i16mf4(int16_t *rs1, vint16mf4_t vs3, size_t vl) {
   return __riscv_vse16_v_i16mf4(rs1, vs3, vl);
 }
@@ -71,36 +47,6 @@ void test_vse16_v_u16m4(uint16_t *rs1, vuint16m4_t vs3, size_t vl) {
 
 void test_vse16_v_u16m8(uint16_t *rs1, vuint16m8_t vs3, size_t vl) {
   return __riscv_vse16_v_u16m8(rs1, vs3, vl);
-}
-
-void test_vse16_v_f16mf4_m(vbool64_t vm, _Float16 *rs1, vfloat16mf4_t vs3,
-                           size_t vl) {
-  return __riscv_vse16_v_f16mf4_m(vm, rs1, vs3, vl);
-}
-
-void test_vse16_v_f16mf2_m(vbool32_t vm, _Float16 *rs1, vfloat16mf2_t vs3,
-                           size_t vl) {
-  return __riscv_vse16_v_f16mf2_m(vm, rs1, vs3, vl);
-}
-
-void test_vse16_v_f16m1_m(vbool16_t vm, _Float16 *rs1, vfloat16m1_t vs3,
-                          size_t vl) {
-  return __riscv_vse16_v_f16m1_m(vm, rs1, vs3, vl);
-}
-
-void test_vse16_v_f16m2_m(vbool8_t vm, _Float16 *rs1, vfloat16m2_t vs3,
-                          size_t vl) {
-  return __riscv_vse16_v_f16m2_m(vm, rs1, vs3, vl);
-}
-
-void test_vse16_v_f16m4_m(vbool4_t vm, _Float16 *rs1, vfloat16m4_t vs3,
-                          size_t vl) {
-  return __riscv_vse16_v_f16m4_m(vm, rs1, vs3, vl);
-}
-
-void test_vse16_v_f16m8_m(vbool2_t vm, _Float16 *rs1, vfloat16m8_t vs3,
-                          size_t vl) {
-  return __riscv_vse16_v_f16m8_m(vm, rs1, vs3, vl);
 }
 
 void test_vse16_v_i16mf4_m(vbool64_t vm, int16_t *rs1, vint16mf4_t vs3,

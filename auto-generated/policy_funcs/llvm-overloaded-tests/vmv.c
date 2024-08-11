@@ -361,36 +361,6 @@ vuint64m8_t test_vmv_v_x_u64m8_tu(vuint64m8_t vd, uint64_t rs1, size_t vl) {
   return __riscv_vmv_v_tu(vd, rs1, vl);
 }
 
-vfloat16mf4_t test_vmv_v_v_f16mf4_tu(vfloat16mf4_t vd, vfloat16mf4_t vs1,
-                                     size_t vl) {
-  return __riscv_vmv_v_tu(vd, vs1, vl);
-}
-
-vfloat16mf2_t test_vmv_v_v_f16mf2_tu(vfloat16mf2_t vd, vfloat16mf2_t vs1,
-                                     size_t vl) {
-  return __riscv_vmv_v_tu(vd, vs1, vl);
-}
-
-vfloat16m1_t test_vmv_v_v_f16m1_tu(vfloat16m1_t vd, vfloat16m1_t vs1,
-                                   size_t vl) {
-  return __riscv_vmv_v_tu(vd, vs1, vl);
-}
-
-vfloat16m2_t test_vmv_v_v_f16m2_tu(vfloat16m2_t vd, vfloat16m2_t vs1,
-                                   size_t vl) {
-  return __riscv_vmv_v_tu(vd, vs1, vl);
-}
-
-vfloat16m4_t test_vmv_v_v_f16m4_tu(vfloat16m4_t vd, vfloat16m4_t vs1,
-                                   size_t vl) {
-  return __riscv_vmv_v_tu(vd, vs1, vl);
-}
-
-vfloat16m8_t test_vmv_v_v_f16m8_tu(vfloat16m8_t vd, vfloat16m8_t vs1,
-                                   size_t vl) {
-  return __riscv_vmv_v_tu(vd, vs1, vl);
-}
-
 vfloat32mf2_t test_vmv_v_v_f32mf2_tu(vfloat32mf2_t vd, vfloat32mf2_t vs1,
                                      size_t vl) {
   return __riscv_vmv_v_tu(vd, vs1, vl);

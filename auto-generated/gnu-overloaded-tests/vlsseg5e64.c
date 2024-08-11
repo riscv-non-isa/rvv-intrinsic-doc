@@ -3,15 +3,15 @@
 
 #include <riscv_vector.h>
 
-vfloat64m1x5_t test_vlsseg5e64_v_f64m1x5_m(vbool64_t vm, const double *rs1, ptrdiff_t rs2, size_t vl) {
-  return __riscv_vlsseg5e64(vm, rs1, rs2, vl);
-}
-
 vint64m1x5_t test_vlsseg5e64_v_i64m1x5_m(vbool64_t vm, const int64_t *rs1, ptrdiff_t rs2, size_t vl) {
   return __riscv_vlsseg5e64(vm, rs1, rs2, vl);
 }
 
 vuint64m1x5_t test_vlsseg5e64_v_u64m1x5_m(vbool64_t vm, const uint64_t *rs1, ptrdiff_t rs2, size_t vl) {
+  return __riscv_vlsseg5e64(vm, rs1, rs2, vl);
+}
+
+vfloat64m1x5_t test_vlsseg5e64_v_f64m1x5_m(vbool64_t vm, const double *rs1, ptrdiff_t rs2, size_t vl) {
   return __riscv_vlsseg5e64(vm, rs1, rs2, vl);
 }
 /* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vlsseg5e64\.[ivxfswum.]+\s+} 3 } } */

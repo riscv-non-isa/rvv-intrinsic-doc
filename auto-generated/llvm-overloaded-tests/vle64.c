@@ -6,22 +6,6 @@
 
 #include <riscv_vector.h>
 
-vfloat64m1_t test_vle64_v_f64m1_m(vbool64_t vm, const double *rs1, size_t vl) {
-  return __riscv_vle64(vm, rs1, vl);
-}
-
-vfloat64m2_t test_vle64_v_f64m2_m(vbool32_t vm, const double *rs1, size_t vl) {
-  return __riscv_vle64(vm, rs1, vl);
-}
-
-vfloat64m4_t test_vle64_v_f64m4_m(vbool16_t vm, const double *rs1, size_t vl) {
-  return __riscv_vle64(vm, rs1, vl);
-}
-
-vfloat64m8_t test_vle64_v_f64m8_m(vbool8_t vm, const double *rs1, size_t vl) {
-  return __riscv_vle64(vm, rs1, vl);
-}
-
 vint64m1_t test_vle64_v_i64m1_m(vbool64_t vm, const int64_t *rs1, size_t vl) {
   return __riscv_vle64(vm, rs1, vl);
 }
@@ -51,5 +35,21 @@ vuint64m4_t test_vle64_v_u64m4_m(vbool16_t vm, const uint64_t *rs1, size_t vl) {
 }
 
 vuint64m8_t test_vle64_v_u64m8_m(vbool8_t vm, const uint64_t *rs1, size_t vl) {
+  return __riscv_vle64(vm, rs1, vl);
+}
+
+vfloat64m1_t test_vle64_v_f64m1_m(vbool64_t vm, const double *rs1, size_t vl) {
+  return __riscv_vle64(vm, rs1, vl);
+}
+
+vfloat64m2_t test_vle64_v_f64m2_m(vbool32_t vm, const double *rs1, size_t vl) {
+  return __riscv_vle64(vm, rs1, vl);
+}
+
+vfloat64m4_t test_vle64_v_f64m4_m(vbool16_t vm, const double *rs1, size_t vl) {
+  return __riscv_vle64(vm, rs1, vl);
+}
+
+vfloat64m8_t test_vle64_v_f64m8_m(vbool8_t vm, const double *rs1, size_t vl) {
   return __riscv_vle64(vm, rs1, vl);
 }

@@ -3,66 +3,6 @@
 
 #include <riscv_vector.h>
 
-vfloat16mf4_t test_vcompress_vm_f16mf4(vfloat16mf4_t vs2, vbool64_t vs1, size_t vl) {
-  return __riscv_vcompress(vs2, vs1, vl);
-}
-
-vfloat16mf2_t test_vcompress_vm_f16mf2(vfloat16mf2_t vs2, vbool32_t vs1, size_t vl) {
-  return __riscv_vcompress(vs2, vs1, vl);
-}
-
-vfloat16m1_t test_vcompress_vm_f16m1(vfloat16m1_t vs2, vbool16_t vs1, size_t vl) {
-  return __riscv_vcompress(vs2, vs1, vl);
-}
-
-vfloat16m2_t test_vcompress_vm_f16m2(vfloat16m2_t vs2, vbool8_t vs1, size_t vl) {
-  return __riscv_vcompress(vs2, vs1, vl);
-}
-
-vfloat16m4_t test_vcompress_vm_f16m4(vfloat16m4_t vs2, vbool4_t vs1, size_t vl) {
-  return __riscv_vcompress(vs2, vs1, vl);
-}
-
-vfloat16m8_t test_vcompress_vm_f16m8(vfloat16m8_t vs2, vbool2_t vs1, size_t vl) {
-  return __riscv_vcompress(vs2, vs1, vl);
-}
-
-vfloat32mf2_t test_vcompress_vm_f32mf2(vfloat32mf2_t vs2, vbool64_t vs1, size_t vl) {
-  return __riscv_vcompress(vs2, vs1, vl);
-}
-
-vfloat32m1_t test_vcompress_vm_f32m1(vfloat32m1_t vs2, vbool32_t vs1, size_t vl) {
-  return __riscv_vcompress(vs2, vs1, vl);
-}
-
-vfloat32m2_t test_vcompress_vm_f32m2(vfloat32m2_t vs2, vbool16_t vs1, size_t vl) {
-  return __riscv_vcompress(vs2, vs1, vl);
-}
-
-vfloat32m4_t test_vcompress_vm_f32m4(vfloat32m4_t vs2, vbool8_t vs1, size_t vl) {
-  return __riscv_vcompress(vs2, vs1, vl);
-}
-
-vfloat32m8_t test_vcompress_vm_f32m8(vfloat32m8_t vs2, vbool4_t vs1, size_t vl) {
-  return __riscv_vcompress(vs2, vs1, vl);
-}
-
-vfloat64m1_t test_vcompress_vm_f64m1(vfloat64m1_t vs2, vbool64_t vs1, size_t vl) {
-  return __riscv_vcompress(vs2, vs1, vl);
-}
-
-vfloat64m2_t test_vcompress_vm_f64m2(vfloat64m2_t vs2, vbool32_t vs1, size_t vl) {
-  return __riscv_vcompress(vs2, vs1, vl);
-}
-
-vfloat64m4_t test_vcompress_vm_f64m4(vfloat64m4_t vs2, vbool16_t vs1, size_t vl) {
-  return __riscv_vcompress(vs2, vs1, vl);
-}
-
-vfloat64m8_t test_vcompress_vm_f64m8(vfloat64m8_t vs2, vbool8_t vs1, size_t vl) {
-  return __riscv_vcompress(vs2, vs1, vl);
-}
-
 vint8mf8_t test_vcompress_vm_i8mf8(vint8mf8_t vs2, vbool64_t vs1, size_t vl) {
   return __riscv_vcompress(vs2, vs1, vl);
 }
@@ -238,4 +178,40 @@ vuint64m4_t test_vcompress_vm_u64m4(vuint64m4_t vs2, vbool16_t vs1, size_t vl) {
 vuint64m8_t test_vcompress_vm_u64m8(vuint64m8_t vs2, vbool8_t vs1, size_t vl) {
   return __riscv_vcompress(vs2, vs1, vl);
 }
-/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vcompress\.[ivxfswum.]+\s+} 59 } } */
+
+vfloat32mf2_t test_vcompress_vm_f32mf2(vfloat32mf2_t vs2, vbool64_t vs1, size_t vl) {
+  return __riscv_vcompress(vs2, vs1, vl);
+}
+
+vfloat32m1_t test_vcompress_vm_f32m1(vfloat32m1_t vs2, vbool32_t vs1, size_t vl) {
+  return __riscv_vcompress(vs2, vs1, vl);
+}
+
+vfloat32m2_t test_vcompress_vm_f32m2(vfloat32m2_t vs2, vbool16_t vs1, size_t vl) {
+  return __riscv_vcompress(vs2, vs1, vl);
+}
+
+vfloat32m4_t test_vcompress_vm_f32m4(vfloat32m4_t vs2, vbool8_t vs1, size_t vl) {
+  return __riscv_vcompress(vs2, vs1, vl);
+}
+
+vfloat32m8_t test_vcompress_vm_f32m8(vfloat32m8_t vs2, vbool4_t vs1, size_t vl) {
+  return __riscv_vcompress(vs2, vs1, vl);
+}
+
+vfloat64m1_t test_vcompress_vm_f64m1(vfloat64m1_t vs2, vbool64_t vs1, size_t vl) {
+  return __riscv_vcompress(vs2, vs1, vl);
+}
+
+vfloat64m2_t test_vcompress_vm_f64m2(vfloat64m2_t vs2, vbool32_t vs1, size_t vl) {
+  return __riscv_vcompress(vs2, vs1, vl);
+}
+
+vfloat64m4_t test_vcompress_vm_f64m4(vfloat64m4_t vs2, vbool16_t vs1, size_t vl) {
+  return __riscv_vcompress(vs2, vs1, vl);
+}
+
+vfloat64m8_t test_vcompress_vm_f64m8(vfloat64m8_t vs2, vbool8_t vs1, size_t vl) {
+  return __riscv_vcompress(vs2, vs1, vl);
+}
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vcompress\.[ivxfswum.]+\s+} 53 } } */
