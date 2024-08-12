@@ -460,7 +460,7 @@ class APITestGenerator(Generator):
   def inst_group_epilogue(self):
     return ""
 
-  def write_file_header(self, has_float_type, name):
+  def write_file_header(self, has_float_type):
     #pylint: disable=line-too-long
     int_llvm_header = r"""// REQUIRES: riscv-registered-target
 // RUN: %clang_cc1 -triple riscv64 -target-feature +v -disable-O0-optnone \
@@ -564,7 +564,7 @@ class APITestGenerator(Generator):
         has_float_type = True
 
     if header:
-      self.write_file_header(has_float_type, name)
+      self.write_file_header(has_float_type)
 
     def output_call_arg(arg_name, type_name):
       if ((name.startswith("vget") or name.startswith("vset")) \
