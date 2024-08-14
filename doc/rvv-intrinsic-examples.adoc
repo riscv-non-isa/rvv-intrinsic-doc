@@ -103,7 +103,7 @@ void matmul_rvv(double *a, double *b, double *c, int n, int m, int p) {
       // Set accumulator to  zero.
       vfloat64m1_t vec_s = __riscv_vfmv_v_f_f64m1(0.0, vlmax);
       vfloat64m1_t vec_zero = __riscv_vfmv_v_f_f64m1(0.0, vlmax);
-      for (size_t vl; k > 0; k -= vl) {
+      for (size_t vl; k > 0; k -= vl, ptr_a += vl, ptr_b += vl * m) {
         vl = __riscv_vsetvl_e64m1(k);
 
         // Load row a[i][k..k+vl)
