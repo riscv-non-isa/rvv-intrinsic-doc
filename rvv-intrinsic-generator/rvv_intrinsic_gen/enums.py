@@ -145,7 +145,8 @@ class InstInfo:
                inst_type=InstType.UNKNOWN,
                mem_type=MemType.NO_MEM,
                extra_attr=ExtraAttr.NO_ATTR,
-               NF=1):
+               NF=1,
+               required_ext=None):
     #pylint: disable=invalid-name
     self.SEW = SEW
     self.LMUL = LMUL
@@ -154,6 +155,9 @@ class InstInfo:
     self.mem_type = mem_type
     self.extra_attr = extra_attr
     self.NF = NF
+    if required_ext is None:
+      required_ext = []
+    self.required_ext = sorted(required_ext)
 
   def load_p(self):
     return self.mem_type == MemType.LOAD
@@ -185,3 +189,14 @@ class InstInfo:
       # For mask operation
       return InstInfo(0, 0, args["OP"], inst_type, mem_type,
                       extra_attr | decorator.flags)
+
+  def get_required_exts(self) -> list:
+    return sorted(self.required_ext)
+
+  def add_required_ext(self, ext: str) -> None:
+    if ext not in self.required_ext:
+      self.required_ext.append(ext)
+
+  def remove_required_ext(self, ext: str) -> None:
+    if ext in self.required_ext:
+      self.required_ext.remove(ext)
