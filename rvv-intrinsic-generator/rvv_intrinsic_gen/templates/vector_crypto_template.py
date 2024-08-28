@@ -74,8 +74,14 @@ def has_rs1_input(name):
   return name in has_rs1_input_inst_set
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
   G.emit_function_group_description(description)
@@ -89,24 +95,48 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       for operand_mnemonic in operand_mnemonic_dict[op]:
         if operand_mnemonic in ("vv", "vs"):
           if op == "vwsll":
-            inst_info = InstInfo.get(args, decorator, InstType.WVV,
-                                     ExtraAttr.NO_ATTR)
+            inst_info = InstInfo.get(
+                args,
+                decorator,
+                InstType.WVV,
+                ExtraAttr.NO_ATTR,
+                required_ext=required_ext_list)
           else:
-            inst_info = InstInfo.get(args, decorator, InstType.VV,
-                                     ExtraAttr.NO_ATTR)
+            inst_info = InstInfo.get(
+                args,
+                decorator,
+                InstType.VV,
+                ExtraAttr.NO_ATTR,
+                required_ext=required_ext_list)
         elif operand_mnemonic == "vx":
           if op == "vwsll":
-            inst_info = InstInfo.get(args, decorator, InstType.WVX,
-                                     ExtraAttr.NO_ATTR)
+            inst_info = InstInfo.get(
+                args,
+                decorator,
+                InstType.WVX,
+                ExtraAttr.NO_ATTR,
+                required_ext=required_ext_list)
           else:
-            inst_info = InstInfo.get(args, decorator, InstType.VX,
-                                     ExtraAttr.NO_ATTR)
+            inst_info = InstInfo.get(
+                args,
+                decorator,
+                InstType.VX,
+                ExtraAttr.NO_ATTR,
+                required_ext=required_ext_list)
         elif operand_mnemonic == "vi":
-          inst_info = InstInfo.get(args, decorator, InstType.VI,
-                                   ExtraAttr.NO_ATTR)
+          inst_info = InstInfo.get(
+              args,
+              decorator,
+              InstType.VI,
+              ExtraAttr.NO_ATTR,
+              required_ext=required_ext_list)
         elif operand_mnemonic == "v":
-          inst_info = InstInfo.get(args, decorator, InstType.V,
-                                   ExtraAttr.NO_ATTR)
+          inst_info = InstInfo.get(
+              args,
+              decorator,
+              InstType.V,
+              ExtraAttr.NO_ATTR,
+              required_ext=required_ext_list)
         else:
           assert False, "Unreachable, unrecognized mnemonic"
 
@@ -150,6 +180,33 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
           kwargs["uimm"] = type_helper.size_t
 
         kwargs["vl"] = type_helper.size_t
+
+        lmul_num = 2**(lmul_list.index(args["LMUL"]) - 3)
+        if int(args["SEW"] / lmul_num) == 64:
+          inst_info.add_required_ext("zve64x")
+        else:
+          inst_info.add_required_ext("zve32x")
+        # Add Zvl constraint
+        # If zvkg, zvkned, zvknha, zvknhb, zvksed, zvksh in required_ext_list,
+        # then add Zvl constraint by checking if LMUL * VLEN >= EGW
+        if any(ext in inst_info.get_required_exts() for ext in
+               ["zvkg", "zvkned", "zvknha", "zvknhb", "zvksed", "zvksh"]):
+          # EGW = EGS * EEW(SEW)
+          # For SM3 instruction group (Zvksh), EGS = 8, otherwise EGS = 4
+          if op in ["vsm3me", "vsm3c"]:
+            EGW = int(8 * args["SEW"])
+          else:
+            EGW = int(4 * args["SEW"])
+          required_VLEN = int(EGW / lmul_num)
+          if required_VLEN >= 32:
+            inst_info.add_required_ext(f"zvl{int(EGW / lmul_num)}b")
+        # If SEW == 64, zvknhb is required.
+        # Zvknhb also requires zve64x
+        # Note that zvknhb is mutually exclusive with zvknha
+        if op in ["vsha2ms", "vsha2ch", "vsha2cl"] and args["SEW"] == 64:
+          inst_info.remove_required_ext("zvknha")
+          inst_info.add_required_ext("zvknhb")
+          inst_info.add_required_ext("zve64x")
 
         if operand_mnemonic == "vs":
           starting_from_lmul_index = lmul_list.index(args["LMUL"])
