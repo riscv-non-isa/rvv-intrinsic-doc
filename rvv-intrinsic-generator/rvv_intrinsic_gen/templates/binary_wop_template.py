@@ -26,8 +26,14 @@ from enums import InstInfo
 from enums import InstType
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
   G.emit_function_group_description(description)
@@ -49,12 +55,18 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
 
       args["OP"] = "v" + args["OP"]
 
-      inst_info_wvv = InstInfo.get(args, decorator, InstType.WVV)
-      inst_info_wvx = InstInfo.get(args, decorator, InstType.WVX)
-      inst_info_wvf = InstInfo.get(args, decorator, InstType.WVF)
-      inst_info_wwv = InstInfo.get(args, decorator, InstType.WWV)
-      inst_info_wwx = InstInfo.get(args, decorator, InstType.WWX)
-      inst_info_wwf = InstInfo.get(args, decorator, InstType.WWF)
+      inst_info_wvv = InstInfo.get(
+          args, decorator, InstType.WVV, required_ext=required_ext_list)
+      inst_info_wvx = InstInfo.get(
+          args, decorator, InstType.WVX, required_ext=required_ext_list)
+      inst_info_wvf = InstInfo.get(
+          args, decorator, InstType.WVF, required_ext=required_ext_list)
+      inst_info_wwv = InstInfo.get(
+          args, decorator, InstType.WWV, required_ext=required_ext_list)
+      inst_info_wwx = InstInfo.get(
+          args, decorator, InstType.WWX, required_ext=required_ext_list)
+      inst_info_wwf = InstInfo.get(
+          args, decorator, InstType.WWF, required_ext=required_ext_list)
 
       args["LMUL"] = args["WLMUL"]
       args["SEW"] = args["WSEW"]

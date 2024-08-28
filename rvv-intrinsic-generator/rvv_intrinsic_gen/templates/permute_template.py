@@ -26,8 +26,14 @@ from enums import InstInfo
 from enums import InstType
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
   G.emit_function_group_description(description)
@@ -59,13 +65,16 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       if op == "mv":
         if decorator.func_suffix == "":
           G.func(
-              InstInfo.get(args, decorator, sv_inst_type),
+              InstInfo.get(
+                  args, decorator, sv_inst_type,
+                  required_ext=required_ext_list),
               name="{OP}_{S_TYPE}_s_{TYPE}{SEW}m{LMUL}_{TYPE}{SEW}".format_map(
                   args),
               return_type=type_helper.s,
               vs1=type_helper.v)
         G.func(
-            InstInfo.get(args, decorator, vs_inst_type),
+            InstInfo.get(
+                args, decorator, vs_inst_type, required_ext=required_ext_list),
             name="{OP}_s_{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
@@ -74,7 +83,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
             vl=type_helper.size_t)
       elif op in ["slide1up", "slide1down"]:
         G.func(
-            InstInfo.get(args, decorator, vvs_inst_type),
+            InstInfo.get(
+                args, decorator, vvs_inst_type, required_ext=required_ext_list),
             name="{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
@@ -85,7 +95,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
             vl=type_helper.size_t)
       elif op == "slideup":
         G.func(
-            InstInfo.get(args, decorator, InstType.VVX),
+            InstInfo.get(
+                args, decorator, InstType.VVX, required_ext=required_ext_list),
             name="{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
@@ -96,7 +107,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
             vl=type_helper.size_t)
       elif op == "slidedown":
         G.func(
-            InstInfo.get(args, decorator, InstType.VVX),
+            InstInfo.get(
+                args, decorator, InstType.VVX, required_ext=required_ext_list),
             name="{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,
@@ -107,7 +119,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
             vl=type_helper.size_t)
       elif op == "compress":
         G.func(
-            InstInfo.get(args, decorator, InstType.VVV),
+            InstInfo.get(
+                args, decorator, InstType.VVV, required_ext=required_ext_list),
             name="{OP}_vm_{TYPE}{SEW}m{LMUL}".format_map(args) +
             decorator.func_suffix,
             return_type=type_helper.v,

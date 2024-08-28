@@ -26,8 +26,14 @@ from enums import InstInfo
 from enums import InstType
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
   G.emit_function_group_description(description)
@@ -43,8 +49,10 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       assert args["OP"] is not None
       args["OP"] = "v" + args["OP"]
 
-      inst_info_vvm = InstInfo.get(args, decorator, InstType.VVVM)
-      inst_info_vxm = InstInfo.get(args, decorator, InstType.VVXM)
+      inst_info_vvm = InstInfo.get(
+          args, decorator, InstType.VVVM, required_ext=required_ext_list)
+      inst_info_vxm = InstInfo.get(
+          args, decorator, InstType.VVXM, required_ext=required_ext_list)
 
       if not "m" in args["OP"]:
         G.func(
@@ -77,11 +85,15 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       assert args["OP"] is not None
       args["OP"] = "v" + args["OP"]
 
-      inst_info_vvm = InstInfo.get(args, None, InstType.VVVM)
-      inst_info_vxm = InstInfo.get(args, None, InstType.VVXM)
+      inst_info_vvm = InstInfo.get(
+          args, None, InstType.VVVM, required_ext=required_ext_list)
+      inst_info_vxm = InstInfo.get(
+          args, None, InstType.VVXM, required_ext=required_ext_list)
 
-      inst_info_vv = InstInfo.get(args, None, InstType.VVV)
-      inst_info_vx = InstInfo.get(args, None, InstType.VVX)
+      inst_info_vv = InstInfo.get(
+          args, None, InstType.VVV, required_ext=required_ext_list)
+      inst_info_vx = InstInfo.get(
+          args, None, InstType.VVX, required_ext=required_ext_list)
 
       # madc or msbc
       if "m" in args["OP"]:

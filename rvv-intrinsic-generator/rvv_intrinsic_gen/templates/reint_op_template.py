@@ -27,8 +27,14 @@ from enums import InstType
 from generator import CompatibleHeaderGenerator
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name, unused-argument
   # FIXME: Renaming 'G' to 'g' all in once later.
   # FIXME: Argument 'type_list' is unused but required for interface
@@ -76,7 +82,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
         "{OP}_v_{TYPES3}{SEW}m{LMUL}_{TYPES1}{SEW}m{LMUL}".format_map(args)
       src_type = "v{TYPES2}{SEW}m{LMUL}_t".format_map(args)
       G.func(
-          InstInfo.get(args, decorator, InstType.REINT),
+          InstInfo.get(
+              args, decorator, InstType.REINT, required_ext=required_ext_list),
           name=func_name + decorator.func_suffix,
           return_type=rt,
           **decorator.mask_args(type_helper.m, rt),
@@ -116,7 +123,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
         "{OP}_v_{TYPES3}{SEW}m{LMUL}_{TYPES1}{DST_SEW}m{LMUL}".format_map(args)
       src_type = "v{TYPES2}{SEW}m{LMUL}_t".format_map(args)
       G.func(
-          InstInfo.get(args, decorator, InstType.REINT),
+          InstInfo.get(
+              args, decorator, InstType.REINT, required_ext=required_ext_list),
           name=func_name + decorator.func_suffix,
           return_type=rt,
           **decorator.mask_args(type_helper.m, rt),
@@ -147,7 +155,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       func_name =\
         "{OP}_v_{TYPES1}{SEW}m1_b{MLEN}".format_map(args)
       G.func(
-          InstInfo.get(args, decorator, InstType.REINT),
+          InstInfo.get(
+              args, decorator, InstType.REINT, required_ext=required_ext_list),
           name=func_name + decorator.func_suffix,
           return_type=mask_type,
           src=int_type)
@@ -155,7 +164,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       func_name =\
         "{OP}_v_b{MLEN}_{TYPES1}{SEW}m1".format_map(args)
       G.func(
-          InstInfo.get(args, decorator, InstType.REINT),
+          InstInfo.get(
+              args, decorator, InstType.REINT, required_ext=required_ext_list),
           name=func_name + decorator.func_suffix,
           return_type=int_type,
           src=mask_type)

@@ -28,8 +28,14 @@ from enums import ExtraAttr
 from constants import ITYPES
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name, unused-argument
   # FIXME: Renaming 'G' to 'g' all in once later.
   # FIXME: Argument 'type_list' is unused but required for interface
@@ -112,7 +118,11 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
 
       extra_attr = ExtraAttr.CONVERT
       inst_info = InstInfo.get(
-          args, decorator, InstType.VV, extra_attr=extra_attr)
+          args,
+          decorator,
+          InstType.VV,
+          extra_attr=extra_attr,
+          required_ext=required_ext_list)
 
       args["TYPE"] = args["TYPES2"]
       src_type_helper = TypeHelper(**args)
@@ -159,7 +169,11 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       if args["TYPES1"] != args["TYPES3"] and args["TYPES3"] == "f":
         args["OP"] = args["OP"] + "_rtz"
         inst_info = InstInfo.get(
-            args, decorator, InstType.VV, extra_attr=extra_attr)
+            args,
+            decorator,
+            InstType.VV,
+            extra_attr=extra_attr,
+            required_ext=required_ext_list)
         func_name =\
           "{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}".format_map\
           (args)
@@ -175,7 +189,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       if op == "ncvt" and args["TYPES1"] == "f" and args["TYPES3"] == "f":
         args["OP"] = args["OP"] + "_rod"
         inst_info = \
-          InstInfo.get(args, decorator, InstType.VV, extra_attr=extra_attr)
+          InstInfo.get(args, decorator, InstType.VV, extra_attr=extra_attr,
+                       required_ext = required_ext_list)
         func_name = \
           "{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}".format_map\
           (args)

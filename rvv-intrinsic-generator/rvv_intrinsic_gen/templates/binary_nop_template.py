@@ -32,8 +32,14 @@ def must_int_type(**kargs):
 
 
 # narrowing op template
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
   G.emit_function_group_description(description)
@@ -74,7 +80,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
         continue
       type_helper = TypeHelper(**args)
 
-      inst_info = InstInfo.get(args, decorator, inst_type)
+      inst_info = InstInfo.get(
+          args, decorator, inst_type, required_ext=required_ext_list)
 
       if op in ["nsrl", "nsra", "nclip"]:
         if op2 == "v":

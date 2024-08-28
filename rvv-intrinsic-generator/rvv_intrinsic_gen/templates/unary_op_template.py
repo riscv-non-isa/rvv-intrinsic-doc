@@ -28,8 +28,14 @@ from enums import ExtraAttr
 import copy
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
   G.emit_function_group_description(description)
@@ -63,11 +69,23 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
         extra_attr = ExtraAttr.NO_ATTR
 
       inst_info_vv = InstInfo.get(
-          args, decorator, InstType.VV, extra_attr=extra_attr)
+          args,
+          decorator,
+          InstType.VV,
+          extra_attr=extra_attr,
+          required_ext=required_ext_list)
       inst_info_vs = InstInfo.get(
-          args, decorator, inst_type_vs, extra_attr=extra_attr)
+          args,
+          decorator,
+          inst_type_vs,
+          extra_attr=extra_attr,
+          required_ext=required_ext_list)
       inst_info_vvsm = InstInfo.get(
-          args, decorator, inst_type_vvsm, extra_attr=extra_attr)
+          args,
+          decorator,
+          inst_type_vvsm,
+          extra_attr=extra_attr,
+          required_ext=required_ext_list)
 
       # Special rule for vfmv_v_v, we don"t have vfmv.v.v but vmv.v.v can used
       # for float type, accrdoing current naming scheming it
@@ -80,7 +98,11 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       if op == "merge":
         G.func(
             InstInfo.get(
-                vv_args, decorator, InstType.VVVM, extra_attr=extra_attr),
+                vv_args,
+                decorator,
+                InstType.VVVM,
+                extra_attr=extra_attr,
+                required_ext=required_ext_list),
             name="{OP}_vvm_{TYPE}{SEW}m{LMUL}".format_map(vv_args) +
             decorator.func_suffix,
             return_type=type_helper.v,
@@ -101,7 +123,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
             vl=type_helper.size_t)
       elif op == "mv":
         G.func(
-            InstInfo.get(vv_args, decorator, InstType.VV),
+            InstInfo.get(
+                vv_args, decorator, InstType.VV,
+                required_ext=required_ext_list),
             name="{OP}_v_v_{TYPE}{SEW}m{LMUL}".format_map(vv_args) +
             decorator.func_suffix,
             return_type=type_helper.v,
@@ -192,7 +216,11 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
         continue
 
       inst_info_v = InstInfo.get(
-          args, decorator, inst_type, extra_attr=ExtraAttr.INT_EXTENSION)
+          args,
+          decorator,
+          inst_type,
+          extra_attr=ExtraAttr.INT_EXTENSION,
+          required_ext=required_ext_list)
 
       G.func(
           inst_info_v,
