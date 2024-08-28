@@ -25,8 +25,14 @@ from enums import InstInfo
 from enums import InstType
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
   G.emit_function_group_description(description)
@@ -46,8 +52,10 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
 
       args["OP"] = "v" + args["OP"]
 
-      inst_info_mm = InstInfo.get(args, decorator, InstType.MMM)
-      inst_info_m = InstInfo.get(args, decorator, InstType.MM)
+      inst_info_mm = InstInfo.get(
+          args, decorator, InstType.MMM, required_ext=required_ext_list)
+      inst_info_m = InstInfo.get(
+          args, decorator, InstType.MM, required_ext=required_ext_list)
 
       if op in ["mv", "not"]:  # unary operator
         G.func(
@@ -105,7 +113,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
 
       if op == "iota":
         G.func(
-            InstInfo.get(args, decorator, InstType.MM),
+            InstInfo.get(args, decorator, InstType.MM,
+                         required_ext = required_ext_list),
             name=\
             "viota_m_u{SEW}m{LMUL}".format_map(args) + decorator.func_suffix,
             return_type=type_helper.uiv,
@@ -115,7 +124,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
             vl=type_helper.size_t)
       if op == "id":
         G.func(
-            InstInfo.get(args, decorator, InstType.VM),
+            InstInfo.get(
+                args, decorator, InstType.VM, required_ext=required_ext_list),
             name="vid_v_u{SEW}m{LMUL}".format_map(args) + decorator.func_suffix,
             return_type=type_helper.uiv,
             **decorator.mask_args(type_helper.m, type_helper.uiv),
