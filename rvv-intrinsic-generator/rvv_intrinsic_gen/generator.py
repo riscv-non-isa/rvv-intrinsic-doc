@@ -510,8 +510,18 @@ class APITestGenerator(Generator):
   def inst_group_epilogue(self):
     return ""
 
-  def write_file_header(self, has_float_type, has_bfloat16_type, name):
+  def write_file_header(self, has_float_type, has_bfloat16_type, requires_exts):
     #pylint: disable=line-too-long
+    dynamic_llvm_header_prologue = r"""// REQUIRES: riscv-registered-target
+// RUN: %clang_cc1 -triple riscv64 -disable-O0-optnone \
+"""
+
+    dynamic_llvm_header_epilogue = r"""// RUN:   -target-feature +experimental \
+// RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
+// RUN:   FileCheck --check-prefix=CHECK-RV64 %s
+
+"""
+
     int_llvm_header = r"""// REQUIRES: riscv-registered-target
 // RUN: %clang_cc1 -triple riscv64 -target-feature +v -disable-O0-optnone \
 // RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
@@ -540,6 +550,13 @@ class APITestGenerator(Generator):
 
 """)
 
+    # Dynamic header is used when the requires_exts is not empty.
+    if requires_exts:
+      dynamic_llvm_header = dynamic_llvm_header_prologue
+      for ext in requires_exts:
+        dynamic_llvm_header += f"// RUN:   -target-feature +{ext} \\\n"
+      dynamic_llvm_header += dynamic_llvm_header_epilogue
+
     vector_crypto_llvm_header = r"""// REQUIRES: riscv-registered-target
 // RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zvl512b \
 // RUN:   -target-feature +zvbb \
@@ -567,7 +584,9 @@ class APITestGenerator(Generator):
       return False
 
     if self.toolchain_type == ToolChainType.LLVM:
-      if has_bfloat16_type:
+      if requires_exts:
+        self.fd.write(dynamic_llvm_header)
+      elif has_bfloat16_type:
         self.fd.write(bfloat16_llvm_header)
       elif is_vector_crypto_inst(name):
         self.fd.write(vector_crypto_llvm_header)
@@ -651,7 +670,8 @@ class APITestGenerator(Generator):
         has_float_type = True
 
     if header:
-      self.write_file_header(has_float_type, has_bfloat16_type, name)
+      self.write_file_header(has_float_type, has_bfloat16_type,
+                             inst_info.get_required_exts())
 
     def output_call_arg(arg_name, type_name):
       if ((name.startswith("vget") or name.startswith("vset")) \
