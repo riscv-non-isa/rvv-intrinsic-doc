@@ -50,8 +50,14 @@ def vset_constraint(**kargs):
          and int(kargs["LMUL"]) > int(kargs["SRC_LMUL"])
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
   G.emit_function_group_description(description)
@@ -84,14 +90,16 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
           args)
       if vget:
         G.func(
-            InstInfo.get(args, decorator, InstType.VGET),
+            InstInfo.get(
+                args, decorator, InstType.VGET, required_ext=required_ext_list),
             name=func_name,
             return_type=type_helper.v,
             src=src_type,
             index=type_helper.size_t)
       else:
         G.func(
-            InstInfo.get(args, decorator, InstType.VSET),
+            InstInfo.get(
+                args, decorator, InstType.VSET, required_ext=required_ext_list),
             name=func_name,
             return_type=type_helper.v,
             dest=type_helper.v,
@@ -115,7 +123,11 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
           func_name = "{OP}_v_{TYPE}{SEW}m{LMUL}x{NF}_{TYPE}{SEW}m{LMUL}".\
               format_map(args)
           G.func(
-              InstInfo.get(args, decorator, InstType.VGET),
+              InstInfo.get(
+                  args,
+                  decorator,
+                  InstType.VGET,
+                  required_ext=required_ext_list),
               name=func_name,
               return_type=vector_type,
               src=tuple_type,
@@ -124,7 +136,11 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
           func_name = "{OP}_v_{TYPE}{SEW}m{LMUL}_{TYPE}{SEW}m{LMUL}x{NF}".\
               format_map(args)
           G.func(
-              InstInfo.get(args, decorator, InstType.VSET),
+              InstInfo.get(
+                  args,
+                  decorator,
+                  InstType.VSET,
+                  required_ext=required_ext_list),
               name=func_name,
               return_type=tuple_type,
               dest=tuple_type,

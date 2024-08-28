@@ -27,8 +27,14 @@ from enums import InstType
 from enums import ExtraAttr
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
   G.emit_function_group_description(description)
@@ -58,11 +64,23 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       args["OP"] = "v" + args["OP"]
 
       inst_info_vs = InstInfo.get(
-          args, decorator, inst_type, extra_attr=ExtraAttr.MAC)
+          args,
+          decorator,
+          inst_type,
+          extra_attr=ExtraAttr.MAC,
+          required_ext=required_ext_list)
       inst_info_vv = InstInfo.get(
-          args, decorator, InstType.VVV, extra_attr=ExtraAttr.MAC)
+          args,
+          decorator,
+          InstType.VVV,
+          extra_attr=ExtraAttr.MAC,
+          required_ext=required_ext_list)
       inst_info_vx = InstInfo.get(
-          args, decorator, InstType.VVX, extra_attr=ExtraAttr.MAC)
+          args,
+          decorator,
+          InstType.VVX,
+          extra_attr=ExtraAttr.MAC,
+          required_ext=required_ext_list)
 
       type_helper = TypeHelper(**args)
       if (("maccsu" in op) or ("maccus" in op)) and data_type == "uint":

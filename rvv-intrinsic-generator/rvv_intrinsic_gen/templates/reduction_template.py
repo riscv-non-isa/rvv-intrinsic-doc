@@ -27,8 +27,14 @@ from enums import InstType
 from enums import ExtraAttr
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
   G.emit_function_group_description(description)
@@ -66,7 +72,11 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       args["OP"] = "v" + args["OP"]
 
       inst_info = InstInfo.get(
-          args, decorator, inst_type, extra_attr=ExtraAttr.REDUCE)
+          args,
+          decorator,
+          inst_type,
+          extra_attr=ExtraAttr.REDUCE,
+          required_ext=required_ext_list)
       if (data_type == "float" and
           op in ["redosum","redusum","redmax","redmin","wredosum","wredusum"])\
          or ("int" in data_type):
