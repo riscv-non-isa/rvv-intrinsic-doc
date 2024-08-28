@@ -64,7 +64,8 @@ class Generator(ABC):
                      sew_list,
                      lmul_list,
                      decorator_list,
-                     description=None):
+                     description=None,
+                     required_ext_list=None):
     # pylint: disable=unused-argument
     # NOTE: 'title' and 'link' are only used in DocGenerator and
     # OverloadedDocGenerator. Probably need some decoupling here.
@@ -75,7 +76,8 @@ class Generator(ABC):
         sew_list=sew_list,
         lmul_list=lmul_list,
         decorator_list=decorator_list,
-        description=description)
+        description=description,
+        required_ext_list=required_ext_list)
 
   def start_group(self, group_name):
     raise NotImplementedError
@@ -359,7 +361,8 @@ class DocGenerator(Generator):
                      sew_list,
                      lmul_list,
                      decorator_list,
-                     description=None):
+                     description=None,
+                     required_ext_list=None):
     self.write_title(title, link)
     if self.has_tail_policy and len(decorator_list) == 0:
       s = "Intrinsics here don't have a policy variant.\n"
@@ -378,7 +381,8 @@ class DocGenerator(Generator):
         sew_list,
         lmul_list,
         decorator_list,
-        description=description)
+        description=description,
+        required_ext_list=required_ext_list)
 
   def func(self, inst_info, name, return_type, **kwargs):
     name = Generator.func_name(name)
@@ -437,7 +441,8 @@ class OverloadedDocGenerator(DocGenerator):
                      sew_list,
                      lmul_list,
                      decorator_list,
-                     description=None):
+                     description=None,
+                     required_ext_list=None):
     self.do_not_have_overloaded_variant = True
     for op in op_list:
       if Generator.is_support_overloaded(op):
@@ -451,7 +456,8 @@ class OverloadedDocGenerator(DocGenerator):
         sew_list,
         lmul_list,
         decorator_list,
-        description=description)
+        description=description,
+        required_ext_list=required_ext_list)
 
   def func(self, inst_info, name, return_type, **kwargs):
     func_name = Generator.func_name(name)
@@ -714,7 +720,8 @@ class APITestGenerator(Generator):
                      sew_list,
                      lmul_list,
                      decorator_list,
-                     description=None):
+                     description=None,
+                     required_ext_list=None):
     self.test_file_names = op_list
     template.render(
         G=self,
@@ -723,7 +730,8 @@ class APITestGenerator(Generator):
         sew_list=sew_list,
         lmul_list=lmul_list,
         decorator_list=decorator_list,
-        description=description)
+        description=description,
+        required_ext_list=required_ext_list)
 
 
 class Grouper(Generator):
@@ -778,7 +786,8 @@ class Grouper(Generator):
                      sew_list,
                      lmul_list,
                      decorator_list,
-                     description=None):
+                     description=None,
+                     required_ext_list=None):
     self.op_list = op_list
     self.groups[self.current_group].append(title)
     self.current_sub_group = title
@@ -789,7 +798,8 @@ class Grouper(Generator):
         sew_list=sew_list,
         lmul_list=lmul_list,
         decorator_list=decorator_list,
-        description=description)
+        description=description,
+        required_ext_list=required_ext_list)
 
 
 class CompatibleHeaderGenerator(Generator):
@@ -936,7 +946,8 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
                      sew_list,
                      lmul_list,
                      decorator_list,
-                     description=None):
+                     description=None,
+                     required_ext_list=None):
     if self.has_tail_policy and len(decorator_list) == 0:
       return
     super().function_group(
@@ -948,7 +959,8 @@ _14, _15, _16, _17, _18, _19, _20, NAME, ...) NAME
         sew_list,
         lmul_list,
         decorator_list,
-        description=description)
+        description=description,
+        required_ext_list=required_ext_list)
 
   @staticmethod
   def is_policy_func(inst_info):
