@@ -557,39 +557,11 @@ class APITestGenerator(Generator):
         dynamic_llvm_header += f"// RUN:   -target-feature +{ext} \\\n"
       dynamic_llvm_header += dynamic_llvm_header_epilogue
 
-    vector_crypto_llvm_header = r"""// REQUIRES: riscv-registered-target
-// RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zvl512b \
-// RUN:   -target-feature +zvbb \
-// RUN:   -target-feature +zvbc \
-// RUN:   -target-feature +zvkg \
-// RUN:   -target-feature +zvkned \
-// RUN:   -target-feature +zvknhb \
-// RUN:   -target-feature +zvksed \
-// RUN:   -target-feature +zvksh -disable-O0-optnone \
-// RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
-// RUN:   FileCheck --check-prefix=CHECK-RV64 %s
-
-"""
-
-    def is_vector_crypto_inst(name):
-      vector_crypto_inst = [
-          "vandn", "vbrev", "vbrev8", "vrev8", "vclz", "vctz", "vrol", "vror",
-          "vwsll", "vclmul", "vclmulh", "vghsh", "vgmul", "vaesef", "vaesem",
-          "vaesdf", "vaesdm", "vaeskf1", "vaeskf2", "vaesz", "vsha2ms",
-          "vsha2ch", "vsha2cl", "vsm4k", "vsm4r", "vsm3me", "vsm3c"
-      ]
-      for inst in vector_crypto_inst:
-        if inst in name:
-          return True
-      return False
-
     if self.toolchain_type == ToolChainType.LLVM:
       if requires_exts:
         self.fd.write(dynamic_llvm_header)
       elif has_bfloat16_type:
         self.fd.write(bfloat16_llvm_header)
-      elif is_vector_crypto_inst(name):
-        self.fd.write(vector_crypto_llvm_header)
       elif has_float_type:
         self.fd.write(float_llvm_header)
       else:
