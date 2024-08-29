@@ -37,13 +37,13 @@ jobs:
           ls bin
       - name: Run compilation test, non-overloaded intrinsics (default (TAMA) policy)
         run: |
-          make -C rvv-intrinsic-generator run-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"
+          make -C rvv-intrinsic-generator run-api-testing run-bfloat16-api-testing run-vector-crypto-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"
       - name: Run compilation test, overloaded intrinsics (default (TAMA) policy)
         run: |
-          make -C rvv-intrinsic-generator run-overloaded-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"
+          make -C rvv-intrinsic-generator run-overloaded-api-testing run-bfloat16-overloaded-api-testing run-vector-crypto-overloaded-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"
       - name: Run compilation test, non-overloaded intrinsics (non-default policy)
         run: |
-          make -C rvv-intrinsic-generator run-policy-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"
+          make -C rvv-intrinsic-generator run-policy-api-testing run-bfloat16-policy-api-testing run-vector-crypto-policy-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"
       - name: Run compilation test, overloaded intrinsics (non-default policy)
         run: |
-          make -C rvv-intrinsic-generator run-policy-overloaded-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"
+          make -C rvv-intrinsic-generator run-policy-overloaded-api-testing run-bfloat16-policy-overloaded-api-testing run-vector-crypto-policy-overloaded-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"
