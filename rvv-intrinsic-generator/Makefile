@@ -498,6 +498,38 @@ run-policy-overloaded-compatible-api-testing:
 		$(LEGACY_API_TESTS_DIR)/policy-overloaded-api-testing
 	$(call run_tests,$(LEGACY_API_TESTS_DIR)/policy-overloaded-api-testing,${COMPILER})
 
+run-bfloat16-api-testing:
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	$(call run_tests,${DIR}/bfloat16/api-testing,${COMPILER})
+
+run-bfloat16-overloaded-api-testing:
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	$(call run_tests,${DIR}/bfloat16/overloaded-api-testing,${COMPILER})
+
+run-bfloat16-policy-api-testing:
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	$(call run_tests,${DIR}/bfloat16/policy_funcs/api-testing,${COMPILER})
+
+run-bfloat16-policy-overloaded-api-testing:
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	$(call run_tests,${DIR}/bfloat16/policy_funcs/overloaded-api-testing,${COMPILER})
+
+run-vector-crypto-api-testing:
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	$(call run_tests,${DIR}/vector-crypto/api-testing,${COMPILER})
+
+run-vector-crypto-overloaded-api-testing:
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	$(call run_tests,${DIR}/vector-crypto/overloaded-api-testing,${COMPILER})
+
+run-vector-crypto-policy-api-testing:
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	$(call run_tests,${DIR}/vector-crypto/policy_funcs/api-testing,${COMPILER})
+
+run-vector-crypto-policy-overloaded-api-testing:
+	$(call check_defined, COMPILER, compiler (clang/gcc))
+	$(call run_tests,${DIR}/vector-crypto/policy_funcs/overloaded-api-testing,${COMPILER})
+
 # A parameterized target to run testing through testing-report.
 # Makes target 'test' of ${API_MAKEFILE} with ${TESTING_REPORT_SCRIPT} under
 # ${API_DIR}. Requires ${API_DIR}, ${API_MAKEFILE}, ${TESTING_REPORT_SCRIPT}
