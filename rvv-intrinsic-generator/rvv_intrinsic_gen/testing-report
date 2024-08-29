@@ -27,8 +27,10 @@ from junitparser import JUnitXml, TestSuite, TestCase, Skipped, Error, Failure
 
 sys.path = [os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))] + sys.path
 
+import bfloat16_inst
 import generator
 import inst
+import vector_crypto_inst
 
 class bcolors:
     HEADER = '\033[95m'
@@ -287,6 +289,8 @@ def parse_args(args):
 if __name__ == "__main__":
   g = generator.Grouper()
   inst.gen(g)
+  bfloat16_inst.gen(g)
+  vector_crypto_inst.gen(g)
 
   stats = dict()
   for grp, subgrps in g.groups.items():
