@@ -173,22 +173,48 @@ class InstInfo:
           decorator,
           inst_type,
           mem_type=MemType.NO_MEM,
-          extra_attr=ExtraAttr.NO_ATTR):
+          extra_attr=ExtraAttr.NO_ATTR,
+          required_ext=None):
     if decorator is None:
       # vsetvl and vsetvlmax
-      return InstInfo(args["SEW"], args["LMUL"], args["OP"], inst_type,
-                      mem_type, extra_attr)
+      return InstInfo(
+          args["SEW"],
+          args["LMUL"],
+          args["OP"],
+          inst_type,
+          mem_type,
+          extra_attr,
+          required_ext=required_ext)
     elif "SEW" in args:
       if "NF" in args:
-        return InstInfo(args["SEW"], args["LMUL"], args["OP"], inst_type,
-                        mem_type, extra_attr | decorator.flags, args["NF"])
+        return InstInfo(
+            args["SEW"],
+            args["LMUL"],
+            args["OP"],
+            inst_type,
+            mem_type,
+            extra_attr | decorator.flags,
+            args["NF"],
+            required_ext=required_ext)
       else:
-        return InstInfo(args["SEW"], args["LMUL"], args["OP"], inst_type,
-                        mem_type, extra_attr | decorator.flags)
+        return InstInfo(
+            args["SEW"],
+            args["LMUL"],
+            args["OP"],
+            inst_type,
+            mem_type,
+            extra_attr | decorator.flags,
+            required_ext=required_ext)
     else:
       # For mask operation
-      return InstInfo(0, 0, args["OP"], inst_type, mem_type,
-                      extra_attr | decorator.flags)
+      return InstInfo(
+          0,
+          0,
+          args["OP"],
+          inst_type,
+          mem_type,
+          extra_attr | decorator.flags,
+          required_ext=required_ext)
 
   def get_required_exts(self) -> list:
     return sorted(self.required_ext)
