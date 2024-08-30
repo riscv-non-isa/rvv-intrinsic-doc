@@ -554,6 +554,12 @@ class APITestGenerator(Generator):
     if requires_exts:
       dynamic_llvm_header = dynamic_llvm_header_prologue
       for ext in requires_exts:
+        # Due to requirements of SEW==32 intrinsics will be used
+        # in the LLVM test header, the extension "zvknha"
+        # should be replaced with "zvknhb" for the following
+        # SEW==64 intrinsics.
+        if ext == "zvknha":
+          ext = "zvknhb"
         dynamic_llvm_header += f"// RUN:   -target-feature +{ext} \\\n"
       dynamic_llvm_header += dynamic_llvm_header_epilogue
 
