@@ -18,6 +18,7 @@ limitations under the License.
 Utility on handling RVV types
 """
 
+from constants import FTYPES
 import itertools
 import re
 
@@ -234,3 +235,21 @@ def prod(constraint=basic_constraint, **kargs):
     result = sorted(result, key=lambda d: d["TYPE"])
 
   return result
+
+
+def get_required_zve(sew, lmul, data_type) -> str:
+  lmul_num = get_float_lmul(lmul)
+  zve_str = "zve"
+  if int(sew / lmul_num) == 64:
+    zve_str += "64"
+  else:
+    zve_str += "32"
+  if data_type in FTYPES:
+    if sew < 64:
+      zve_str += "f"
+    else:
+      zve_str += "d"
+  else:
+    zve_str += "x"
+  return zve_str
+
