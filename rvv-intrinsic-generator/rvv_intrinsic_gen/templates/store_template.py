@@ -21,6 +21,7 @@ Template for rendering store instructions to their corresponding intrinsics.
 #pylint: disable=relative-beyond-top-level
 from utils import prod
 from utils import TypeHelper
+from utils import get_required_zve
 from utils import get_string_lmul
 import collections
 from enums import InstInfo
@@ -74,6 +75,10 @@ def render(G,
           inst_type,
           MemType.STORE,
           required_ext=required_ext_list)
+
+      inst_info.add_required_ext(
+          get_required_zve(args["SEW"], args["LMUL"], args["TYPE"]))
+
       G.func(
           inst_info,
           name="{OP}_v_{TYPE}{SEW}m{LMUL}".format_map(args) +

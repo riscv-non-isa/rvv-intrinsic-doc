@@ -22,6 +22,7 @@ corresponding intrinsics.
 #pylint: disable=relative-beyond-top-level
 from utils import prod
 from utils import TypeHelper
+from utils import get_required_zve
 from enums import InstInfo
 from enums import InstType
 from generator import CompatibleHeaderGenerator
@@ -79,9 +80,12 @@ def render(G,
       func_name =\
         "{OP}_v_{TYPES3}{SEW}m{LMUL}_{TYPES1}{SEW}m{LMUL}".format_map(args)
       src_type = "v{TYPES2}{SEW}m{LMUL}_t".format_map(args)
+      inst_info = InstInfo.get(
+          args, decorator, InstType.REINT, required_ext=required_ext_list)
+      inst_info.add_required_ext(
+          get_required_zve(args["SEW"], args["LMUL"], args["TYPES"]))
       G.func(
-          InstInfo.get(
-              args, decorator, InstType.REINT, required_ext=required_ext_list),
+          inst_info,
           name=func_name + decorator.func_suffix,
           return_type=rt,
           **decorator.mask_args(type_helper.m, rt),
@@ -120,9 +124,12 @@ def render(G,
       func_name =\
         "{OP}_v_{TYPES3}{SEW}m{LMUL}_{TYPES1}{DST_SEW}m{LMUL}".format_map(args)
       src_type = "v{TYPES2}{SEW}m{LMUL}_t".format_map(args)
+      inst_info = InstInfo.get(
+          args, decorator, InstType.REINT, required_ext=required_ext_list)
+      inst_info.add_required_ext(
+          get_required_zve(args["DST_SEW"], args["LMUL"], args["TYPES"]))
       G.func(
-          InstInfo.get(
-              args, decorator, InstType.REINT, required_ext=required_ext_list),
+          inst_info,
           name=func_name + decorator.func_suffix,
           return_type=rt,
           **decorator.mask_args(type_helper.m, rt),
@@ -150,11 +157,15 @@ def render(G,
       mask_type = "vbool{MLEN}_t".format_map(args)
       int_type = "v{TYPES0}{SEW}m1_t".format_map(args)
 
+      inst_info = InstInfo.get(
+          args, decorator, InstType.REINT, required_ext=required_ext_list)
+      inst_info.add_required_ext(
+          get_required_zve(args["SEW"], args["LMUL"], args["TYPES"]))
+
       func_name =\
         "{OP}_v_{TYPES1}{SEW}m1_b{MLEN}".format_map(args)
       G.func(
-          InstInfo.get(
-              args, decorator, InstType.REINT, required_ext=required_ext_list),
+          inst_info,
           name=func_name + decorator.func_suffix,
           return_type=mask_type,
           src=int_type)
@@ -162,8 +173,7 @@ def render(G,
       func_name =\
         "{OP}_v_b{MLEN}_{TYPES1}{SEW}m1".format_map(args)
       G.func(
-          InstInfo.get(
-              args, decorator, InstType.REINT, required_ext=required_ext_list),
+          inst_info,
           name=func_name + decorator.func_suffix,
           return_type=int_type,
           src=mask_type)

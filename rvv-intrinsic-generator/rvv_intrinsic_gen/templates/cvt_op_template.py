@@ -22,6 +22,7 @@ intrinsics.
 #pylint: disable=relative-beyond-top-level
 from utils import prod
 from utils import TypeHelper
+from utils import get_required_zve
 from enums import InstInfo
 from enums import InstType
 from enums import ExtraAttr
@@ -132,6 +133,10 @@ def render(G,
       dst_type_helper = TypeHelper(**args)
       src_type = src_type_helper.v
       dst_type = dst_type_helper.v
+
+      inst_info.add_required_ext(
+          get_required_zve(args["SEW"], args["LMUL"], args["TYPE"]))
+
       if not type_helper.valid_vtype(dst_type) or\
          not type_helper.valid_vtype(src_type):
         continue
@@ -174,6 +179,9 @@ def render(G,
             InstType.VV,
             extra_attr=extra_attr,
             required_ext=required_ext_list)
+
+        inst_info.add_required_ext(get_required_zve(args["SEW"], args["LMUL"], args["D_TYPE"]))
+
         func_name =\
           "{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}".format_map\
           (args)
@@ -191,6 +199,9 @@ def render(G,
         inst_info = \
           InstInfo.get(args, decorator, InstType.VV, extra_attr=extra_attr,
                        required_ext = required_ext_list)
+
+        inst_info.add_required_ext(get_required_zve(args["SEW"], args["LMUL"], args["D_TYPE"]))
+
         func_name = \
           "{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}".format_map\
           (args)

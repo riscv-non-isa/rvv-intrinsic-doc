@@ -22,6 +22,7 @@ intrinsics.
 #pylint: disable=relative-beyond-top-level
 from utils import prod
 from utils import TypeHelper
+from utils import get_required_zve
 from enums import InstInfo
 from enums import InstType
 from enums import ExtraAttr
@@ -81,6 +82,13 @@ def render(G,
           InstType.VVX,
           extra_attr=ExtraAttr.MAC,
           required_ext=required_ext_list)
+
+      inst_info_vs.add_required_ext(
+          get_required_zve(args["SEW"], args["LMUL"], args["TYPE"]))
+      inst_info_vv.add_required_ext(
+          get_required_zve(args["SEW"], args["LMUL"], args["TYPE"]))
+      inst_info_vx.add_required_ext(
+          get_required_zve(args["SEW"], args["LMUL"], args["TYPE"]))
 
       type_helper = TypeHelper(**args)
       if (("maccsu" in op) or ("maccus" in op)) and data_type == "uint":

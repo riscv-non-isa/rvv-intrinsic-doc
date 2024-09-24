@@ -23,6 +23,7 @@ intrinsics.
 from utils import prod
 from utils import seg_constraint
 from utils import TypeHelper
+from utils import get_required_zve
 from utils import get_string_lmul
 from utils import seg_arg
 import collections
@@ -92,6 +93,10 @@ def render(G,
           inst_type,
           MemType.LOAD,
           required_ext=required_ext_list)
+
+      inst_info.add_required_ext(
+          get_required_zve(args["SEW"], args["LMUL"], args["TYPE"]))
+
       # Legacy non-tuple-type variant for the compatible header
       if isinstance(G, CompatibleHeaderGenerator):
         G.func(
