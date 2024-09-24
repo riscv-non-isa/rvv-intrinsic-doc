@@ -24,6 +24,7 @@ from utils import prod
 from utils import TypeHelper
 from utils import basic_constraint
 from utils import seg_constraint
+from utils import get_required_zve
 from enums import InstInfo
 from enums import InstType
 from generator import CompatibleHeaderGenerator
@@ -89,17 +90,23 @@ def render(G,
       func_name = "{OP}_v_{TYPE}{SEW}m{SRC_LMUL}_{TYPE}{SEW}m{LMUL}".format_map(
           args)
       if vget:
+        inst_info = InstInfo.get(
+            args, decorator, InstType.VGET, required_ext=required_ext_list)
+        inst_info.add_required_ext(
+            get_required_zve(args["SEW"], args["LMUL"], args["TYPE"]))
         G.func(
-            InstInfo.get(
-                args, decorator, InstType.VGET, required_ext=required_ext_list),
+            inst_info,
             name=func_name,
             return_type=type_helper.v,
             src=src_type,
             index=type_helper.size_t)
       else:
+        inst_info = InstInfo.get(
+            args, decorator, InstType.VSET, required_ext=required_ext_list)
+        inst_info.add_required_ext(
+            get_required_zve(args["SEW"], args["LMUL"], args["TYPE"]))
         G.func(
-            InstInfo.get(
-                args, decorator, InstType.VSET, required_ext=required_ext_list),
+            inst_info,
             name=func_name,
             return_type=type_helper.v,
             dest=type_helper.v,
@@ -122,12 +129,12 @@ def render(G,
         if args["OP"] == "vget":
           func_name = "{OP}_v_{TYPE}{SEW}m{LMUL}x{NF}_{TYPE}{SEW}m{LMUL}".\
               format_map(args)
+          inst_info = InstInfo.get(
+              args, decorator, InstType.VGET, required_ext=required_ext_list)
+          inst_info.add_required_ext(
+              get_required_zve(args["SEW"], args["LMUL"], args["TYPE"]))
           G.func(
-              InstInfo.get(
-                  args,
-                  decorator,
-                  InstType.VGET,
-                  required_ext=required_ext_list),
+              inst_info,
               name=func_name,
               return_type=vector_type,
               src=tuple_type,
@@ -135,12 +142,12 @@ def render(G,
         elif args["OP"] == "vset":
           func_name = "{OP}_v_{TYPE}{SEW}m{LMUL}_{TYPE}{SEW}m{LMUL}x{NF}".\
               format_map(args)
+          inst_info = InstInfo.get(
+              args, decorator, InstType.VSET, required_ext=required_ext_list)
+          inst_info.add_required_ext(
+              get_required_zve(args["SEW"], args["LMUL"], args["TYPE"]))
           G.func(
-              InstInfo.get(
-                  args,
-                  decorator,
-                  InstType.VSET,
-                  required_ext=required_ext_list),
+              inst_info,
               name=func_name,
               return_type=tuple_type,
               dest=tuple_type,

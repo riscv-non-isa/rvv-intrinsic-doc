@@ -24,6 +24,7 @@ import re
 
 from enums import ExtraAttr
 from enums import ToolChainType
+from utils import remove_implied_zve, remove_implied_zvl, remove_duplicated_zvknh
 
 
 class Generator(ABC):
@@ -497,6 +498,7 @@ class APITestGenerator(Generator):
     # test file name candidates which are declared in inst.py, it could have
     # different op name
     self.test_file_names = []
+    self.required_exts = {}
 
   def write(self, text):
     pass
@@ -505,12 +507,17 @@ class APITestGenerator(Generator):
     pass
 
   def inst_group_prologue(self):
+    self.required_exts = {}
     return ""
 
   def inst_group_epilogue(self):
-    return ""
+    # print(self.required_exts)
+    for test_file in set(self.required_exts.keys()):
+      with open(os.path.join(test_file), "r+", encoding="utf-8") as self.fd:
+        required_exts = self.required_exts.get(test_file, [])
+        self.write_file_header(required_exts)
 
-  def write_file_header(self, has_float_type, has_bfloat16_type, requires_exts):
+  def write_file_header(self, required_exts: list):
     #pylint: disable=line-too-long
     dynamic_llvm_header_prologue = r"""// REQUIRES: riscv-registered-target
 // RUN: %clang_cc1 -triple riscv64 -disable-O0-optnone \
@@ -522,27 +529,6 @@ class APITestGenerator(Generator):
 
 """
 
-    int_llvm_header = r"""// REQUIRES: riscv-registered-target
-// RUN: %clang_cc1 -triple riscv64 -target-feature +v -disable-O0-optnone \
-// RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
-// RUN:   FileCheck --check-prefix=CHECK-RV64 %s
-
-"""
-    float_llvm_header = r"""// REQUIRES: riscv-registered-target
-// RUN: %clang_cc1 -triple riscv64 -target-feature +v -target-feature +zfh \
-// RUN:   -target-feature +zvfh -disable-O0-optnone \
-// RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
-// RUN:   FileCheck --check-prefix=CHECK-RV64 %s
-
-"""
-    bfloat16_llvm_header = r"""// REQUIRES: riscv-registered-target
-// RUN: %clang_cc1 -triple riscv64 -target-feature +v \
-// RUN:   -target-feature +zvfbfmin \
-// RUN:   -target-feature +zvfbfwma -disable-O0-optnone \
-// RUN:   -emit-llvm %s -o - | opt -S -passes=mem2reg | \
-// RUN:   FileCheck --check-prefix=CHECK-RV64 %s
-
-"""
     gnu_header = (
         r"""/* { dg-do compile } */
 /* { dg-options """ + '"' + "-march=rv64gcv_zvfh -mabi=lp64d" +
@@ -550,33 +536,20 @@ class APITestGenerator(Generator):
 
 """)
 
-    # Dynamic header is used when the requires_exts is not empty.
-    if requires_exts:
-      dynamic_llvm_header = dynamic_llvm_header_prologue
-      for ext in requires_exts:
-        # Due to requirements of SEW==32 intrinsics will be used
-        # in the LLVM test header, the extension "zvknha"
-        # should be replaced with "zvknhb" for the following
-        # SEW==64 intrinsics.
-        if ext == "zvknha":
-          ext = "zvknhb"
-        dynamic_llvm_header += f"// RUN:   -target-feature +{ext} \\\n"
-      dynamic_llvm_header += dynamic_llvm_header_epilogue
-
+    content = self.fd.read()
+    header = ""
     if self.toolchain_type == ToolChainType.LLVM:
-      if requires_exts:
-        self.fd.write(dynamic_llvm_header)
-      elif has_bfloat16_type:
-        self.fd.write(bfloat16_llvm_header)
-      elif has_float_type:
-        self.fd.write(float_llvm_header)
-      else:
-        self.fd.write(int_llvm_header)
+      header = dynamic_llvm_header_prologue
+      for ext in required_exts:
+        header += f"// RUN:   -target-feature +{ext} \\\n"
+      header += dynamic_llvm_header_epilogue
     elif self.toolchain_type == ToolChainType.GNU:
-      self.fd.write(gnu_header)
+      header = gnu_header
     else:
-      self.fd.write("#include <stdint.h>\n")
-    self.fd.write("#include <riscv_vector.h>\n")
+      header = "#include <stdint.h>\n"
+    header += "#include <riscv_vector.h>\n"
+    self.fd.seek(0)
+    self.fd.write(header + content)
 
   def func(self, inst_info, name, return_type, **kwargs):
     if self.is_overloaded and not Generator.is_support_overloaded(
@@ -594,10 +567,8 @@ class APITestGenerator(Generator):
 
     if test_file_name not in self.test_files:
       mode = "w"
-      header = True
     else:
       mode = "a"
-      header = False
     if self.fd is not None:
       self.fd.close()
 
@@ -634,22 +605,34 @@ class APITestGenerator(Generator):
     # variant will be enumerated before the integer type variant. To fix this
     # righteously, there should be a function to determine if an intrinsic
     # has a floating-point variant and have the header emission depend on it.
-    has_float_type = func_decl.find("vfloat") != -1
-    has_bfloat16_type = func_decl.find("bf16") != -1
+    # has_float_type = func_decl.find("vfloat") != -1
+    # has_bfloat16_type = func_decl.find("bf16") != -1
     # NOTE(FIXME): This is logic as a hard fix to test case header emission.
-    has_float_type_variant_inst = [
-        "macc", "nmacc", "msac", "nmsac", "madd", "nmadd", "msub", "nmsub",
-        "wmacc", "wnmacc", "wmsac", "wnmsac", "eq", "ne", "lt", "le", "gt",
-        "ge", "merge", "mv", "reinterpret"
-    ]
+    # has_float_type_variant_inst = [
+    #     "macc", "nmacc", "msac", "nmsac", "madd", "nmadd", "msub", "nmsub",
+    #     "wmacc", "wnmacc", "wmsac", "wnmsac", "eq", "ne", "lt", "le", "gt",
+    #     "ge", "merge", "mv", "reinterpret"
+    # ]
 
-    for i in has_float_type_variant_inst:
-      if i in func_decl:
-        has_float_type = True
+    # for i in has_float_type_variant_inst:
+    #   if i in func_decl:
+    #     has_float_type = True
 
-    if header:
-      self.write_file_header(has_float_type, has_bfloat16_type,
-                             inst_info.get_required_exts())
+    test_file_path = f"{self.folder}/{test_file_name}"
+    # store the required extensions into a dictionary
+    if test_file_path not in self.required_exts:
+      self.required_exts[test_file_path] = inst_info.get_required_exts()
+    else:
+      self.required_exts[test_file_path] = list(
+          set(self.required_exts[test_file_path]).union(
+              set(inst_info.get_required_exts())))
+    # Post process the required extensions
+    self.required_exts[test_file_path] = remove_implied_zve(
+        self.required_exts[test_file_path])
+    self.required_exts[test_file_path] = remove_implied_zvl(
+        self.required_exts[test_file_path])
+    self.required_exts[test_file_path] = remove_duplicated_zvknh(
+        self.required_exts[test_file_path])
 
     def output_call_arg(arg_name, type_name):
       if ((name.startswith("vget") or name.startswith("vset")) \

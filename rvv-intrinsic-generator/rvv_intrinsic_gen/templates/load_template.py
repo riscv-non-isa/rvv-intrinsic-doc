@@ -21,6 +21,7 @@ Template for rendering load instructions to their corresponding intrinsics.
 #pylint: disable=relative-beyond-top-level
 from utils import prod
 from utils import TypeHelper
+from utils import get_required_zve
 from utils import get_string_lmul
 import collections
 from enums import InstInfo
@@ -78,6 +79,10 @@ def render(G,
       inst_info =\
       InstInfo.get(args, decorator, inst_type, MemType.LOAD, extra_attr,
                    required_ext = required_ext_list)
+
+      inst_info.add_required_ext(
+          get_required_zve(args["SEW"], args["LMUL"], args["TYPE"]))
+
       G.func(
           inst_info,
           name=\

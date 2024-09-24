@@ -18,6 +18,7 @@ limitations under the License.
 Utility on handling RVV types
 """
 
+from constants import FTYPES
 import itertools
 import re
 
@@ -234,3 +235,61 @@ def prod(constraint=basic_constraint, **kargs):
     result = sorted(result, key=lambda d: d["TYPE"])
 
   return result
+
+
+def get_required_zve(sew, lmul, data_type) -> str:
+  lmul_num = get_float_lmul(lmul)
+  zve_str = "zve"
+  if int(sew / lmul_num) == 64:
+    zve_str += "64"
+  else:
+    zve_str += "32"
+  if data_type in FTYPES:
+    if sew < 64:
+      zve_str += "f"
+    else:
+      zve_str += "d"
+  else:
+    zve_str += "x"
+  return zve_str
+
+
+def remove_from_list(required_ext: list, ext: str) -> list:
+  if ext in required_ext:
+    required_ext.remove(ext)
+  return required_ext
+
+
+def remove_implied_zve(required_ext: list) -> list:
+  # remove the implied zve* extensions
+  if "zve64d" in required_ext:
+    remove_list = ["zve64f", "zve64x", "zve32f", "zve32x"]
+    for ext in remove_list:
+      required_ext = remove_from_list(required_ext, ext)
+  if "zve64f" in required_ext:
+    remove_list = ["zve64x", "zve32f", "zve32x"]
+    for ext in remove_list:
+      required_ext = remove_from_list(required_ext, ext)
+  if "zve64x" in required_ext:
+    remove_list = ["zve32f", "zve32x"]
+    for ext in remove_list:
+      required_ext = remove_from_list(required_ext, ext)
+  if "zve32f" in required_ext and "zve32x" in required_ext:
+    required_ext.remove("zve32x")
+  return sorted(required_ext)
+
+
+def remove_implied_zvl(reqired_ext: list) -> list:
+  # remove the implied zvl* extensions
+  zvl_list = [ext for ext in reqired_ext if ext.startswith("zvl")]
+  if len(zvl_list) > 1:
+    zvl_list.sort(key=lambda x: int(x[3:-1]))
+    for ext in zvl_list[:-1]:
+      reqired_ext = remove_from_list(reqired_ext, ext)
+  return reqired_ext
+
+
+def remove_duplicated_zvknh(required_ext: list) -> list:
+  if "zvknhb" in required_ext:
+    required_ext = remove_from_list(required_ext, "zvknha")
+  return required_ext

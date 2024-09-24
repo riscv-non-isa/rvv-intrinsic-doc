@@ -24,6 +24,7 @@ from utils import prod
 from utils import seg_constraint
 from utils import TypeHelper
 from utils import get_float_lmul
+from utils import get_required_zve
 import collections
 from enums import InstInfo
 from enums import InstType
@@ -58,9 +59,12 @@ def render(G,
         continue
       if args["OP"] == "vundefined":
         inst_type = InstType.VUNDEF
+      inst_info = InstInfo.get(
+          args, decorator, inst_type, required_ext=required_ext_list)
+      inst_info.add_required_ext(
+          get_required_zve(args["SEW"], args["LMUL"], args["TYPE"]))
       G.func(
-          InstInfo.get(
-              args, decorator, inst_type, required_ext=required_ext_list),
+          inst_info,
           name="{OP}_{TYPE}{SEW}m{LMUL}".format_map(args) +
           decorator.func_suffix,
           return_type=type_helper.v)
@@ -90,9 +94,12 @@ def render(G,
         continue
       if args["OP"] == "vundefined":
         inst_type = InstType.VUNDEF
+      inst_info = InstInfo.get(
+          args, decorator, inst_type, required_ext=required_ext_list)
+      inst_info.add_required_ext(
+          get_required_zve(args["SEW"], args["LMUL"], args["TYPE"]))
       G.func(
-          InstInfo.get(
-              args, decorator, inst_type, required_ext=required_ext_list),
+          inst_info,
           name="{OP}_{TYPE}{SEW}m{LMUL}x{NF}".format_map(args) +
           decorator.func_suffix,
           return_type=type_helper.tuple_v)
@@ -121,6 +128,12 @@ def render(G,
       type_helper = TypeHelper(**args)
       inst_info = InstInfo.get(
           args, decorator, inst_type, required_ext=required_ext_list)
+      if inst_type == InstType.LMUL_TRUNC:
+        inst_info.add_required_ext(
+            get_required_zve(args["SEW"], args["DST_LMUL"], args["TYPE"]))
+      else:
+        inst_info.add_required_ext(
+            get_required_zve(args["SEW"], args["LMUL"], args["TYPE"]))
       if args["TYPE"] == "bfloat":
         args["TYPE1"] = args["TYPE"][0:2]
       else:
@@ -154,6 +167,8 @@ def render(G,
       type_helper = TypeHelper(**args)
       inst_info = InstInfo.get(
           args, decorator, InstType.VCREATE, required_ext=required_ext_list)
+      inst_info.add_required_ext(
+          get_required_zve(args["SEW"], args["DST_LMUL"], args["TYPE"]))
       func_name = "{OP}_v_{TYPE}{SEW}m{LMUL}_{TYPE}{SEW}m{DST_LMUL}".format_map(
           args)
 
@@ -201,10 +216,13 @@ def render(G,
         arg_name = "v" + str(i)
         args_for_vcreate[arg_name] = type_helper.v
 
+      inst_info = InstInfo.get(
+          args, decorator, InstType.VCREATE, required_ext=required_ext_list)
+      inst_info.add_required_ext(
+          get_required_zve(args["SEW"], args["LMUL"], args["TYPE"]))
+
       G.func(
-          InstInfo.get(
-              args, decorator, InstType.VCREATE,
-              required_ext=required_ext_list),
+          inst_info,
           name="{OP}_v_{TYPE}{SEW}m{LMUL}x{NF}".format_map(args),
           return_type=type_helper.tuple_v,
           **args_for_vcreate)

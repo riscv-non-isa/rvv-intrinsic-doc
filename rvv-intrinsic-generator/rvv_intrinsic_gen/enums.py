@@ -222,6 +222,7 @@ class InstInfo:
   def add_required_ext(self, ext: str) -> None:
     if ext not in self.required_ext:
       self.required_ext.append(ext)
+      self.required_ext = sorted(self.required_ext)
 
   def remove_required_ext(self, ext: str) -> None:
     if ext in self.required_ext:
