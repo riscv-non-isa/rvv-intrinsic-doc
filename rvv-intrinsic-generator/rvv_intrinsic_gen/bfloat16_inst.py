@@ -128,11 +128,11 @@ def gen(g):
                    "bf16-widening-multiply-accumulate", ["wmaccbf16"], BFTYPES,
                    SEWS, WLMULS, decorators.has_masking_no_maskedoff_policy_frm)
   g.function_group(unary_op_template, "Vector BFloat16 Move Intrinsics",
-                   "vector-bf16-move", ["mv"], TYPES, SEWS, LMULS,
+                   "vector-bf16-move", ["mv"], BFTYPES, SEWS, LMULS,
                    decorators.has_no_masking_policy)
 
   g.function_group(unary_op_template, "Vector BFloat16 Merge Intrinsics",
-                   "vector-bf16-merge", ["merge"], TYPES, SEWS, LMULS,
+                   "vector-bf16-merge", ["merge"], BFTYPES, SEWS, LMULS,
                    decorators.has_no_masking_policy)
 
   ####################################################################
