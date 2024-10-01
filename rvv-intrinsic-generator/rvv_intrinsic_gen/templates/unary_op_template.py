@@ -50,7 +50,7 @@ def render(G,
       if op in ["zext", "sext"]:
         break
 
-      if data_type == "float" or data_type == "bfloat":
+      if data_type in ["float", "bfloat"]:
         args["S_TYPE"] = "f"
         args["OP"] = "f" + args["OP"]
         inst_type_vvsm = InstType.VVFM
@@ -92,8 +92,7 @@ def render(G,
       # for float type, accrdoing current naming scheming it
       # should be vmv_v_v, same for vmerge.vvm.
       vv_args = args
-      if (data_type == "float" or
-          data_type == "bfloat") and op in ["mv", "merge"]:
+      if data_type in ["float", "bfloat"] and op in ["mv", "merge"]:
         vv_args = copy.deepcopy(args)
         vv_args["OP"] = "v" + op
 
