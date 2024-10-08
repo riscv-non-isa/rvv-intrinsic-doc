@@ -4,6 +4,9 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        llvm-version: ["main", "latest-rel"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -19,7 +22,14 @@ jobs:
         run: |
           cd ..
           rm -rf llvm-project
-          git clone https://github.com/llvm/llvm-project
+          git clone https://github.com/llvm/llvm-project -j `nproc`
+      - name: Checkout LLVM version
+        run: |
+          cd ../llvm-project
+          if [ "${{ matrix.llvm-version }}" = "latest-rel" ]; then
+            latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+            git checkout $latestTag
+          fi
       - name: Build LLVM with Ninja
         run: |
           cd ../llvm-project
