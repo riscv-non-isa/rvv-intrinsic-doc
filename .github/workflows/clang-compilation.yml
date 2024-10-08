@@ -44,7 +44,7 @@ jobs:
             -DLLVM_DEFAULT_TARGET_TRIPLE="riscv64-unknown-linux-gnu" \
             -DLLVM_ENABLE_PROJECTS="clang;lld" \
             ../llvm
-          ninja -j 4
+          ninja -j `nproc`
           echo $(pwd)
           ls bin
       - name: Run compilation test, non-overloaded intrinsics (default (TAMA) policy)
