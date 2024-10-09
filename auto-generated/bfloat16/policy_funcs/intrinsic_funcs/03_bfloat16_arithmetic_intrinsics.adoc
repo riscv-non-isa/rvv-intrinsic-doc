@@ -279,28 +279,16 @@ vfloat32m8_t __riscv_vfwmaccbf16_vf_f32m8_rm_mu(vbool4_t vm, vfloat32m8_t vd,
 ----
 vbfloat16mf4_t __riscv_vmv_v_v_bf16mf4_tu(vbfloat16mf4_t vd, vbfloat16mf4_t vs1,
                                           size_t vl);
-vbfloat16mf4_t __riscv_vfmv_v_f_bf16mf4_tu(vbfloat16mf4_t vd, __bf16 rs1,
-                                           size_t vl);
 vbfloat16mf2_t __riscv_vmv_v_v_bf16mf2_tu(vbfloat16mf2_t vd, vbfloat16mf2_t vs1,
                                           size_t vl);
-vbfloat16mf2_t __riscv_vfmv_v_f_bf16mf2_tu(vbfloat16mf2_t vd, __bf16 rs1,
-                                           size_t vl);
 vbfloat16m1_t __riscv_vmv_v_v_bf16m1_tu(vbfloat16m1_t vd, vbfloat16m1_t vs1,
                                         size_t vl);
-vbfloat16m1_t __riscv_vfmv_v_f_bf16m1_tu(vbfloat16m1_t vd, __bf16 rs1,
-                                         size_t vl);
 vbfloat16m2_t __riscv_vmv_v_v_bf16m2_tu(vbfloat16m2_t vd, vbfloat16m2_t vs1,
                                         size_t vl);
-vbfloat16m2_t __riscv_vfmv_v_f_bf16m2_tu(vbfloat16m2_t vd, __bf16 rs1,
-                                         size_t vl);
 vbfloat16m4_t __riscv_vmv_v_v_bf16m4_tu(vbfloat16m4_t vd, vbfloat16m4_t vs1,
                                         size_t vl);
-vbfloat16m4_t __riscv_vfmv_v_f_bf16m4_tu(vbfloat16m4_t vd, __bf16 rs1,
-                                         size_t vl);
 vbfloat16m8_t __riscv_vmv_v_v_bf16m8_tu(vbfloat16m8_t vd, vbfloat16m8_t vs1,
                                         size_t vl);
-vbfloat16m8_t __riscv_vfmv_v_f_bf16m8_tu(vbfloat16m8_t vd, __bf16 rs1,
-                                         size_t vl);
 ----
 
 [[policy-variant-vector-bf16-merge]]
