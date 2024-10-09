@@ -50,7 +50,7 @@ def render(G,
       if op in ["zext", "sext"]:
         break
 
-      if data_type in ["float", "bfloat"]:
+      if data_type in ["float"]:
         args["S_TYPE"] = "f"
         args["OP"] = "f" + args["OP"]
         inst_type_vvsm = InstType.VVFM
@@ -137,6 +137,8 @@ def render(G,
             **decorator.tu_dest_args(type_helper.v),
             vs1=type_helper.v,
             vl=type_helper.size_t)
+        if data_type == "bfloat":
+          continue
         G.func(
             inst_info_vs,
             name="{OP}_v_{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
