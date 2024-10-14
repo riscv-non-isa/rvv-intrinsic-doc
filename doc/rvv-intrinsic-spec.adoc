@@ -22,7 +22,7 @@ To leverage the intrinsics in the toolchain, the header `<riscv_vector.h>` needs
 
 [,c]
 ----
-#ifdef __riscv_v_intrinsic
+#if __riscv_v_intrinsic >= 1000000
 #include <riscv_vector.h>
 #endif /* __riscv_v_intrinsic */
 ----
