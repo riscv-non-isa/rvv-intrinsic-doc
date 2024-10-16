@@ -90,8 +90,8 @@ def api_testing_report(stats, opts):
       # passed if the number of warning equal to line number
       with open(log, 'r') as fp:
         last_line = fp.readlines()[-1]
-        if last_line.count('error') == 0:
-          if last_line.count('warning') != 0 and opts.warning_as_error:
+        if opts.warning_as_error:
+          if 'error' not in last_line and 'warning' in last_line:
             stats[grp][subgrp].failed_list.append(testname)
             result.failed_list.append(testname)
             test_case.result = [Error("Treat warning as error", "warning")]
