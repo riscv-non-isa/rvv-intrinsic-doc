@@ -41,5 +41,5 @@ clean:
 
 %.log: $(BASE_DIR)/%.c
 	@echo "Testing $<..."
-	-bash -c "$(CC) $< -S -o /dev/null $(ARCH_FLAG) $(CFLAGS) $(EXTRA_CFLAGS)" > $@ 2>&1
+	-bash -c "$(CC) $< -S -o /dev/null $(ARCH_FLAG) $(CFLAGS) $(EXTRA_CFLAGS)" 2>&1 | tee $@
 	@echo "Completed testing $< (log size: $$(wc -c < $@))"
