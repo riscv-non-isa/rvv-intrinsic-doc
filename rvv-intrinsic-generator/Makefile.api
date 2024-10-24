@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 ###############################################################################
+SHELL := /bin/bash
 
 CFLAGS?=-O -Werror=implicit-function-declaration -menable-experimental-extensions
 ARCH_FLAG?=-march=rv64gcv_zfh_zvbb_zvbc_zvfbfmin_zvfbfwma_zvfh_zvkng_zvksg_zvl512b
@@ -39,4 +40,6 @@ clean:
 	rm -f test_report.xml
 
 %.log: $(BASE_DIR)/%.c
-	-$(CC) $< -S -o /dev/null $(ARCH_FLAG) $(CFLAGS) $(EXTRA_CFLAGS) &> $@
+	@echo "Testing $<..."
+	-bash -c "$(CC) $< -S -o /dev/null $(ARCH_FLAG) $(CFLAGS) $(EXTRA_CFLAGS)" > $@ 2>&1
+	@echo "Completed testing $< (log size: $$(wc -c < $@))"
