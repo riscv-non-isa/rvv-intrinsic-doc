@@ -83,9 +83,22 @@ jobs:
           ninja
         working-directory: llvm-project
 
-      - name: Test
+      - name: Test1
         shell: 'script --return --quiet --log-out /dev/null --command "bash -e {0}"'
-        # shell: bash
+        run: |
+          make -C rvv-intrinsic-generator run-vector-crypto-api-testing SHELL="bash -x"
+        continue-on-error: true
+        working-directory: rvv-intrinsic-doc
+
+      - name: Test2
+        shell: 'script -q -e -c "bash --noprofile --norc -eo pipefail {0}"'
+        run: |
+          make -C rvv-intrinsic-generator run-vector-crypto-api-testing SHELL="bash -x"
+        continue-on-error: true
+        working-directory: rvv-intrinsic-doc
+
+      - name: Test3
+        shell: script -q -e -c "$(printf "'%s' " "$@")"
         run: |
           make -C rvv-intrinsic-generator run-vector-crypto-api-testing SHELL="bash -x"
         continue-on-error: true
