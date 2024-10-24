@@ -84,10 +84,9 @@ jobs:
         working-directory: llvm-project
 
       - name: Test
-        # shell: 'script --return --quiet --log-out /dev/null --command "bash -e {0}"'
-        shell: bash
+        shell: 'script --return --quiet --log-out /dev/null --command "bash -e {0}"'
+        # shell: bash
         run: |
-          export PYTHONUNBUFFERED=1
           make -C rvv-intrinsic-generator run-vector-crypto-api-testing SHELL="bash -x"
         continue-on-error: true
         working-directory: rvv-intrinsic-doc
