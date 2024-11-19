@@ -8,6 +8,8 @@ This document uses the term "RVV" as an abbreviation for the RISC-V "V" extensio
 
 The `__riscv_v_intrinsic` macro is the C macro to test the compiler's support for the RISC-V "V" extension intrinsics.
 
+This macro should be defined even if the vector extension is not enabled.
+
 The value of the test macro is defined as its version, which is computed using the following formula. The formula is identical to what is defined in the RISC-V C API specification cite:[riscv-c-api].
 
 ----
