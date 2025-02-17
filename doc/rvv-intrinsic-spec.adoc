@@ -69,7 +69,7 @@ vint32m1_t __riscv_vwadd_vv_i32m1(vint16mf2_t vs2, vint16mf2_t vs1, size_t vl);
 
 The intrinsics do not directly expose the vector length control register to the intrinsics programmer. The intrinsics programmer specifies an "application vector length (AVL)" using the argument `size_t vl`. The implementation is responsible to set the correct value into the underlying vector length control register (`vl`) given the informed AVL.
 
-NOTE: The intrinsics for instructions that behave the same with different `vl` settings (e.g. `vmv.s.x`) do not have a `size_t vl` argument.
+NOTE: The intrinsics for instructions that behave the same with different `vl` settings (e.g. `vmv.x.s`) do not have a `size_t vl` argument.
 
 NOTE: The actual value written to the `vl` control register is an implementation defined behavior and is typically not known until runtime. The actual setting of `vl`, given the provided AVL through the parameter, follows the rules in the RVV specification. The number of elements processed can be obtained through the `__riscv_vsetvl_*` intrinsics <<pseudo-vsetvl>>.
 
