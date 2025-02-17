@@ -243,10 +243,10 @@ Only encoding the return type will cause naming collisions for the permutation i
 
 [,c]
 ----
-int8_t __riscv_vmv_x_s_i8m1_i8 (vint8m1_t vs2, size_t vl);
-int8_t __riscv_vmv_x_s_i8m2_i8 (vint8m2_t vs2, size_t vl);
-int8_t __riscv_vmv_x_s_i8m4_i8 (vint8m4_t vs2, size_t vl);
-int8_t __riscv_vmv_x_s_i8m8_i8 (vint8m8_t vs2, size_t vl);
+int8_t __riscv_vmv_x_s_i8m1_i8 (vint8m1_t vs2);
+int8_t __riscv_vmv_x_s_i8m2_i8 (vint8m2_t vs2);
+int8_t __riscv_vmv_x_s_i8m4_i8 (vint8m4_t vs2);
+int8_t __riscv_vmv_x_s_i8m8_i8 (vint8m8_t vs2);
 ----
 
 ==== Reduction instructions
