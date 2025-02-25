@@ -1,0 +1,8 @@
+set host_triplet "x86_64-pc-linux-gnu"
+set build_triplet "x86_64-pc-linux-gnu"
+set srcdir "SRCDIR"
+set target_triplet "riscv64-unknown-linux-gnu"
+set target_alias "riscv64-unknown-linux-gnu"
+set GCC_UNDER_TEST "TOOLCHAIN_DIR/bin/riscv64-unknown-linux-gnu-gcc"
+set GXX_UNDER_TEST "TOOLCHAIN_DIR/bin/riscv64-unknown-linux-gnu-g++"
+set TEST_ALWAYS_FLAGS "-march=rv64gcv_zvfh -mabi=lp64d"
