@@ -93,12 +93,17 @@ TRIGGER_SKIP_DEFAULT_INST := --skip-default-inst
 else
 TRIGGER_SKIP_DEFAULT_INST :=
 endif
-# Directory that stores the gnu toolchain
-GNU_TOOLCHAIN_DIR :=
-# Directory that stores the gcc cases
-GCC_CASES_DIR := $(GNU_TOOLCHAIN_DIR)/gcc/gcc/testsuite/gcc.target/riscv/rvv/gcc-auto-generated
-# Directory that stores the g++ cases
-G++_CASES_DIR := $(GNU_TOOLCHAIN_DIR)/gcc/gcc/testsuite/g++.target/riscv/rvv/g++-auto-generated
+# Directory for GNU_TEST_SETUP
+GNU_TEST_SETUP := $(DIR)/../gnu-test-setup
+
+# Directory for GNU Toolchain API tests
+GNU_TOOLCHAIN_TEST_DIR := $(CURDIR)/gnu-toolchain-tests/testsuite/
+# # Directory that stores the gnu toolchain
+# GNU_TOOLCHAIN_DIR :=
+# # Directory that stores the gcc cases
+GCC_CASES_DIR := $(GNU_TOOLCHAIN_TEST_DIR)/gcc
+# # Directory that stores the g++ cases
+G++_CASES_DIR := $(GNU_TOOLCHAIN_TEST_DIR)/g++
 
 ###############################################################################
 # Functions
@@ -557,20 +562,18 @@ run-test:
 		CC=${COMPILER} \
 		-f ${API_MAKEFILE} -j${nproc}
 
-# Test gnu auto generaged overloaded-api-testing with testing-report
-report-gnu:
-	cd ${GNU_TOOLCHAIN_DIR} && ./configure --prefix="${GNU_TOOLCHAIN_DIR}/install" \
-						--with-arch=rv64gcv \
-						--with-abi=lp64d \
-						--with-isa-spec=20191213 \
-						--with-sim=qemu
-	cd ${GNU_TOOLCHAIN_DIR} && make distclean
-	cd ${GNU_TOOLCHAIN_DIR} && make -j 8
+# Test gnu auto generated overloaded-api-testing with testing-report
+report-gnu: prepare-gnu
+	make -C $(GNU_TOOLCHAIN_TEST_DIR)../ -j${nproc}
+
+prepare-gnu:
+	$(call check_defined, TOOLCHAIN_DIR, path to GNU toolchain)
+	# setup testsuite
 	mkdir -p $(GCC_CASES_DIR)/gnu-api-tests
 	mkdir -p $(GCC_CASES_DIR)/policy_funcs/gnu-api-tests
 	mkdir -p $(GCC_CASES_DIR)/gnu-overloaded-tests
 	mkdir -p $(GCC_CASES_DIR)/policy_funcs/gnu-overloaded-tests
-	cp $(DIR)/../gcc-auto-generated.exp $(GCC_CASES_DIR)/auto-generated.exp
+	cp $(GNU_TEST_SETUP)/gcc-auto-generated.exp $(GCC_CASES_DIR)/gcc.exp
 	cp -r $(DIR)/gnu-api-tests/* $(GCC_CASES_DIR)/gnu-api-tests/
 	cp -r $(DIR)/policy_funcs/gnu-api-tests/* $(GCC_CASES_DIR)/policy_funcs/gnu-api-tests/
 	cp -r $(DIR)/gnu-overloaded-tests/* $(GCC_CASES_DIR)/gnu-overloaded-tests/
@@ -579,12 +582,20 @@ report-gnu:
 	mkdir -p $(G++_CASES_DIR)/policy_funcs/gnu-api-tests
 	mkdir -p $(G++_CASES_DIR)/gnu-overloaded-tests
 	mkdir -p $(G++_CASES_DIR)/policy_funcs/gnu-overloaded-tests
-	cp $(DIR)/../g++-auto-generated.exp $(G++_CASES_DIR)/auto-generated.exp
+	cp $(GNU_TEST_SETUP)/g++-auto-generated.exp $(G++_CASES_DIR)/g++.exp
 	cp -r $(DIR)/gnu-api-tests/* $(G++_CASES_DIR)/gnu-api-tests/
 	cp -r $(DIR)/policy_funcs/gnu-api-tests/* $(G++_CASES_DIR)/policy_funcs/gnu-api-tests/
 	cp -r $(DIR)/gnu-overloaded-tests/* $(G++_CASES_DIR)/gnu-overloaded-tests/
 	cp -r $(DIR)/policy_funcs/gnu-overloaded-tests/* $(G++_CASES_DIR)/policy_funcs/gnu-overloaded-tests/
-	cd ${GNU_TOOLCHAIN_DIR} && make report -j 8 RUNTESTFLAGS="auto-generated.exp"
+	# setup the site.exp
+	cp $(GNU_TEST_SETUP)/site.exp $(GNU_TOOLCHAIN_TEST_DIR)/../site.exp
+	sed -i 's|TOOLCHAIN_DIR|$(TOOLCHAIN_DIR)|g' $(GNU_TOOLCHAIN_TEST_DIR)/../site.exp
+	sed -i 's|SRCDIR|$(GNU_TOOLCHAIN_TEST_DIR)|g' $(GNU_TOOLCHAIN_TEST_DIR)/../site.exp
+	# setup gcc testharness
+	bash $(GNU_TEST_SETUP)/fetch-gcc-testharness.sh $(GNU_TOOLCHAIN_TEST_DIR)
+	# setup makefile
+	cp $(GNU_TEST_SETUP)/Makefile.gnu $(GNU_TOOLCHAIN_TEST_DIR)/../Makefile
+	sed -i 's|TESTSUITE_PATH|$(GNU_TOOLCHAIN_TEST_DIR)|g' $(GNU_TOOLCHAIN_TEST_DIR)/../Makefile
 
 ###############################################################################
 # Custom Vendor Generator Target
