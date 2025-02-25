@@ -156,6 +156,27 @@ define gen_tests
 		$(TRIGGER_VENDOR_INST) $(TRIGGER_SKIP_DEFAULT_INST)
 endef
 
+# Helper to run clang-format over generated C files in a folder
+define clang_format_c
+	clang-format -i $(1)/*.c
+endef
+
+define gen_test_rule
+	$(call gen_tests,$(1),$(2),$(3) $(EXTRA_FLAG))
+	$(call gen_tests,$(4),$(2),--has-policy $(3) $(EXTRA_FLAG))
+	$(if $(filter --toolchain-type gnu,$(3)),,$(call clang_format_c,$(1)))
+	$(if $(filter --toolchain-type gnu,$(3)),,$(call clang_format_c,$(4)))
+endef
+
+define gen_llvm_test_rule
+	$(call gen_tests,$(1),$(2),--toolchain-type llvm $(strip $(3)) $(EXTRA_FLAG))
+	$(call gen_tests,$(4),$(2),--toolchain-type llvm --has-policy $(strip $(3)) $(EXTRA_FLAG))
+	$(call replace_float, $(1))
+	$(call replace_float, $(4))
+	$(call clang_format_c,$(1))
+	$(call clang_format_c,$(4))
+endef
+
 # Compile all *.c under $(1) with $(2), then pretty-print with testing-report
 # $(1): Path to testing folder, containing .c files
 # $(2): Path to compiler
@@ -214,45 +235,27 @@ overloaded-docs:
 
 # Generate non-overloaded intrinsic testing C source files
 non-overloaded-test:
-	$(call gen_tests,$(DIR)/api-testing,non-overloaded-test,$(EXTRA_FLAG))
-	$(call gen_tests,$(POLICY_DIR)/api-testing,non-overloaded-test,--has-policy $(EXTRA_FLAG))
-	clang-format -i $(DIR)/api-testing/*
-	clang-format -i $(POLICY_DIR)/api-testing/*
+	$(call gen_test_rule,$(DIR)/api-testing,non-overloaded-test,, $(POLICY_DIR)/api-testing)
 
 # Generate overloaded intrinsic testing C source files
 overloaded-test:
-	$(call gen_tests,$(DIR)/overloaded-api-testing,overloaded-test,$(EXTRA_FLAG))
-	$(call gen_tests,$(POLICY_DIR)/overloaded-api-testing,overloaded-test,--has-policy $(EXTRA_FLAG))
-	clang-format -i $(DIR)/overloaded-api-testing/*
-	clang-format -i $(POLICY_DIR)/overloaded-api-testing/*
+	$(call gen_test_rule,$(DIR)/overloaded-api-testing,overloaded-test,, $(POLICY_DIR)/overloaded-api-testing)
 
 # Generate non-overloaded intrinsic testing C source files
 llvm-non-overloaded-test:
-	$(call gen_tests,$(DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm $(EXTRA_FLAG))
-	$(call gen_tests,$(POLICY_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --has-policy $(EXTRA_FLAG))
-	$(call replace_float, $(DIR)/llvm-api-tests)
-	$(call replace_float, $(POLICY_DIR)/llvm-api-tests)
-	clang-format -i $(DIR)/llvm-api-tests/*
-	clang-format -i $(POLICY_DIR)/llvm-api-tests/*
+	$(call gen_llvm_test_rule,$(DIR)/llvm-api-tests,non-overloaded-test,,$(POLICY_DIR)/llvm-api-tests)
 
 # Generate overloaded intrinsic testing C source files
 llvm-overloaded-test:
-	$(call gen_tests,$(DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm $(EXTRA_FLAG))
-	$(call gen_tests,$(POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --has-policy $(EXTRA_FLAG))
-	$(call replace_float, $(DIR)/llvm-overloaded-tests)
-	$(call replace_float, $(POLICY_DIR)/llvm-overloaded-tests)
-	clang-format -i $(DIR)/llvm-overloaded-tests/*
-	clang-format -i $(POLICY_DIR)/llvm-overloaded-tests/*
+	$(call gen_llvm_test_rule,$(DIR)/llvm-overloaded-tests,overloaded-test,,$(POLICY_DIR)/llvm-overloaded-tests)
 
 # Generate GNU non-overloaded intrinsic testing source files
 gnu-non-overloaded-test:
-	$(call gen_tests,$(DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu)
-	$(call gen_tests,$(POLICY_DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu --has-policy)
+	$(call gen_test_rule,$(DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu,$(POLICY_DIR)/gnu-api-tests)
 
 # Generate GNU overloaded intrinsic testing source files
 gnu-overloaded-test:
-	$(call gen_tests,$(DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu)
-	$(call gen_tests,$(POLICY_DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu --has-policy)
+	$(call gen_test_rule,$(DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu,$(POLICY_DIR)/gnu-overloaded-tests)
 
 # BFloat16 documents
 bf16-non-overloaded-doc:
@@ -270,35 +273,19 @@ bf16-overloaded-docs:
 # BFloat16 tests
 # Generate non-overloaded intrinsic testing C source files
 bf16-non-overloaded-test:
-	$(call gen_tests,$(BF16_DIR)/api-testing,non-overloaded-test,--skip-default-inst --vendor-inst $(BF16_INST))
-	$(call gen_tests,$(BF16_POLICY_DIR)/api-testing,non-overloaded-test,--has-policy --skip-default-inst --vendor-inst $(BF16_INST))
-	clang-format -i $(BF16_DIR)/api-testing/*
-	clang-format -i $(BF16_POLICY_DIR)/api-testing/*
+	$(call gen_test_rule,$(BF16_DIR)/api-testing,non-overloaded-test,--skip-default-inst --vendor-inst $(BF16_INST),$(BF16_POLICY_DIR)/api-testing)
 
 # Generate overloaded intrinsic testing C source files
 bf16-overloaded-test:
-	$(call gen_tests,$(BF16_DIR)/overloaded-api-testing,overloaded-test,--skip-default-inst --vendor-inst $(BF16_INST))
-	$(call gen_tests,$(BF16_POLICY_DIR)/overloaded-api-testing,overloaded-test,--has-policy --skip-default-inst --vendor-inst $(BF16_INST))
-	clang-format -i $(BF16_DIR)/overloaded-api-testing/*
-	clang-format -i $(BF16_POLICY_DIR)/overloaded-api-testing/*
+	$(call gen_test_rule,$(BF16_DIR)/overloaded-api-testing,overloaded-test,--skip-default-inst --vendor-inst $(BF16_INST),$(BF16_POLICY_DIR)/overloaded-api-testing)
 
 # Generate non-overloaded intrinsic testing C source files
 bf16-llvm-non-overloaded-test:
-	$(call gen_tests,$(BF16_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --skip-default-inst --vendor-inst $(BF16_INST))
-	$(call gen_tests,$(BF16_POLICY_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --has-policy --skip-default-inst --vendor-inst $(BF16_INST))
-	$(call replace_float, $(BF16_DIR)/llvm-api-tests)
-	$(call replace_float, $(BF16_POLICY_DIR)/llvm-api-tests)
-	clang-format -i $(BF16_DIR)/llvm-api-tests/*
-	clang-format -i $(BF16_POLICY_DIR)/llvm-api-tests/*
+	$(call gen_llvm_test_rule,$(BF16_DIR)/llvm-api-tests,non-overloaded-test,--skip-default-inst --vendor-inst $(BF16_INST),$(BF16_POLICY_DIR)/llvm-api-tests)
 
 # Generate overloaded intrinsic testing C source files
 bf16-llvm-overloaded-test:
-	$(call gen_tests,$(BF16_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --skip-default-inst --vendor-inst $(BF16_INST))
-	$(call gen_tests,$(BF16_POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --has-policy --skip-default-inst --vendor-inst $(BF16_INST))
-	$(call replace_float, $(BF16_DIR)/llvm-overloaded-tests)
-	$(call replace_float, $(BF16_POLICY_DIR)/llvm-overloaded-tests)
-	clang-format -i $(BF16_DIR)/llvm-overloaded-tests/*
-	clang-format -i $(BF16_POLICY_DIR)/llvm-overloaded-tests/*
+	$(call gen_llvm_test_rule,$(BF16_DIR)/llvm-overloaded-tests,overloaded-test,--skip-default-inst --vendor-inst $(BF16_INST),$(BF16_POLICY_DIR)/llvm-overloaded-tests)
 
 # Vector crypto documents
 vector-crypto-non-overloaded-doc:
@@ -315,32 +302,16 @@ vector-crypto-overloaded-docs:
 
 # Vector-crypto tests
 vector-crypto-non-overloaded-test:
-	$(call gen_tests,$(VECTOR_CRYPTO_DIR)/api-testing,non-overloaded-test,--gen-vector-crypto $(EXTRA_FLAG))
-	$(call gen_tests,$(VECTOR_CRYPTO_POLICY_DIR)/api-testing,non-overloaded-test,--gen-vector-crypto --has-policy $(EXTRA_FLAG))
-	clang-format -i $(VECTOR_CRYPTO_DIR)/api-testing/*
-	clang-format -i $(VECTOR_CRYPTO_POLICY_DIR)/api-testing/*
+	$(call gen_test_rule,$(VECTOR_CRYPTO_DIR)/api-testing,non-overloaded-test,--gen-vector-crypto, $(VECTOR_CRYPTO_POLICY_DIR)/api-testing)
 
 vector-crypto-overloaded-test:
-	$(call gen_tests,$(VECTOR_CRYPTO_DIR)/overloaded-api-testing,overloaded-test,--gen-vector-crypto $(EXTRA_FLAG))
-	$(call gen_tests,$(VECTOR_CRYPTO_POLICY_DIR)/overloaded-api-testing,overloaded-test,--gen-vector-crypto --has-policy $(EXTRA_FLAG))
-	clang-format -i $(VECTOR_CRYPTO_DIR)/overloaded-api-testing/*
-	clang-format -i $(VECTOR_CRYPTO_POLICY_DIR)/overloaded-api-testing/*
+	$(call gen_test_rule,$(VECTOR_CRYPTO_DIR)/overloaded-api-testing,overloaded-test,--gen-vector-crypto, $(VECTOR_CRYPTO_POLICY_DIR)/overloaded-api-testing)
 
 vector-crypto-llvm-non-overloaded-test:
-	$(call gen_tests,$(VECTOR_CRYPTO_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --gen-vector-crypto $(EXTRA_FLAG))
-	$(call gen_tests,$(VECTOR_CRYPTO_POLICY_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --gen-vector-crypto --has-policy $(EXTRA_FLAG))
-	$(call replace_float, $(VECTOR_CRYPTO_DIR)/llvm-api-tests)
-	$(call replace_float, $(VECTOR_CRYPTO_POLICY_DIR)/llvm-api-tests)
-	clang-format -i $(VECTOR_CRYPTO_DIR)/llvm-api-tests/*
-	clang-format -i $(VECTOR_CRYPTO_POLICY_DIR)/llvm-api-tests/*
+	$(call gen_llvm_test_rule,$(VECTOR_CRYPTO_DIR)/llvm-api-tests,non-overloaded-test,--gen-vector-crypto,$(VECTOR_CRYPTO_POLICY_DIR)/llvm-api-tests)
 
 vector-crypto-llvm-overloaded-test:
-	$(call gen_tests,$(VECTOR_CRYPTO_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --gen-vector-crypto $(EXTRA_FLAG))
-	$(call gen_tests,$(VECTOR_CRYPTO_POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --gen-vector-crypto --has-policy $(EXTRA_FLAG))
-	$(call replace_float, $(VECTOR_CRYPTO_DIR)/llvm-overloaded-tests)
-	$(call replace_float, $(VECTOR_CRYPTO_POLICY_DIR)/llvm-overloaded-tests)
-	clang-format -i $(VECTOR_CRYPTO_DIR)/llvm-overloaded-tests/*
-	clang-format -i $(VECTOR_CRYPTO_POLICY_DIR)/llvm-overloaded-tests/*
+	$(call gen_llvm_test_rule,$(VECTOR_CRYPTO_DIR)/llvm-overloaded-tests,overloaded-test,--gen-vector-crypto,$(VECTOR_CRYPTO_POLICY_DIR)/llvm-overloaded-tests)
 
 ###############################################################################
 
