@@ -325,56 +325,50 @@ gen-all:
 	rm -rf ${DIR}
 	make all OUTPUT_DIR=${OUTPUT_DIR}
 
-# Update and commit all files under auto-generated
-git-commit-all:
-	make git-commit-autogen-doc OUTPUT_DIR=${OUTPUT_DIR}
-	make git-commit-autogen-test OUTPUT_DIR=${OUTPUT_DIR}
+# Define common variables
+TYPES = default bf16 vector-crypto
+DIR_default = ${DIR}
+DIR_bf16 = ${BF16_DIR}
+DIR_vector-crypto = ${VECTOR_CRYPTO_DIR}
+COMMIT_MSG_PREFIX = [Auto-gen]
 
-git-commit-bf16-all:
-	make git-commit-autogen-bf16-doc OUTPUT_DIR=${OUTPUT_DIR}
-	make git-commit-autogen-bf16-test OUTPUT_DIR=${OUTPUT_DIR}
+# Generic update and commit target for docs
+git-commit-autogen-%-doc:
+	$(eval TYPE=$(patsubst git-commit-autogen-%-doc,%,$@))
+	$(eval DIR_VAR=$(if $(filter default,$(TYPE)),DIR,DIR_$(TYPE)))
+	$(eval GEN_CMD=$(if $(filter default,$(TYPE)),gen-document,gen-$(TYPE)-document))
+	$(eval TYPE_DESC=$(if $(filter default,$(TYPE)),,$(TYPE) ))
+	make $(GEN_CMD) OUTPUT_DIR=${OUTPUT_DIR}
+	git add ${$(DIR_VAR)}/*
+	git commit -m "$(COMMIT_MSG_PREFIX) Update $(TYPE_DESC)documents under ${OUTPUT_DIR}. (make $@)"
 
-git-commit-vector-crypto-all:
-	make git-commit-autogen-vector-crypto-doc OUTPUT_DIR=${OUTPUT_DIR}
-	make git-commit-autogen-vector-crypto-test OUTPUT_DIR=${OUTPUT_DIR}
+# Generic update and commit target for tests
+git-commit-autogen-%-test:
+	$(eval TYPE=$(patsubst git-commit-autogen-%-test,%,$@))
+	$(eval DIR_VAR=$(if $(filter default,$(TYPE)),DIR,DIR_$(TYPE)))
+	$(eval GEN_CMD=$(if $(filter default,$(TYPE)),gen-test,gen-$(TYPE)-test))
+	$(eval TYPE_DESC=$(if $(filter default,$(TYPE)),,$(TYPE) ))
+	make $(GEN_CMD)
+	git add ${$(DIR_VAR)}/*
+	git commit -m "$(COMMIT_MSG_PREFIX) Update $(TYPE_DESC)tests under ${OUTPUT_DIR}. (make $@)"
 
-# Update and commit all documents under auto-generated
-git-commit-autogen-doc:
-	make gen-document OUTPUT_DIR=${OUTPUT_DIR}
-	git add ${DIR}/*
-	git commit -m "[Auto-gen] Update documents under ${OUTPUT_DIR}. (make git-commit-autogen-doc)"
+# Update and commit both docs and tests for each type
+git-commit-%-all:
+	$(eval TYPE=$(patsubst git-commit-%-all,%,$@))
+	$(eval TYPE_PREFIX=$(if $(filter default,$(TYPE)),,$(TYPE)-))
+	make git-commit-autogen-$(TYPE_PREFIX)doc OUTPUT_DIR=${OUTPUT_DIR}
+	make git-commit-autogen-$(TYPE_PREFIX)test OUTPUT_DIR=${OUTPUT_DIR}
 
-git-commit-autogen-bf16-doc:
-	make gen-bf16-document OUTPUT_DIR=${OUTPUT_DIR}
-	git add ${BF16_DIR}/*
-	git commit -m "[Auto-gen] Update bfloat16 documents under ${OUTPUT_DIR}. (make git-commit-autogen-bf16-doc)"
+# Provide backward compatibility aliases
+git-commit-all: git-commit-default-all
+git-commit-autogen-doc: git-commit-autogen-default-doc
+git-commit-autogen-test: git-commit-autogen-default-test
 
-git-commit-autogen-vector-crypto-doc:
-	make gen-vector-crypto-document OUTPUT_DIR=${OUTPUT_DIR}
-	git add ${VECTOR_CRYPTO_DIR}/*
-	git commit -m "[Auto-gen] Update vector crypto documents under ${OUTPUT_DIR}. (make git-commit-autogen-vector-crypto-doc)"
-
-# Update and commit all testing C source files under auto-generated
-git-commit-autogen-test:
-	make gen-test
-	git add ${DIR}/*
-	git commit -m "[Auto-gen] Update tests under ${OUTPUT_DIR}. (make git-commit-autogen-test)"
-
-git-commit-autogen-bf16-test:
-	make gen-bf16-test
-	git add ${BF16_DIR}/*
-	git commit -m "[Auto-gen] Update bfloat16 tests under ${OUTPUT_DIR}. (make git-commit-autogen-bf16-test)"
-
-git-commit-autogen-vector-crypto-test:
-	make gen-vector-crypto-test
-	git add ${VECTOR_CRYPTO_DIR}/*
-	git commit -m "[Auto-gen] Update vector crypto tests under ${OUTPUT_DIR}. (make git-commit-autogen-vector-crypto-test)"
-
-# Update and commit compatible headers under auto-generated
+# Update and commit compatible headers (kept as-is since it doesn't follow the pattern)
 git-commit-autogen-compatible-header:
 	make gen-compatible-header
 	git add $(DIR)/*
-	git commit -m "[Auto-gen] Update tests under ${OUTPUT_DIR}. (make git-commmit-autogen-compatible-header)"
+	git commit -m "$(COMMIT_MSG_PREFIX) Update tests under ${OUTPUT_DIR}. (make git-commit-autogen-compatible-header)"
 
 # Runs diff with auto-generated, requires ${TEST_DIR} to be provided.
 GOLDEN_DIR = ${DIR}
