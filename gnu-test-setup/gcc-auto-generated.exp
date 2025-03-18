@@ -30,22 +30,18 @@ if ![info exists DEFAULT_CFLAGS] then {
     set DEFAULT_CFLAGS " -ansi -pedantic-errors"
 }
 
-set gcc_march "rv64gcv_zvfh"
-set gcc_mabi  "lp64d"
-
 # Initialize `dg'.
 dg-init
 
 # Main loop.
-set CFLAGS "$DEFAULT_CFLAGS -march=$gcc_march -mabi=$gcc_mabi -O3"
 dg-runtest [lsort [glob -nocomplain $srcdir/$subdir/policy_funcs/gnu-api-tests/*.\[cS\]]] \
-	"" $CFLAGS
+	"" ""
 dg-runtest [lsort [glob -nocomplain $srcdir/$subdir/policy_funcs/gnu-overloaded-tests/*.\[cS\]]] \
-	"" $CFLAGS
+	"" ""
 dg-runtest [lsort [glob -nocomplain $srcdir/$subdir/gnu-api-tests/*.\[cS\]]] \
-	"" $CFLAGS
+	"" ""
 dg-runtest [lsort [glob -nocomplain $srcdir/$subdir/gnu-overloaded-tests/*.\[cS\]]] \
-	"" $CFLAGS
+	"" ""
 
 # All done.
 dg-finish
