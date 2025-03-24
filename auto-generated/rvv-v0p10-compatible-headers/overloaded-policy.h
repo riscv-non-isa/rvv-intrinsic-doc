@@ -1939,4 +1939,32 @@
 #define vcompress_tu(mask, dest, src, vl)                                      \
   __riscv_vcompress_tu((dest), (src), (mask), (vl))
 #define vcompress_ta(mask, src, vl) __riscv_vcompress((src), (mask), (vl))
+#define vqdot_tu(...) __riscv_vqdot_tu(__VA_ARGS__)
+#define vqdotsu_tu(...) __riscv_vqdotsu_tu(__VA_ARGS__)
+#define vqdotus_tu(...) __riscv_vqdotus_tu(__VA_ARGS__)
+#define vqdotu_tu(...) __riscv_vqdotu_tu(__VA_ARGS__)
+#define vqdot_ta(...) __riscv_vqdot(__VA_ARGS__)
+#define vqdotsu_ta(...) __riscv_vqdotsu(__VA_ARGS__)
+#define vqdotus_ta(...) __riscv_vqdotus(__VA_ARGS__)
+#define vqdotu_ta(...) __riscv_vqdotu(__VA_ARGS__)
+// masked functions
+#define vqdot_tuma(...) __riscv_vqdot_tum(__VA_ARGS__)
+#define vqdotsu_tuma(...) __riscv_vqdotsu_tum(__VA_ARGS__)
+#define vqdotus_tuma(...) __riscv_vqdotus_tum(__VA_ARGS__)
+#define vqdotu_tuma(...) __riscv_vqdotu_tum(__VA_ARGS__)
+// masked functions
+#define vqdot_tumu(...) __riscv_vqdot_tumu(__VA_ARGS__)
+#define vqdotsu_tumu(...) __riscv_vqdotsu_tumu(__VA_ARGS__)
+#define vqdotus_tumu(...) __riscv_vqdotus_tumu(__VA_ARGS__)
+#define vqdotu_tumu(...) __riscv_vqdotu_tumu(__VA_ARGS__)
+// masked functions
+#define vqdot_tama(...) __riscv_vqdot(__VA_ARGS__)
+#define vqdotsu_tama(...) __riscv_vqdotsu(__VA_ARGS__)
+#define vqdotus_tama(...) __riscv_vqdotus(__VA_ARGS__)
+#define vqdotu_tama(...) __riscv_vqdotu(__VA_ARGS__)
+// masked functions
+#define vqdot_tamu(...) __riscv_vqdot_mu(__VA_ARGS__)
+#define vqdotsu_tamu(...) __riscv_vqdotsu_mu(__VA_ARGS__)
+#define vqdotus_tamu(...) __riscv_vqdotus_mu(__VA_ARGS__)
+#define vqdotu_tamu(...) __riscv_vqdotu_mu(__VA_ARGS__)
 #endif
