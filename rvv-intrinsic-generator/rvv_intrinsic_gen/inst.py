@@ -526,4 +526,12 @@ def gen(g):
                    decorators.has_no_masking)
 
   ####################################################################
+  g.start_group("Zvqdotq - Vector quad widening 4D Dot Product")
+  g.function_group(mac_template,
+                   "Zvqdotq - Vector quad widening 4D Dot Product",
+                   "zvqdotq-vector-quad-widening-4d-dot-product",
+                   ["qdot", "qdotsu", "qdotus"], ITYPES, [8],
+                   LMULS, decorators.has_masking_no_maskedoff_policy)
+
+  ####################################################################
   g.gen_prologue()
