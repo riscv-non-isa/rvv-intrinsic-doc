@@ -58,7 +58,7 @@ def render(G,
         args["S_TYPE"] = "x"
         inst_type = InstType.VVX
 
-      if op in ["wmacc", "qmacc"] and data_type == "uint":
+      if op in ["wmacc", "qmacc", "qdot"] and data_type == "uint":
         args["OP"] = args["OP"] + "u"
 
       args["OP"] = "v" + args["OP"]
@@ -83,14 +83,16 @@ def render(G,
           required_ext=required_ext_list)
 
       type_helper = TypeHelper(**args)
-      if (("maccsu" in op) or ("maccus" in op)) and data_type == "uint":
+      if (("maccsu" in op) or ("maccus" in op) or op in ["qdotsu", "qdotus"]) and data_type == "uint":
         # maccsu and maccus only support int type
         continue
       elif (("w" in op) or ("q" in op)) and ("int" in data_type):
         if "q" in op:
-          w_vtype = type_helper.qv
           args["SEW"] = args["QSEW"]
-          args["LMUL"] = args["QLMUL"]
+          qtype_helper = TypeHelper(**args)
+          w_vtype = qtype_helper.v
+          if not type_helper.valid_vtype(w_vtype):
+            continue
         else:
           w_vtype = type_helper.wv
           args["SEW"] = args["WSEW"]
@@ -118,6 +120,27 @@ def render(G,
               rs1=type_helper.sis,
               vs2=type_helper.uiv,
               vl=type_helper.size_t)
+        elif "qdotsu" in op:
+          G.func(
+              inst_info_vv,
+              name="{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              decorator.func_suffix,
+              return_type=rt,
+              **decorator.mask_args(qtype_helper.m, qtype_helper.v),
+              vd=rt,
+              vs2=type_helper.siv,
+              vs1=type_helper.uiv,
+              vl=type_helper.size_t)
+          G.func(
+              inst_info_vx,
+              name="{OP}_vx_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              decorator.func_suffix,
+              return_type=rt,
+              **decorator.mask_args(qtype_helper.m, qtype_helper.v),
+              vd=rt,
+              vs2=type_helper.siv,
+              rs1=qtype_helper.uis,
+              vl=type_helper.size_t)
         elif "maccus" in op:
           G.func(
               inst_info_vx,
@@ -128,6 +151,17 @@ def render(G,
               vd=rt,
               rs1=type_helper.uis,
               vs2=type_helper.siv,
+              vl=type_helper.size_t)
+        elif "qdotus" in op:
+          G.func(
+              inst_info_vx,
+              name="{OP}_vx_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              decorator.func_suffix,
+              return_type=rt,
+              **decorator.mask_args(qtype_helper.m, qtype_helper.v),
+              vd=rt,
+              vs2=type_helper.uiv,
+              rs1=qtype_helper.uis,
               vl=type_helper.size_t)
         elif "macc" in op:
           G.func(
@@ -149,6 +183,27 @@ def render(G,
               vd=rt,
               rs1=type_helper.s,
               vs2=type_helper.v,
+              vl=type_helper.size_t)
+        elif "qdot" in op:
+          G.func(
+              inst_info_vv,
+              name="{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              decorator.func_suffix,
+              return_type=rt,
+              **decorator.mask_args(qtype_helper.m, qtype_helper.v),
+              vd=rt,
+              vs2=type_helper.v,
+              vs1=type_helper.v,
+              vl=type_helper.size_t)
+          G.func(
+              inst_info_vs,
+              name="{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              decorator.func_suffix,
+              return_type=rt,
+              **decorator.mask_args(qtype_helper.m, qtype_helper.v),
+              vd=rt,
+              vs2=type_helper.v,
+              rs1=qtype_helper.uis,
               vl=type_helper.size_t)
       elif "float" in data_type and "w" in op:
         # Vector BF16 widening multiply-accumulate computes into FP32 values
