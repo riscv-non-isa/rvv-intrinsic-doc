@@ -14,8 +14,8 @@
 # limitations under the License.
 ###############################################################################
 
-CFLAGS?=-O -Werror=implicit-function-declaration
-ARCH_FLAG?=-march=rv64gcv_zfh_zvfh
+CFLAGS?=-O -Werror=implicit-function-declaration -menable-experimental-extensions
+ARCH_FLAG?=-march=rv64gcv_zfh_zvbb_zvbc_zvfbfmin_zvfbfwma_zvfh_zvkng_zvksg_zvl512b
 EXTRA_CFLAGS?=
 
 TEST_MULTILIB:=rv32gcv-ilp32d,rv64gcv-lp64d

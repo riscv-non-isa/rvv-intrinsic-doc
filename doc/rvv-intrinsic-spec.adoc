@@ -8,6 +8,8 @@ This document uses the term "RVV" as an abbreviation for the RISC-V "V" extensio
 
 The `__riscv_v_intrinsic` macro is the C macro to test the compiler's support for the RISC-V "V" extension intrinsics.
 
+This macro should be defined even if the vector extension is not enabled.
+
 The value of the test macro is defined as its version, which is computed using the following formula. The formula is identical to what is defined in the RISC-V C API specification cite:[riscv-c-api].
 
 ----
@@ -22,7 +24,7 @@ To leverage the intrinsics in the toolchain, the header `<riscv_vector.h>` needs
 
 [,c]
 ----
-#ifdef __riscv_v_intrinsic
+#if __riscv_v_intrinsic >= 1000000
 #include <riscv_vector.h>
 #endif /* __riscv_v_intrinsic */
 ----
@@ -67,7 +69,7 @@ vint32m1_t __riscv_vwadd_vv_i32m1(vint16mf2_t vs2, vint16mf2_t vs1, size_t vl);
 
 The intrinsics do not directly expose the vector length control register to the intrinsics programmer. The intrinsics programmer specifies an "application vector length (AVL)" using the argument `size_t vl`. The implementation is responsible to set the correct value into the underlying vector length control register (`vl`) given the informed AVL.
 
-NOTE: The intrinsics for instructions that behave the same with different `vl` settings (e.g. `vmv.s.x`) do not have a `size_t vl` argument.
+NOTE: The intrinsics for instructions that behave the same with different `vl` settings (e.g. `vmv.x.s`) do not have a `size_t vl` argument.
 
 NOTE: The actual value written to the `vl` control register is an implementation defined behavior and is typically not known until runtime. The actual setting of `vl`, given the provided AVL through the parameter, follows the rules in the RVV specification. The number of elements processed can be obtained through the `__riscv_vsetvl_*` intrinsics <<pseudo-vsetvl>>.
 
@@ -109,9 +111,9 @@ NOTE: The RISC-V psABI cite:[riscv-cc-vector] states that `vxrm` is not preserve
 
 [NOTE]
 ====
-This version of the specification of does not cover the control of the vector fixed-point saturation flag (`vxsat`). Support for this feature is planned for a later version of the specification in a way that is compatible with existing fixed-point intrinsics. No mechanism to set or retrieve the value of `vxsat` is specified either.
+This specification does not provide support for manipulating the `vxsat` CSR.  Since vxsat is not needed by a large majority of fixed-point code, we believe this specification is broadly useful as-is.  Nevertheless, we expect that a future extension will define an additional set of fixed-point intrinsics that update `vxsat` in a specified manner, along with intrinsics to explicitly read and write `vxsat`.  These new intrinsics would be interoperable with the intrinsics in this specification.
 
-The value of the `vxsat` after a fixed-point intrinsic is UNSPECIFIED. This includes the order in which the flag `vxsat` is updated in a program that executes a sequence of fixed-point intrinsics.
+The value of the `vxsat` after a fixed-point intrinsic is UNSPECIFIED.
 ====
 
 [[control-of-frm]]
@@ -241,10 +243,10 @@ Only encoding the return type will cause naming collisions for the permutation i
 
 [,c]
 ----
-int8_t __riscv_vmv_x_s_i8m1_i8 (vint8m1_t vs2, size_t vl);
-int8_t __riscv_vmv_x_s_i8m2_i8 (vint8m2_t vs2, size_t vl);
-int8_t __riscv_vmv_x_s_i8m4_i8 (vint8m4_t vs2, size_t vl);
-int8_t __riscv_vmv_x_s_i8m8_i8 (vint8m8_t vs2, size_t vl);
+int8_t __riscv_vmv_x_s_i8m1_i8 (vint8m1_t vs2);
+int8_t __riscv_vmv_x_s_i8m2_i8 (vint8m2_t vs2);
+int8_t __riscv_vmv_x_s_i8m4_i8 (vint8m4_t vs2);
+int8_t __riscv_vmv_x_s_i8m8_i8 (vint8m8_t vs2);
 ----
 
 ==== Reduction instructions

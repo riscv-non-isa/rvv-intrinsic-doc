@@ -35506,6 +35506,7 @@ vuint64m8_t __riscv_vmv_v_x_u64m8(uint64_t rs1, size_t vl);
 
 [[vector-single-width-saturating-add-and-subtract]]
 ==== Vector Single-Width Saturating Add and Subtract Intrinsics
+After executing an intrinsic in this section, the `vxsat` CSR assumes an UNSPECIFIED value.
 
 [,c]
 ----
@@ -36904,6 +36905,7 @@ vuint64m8_t __riscv_vasubu_vx_u64m8_m(vbool8_t vm, vuint64m8_t vs2,
 
 [[vector-single-width-fractional-multiply-with-rounding-and-saturation]]
 ==== Vector Single-Width Fractional Multiply with Rounding and SaturationIntrinsics
+After executing an intrinsic in this section, the `vxsat` CSR assumes an UNSPECIFIED value.
 
 [,c]
 ----
@@ -37502,6 +37504,7 @@ vuint64m8_t __riscv_vssrl_vx_u64m8_m(vbool8_t vm, vuint64m8_t vs2, size_t rs1,
 
 [[vector-narrowing-fixed-point-clip]]
 ==== Vector Narrowing Fixed-Point Clip Intrinsics
+After executing an intrinsic in this section, the `vxsat` CSR assumes an UNSPECIFIED value.
 
 [,c]
 ----

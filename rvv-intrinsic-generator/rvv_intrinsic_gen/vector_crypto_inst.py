@@ -20,7 +20,8 @@ def gen(g):
       UITYPE,
       SEWS,
       LMULS,
-      decorators.has_masking_maskedoff_policy)
+      decorators.has_masking_maskedoff_policy,
+      required_ext_list=["zvbb"])
 
   g.function_group(
       vector_crypto_template,
@@ -30,7 +31,8 @@ def gen(g):
       UITYPE,
       SEWS,
       LMULS,
-      decorators.has_masking_maskedoff_policy)
+      decorators.has_masking_maskedoff_policy,
+      required_ext_list=["zvbb"])
 
   g.function_group(
       vector_crypto_template,
@@ -40,7 +42,8 @@ def gen(g):
       UITYPE,
       SEWS,
       LMULS,
-      decorators.has_masking_maskedoff_policy)
+      decorators.has_masking_maskedoff_policy,
+      required_ext_list=["zvbb"])
 
   g.function_group(
       vector_crypto_template,
@@ -50,7 +53,8 @@ def gen(g):
       UITYPE,
       SEWS,
       LMULS,
-      decorators.has_masking_maskedoff_policy)
+      decorators.has_masking_maskedoff_policy,
+      required_ext_list=["zvbb"])
 
   g.function_group(
       vector_crypto_template,
@@ -60,7 +64,8 @@ def gen(g):
       UITYPE,
       SEWS,
       LMULS,
-      decorators.has_masking_maskedoff_policy)
+      decorators.has_masking_maskedoff_policy,
+      required_ext_list=["zvkb"])
 
   g.function_group(
       vector_crypto_template,
@@ -70,7 +75,8 @@ def gen(g):
       UITYPE,
       WSEWS,
       WLMULS,
-      decorators.has_masking_maskedoff_policy)
+      decorators.has_masking_maskedoff_policy,
+      required_ext_list=["zvbb"])
 
   ####################################################################
 
@@ -84,7 +90,8 @@ def gen(g):
       UITYPE,
       [64],
       LMULS,
-      decorators.has_masking_maskedoff_policy)
+      decorators.has_masking_maskedoff_policy,
+      required_ext_list=["zvbc"])
 
   ####################################################################
 
@@ -98,7 +105,8 @@ def gen(g):
       UITYPE,
       [32],
       LMULS,
-      decorators.has_no_masking_policy)
+      decorators.has_no_masking_policy,
+      required_ext_list=["zvkg"])
 
   ####################################################################
 
@@ -112,7 +120,8 @@ def gen(g):
       UITYPE,
       [32],
       LMULS,
-      decorators.has_no_masking_policy)
+      decorators.has_no_masking_policy,
+      required_ext_list=["zvkned"])
 
   g.function_group(
       vector_crypto_template,
@@ -122,7 +131,8 @@ def gen(g):
       UITYPE,
       [32],
       LMULS,
-      decorators.has_no_masking_policy)
+      decorators.has_no_masking_policy,
+      required_ext_list=["zvkned"])
 
   g.function_group(
       vector_crypto_template,
@@ -132,7 +142,8 @@ def gen(g):
       UITYPE,
       [32],
       LMULS,
-      decorators.has_no_masking_policy)
+      decorators.has_no_masking_policy,
+      required_ext_list=["zvkned"])
 
   g.function_group(
       vector_crypto_template,
@@ -142,12 +153,15 @@ def gen(g):
       UITYPE,
       [32],
       LMULS,
-      decorators.has_no_masking_policy)
+      decorators.has_no_masking_policy,
+      required_ext_list=["zvkned"])
 
   ####################################################################
 
   g.start_group("Zvknh - NIST Suite: Vector SHA-2 Secure Hash")
 
+  # We need extra condition to check if zvknhb is required
+  # If SEW=64, then zvknhb is required
   g.function_group(
       vector_crypto_template,
       "Vector SHA-2 message schedule",
@@ -156,7 +170,8 @@ def gen(g):
       UITYPE,
       [32, 64],
       LMULS,
-      decorators.has_no_masking_policy)
+      decorators.has_no_masking_policy,
+      required_ext_list=["zvknha"])
 
   g.function_group(
       vector_crypto_template,
@@ -166,7 +181,8 @@ def gen(g):
       UITYPE,
       [32, 64],
       LMULS,
-      decorators.has_no_masking_policy)
+      decorators.has_no_masking_policy,
+      required_ext_list=["zvknha"])
 
   ####################################################################
 
@@ -180,7 +196,8 @@ def gen(g):
       UITYPE,
       [32],
       LMULS,
-      decorators.has_no_masking_policy)
+      decorators.has_no_masking_policy,
+      required_ext_list=["zvksed"])
 
   g.function_group(
       vector_crypto_template,
@@ -190,7 +207,8 @@ def gen(g):
       UITYPE,
       [32],
       LMULS,
-      decorators.has_no_masking_policy)
+      decorators.has_no_masking_policy,
+      required_ext_list=["zvksed"])
 
   ####################################################################
 
@@ -204,7 +222,8 @@ def gen(g):
       UITYPE,
       [32],
       LMULS,
-      decorators.has_no_masking_policy)
+      decorators.has_no_masking_policy,
+      required_ext_list=["zvksh"])
 
   g.function_group(
       vector_crypto_template,
@@ -214,7 +233,8 @@ def gen(g):
       UITYPE,
       [32],
       LMULS,
-      decorators.has_no_masking_policy)
+      decorators.has_no_masking_policy,
+      required_ext_list=["zvksh"])
 
 
 ####################################################################

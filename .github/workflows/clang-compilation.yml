@@ -4,20 +4,32 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        llvm-version: ["main", "latest-rel"]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
       - name: Prerequisites
         run: |
-          sudo apt-get install autoconf automake autotools-dev curl python3 python3-pip libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ninja-build git cmake libglib2.0-dev dejagnu
+          sudo apt-get install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ninja-build git cmake libglib2.0-dev dejagnu
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install junitparser
+          pip install --user junitparser
       - name: Download LLVM
         run: |
           cd ..
           rm -rf llvm-project
-          git clone https://github.com/llvm/llvm-project
+          git clone https://github.com/llvm/llvm-project -j `nproc`
+      - name: Checkout LLVM version
+        run: |
+          cd ../llvm-project
+          if [ "${{ matrix.llvm-version }}" = "latest-rel" ]; then
+            latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+            git checkout $latestTag
+          fi
       - name: Build LLVM with Ninja
         run: |
           cd ../llvm-project
@@ -32,18 +44,18 @@ jobs:
             -DLLVM_DEFAULT_TARGET_TRIPLE="riscv64-unknown-linux-gnu" \
             -DLLVM_ENABLE_PROJECTS="clang;lld" \
             ../llvm
-          ninja -j 4
+          ninja -j `nproc`
           echo $(pwd)
           ls bin
       - name: Run compilation test, non-overloaded intrinsics (default (TAMA) policy)
         run: |
-          make -C rvv-intrinsic-generator run-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"
+          make -C rvv-intrinsic-generator run-api-testing run-bfloat16-api-testing run-vector-crypto-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"
       - name: Run compilation test, overloaded intrinsics (default (TAMA) policy)
         run: |
-          make -C rvv-intrinsic-generator run-overloaded-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"
+          make -C rvv-intrinsic-generator run-overloaded-api-testing run-bfloat16-overloaded-api-testing run-vector-crypto-overloaded-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"
       - name: Run compilation test, non-overloaded intrinsics (non-default policy)
         run: |
-          make -C rvv-intrinsic-generator run-policy-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"
+          make -C rvv-intrinsic-generator run-policy-api-testing run-bfloat16-policy-api-testing run-vector-crypto-policy-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"
       - name: Run compilation test, overloaded intrinsics (non-default policy)
         run: |
-          make -C rvv-intrinsic-generator run-policy-overloaded-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"
+          make -C rvv-intrinsic-generator run-policy-overloaded-api-testing run-bfloat16-policy-overloaded-api-testing run-vector-crypto-policy-overloaded-api-testing COMPILER=$(pwd)/../llvm-project/build/bin/clang EXTRA_CFLAGS="-target riscv64"

@@ -32,9 +32,17 @@ from enums import MemType
 from generator import CompatibleHeaderGenerator
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
+  G.emit_function_group_description(description)
   G.inst_group_prologue()
   nf_list = range(2, 9)
   for decorator in decorator_list:
@@ -78,7 +86,12 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       else:
         args["OP"] = op + nf + "e" + str(eew)
 
-      inst_info = InstInfo.get(args, decorator, inst_type, MemType.LOAD)
+      inst_info = InstInfo.get(
+          args,
+          decorator,
+          inst_type,
+          MemType.LOAD,
+          required_ext=required_ext_list)
       # Legacy non-tuple-type variant for the compatible header
       if isinstance(G, CompatibleHeaderGenerator):
         G.func(

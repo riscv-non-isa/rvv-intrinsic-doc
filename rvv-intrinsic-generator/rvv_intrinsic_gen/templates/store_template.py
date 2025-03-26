@@ -28,9 +28,17 @@ from enums import InstType
 from enums import MemType
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
+  G.emit_function_group_description(description)
   G.inst_group_prologue()
   for decorator in decorator_list:
     decorator.write_text_header(G)
@@ -60,7 +68,12 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if op not in ["vsoxei", "vsuxei"] and sew != eew:
         continue
 
-      inst_info = InstInfo.get(args, decorator, inst_type, MemType.STORE)
+      inst_info = InstInfo.get(
+          args,
+          decorator,
+          inst_type,
+          MemType.STORE,
+          required_ext=required_ext_list)
       G.func(
           inst_info,
           name="{OP}_v_{TYPE}{SEW}m{LMUL}".format_map(args) +
