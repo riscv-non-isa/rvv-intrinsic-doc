@@ -483,7 +483,7 @@ Availability of the tuple types follows the availability of their corresponding 
 .Tuple types (EMUL=1/8)
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
-| Non-tuple Types (NFILED=1) | NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
+| Non-tuple Types (NFIELD=1) | NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
 | vint8mf8_t | vint8mf8x2_t | vint8mf8x3_t | vint8mf8x4_t | vint8mf8x5_t | vint8mf8x6_t | vint8mf8x7_t | vint8mf8x8_t
 | vuint8mf8_t | vuint8mf8x2_t | vuint8mf8x3_t | vuint8mf8x4_t | vuint8mf8x5_t | vuint8mf8x6_t | vuint8mf8x7_t | vuint8mf8x8_t
 |===
@@ -491,7 +491,7 @@ Availability of the tuple types follows the availability of their corresponding 
 .Tuple types (EMUL=1/4)
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
-| Non-tuple Types (NFILED=1)| NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
+| Non-tuple Types (NFIELD=1)| NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
 | vint8mf4_t | vint8mf4x2_t | vint8mf4x3_t | vint8mf4x4_t | vint8mf4x5_t | vint8mf4x6_t | vint8mf4x7_t | vint8mf4x8_t
 | vuint8mf4_t | vuint8mf4x2_t | vuint8mf4x3_t | vuint8mf4x4_t | vuint8mf4x5_t | vuint8mf4x6_t | vuint8mf4x7_t | vuint8mf4x8_t
 | vint16mf4_t | vint16mf4x2_t | vint16mf4x3_t | vint16mf4x4_t | vint16mf4x5_t | vint16mf4x6_t | vint16mf4x7_t | vint16mf4x8_t
@@ -502,7 +502,7 @@ Availability of the tuple types follows the availability of their corresponding 
 .Tuple types (EMUL=1/2)
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
-| Non-tuple Types (NFILED=1) | NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
+| Non-tuple Types (NFIELD=1) | NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
 | vint8mf2_t | vint8mf2x2_t | vint8mf2x3_t | vint8mf2x4_t | vint8mf2x5_t | vint8mf2x6_t | vint8mf2x7_t | vint8mf2x8_t
 | vuint8mf2_t | vuint8mf2x2_t | vuint8mf2x3_t | vuint8mf2x4_t | vuint8mf2x5_t | vuint8mf2x6_t | vuint8mf2x7_t | vuint8mf2x8_t
 | vint16mf2_t | vint16mf2x2_t | vint16mf2x3_t | vint16mf2x4_t | vint16mf2x5_t | vint16mf2x6_t | vint16mf2x7_t | vint16mf2x8_t
@@ -516,7 +516,7 @@ Availability of the tuple types follows the availability of their corresponding 
 .Tuple types (EMUL=1)
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
-| Non-tuple Types (NFILED=1) | NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
+| Non-tuple Types (NFIELD=1) | NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
 | vint8m1_t | vint8m1x2_t | vint8m1x3_t | vint8m1x4_t | vint8m1x5_t | vint8m1x6_t | vint8m1x7_t | vint8m1x8_t
 | vuint8m1_t | vuint8m1x2_t | vuint8m1x3_t | vuint8m1x4_t | vuint8m1x5_t | vuint8m1x6_t | vuint8m1x7_t | vuint8m1x8_t
 | vint16m1_t | vint16m1x2_t | vint16m1x3_t | vint16m1x4_t | vint16m1x5_t | vint16m1x6_t | vint16m1x7_t | vint16m1x8_t
@@ -533,7 +533,7 @@ Availability of the tuple types follows the availability of their corresponding 
 .Tuple types (EMUL=2)
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
-| Non-tuple Types (NFILED=1) | NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
+| Non-tuple Types (NFIELD=1) | NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
 | vint8m2_t | vint8m2x2_t | vint8m2x3_t | vint8m2x4_t | N/A | N/A | N/A | N/A
 | vuint8m2_t | vuint8m2x2_t | vuint8m2x3_t | vuint8m2x4_t | N/A | N/A | N/A | N/A
 | vint16m2_t | vint16m2x2_t | vint16m2x3_t | vint16m2x4_t | N/A | N/A | N/A | N/A
@@ -550,7 +550,7 @@ Availability of the tuple types follows the availability of their corresponding 
 .Tuple types (EMUL=4)
 [options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
 |===
-| Non-tuple Types (NFILED=1) | NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
+| Non-tuple Types (NFIELD=1) | NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
 | vint8m4_t | vint8m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
 | vuint8m4_t | vuint8m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
 | vint16m4_t | vint16m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
