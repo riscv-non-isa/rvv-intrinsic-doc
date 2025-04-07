@@ -239,7 +239,7 @@ This section enumerates the exceptions in the explicit (non-overloaded) naming s
 
 ==== Scalar move instructions
 
-Only encoding the return type will cause naming collisions for the permutation instruction intrinsics. The intrinsics encode the input vector type and the output scalar type in the suffix.
+Only encoding the return type will cause naming collisions for the scalar move instruction intrinsics. The intrinsics encode the input vector type and the output scalar type in the suffix.
 
 [,c]
 ----
@@ -263,7 +263,7 @@ vint8m1_t __riscv_vredsum_vs_i8m8_i8m1(vint8m8_t vs2, vint8m1_t vs1, size_t vl);
 
 ==== Add-with-carry / Subtract-with-borrow instructions
 
-Only encoding the return type will cause naming collisions for the reduction instruction intrinsics. The intrinsics encode the input vector type and the output mask vector type in the suffix.
+Only encoding the return type will cause naming collisions for the add-with-carry / subtract-with-borrow instruction intrinsics. The intrinsics encode the input vector type and the output mask vector type in the suffix.
 
 [,c]
 ----
