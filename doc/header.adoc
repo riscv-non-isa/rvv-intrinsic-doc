@@ -36,9 +36,9 @@ endif::[]
 :bibtex-throw: false
 
 [WARNING]
-.This document is in the link:http://riscv.org/spec-state[Freeze state]
+.This document is in the link:http://riscv.org/spec-state[Ratified state]
 ====
-Change is unlikely at this point of the specification.
+No changes are allowed.
 ====
 
 include::preface.adoc[]
