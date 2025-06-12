@@ -281,6 +281,10 @@ class Generator(ABC):
       overloaded_name = "_".join(sn[0:2])
     else:
       overloaded_name = sn[0]
+
+    # append altfmt suffix if needed
+    if sn[-1] == "alt" or sn[-2] == "alt":
+      overloaded_name += "_alt"
     # append policy suffix if need
     if sn[-1] in [
         "ta", "tu", "tama", "tuma", "tamu", "tumu", "ma", "mu", "tam", "tum"
