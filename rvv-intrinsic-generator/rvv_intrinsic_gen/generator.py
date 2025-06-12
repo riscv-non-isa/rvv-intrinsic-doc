@@ -286,10 +286,6 @@ class Generator(ABC):
         "ta", "tu", "tama", "tuma", "tamu", "tumu", "ma", "mu", "tam", "tum"
     ]:
       overloaded_name += "_" + sn[-1]
-    if sn[-1] == "rm" and sn[-2] in [
-        "ta", "tu", "tama", "tuma", "tamu", "tumu", "ma", "mu", "tam", "tum"
-    ]:
-      overloaded_name += "_" + sn[-2]
 
     # Follows the naming guideline under riscv-c-api-doc to add the `__riscv_`
     # suffix for all RVV intrinsics.
