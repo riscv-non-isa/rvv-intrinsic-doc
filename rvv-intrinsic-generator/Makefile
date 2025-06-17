@@ -58,27 +58,28 @@ PYTHONPATHS = $(RVV_INTRINSIC_GEN_PATH):$(ABS_VENDOR_PATH)
 PY3 := PYTHONPATH=$$PYTHONPATH:$(PYTHONPATHS) python3
 # Main entry script of the generator
 MAIN := rvv_intrinsic_gen.main
-# BFloat16 instruction scripts
-BF16_INST := $(RVV_INTRINSIC_GEN_PATH)/bfloat16_inst.py
 # Script to clang-format the auto-generated adoc files
 CLANG_FORMAT_ADOC = clang_format_autogen
 # Extra flags specified when calling rvv_intrinsic_gen.main
 EXTRA_FLAG :=
 # Main output directory is default to auto-generated
 OUTPUT_DIR := ../auto-generated
+# Types of intrinsics
+TYPES = default bf16 vector-crypto
 # Derives output directory for each set of intrinsics
 # Output directory for non-policy intrinsics
 DIR := $(abspath $(OUTPUT_DIR))
+DIR_default = $(DIR)
 # Output directory for policy intrinsics
-POLICY_DIR := $(DIR)/policy_funcs
+POLICY_DIR_default = $(DIR)/policy_funcs
 # Output directory for bfloat16 non-policy intrinsics
-BF16_DIR := $(DIR)/bfloat16
+DIR_bf16 = $(DIR)/bfloat16
 # Output directory for bfloat16 policy intrinsics
-BF16_POLICY_DIR := $(BF16_DIR)/policy_funcs
+POLICY_DIR_bf16 = $(DIR_bf16)/policy_funcs
 # Output directory for vector-crypto non-policy intrinsics
-VECTOR_CRYPTO_DIR := $(DIR)/vector-crypto
+DIR_vector-crypto = $(DIR)/vector-crypto
 # Output directory for vector-crypto policy intrinsics
-VECTOR_CRYPTO_POLICY_DIR := $(VECTOR_CRYPTO_DIR)/policy_funcs
+POLICY_DIR_vector-crypto = $(DIR_vector-crypto)/policy_funcs
 # Directory that stores the v0.10 unit tests
 LEGACY_API_TESTS_DIR := $(abspath ../legacy-api-unit-tests)
 # Derived variable to trigger option --vendor-inst
@@ -99,6 +100,12 @@ GNU_TOOLCHAIN_DIR :=
 GCC_CASES_DIR := $(GNU_TOOLCHAIN_DIR)/gcc/gcc/testsuite/gcc.target/riscv/rvv/gcc-auto-generated
 # Directory that stores the g++ cases
 G++_CASES_DIR := $(GNU_TOOLCHAIN_DIR)/gcc/gcc/testsuite/g++.target/riscv/rvv/g++-auto-generated
+# Flags for different variants
+FLAGS_default =
+FLAGS_bf16 = --skip-default-inst --vendor-inst $(RVV_INTRINSIC_GEN_PATH)/bfloat16_inst.py
+FLAGS_vector-crypto = --gen-vector-crypto
+# Commit header
+COMMIT_MSG_PREFIX = [Auto-gen]
 
 ###############################################################################
 # Functions
@@ -132,11 +139,33 @@ define gen_docs
 		$(TRIGGER_VENDOR_INST) $(TRIGGER_SKIP_DEFAULT_INST)
 endef
 
+define gen_doc_rule
+$(call gen_doc,$(1),$(2),$(patsubst bf16-%,%,$(patsubst vector-crypto-%,%,$@)),$(3) $(EXTRA_FLAG))
+$(call gen_doc,$(4),$(2),$(patsubst bf16-%,%,$(patsubst vector-crypto-%,%,$@)),--has-policy $(3) $(EXTRA_FLAG))
+$(call clang_format_adoc, --file, $(1)/$(2))
+$(call clang_format_adoc, --file, $(4)/$(2))
+endef
+
+define gen_docs_rule
+$(call gen_docs,$(1),$(2),$(patsubst bf16-%,%,$(patsubst vector-crypto-%,%,$@)),$(3) $(EXTRA_FLAG))
+$(call gen_docs,$(4),$(2),$(patsubst bf16-%,%,$(patsubst vector-crypto-%,%,$@)),--has-policy $(3) $(EXTRA_FLAG))
+$(call clang_format_adoc, --folder, $(1)/$(2))
+$(call clang_format_adoc, --folder, $(4)/$(2))
+endef
+
 define gen_tests
 	rm -f $(1)/*.c
 	$(PY3) -m $(MAIN) --gen $(2) \
 		--out $(1) $(3) \
 		$(TRIGGER_VENDOR_INST) $(TRIGGER_SKIP_DEFAULT_INST)
+endef
+
+define gen_test_rule
+	$(call gen_tests,$(1),$(2),$(3) $(EXTRA_FLAG))
+	$(call gen_tests,$(4),$(2),--has-policy $(3) $(EXTRA_FLAG))
+	$(if $(findstring --toolchain-type=gnu,$(3)),\
+		@echo "Skipping clang-format for GNU toolchain",\
+		@echo "Running clang-format for non-GNU toolchain" && clang-format -i $(1)/* $(4)/*)
 endef
 
 # Compile all *.c under $(1) with $(2), then pretty-print with testing-report
@@ -164,202 +193,112 @@ else
 all: gen-document gen-test gen-compatible-header bf16-all vector-crypto-all
 endif
 
+default-all: gen-document gen-test
 bf16-all: gen-bf16-document gen-bf16-test
 vector-crypto-all: gen-vector-crypto-document gen-vector-crypto-test
 
+# Document generation targets
 gen-document: non-overloaded-doc non-overloaded-docs overloaded-doc overloaded-docs
 gen-bf16-document: bf16-non-overloaded-doc bf16-non-overloaded-docs bf16-overloaded-doc bf16-overloaded-docs
 gen-vector-crypto-document: vector-crypto-non-overloaded-doc vector-crypto-non-overloaded-docs vector-crypto-overloaded-doc vector-crypto-overloaded-docs
+
+# Test generation targets
 gen-test: non-overloaded-test overloaded-test gen-llvm-test gen-gnu-test
 gen-bf16-test: bf16-non-overloaded-test bf16-overloaded-test gen-bf16-llvm-test
 gen-vector-crypto-test: vector-crypto-non-overloaded-test vector-crypto-overloaded-test gen-vector-crypto-llvm-test
-gen-compatible-header: non-policy-compatible-header policy-compatible-header non-policy-overloaded-compatible-header policy-overloaded-compatible-header
+
+# Toolchain-specific test targets
 gen-llvm-test: llvm-non-overloaded-test llvm-overloaded-test
 gen-bf16-llvm-test: bf16-llvm-non-overloaded-test bf16-llvm-overloaded-test
 gen-vector-crypto-llvm-test: vector-crypto-llvm-non-overloaded-test vector-crypto-llvm-overloaded-test
 gen-gnu-test: gnu-overloaded-test gnu-non-overloaded-test
 
-# Generate all-in-one document for non-overloaded intrinsics
+# Generate compatible headers
+gen-compatible-header: non-policy-compatible-header policy-compatible-header non-policy-overloaded-compatible-header policy-overloaded-compatible-header
+
+# Document generation rules - default variant
 non-overloaded-doc:
-	$(call gen_doc,$(DIR),intrinsic_funcs.adoc,$@,$(EXTRA_FLAG))
-	$(call gen_doc,$(POLICY_DIR),intrinsic_funcs.adoc,$@,--has-policy $(EXTRA_FLAG))
-	$(call clang_format_adoc, --file, $(DIR)/intrinsic_funcs.adoc)
-	$(call clang_format_adoc, --file, $(POLICY_DIR)/intrinsic_funcs.adoc)
+	$(call gen_doc_rule,$(DIR_default),intrinsic_funcs.adoc,$(FLAGS_default),$(POLICY_DIR_default))
 
-# Generate grouped documents for non-overloaded intrinsics
 non-overloaded-docs:
-	$(call gen_docs,$(DIR),intrinsic_funcs,$@,$(EXTRA_FLAG))
-	$(call gen_docs,$(POLICY_DIR),intrinsic_funcs,$@,--has-policy $(EXTRA_FLAG))
-	$(call clang_format_adoc, --folder, $(DIR)/intrinsic_funcs)
-	$(call clang_format_adoc, --folder, $(POLICY_DIR)/intrinsic_funcs)
+	$(call gen_docs_rule,$(DIR_default),intrinsic_funcs,$(FLAGS_default),$(POLICY_DIR_default))
 
-# Generate all-in-one document for overloaded intrinsics
 overloaded-doc:
-	$(call gen_doc,$(DIR),overloaded_intrinsic_funcs.adoc,$@,$(EXTRA_FLAG))
-	$(call gen_doc,$(POLICY_DIR),overloaded_intrinsic_funcs.adoc,$@,--has-policy $(EXTRA_FLAG))
-	$(call clang_format_adoc, --file, $(DIR)/overloaded_intrinsic_funcs.adoc)
-	$(call clang_format_adoc, --file, $(POLICY_DIR)/overloaded_intrinsic_funcs.adoc)
+	$(call gen_doc_rule,$(DIR_default),overloaded_intrinsic_funcs.adoc,$(FLAGS_default),$(POLICY_DIR_default))
 
-# Generate grouped documents for overloaded intrinsics
 overloaded-docs:
-	$(call gen_docs,$(DIR),overloaded_intrinsic_funcs,$@,$(EXTRA_FLAG))
-	$(call gen_docs,$(POLICY_DIR),overloaded_intrinsic_funcs,$@,--has-policy $(EXTRA_FLAG))
-	$(call clang_format_adoc, --folder, $(DIR)/overloaded_intrinsic_funcs)
-	$(call clang_format_adoc, --folder, $(POLICY_DIR)/overloaded_intrinsic_funcs)
+	$(call gen_docs_rule,$(DIR_default),overloaded_intrinsic_funcs,$(FLAGS_default),$(POLICY_DIR_default))
 
-# Generate non-overloaded intrinsic testing C source files
-non-overloaded-test:
-	$(call gen_tests,$(DIR)/api-testing,non-overloaded-test,$(EXTRA_FLAG))
-	$(call gen_tests,$(POLICY_DIR)/api-testing,non-overloaded-test,--has-policy $(EXTRA_FLAG))
-	clang-format -i $(DIR)/api-testing/*
-	clang-format -i $(POLICY_DIR)/api-testing/*
-
-# Generate overloaded intrinsic testing C source files
-overloaded-test:
-	$(call gen_tests,$(DIR)/overloaded-api-testing,overloaded-test,$(EXTRA_FLAG))
-	$(call gen_tests,$(POLICY_DIR)/overloaded-api-testing,overloaded-test,--has-policy $(EXTRA_FLAG))
-	clang-format -i $(DIR)/overloaded-api-testing/*
-	clang-format -i $(POLICY_DIR)/overloaded-api-testing/*
-
-# Generate non-overloaded intrinsic testing C source files
-llvm-non-overloaded-test:
-	$(call gen_tests,$(DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm $(EXTRA_FLAG))
-	$(call gen_tests,$(POLICY_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --has-policy $(EXTRA_FLAG))
-	$(call replace_float, $(DIR)/llvm-api-tests)
-	$(call replace_float, $(POLICY_DIR)/llvm-api-tests)
-	clang-format -i $(DIR)/llvm-api-tests/*
-	clang-format -i $(POLICY_DIR)/llvm-api-tests/*
-
-# Generate overloaded intrinsic testing C source files
-llvm-overloaded-test:
-	$(call gen_tests,$(DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm $(EXTRA_FLAG))
-	$(call gen_tests,$(POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --has-policy $(EXTRA_FLAG))
-	$(call replace_float, $(DIR)/llvm-overloaded-tests)
-	$(call replace_float, $(POLICY_DIR)/llvm-overloaded-tests)
-	clang-format -i $(DIR)/llvm-overloaded-tests/*
-	clang-format -i $(POLICY_DIR)/llvm-overloaded-tests/*
-
-# Generate GNU non-overloaded intrinsic testing source files
-gnu-non-overloaded-test:
-	$(call gen_tests,$(DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu)
-	$(call gen_tests,$(POLICY_DIR)/gnu-api-tests,non-overloaded-test,--toolchain-type gnu --has-policy)
-
-# Generate GNU overloaded intrinsic testing source files
-gnu-overloaded-test:
-	$(call gen_tests,$(DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu)
-	$(call gen_tests,$(POLICY_DIR)/gnu-overloaded-tests,overloaded-test,--toolchain-type gnu --has-policy)
-
-# BFloat16 documents
+# Document generation rules - bf16 variant
 bf16-non-overloaded-doc:
-	$(call gen_doc, $(BF16_DIR),intrinsic_funcs.adoc,non-overloaded-doc,--skip-default-inst --vendor-inst $(BF16_INST))
-	$(call gen_doc, $(BF16_POLICY_DIR),intrinsic_funcs.adoc,non-overloaded-doc,--has-policy --skip-default-inst --vendor-inst $(BF16_INST))
-	$(call clang_format_adoc, --file, $(BF16_DIR)/intrinsic_funcs.adoc)
-	$(call clang_format_adoc, --file, $(BF16_POLICY_DIR)/intrinsic_funcs.adoc)
+	$(call gen_doc_rule,$(DIR_bf16),intrinsic_funcs.adoc,$(FLAGS_bf16),$(POLICY_DIR_bf16))
 
 bf16-non-overloaded-docs:
-	$(call gen_doc, $(BF16_DIR),intrinsic_funcs,non-overloaded-docs,--skip-default-inst --vendor-inst $(BF16_INST))
-	$(call gen_doc, $(BF16_POLICY_DIR),intrinsic_funcs,non-overloaded-docs,--has-policy --skip-default-inst --vendor-inst $(BF16_INST))
-	$(call clang_format_adoc, --folder, $(BF16_DIR)/intrinsic_funcs)
-	$(call clang_format_adoc, --folder, $(BF16_POLICY_DIR)/intrinsic_funcs)
+	$(call gen_docs_rule,$(DIR_bf16),intrinsic_funcs,$(FLAGS_bf16),$(POLICY_DIR_bf16))
 
 bf16-overloaded-doc:
-	$(call gen_doc, $(BF16_DIR),overloaded_intrinsic_funcs.adoc,overloaded-doc,--skip-default-inst --vendor-inst $(BF16_INST))
-	$(call gen_doc, $(BF16_POLICY_DIR),overloaded_intrinsic_funcs.adoc,overloaded-doc,--has-policy --skip-default-inst --vendor-inst $(BF16_INST))
-	$(call clang_format_adoc, --file, $(BF16_DIR)/overloaded_intrinsic_funcs.adoc)
-	$(call clang_format_adoc, --file, $(BF16_POLICY_DIR)/overloaded_intrinsic_funcs.adoc)
+	$(call gen_doc_rule,$(DIR_bf16),overloaded_intrinsic_funcs.adoc,$(FLAGS_bf16),$(POLICY_DIR_bf16))
 
 bf16-overloaded-docs:
-	$(call gen_doc, $(BF16_DIR),overloaded_intrinsic_funcs,overloaded-docs,--skip-default-inst --vendor-inst $(BF16_INST))
-	$(call gen_doc, $(BF16_POLICY_DIR),overloaded_intrinsic_funcs,overloaded-docs,--has-policy --skip-default-inst --vendor-inst $(BF16_INST))
-	$(call clang_format_adoc, --folder, $(BF16_DIR)/overloaded_intrinsic_funcs)
-	$(call clang_format_adoc, --folder, $(BF16_POLICY_DIR)/overloaded_intrinsic_funcs)
+	$(call gen_docs_rule,$(DIR_bf16),overloaded_intrinsic_funcs,$(FLAGS_bf16),$(POLICY_DIR_bf16))
 
-# BFloat16 tests
-# Generate non-overloaded intrinsic testing C source files
-bf16-non-overloaded-test:
-	$(call gen_tests,$(BF16_DIR)/api-testing,non-overloaded-test,--skip-default-inst --vendor-inst $(BF16_INST))
-	$(call gen_tests,$(BF16_POLICY_DIR)/api-testing,non-overloaded-test,--has-policy --skip-default-inst --vendor-inst $(BF16_INST))
-	clang-format -i $(BF16_DIR)/api-testing/*
-	clang-format -i $(BF16_POLICY_DIR)/api-testing/*
-
-# Generate overloaded intrinsic testing C source files
-bf16-overloaded-test:
-	$(call gen_tests,$(BF16_DIR)/overloaded-api-testing,overloaded-test,--skip-default-inst --vendor-inst $(BF16_INST))
-	$(call gen_tests,$(BF16_POLICY_DIR)/overloaded-api-testing,overloaded-test,--has-policy --skip-default-inst --vendor-inst $(BF16_INST))
-	clang-format -i $(BF16_DIR)/overloaded-api-testing/*
-	clang-format -i $(BF16_POLICY_DIR)/overloaded-api-testing/*
-
-# Generate non-overloaded intrinsic testing C source files
-bf16-llvm-non-overloaded-test:
-	$(call gen_tests,$(BF16_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --skip-default-inst --vendor-inst $(BF16_INST))
-	$(call gen_tests,$(BF16_POLICY_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --has-policy --skip-default-inst --vendor-inst $(BF16_INST))
-	$(call replace_float, $(BF16_DIR)/llvm-api-tests)
-	$(call replace_float, $(BF16_POLICY_DIR)/llvm-api-tests)
-	clang-format -i $(BF16_DIR)/llvm-api-tests/*
-	clang-format -i $(BF16_POLICY_DIR)/llvm-api-tests/*
-
-# Generate overloaded intrinsic testing C source files
-bf16-llvm-overloaded-test:
-	$(call gen_tests,$(BF16_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --skip-default-inst --vendor-inst $(BF16_INST))
-	$(call gen_tests,$(BF16_POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --has-policy --skip-default-inst --vendor-inst $(BF16_INST))
-	$(call replace_float, $(BF16_DIR)/llvm-overloaded-tests)
-	$(call replace_float, $(BF16_POLICY_DIR)/llvm-overloaded-tests)
-	clang-format -i $(BF16_DIR)/llvm-overloaded-tests/*
-	clang-format -i $(BF16_POLICY_DIR)/llvm-overloaded-tests/*
-
-# Vector crypto documents
+# Document generation rules - vector-crypto variant
 vector-crypto-non-overloaded-doc:
-	$(call gen_doc,$(VECTOR_CRYPTO_DIR),intrinsic_funcs.adoc,non-overloaded-doc,--gen-vector-crypto $(EXTRA_FLAG))
-	$(call gen_doc,$(VECTOR_CRYPTO_POLICY_DIR),intrinsic_funcs.adoc,non-overloaded-doc,--gen-vector-crypto --has-policy $(EXTRA_FLAG))
-	$(call clang_format_adoc, --file, $(VECTOR_CRYPTO_DIR)/intrinsic_funcs.adoc)
-	$(call clang_format_adoc, --file, $(VECTOR_CRYPTO_POLICY_DIR)/intrinsic_funcs.adoc)
+	$(call gen_doc_rule,$(DIR_vector-crypto),intrinsic_funcs.adoc,$(FLAGS_vector-crypto),$(POLICY_DIR_vector-crypto))
 
 vector-crypto-non-overloaded-docs:
-	$(call gen_doc,$(VECTOR_CRYPTO_DIR),intrinsic_funcs,non-overloaded-docs,--gen-vector-crypto $(EXTRA_FLAG))
-	$(call gen_doc,$(VECTOR_CRYPTO_POLICY_DIR),intrinsic_funcs,non-overloaded-docs,--gen-vector-crypto --has-policy $(EXTRA_FLAG))
-	$(call clang_format_adoc, --folder, $(VECTOR_CRYPTO_DIR)/intrinsic_funcs)
-	$(call clang_format_adoc, --folder, $(VECTOR_CRYPTO_POLICY_DIR)/intrinsic_funcs)
+	$(call gen_docs_rule,$(DIR_vector-crypto),intrinsic_funcs,$(FLAGS_vector-crypto),$(POLICY_DIR_vector-crypto))
 
 vector-crypto-overloaded-doc:
-	$(call gen_doc,$(VECTOR_CRYPTO_DIR),overloaded_intrinsic_funcs.adoc,overloaded-doc,--gen-vector-crypto $(EXTRA_FLAG))
-	$(call gen_doc,$(VECTOR_CRYPTO_POLICY_DIR),overloaded_intrinsic_funcs.adoc,overloaded-doc,--gen-vector-crypto --has-policy $(EXTRA_FLAG))
-	$(call clang_format_adoc, --file, $(VECTOR_CRYPTO_DIR)/overloaded_intrinsic_funcs.adoc)
-	$(call clang_format_adoc, --file, $(VECTOR_CRYPTO_POLICY_DIR)/overloaded_intrinsic_funcs.adoc)
+	$(call gen_doc_rule,$(DIR_vector-crypto),overloaded_intrinsic_funcs.adoc,$(FLAGS_vector-crypto),$(POLICY_DIR_vector-crypto))
 
 vector-crypto-overloaded-docs:
-	$(call gen_doc,$(VECTOR_CRYPTO_DIR),overloaded_intrinsic_funcs,overloaded-docs,--gen-vector-crypto $(EXTRA_FLAG))
-	$(call gen_doc,$(VECTOR_CRYPTO_POLICY_DIR),overloaded_intrinsic_funcs,overloaded-docs,--gen-vector-crypto --has-policy $(EXTRA_FLAG))
-	$(call clang_format_adoc, --folder, $(VECTOR_CRYPTO_DIR)/overloaded_intrinsic_funcs)
-	$(call clang_format_adoc, --folder, $(VECTOR_CRYPTO_POLICY_DIR)/overloaded_intrinsic_funcs)
+	$(call gen_docs_rule,$(DIR_vector-crypto),overloaded_intrinsic_funcs,$(FLAGS_vector-crypto),$(POLICY_DIR_vector-crypto))
 
-# Vector-crypto tests
+# Test generation rules - default variant with different toolchains
+non-overloaded-test:
+	$(call gen_test_rule,$(DIR_default)/api-testing,non-overloaded-test,--toolchain-type=unknown $(FLAGS_default),$(POLICY_DIR_default)/api-testing)
+
+overloaded-test:
+	$(call gen_test_rule,$(DIR_default)/overloaded-api-testing,overloaded-test,--toolchain-type=unknown $(FLAGS_default),$(POLICY_DIR_default)/overloaded-api-testing)
+
+llvm-non-overloaded-test:
+	$(call gen_test_rule,$(DIR_default)/llvm-api-tests,non-overloaded-test,--toolchain-type=llvm $(FLAGS_default),$(POLICY_DIR_default)/llvm-api-tests)
+
+llvm-overloaded-test:
+	$(call gen_test_rule,$(DIR_default)/llvm-overloaded-tests,overloaded-test,--toolchain-type=llvm $(FLAGS_default),$(POLICY_DIR_default)/llvm-overloaded-tests)
+
+gnu-non-overloaded-test:
+	$(call gen_test_rule,$(DIR_default)/gnu-api-tests,non-overloaded-test,--toolchain-type=gnu $(FLAGS_default),$(POLICY_DIR_default)/gnu-api-tests)
+
+gnu-overloaded-test:
+	$(call gen_test_rule,$(DIR_default)/gnu-overloaded-tests,overloaded-test,--toolchain-type=gnu $(FLAGS_default),$(POLICY_DIR_default)/gnu-overloaded-tests)
+
+# Test generation rules - bf16 variant with different toolchains
+bf16-non-overloaded-test:
+	$(call gen_test_rule,$(DIR_bf16)/api-testing,non-overloaded-test,--toolchain-type=unknown $(FLAGS_bf16),$(POLICY_DIR_bf16)/api-testing)
+
+bf16-overloaded-test:
+	$(call gen_test_rule,$(DIR_bf16)/overloaded-api-testing,overloaded-test,--toolchain-type=unknown $(FLAGS_bf16),$(POLICY_DIR_bf16)/overloaded-api-testing)
+
+bf16-llvm-non-overloaded-test:
+	$(call gen_test_rule,$(DIR_bf16)/llvm-api-tests,non-overloaded-test,--toolchain-type=llvm $(FLAGS_bf16),$(POLICY_DIR_bf16)/llvm-api-tests)
+
+bf16-llvm-overloaded-test:
+	$(call gen_test_rule,$(DIR_bf16)/llvm-overloaded-tests,overloaded-test,--toolchain-type=llvm $(FLAGS_bf16),$(POLICY_DIR_bf16)/llvm-overloaded-tests)
+
+# Test generation rules - vector-crypto variant with different toolchains
 vector-crypto-non-overloaded-test:
-	$(call gen_tests,$(VECTOR_CRYPTO_DIR)/api-testing,non-overloaded-test,--gen-vector-crypto $(EXTRA_FLAG))
-	$(call gen_tests,$(VECTOR_CRYPTO_POLICY_DIR)/api-testing,non-overloaded-test,--gen-vector-crypto --has-policy $(EXTRA_FLAG))
-	clang-format -i $(VECTOR_CRYPTO_DIR)/api-testing/*
-	clang-format -i $(VECTOR_CRYPTO_POLICY_DIR)/api-testing/*
+	$(call gen_test_rule,$(DIR_vector-crypto)/api-testing,non-overloaded-test,--toolchain-type=unknown $(FLAGS_vector-crypto),$(POLICY_DIR_vector-crypto)/api-testing)
 
 vector-crypto-overloaded-test:
-	$(call gen_tests,$(VECTOR_CRYPTO_DIR)/overloaded-api-testing,overloaded-test,--gen-vector-crypto $(EXTRA_FLAG))
-	$(call gen_tests,$(VECTOR_CRYPTO_POLICY_DIR)/overloaded-api-testing,overloaded-test,--gen-vector-crypto --has-policy $(EXTRA_FLAG))
-	clang-format -i $(VECTOR_CRYPTO_DIR)/overloaded-api-testing/*
-	clang-format -i $(VECTOR_CRYPTO_POLICY_DIR)/overloaded-api-testing/*
+	$(call gen_test_rule,$(DIR_vector-crypto)/overloaded-api-testing,overloaded-test,--toolchain-type=unknown $(FLAGS_vector-crypto),$(POLICY_DIR_vector-crypto)/overloaded-api-testing)
 
 vector-crypto-llvm-non-overloaded-test:
-	$(call gen_tests,$(VECTOR_CRYPTO_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --gen-vector-crypto $(EXTRA_FLAG))
-	$(call gen_tests,$(VECTOR_CRYPTO_POLICY_DIR)/llvm-api-tests,non-overloaded-test,--toolchain-type llvm --gen-vector-crypto --has-policy $(EXTRA_FLAG))
-	$(call replace_float, $(VECTOR_CRYPTO_DIR)/llvm-api-tests)
-	$(call replace_float, $(VECTOR_CRYPTO_POLICY_DIR)/llvm-api-tests)
-	clang-format -i $(VECTOR_CRYPTO_DIR)/llvm-api-tests/*
-	clang-format -i $(VECTOR_CRYPTO_POLICY_DIR)/llvm-api-tests/*
+	$(call gen_test_rule,$(DIR_vector-crypto)/llvm-api-tests,non-overloaded-test,--toolchain-type=llvm $(FLAGS_vector-crypto),$(POLICY_DIR_vector-crypto)/llvm-api-tests)
 
 vector-crypto-llvm-overloaded-test:
-	$(call gen_tests,$(VECTOR_CRYPTO_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --gen-vector-crypto $(EXTRA_FLAG))
-	$(call gen_tests,$(VECTOR_CRYPTO_POLICY_DIR)/llvm-overloaded-tests,overloaded-test,--toolchain-type llvm --gen-vector-crypto --has-policy $(EXTRA_FLAG))
-	$(call replace_float, $(VECTOR_CRYPTO_DIR)/llvm-overloaded-tests)
-	$(call replace_float, $(VECTOR_CRYPTO_POLICY_DIR)/llvm-overloaded-tests)
-	clang-format -i $(VECTOR_CRYPTO_DIR)/llvm-overloaded-tests/*
-	clang-format -i $(VECTOR_CRYPTO_POLICY_DIR)/llvm-overloaded-tests/*
+	$(call gen_test_rule,$(DIR_vector-crypto)/llvm-overloaded-tests,overloaded-test,--toolchain-type=llvm $(FLAGS_vector-crypto),$(POLICY_DIR_vector-crypto)/llvm-overloaded-tests)
 
 ###############################################################################
 
@@ -389,56 +328,45 @@ gen-all:
 	rm -rf ${DIR}
 	make all OUTPUT_DIR=${OUTPUT_DIR}
 
-# Update and commit all files under auto-generated
-git-commit-all:
-	make git-commit-autogen-doc OUTPUT_DIR=${OUTPUT_DIR}
-	make git-commit-autogen-test OUTPUT_DIR=${OUTPUT_DIR}
+###############################################################################
+# Auto-commit re-generated Document / Test Targets
+###############################################################################
+git-commit-all: git-commit-default-all
+git-commit-autogen-doc: git-commit-autogen-default-doc
+git-commit-autogen-test: git-commit-autogen-default-test
 
-git-commit-bf16-all:
-	make git-commit-autogen-bf16-doc OUTPUT_DIR=${OUTPUT_DIR}
-	make git-commit-autogen-bf16-test OUTPUT_DIR=${OUTPUT_DIR}
+# Generic update and commit target for docs
+git-commit-autogen-%-doc:
+	$(eval TYPE=$(patsubst git-commit-autogen-%-doc,%,$@))
+	$(eval DIR_VAR=$(if $(filter default,$(TYPE)),DIR,DIR_$(TYPE)))
+	$(eval GEN_CMD=$(if $(filter default,$(TYPE)),gen-document,gen-$(TYPE)-document))
+	$(eval TYPE_DESC=$(if $(filter default,$(TYPE)),,$(TYPE) ))
+	make $(GEN_CMD) OUTPUT_DIR=${OUTPUT_DIR}
+	git add ${$(DIR_VAR)}/*
+	git commit -m "$(COMMIT_MSG_PREFIX) Update $(TYPE_DESC)documents under ${OUTPUT_DIR}. (make $@)"
 
-git-commit-vector-crypto-all:
-	make git-commit-autogen-vector-crypto-doc OUTPUT_DIR=${OUTPUT_DIR}
-	make git-commit-autogen-vector-crypto-test OUTPUT_DIR=${OUTPUT_DIR}
+# Generic update and commit target for tests
+git-commit-autogen-%-test:
+	$(eval TYPE=$(patsubst git-commit-autogen-%-test,%,$@))
+	$(eval DIR_VAR=$(if $(filter default,$(TYPE)),DIR,DIR_$(TYPE)))
+	$(eval GEN_CMD=$(if $(filter default,$(TYPE)),gen-test,gen-$(TYPE)-test))
+	$(eval TYPE_DESC=$(if $(filter default,$(TYPE)),,$(TYPE) ))
+	make $(GEN_CMD)
+	git add ${$(DIR_VAR)}/*
+	git commit -m "$(COMMIT_MSG_PREFIX) Update $(TYPE_DESC)tests under ${OUTPUT_DIR}. (make $@)"
 
-# Update and commit all documents under auto-generated
-git-commit-autogen-doc:
-	make gen-document OUTPUT_DIR=${OUTPUT_DIR}
-	git add ${DIR}/*
-	git commit -m "[Auto-gen] Update documents under ${OUTPUT_DIR}. (make git-commit-autogen-doc)"
+# Update and commit both docs and tests for each type
+git-commit-%-all:
+	$(eval TYPE=$(patsubst git-commit-%-all,%,$@))
+	$(eval TYPE_PREFIX=$(if $(filter default,$(TYPE)),,$(TYPE)-))
+	make git-commit-autogen-$(TYPE_PREFIX)doc OUTPUT_DIR=${OUTPUT_DIR}
+	make git-commit-autogen-$(TYPE_PREFIX)test OUTPUT_DIR=${OUTPUT_DIR}
 
-git-commit-autogen-bf16-doc:
-	make gen-bf16-document OUTPUT_DIR=${OUTPUT_DIR}
-	git add ${BF16_DIR}/*
-	git commit -m "[Auto-gen] Update bfloat16 documents under ${OUTPUT_DIR}. (make git-commit-autogen-bf16-doc)"
-
-git-commit-autogen-vector-crypto-doc:
-	make gen-vector-crypto-document OUTPUT_DIR=${OUTPUT_DIR}
-	git add ${VECTOR_CRYPTO_DIR}/*
-	git commit -m "[Auto-gen] Update vector crypto documents under ${OUTPUT_DIR}. (make git-commit-autogen-vector-crypto-doc)"
-
-# Update and commit all testing C source files under auto-generated
-git-commit-autogen-test:
-	make gen-test
-	git add ${DIR}/*
-	git commit -m "[Auto-gen] Update tests under ${OUTPUT_DIR}. (make git-commit-autogen-test)"
-
-git-commit-autogen-bf16-test:
-	make gen-bf16-test
-	git add ${BF16_DIR}/*
-	git commit -m "[Auto-gen] Update bfloat16 tests under ${OUTPUT_DIR}. (make git-commit-autogen-bf16-test)"
-
-git-commit-autogen-vector-crypto-test:
-	make gen-vector-crypto-test
-	git add ${VECTOR_CRYPTO_DIR}/*
-	git commit -m "[Auto-gen] Update vector crypto tests under ${OUTPUT_DIR}. (make git-commit-autogen-vector-crypto-test)"
-
-# Update and commit compatible headers under auto-generated
+# Update and commit compatible headers
 git-commit-autogen-compatible-header:
 	make gen-compatible-header
 	git add $(DIR)/*
-	git commit -m "[Auto-gen] Update tests under ${OUTPUT_DIR}. (make git-commmit-autogen-compatible-header)"
+	git commit -m "$(COMMIT_MSG_PREFIX) Update compatible header under ${OUTPUT_DIR}. (make $@)"
 
 # Runs diff with auto-generated, requires ${TEST_DIR} to be provided.
 GOLDEN_DIR = ${DIR}
