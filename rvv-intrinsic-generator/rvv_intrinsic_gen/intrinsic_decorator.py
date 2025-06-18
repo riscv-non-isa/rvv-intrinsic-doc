@@ -31,7 +31,7 @@ class IntrinsicDecorator():
   is_mask = False
   has_maskedoff_name = False
 
-  def __init__(self, flags=ExtraAttr.NO_ATTR):
+  def __init__(self, flags=ExtraAttr.NO_ATTR, need_altfmt=False):
     self.is_mask = (flags & ExtraAttr.IS_MASK) != 0
     self.need_maskedoff = (flags & ExtraAttr.NEED_MASKOFF) != 0
     self.has_maskedoff_name = (flags & ExtraAttr.NEED_MERGE) != 0
@@ -41,6 +41,9 @@ class IntrinsicDecorator():
 
     if flags & ExtraAttr.HAS_FRM:
       self.func_suffix += "_rm"
+
+    if need_altfmt:
+      self.func_suffix += "_alt"
 
     if flags & ExtraAttr.IS_TU:
       self.func_suffix += "_tu"
@@ -130,48 +133,48 @@ class IntrinsicDecorators():
   to help intrinsic rendering.
   """
 
-  def __init__(self, has_tail_policy):
+  def __init__(self, has_tail_policy, need_altfmt=False):
     # pylint: disable=unused-variable
     # NOTE: The variables here are all used under inst.py, disabling the warning
     if has_tail_policy:  # Intrinsics with a policy suffix
       self.has_no_masking_policy = [
-          IntrinsicDecorator(ExtraAttr.NEED_MERGE | ExtraAttr.IS_TU),
+          IntrinsicDecorator(ExtraAttr.NEED_MERGE | ExtraAttr.IS_TU, need_altfmt),
       ]
       self.has_masking_maskedoff_policy = [
-          IntrinsicDecorator(ExtraAttr.NEED_MERGE | ExtraAttr.IS_TU),
+          IntrinsicDecorator(ExtraAttr.NEED_MERGE | ExtraAttr.IS_TU, need_altfmt),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
-                             | ExtraAttr.NEED_MASKOFF | ExtraAttr.IS_TUMA),
+                             | ExtraAttr.NEED_MASKOFF | ExtraAttr.IS_TUMA, need_altfmt),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
-                             | ExtraAttr.NEED_MASKOFF | ExtraAttr.IS_TUMU),
+                             | ExtraAttr.NEED_MASKOFF | ExtraAttr.IS_TUMU, need_altfmt),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
-                             | ExtraAttr.NEED_MASKOFF | ExtraAttr.IS_TAMU)
+                             | ExtraAttr.NEED_MASKOFF | ExtraAttr.IS_TAMU, need_altfmt)
       ]
       self.has_masking_maskedoff_policy_mu_ma = [
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
-                             | ExtraAttr.NEED_MASKOFF | ExtraAttr.IS_MU)
+                             | ExtraAttr.NEED_MASKOFF | ExtraAttr.IS_MU, need_altfmt)
       ]
       self.has_masking_no_maskedoff_policy = [
           IntrinsicDecorator(ExtraAttr.IS_TU | ExtraAttr.NEED_MERGE),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
-                             | ExtraAttr.IS_TUMA),
+                             | ExtraAttr.IS_TUMA, need_altfmt),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
-                             | ExtraAttr.IS_TUMU),
+                             | ExtraAttr.IS_TUMU, need_altfmt),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
-                             | ExtraAttr.IS_TAMU),
+                             | ExtraAttr.IS_TAMU, need_altfmt),
       ]
       self.has_masking_no_maskedoff_policy_vslide = [
           IntrinsicDecorator(ExtraAttr.IS_TU | ExtraAttr.NEED_MERGE),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
-                             | ExtraAttr.IS_TUMA),
+                             | ExtraAttr.IS_TUMA, need_altfmt),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
-                             | ExtraAttr.IS_TUMU),
+                             | ExtraAttr.IS_TUMU, need_altfmt),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
-                             | ExtraAttr.IS_TAMU),
+                             | ExtraAttr.IS_TAMU, need_altfmt),
       ]
       self.has_masking_no_maskedoff_reduction_policy = [
           IntrinsicDecorator(ExtraAttr.IS_TU | ExtraAttr.NEED_MERGE),
           IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE
-                             | ExtraAttr.IS_RED_TUMA),
+                             | ExtraAttr.IS_RED_TUMA, need_altfmt),
       ]
 
       self.has_no_masking = []
@@ -179,32 +182,33 @@ class IntrinsicDecorators():
       self.has_masking_no_maskedoff = []
     else:  # Intrinsics without a policy suffix
       # Intrinsics that is always unmasked
-      self.has_no_masking_policy = [IntrinsicDecorator()]
+      self.has_no_masking_policy = [IntrinsicDecorator(ExtraAttr.NO_ATTR, need_altfmt)]
       # Intrinsics that can be masked or unmasked
       self.has_masking_maskedoff_policy = [
-          IntrinsicDecorator(),
-          IntrinsicDecorator(ExtraAttr.IS_MASK)
+          IntrinsicDecorator(ExtraAttr.NO_ATTR, need_altfmt),
+          IntrinsicDecorator(ExtraAttr.IS_MASK, need_altfmt)
       ]
       # Intrinsics that are always tail agnostic, and can be masked or unmasked
       self.has_masking_maskedoff_policy_mu_ma = [
-          IntrinsicDecorator(),
-          IntrinsicDecorator(ExtraAttr.IS_MASK)
+          IntrinsicDecorator(ExtraAttr.NO_ATTR, need_altfmt),
+          IntrinsicDecorator(ExtraAttr.IS_MASK, need_altfmt)
       ]
       # Intrinsics that can be masked or unmasked, and always doesn't have a
       # maskedoff operand
       self.has_masking_no_maskedoff_policy = [
-          IntrinsicDecorator(),
-          IntrinsicDecorator(ExtraAttr.IS_MASK)
+          IntrinsicDecorator(ExtraAttr.NO_ATTR, need_altfmt),
+          IntrinsicDecorator(ExtraAttr.IS_MASK, need_altfmt)
       ]
       # vslideup intrinsics
       self.has_masking_no_maskedoff_policy_vslide = [
-          IntrinsicDecorator(ExtraAttr.NEED_MERGE),
-          IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE)
+          IntrinsicDecorator(ExtraAttr.NEED_MERGE, need_altfmt),
+          IntrinsicDecorator(ExtraAttr.IS_MASK | ExtraAttr.NEED_MERGE,
+                             need_altfmt)
       ]
       # Reduction intrinsics
       self.has_masking_no_maskedoff_reduction_policy = [
-          IntrinsicDecorator(),
-          IntrinsicDecorator(ExtraAttr.IS_MASK)
+          IntrinsicDecorator(ExtraAttr.NO_ATTR, need_altfmt),
+          IntrinsicDecorator(ExtraAttr.IS_MASK, need_altfmt)
       ]
 
       self.has_no_masking = self.has_no_masking_policy
@@ -215,7 +219,7 @@ class IntrinsicDecorators():
     self.has_masking_maskedoff_policy_vxrm = []
     for decorator in self.has_masking_maskedoff_policy:
       self.has_masking_maskedoff_policy_vxrm.append(
-          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_VXRM))
+          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_VXRM, need_altfmt))
 
     # Appending the frm attribute to existing decorator collections to add
     # extra set of floating-point intrinsic that models rounding mode control.
@@ -232,16 +236,16 @@ class IntrinsicDecorators():
       self.has_masking_no_maskedoff_reduction_policy.copy()
     for decorator in self.has_no_masking_policy:
       self.has_no_masking_policy_frm.append(
-          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_FRM))
+          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_FRM, need_altfmt))
     for decorator in self.has_masking_maskedoff_policy:
       self.has_masking_maskedoff_policy_frm.append(
-          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_FRM))
+          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_FRM, need_altfmt))
     for decorator in self.has_masking_maskedoff_policy_mu_ma:
       self.has_masking_maskedoff_policy_mu_ma_frm.append(
-          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_FRM))
+          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_FRM, need_altfmt))
     for decorator in self.has_masking_no_maskedoff_policy:
       self.has_masking_no_maskedoff_policy_frm.append(
-          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_FRM))
+          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_FRM, need_altfmt))
     for decorator in self.has_masking_no_maskedoff_reduction_policy:
       self.has_masking_no_maskedoff_reduction_policy_frm.append(
-          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_FRM))
+          IntrinsicDecorator(decorator.flags | ExtraAttr.HAS_FRM, need_altfmt))

@@ -215,7 +215,7 @@ The naming rules are as follows.
 
 [,c]
 ----
-__riscv_{V_INSTRUCTION_MNEMONIC}_{OPERAND_MNEMONIC}_{RETURN_TYPE}_{ROUND_MODE}_{POLICY}{(...)
+__riscv_{V_INSTRUCTION_MNEMONIC}_{OPERAND_MNEMONIC}_{RETURN_TYPE}_{ROUND_MODE}_{ALTFMT}_{POLICY}{(...)
 ----
 
 * `OPERAND_MNEMONIC` are like `v`, `vv`, `vx`, `vs`, `vvm`, `vxm`
@@ -228,6 +228,7 @@ __riscv_{V_INSTRUCTION_MNEMONIC}_{OPERAND_MNEMONIC}_{RETURN_TYPE}_{ROUND_MODE}_{
 *** `RETURN_TYPE` is one of `b1 | b2 | b4 | b8 | b16 | b32 | b64`, which is derived from the ratio `EEW`/`EMUL`.
 * `V_INSTRUCTION_MNEMONIC` are like `vadd`, `vfmacc`, `vsadd`.
 * `ROUND_MODE` is the `_rm` suffix mentioned in <<explicit-frm>>. Other intrinsics do not have this suffix.
+* `ALTFMT` is the `_alt` suffix which is used by intrinsics that need vtype.altfmt to be set to 1(especially bfloat16 intrinsics).
 * `POLICY` are enumerated under <<policy-and-masked-naming-scheme>>.
 
 The general naming scheme is not sufficient to express all intrinsics. The exceptions are enumerated in the proceeding section <<explicit-exception-naming>>.
