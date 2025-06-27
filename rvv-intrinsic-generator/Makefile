@@ -555,12 +555,12 @@ git-commit-autogen-doc:
 git-commit-autogen-zvfhmin-doc:
 	make gen-zvfhmin-document OUTPUT_DIR=${OUTPUT_DIR}
 	git add ${ZVFHMIN_DIR}/*
-	git commit -m "[Auto-gen] Update bfloat16 documents under ${OUTPUT_DIR}. (make git-commit-autogen-zvfhmin-doc)"
+	git commit -m "[Auto-gen] Update zvfhmin documents under ${OUTPUT_DIR}. (make git-commit-autogen-zvfhmin-doc)"
 
 git-commit-autogen-zvfh-doc:
 	make gen-zvfh-document OUTPUT_DIR=${OUTPUT_DIR}
 	git add ${ZVFH_DIR}/*
-	git commit -m "[Auto-gen] Update bfloat16 documents under ${OUTPUT_DIR}. (make git-commit-autogen-zvfh-doc)"
+	git commit -m "[Auto-gen] Update zvfh documents under ${OUTPUT_DIR}. (make git-commit-autogen-zvfh-doc)"
 
 git-commit-autogen-bf16-doc:
 	make gen-bf16-document OUTPUT_DIR=${OUTPUT_DIR}
@@ -581,12 +581,12 @@ git-commit-autogen-test:
 git-commit-autogen-zvfhmin-test:
 	make gen-zvfhmin-test
 	git add ${ZVFHMIN_DIR}/*
-	git commit -m "[Auto-gen] Update bfloat16 tests under ${OUTPUT_DIR}. (make git-commit-autogen-zvfhmin-test)"
+	git commit -m "[Auto-gen] Update zvfhmin tests under ${OUTPUT_DIR}. (make git-commit-autogen-zvfhmin-test)"
 
 git-commit-autogen-zvfh-test:
 	make gen-zvfh-test
 	git add ${ZVFH_DIR}/*
-	git commit -m "[Auto-gen] Update bfloat16 tests under ${OUTPUT_DIR}. (make git-commit-autogen-zvfh-test)"
+	git commit -m "[Auto-gen] Update zvfh tests under ${OUTPUT_DIR}. (make git-commit-autogen-zvfh-test)"
 
 git-commit-autogen-bf16-test:
 	make gen-bf16-test

@@ -165,8 +165,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list):
       if decorator.flags & ExtraAttr.HAS_FRM:
         continue
 
-      # BFloat16 converts do not have `_rod`/`_rtz` instructions
-      if type_list == "bfloat16":
+      # Float16 and BFloat16 converts do not have `_rod`/`_rtz` instructions
+      if type_list == "float16_zvfhmin" or type_list == "bfloat16":
         continue
 
       if args["TYPES1"] != args["TYPES3"] and args["TYPES3"] == "f":
