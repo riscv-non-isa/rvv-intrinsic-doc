@@ -63,12 +63,13 @@ def gen(g):
                    decorators.has_masking_no_maskedoff)
 
   g.function_group(load_template, "Vector Indexed Load Intrinsics",
-                   "vector-indexed-load", ["vloxei", "vluxei"], BFTYPES, SEWS,
-                   LMULS, decorators.has_masking_maskedoff_policy)
+                   "vector-indexed-load", ["vloxei", "vluxei"], BFTYPES,
+                   [8, 16, 32, 64], LMULS,
+                   decorators.has_masking_maskedoff_policy)
 
   g.function_group(store_template, "Vector Indexed Store Intrinsics",
-                   "vector-indexed-store", ["vsoxei", "vsuxei"], BFTYPES, SEWS,
-                   LMULS, decorators.has_masking_no_maskedoff)
+                   "vector-indexed-store", ["vsoxei", "vsuxei"], BFTYPES,
+                   [8, 16, 32, 64], LMULS, decorators.has_masking_no_maskedoff)
 
   g.function_group(load_template,
                    "Unit-stride Fault-Only-First Loads Intrinsics",
@@ -100,13 +101,14 @@ def gen(g):
 
   g.function_group(seg_load_template, "Vector Indexed Segment Load Intrinsics",
                    "vector-indexed-segment-load", ["vloxseg", "vluxseg"],
-                   BFTYPES, SEWS, LMULS,
+                   BFTYPES, [8, 16, 32, 64], LMULS,
                    decorators.has_masking_maskedoff_policy)
 
   g.function_group(seg_store_template,
                    "Vector Indexed Segment Store Intrinsics",
                    "vector-indexed-segment-store", ["vsoxseg", "vsuxseg"],
-                   BFTYPES, SEWS, LMULS, decorators.has_masking_no_maskedoff)
+                   BFTYPES, [8, 16, 32, 64], LMULS,
+                   decorators.has_masking_no_maskedoff)
 
   ####################################################################
   g.start_group("BFloat16 Convert Intrinsics")
