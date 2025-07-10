@@ -38828,19 +38828,11 @@ vbool64_t __riscv_vmsof(vbool64_t vm, vbool64_t vs2, size_t vl);
 
 [[overloaded-vector-iota]]
 ==== Vector Iota Intrinsics
-
-[,c]
-----
-// masked functions
-----
+Intrinsics here don't have an overloaded variant.
 
 [[overloaded-vector-element-index]]
 ==== Vector Element Index Intrinsics
-
-[,c]
-----
-// masked functions
-----
+Intrinsics here don't have an overloaded variant.
 
 === Vector Permutation Intrinsics
 
