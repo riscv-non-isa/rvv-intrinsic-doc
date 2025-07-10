@@ -120,10 +120,10 @@ class Generator():
       if re.match(p, name) and name[-2:] != "_m":
         return False
     unsupported_op = [
-        "setvl", "vundefined", "viota", "vmclr", "vmset", "vid", "vmv_v_x",
-        "vfmv_v_f", "vcreate", "vlm_v"
+        "setvl", "vundefined", "iota", "vmclr", "vmset", "vmv_v_x", "vfmv_v_f",
+        "vcreate", "vlm_v"
     ]
-    if any(i in name for i in unsupported_op):
+    if any(i in name for i in unsupported_op) or name == "id":
       return False
 
     if name.startswith("sf_vc"):
@@ -436,10 +436,8 @@ class OverloadedDocGenerator(DocGenerator):
                      lmul_list,
                      decorator_list,
                      description=None):
-    self.do_not_have_overloaded_variant = True
-    for op in op_list:
-      if Generator.is_support_overloaded(op):
-        self.do_not_have_overloaded_variant = False
+    self.do_not_have_overloaded_variant = not self.has_tail_policy and not any(
+        Generator.is_support_overloaded(op) for op in op_list)
     super().function_group(
         template,
         title,
