@@ -1,0 +1,15 @@
+= Note for vector crypto intrinsics
+
+== Availability of vector crypto intrinsics
+
+Availability for the vector crypto instruction intrinsics will depend on the minimum vector length specified in the architecture via the `Zvl*b` ^0^ sub-extension. Vector length is required to be at least one EGW (element group width ^1^) long.
+
+Take the intrinsic of `vaesdf.vs` as an example. Given that the instruction will compute with a single element group provided from `vs2`, `vuint32mf2_t` of must be at least 128 bits long. Therefore the intrinsic requires `zvl256b` to be available.
+
+```
+vuint32m4_t __riscv_vaesdf_vs_u32m4 (vuint32m4_t vd, vuint32mf2_t vs2, size_t vl);
+```
+
+^0^ https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc#181-zvl-minimum-vector-length-standard-extensions[v-spec 18.1. Zvl*: Minimum Vector Length Standard Extensions]
+
+^1^ https://github.com/riscv/riscv-crypto/blob/master/doc/vector/riscv-crypto-vector-element-groups.adoc[Vector Crypto Specification: Element Groups]

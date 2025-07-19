@@ -26,8 +26,14 @@ from enums import InstInfo
 from enums import InstType
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name, unused-argument
   # FIXME: Renaming 'G' to 'g' all in once later.
   # FIXME: Argument 'lmul_list' is unused but required for interface
@@ -43,7 +49,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
 
       load_p = op == "vlm"
 
-      inst_info = InstInfo.get(args, decorator, InstType.V)
+      inst_info = InstInfo.get(
+          args, decorator, InstType.V, required_ext=required_ext_list)
 
       if load_p:
         base_type = "const uint8_t *"

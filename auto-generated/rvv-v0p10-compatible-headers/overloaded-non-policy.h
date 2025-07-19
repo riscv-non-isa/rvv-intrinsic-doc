@@ -88,6 +88,7 @@
   __riscv_vcompress_tu((dest), (src), (mask), (vl))
 // Reinterpret between different type under the same SEW/LMUL
 // Reinterpret between different SEW under the same LMUL
+// masked functions
 #define vse16(...)                                                             \
   _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
                 7, 6, 5, __riscv_vse16, __riscv_vse16, 2, 1)                   \
@@ -1857,6 +1858,22 @@
 #define vget_u64m1(...) __riscv_vget_u64m1(__VA_ARGS__)
 #define vget_u64m2(...) __riscv_vget_u64m2(__VA_ARGS__)
 #define vget_u64m4(...) __riscv_vget_u64m4(__VA_ARGS__)
+#define vqdot(...)                                                             \
+  _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
+                7, 6, __riscv_vqdot_tumu, __riscv_vqdot, 3, 2, 1)              \
+  (__VA_ARGS__)
+#define vqdotsu(...)                                                           \
+  _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
+                7, 6, __riscv_vqdotsu_tumu, __riscv_vqdotsu, 3, 2, 1)          \
+  (__VA_ARGS__)
+#define vqdotus(...)                                                           \
+  _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
+                7, 6, __riscv_vqdotus_tumu, __riscv_vqdotus, 3, 2, 1)          \
+  (__VA_ARGS__)
+#define vqdotu(...)                                                            \
+  _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
+                7, 6, __riscv_vqdotu_tumu, __riscv_vqdotu, 3, 2, 1)            \
+  (__VA_ARGS__)
 #define vle16(...) __riscv_vle16_tumu(__VA_ARGS__)
 #define vle32(...) __riscv_vle32_tumu(__VA_ARGS__)
 #define vle64(...) __riscv_vle64_tumu(__VA_ARGS__)

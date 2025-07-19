@@ -25,8 +25,14 @@ from enums import InstInfo
 from enums import InstType
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name, unused-argument
   # FIXME: Renaming 'G' to 'g' all in once later.
   # FIXME: Argument 'type_list', 'decorator_list' is unused but required for
@@ -38,12 +44,14 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
 
     if args["OP"] == "vsetvlmax":
       G.func(
-          InstInfo.get(args, None, InstType.SETVLMAX),
+          InstInfo.get(
+              args, None, InstType.SETVLMAX, required_ext=required_ext_list),
           name="{OP}_e{SEW}m{LMUL}".format_map(args),
           return_type=type_helper.size_t)
     else:  #vsetvl
       G.func(
-          InstInfo.get(args, None, InstType.SETVL),
+          InstInfo.get(
+              args, None, InstType.SETVL, required_ext=required_ext_list),
           name="{OP}_e{SEW}m{LMUL}".format_map(args),
           return_type=type_helper.size_t,
           avl=type_helper.size_t)

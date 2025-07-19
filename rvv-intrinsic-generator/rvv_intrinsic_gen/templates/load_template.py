@@ -29,8 +29,14 @@ from enums import MemType
 from enums import ExtraAttr
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
   G.emit_function_group_description(description)
@@ -39,6 +45,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
     decorator.write_text_header(G)
     for args in prod(
         OP=op_list, TYPE=type_list, SEW=sew_list, EEW=sew_list, LMUL=lmul_list):
+      assert args["OP"] is not None
       op = args["OP"]
       sew = args["SEW"]
       eew = args["EEW"]
@@ -69,7 +76,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       if op not in ["vloxei", "vluxei"] and sew != eew:
         continue
       inst_info =\
-      InstInfo.get(args, decorator, inst_type, MemType.LOAD, extra_attr)
+      InstInfo.get(args, decorator, inst_type, MemType.LOAD, extra_attr,
+                   required_ext = required_ext_list)
       G.func(
           inst_info,
           name=\

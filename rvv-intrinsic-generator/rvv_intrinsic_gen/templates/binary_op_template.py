@@ -28,8 +28,14 @@ from enums import InstType
 from enums import ExtraAttr
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name
   # FIXME: Renaming 'G' to 'g' all in once later.
   G.emit_function_group_description(description)
@@ -42,6 +48,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
         SEW=sew_list,
         LMUL=lmul_list,
         OP2=["v", "s"]):
+      assert args["OP"] is not None
       data_type = args["TYPE"]
       op = args["OP"]
       sew = args["SEW"]
@@ -63,6 +70,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
 
       type_helper = TypeHelper(**args)
 
+      s_op2 = None
       if (op in ["mulhsu", "ssra", "sra"] and data_type == "uint") or \
          (op in ["ssrl", "srl"] and data_type == "int"):
         # Unsigned mulhsu and ssra are unsupported, signed ssrl is unsupported
@@ -93,10 +101,14 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
 
       args["OP"] = "v" + args["OP"]
 
-      inst_info_vv = InstInfo.get(args, decorator, InstType.VVV)
-      inst_info_vx = InstInfo.get(args, decorator, InstType.VVX)
-      inst_info_vf = InstInfo.get(args, decorator, InstType.VVF)
-      inst_info_v = InstInfo.get(args, decorator, InstType.VV)
+      inst_info_vv = InstInfo.get(
+          args, decorator, InstType.VVV, required_ext=required_ext_list)
+      inst_info_vx = InstInfo.get(
+          args, decorator, InstType.VVX, required_ext=required_ext_list)
+      inst_info_vf = InstInfo.get(
+          args, decorator, InstType.VVF, required_ext=required_ext_list)
+      inst_info_v = InstInfo.get(
+          args, decorator, InstType.VV, required_ext=required_ext_list)
       if args["OP2"] == "v":
         inst_info = inst_info_vv
       elif args["OP2"] == "x":
@@ -104,7 +116,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       elif args["OP2"] == "f":
         inst_info = inst_info_vf
       else:
-        raise Exception("Unknown op2 type.")
+        raise ValueError("Unknown op2 type.")
 
       if op in ["ssra", "sra", "ssrl", "srl", "sll"]:
         if args["OP2"] == "v":
@@ -145,7 +157,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       elif "rgather" == op:
         if op2 == "v":
           G.func(
-              InstInfo.get(args, decorator, InstType.VVV),
+              InstInfo.get(
+                  args, decorator, InstType.VVV,
+                  required_ext=required_ext_list),
               name="{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
               decorator.func_suffix,
               return_type=type_helper.v,
@@ -156,7 +170,9 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
               vl=type_helper.size_t)
         else:  # vx
           G.func(
-              InstInfo.get(args, decorator, InstType.VVV),
+              InstInfo.get(
+                  args, decorator, InstType.VVV,
+                  required_ext=required_ext_list),
               name="{OP}_v{OP2}_{TYPE}{SEW}m{LMUL}".format_map(args) +
               decorator.func_suffix,
               return_type=type_helper.v,

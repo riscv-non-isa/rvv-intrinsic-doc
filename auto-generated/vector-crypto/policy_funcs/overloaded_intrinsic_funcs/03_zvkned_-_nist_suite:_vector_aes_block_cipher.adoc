@@ -1,0 +1,140 @@
+
+=== Zvkned - NIST Suite: Vector AES Block Cipher
+
+[[policy-variant-overloaded]]
+==== Vector AES Encryption
+
+[,c]
+----
+vuint32mf2_t __riscv_vaesef_vv_tu(vuint32mf2_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32mf2_t __riscv_vaesef_vs_tu(vuint32mf2_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m1_t __riscv_vaesef_vs_tu(vuint32m1_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesef_vs_tu(vuint32m2_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesef_vs_tu(vuint32m4_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesef_vs_tu(vuint32m8_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m1_t __riscv_vaesef_vv_tu(vuint32m1_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m1_t __riscv_vaesef_vs_tu(vuint32m1_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesef_vs_tu(vuint32m2_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesef_vs_tu(vuint32m4_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesef_vs_tu(vuint32m8_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesef_vv_tu(vuint32m2_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesef_vs_tu(vuint32m2_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesef_vs_tu(vuint32m4_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesef_vs_tu(vuint32m8_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesef_vv_tu(vuint32m4_t vd, vuint32m4_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesef_vs_tu(vuint32m4_t vd, vuint32m4_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesef_vs_tu(vuint32m8_t vd, vuint32m4_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesef_vv_tu(vuint32m8_t vd, vuint32m8_t vs2, size_t vl);
+vuint32mf2_t __riscv_vaesem_vv_tu(vuint32mf2_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32mf2_t __riscv_vaesem_vs_tu(vuint32mf2_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m1_t __riscv_vaesem_vs_tu(vuint32m1_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesem_vs_tu(vuint32m2_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesem_vs_tu(vuint32m4_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesem_vs_tu(vuint32m8_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m1_t __riscv_vaesem_vv_tu(vuint32m1_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m1_t __riscv_vaesem_vs_tu(vuint32m1_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesem_vs_tu(vuint32m2_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesem_vs_tu(vuint32m4_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesem_vs_tu(vuint32m8_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesem_vv_tu(vuint32m2_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesem_vs_tu(vuint32m2_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesem_vs_tu(vuint32m4_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesem_vs_tu(vuint32m8_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesem_vv_tu(vuint32m4_t vd, vuint32m4_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesem_vs_tu(vuint32m4_t vd, vuint32m4_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesem_vs_tu(vuint32m8_t vd, vuint32m4_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesem_vv_tu(vuint32m8_t vd, vuint32m8_t vs2, size_t vl);
+----
+
+[[policy-variant-overloaded]]
+==== Vector AES Decryption
+
+[,c]
+----
+vuint32mf2_t __riscv_vaesdf_vv_tu(vuint32mf2_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32mf2_t __riscv_vaesdf_vs_tu(vuint32mf2_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m1_t __riscv_vaesdf_vs_tu(vuint32m1_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesdf_vs_tu(vuint32m2_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesdf_vs_tu(vuint32m4_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesdf_vs_tu(vuint32m8_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m1_t __riscv_vaesdf_vv_tu(vuint32m1_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m1_t __riscv_vaesdf_vs_tu(vuint32m1_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesdf_vs_tu(vuint32m2_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesdf_vs_tu(vuint32m4_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesdf_vs_tu(vuint32m8_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesdf_vv_tu(vuint32m2_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesdf_vs_tu(vuint32m2_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesdf_vs_tu(vuint32m4_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesdf_vs_tu(vuint32m8_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesdf_vv_tu(vuint32m4_t vd, vuint32m4_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesdf_vs_tu(vuint32m4_t vd, vuint32m4_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesdf_vs_tu(vuint32m8_t vd, vuint32m4_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesdf_vv_tu(vuint32m8_t vd, vuint32m8_t vs2, size_t vl);
+vuint32mf2_t __riscv_vaesdm_vv_tu(vuint32mf2_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32mf2_t __riscv_vaesdm_vs_tu(vuint32mf2_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m1_t __riscv_vaesdm_vs_tu(vuint32m1_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesdm_vs_tu(vuint32m2_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesdm_vs_tu(vuint32m4_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesdm_vs_tu(vuint32m8_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m1_t __riscv_vaesdm_vv_tu(vuint32m1_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m1_t __riscv_vaesdm_vs_tu(vuint32m1_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesdm_vs_tu(vuint32m2_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesdm_vs_tu(vuint32m4_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesdm_vs_tu(vuint32m8_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesdm_vv_tu(vuint32m2_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesdm_vs_tu(vuint32m2_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesdm_vs_tu(vuint32m4_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesdm_vs_tu(vuint32m8_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesdm_vv_tu(vuint32m4_t vd, vuint32m4_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesdm_vs_tu(vuint32m4_t vd, vuint32m4_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesdm_vs_tu(vuint32m8_t vd, vuint32m4_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesdm_vv_tu(vuint32m8_t vd, vuint32m8_t vs2, size_t vl);
+----
+
+[[policy-variant-overloaded]]
+==== Vector AES-128 Forward KeySchedule generation
+
+[,c]
+----
+vuint32mf2_t __riscv_vaeskf1_tu(vuint32mf2_t vd, vuint32mf2_t vs2, size_t uimm,
+                                size_t vl);
+vuint32m1_t __riscv_vaeskf1_tu(vuint32m1_t vd, vuint32m1_t vs2, size_t uimm,
+                               size_t vl);
+vuint32m2_t __riscv_vaeskf1_tu(vuint32m2_t vd, vuint32m2_t vs2, size_t uimm,
+                               size_t vl);
+vuint32m4_t __riscv_vaeskf1_tu(vuint32m4_t vd, vuint32m4_t vs2, size_t uimm,
+                               size_t vl);
+vuint32m8_t __riscv_vaeskf1_tu(vuint32m8_t vd, vuint32m8_t vs2, size_t uimm,
+                               size_t vl);
+vuint32mf2_t __riscv_vaeskf2_tu(vuint32mf2_t vd, vuint32mf2_t vs2, size_t uimm,
+                                size_t vl);
+vuint32m1_t __riscv_vaeskf2_tu(vuint32m1_t vd, vuint32m1_t vs2, size_t uimm,
+                               size_t vl);
+vuint32m2_t __riscv_vaeskf2_tu(vuint32m2_t vd, vuint32m2_t vs2, size_t uimm,
+                               size_t vl);
+vuint32m4_t __riscv_vaeskf2_tu(vuint32m4_t vd, vuint32m4_t vs2, size_t uimm,
+                               size_t vl);
+vuint32m8_t __riscv_vaeskf2_tu(vuint32m8_t vd, vuint32m8_t vs2, size_t uimm,
+                               size_t vl);
+----
+
+[[policy-variant-overloaded]]
+==== Vector AES round zero
+
+[,c]
+----
+vuint32mf2_t __riscv_vaesz_tu(vuint32mf2_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m1_t __riscv_vaesz_tu(vuint32m1_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesz_tu(vuint32m2_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesz_tu(vuint32m4_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesz_tu(vuint32m8_t vd, vuint32mf2_t vs2, size_t vl);
+vuint32m1_t __riscv_vaesz_tu(vuint32m1_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesz_tu(vuint32m2_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesz_tu(vuint32m4_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesz_tu(vuint32m8_t vd, vuint32m1_t vs2, size_t vl);
+vuint32m2_t __riscv_vaesz_tu(vuint32m2_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesz_tu(vuint32m4_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesz_tu(vuint32m8_t vd, vuint32m2_t vs2, size_t vl);
+vuint32m4_t __riscv_vaesz_tu(vuint32m4_t vd, vuint32m4_t vs2, size_t vl);
+vuint32m8_t __riscv_vaesz_tu(vuint32m8_t vd, vuint32m4_t vs2, size_t vl);
+----
