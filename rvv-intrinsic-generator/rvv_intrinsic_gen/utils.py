@@ -59,6 +59,11 @@ class TypeHelper:
 
   def __init__(self, **kargs):
     self.args = kargs
+    if "TYPE" not in self.args:
+      return
+    self.args["WTYPE"] = self.args["TYPE"]
+    if self.args["TYPE"] == "bfloat":
+      self.args["WTYPE"] = "float"
 
   @property
   def get_float_lmul(self):
@@ -139,6 +144,9 @@ class TypeHelper:
         return "double"
       else:
         assert False, "Unhandled SEW under float type"
+    if self.args["TYPE"] == "bfloat":
+      assert self.args["SEW"] == 16, "BFloat16 only, no other SEW allowed"
+      return "__bf16"
     return "{TYPE}{SEW}_t".format_map(self.args)
 
   @property
@@ -151,15 +159,15 @@ class TypeHelper:
 
   @property
   def wv(self):
-    return "v{TYPE}{WSEW}m{WLMUL}_t".format_map(self.args)
+    return "v{WTYPE}{WSEW}m{WLMUL}_t".format_map(self.args)
 
   @property
   def wvm1(self):
-    return "v{TYPE}{WSEW}m1_t".format_map(self.args)
+    return "v{WTYPE}{WSEW}m1_t".format_map(self.args)
 
   @property
   def ws(self):
-    return "{TYPE}{WSEW}_t".format_map(self.args)
+    return "{WTYPE}{WSEW}_t".format_map(self.args)
 
   @property
   def qv(self):

@@ -1,0 +1,59 @@
+
+=== BFloat16 Convert Intrinsics
+
+[[overloaded-bf16-vector-narrow-convert]]
+==== Vector Narrowing Convert Intrinsics
+
+[,c]
+----
+vbfloat16mf4_t __riscv_vfncvtbf16_f(vfloat32mf2_t vs2, size_t vl);
+vbfloat16mf2_t __riscv_vfncvtbf16_f(vfloat32m1_t vs2, size_t vl);
+vbfloat16m1_t __riscv_vfncvtbf16_f(vfloat32m2_t vs2, size_t vl);
+vbfloat16m2_t __riscv_vfncvtbf16_f(vfloat32m4_t vs2, size_t vl);
+vbfloat16m4_t __riscv_vfncvtbf16_f(vfloat32m8_t vs2, size_t vl);
+// masked functions
+vbfloat16mf4_t __riscv_vfncvtbf16_f(vbool64_t vm, vfloat32mf2_t vs2, size_t vl);
+vbfloat16mf2_t __riscv_vfncvtbf16_f(vbool32_t vm, vfloat32m1_t vs2, size_t vl);
+vbfloat16m1_t __riscv_vfncvtbf16_f(vbool16_t vm, vfloat32m2_t vs2, size_t vl);
+vbfloat16m2_t __riscv_vfncvtbf16_f(vbool8_t vm, vfloat32m4_t vs2, size_t vl);
+vbfloat16m4_t __riscv_vfncvtbf16_f(vbool4_t vm, vfloat32m8_t vs2, size_t vl);
+vbfloat16mf4_t __riscv_vfncvtbf16_f(vfloat32mf2_t vs2, unsigned int frm,
+                                    size_t vl);
+vbfloat16mf2_t __riscv_vfncvtbf16_f(vfloat32m1_t vs2, unsigned int frm,
+                                    size_t vl);
+vbfloat16m1_t __riscv_vfncvtbf16_f(vfloat32m2_t vs2, unsigned int frm,
+                                   size_t vl);
+vbfloat16m2_t __riscv_vfncvtbf16_f(vfloat32m4_t vs2, unsigned int frm,
+                                   size_t vl);
+vbfloat16m4_t __riscv_vfncvtbf16_f(vfloat32m8_t vs2, unsigned int frm,
+                                   size_t vl);
+// masked functions
+vbfloat16mf4_t __riscv_vfncvtbf16_f(vbool64_t vm, vfloat32mf2_t vs2,
+                                    unsigned int frm, size_t vl);
+vbfloat16mf2_t __riscv_vfncvtbf16_f(vbool32_t vm, vfloat32m1_t vs2,
+                                    unsigned int frm, size_t vl);
+vbfloat16m1_t __riscv_vfncvtbf16_f(vbool16_t vm, vfloat32m2_t vs2,
+                                   unsigned int frm, size_t vl);
+vbfloat16m2_t __riscv_vfncvtbf16_f(vbool8_t vm, vfloat32m4_t vs2,
+                                   unsigned int frm, size_t vl);
+vbfloat16m4_t __riscv_vfncvtbf16_f(vbool4_t vm, vfloat32m8_t vs2,
+                                   unsigned int frm, size_t vl);
+----
+
+[[overloaded-bf16-vector-widening-convert]]
+==== Vector Widening Convert Intrinsics
+
+[,c]
+----
+vfloat32mf2_t __riscv_vfwcvtbf16_f(vbfloat16mf4_t vs2, size_t vl);
+vfloat32m1_t __riscv_vfwcvtbf16_f(vbfloat16mf2_t vs2, size_t vl);
+vfloat32m2_t __riscv_vfwcvtbf16_f(vbfloat16m1_t vs2, size_t vl);
+vfloat32m4_t __riscv_vfwcvtbf16_f(vbfloat16m2_t vs2, size_t vl);
+vfloat32m8_t __riscv_vfwcvtbf16_f(vbfloat16m4_t vs2, size_t vl);
+// masked functions
+vfloat32mf2_t __riscv_vfwcvtbf16_f(vbool64_t vm, vbfloat16mf4_t vs2, size_t vl);
+vfloat32m1_t __riscv_vfwcvtbf16_f(vbool32_t vm, vbfloat16mf2_t vs2, size_t vl);
+vfloat32m2_t __riscv_vfwcvtbf16_f(vbool16_t vm, vbfloat16m1_t vs2, size_t vl);
+vfloat32m4_t __riscv_vfwcvtbf16_f(vbool8_t vm, vbfloat16m2_t vs2, size_t vl);
+vfloat32m8_t __riscv_vfwcvtbf16_f(vbool4_t vm, vbfloat16m4_t vs2, size_t vl);
+----

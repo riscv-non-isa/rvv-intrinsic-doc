@@ -1,0 +1,45 @@
+== Intrinsics for BFloat16 (Brain Float 16) instruction set extensions
+
+The RISC-V vector C intrinsics supports intrinsics that exposes the control of BFloat16 (Brain Float 16) instruction set extensions ^31^.
+
+[[bf16-naming-scheme]]
+=== Naming scheme
+
+The BFloat16 intrinsics follows the naming scheme defined under <<naming-scheme>>, with `bf` as the abbreviation for BFloat16 types in the function suffix.
+
+[[bf16-vector-programming-model]]
+=== Control of the vector extension programming model
+
+The BFloat16 intrinsics follows provides the same control of the vector programming model defined under <<control-of-vector-programming-model>>. Intrinsics that represents BFloat16 instructions that are affected by `frm` (`vfncvtbf16.f.f.w` and `vfwmaccbf16`) follow what is defined under <<control-of-frm>> and provides variants of <<implicit-frm>> and <<explicit-frm>>.
+
+[[bf16-type-system]]
+=== Type system
+
+Floating-point types have EEW and EMUL encoded into the type. The first row describes the EMUL and the first column describes the data type and element width of the scalar type.
+
+Floating-point types with element widths of 16 (Types=`__bf16`) require the `zfbfmin` and `zvfbfmin` extension to be specified in the architecture.
+
+NOTE: Although C++23 introduces `<stdfloat>` for fixed-width floating-point types, this latest standard is not yet supported in the upstream RISC-V compiler. The specification (along with the prototype lists in appendix) uses `__bf16` to represent the BFloat16 floating-point type.
+
+.BFloat16 types
+[options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
+|===
+| Types | EMUL=1/8 | EMUL=1/4 | EMUL=1/ 2 | EMUL=1 | EMUL=2 | EMUL=4 | EMUL=8
+| __bf16 | N/A | vbfloat16mf4_t | vbfloat16mf2_t | vbfloat16m1_t | vbfloat16m2_t | vbfloat16m4_t | vbfloat16m8_t
+|===
+
+.Tuple types
+[options="autowidth,header",float="center",align="center",cols="<1,<2,<2,<2,<2,<2,<2,<2"]
+|===
+| Non-tuple Types (NFILED=1)| NFIELD=2 | NFIELD=3 | NFIELD=4 | NFIELD=5 | NFIELD=6 | NFIELD=7 | NFIELD=8
+| vbfloat16mf4_t | vbfloat16mf4x2_t | vbfloat16mf4x3_t | vbfloat16mf4x4_t | vbfloat16mf4x5_t | vbfloat16mf4x6_t | vbfloat16mf4x7_t | vbfloat16mf4x8_t
+| vbfloat16mf2_t | vbfloat16mf2x2_t | vbfloat16mf2x3_t | vbfloat16mf2x4_t | vbfloat16mf2x5_t | vbfloat16mf2x6_t | vbfloat16mf2x7_t | vbfloat16mf2x8_t
+| vbfloat16m1_t | vbfloat16m1x2_t | vbfloat16m1x3_t | vbfloat16m1x4_t | vbfloat16m1x5_t | vbfloat16m1x6_t | vbfloat16m1x7_t | vbfloat16m1x8_t
+| vbfloat16m2_t | vbfloat16m2x2_t | vbfloat16m2x3_t | vbfloat16m2x4_t | N/A | N/A | N/A | N/A
+| vbfloat16m4_t | vbfloat16m4x2_t | N/A | N/A | N/A | N/A | N/A | N/A
+|===
+
+[[bf16-pseudo-intrinsics]]
+=== Psuedo intrinsics
+
+The RISC-V vector BFloat16 types (provided under <<bf16-type-system>>) also have pseudo intrinsics variants from <<pseudo-intrinsics>> to help variable declaration and manipulation across intrinsic types.

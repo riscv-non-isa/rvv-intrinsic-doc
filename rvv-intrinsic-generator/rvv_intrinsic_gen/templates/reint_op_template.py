@@ -27,12 +27,16 @@ from enums import InstType
 from generator import CompatibleHeaderGenerator
 
 
-def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
-           description):
+def render(G,
+           op_list,
+           type_list,
+           sew_list,
+           lmul_list,
+           decorator_list,
+           description,
+           required_ext_list=None):
   #pylint: disable=invalid-name, unused-argument
   # FIXME: Renaming 'G' to 'g' all in once later.
-  # FIXME: Argument 'type_list' is unused but required for interface
-  # consistency. We can prune it in the future.
   G.emit_function_group_description(description)
   G.inst_group_prologue()
   for decorator in decorator_list:
@@ -41,13 +45,20 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
     G.write("// Reinterpret between different type under the same SEW/LMUL\n")
     # Variable in list means
     # [dst type, dst short type, src type, src short type]
-    convert_set = [["float", "f", "int", "i"], ["float", "f", "uint", "u"],
-                   ["uint", "u", "int", "i"], ["int", "i", "uint", "u"],
-                   ["int", "i", "float", "f"], ["uint", "u", "float", "f"]]
+    if type_list == "bfloat16":
+      convert_set = [["bfloat", "bf", "int",
+                      "i"], ["bfloat", "bf", "uint", "u"],
+                     ["int", "i", "bfloat", "bf"],
+                     ["uint", "u", "bfloat", "bf"]]
+    else:
+      convert_set = [["float", "f", "int", "i"], ["float", "f", "uint", "u"],
+                     ["uint", "u", "int", "i"], ["int", "i", "uint", "u"],
+                     ["int", "i", "float", "f"], ["uint", "u", "float", "f"]]
 
     for args in prod(
         OP=op_list, SEW=sew_list, TYPES=convert_set, LMUL=lmul_list):
       sew = args["SEW"]
+      assert args["TYPES"] is not None
 
       type_helper = TypeHelper(**args)
       args["TYPES0"] = args["TYPES"][0]
@@ -69,11 +80,16 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
         "{OP}_v_{TYPES3}{SEW}m{LMUL}_{TYPES1}{SEW}m{LMUL}".format_map(args)
       src_type = "v{TYPES2}{SEW}m{LMUL}_t".format_map(args)
       G.func(
-          InstInfo.get(args, decorator, InstType.REINT),
+          InstInfo.get(
+              args, decorator, InstType.REINT, required_ext=required_ext_list),
           name=func_name + decorator.func_suffix,
           return_type=rt,
           **decorator.mask_args(type_helper.m, rt),
           src=src_type)
+
+    # Bfloat16 reinterpretations do not have variants below
+    if type_list == "bfloat16":
+      continue
 
     G.write("// Reinterpret between different SEW under the same LMUL\n")
     # Variable in list means
@@ -105,7 +121,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
         "{OP}_v_{TYPES3}{SEW}m{LMUL}_{TYPES1}{DST_SEW}m{LMUL}".format_map(args)
       src_type = "v{TYPES2}{SEW}m{LMUL}_t".format_map(args)
       G.func(
-          InstInfo.get(args, decorator, InstType.REINT),
+          InstInfo.get(
+              args, decorator, InstType.REINT, required_ext=required_ext_list),
           name=func_name + decorator.func_suffix,
           return_type=rt,
           **decorator.mask_args(type_helper.m, rt),
@@ -122,6 +139,7 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
     convert_set = [["int", "i"], ["uint", "u"]]
     for args in prod(
         OP=op_list, SEW=sew_list, TYPES=convert_set, LMUL=lmul_list):
+      assert args["TYPES"] is not None
 
       type_helper = TypeHelper(**args)
       args["TYPES0"] = args["TYPES"][0]
@@ -135,7 +153,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       func_name =\
         "{OP}_v_{TYPES1}{SEW}m1_b{MLEN}".format_map(args)
       G.func(
-          InstInfo.get(args, decorator, InstType.REINT),
+          InstInfo.get(
+              args, decorator, InstType.REINT, required_ext=required_ext_list),
           name=func_name + decorator.func_suffix,
           return_type=mask_type,
           src=int_type)
@@ -143,7 +162,8 @@ def render(G, op_list, type_list, sew_list, lmul_list, decorator_list,
       func_name =\
         "{OP}_v_b{MLEN}_{TYPES1}{SEW}m1".format_map(args)
       G.func(
-          InstInfo.get(args, decorator, InstType.REINT),
+          InstInfo.get(
+              args, decorator, InstType.REINT, required_ext=required_ext_list),
           name=func_name + decorator.func_suffix,
           return_type=int_type,
           src=mask_type)

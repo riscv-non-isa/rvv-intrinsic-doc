@@ -1,0 +1,67 @@
+== References
+
+^0^https://github.com/riscv/riscv-v-spec/blob/master/v-spec.adoc[Github - riscv/riscv-v-spec/v-spec.adoc]
+
+NOTE: Standard extensions are merged into `riscv/riscv-isa-manual` after ratification. There is an on-going pull request ^26^ for the "V" extension to be merged. At this moment this intrinsics specification still references the frozen draft ^0^. This reference will be updated in the future once the pull request has been merged.
+
+^1^https://github.com/riscv-non-isa/riscv-c-api-doc/blob/master/riscv-c-api.md[Github - riscv-non-isa/riscv-c-api-doc/riscv-c-api.md]
+
+^2^https://llvm.org/docs/RISCVUsage.html[User Guide for RISC-V Target]
+
+^3^https://gcc.gnu.org/onlinedocs/gcc/RISC-V-Options.html[RISC-V Options (Using the GNU Compiler Collection (GCC))]
+
+^4^Section 3.4.1 (Vector selected element width `vsew[2:0]`) in the specification ^0^
+
+^5^Section 3.4.2 (Vector Register Grouping (`vlmul[2:0]``)) in the specification ^0^
+
+^6^Section 3.4.3 (Vector Tail Agnostic and Vector Mask Agnostic `vta` and `vma`) in the specification ^0^
+
+^7^Section 5.3 (Vector Masking) in the specification ^0^
+
+^8^Section 3.8 (Vector Fixed-Point Rounding Mode Register `vxrm`) in the specification ^0^
+
+^9^https://github.com/riscv-non-isa/riscv-elf-psabi-doc/blob/master/riscv-cc.adoc#vector-register-convention[psABI: Vector Register Convention]
+
+^10^https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.pdf[The RISC-V Instruction Set Manual: 8.2 Floating-Point Control and Status Register]
+
+^11^Section 3.5 (Vector Length Register) in the specification ^0^
+
+^12^Section 3.4.2 in the specification ^0^
+
+^13^Section 11.13, 11.14, 13.6, 13.7 in the specification ^0^
+
+^14^Section 4.5 (Mask Register Layout) in the specification ^0^
+
+^15^Section 7.5 in the specification ^0^
+
+^16^Section 7.8 in the specification ^0^
+
+^17^Section 5.2 (Vector Operands) in the specification ^0^
+
+^18^Section 6 (Configuration-Setting Instructions) in the specification ^0^
+
+^19^Section 18 (Standrad Vector Extensions) in the specification ^0^
+
+^20^Section 18.2 (Zve*: Vector Extensions for Embedded Processors) in the specification ^0^
+
+^21^Section 12 (Vector Fixed-Point Arithmetic Instructions) in the specification ^0^
+
+^22^Section 3.9 (3.9. Vector Fixed-Point Saturation Flag vxsat) in the specification ^0^
+
+^23^Section 13 (Vector Floating-Point Instructions) in the specification ^0^
+
+^24^Section 16.3.1 (Vector Slideup Instructions) in the specification ^0^
+
+^25^Section 3.7 (Vector Start Index CSR `vstart`) in the specification ^0^
+
+^26^https://github.com/riscv/riscv-isa-manual/pull/1088[riscv/riscv-isa-manual#1088]
+
+^27^Section 6.3 (Constraints on Setting `vl`) in the specficiation ^0^
+
+^28^Section 6.4 (Example of stripmining and changes to SEW) in the specification ^0^
+
+^29^Section 3.6 (Vector Byte Length `vlenb`) in the specification ^0^
+
+^30^Section 16.6 (Whole Vector Register Move) in the specification ^0^
+
+^31^https://github.com/riscv/riscv-bfloat16/releases[RISC-V BFloat16 Specification]

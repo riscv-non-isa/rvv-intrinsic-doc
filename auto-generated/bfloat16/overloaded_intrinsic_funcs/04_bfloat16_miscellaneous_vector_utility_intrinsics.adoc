@@ -1,0 +1,193 @@
+
+=== BFloat16 Miscellaneous Vector Utility Intrinsics
+
+[[overloaded-reinterpret-cast-conversion]]
+==== Reinterpret Cast Conversion Intrinsics
+
+[,c]
+----
+// Reinterpret between different type under the same SEW/LMUL
+vbfloat16mf4_t __riscv_vreinterpret_bf16mf4(vint16mf4_t src);
+vbfloat16mf2_t __riscv_vreinterpret_bf16mf2(vint16mf2_t src);
+vbfloat16m1_t __riscv_vreinterpret_bf16m1(vint16m1_t src);
+vbfloat16m2_t __riscv_vreinterpret_bf16m2(vint16m2_t src);
+vbfloat16m4_t __riscv_vreinterpret_bf16m4(vint16m4_t src);
+vbfloat16m8_t __riscv_vreinterpret_bf16m8(vint16m8_t src);
+vbfloat16mf4_t __riscv_vreinterpret_bf16mf4(vuint16mf4_t src);
+vbfloat16mf2_t __riscv_vreinterpret_bf16mf2(vuint16mf2_t src);
+vbfloat16m1_t __riscv_vreinterpret_bf16m1(vuint16m1_t src);
+vbfloat16m2_t __riscv_vreinterpret_bf16m2(vuint16m2_t src);
+vbfloat16m4_t __riscv_vreinterpret_bf16m4(vuint16m4_t src);
+vbfloat16m8_t __riscv_vreinterpret_bf16m8(vuint16m8_t src);
+vint16mf4_t __riscv_vreinterpret_i16mf4(vbfloat16mf4_t src);
+vint16mf2_t __riscv_vreinterpret_i16mf2(vbfloat16mf2_t src);
+vint16m1_t __riscv_vreinterpret_i16m1(vbfloat16m1_t src);
+vint16m2_t __riscv_vreinterpret_i16m2(vbfloat16m2_t src);
+vint16m4_t __riscv_vreinterpret_i16m4(vbfloat16m4_t src);
+vint16m8_t __riscv_vreinterpret_i16m8(vbfloat16m8_t src);
+vuint16mf4_t __riscv_vreinterpret_u16mf4(vbfloat16mf4_t src);
+vuint16mf2_t __riscv_vreinterpret_u16mf2(vbfloat16mf2_t src);
+vuint16m1_t __riscv_vreinterpret_u16m1(vbfloat16m1_t src);
+vuint16m2_t __riscv_vreinterpret_u16m2(vbfloat16m2_t src);
+vuint16m4_t __riscv_vreinterpret_u16m4(vbfloat16m4_t src);
+vuint16m8_t __riscv_vreinterpret_u16m8(vbfloat16m8_t src);
+----
+
+[[overloaded-vector-lmul-extensionn]]
+==== Vector LMUL Extension Intrinsics
+
+[,c]
+----
+vbfloat16mf2_t __riscv_vlmul_ext_bf16mf2(vbfloat16mf4_t value);
+vbfloat16m1_t __riscv_vlmul_ext_bf16m1(vbfloat16mf4_t value);
+vbfloat16m2_t __riscv_vlmul_ext_bf16m2(vbfloat16mf4_t value);
+vbfloat16m4_t __riscv_vlmul_ext_bf16m4(vbfloat16mf4_t value);
+vbfloat16m8_t __riscv_vlmul_ext_bf16m8(vbfloat16mf4_t value);
+vbfloat16m1_t __riscv_vlmul_ext_bf16m1(vbfloat16mf2_t value);
+vbfloat16m2_t __riscv_vlmul_ext_bf16m2(vbfloat16mf2_t value);
+vbfloat16m4_t __riscv_vlmul_ext_bf16m4(vbfloat16mf2_t value);
+vbfloat16m8_t __riscv_vlmul_ext_bf16m8(vbfloat16mf2_t value);
+vbfloat16m2_t __riscv_vlmul_ext_bf16m2(vbfloat16m1_t value);
+vbfloat16m4_t __riscv_vlmul_ext_bf16m4(vbfloat16m1_t value);
+vbfloat16m8_t __riscv_vlmul_ext_bf16m8(vbfloat16m1_t value);
+vbfloat16m4_t __riscv_vlmul_ext_bf16m4(vbfloat16m2_t value);
+vbfloat16m8_t __riscv_vlmul_ext_bf16m8(vbfloat16m2_t value);
+vbfloat16m8_t __riscv_vlmul_ext_bf16m8(vbfloat16m4_t value);
+----
+
+[[overloaded-vector-lmul-truncation]]
+==== Vector LMUL Truncation Intrinsics
+
+[,c]
+----
+vbfloat16mf4_t __riscv_vlmul_trunc_bf16mf4(vbfloat16mf2_t value);
+vbfloat16mf4_t __riscv_vlmul_trunc_bf16mf4(vbfloat16m1_t value);
+vbfloat16mf2_t __riscv_vlmul_trunc_bf16mf2(vbfloat16m1_t value);
+vbfloat16mf4_t __riscv_vlmul_trunc_bf16mf4(vbfloat16m2_t value);
+vbfloat16mf2_t __riscv_vlmul_trunc_bf16mf2(vbfloat16m2_t value);
+vbfloat16m1_t __riscv_vlmul_trunc_bf16m1(vbfloat16m2_t value);
+vbfloat16mf4_t __riscv_vlmul_trunc_bf16mf4(vbfloat16m4_t value);
+vbfloat16mf2_t __riscv_vlmul_trunc_bf16mf2(vbfloat16m4_t value);
+vbfloat16m1_t __riscv_vlmul_trunc_bf16m1(vbfloat16m4_t value);
+vbfloat16m2_t __riscv_vlmul_trunc_bf16m2(vbfloat16m4_t value);
+vbfloat16mf4_t __riscv_vlmul_trunc_bf16mf4(vbfloat16m8_t value);
+vbfloat16mf2_t __riscv_vlmul_trunc_bf16mf2(vbfloat16m8_t value);
+vbfloat16m1_t __riscv_vlmul_trunc_bf16m1(vbfloat16m8_t value);
+vbfloat16m2_t __riscv_vlmul_trunc_bf16m2(vbfloat16m8_t value);
+vbfloat16m4_t __riscv_vlmul_trunc_bf16m4(vbfloat16m8_t value);
+----
+
+[[overloaded-vector-initialization]]
+==== Vector Initialization Intrinsics
+Intrinsics here don't have an overloaded variant.
+
+[[overloaded-vector-insertion]]
+==== Vector Insertion Intrinsics
+
+[,c]
+----
+vbfloat16m2_t __riscv_vset(vbfloat16m2_t dest, size_t index,
+                           vbfloat16m1_t value);
+vbfloat16m4_t __riscv_vset(vbfloat16m4_t dest, size_t index,
+                           vbfloat16m1_t value);
+vbfloat16m4_t __riscv_vset(vbfloat16m4_t dest, size_t index,
+                           vbfloat16m2_t value);
+vbfloat16m8_t __riscv_vset(vbfloat16m8_t dest, size_t index,
+                           vbfloat16m1_t value);
+vbfloat16m8_t __riscv_vset(vbfloat16m8_t dest, size_t index,
+                           vbfloat16m2_t value);
+vbfloat16m8_t __riscv_vset(vbfloat16m8_t dest, size_t index,
+                           vbfloat16m4_t value);
+vbfloat16mf4x2_t __riscv_vset(vbfloat16mf4x2_t dest, size_t index,
+                              vbfloat16mf4_t value);
+vbfloat16mf4x3_t __riscv_vset(vbfloat16mf4x3_t dest, size_t index,
+                              vbfloat16mf4_t value);
+vbfloat16mf4x4_t __riscv_vset(vbfloat16mf4x4_t dest, size_t index,
+                              vbfloat16mf4_t value);
+vbfloat16mf4x5_t __riscv_vset(vbfloat16mf4x5_t dest, size_t index,
+                              vbfloat16mf4_t value);
+vbfloat16mf4x6_t __riscv_vset(vbfloat16mf4x6_t dest, size_t index,
+                              vbfloat16mf4_t value);
+vbfloat16mf4x7_t __riscv_vset(vbfloat16mf4x7_t dest, size_t index,
+                              vbfloat16mf4_t value);
+vbfloat16mf4x8_t __riscv_vset(vbfloat16mf4x8_t dest, size_t index,
+                              vbfloat16mf4_t value);
+vbfloat16mf2x2_t __riscv_vset(vbfloat16mf2x2_t dest, size_t index,
+                              vbfloat16mf2_t value);
+vbfloat16mf2x3_t __riscv_vset(vbfloat16mf2x3_t dest, size_t index,
+                              vbfloat16mf2_t value);
+vbfloat16mf2x4_t __riscv_vset(vbfloat16mf2x4_t dest, size_t index,
+                              vbfloat16mf2_t value);
+vbfloat16mf2x5_t __riscv_vset(vbfloat16mf2x5_t dest, size_t index,
+                              vbfloat16mf2_t value);
+vbfloat16mf2x6_t __riscv_vset(vbfloat16mf2x6_t dest, size_t index,
+                              vbfloat16mf2_t value);
+vbfloat16mf2x7_t __riscv_vset(vbfloat16mf2x7_t dest, size_t index,
+                              vbfloat16mf2_t value);
+vbfloat16mf2x8_t __riscv_vset(vbfloat16mf2x8_t dest, size_t index,
+                              vbfloat16mf2_t value);
+vbfloat16m1x2_t __riscv_vset(vbfloat16m1x2_t dest, size_t index,
+                             vbfloat16m1_t value);
+vbfloat16m1x3_t __riscv_vset(vbfloat16m1x3_t dest, size_t index,
+                             vbfloat16m1_t value);
+vbfloat16m1x4_t __riscv_vset(vbfloat16m1x4_t dest, size_t index,
+                             vbfloat16m1_t value);
+vbfloat16m1x5_t __riscv_vset(vbfloat16m1x5_t dest, size_t index,
+                             vbfloat16m1_t value);
+vbfloat16m1x6_t __riscv_vset(vbfloat16m1x6_t dest, size_t index,
+                             vbfloat16m1_t value);
+vbfloat16m1x7_t __riscv_vset(vbfloat16m1x7_t dest, size_t index,
+                             vbfloat16m1_t value);
+vbfloat16m1x8_t __riscv_vset(vbfloat16m1x8_t dest, size_t index,
+                             vbfloat16m1_t value);
+vbfloat16m2x2_t __riscv_vset(vbfloat16m2x2_t dest, size_t index,
+                             vbfloat16m2_t value);
+vbfloat16m2x3_t __riscv_vset(vbfloat16m2x3_t dest, size_t index,
+                             vbfloat16m2_t value);
+vbfloat16m2x4_t __riscv_vset(vbfloat16m2x4_t dest, size_t index,
+                             vbfloat16m2_t value);
+vbfloat16m4x2_t __riscv_vset(vbfloat16m4x2_t dest, size_t index,
+                             vbfloat16m4_t value);
+----
+
+[[overloaded-vector-extraction]]
+==== Vector Extraction Intrinsics
+
+[,c]
+----
+vbfloat16m1_t __riscv_vget_bf16m1(vbfloat16m2_t src, size_t index);
+vbfloat16m1_t __riscv_vget_bf16m1(vbfloat16m4_t src, size_t index);
+vbfloat16m1_t __riscv_vget_bf16m1(vbfloat16m8_t src, size_t index);
+vbfloat16m2_t __riscv_vget_bf16m2(vbfloat16m4_t src, size_t index);
+vbfloat16m2_t __riscv_vget_bf16m2(vbfloat16m8_t src, size_t index);
+vbfloat16m4_t __riscv_vget_bf16m4(vbfloat16m8_t src, size_t index);
+vbfloat16mf4_t __riscv_vget_bf16mf4(vbfloat16mf4x2_t src, size_t index);
+vbfloat16mf4_t __riscv_vget_bf16mf4(vbfloat16mf4x3_t src, size_t index);
+vbfloat16mf4_t __riscv_vget_bf16mf4(vbfloat16mf4x4_t src, size_t index);
+vbfloat16mf4_t __riscv_vget_bf16mf4(vbfloat16mf4x5_t src, size_t index);
+vbfloat16mf4_t __riscv_vget_bf16mf4(vbfloat16mf4x6_t src, size_t index);
+vbfloat16mf4_t __riscv_vget_bf16mf4(vbfloat16mf4x7_t src, size_t index);
+vbfloat16mf4_t __riscv_vget_bf16mf4(vbfloat16mf4x8_t src, size_t index);
+vbfloat16mf2_t __riscv_vget_bf16mf2(vbfloat16mf2x2_t src, size_t index);
+vbfloat16mf2_t __riscv_vget_bf16mf2(vbfloat16mf2x3_t src, size_t index);
+vbfloat16mf2_t __riscv_vget_bf16mf2(vbfloat16mf2x4_t src, size_t index);
+vbfloat16mf2_t __riscv_vget_bf16mf2(vbfloat16mf2x5_t src, size_t index);
+vbfloat16mf2_t __riscv_vget_bf16mf2(vbfloat16mf2x6_t src, size_t index);
+vbfloat16mf2_t __riscv_vget_bf16mf2(vbfloat16mf2x7_t src, size_t index);
+vbfloat16mf2_t __riscv_vget_bf16mf2(vbfloat16mf2x8_t src, size_t index);
+vbfloat16m1_t __riscv_vget_bf16m1(vbfloat16m1x2_t src, size_t index);
+vbfloat16m1_t __riscv_vget_bf16m1(vbfloat16m1x3_t src, size_t index);
+vbfloat16m1_t __riscv_vget_bf16m1(vbfloat16m1x4_t src, size_t index);
+vbfloat16m1_t __riscv_vget_bf16m1(vbfloat16m1x5_t src, size_t index);
+vbfloat16m1_t __riscv_vget_bf16m1(vbfloat16m1x6_t src, size_t index);
+vbfloat16m1_t __riscv_vget_bf16m1(vbfloat16m1x7_t src, size_t index);
+vbfloat16m1_t __riscv_vget_bf16m1(vbfloat16m1x8_t src, size_t index);
+vbfloat16m2_t __riscv_vget_bf16m2(vbfloat16m2x2_t src, size_t index);
+vbfloat16m2_t __riscv_vget_bf16m2(vbfloat16m2x3_t src, size_t index);
+vbfloat16m2_t __riscv_vget_bf16m2(vbfloat16m2x4_t src, size_t index);
+vbfloat16m4_t __riscv_vget_bf16m4(vbfloat16m4x2_t src, size_t index);
+----
+
+[[overloaded-vector-creation]]
+==== Vector Creation Intrinsics
+Intrinsics here don't have an overloaded variant.

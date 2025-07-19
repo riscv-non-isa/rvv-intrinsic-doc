@@ -21,14 +21,17 @@ vbool8_t test_vmsof_m_b8_mu(vbool8_t vm, vbool8_t vd, vbool8_t vs2, size_t vl) {
   return __riscv_vmsof_m_b8_mu(vm, vd, vs2, vl);
 }
 
-vbool16_t test_vmsof_m_b16_mu(vbool16_t vm, vbool16_t vd, vbool16_t vs2, size_t vl) {
+vbool16_t test_vmsof_m_b16_mu(vbool16_t vm, vbool16_t vd, vbool16_t vs2,
+                              size_t vl) {
   return __riscv_vmsof_m_b16_mu(vm, vd, vs2, vl);
 }
 
-vbool32_t test_vmsof_m_b32_mu(vbool32_t vm, vbool32_t vd, vbool32_t vs2, size_t vl) {
+vbool32_t test_vmsof_m_b32_mu(vbool32_t vm, vbool32_t vd, vbool32_t vs2,
+                              size_t vl) {
   return __riscv_vmsof_m_b32_mu(vm, vd, vs2, vl);
 }
 
-vbool64_t test_vmsof_m_b64_mu(vbool64_t vm, vbool64_t vd, vbool64_t vs2, size_t vl) {
+vbool64_t test_vmsof_m_b64_mu(vbool64_t vm, vbool64_t vd, vbool64_t vs2,
+                              size_t vl) {
   return __riscv_vmsof_m_b64_mu(vm, vd, vs2, vl);
 }
