@@ -304,9 +304,6 @@ class Generator(ABC):
   def emit_function_group_description(self, description):
     pass
 
-  def emit_function_group_description(self, description):
-    pass
-
 
 class DocGenerator(Generator):
   """
