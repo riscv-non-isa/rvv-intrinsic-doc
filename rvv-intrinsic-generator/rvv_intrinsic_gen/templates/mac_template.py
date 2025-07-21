@@ -83,7 +83,8 @@ def render(G,
           required_ext=required_ext_list)
 
       type_helper = TypeHelper(**args)
-      if (("maccsu" in op) or ("maccus" in op) or op in ["qdotsu", "qdotus"]) and data_type == "uint":
+      if (("maccsu" in op) or ("maccus" in op) or
+          op in ["qdotsu", "qdotus"]) and data_type == "uint":
         # maccsu and maccus only support int type
         continue
       elif (("w" in op) or ("q" in op)) and ("int" in data_type):
