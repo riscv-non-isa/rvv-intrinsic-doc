@@ -129,7 +129,7 @@ def gen(g):
   g.function_group(binary_op_template,
                    "Vector Single-Width Integer Add and Subtract Intrinsics",
                    "vector-single-width-integer-add-and-subtract",
-                   ["add", "sub", "rsub", "neg"], ITYPES, SEWS, LMULS,
+                   ["add", "sub", "rsub"], ITYPES, SEWS, LMULS,
                    decorators.has_masking_maskedoff_policy)
 
   g.function_group(binary_wop_template,
@@ -144,6 +144,10 @@ def gen(g):
 
   g.function_group(unary_op_template, "Vector Integer Extension Intrinsics",
                    "vector-integer-extension", ["zext", "sext"], ITYPES, SEWS,
+                   LMULS, decorators.has_masking_maskedoff_policy)
+
+  g.function_group(unary_op_template, "Vector Integer Neg Intrinsics",
+                   "vector-integer-neg", ["neg"], ITYPES, SEWS,
                    LMULS, decorators.has_masking_maskedoff_policy)
 
   if g.has_tail_policy:
@@ -289,7 +293,7 @@ def gen(g):
       binary_op_template,
       "Vector Single-Width Floating-Point Add/Subtract Intrinsics",
       "vector-single-width-floating-point-add-subtract",
-      ["fadd", "fsub", "frsub", "fneg"], FTYPES, FSEWS, LMULS,
+      ["fadd", "fsub", "frsub"], FTYPES, FSEWS, LMULS,
       decorators.has_masking_maskedoff_policy_frm)
 
   g.function_group(binary_wop_template,
@@ -353,8 +357,8 @@ def gen(g):
                    decorators.has_masking_maskedoff_policy)
 
   g.function_group(unary_op_template,
-                   "Vector Floating-Point Absolute Value Intrinsics",
-                   "vector-floating-point-absolute-value", ["abs"], FTYPES,
+                   "Vector Floating-Point Abs and Neg Intrinsics",
+                   "vector-floating-point-abs-neg-value", ["abs", "neg"], FTYPES,
                    FSEWS, LMULS, decorators.has_masking_maskedoff_policy)
 
   g.function_group(cmp_template, "Vector Floating-Point Compare Intrinsics",

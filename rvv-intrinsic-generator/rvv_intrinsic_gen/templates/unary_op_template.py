@@ -147,8 +147,10 @@ def render(G,
             **decorator.tu_dest_args(type_helper.v),
             rs1=type_helper.s,
             vl=type_helper.size_t)
-      elif op in ["sqrt", "rsqrt7", "rec7", "abs"]:
-        assert data_type == "float"
+      elif op in ["sqrt", "rsqrt7", "rec7", "abs", "neg"]:
+        assert data_type == "float" or op == "neg"
+        if op == "neg" and data_type == "uint":
+          continue
         G.func(
             inst_info_vv,
             name="{OP}_v_{TYPE}{SEW}m{LMUL}".format_map(args) +
