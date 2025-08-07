@@ -54,10 +54,6 @@ def render(G,
       sew = args["SEW"]
       op2 = args["OP2"]
 
-      # vfneg does not use frm
-      if "fneg" in op and decorator.flags & ExtraAttr.HAS_FRM:
-        continue
-
       if op2 == "s":
         if data_type == "float" and op != "rgather":
           args["OP2"] = "f"
@@ -78,8 +74,8 @@ def render(G,
       if (op2 == "v") and op in ["rsub", "frsub", "frdiv"]:
         # rsub and rdiv only support vs version
         continue
-      if op2 == "s" and (op == "rgatherei16" or "neg" in op):
-        # rgatheri16/neg only support vv version
+      if op2 == "s" and op == "rgatherei16":
+        # rgatheri16 only support vv version
         continue
       if op == "rgather":
         v_op2 = type_helper.uiv
@@ -90,8 +86,6 @@ def render(G,
           continue
         elmul_str = get_string_lmul(elmul, 1)
         v_op2 = f"vuint16m{elmul_str}_t"
-      elif "neg" in op and data_type == "uint":
-        continue
       elif ("mulhsu" in op and data_type == "int"):
         v_op2 = type_helper.uiv
         s_op2 = type_helper.uis
@@ -144,16 +138,6 @@ def render(G,
               **decorator.extra_csr_args(type_helper.uint),
               vl=type_helper.size_t)
 
-      elif op in ["neg", "fneg"]:
-        G.func(
-            inst_info_v,
-            name="{OP}_v_{TYPE}{SEW}m{LMUL}".format_map(args) +
-            decorator.func_suffix,
-            return_type=type_helper.v,
-            **decorator.mask_args(type_helper.m, type_helper.v),
-            **decorator.tu_dest_args(type_helper.v),
-            vs=type_helper.v,
-            vl=type_helper.size_t)
       elif "rgather" == op:
         if op2 == "v":
           G.func(
