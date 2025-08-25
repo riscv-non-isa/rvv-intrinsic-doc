@@ -297,6 +297,56 @@ vbool8_t __riscv_vreinterpret_v_i32m1_b8 (vint32m1_t src);
 vbool4_t __riscv_vreinterpret_v_i32m1_b4 (vint32m1_t src);
 ----
 
+=== Vector BFloat instructions
+
+For vector bfloat instructions, appending additional input type before output type to disambiguate between `zvfhmin` instructions, e.g. `vfloat32mf2_t __riscv_vfwadd_vv_f32mf2(vfloat16mf4_t vs2, vfloat16mf4_t vs1, size_t vl);`.
+
+==== Vector Widening BFloat Add instruction
+[,c]
+----
+vfloat32mf2_t __riscv_vfwadd_vv_bf16mf4_f32mf2(vbfloat16mf4_t vs2, vbfloat16mf4_t vs1, size_t vl);
+----
+
+==== Vector Widening BFloat Sub instruction
+[,c]
+----
+vfloat32mf2_t __riscv_vfwsub_vv_bf16mf4_f32mf2(vbfloat16mf4_t vs2, vbfloat16mf4_t vs1, size_t vl);
+----
+
+==== Vector Widening BFloat Mul instruction
+[,c]
+----
+vfloat32mf2_t __riscv_vfwmul_vv_bf16mf4_f32mf2(vbfloat16mf4_t vs2, vbfloat16mf4_t vs1, size_t vl);
+----
+
+==== Vector Widening BFloat Fused Multiply-Add instructions
+[,c]
+----
+vfloat32mf2_t __riscv_vfwmacc_vv_bf16mf4_f32mf2(vfloat32mf2_t vd, vbfloat16mf4_t vs1, vbfloat16mf4_t vs2, size_t vl);
+vfloat32mf2_t __riscv_vfwnmacc_vv_bf16mf4_f32mf2(vfloat32mf2_t vd, vbfloat16mf4_t vs1, vbfloat16mf4_t vs2, size_t vl);
+vfloat32mf2_t __riscv_vfwmsac_vv_bf16mf4_f32mf2(vfloat32mf2_t vd, vbfloat16mf4_t vs1, vbfloat16mf4_t vs2, size_t vl);
+vfloat32mf2_t __riscv_vfwnmsac_vv_bf16mf4_f32mf2(vfloat32mf2_t vd, vbfloat16mf4_t vs1, vbfloat16mf4_t vs2, size_t vl);
+----
+
+==== Vector Widening BFloat Type-Convert instruction
+[,c]
+----
+vfloat32mf2_t __riscv_vfwcvt_f_f_v_bf16mf4_f32mf2(vbfloat16mf4_t vs2, size_t vl);
+----
+
+==== Vector Narrowing BFloat Type-Convert instruction
+[,c]
+----
+vint8mf8_t __riscv_vfncvt_x_f_w_bf16mf4_i8mf8(vbfloat16mf4_t vs2, size_t vl);
+vint8mf8_t __riscv_vfncvt_rtz_x_f_w_bf16mf4_i8mf8(vbfloat16mf4_t vs2, size_t vl);
+----
+
+==== Vector BFloat Classify instruction
+[,c]
+----
+vuint16mf4_t __riscv_vfclass_v_bf16mf4_u16mf4(vbfloat16mf4_t vs2, size_t vl);
+----
+
 [[implicit-naming-scheme]]
 === Implicit (Overloaded) naming scheme
 
@@ -362,6 +412,25 @@ vint32m1_t __riscv_vwadd_vv(vint16mf2_t vs2, vint16mf2_t vs1, size_t vl);
 vint32m1_t __riscv_vwadd_vx(vint16mf2_t vs2, int16_t rs1, size_t vl);
 vint32m1_t __riscv_vwadd_wv(vint32m1_t vs2, vint16mf2_t vs1, size_t vl);
 vint32m1_t __riscv_vwadd_wx(vint32m1_t vs2, int16_t rs1, size_t vl);
+----
+
+==== Widening BFloat Type-Convert instructions
+
+Add `_bf16` suffix to disambiguate between `zvfhmin` instructions, e.g. `vfloat16mf4_t __riscv_vfwcvt_f(vint8mf8_t vs2, size_t vl);`.
+
+[,c]
+----
+vbfloat16mf4_t __riscv_vfwcvt_f_bf16(vint8mf8_t vs2, size_t vl);
+----
+
+==== Narrowing BFloat Type-Convert instructions
+
+Add `_bf16` suffix to disambiguate between `zvfhmin` instructions, e.g. `vfloat16mf4_t __riscv_vfncvt_f(vfloat32mf2_t vs2, size_t vl);`.
+
+[,c]
+----
+vbfloat16mf4_t __riscv_vfncvt_f_bf16(vfloat32mf2_t vs2, size_t vl);
+vbfloat16mf4_t __riscv_vfncvt_rod_f_bf16(vfloat32mf2_t vs2, size_t vl);
 ----
 
 ==== Type-convert instructions
