@@ -45,6 +45,7 @@
 // masked functions
 // masked functions
 // masked functions
+// masked functions
 #define vmerge(mask, op1, op2, vl) __riscv_vmerge((op1), (op2), (mask), (vl))
 // masked functions
 // masked functions
@@ -88,6 +89,7 @@
   __riscv_vcompress_tu((dest), (src), (mask), (vl))
 // Reinterpret between different type under the same SEW/LMUL
 // Reinterpret between different SEW under the same LMUL
+// masked functions
 #define vse16(...)                                                             \
   _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
                 7, 6, 5, __riscv_vse16, __riscv_vse16, 2, 1)                   \
@@ -961,10 +963,6 @@
   _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
                 7, 6, __riscv_vrsub_tumu, 4, __riscv_vrsub, 2, 1)              \
   (__VA_ARGS__)
-#define vneg(...)                                                              \
-  _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
-                7, 6, 5, __riscv_vneg_tumu, 3, __riscv_vneg, 1)                \
-  (__VA_ARGS__)
 #define vwadd_vv(...)                                                          \
   _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
                 7, 6, __riscv_vwadd_vv_tumu, 4, __riscv_vwadd_vv, 2, 1)        \
@@ -1060,6 +1058,10 @@
 #define vzext_vf8(...)                                                         \
   _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
                 7, 6, 5, __riscv_vzext_vf8_tumu, 3, __riscv_vzext_vf8, 1)      \
+  (__VA_ARGS__)
+#define vneg(...)                                                              \
+  _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
+                7, 6, 5, __riscv_vneg_tumu, 3, __riscv_vneg, 1)                \
   (__VA_ARGS__)
 #define vadc(...) __riscv_vadc(__VA_ARGS__)
 #define vsbc(...) __riscv_vsbc(__VA_ARGS__)
@@ -1302,10 +1304,6 @@
   _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
                 7, 6, __riscv_vfrsub_tumu, 4, __riscv_vfrsub, 2, 1)            \
   (__VA_ARGS__)
-#define vfneg(...)                                                             \
-  _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
-                7, 6, 5, __riscv_vfneg_tumu, 3, __riscv_vfneg, 1)              \
-  (__VA_ARGS__)
 #define vfwadd_vv(...)                                                         \
   _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
                 7, 6, __riscv_vfwadd_vv_tumu, 4, __riscv_vfwadd_vv, 2, 1)      \
@@ -1437,6 +1435,10 @@
 #define vfabs(...)                                                             \
   _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
                 7, 6, 5, __riscv_vfabs_tumu, 3, __riscv_vfabs, 1)              \
+  (__VA_ARGS__)
+#define vfneg(...)                                                             \
+  _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
+                7, 6, 5, __riscv_vfneg_tumu, 3, __riscv_vfneg, 1)              \
   (__VA_ARGS__)
 #define vmfeq(...)                                                             \
   _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
@@ -1857,6 +1859,22 @@
 #define vget_u64m1(...) __riscv_vget_u64m1(__VA_ARGS__)
 #define vget_u64m2(...) __riscv_vget_u64m2(__VA_ARGS__)
 #define vget_u64m4(...) __riscv_vget_u64m4(__VA_ARGS__)
+#define vqdot(...)                                                             \
+  _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
+                7, 6, __riscv_vqdot_tumu, __riscv_vqdot, 3, 2, 1)              \
+  (__VA_ARGS__)
+#define vqdotsu(...)                                                           \
+  _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
+                7, 6, __riscv_vqdotsu_tumu, __riscv_vqdotsu, 3, 2, 1)          \
+  (__VA_ARGS__)
+#define vqdotus(...)                                                           \
+  _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
+                7, 6, __riscv_vqdotus_tumu, __riscv_vqdotus, 3, 2, 1)          \
+  (__VA_ARGS__)
+#define vqdotu(...)                                                            \
+  _GET_OVERRIDE(__VA_ARGS__, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, \
+                7, 6, __riscv_vqdotu_tumu, __riscv_vqdotu, 3, 2, 1)            \
+  (__VA_ARGS__)
 #define vle16(...) __riscv_vle16_tumu(__VA_ARGS__)
 #define vle32(...) __riscv_vle32_tumu(__VA_ARGS__)
 #define vle64(...) __riscv_vle64_tumu(__VA_ARGS__)

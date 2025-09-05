@@ -13,8 +13,8 @@
 # the Doc Template for RISC-V Extensions.
 
 DATE ?= $(shell date +%Y-%m-%d)
-VERSION ?= v0.99
-REVMARK ?= Frozen
+VERSION ?= v1.0
+REVMARK ?= Ratified
 
 HEADER_SOURCE := header.adoc
 PDF_RESULT := v-intrinsic-spec.pdf

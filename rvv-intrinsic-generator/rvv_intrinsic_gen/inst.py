@@ -129,7 +129,7 @@ def gen(g):
   g.function_group(binary_op_template,
                    "Vector Single-Width Integer Add and Subtract Intrinsics",
                    "vector-single-width-integer-add-and-subtract",
-                   ["add", "sub", "rsub", "neg"], ITYPES, SEWS, LMULS,
+                   ["add", "sub", "rsub"], ITYPES, SEWS, LMULS,
                    decorators.has_masking_maskedoff_policy)
 
   g.function_group(binary_wop_template,
@@ -145,6 +145,10 @@ def gen(g):
   g.function_group(unary_op_template, "Vector Integer Extension Intrinsics",
                    "vector-integer-extension", ["zext", "sext"], ITYPES, SEWS,
                    LMULS, decorators.has_masking_maskedoff_policy)
+
+  g.function_group(unary_op_template, "Vector Integer Neg Intrinsics",
+                   "vector-integer-neg", ["neg"], ITYPES, SEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy)
 
   if g.has_tail_policy:
     g.function_group(
@@ -289,7 +293,7 @@ def gen(g):
       binary_op_template,
       "Vector Single-Width Floating-Point Add/Subtract Intrinsics",
       "vector-single-width-floating-point-add-subtract",
-      ["fadd", "fsub", "frsub", "fneg"], FTYPES, FSEWS, LMULS,
+      ["fadd", "fsub", "frsub"], FTYPES, FSEWS, LMULS,
       decorators.has_masking_maskedoff_policy_frm)
 
   g.function_group(binary_wop_template,
@@ -353,9 +357,10 @@ def gen(g):
                    decorators.has_masking_maskedoff_policy)
 
   g.function_group(unary_op_template,
-                   "Vector Floating-Point Absolute Value Intrinsics",
-                   "vector-floating-point-absolute-value", ["abs"], FTYPES,
-                   FSEWS, LMULS, decorators.has_masking_maskedoff_policy)
+                   "Vector Floating-Point Abs and Neg Intrinsics",
+                   "vector-floating-point-abs-neg-value", ["abs", "neg"],
+                   FTYPES, FSEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy)
 
   g.function_group(cmp_template, "Vector Floating-Point Compare Intrinsics",
                    "vector-floating-point-compare",
@@ -524,6 +529,14 @@ def gen(g):
   g.function_group(misc_op_template, "Vector Creation Intrinsics",
                    "vector-creation", ["vcreate"], TYPES, SEWS, LMULS,
                    decorators.has_no_masking)
+
+  ####################################################################
+  g.start_group("Zvqdotq - Vector quad widening 4D Dot Product")
+  g.function_group(mac_template,
+                   "Zvqdotq - Vector quad widening 4D Dot Product",
+                   "zvqdotq-vector-quad-widening-4d-dot-product",
+                   ["qdot", "qdotsu", "qdotus"], ITYPES, [8], LMULS,
+                   decorators.has_masking_no_maskedoff_policy)
 
   ####################################################################
   g.gen_prologue()
