@@ -1,23 +1,23 @@
 #include "common.h"
 #include <riscv_vector.h>
 
-// matrix multiplication
+// matrix multiplication (B is expected in transposed form)
 // A[n][o], B[m][o] --> C[n][m];
-void matmul_golden(double **a, double **b, double **c, int n, int m, int o) {
+void matmul_golden(double **a, double **b_t, double **c, int n, int m, int o) {
   for (int i = 0; i < n; ++i)
     for (int j = 0; j < m; ++j) {
       c[i][j] = 0;
       for (int k = 0; k < o; ++k)
-        c[i][j] += a[i][k] * b[j][k];
+        c[i][j] += a[i][k] * b_t[j][k];
     }
 }
 
-void matmul(double **a, double **b, double **c, int n, int m, int o) {
+void matmul(double **a, double **b_t, double **c, int n, int m, int o) {
   size_t vlmax = __riscv_vsetvlmax_e64m1();
   for (int i = 0; i < n; ++i) {
     for (int j = 0; j < m; ++j) {
       double *ptr_a = &a[i][0];
-      double *ptr_b = &b[j][0];
+      double *ptr_b = &b_t[j][0];
       int k = o;
       vfloat64m1_t vec_s = __riscv_vfmv_v_f_f64m1(0, vlmax);
       vfloat64m1_t vec_zero = __riscv_vfmv_v_f_f64m1(0, vlmax);
@@ -47,7 +47,7 @@ int main() {
 
   // data gen
   double **A = alloc_array_2d(N, O);
-  double **B = alloc_array_2d(M, O);
+  double **B = alloc_array_2d(M, O); //B is created transposed
   gen_rand_2d(A, N, O);
   gen_rand_2d(B, M, O);
 
