@@ -1971,4 +1971,122 @@
 #define vqdotsu_tamu(...) __riscv_vqdotsu_mu(__VA_ARGS__)
 #define vqdotus_tamu(...) __riscv_vqdotus_mu(__VA_ARGS__)
 #define vqdotu_tamu(...) __riscv_vqdotu_mu(__VA_ARGS__)
+#define vfwcvt_f_f8e4m3_bf16_tu(...)                                           \
+  __riscv_vfwcvt_f_f8e4m3_bf16_tu(__VA_ARGS__)
+#define vfwcvt_f_f8e4m3_bf16_ta(...) __riscv_vfwcvt_f_f8e4m3_bf16(__VA_ARGS__)
+// masked functions
+#define vfwcvt_f_f8e4m3_bf16_tuma(...)                                         \
+  __riscv_vfwcvt_f_f8e4m3_bf16_tum(__VA_ARGS__)
+// masked functions
+#define vfwcvt_f_f8e4m3_bf16_tumu(...)                                         \
+  __riscv_vfwcvt_f_f8e4m3_bf16_tumu(__VA_ARGS__)
+// masked functions
+#define vfwcvt_f_f8e4m3_bf16_tama(...) __riscv_vfwcvt_f_f8e4m3_bf16(__VA_ARGS__)
+// masked functions
+#define vfwcvt_f_f8e4m3_bf16_tamu(...)                                         \
+  __riscv_vfwcvt_f_f8e4m3_bf16_mu(__VA_ARGS__)
+#define vfwcvt_f_f8e5m2_bf16_tu(...)                                           \
+  __riscv_vfwcvt_f_f8e5m2_bf16_tu(__VA_ARGS__)
+#define vfwcvt_f_f8e5m2_bf16_ta(...) __riscv_vfwcvt_f_f8e5m2_bf16(__VA_ARGS__)
+// masked functions
+#define vfwcvt_f_f8e5m2_bf16_tuma(...)                                         \
+  __riscv_vfwcvt_f_f8e5m2_bf16_tum(__VA_ARGS__)
+// masked functions
+#define vfwcvt_f_f8e5m2_bf16_tumu(...)                                         \
+  __riscv_vfwcvt_f_f8e5m2_bf16_tumu(__VA_ARGS__)
+// masked functions
+#define vfwcvt_f_f8e5m2_bf16_tama(...) __riscv_vfwcvt_f_f8e5m2_bf16(__VA_ARGS__)
+// masked functions
+#define vfwcvt_f_f8e5m2_bf16_tamu(...)                                         \
+  __riscv_vfwcvt_f_f8e5m2_bf16_mu(__VA_ARGS__)
+#define vfncvt_f_bf16_f8e4m3_tu(...)                                           \
+  __riscv_vfncvt_f_bf16_f8e4m3_tu(__VA_ARGS__)
+#define vfncvt_sat_f_bf16_f8e4m3_tu(...)                                       \
+  __riscv_vfncvt_sat_f_bf16_f8e4m3_tu(__VA_ARGS__)
+#define vfncvt_f_bf16_f8e4m3_ta(...) __riscv_vfncvt_f_bf16_f8e4m3(__VA_ARGS__)
+#define vfncvt_sat_f_bf16_f8e4m3_ta(...)                                       \
+  __riscv_vfncvt_sat_f_bf16_f8e4m3(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_bf16_f8e4m3_tuma(...)                                         \
+  __riscv_vfncvt_f_bf16_f8e4m3_tum(__VA_ARGS__)
+#define vfncvt_sat_f_bf16_f8e4m3_tuma(...)                                     \
+  __riscv_vfncvt_sat_f_bf16_f8e4m3_tum(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_bf16_f8e4m3_tumu(...)                                         \
+  __riscv_vfncvt_f_bf16_f8e4m3_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_bf16_f8e4m3_tumu(...)                                     \
+  __riscv_vfncvt_sat_f_bf16_f8e4m3_tumu(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_bf16_f8e4m3_tama(...) __riscv_vfncvt_f_bf16_f8e4m3(__VA_ARGS__)
+#define vfncvt_sat_f_bf16_f8e4m3_tama(...)                                     \
+  __riscv_vfncvt_sat_f_bf16_f8e4m3(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_bf16_f8e4m3_tamu(...)                                         \
+  __riscv_vfncvt_f_bf16_f8e4m3_mu(__VA_ARGS__)
+#define vfncvt_sat_f_bf16_f8e4m3_tamu(...)                                     \
+  __riscv_vfncvt_sat_f_bf16_f8e4m3_mu(__VA_ARGS__)
+#define vfncvt_f_bf16_f8e5m2_tu(...)                                           \
+  __riscv_vfncvt_f_bf16_f8e5m2_tu(__VA_ARGS__)
+#define vfncvt_sat_f_bf16_f8e5m2_tu(...)                                       \
+  __riscv_vfncvt_sat_f_bf16_f8e5m2_tu(__VA_ARGS__)
+#define vfncvt_f_bf16_f8e5m2_ta(...) __riscv_vfncvt_f_bf16_f8e5m2(__VA_ARGS__)
+#define vfncvt_sat_f_bf16_f8e5m2_ta(...)                                       \
+  __riscv_vfncvt_sat_f_bf16_f8e5m2(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_bf16_f8e5m2_tuma(...)                                         \
+  __riscv_vfncvt_f_bf16_f8e5m2_tum(__VA_ARGS__)
+#define vfncvt_sat_f_bf16_f8e5m2_tuma(...)                                     \
+  __riscv_vfncvt_sat_f_bf16_f8e5m2_tum(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_bf16_f8e5m2_tumu(...)                                         \
+  __riscv_vfncvt_f_bf16_f8e5m2_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_bf16_f8e5m2_tumu(...)                                     \
+  __riscv_vfncvt_sat_f_bf16_f8e5m2_tumu(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_bf16_f8e5m2_tama(...) __riscv_vfncvt_f_bf16_f8e5m2(__VA_ARGS__)
+#define vfncvt_sat_f_bf16_f8e5m2_tama(...)                                     \
+  __riscv_vfncvt_sat_f_bf16_f8e5m2(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_bf16_f8e5m2_tamu(...)                                         \
+  __riscv_vfncvt_f_bf16_f8e5m2_mu(__VA_ARGS__)
+#define vfncvt_sat_f_bf16_f8e5m2_tamu(...)                                     \
+  __riscv_vfncvt_sat_f_bf16_f8e5m2_mu(__VA_ARGS__)
+#define vfncvt_f_f8e4m3_tu(...) __riscv_vfncvt_f_f8e4m3_tu(__VA_ARGS__)
+#define vfncvt_sat_f_f8e4m3_tu(...) __riscv_vfncvt_sat_f_f8e4m3_tu(__VA_ARGS__)
+#define vfncvt_f_f8e4m3_ta(...) __riscv_vfncvt_f_f8e4m3(__VA_ARGS__)
+#define vfncvt_sat_f_f8e4m3_ta(...) __riscv_vfncvt_sat_f_f8e4m3(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_f8e4m3_tuma(...) __riscv_vfncvt_f_f8e4m3_tum(__VA_ARGS__)
+#define vfncvt_sat_f_f8e4m3_tuma(...)                                          \
+  __riscv_vfncvt_sat_f_f8e4m3_tum(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_f8e4m3_tumu(...) __riscv_vfncvt_f_f8e4m3_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f8e4m3_tumu(...)                                          \
+  __riscv_vfncvt_sat_f_f8e4m3_tumu(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_f8e4m3_tama(...) __riscv_vfncvt_f_f8e4m3(__VA_ARGS__)
+#define vfncvt_sat_f_f8e4m3_tama(...) __riscv_vfncvt_sat_f_f8e4m3(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_f8e4m3_tamu(...) __riscv_vfncvt_f_f8e4m3_mu(__VA_ARGS__)
+#define vfncvt_sat_f_f8e4m3_tamu(...)                                          \
+  __riscv_vfncvt_sat_f_f8e4m3_mu(__VA_ARGS__)
+#define vfncvt_f_f8e5m2_tu(...) __riscv_vfncvt_f_f8e5m2_tu(__VA_ARGS__)
+#define vfncvt_sat_f_f8e5m2_tu(...) __riscv_vfncvt_sat_f_f8e5m2_tu(__VA_ARGS__)
+#define vfncvt_f_f8e5m2_ta(...) __riscv_vfncvt_f_f8e5m2(__VA_ARGS__)
+#define vfncvt_sat_f_f8e5m2_ta(...) __riscv_vfncvt_sat_f_f8e5m2(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_f8e5m2_tuma(...) __riscv_vfncvt_f_f8e5m2_tum(__VA_ARGS__)
+#define vfncvt_sat_f_f8e5m2_tuma(...)                                          \
+  __riscv_vfncvt_sat_f_f8e5m2_tum(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_f8e5m2_tumu(...) __riscv_vfncvt_f_f8e5m2_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f8e5m2_tumu(...)                                          \
+  __riscv_vfncvt_sat_f_f8e5m2_tumu(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_f8e5m2_tama(...) __riscv_vfncvt_f_f8e5m2(__VA_ARGS__)
+#define vfncvt_sat_f_f8e5m2_tama(...) __riscv_vfncvt_sat_f_f8e5m2(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_f8e5m2_tamu(...) __riscv_vfncvt_f_f8e5m2_mu(__VA_ARGS__)
+#define vfncvt_sat_f_f8e5m2_tamu(...)                                          \
+  __riscv_vfncvt_sat_f_f8e5m2_mu(__VA_ARGS__)
 #endif
