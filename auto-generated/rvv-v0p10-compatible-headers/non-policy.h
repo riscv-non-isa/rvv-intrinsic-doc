@@ -27772,4 +27772,224 @@
 #define vqdotu_vx_u32m4_m(...) __riscv_vqdotu_vx_u32m4_tumu(__VA_ARGS__)
 #define vqdotu_vv_u32m8_m(...) __riscv_vqdotu_vv_u32m8_tumu(__VA_ARGS__)
 #define vqdotu_vx_u32m8_m(...) __riscv_vqdotu_vx_u32m8_tumu(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e4m3mf8_bf16mf4(...)                                    \
+  __riscv_vfwcvt_f_f_v_f8e4m3mf8_bf16mf4(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e4m3mf4_bf16mf2(...)                                    \
+  __riscv_vfwcvt_f_f_v_f8e4m3mf4_bf16mf2(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e4m3mf2_bf16m1(...)                                     \
+  __riscv_vfwcvt_f_f_v_f8e4m3mf2_bf16m1(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e4m3m1_bf16m2(...)                                      \
+  __riscv_vfwcvt_f_f_v_f8e4m3m1_bf16m2(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e4m3m2_bf16m4(...)                                      \
+  __riscv_vfwcvt_f_f_v_f8e4m3m2_bf16m4(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e4m3m4_bf16m8(...)                                      \
+  __riscv_vfwcvt_f_f_v_f8e4m3m4_bf16m8(__VA_ARGS__)
+// masked functions
+#define vfwcvt_f_f_v_f8e4m3mf8_bf16mf4_m(...)                                  \
+  __riscv_vfwcvt_f_f_v_f8e4m3mf8_bf16mf4_tumu(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e4m3mf4_bf16mf2_m(...)                                  \
+  __riscv_vfwcvt_f_f_v_f8e4m3mf4_bf16mf2_tumu(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e4m3mf2_bf16m1_m(...)                                   \
+  __riscv_vfwcvt_f_f_v_f8e4m3mf2_bf16m1_tumu(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e4m3m1_bf16m2_m(...)                                    \
+  __riscv_vfwcvt_f_f_v_f8e4m3m1_bf16m2_tumu(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e4m3m2_bf16m4_m(...)                                    \
+  __riscv_vfwcvt_f_f_v_f8e4m3m2_bf16m4_tumu(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e4m3m4_bf16m8_m(...)                                    \
+  __riscv_vfwcvt_f_f_v_f8e4m3m4_bf16m8_tumu(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e5m2mf8_bf16mf4(...)                                    \
+  __riscv_vfwcvt_f_f_v_f8e5m2mf8_bf16mf4(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e5m2mf4_bf16mf2(...)                                    \
+  __riscv_vfwcvt_f_f_v_f8e5m2mf4_bf16mf2(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e5m2mf2_bf16m1(...)                                     \
+  __riscv_vfwcvt_f_f_v_f8e5m2mf2_bf16m1(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e5m2m1_bf16m2(...)                                      \
+  __riscv_vfwcvt_f_f_v_f8e5m2m1_bf16m2(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e5m2m2_bf16m4(...)                                      \
+  __riscv_vfwcvt_f_f_v_f8e5m2m2_bf16m4(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e5m2m4_bf16m8(...)                                      \
+  __riscv_vfwcvt_f_f_v_f8e5m2m4_bf16m8(__VA_ARGS__)
+// masked functions
+#define vfwcvt_f_f_v_f8e5m2mf8_bf16mf4_m(...)                                  \
+  __riscv_vfwcvt_f_f_v_f8e5m2mf8_bf16mf4_tumu(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e5m2mf4_bf16mf2_m(...)                                  \
+  __riscv_vfwcvt_f_f_v_f8e5m2mf4_bf16mf2_tumu(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e5m2mf2_bf16m1_m(...)                                   \
+  __riscv_vfwcvt_f_f_v_f8e5m2mf2_bf16m1_tumu(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e5m2m1_bf16m2_m(...)                                    \
+  __riscv_vfwcvt_f_f_v_f8e5m2m1_bf16m2_tumu(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e5m2m2_bf16m4_m(...)                                    \
+  __riscv_vfwcvt_f_f_v_f8e5m2m2_bf16m4_tumu(__VA_ARGS__)
+#define vfwcvt_f_f_v_f8e5m2m4_bf16m8_m(...)                                    \
+  __riscv_vfwcvt_f_f_v_f8e5m2m4_bf16m8_tumu(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16mf4_f8e4m3mf8(...)                                    \
+  __riscv_vfncvt_f_f_w_bf16mf4_f8e4m3mf8(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16mf4_f8e4m3mf8(...)                                \
+  __riscv_vfncvt_sat_f_f_w_bf16mf4_f8e4m3mf8(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16mf2_f8e4m3mf4(...)                                    \
+  __riscv_vfncvt_f_f_w_bf16mf2_f8e4m3mf4(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16mf2_f8e4m3mf4(...)                                \
+  __riscv_vfncvt_sat_f_f_w_bf16mf2_f8e4m3mf4(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m1_f8e4m3mf2(...)                                     \
+  __riscv_vfncvt_f_f_w_bf16m1_f8e4m3mf2(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m1_f8e4m3mf2(...)                                 \
+  __riscv_vfncvt_sat_f_f_w_bf16m1_f8e4m3mf2(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m2_f8e4m3m1(...)                                      \
+  __riscv_vfncvt_f_f_w_bf16m2_f8e4m3m1(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m2_f8e4m3m1(...)                                  \
+  __riscv_vfncvt_sat_f_f_w_bf16m2_f8e4m3m1(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m4_f8e4m3m2(...)                                      \
+  __riscv_vfncvt_f_f_w_bf16m4_f8e4m3m2(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m4_f8e4m3m2(...)                                  \
+  __riscv_vfncvt_sat_f_f_w_bf16m4_f8e4m3m2(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m8_f8e4m3m4(...)                                      \
+  __riscv_vfncvt_f_f_w_bf16m8_f8e4m3m4(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m8_f8e4m3m4(...)                                  \
+  __riscv_vfncvt_sat_f_f_w_bf16m8_f8e4m3m4(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_f_w_bf16mf4_f8e4m3mf8_m(...)                                  \
+  __riscv_vfncvt_f_f_w_bf16mf4_f8e4m3mf8_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16mf4_f8e4m3mf8_m(...)                              \
+  __riscv_vfncvt_sat_f_f_w_bf16mf4_f8e4m3mf8_tumu(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16mf2_f8e4m3mf4_m(...)                                  \
+  __riscv_vfncvt_f_f_w_bf16mf2_f8e4m3mf4_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16mf2_f8e4m3mf4_m(...)                              \
+  __riscv_vfncvt_sat_f_f_w_bf16mf2_f8e4m3mf4_tumu(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m1_f8e4m3mf2_m(...)                                   \
+  __riscv_vfncvt_f_f_w_bf16m1_f8e4m3mf2_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m1_f8e4m3mf2_m(...)                               \
+  __riscv_vfncvt_sat_f_f_w_bf16m1_f8e4m3mf2_tumu(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m2_f8e4m3m1_m(...)                                    \
+  __riscv_vfncvt_f_f_w_bf16m2_f8e4m3m1_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m2_f8e4m3m1_m(...)                                \
+  __riscv_vfncvt_sat_f_f_w_bf16m2_f8e4m3m1_tumu(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m4_f8e4m3m2_m(...)                                    \
+  __riscv_vfncvt_f_f_w_bf16m4_f8e4m3m2_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m4_f8e4m3m2_m(...)                                \
+  __riscv_vfncvt_sat_f_f_w_bf16m4_f8e4m3m2_tumu(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m8_f8e4m3m4_m(...)                                    \
+  __riscv_vfncvt_f_f_w_bf16m8_f8e4m3m4_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m8_f8e4m3m4_m(...)                                \
+  __riscv_vfncvt_sat_f_f_w_bf16m8_f8e4m3m4_tumu(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16mf4_f8e5m2mf8(...)                                    \
+  __riscv_vfncvt_f_f_w_bf16mf4_f8e5m2mf8(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16mf4_f8e5m2mf8(...)                                \
+  __riscv_vfncvt_sat_f_f_w_bf16mf4_f8e5m2mf8(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16mf2_f8e5m2mf4(...)                                    \
+  __riscv_vfncvt_f_f_w_bf16mf2_f8e5m2mf4(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16mf2_f8e5m2mf4(...)                                \
+  __riscv_vfncvt_sat_f_f_w_bf16mf2_f8e5m2mf4(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m1_f8e5m2mf2(...)                                     \
+  __riscv_vfncvt_f_f_w_bf16m1_f8e5m2mf2(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m1_f8e5m2mf2(...)                                 \
+  __riscv_vfncvt_sat_f_f_w_bf16m1_f8e5m2mf2(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m2_f8e5m2m1(...)                                      \
+  __riscv_vfncvt_f_f_w_bf16m2_f8e5m2m1(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m2_f8e5m2m1(...)                                  \
+  __riscv_vfncvt_sat_f_f_w_bf16m2_f8e5m2m1(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m4_f8e5m2m2(...)                                      \
+  __riscv_vfncvt_f_f_w_bf16m4_f8e5m2m2(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m4_f8e5m2m2(...)                                  \
+  __riscv_vfncvt_sat_f_f_w_bf16m4_f8e5m2m2(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m8_f8e5m2m4(...)                                      \
+  __riscv_vfncvt_f_f_w_bf16m8_f8e5m2m4(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m8_f8e5m2m4(...)                                  \
+  __riscv_vfncvt_sat_f_f_w_bf16m8_f8e5m2m4(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_f_w_bf16mf4_f8e5m2mf8_m(...)                                  \
+  __riscv_vfncvt_f_f_w_bf16mf4_f8e5m2mf8_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16mf4_f8e5m2mf8_m(...)                              \
+  __riscv_vfncvt_sat_f_f_w_bf16mf4_f8e5m2mf8_tumu(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16mf2_f8e5m2mf4_m(...)                                  \
+  __riscv_vfncvt_f_f_w_bf16mf2_f8e5m2mf4_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16mf2_f8e5m2mf4_m(...)                              \
+  __riscv_vfncvt_sat_f_f_w_bf16mf2_f8e5m2mf4_tumu(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m1_f8e5m2mf2_m(...)                                   \
+  __riscv_vfncvt_f_f_w_bf16m1_f8e5m2mf2_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m1_f8e5m2mf2_m(...)                               \
+  __riscv_vfncvt_sat_f_f_w_bf16m1_f8e5m2mf2_tumu(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m2_f8e5m2m1_m(...)                                    \
+  __riscv_vfncvt_f_f_w_bf16m2_f8e5m2m1_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m2_f8e5m2m1_m(...)                                \
+  __riscv_vfncvt_sat_f_f_w_bf16m2_f8e5m2m1_tumu(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m4_f8e5m2m2_m(...)                                    \
+  __riscv_vfncvt_f_f_w_bf16m4_f8e5m2m2_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m4_f8e5m2m2_m(...)                                \
+  __riscv_vfncvt_sat_f_f_w_bf16m4_f8e5m2m2_tumu(__VA_ARGS__)
+#define vfncvt_f_f_w_bf16m8_f8e5m2m4_m(...)                                    \
+  __riscv_vfncvt_f_f_w_bf16m8_f8e5m2m4_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_w_bf16m8_f8e5m2m4_m(...)                                \
+  __riscv_vfncvt_sat_f_f_w_bf16m8_f8e5m2m4_tumu(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e4m3mf8(...) __riscv_vfncvt_f_f_q_f8e4m3mf8(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e4m3mf8(...)                                        \
+  __riscv_vfncvt_sat_f_f_q_f8e4m3mf8(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e4m3mf4(...) __riscv_vfncvt_f_f_q_f8e4m3mf4(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e4m3mf4(...)                                        \
+  __riscv_vfncvt_sat_f_f_q_f8e4m3mf4(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e4m3mf2(...) __riscv_vfncvt_f_f_q_f8e4m3mf2(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e4m3mf2(...)                                        \
+  __riscv_vfncvt_sat_f_f_q_f8e4m3mf2(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e4m3m1(...) __riscv_vfncvt_f_f_q_f8e4m3m1(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e4m3m1(...)                                         \
+  __riscv_vfncvt_sat_f_f_q_f8e4m3m1(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e4m3m2(...) __riscv_vfncvt_f_f_q_f8e4m3m2(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e4m3m2(...)                                         \
+  __riscv_vfncvt_sat_f_f_q_f8e4m3m2(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_f_q_f8e4m3mf8_m(...)                                          \
+  __riscv_vfncvt_f_f_q_f8e4m3mf8_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e4m3mf8_m(...)                                      \
+  __riscv_vfncvt_sat_f_f_q_f8e4m3mf8_tumu(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e4m3mf4_m(...)                                          \
+  __riscv_vfncvt_f_f_q_f8e4m3mf4_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e4m3mf4_m(...)                                      \
+  __riscv_vfncvt_sat_f_f_q_f8e4m3mf4_tumu(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e4m3mf2_m(...)                                          \
+  __riscv_vfncvt_f_f_q_f8e4m3mf2_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e4m3mf2_m(...)                                      \
+  __riscv_vfncvt_sat_f_f_q_f8e4m3mf2_tumu(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e4m3m1_m(...)                                           \
+  __riscv_vfncvt_f_f_q_f8e4m3m1_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e4m3m1_m(...)                                       \
+  __riscv_vfncvt_sat_f_f_q_f8e4m3m1_tumu(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e4m3m2_m(...)                                           \
+  __riscv_vfncvt_f_f_q_f8e4m3m2_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e4m3m2_m(...)                                       \
+  __riscv_vfncvt_sat_f_f_q_f8e4m3m2_tumu(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e5m2mf8(...) __riscv_vfncvt_f_f_q_f8e5m2mf8(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e5m2mf8(...)                                        \
+  __riscv_vfncvt_sat_f_f_q_f8e5m2mf8(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e5m2mf4(...) __riscv_vfncvt_f_f_q_f8e5m2mf4(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e5m2mf4(...)                                        \
+  __riscv_vfncvt_sat_f_f_q_f8e5m2mf4(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e5m2mf2(...) __riscv_vfncvt_f_f_q_f8e5m2mf2(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e5m2mf2(...)                                        \
+  __riscv_vfncvt_sat_f_f_q_f8e5m2mf2(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e5m2m1(...) __riscv_vfncvt_f_f_q_f8e5m2m1(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e5m2m1(...)                                         \
+  __riscv_vfncvt_sat_f_f_q_f8e5m2m1(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e5m2m2(...) __riscv_vfncvt_f_f_q_f8e5m2m2(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e5m2m2(...)                                         \
+  __riscv_vfncvt_sat_f_f_q_f8e5m2m2(__VA_ARGS__)
+// masked functions
+#define vfncvt_f_f_q_f8e5m2mf8_m(...)                                          \
+  __riscv_vfncvt_f_f_q_f8e5m2mf8_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e5m2mf8_m(...)                                      \
+  __riscv_vfncvt_sat_f_f_q_f8e5m2mf8_tumu(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e5m2mf4_m(...)                                          \
+  __riscv_vfncvt_f_f_q_f8e5m2mf4_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e5m2mf4_m(...)                                      \
+  __riscv_vfncvt_sat_f_f_q_f8e5m2mf4_tumu(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e5m2mf2_m(...)                                          \
+  __riscv_vfncvt_f_f_q_f8e5m2mf2_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e5m2mf2_m(...)                                      \
+  __riscv_vfncvt_sat_f_f_q_f8e5m2mf2_tumu(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e5m2m1_m(...)                                           \
+  __riscv_vfncvt_f_f_q_f8e5m2m1_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e5m2m1_m(...)                                       \
+  __riscv_vfncvt_sat_f_f_q_f8e5m2m1_tumu(__VA_ARGS__)
+#define vfncvt_f_f_q_f8e5m2m2_m(...)                                           \
+  __riscv_vfncvt_f_f_q_f8e5m2m2_tumu(__VA_ARGS__)
+#define vfncvt_sat_f_f_q_f8e5m2m2_m(...)                                       \
+  __riscv_vfncvt_sat_f_f_q_f8e5m2m2_tumu(__VA_ARGS__)
 #endif
