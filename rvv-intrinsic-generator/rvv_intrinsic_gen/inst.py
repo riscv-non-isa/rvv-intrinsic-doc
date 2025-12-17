@@ -42,6 +42,7 @@ from templates import reduction_template
 from templates import mask_template
 from templates import mask_load_store_template
 from templates import permute_template
+from templates import zvfofp8min_template
 from constants import LMULS,WLMULS,NCVTLMULS,SEWS,WSEWS,FSEWS,WFSEWS,NSEWS,\
   TYPES,ITYPES,FTYPES,MTYPES,MLENS
 from generator import CompatibleHeaderGenerator
@@ -538,5 +539,41 @@ def gen(g):
                    ["qdot", "qdotsu", "qdotus"], ITYPES, [8], LMULS,
                    decorators.has_masking_no_maskedoff_policy)
 
+  ####################################################################
+  g.start_group("Zvfofp8min - OFP8 to BF16 conversion instructions")
+  g.function_group(zvfofp8min_template,
+                   "OFP8(E4M3) to BF16 conversion instructions",
+                   "ofp8-e4m3-to-bf16-conversion-instructions", ["wcvtbf16"],
+                   ["f8e4m3"], [8], WLMULS,
+                   decorators.has_masking_maskedoff_policy)
+  g.function_group(zvfofp8min_template,
+                   "OFP8(E5M2) to BF16 conversion instructions",
+                   "ofp8-e5m2-to-bf16-conversion-instructions", ["wcvtbf16"],
+                   ["f8e5m2"], [8], WLMULS,
+                   decorators.has_masking_maskedoff_policy)
+
+  g.start_group("Zvfofp8min - BF16 to OFP8 conversion instructions")
+  g.function_group(zvfofp8min_template,
+                   "BF16 to OFP8(E4M3) conversion instructions",
+                   "bf16-to-ofp8-e4m3-conversion-instructions", ["ncvtbf16"],
+                   ["f8e4m3"], [16], NCVTLMULS,
+                   decorators.has_masking_maskedoff_policy_frm)
+  g.function_group(zvfofp8min_template,
+                   "BF16 to OFP8(E5M2) conversion instructions",
+                   "bf16-to-ofp8-e5m2-conversion-instructions", ["ncvtbf16"],
+                   ["f8e5m2"], [16], NCVTLMULS,
+                   decorators.has_masking_maskedoff_policy_frm)
+
+  g.start_group("Zvfofp8min - FP32 to OFP8 conversion instructions")
+  g.function_group(zvfofp8min_template,
+                   "FP32 to OFP8(E4M3) conversion instructions",
+                   "fp32-to-ofp8-e4m3-conversion-instructions", ["ncvt"],
+                   ["f8e4m3"], [32], NCVTLMULS,
+                   decorators.has_masking_maskedoff_policy_frm)
+  g.function_group(zvfofp8min_template,
+                   "FP32 to OFP8(E5M2) conversion instructions",
+                   "fp32-to-ofp8-e5m2-conversion-instructions", ["ncvt"],
+                   ["f8e5m2"], [32], NCVTLMULS,
+                   decorators.has_masking_maskedoff_policy_frm)
   ####################################################################
   g.gen_prologue()

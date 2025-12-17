@@ -182,8 +182,9 @@ def gen(g):
                    decorators.has_masking_maskedoff_policy)
 
   g.function_group(binary_op_template, "Vector Register Gather Intrinsics",
-                   "vector-register-gather", ["rgather", "rgatherei16"], BFTYPES,
-                   SEWS, LMULS, decorators.has_masking_maskedoff_policy)
+                   "vector-register-gather", ["rgather", "rgatherei16"],
+                   BFTYPES, SEWS, LMULS,
+                   decorators.has_masking_maskedoff_policy)
 
   g.function_group(permute_template, "Vector Compress Intrinsics",
                    "vector-compress", ["compress"], BFTYPES, SEWS, LMULS,
