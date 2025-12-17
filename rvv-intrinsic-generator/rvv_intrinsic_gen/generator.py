@@ -260,6 +260,31 @@ class Generator(ABC):
     elif name.find("cvt") != -1:
       if name.find("cvt_rod") != -1 or name.find("cvt_rtz") != -1:
         overloaded_name = "_".join(sn[0:3])
+      elif "wcvt_f_f_v" in name or "ncvt_f_f_w" in name or\
+           "ncvt_sat_f_f_w" in name or "cvt_f_f_q" in name or\
+           "cvt_sat_f_f_q" in name:
+        overloaded_name = "_".join(sn[0:2])
+        if "cvt_sat_f_f_q" in name or "ncvt_sat_f_f_w" in name:
+          overloaded_name = "_".join(sn[0:3])
+        e4m3 = name.find("f8e4m3")
+        e5m2 = name.find("f8e5m2")
+        bf16 = name.find("bf16")
+        if e4m3 != -1 and bf16 != -1:
+          if e4m3 < bf16:
+            overloaded_name += "_f8e4m3_bf16"
+          else:
+            overloaded_name += "_bf16_f8e4m3"
+        elif e5m2 != -1 and bf16 != -1:
+          if e5m2 < bf16:
+            overloaded_name += "_f8e5m2_bf16"
+          else:
+            overloaded_name += "_bf16_f8e5m2"
+        elif e4m3 != -1:
+          overloaded_name += "_f8e4m3"
+        elif e5m2 != -1:
+          overloaded_name += "_f8e5m2"
+        elif bf16 != -1 and "wcvt" not in name:
+          overloaded_name += "_bf16"
       else:
         overloaded_name = "_".join(sn[0:2])
     elif any(op in name for op in ["reinterpret", "vget"]):

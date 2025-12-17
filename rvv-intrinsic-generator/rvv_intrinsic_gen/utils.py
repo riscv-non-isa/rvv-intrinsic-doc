@@ -231,6 +231,7 @@ def prod(constraint=basic_constraint, **kargs):
         temp["Q" + k] = get_string_lmul(temp[k], 4)
         temp["O" + k] = get_string_lmul(temp[k], 8)
         temp["N" + k] = get_string_lmul(temp[k], 0.5)
+        temp["L" + k] = get_string_lmul(temp[k], 0.25)
     if constraint(**temp):
       result.append(temp)
 
