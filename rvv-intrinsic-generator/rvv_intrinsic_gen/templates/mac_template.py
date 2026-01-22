@@ -58,7 +58,7 @@ def render(G,
         args["S_TYPE"] = "x"
         inst_type = InstType.VVX
 
-      if op in ["wmacc", "qmacc", "qdot"] and data_type == "uint":
+      if op in ["wmacc", "qmacc", "dot4a"] and data_type == "uint":
         args["OP"] = args["OP"] + "u"
 
       args["OP"] = "v" + args["OP"]
@@ -84,11 +84,15 @@ def render(G,
 
       type_helper = TypeHelper(**args)
       if (("maccsu" in op) or ("maccus" in op) or
-          op in ["qdotsu", "qdotus"]) and data_type == "uint":
+          op in ["dot4asu", "dot4aus"]) and data_type == "uint":
         # maccsu and maccus only support int type
         continue
-      elif (("w" in op) or ("q" in op)) and ("int" in data_type):
-        if "q" in op:
+      elif (("w" in op) or ("q" in op) or
+            ("dot4" in op)) and ("int" in data_type):
+        # going through widening and quad widening instructions
+        # (although vdot4a* does not have "q" in op it is still
+        # a quad widening instruction)
+        if "q" in op or "dot4" in op:
           args["SEW"] = args["QSEW"]
           qtype_helper = TypeHelper(**args)
           w_vtype = qtype_helper.v
@@ -121,7 +125,7 @@ def render(G,
               rs1=type_helper.sis,
               vs2=type_helper.uiv,
               vl=type_helper.size_t)
-        elif "qdotsu" in op:
+        elif "dot4asu" in op:
           G.func(
               inst_info_vv,
               name="{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
@@ -153,7 +157,7 @@ def render(G,
               rs1=type_helper.uis,
               vs2=type_helper.siv,
               vl=type_helper.size_t)
-        elif "qdotus" in op:
+        elif "dot4aus" in op:
           G.func(
               inst_info_vx,
               name="{OP}_vx_{TYPE}{SEW}m{LMUL}".format_map(args) +
@@ -185,7 +189,7 @@ def render(G,
               rs1=type_helper.s,
               vs2=type_helper.v,
               vl=type_helper.size_t)
-        elif "qdot" in op:
+        elif "dot4a" in op:
           G.func(
               inst_info_vv,
               name="{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
