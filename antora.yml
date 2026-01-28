@@ -1,0 +1,9 @@
+name: intrinsic
+title: RISC-V Vector C Intrinsic Specification Document
+version: v1.0
+nav:
+- modules/ROOT/nav.adoc
+
+asciidoc:
+  attributes:
+    page-pdf_url: https://github.com/riscv/docs.riscv.org/blob/main/static/pdf/riscv-plic-1.0.0.pdf

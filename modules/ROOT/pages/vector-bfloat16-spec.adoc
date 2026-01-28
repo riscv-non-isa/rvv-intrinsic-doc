@@ -1,0 +1,1 @@
+../../../doc/vector-bfloat16-spec.adoc
