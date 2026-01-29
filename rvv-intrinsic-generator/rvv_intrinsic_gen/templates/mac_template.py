@@ -92,21 +92,14 @@ def render(G,
         continue
       elif (("w" in op) or ("q" in op) or
             ("dot4" in op)) and ("int" in data_type):
-        # going through widening and quad widening instructions
-        # (although vdot4a* does not have "q" in op it is still
-        # a quad widening instruction)
-        if "q" in op or "dot4" in op:
-          args["SEW"] = args["QSEW"]
-          qtype_helper = TypeHelper(**args)
-          w_vtype = qtype_helper.v
-          if not type_helper.valid_vtype(w_vtype):
-            continue
-        else:
+        # going through widening instructions, vdot4a* has same sew for both
+        # input and output.
+        if "macc" in op:
           w_vtype = type_helper.wv
           args["SEW"] = args["WSEW"]
           args["LMUL"] = args["WLMUL"]
+          rt = w_vtype
 
-        rt = w_vtype
         if "maccsu" in op:
           G.func(
               inst_info_vv,
@@ -133,21 +126,21 @@ def render(G,
               inst_info_vv,
               name="{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
               decorator.func_suffix,
-              return_type=rt,
-              **decorator.mask_args(qtype_helper.m, qtype_helper.v),
-              vd=rt,
-              vs2=type_helper.siv,
+              return_type=type_helper.siv,
+              **decorator.mask_args(type_helper.m, type_helper.v),
+              vd=type_helper.siv,
+              vs2=type_helper.uiv,
               vs1=type_helper.uiv,
               vl=type_helper.size_t)
           G.func(
               inst_info_vx,
               name="{OP}_vx_{TYPE}{SEW}m{LMUL}".format_map(args) +
               decorator.func_suffix,
-              return_type=rt,
-              **decorator.mask_args(qtype_helper.m, qtype_helper.v),
-              vd=rt,
-              vs2=type_helper.siv,
-              rs1=qtype_helper.uis,
+              return_type=type_helper.siv,
+              **decorator.mask_args(type_helper.m, type_helper.v),
+              vd=type_helper.siv,
+              vs2=type_helper.uiv,
+              rs1=type_helper.uis,
               vl=type_helper.size_t)
         elif "maccus" in op:
           G.func(
@@ -165,11 +158,11 @@ def render(G,
               inst_info_vx,
               name="{OP}_vx_{TYPE}{SEW}m{LMUL}".format_map(args) +
               decorator.func_suffix,
-              return_type=rt,
-              **decorator.mask_args(qtype_helper.m, qtype_helper.v),
-              vd=rt,
+              return_type=type_helper.siv,
+              **decorator.mask_args(type_helper.m, type_helper.v),
+              vd=type_helper.siv,
               vs2=type_helper.uiv,
-              rs1=qtype_helper.uis,
+              rs1=type_helper.uis,
               vl=type_helper.size_t)
         elif "macc" in op:
           G.func(
@@ -197,21 +190,21 @@ def render(G,
               inst_info_vv,
               name="{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
               decorator.func_suffix,
-              return_type=rt,
-              **decorator.mask_args(qtype_helper.m, qtype_helper.v),
-              vd=rt,
-              vs2=type_helper.v,
-              vs1=type_helper.v,
+              return_type=type_helper.v,
+              **decorator.mask_args(type_helper.m, type_helper.v),
+              vd=type_helper.v,
+              vs2=type_helper.uiv,
+              vs1=type_helper.uiv,
               vl=type_helper.size_t)
           G.func(
               inst_info_vs,
               name="{OP}_v{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
               decorator.func_suffix,
-              return_type=rt,
-              **decorator.mask_args(qtype_helper.m, qtype_helper.v),
-              vd=rt,
-              vs2=type_helper.v,
-              rs1=qtype_helper.uis,
+              return_type=type_helper.v,
+              **decorator.mask_args(type_helper.m, type_helper.v),
+              vd=type_helper.v,
+              vs2=type_helper.uiv,
+              rs1=type_helper.uis,
               vl=type_helper.size_t)
       elif data_type in ["float", "bfloat"] and "w" in op:
         if data_type == "bfloat":

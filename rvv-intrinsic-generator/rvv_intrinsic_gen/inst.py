@@ -536,7 +536,7 @@ def gen(g):
   g.function_group(mac_template,
                    "Zvdot4a8i - Vector quad widening 4D Dot Product",
                    "zvdot4a8i-vector-quad-widening-4d-dot-product",
-                   ["dot4a", "dot4asu", "dot4aus"], ITYPES, [8], LMULS,
+                   ["dot4a", "dot4asu", "dot4aus"], ITYPES, [32], LMULS,
                    decorators.has_masking_no_maskedoff_policy)
 
   ####################################################################
