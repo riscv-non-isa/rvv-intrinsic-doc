@@ -50,7 +50,7 @@ def render(G,
       if op in ["zext", "sext"]:
         break
 
-      if data_type in ["float"]:
+      if data_type in ["float", "bfloat"]:
         args["S_TYPE"] = "f"
         args["OP"] = "f" + args["OP"]
         inst_type_vvsm = InstType.VVFM
@@ -113,9 +113,6 @@ def render(G,
             v0=type_helper.m,
             vl=type_helper.size_t)
 
-        if data_type == "bfloat":
-          continue
-
         G.func(
             inst_info_vvsm,
             name="{OP}_v{S_TYPE}m_{TYPE}{SEW}m{LMUL}".format_map(args) +
@@ -137,8 +134,6 @@ def render(G,
             **decorator.tu_dest_args(type_helper.v),
             vs1=type_helper.v,
             vl=type_helper.size_t)
-        if data_type == "bfloat":
-          continue
         G.func(
             inst_info_vs,
             name="{OP}_v_{S_TYPE}_{TYPE}{SEW}m{LMUL}".format_map(args) +
@@ -148,7 +143,7 @@ def render(G,
             rs1=type_helper.s,
             vl=type_helper.size_t)
       elif op in ["sqrt", "rsqrt7", "rec7", "abs", "neg"]:
-        assert data_type == "float" or op == "neg"
+        assert data_type in ["float", "bfloat"] or op == "neg"
         if op == "neg" and data_type == "uint":
           continue
         G.func(
@@ -162,11 +157,14 @@ def render(G,
             **decorator.extra_csr_args(type_helper.uint),
             vl=type_helper.size_t)
       elif op == "class":
-        assert data_type == "float"
+        assert data_type in ["float", "bfloat"]
+        if data_type == "bfloat":
+          func_name = "{OP}_v_bf{SEW}m{LMUL}_u{SEW}m{LMUL}".format_map(args)
+        else:
+          func_name = "{OP}_v_u{SEW}m{LMUL}".format_map(args)
         G.func(
             inst_info_vv,
-            name="{OP}_v_u{SEW}m{LMUL}".format_map(args) +
-            decorator.func_suffix,
+            name=func_name + decorator.func_suffix,
             return_type=type_helper.uiv,
             **decorator.mask_args(type_helper.m, type_helper.uiv),
             **decorator.tu_dest_args(type_helper.uiv),

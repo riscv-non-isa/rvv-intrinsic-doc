@@ -46,11 +46,14 @@ def render(G,
       data_type = args["TYPE"]
       op = args["OP"]
 
+      args["ORIG_SEW"] = args["SEW"]
+      args["ORIG_LMUL"] = args["LMUL"]
+
       # Integer intrinsics do not have frm variant.
       if "int" in data_type and decorator.flags & ExtraAttr.HAS_FRM:
         continue
 
-      if "float" in data_type:
+      if data_type in ["float", "bfloat"]:
         args["S_TYPE"] = "f"
         args["OP"] = "f" + op
         inst_type = InstType.VVF
@@ -210,18 +213,28 @@ def render(G,
               vs2=type_helper.v,
               rs1=qtype_helper.uis,
               vl=type_helper.size_t)
-      elif "float" in data_type and "w" in op:
-        # Vector BF16 widening multiply-accumulate computes into FP32 values
-        if args["TYPE"] == "bfloat":
+      elif data_type in ["float", "bfloat"] and "w" in op:
+        if data_type == "bfloat":
           args["TYPE"] = "float"
           dst_type_helper = TypeHelper(**args)
           dst_type = dst_type_helper.wv
+          if "wmaccbf16" in op:
+            name_suffix = ""
+            name_base_vv = "{OP}_vv_f{WSEW}m{WLMUL}"
+            name_base_vf = "{OP}_vf_f{WSEW}m{WLMUL}"
+          else:
+            name_suffix = "_f{WSEW}m{WLMUL}"
+            name_base_vv = "{OP}_vv_bf{ORIG_SEW}m{ORIG_LMUL}"
+            name_base_vf = "{OP}_vf_bf{ORIG_SEW}m{ORIG_LMUL}"
         else:
           dst_type = type_helper.wv
+          name_suffix = ""
+          name_base_vv = "{OP}_vv_{TYPE}{WSEW}m{WLMUL}"
+          name_base_vf = "{OP}_v{S_TYPE}_{TYPE}{WSEW}m{WLMUL}"
 
         G.func(
             inst_info_vv,
-            name="{OP}_vv_{TYPE}{WSEW}m{WLMUL}".format_map(args) +
+            name=(name_base_vv + name_suffix).format_map(args) +
             decorator.func_suffix,
             return_type=dst_type,
             **decorator.mask_args(type_helper.m, type_helper.v),
@@ -232,7 +245,7 @@ def render(G,
             vl=type_helper.size_t)
         G.func(
             inst_info_vs,
-            name="{OP}_v{S_TYPE}_{TYPE}{WSEW}m{WLMUL}".format_map(args) +
+            name=(name_base_vf + name_suffix).format_map(args) +
             decorator.func_suffix,
             return_type=dst_type,
             **decorator.mask_args(type_helper.m, type_helper.v),
