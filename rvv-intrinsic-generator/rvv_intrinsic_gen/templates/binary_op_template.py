@@ -55,7 +55,7 @@ def render(G,
       op2 = args["OP2"]
 
       if op2 == "s":
-        if data_type == "float" and op != "rgather":
+        if data_type in ["float", "bfloat"] and op != "rgather":
           args["OP2"] = "f"
         else:
           args["OP2"] = "x"

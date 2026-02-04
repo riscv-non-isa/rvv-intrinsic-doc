@@ -45,7 +45,7 @@ def render(G,
       data_type = args["TYPE"]
       op = args["OP"]
 
-      if data_type == "float" and\
+      if data_type in ["float", "bfloat"] and\
          op not in ["compress", "slideup", "slidedown"]:
         args["S_TYPE"] = "f"
         args["OP"] = "f" + args["OP"]

@@ -53,6 +53,14 @@ def render(G,
         convert_set = [["bfloat", "bf", "float", "f"]]
       elif "wcvtbf16" in op_list:
         convert_set = [["float", "f", "bfloat", "bf"]]
+      elif "ncvt" in op_list:
+        convert_set = [["int", "x", "bfloat", "bf"],
+                       ["uint", "xu", "bfloat", "bf"],
+                       ["bfloat", "bf", "float", "f"]]
+      elif "wcvt" in op_list:
+        convert_set = [["bfloat", "bf", "int", "x"],
+                       ["bfloat", "bf", "uint", "xu"],
+                       ["float", "f", "bfloat", "bf"]]
       else:
         assert False, "Unhandled instruction with type_list = 'bfloat16'"
     else:
@@ -63,6 +71,9 @@ def render(G,
         OP=op_list, SEW=sew_list, TYPES=convert_set, LMUL=lmul_list):
       assert args["TYPES"] is not None
       op = args["OP"]
+
+      args["ORIG_SEW"] = args["SEW"]
+      args["ORIG_LMUL"] = args["LMUL"]
 
       type_helper = TypeHelper(**args)
       args["TYPES0"] = args["TYPES"][0]
@@ -80,8 +91,8 @@ def render(G,
       # single-width IEEE floating-point value exactly.
       # So we don't need frm variant for vfwcvt.f.f, and vfwcvt.f.x(u) here
       if "wcvt" in op and decorator.flags & ExtraAttr.HAS_FRM and\
-         (args["TYPES0"] == args["TYPES2"] or\
-          ("float" in args["TYPES0"] and "int" in args["TYPES2"])):
+         ("float" in args["TYPES0"] and ("float" in args["TYPES2"] or "int" in
+                                         args["TYPES2"])):
         continue
 
       # Int to int conversions do not need a frm variant.
@@ -107,6 +118,8 @@ def render(G,
         args["D_TYPE"] = "u"
       elif args["TYPES1"] == "x":
         args["D_TYPE"] = "i"
+      elif args["TYPES1"] == "bf":
+        args["D_TYPE"] = "bf"
       else:
         args["D_TYPE"] = "f"
 
@@ -136,10 +149,24 @@ def render(G,
          not type_helper.valid_vtype(src_type):
         continue
       if type_list == "bfloat16":
-        if "ncvt" in args["OP"]:
+        if "ncvtbf16" in op_list:
           func_name = "{OP}_f_f_w_bf{LSEW}m{LLMUL}".format_map(args)
-        elif "wcvt" in args["OP"]:
+        elif "wcvtbf16" in op_list:
           func_name = "{OP}_f_f_v_f{LSEW}m{LLMUL}".format_map(args)
+        elif "ncvt" in op_list:
+          # zvfbfa narrowing conversions
+          if args["TYPES2"] == "bfloat" and "int" in args["TYPES0"]:
+            func_name = ("{OP}_{TYPES1}_f_w_bf{ORIG_SEW}m{ORIG_LMUL}"
+                         "_{D_TYPE}{LSEW}m{LLMUL}").format_map(args)
+          else:
+            func_name = "{OP}_f_f_w_bf{LSEW}m{LLMUL}".format_map(args)
+        elif "wcvt" in op_list:
+          # zvfbfa widening conversions
+          if args["TYPES0"] == "bfloat" and "int" in args["TYPES2"]:
+            func_name = "{OP}_f_{TYPES3}_v_bf{LSEW}m{LLMUL}".format_map(args)
+          else:
+            fmt = "{OP}_f_f_v_bf{ORIG_SEW}m{ORIG_LMUL}_f{LSEW}m{LLMUL}"
+            func_name = fmt.format_map(args)
         else:
           assert False, "Unhandled instruction for bfloat16 type"
       else:
@@ -162,11 +189,12 @@ def render(G,
       if decorator.flags & ExtraAttr.HAS_FRM:
         continue
 
-      # BFloat16 converts do not have `_rod`/`_rtz` instructions
-      if type_list == "bfloat16":
-        continue
-
-      if args["TYPES1"] != args["TYPES3"] and args["TYPES3"] == "f":
+      is_rtz = (type_list != "bfloat16" and
+                args["TYPES1"] != args["TYPES3"] and
+                args["TYPES3"] == "f") or \
+               (type_list == "bfloat16" and op == "ncvt" and
+                args["TYPES2"] == "bfloat" and "int" in args["TYPES0"])
+      if is_rtz:
         args["OP"] = args["OP"] + "_rtz"
         inst_info = InstInfo.get(
             args,
@@ -174,9 +202,13 @@ def render(G,
             InstType.VV,
             extra_attr=extra_attr,
             required_ext=required_ext_list)
-        func_name =\
-          "{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}".format_map\
-          (args)
+        if type_list == "bfloat16":
+          fmt = "{OP}_{TYPES1}_f_w_bf{ORIG_SEW}m{ORIG_LMUL}" \
+                "_{D_TYPE}{LSEW}m{LLMUL}"
+          func_name = fmt.format_map(args)
+        else:
+          fmt = "{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}"
+          func_name = fmt.format_map(args)
         G.func(
             inst_info,
             name=func_name + decorator.func_suffix,
@@ -186,14 +218,20 @@ def render(G,
             vs2=src_type,
             vl=type_helper.size_t)
 
-      if op == "ncvt" and args["TYPES1"] == "f" and args["TYPES3"] == "f":
+      is_rod = (type_list != "bfloat16" and op == "ncvt" and
+                args["TYPES1"] == "f" and args["TYPES3"] == "f") or \
+               (type_list == "bfloat16" and op == "ncvt" and
+                args["TYPES2"] == "float" and args["TYPES0"] == "bfloat")
+      if is_rod:
         args["OP"] = args["OP"] + "_rod"
         inst_info = \
           InstInfo.get(args, decorator, InstType.VV, extra_attr=extra_attr,
                        required_ext = required_ext_list)
-        func_name = \
-          "{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}".format_map\
-          (args)
+        if type_list == "bfloat16":
+          func_name = "{OP}_f_f_w_bf{LSEW}m{LLMUL}".format_map(args)
+        else:
+          fmt = "{OP}_{TYPES1}_{TYPES3}_{MIDDLE}_{D_TYPE}{LSEW}m{LLMUL}"
+          func_name = fmt.format_map(args)
         G.func(
             inst_info,
             name=func_name + decorator.func_suffix,
