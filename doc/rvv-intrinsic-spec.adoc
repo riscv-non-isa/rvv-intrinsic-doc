@@ -1,9 +1,11 @@
+[[intro]]
 == Introduction
 
 The RISC-V vector C intrinsics provide users interfaces in the C language level to directly leverage the RISC-V "V" extension cite:[riscv-v-spec] (also abbreviated as "RVV"), with assistance from the compiler in handling instruction scheduling and register allocation. The intrinsics also aim to free users from responsibility of maintaining the correct configuration settings for the vector instruction executions.
 
 This document uses the term "RVV" as an abbreviation for the RISC-V "V" extension. This document uses the term "the RVV specification" to indicate the RISC-V "V" extension specification.
 
+[[tesst-macro]]
 == Test macro
 
 The `__riscv_v_intrinsic` macro is the C macro to test the compiler's support for the RISC-V "V" extension intrinsics.
@@ -18,6 +20,7 @@ The value of the test macro is defined as its version, which is computed using t
 
 For example, the v1.0 version should define the macro with value `1000000`.
 
+[[header-file-inclusion]]
 == Header file inclusion
 
 To leverage the intrinsics in the toolchain, the header `<riscv_vector.h>` needs to be included. We suggest guarding the inclusion with the test macro.
@@ -29,6 +32,7 @@ To leverage the intrinsics in the toolchain, the header `<riscv_vector.h>` needs
 #endif /* __riscv_v_intrinsic */
 ----
 
+[[availability]]
 == Availability
 
 With `<riscv_vector.h>` included, availability of intrinsic variants depends on the required architecture of their corresponding vector instructions. The supported architecture is specified to the compiler using the `-march` option cite:[riscv-guide-llvm,riscv-v-gcc].
@@ -721,6 +725,7 @@ The `vlenb` intrinsic returns what is held inside the read-only CSR `vlenb`, whi
 unsigned __riscv_vlenb();
 ----
 
+[[programming-notes]]
 == Programming Notes
 
 === Agnostic value in the RVV C intrinsics
