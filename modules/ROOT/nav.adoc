@@ -3,7 +3,7 @@
 * xref:copyright.adoc[Copyright and license information]
 * xref:contributors.adoc[Contributors]
 * xref:rvv-intrinsic-spec.adoc[Introduction]
-** xref:rvv-intrinsic-spec.adoc#tesst-macro[Test macro]
+** xref:rvv-intrinsic-spec.adoc#test-macro[Test macro]
 ** xref:rvv-intrinsic-spec.adoc#header-file-inclusion[Header file inclusion]
 ** xref:rvv-intrinsic-spec.adoc#availability[Availability]
 ** xref:rvv-intrinsic-spec.adoc#control-of-vector-programming-model[Control of the vector extension programming model]
