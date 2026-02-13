@@ -210,6 +210,18 @@ def render(G,
               vs2=type_helper.v,
               rs1=qtype_helper.uis,
               vl=type_helper.size_t)
+        elif op in ["wabda", "wabdau"]:
+          args["TYPE"] = "uint"
+          G.func(
+              inst_info_vv,
+              name="{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              decorator.func_suffix,
+              return_type=type_helper.uwiv,
+              **decorator.mask_args(type_helper.m, type_helper.uwiv),
+              vd=type_helper.uwiv,
+              vs1=type_helper.v,
+              vs2=type_helper.v,
+              vl=type_helper.size_t)
       elif "float" in data_type and "w" in op:
         # Vector BF16 widening multiply-accumulate computes into FP32 values
         if args["TYPE"] == "bfloat":
