@@ -3,19 +3,11 @@
 * xref:copyright.adoc[Copyright and license information]
 * xref:contributors.adoc[Contributors]
 * xref:rvv-intrinsic-spec.adoc[Introduction]
-** xref:rvv-intrinsic-spec.adoc#test-macro[Test macro]
-** xref:rvv-intrinsic-spec.adoc#header-file-inclusion[Header file inclusion]
-** xref:rvv-intrinsic-spec.adoc#availability[Availability]
-** xref:rvv-intrinsic-spec.adoc#control-of-vector-programming-model[Control of the vector extension programming model]
-** xref:rvv-intrinsic-spec.adoc#naming-scheme[Naming scheme]
-** xref:rvv-intrinsic-spec.adoc#type-system[Type system]
-** xref:rvv-intrinsic-spec.adoc#pseudo-intrinsics[Pseudo intrinsics]
-** xref:rvv-intrinsic-spec.adoc#programming-notes[Programming Notes]
 // * xref:vector-bfloat16-spec.adoc[Intrinsics for BFloat16]
 // * xref:references.adoc[References]
 * xref:rvv-intrinsic-examples.adoc[Examples]
 
-* Explicit (Non-overloaded) intrinsics
+* Appendix A: Explicit (Non-overloaded) intrinsics
 ** xref:intrinsic_funcs/00_vector_loads_and_stores_intrinsics.adoc[Vector Loads and Stores Intrinsics]
 ** xref:intrinsic_funcs/01_vector_loads_and_stores_segment_intrinsics.adoc[Vector Loads and Stores Segment Intrinsics]
 ** xref:intrinsic_funcs/02_vector_integer_arithmetic_intrinsics.adoc[Vector Integer Arithmetic Intrinsics]
@@ -26,7 +18,7 @@
 ** xref:intrinsic_funcs/07_vector_permutation_intrinsics.adoc[Vector Permutation Intrinsics]
 ** xref:intrinsic_funcs/08_miscellaneous_vector_utility_intrinsics.adoc[Miscellaneous Vector Utility Intrinsics]
 
-* Explicit (Non-overloaded) intrinsics, policy variants
+* Appendix B: Explicit (Non-overloaded) intrinsics, policy variants
 ** xref:policy_funcs/intrinsic_funcs/00_vector_loads_and_stores_intrinsics.adoc[Vector Loads and Stores Intrinsics]
 ** xref:policy_funcs/intrinsic_funcs/01_vector_loads_and_stores_segment_intrinsics.adoc[Vector Loads and Stores Segment Intrinsics]
 ** xref:policy_funcs/intrinsic_funcs/02_vector_integer_arithmetic_intrinsics.adoc[Vector Integer Arithmetic Intrinsics]
@@ -37,7 +29,7 @@
 ** xref:policy_funcs/intrinsic_funcs/07_vector_permutation_intrinsics.adoc[Vector Permutation Intrinsics]
 ** xref:policy_funcs/intrinsic_funcs/08_miscellaneous_vector_utility_intrinsics.adoc[Miscellaneous Vector Utility Intrinsics]
 
-* Implicit (Overloaded) intrinsics
+* Appendix C: Implicit (Overloaded) intrinsics
 ** xref:overloaded_intrinsic_funcs/00_vector_loads_and_stores_intrinsics.adoc[Vector Loads and Stores Intrinsics]
 ** xref:overloaded_intrinsic_funcs/01_vector_loads_and_stores_segment_intrinsics.adoc[Vector Loads and Stores Segment Intrinsics]
 ** xref:overloaded_intrinsic_funcs/02_vector_integer_arithmetic_intrinsics.adoc[Vector Integer Arithmetic Intrinsics]
@@ -48,7 +40,7 @@
 ** xref:overloaded_intrinsic_funcs/07_vector_permutation_intrinsics.adoc[Vector Permutation Intrinsics]
 ** xref:overloaded_intrinsic_funcs/08_miscellaneous_vector_utility_intrinsics.adoc[Miscellaneous Vector Utility Intrinsics]
 
-* Implicit (Overloaded) intrinsics, policy variants
+* Appendix D: Implicit (Overloaded) intrinsics, policy variants
 ** xref:policy_funcs/overloaded_intrinsic_funcs/00_vector_loads_and_stores_intrinsics.adoc[Vector Loads and Stores Intrinsics]
 ** xref:policy_funcs/overloaded_intrinsic_funcs/01_vector_loads_and_stores_segment_intrinsics.adoc[Vector Loads and Stores Segment Intrinsics]
 ** xref:policy_funcs/overloaded_intrinsic_funcs/02_vector_integer_arithmetic_intrinsics.adoc[Vector Integer Arithmetic Intrinsics]
