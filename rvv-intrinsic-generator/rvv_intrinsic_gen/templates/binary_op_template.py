@@ -25,7 +25,6 @@ from utils import TypeHelper
 from utils import get_string_lmul
 from enums import InstInfo
 from enums import InstType
-from enums import ExtraAttr
 
 
 def render(G,
@@ -101,8 +100,6 @@ def render(G,
           args, decorator, InstType.VVX, required_ext=required_ext_list)
       inst_info_vf = InstInfo.get(
           args, decorator, InstType.VVF, required_ext=required_ext_list)
-      inst_info_v = InstInfo.get(
-          args, decorator, InstType.VV, required_ext=required_ext_list)
       if args["OP2"] == "v":
         inst_info = inst_info_vv
       elif args["OP2"] == "x":
