@@ -357,7 +357,7 @@ For Zvdota family dot product instructions (widening and quad-widening), the int
 vint32m1_t __riscv_vqwdotas_vv_i8mf8_i32m1(vint32m1_t vd, vint8mf8_t vs2, vint8mf8_t vs1, size_t vl);
 vint32m1_t __riscv_vqwdotas_vv_u8mf8_i32m1(vint32m1_t vd, vint8mf8_t vs2, vuint8mf8_t vs1, size_t vl);
 vint32m1_t __riscv_vqwdotau_vv_i8mf8_i32m1(vint32m1_t vd, vuint8mf8_t vs2, vint8mf8_t vs1, size_t vl);
-vuint32m1_t __riscv_vqwdotau_vv_u8mf8_u32m1(vuint32m1_t vd, vuint8mf8_t vs2, vunt8mf8_t vs1, size_t vl);
+vuint32m1_t __riscv_vqwdotau_vv_u8mf8_u32m1(vuint32m1_t vd, vuint8mf8_t vs2, vuint8mf8_t vs1, size_t vl);
 ----
 
 ===== Zvfwdota16bf - BFloat16 Widening Dot Product instructions
