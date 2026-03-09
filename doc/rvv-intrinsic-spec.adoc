@@ -347,6 +347,34 @@ vint8mf8_t __riscv_vfncvt_rtz_x_f_w_bf16mf4_i8mf8(vbfloat16mf4_t vs2, size_t vl)
 vuint16mf4_t __riscv_vfclass_v_bf16mf4_u16mf4(vbfloat16mf4_t vs2, size_t vl);
 ----
 
+==== Zvdota Dot Product instructions
+
+For Zvdota family dot product instructions (widening and quad-widening), the intrinsics encode both the input vector type and the output vector type in the suffix to disambiguate between different signedness combinations and data types. The naming pattern is `{OP}_vv_{VS1_TYPE}{SEW}m{LMUL}_{OUTPUT_TYPE}{OSEW}m{OLMUL}`.
+
+===== Zvqwdota8i/Zvqwdota16i - Integer Quad-Widening Dot Product instructions
+[,c]
+----
+vint32m1_t __riscv_vqwdotas_vv_i8mf8_i32m1(vint32m1_t vd, vint8mf8_t vs2, vint8mf8_t vs1, size_t vl);
+vint32m1_t __riscv_vqwdotas_vv_u8mf8_i32m1(vint32m1_t vd, vint8mf8_t vs2, vuint8mf8_t vs1, size_t vl);
+vint32m1_t __riscv_vqwdotau_vv_i8mf8_i32m1(vint32m1_t vd, vuint8mf8_t vs2, vint8mf8_t vs1, size_t vl);
+vuint32m1_t __riscv_vqwdotau_vv_u8mf8_u32m1(vuint32m1_t vd, vuint8mf8_t vs2, vunt8mf8_t vs1, size_t vl);
+----
+
+===== Zvfwdota16bf - BFloat16 Widening Dot Product instructions
+[,c]
+----
+vfloat32m1_t __riscv_vfwdota_vv_bf16mf4_f32m1(vfloat32m1_t vd, vbfloat16mf4_t vs2, vbfloat16mf4_t vs1, size_t vl);
+----
+
+===== Zvfqwdota8f - FP8 Quad-Widening Dot Product instructions
+[,c]
+----
+vfloat32m1_t __riscv_vfqwdota_vv_f8e4m3m1_f32m1(vfloat32m1_t vd, vuint8m1_t vs2, vuint8m1_t vs1, size_t vl);
+vfloat32m1_t __riscv_vfqwdota_vv_f8e5m2m1_f32m1(vfloat32m1_t vd, vuint8m1_t vs2, vuint8m1_t vs1, size_t vl);
+vfloat32m1_t __riscv_vfqwdota_alt_vv_f8e4m3m1_f32m1(vfloat32m1_t vd, vuint8m1_t vs2, vuint8m1_t vs1, size_t vl);
+vfloat32m1_t __riscv_vfqwdota_alt_vv_f8e5m2m1_f32m1(vfloat32m1_t vd, vuint8m1_t vs2, vuint8m1_t vs1, size_t vl);
+----
+
 [[implicit-naming-scheme]]
 === Implicit (Overloaded) naming scheme
 
