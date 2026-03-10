@@ -210,7 +210,7 @@ def render(G,
           args["TYPE"] = "uint"
           G.func(
               inst_info_vv,
-              name="{OP}_vv_{TYPE}{SEW}m{LMUL}".format_map(args) +
+              name="{OP}_vv_{TYPE}{WSEW}m{WLMUL}".format_map(args) +
               decorator.func_suffix,
               return_type=type_helper.uwiv,
               **decorator.mask_args(type_helper.m, type_helper.uwiv),
