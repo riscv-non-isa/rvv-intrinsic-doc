@@ -349,7 +349,7 @@ vuint16mf4_t __riscv_vfclass_v_bf16mf4_u16mf4(vbfloat16mf4_t vs2, size_t vl);
 
 ==== Zvdota Dot Product instructions
 
-For Zvdota family dot product instructions (widening and quad-widening), the intrinsics encode both the input vector type and the output vector type in the suffix to disambiguate between different signedness combinations and data types. The naming pattern is `{OP}_vv_{VS1_TYPE}{SEW}m{LMUL}_{OUTPUT_TYPE}{OSEW}m{OLMUL}`.
+For Zvdota family dot product instructions (widening and quad-widening), the intrinsics encode both the input vector type and the output vector type in the suffix to disambiguate between different signedness combinations and data types. The naming pattern is `{OP}_vv_{VS1_TYPE}{VS1_SEW}m{VS1_LMUL}_{VD_TYPE}{VD_SEW}m{VD_LMUL}`.
 
 ===== Zvqwdota8i/Zvqwdota16i - Integer Quad-Widening Dot Product instructions
 [,c]

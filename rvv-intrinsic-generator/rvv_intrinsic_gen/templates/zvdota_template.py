@@ -45,8 +45,8 @@ def render(G,
       if "int" in data_type and decorator.flags & ExtraAttr.HAS_FRM:
         continue
 
-      args["OSEW"] = args["SEW"] * (4 if "qwdota" in op else 2)
-      args["OLMUL"] = 1
+      args["OUT_SEW"] = args["SEW"] * (4 if "qwdota" in op else 2)
+      args["OUT_LMUL"] = 1
 
       is_fp8 = data_type in ["f8e4m3", "f8e5m2"]
       is_float = "float" in data_type or data_type == "bfloat"
@@ -64,12 +64,12 @@ def render(G,
       type_helper = TypeHelper(
           SEW=args["SEW"], LMUL=args["LMUL"], TYPE=data_type)
       dst_type = TypeHelper(
-          SEW=args["OSEW"], LMUL=args["OLMUL"], TYPE=args["OTYPE"]).v
+          SEW=args["OUT_SEW"], LMUL=args["OUT_LMUL"], TYPE=args["OTYPE"]).v
 
       if is_fp8:
         vs2_type = vs1_type = TypeHelper(
             SEW=args["SEW"], LMUL=args["LMUL"], TYPE="uint").v
-        func_name = "v{OP}_vv_{TYPE}m{LMUL}_{OTYPE}{OSEW}m{OLMUL}".format_map(
+        func_name = "v{OP}_vv_{TYPE}m{LMUL}_{OTYPE}{OUT_SEW}m{OUT_LMUL}".format_map(
             args)
       else:
         vs2_type = type_helper.v if is_float else (
@@ -79,7 +79,7 @@ def render(G,
         prefix = "vf" if is_float else "v"
         func_name = (
             f"{prefix}{op}_vv_{args['TYPE']}{args['SEW']}m{args['LMUL']}_"
-            f"{args['OTYPE']}{args['OSEW']}m{args['OLMUL']}")
+            f"{args['OTYPE']}{args['OUT_SEW']}m{args['OUT_LMUL']}")
 
       G.func(
           InstInfo.get(
