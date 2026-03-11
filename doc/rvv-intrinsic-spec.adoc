@@ -495,6 +495,22 @@ vbool8_t __riscv_vreinterpret_b8 (vint32m1_t src);
 vbool4_t __riscv_vreinterpret_b4 (vint32m1_t src);
 ----
 
+==== Zvdota FP8 Quad-Widening Dot Product instructions
+
+For FP8 quad-widening dot product instructions (`vfqwdota` and `vfqwdota_alt`), the overloaded intrinsics encode both the FP8 input type (`f8e4m3` or `f8e5m2`) and the output type (`f32`) in the function name to disambiguate between the two FP8 formats. This is necessary because both FP8 formats use `vuint8` as the parameter type in C, making them indistinguishable by parameter types alone.
+
+[,c]
+----
+vfloat32m1_t __riscv_vfqwdota_f8e4m3_f32(vfloat32m1_t vd, vuint8m1_t vs2,
+                                         vuint8m1_t vs1, size_t vl);
+vfloat32m1_t __riscv_vfqwdota_f8e5m2_f32(vfloat32m1_t vd, vuint8m1_t vs2,
+                                         vuint8m1_t vs1, size_t vl);
+vfloat32m1_t __riscv_vfqwdota_alt_f8e4m3_f32(vfloat32m1_t vd, vuint8m1_t vs2,
+                                             vuint8m1_t vs1, size_t vl);
+vfloat32m1_t __riscv_vfqwdota_alt_f8e5m2_f32(vfloat32m1_t vd, vuint8m1_t vs2,
+                                             vuint8m1_t vs1, size_t vl);
+----
+
 [[unsupported-implicit-naming]]
 === Un-supported intrinsics for implicit (overloaded) naming scheme
 
