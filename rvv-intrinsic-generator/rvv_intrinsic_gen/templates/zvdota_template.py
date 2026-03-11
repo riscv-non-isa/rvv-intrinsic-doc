@@ -94,6 +94,7 @@ def render(G,
           vd=dst_type,
           vs2=vs2_type,
           vs1=vs1_type,
+          **decorator.extra_csr_args(type_helper.uint),
           vl=type_helper.size_t)
 
   G.inst_group_epilogue()
