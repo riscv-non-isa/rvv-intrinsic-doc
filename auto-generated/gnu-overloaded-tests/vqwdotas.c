@@ -210,4 +210,4 @@ vint64m1_t test_vqwdotas_vv_u16m4_i64m1_m(vbool4_t vm, vint64m1_t vd, vint16m4_t
 vint64m1_t test_vqwdotas_vv_u16m8_i64m1_m(vbool2_t vm, vint64m1_t vd, vint16m8_t vs2, vuint16m8_t vs1, size_t vl) {
   return __riscv_vqwdotas(vm, vd, vs2, vs1, vl);
 }
-/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+qwdotas\.[ivxfswum.]+\s+} 52 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vqwdotas\.[ivxfswum.]+\s+} 52 } } */

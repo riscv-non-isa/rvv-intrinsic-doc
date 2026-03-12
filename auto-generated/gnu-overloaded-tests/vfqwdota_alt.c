@@ -226,4 +226,4 @@ vfloat32m1_t test_vfqwdota_alt_vv_f8e5m2m4_f32m1_rm_m(vbool2_t vm, vfloat32m1_t 
 vfloat32m1_t test_vfqwdota_alt_vv_f8e5m2m8_f32m1_rm_m(vbool1_t vm, vfloat32m1_t vd, vuint8m8_t vs2, vuint8m8_t vs1, size_t vl) {
   return __riscv_vfqwdota_alt_f8e5m2_f32(vm, vd, vs2, vs1, __RISCV_FRM_RNE, vl);
 }
-/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+fqwdota\.alt[ivxfswum.]*\s+} 56 } } */
+/* { dg-final { scan-assembler-times {vseti?vli\s+[a-z0-9]+,\s*[a-z0-9]+,\s*e[0-9]+,\s*mf?[1248],\s*t[au],\s*m[au]\s+vfqwdota\.alt[ivxfswum.]*\s+} 56 } } */
