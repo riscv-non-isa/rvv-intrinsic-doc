@@ -51,13 +51,8 @@ def render(G,
       is_fp8 = data_type in ["f8e4m3", "f8e5m2"]
       is_float = "float" in data_type or data_type == "bfloat"
 
-      if op == "qwdotas":
-        vs2_signed = True
-        vs1_signed = (data_type == "int")
-      else:
-        vs2_signed = False
-        vs1_signed = (data_type == "int")
-
+      vs2_signed = (op == "vqwdotas")
+      vs1_signed = (data_type == "int")
       args["OTYPE"] = "float" if (is_float or is_fp8) else ("int" if (
           vs2_signed or vs1_signed) else "uint")
 
@@ -69,16 +64,15 @@ def render(G,
       if is_fp8:
         vs2_type = vs1_type = TypeHelper(
             SEW=args["SEW"], LMUL=args["LMUL"], TYPE="uint").v
-        func_name = "v{OP}_vv_{TYPE}m{LMUL}_{OTYPE}{OUT_SEW}m{OUT_LMUL}".format_map(
+        func_name = "{OP}_vv_{TYPE}m{LMUL}_{OTYPE}{OUT_SEW}m{OUT_LMUL}".format_map(
             args)
       else:
         vs2_type = type_helper.v if is_float else (
             type_helper.siv if vs2_signed else type_helper.uiv)
         vs1_type = type_helper.v if is_float else (
             type_helper.siv if vs1_signed else type_helper.uiv)
-        prefix = "vf" if is_float else "v"
         func_name = (
-            f"{prefix}{op}_vv_{args['TYPE']}{args['SEW']}m{args['LMUL']}_"
+            f"{op}_vv_{args['TYPE']}{args['SEW']}m{args['LMUL']}_"
             f"{args['OTYPE']}{args['OUT_SEW']}m{args['OUT_LMUL']}")
 
       G.func(
